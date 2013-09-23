@@ -1,17 +1,20 @@
-cc = clang
-cxx = clang++
+llvm_bin = /home/kg365/pool/llvm/bin
+cc = $llvm_bin/clang
+cxx = $llvm_bin/clang++
 ld = $cxx
 ar = ar
 ar_host = ar
-cc_host = clang
-cxx_host = clang++
+cc_host = $cc
+cxx_host = $cxx
 ld_host = $cxx_host
-
+llc = $llvm_bin/llc
+opt = $llvm_bin/opt
+soaap_build_dir = /home/kg365/pool/soaap
 pool link_pool
   depth = 1
 
 rule cc
-  command = $cc -MMD -MF $out.d $defines $includes $cflags $cflags_c $cflags_pch_c -c $in -o $out
+  command = $cc -MMD -MF $out.d $defines $includes $cflags $cflags_c $cflags_pch_c -c $in -o $out ; $cc -MMD -MF $out.d $defines $includes $cflags $cflags_c $cflags_pch_c -c $in -emit-llvm -o $out.bc
   description = CC $out
   depfile = $out.d
   deps = gcc
@@ -19,15 +22,15 @@ rule cc_s
   command = $cc $defines $includes $cflags $cflags_c $cflags_pch_c -c $in -o $out
   description = CC $out
 rule cxx
-  command = $cxx -MMD -MF $out.d $defines $includes $cflags $cflags_cc $cflags_pch_cc -c $in -o $out
+  command = $cxx -MMD -MF $out.d $defines $includes $cflags $cflags_cc $cflags_pch_cc -c $in -o $out ; $cxx -MMD -MF $out.d $defines $includes $cflags $cflags_cc $cflags_pch_cc -c $in -emit-llvm -o $out.bc
   description = CXX $out
   depfile = $out.d
   deps = gcc
 rule alink
-  command = rm -f $out && $ar rcs $out $in
+  command = rm -f $out && $ar rcs $out $in ; rm -f $out.bc && $ar rcs $out.bc `llvm-file-map $in`
   description = AR $out
 rule alink_thin
-  command = rm -f $out && $ar rcsT $out $in
+  command = rm -f $out && $ar rcsT $out $in ; rm -f $out.bc && $ar rcs $out.bc `llvm-file-map $in`
   description = AR $out
 rule solink
   command = if [ ! -e $lib -o ! -e ${lib}.TOC ]; then $ld -shared $ldflags -o $lib -Wl,-soname=$soname $
@@ -49,7 +52,7 @@ rule solink_module
   pool = link_pool
   restat = 1
 rule link
-  command = $ld $ldflags -o $out -Wl,--start-group $in $solibs -Wl,--end-group $libs
+  command = $ld $ldflags -o $out -Wl,--start-group $in $solibs -Wl,--end-group $libs ; llvm-link-wrapper $out.bc `llvm-file-map $in`
   description = LINK $out
   pool = link_pool
 rule stamp
@@ -58,6 +61,15 @@ rule stamp
 rule copy
   command = ln -f $in $out 2>/dev/null || (rm -rf $out && cp -af $in $out)
   description = COPY $in $out
+rule llc
+  command = $llc -filetype=obj $in
+  description = LLC $out
+rule chromebclink
+  command = $ld -B /usr/local/bin -Wl,-z,now -Wl,-z,relro -pthread -Wl,-z,noexecstack -fPIC -Wl,--no-keep-memory -L. -L/usr/local/lib -L/usr/local/lib/nss -Wl,-O1 -Wl,--as-needed -o $out $in -lX11 -lXcursor -lXrender -lXss -lXext -L/usr/local/lib -lexecinfo -lgmodule-2.0 -lgobject-2.0 -lgthread-2.0 -lglib-2.0 -lintl -lXtst -lgtk-x11-2.0 -lgdk-x11-2.0 -lpangocairo-1.0 -lXinerama -lXi -lXrandr -lXcomposite -lXdamage -lXfixes -latk-1.0 -lcairo -lgdk_pixbuf-2.0 -lgio-2.0 -lpangoft2-1.0 -lpango-1.0 -lfreetype -lfontconfig -lnss3 -lsmime3 -lnssutil3 -lplds4 -lplc4 -lnspr4 -lasound -lxml2 -lxslt -lz -liconv -lm -lcups -lssl -lcrypto -pthread -lcrypt -lssp_nonshared -L/usr/local/lib -lgcrypt -lgpg-error -lexpat -lusb -ldbus-1 -v `cat objfiles.txt | xargs`
+  description = CHROME_BCLINK $out
+rule soaap
+  command = $opt -load $soaap_build_dir/libsoaap.so -soaap ${SOAAP_FLAGS} -o /dev/null $in
+  description = SOAAP $in
 
 subninja obj/build/linux/gnome_keyring_direct.ninja
 subninja obj/webkit/common/user_agent/webkit_version.ninja
@@ -239,6 +251,7 @@ subninja obj/third_party/ffmpeg/ffmpegsumo.ninja
 subninja obj/third_party/icu/icuuc.ninja
 subninja obj/third_party/cacheinvalidation/cacheinvalidation_proto_cpp.ninja
 subninja obj/third_party/libsrtp/srtp_test_stat_driver.ninja
+subninja obj/third_party/mesa/mesa.ninja
 subninja obj/third_party/libsrtp/srtp_test_rand_gen.ninja
 subninja obj/content/content_resources.ninja
 subninja obj/third_party/zlib/minizip.ninja
@@ -290,7 +303,6 @@ subninja obj/sync/sync_proto.ninja
 subninja obj/ppapi/ppapi_cpp_objects.ninja
 subninja obj/base/allocator/allocator.ninja
 subninja obj/webkit/plugins/npapi_test_common.ninja
-subninja obj/third_party/mesa/mesa.ninja
 subninja obj/ppapi/ppapi_example_graphics_2d.ninja
 subninja obj/third_party/webrtc/common_audio/common_audio.ninja
 subninja obj/gpu/disk_cache_proto.ninja
@@ -370,6 +382,7 @@ subninja obj/ipc/test_support_ipc.ninja
 subninja obj/ppapi/ppapi_example_video_effects.ninja
 subninja obj/third_party/webrtc/tools/psnr_ssim_analyzer.ninja
 subninja obj/third_party/WebKit/Source/WebKit/chromium/blink_common.ninja
+subninja obj/third_party/webrtc/tools/frame_analyzer.ninja
 subninja obj/base/base_i18n.ninja
 subninja obj/third_party/WebKit/public/blink_minimal.ninja
 subninja obj/ppapi/ppapi_example_gamepad.ninja
@@ -419,7 +432,7 @@ subninja obj/base/run_all_unittests.ninja
 subninja obj/chrome/installer_util.ninja
 subninja obj/third_party/leveldatabase/leveldb_corruption_test.ninja
 subninja obj/third_party/leveldatabase/leveldb_db_test.ninja
-subninja obj/third_party/webrtc/tools/frame_analyzer.ninja
+subninja obj/third_party/libphonenumber/libphonenumber_unittests.ninja
 subninja obj/sync/sync_core.ninja
 subninja obj/url/url_unittests.ninja
 subninja obj/third_party/webrtc/modules/NetEq4.ninja
@@ -433,7 +446,6 @@ subninja obj/components/encryptor.ninja
 subninja obj/ipc/ipc_tests.ninja
 subninja obj/third_party/leveldatabase/leveldb_log_test.ninja
 subninja obj/third_party/leveldatabase/leveldb_crc32c_test.ninja
-subninja obj/third_party/libphonenumber/libphonenumber_unittests.ninja
 subninja obj/ui/run_ui_unittests.ninja
 subninja obj/third_party/webrtc/modules/webrtc_video_coding.ninja
 subninja obj/third_party/leveldatabase/leveldb_env_test.ninja
@@ -712,6 +724,11 @@ subninja obj/chrome/webrtc_test_tools.ninja
 subninja obj/chrome/chromedriver_lib.ninja
 subninja obj/chrome/chromedriver_unittests.ninja
 subninja obj/chrome/chromedriver.ninja
+
+# SOAAP-related targets
+build chrome.o : llc chrome.bc
+build chrome.bc.exe : chromebclink chrome.o
+build chrome.soaap : soaap chrome.bc
 
 # Short names for targets.
 build inspector_overlay_page: phony gen/webkit/InspectorOverlayPage.h
