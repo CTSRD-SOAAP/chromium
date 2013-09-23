@@ -14,7 +14,7 @@ pool link_pool
   depth = 1
 
 rule cc
-  command = $cc -MMD -MF $out.d $defines $includes $cflags $cflags_c $cflags_pch_c -c $in -o $out ; $cc -MMD -MF $out.d $defines $includes $cflags $cflags_c $cflags_pch_c -c $in -emit-llvm -o $out.bc
+  command = $cc -MMD -MF $out.d $defines $includes $cflags $cflags_c $cflags_pch_c -c $in -o $out ; $cc -MMD -MF $out.d $defines $includes $cflags $cflags_c $cflags_pch_c -c $in -g -emit-llvm -o $out.bc
   description = CC $out
   depfile = $out.d
   deps = gcc
@@ -22,7 +22,7 @@ rule cc_s
   command = $cc $defines $includes $cflags $cflags_c $cflags_pch_c -c $in -o $out
   description = CC $out
 rule cxx
-  command = $cxx -MMD -MF $out.d $defines $includes $cflags $cflags_cc $cflags_pch_cc -c $in -o $out ; $cxx -MMD -MF $out.d $defines $includes $cflags $cflags_cc $cflags_pch_cc -c $in -emit-llvm -o $out.bc
+  command = $cxx -MMD -MF $out.d $defines $includes $cflags $cflags_cc $cflags_pch_cc -c $in -o $out ; $cxx -MMD -MF $out.d $defines $includes $cflags $cflags_cc $cflags_pch_cc -c $in -g -emit-llvm -o $out.bc
   description = CXX $out
   depfile = $out.d
   deps = gcc
