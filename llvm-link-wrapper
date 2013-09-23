@@ -1,0 +1,48 @@
+#!/bin/bash
+
+#echo "llvm-link-wrapper $@"
+
+LLVM_BUILD_DIR=/home/kg365/pool/llvm
+OUT=$1
+
+shift # skip output filename
+
+CURR=`pwd`
+TEMP=`mktemp -d` # temp folder for extracting
+
+# extract everything to TEMP
+echo "Extracting archives to $TEMP"
+
+cd $TEMP
+
+for file in "$@"
+do
+  echo "Copying $file to $TEMP"
+  cp $CURR/$file $TEMP
+  if [[ "$file" == *.a.bc ]]
+  then
+    echo "Extracting $file"
+    ar x $CURR/$file
+    rm `basename $file`
+  fi
+done
+
+if [[ -n "`ls`" ]] # check that there were some .o.bc files in the archive
+then
+  echo "Linking LLVM bitcode files"
+  #echo "llvm-link `ls | xargs`"
+
+  if [[ "`ls *.bc 2>&1`" == *"too long"* ]]
+  then
+    echo "Too many bitcode files, so linking half at a time"
+    ${LLVM_BUILD_DIR}/bin/llvm-link -o ${OUT}_1 `ls | grep ^[a-mA-M]`
+    ${LLVM_BUILD_DIR}/bin/llvm-link -o ${OUT}_2 `ls | grep ^[n-zN-Z]`
+    ${LLVM_BUILD_DIR}/bin/llvm-link -o $OUT ${OUT}_1 ${OUT}_2
+  else  
+    ${LLVM_BUILD_DIR}/bin/llvm-link -o $OUT *.bc 
+  fi  
+  echo "Copying $OUT to $CURR"
+  cp $OUT $CURR
+fi
+
+cd $CURR # return back to CWD

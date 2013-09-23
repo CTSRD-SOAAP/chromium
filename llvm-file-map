@@ -1,0 +1,14 @@
+#!/bin/bash
+
+# Skip ELF files
+NON_ELF_FILES=""
+for file in "$@"
+do
+  file_mapped=`echo $file | sed 's/\.o$/\.o\.bc/g' | sed 's/\.a$/\.a\.bc/g'`
+  if [[ "`file $file_mapped`" == *LLVM* || "`file $file_mapped`" == *archive* ]]
+  then
+    NON_ELF_FILES=$NON_ELF_FILES" "$file_mapped
+  fi
+done
+
+echo $NON_ELF_FILES
