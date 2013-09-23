@@ -1,0 +1,97 @@
+defines = -DANGLE_DX11 -D_FILE_OFFSET_BITS=64 -DNO_TCMALLOC -DDISABLE_NACL $
+    -DCHROMIUM_BUILD -DUSE_DEFAULT_RENDER_THEME=1 -DUSE_LIBJPEG_TURBO=1 $
+    -DUSE_NSS=1 -DUSE_X11=1 -DENABLE_ONE_CLICK_SIGNIN $
+    -DGTK_DISABLE_SINGLE_INCLUDES=1 -DENABLE_REMOTING=1 -DENABLE_WEBRTC=1 $
+    -DENABLE_CONFIGURATION_POLICY -DENABLE_INPUT_SPEECH $
+    -DENABLE_NOTIFICATIONS -DENABLE_GPU=1 -DENABLE_EGLIMAGE=1 $
+    -DENABLE_TASK_MANAGER=1 -DENABLE_EXTENSIONS=1 $
+    -DENABLE_PLUGIN_INSTALLATION=1 -DENABLE_PLUGINS=1 $
+    -DENABLE_SESSION_SERVICE=1 -DENABLE_THEMES=1 -DENABLE_BACKGROUND=1 $
+    -DENABLE_AUTOMATION=1 -DENABLE_GOOGLE_NOW=1 $
+    -DENABLE_LANGUAGE_DETECTION=1 -DENABLE_PRINTING=1 $
+    -DENABLE_CAPTIVE_PORTAL_DETECTION=1 -DENABLE_MANAGED_USERS=1 $
+    -DCRYPTO_IMPLEMENTATION -D__STDC_CONSTANT_MACROS -D__STDC_FORMAT_MACROS $
+    -DDYNAMIC_ANNOTATIONS_ENABLED=1 -DWTF_USE_DYNAMIC_ANNOTATIONS=1 -D_DEBUG
+includes = -I../.. -I../../net/third_party/nss/ssl
+cflags = -fstack-protector --param=ssp-buffer-size=4  -pthread $
+    -fno-exceptions -fno-strict-aliasing -Wall -Wno-unused-parameter $
+    -Wno-missing-field-initializers -fvisibility=hidden -pipe -fPIC $
+    -Wheader-hygiene -Wno-char-subscripts -Wno-unused-function $
+    -Wno-covered-switch-default -Wstring-conversion -Wno-c++11-narrowing $
+    -Wno-reserved-user-defined-literal -fcolor-diagnostics $
+    -I/usr/local/include/gtk-2.0 -I/usr/local/include/gio-unix-2.0/ $
+    -I/usr/local/include/atk-1.0 -I/usr/local/include/cairo $
+    -I/usr/local/include/pixman-1 -D_THREAD_SAFE $
+    -I/usr/local/include/gdk-pixbuf-2.0 -I/usr/local/include/libpng15 $
+    -I/usr/local/include/pango-1.0 -I/usr/local/include/freetype2 $
+    -I/usr/local/include/harfbuzz -pthread -I/usr/local/include/glib-2.0 $
+    -I/usr/local/include -pthread -I/usr/local/include/glib-2.0 $
+    -I/usr/local/include -D_THREAD_SAFE -I/usr/local/include $
+    -I/usr/local/include/nss -I/usr/local/include/nss/nss $
+    -I/usr/local/include/nspr -O0 -g
+cflags_c = -O2 -pipe -fno-strict-aliasing
+cflags_cc = -O2 -pipe -fno-strict-aliasing -fno-rtti $
+    -fno-threadsafe-statics -fvisibility-inlines-hidden -Wsign-compare $
+    -std=gnu++11
+
+build obj/crypto/crypto.hmac.o: cxx ../../crypto/hmac.cc
+build obj/crypto/crypto.secure_util.o: cxx ../../crypto/secure_util.cc
+build obj/crypto/third_party/nss/crypto.sha512.o: cxx $
+    ../../crypto/third_party/nss/sha512.cc
+build obj/crypto/crypto.curve25519.o: cxx ../../crypto/curve25519.cc
+build obj/crypto/crypto.curve25519-donna.o: cc ../../crypto/curve25519-donna.c
+build obj/crypto/crypto.ghash.o: cxx ../../crypto/ghash.cc
+build obj/crypto/crypto.ec_private_key_nss.o: cxx $
+    ../../crypto/ec_private_key_nss.cc
+build obj/crypto/crypto.ec_signature_creator.o: cxx $
+    ../../crypto/ec_signature_creator.cc
+build obj/crypto/crypto.ec_signature_creator_nss.o: cxx $
+    ../../crypto/ec_signature_creator_nss.cc
+build obj/crypto/crypto.encryptor.o: cxx ../../crypto/encryptor.cc
+build obj/crypto/crypto.encryptor_nss.o: cxx ../../crypto/encryptor_nss.cc
+build obj/crypto/crypto.hkdf.o: cxx ../../crypto/hkdf.cc
+build obj/crypto/crypto.hmac_nss.o: cxx ../../crypto/hmac_nss.cc
+build obj/crypto/crypto.p224_spake.o: cxx ../../crypto/p224_spake.cc
+build obj/crypto/crypto.nss_util.o: cxx ../../crypto/nss_util.cc
+build obj/crypto/crypto.openpgp_symmetric_encryption.o: cxx $
+    ../../crypto/openpgp_symmetric_encryption.cc
+build obj/crypto/crypto.p224.o: cxx ../../crypto/p224.cc
+build obj/crypto/crypto.random.o: cxx ../../crypto/random.cc
+build obj/crypto/crypto.rsa_private_key.o: cxx ../../crypto/rsa_private_key.cc
+build obj/crypto/crypto.rsa_private_key_nss.o: cxx $
+    ../../crypto/rsa_private_key_nss.cc
+build obj/crypto/crypto.secure_hash_default.o: cxx $
+    ../../crypto/secure_hash_default.cc
+build obj/crypto/crypto.sha2.o: cxx ../../crypto/sha2.cc
+build obj/crypto/crypto.signature_creator_nss.o: cxx $
+    ../../crypto/signature_creator_nss.cc
+build obj/crypto/crypto.signature_verifier_nss.o: cxx $
+    ../../crypto/signature_verifier_nss.cc
+build obj/crypto/crypto.symmetric_key_nss.o: cxx $
+    ../../crypto/symmetric_key_nss.cc
+build obj/crypto/third_party/nss/crypto.pk11akey.o: cxx $
+    ../../crypto/third_party/nss/pk11akey.cc
+build obj/crypto/third_party/nss/crypto.secsign.o: cxx $
+    ../../crypto/third_party/nss/secsign.cc
+
+build obj/crypto/libcrcrypto.a: alink_thin obj/crypto/crypto.hmac.o $
+    obj/crypto/crypto.secure_util.o $
+    obj/crypto/third_party/nss/crypto.sha512.o $
+    obj/crypto/crypto.curve25519.o obj/crypto/crypto.curve25519-donna.o $
+    obj/crypto/crypto.ghash.o obj/crypto/crypto.ec_private_key_nss.o $
+    obj/crypto/crypto.ec_signature_creator.o $
+    obj/crypto/crypto.ec_signature_creator_nss.o $
+    obj/crypto/crypto.encryptor.o obj/crypto/crypto.encryptor_nss.o $
+    obj/crypto/crypto.hkdf.o obj/crypto/crypto.hmac_nss.o $
+    obj/crypto/crypto.p224_spake.o obj/crypto/crypto.nss_util.o $
+    obj/crypto/crypto.openpgp_symmetric_encryption.o $
+    obj/crypto/crypto.p224.o obj/crypto/crypto.random.o $
+    obj/crypto/crypto.rsa_private_key.o $
+    obj/crypto/crypto.rsa_private_key_nss.o $
+    obj/crypto/crypto.secure_hash_default.o obj/crypto/crypto.sha2.o $
+    obj/crypto/crypto.signature_creator_nss.o $
+    obj/crypto/crypto.signature_verifier_nss.o $
+    obj/crypto/crypto.symmetric_key_nss.o $
+    obj/crypto/third_party/nss/crypto.pk11akey.o $
+    obj/crypto/third_party/nss/crypto.secsign.o || $
+    obj/build/linux/ssl.actions_depends.stamp

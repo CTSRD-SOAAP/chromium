@@ -1,0 +1,30 @@
+rule $
+    inspector_instrumentation_sources_target_generateInspectorInstrumentation_40c5a26d6964658546a2aad4e20ea508
+  command = cd ../../third_party/WebKit/Source/core; python $
+      inspector/CodeGeneratorInstrumentation.py $
+      inspector/InspectorInstrumentation.idl --output_h_dir $
+      ../../../../out/Release/gen/webkit --output_cpp_dir $
+      ../../../../out/Release/gen/webcore
+  description = ACTION Generating Inspector instrumentation code from $
+      InspectorInstrumentation.idl
+  restat = 1
+
+build gen/webkit/InspectorCanvasInstrumentationInl.h $
+    gen/webkit/InspectorConsoleInstrumentationInl.h $
+    gen/webkit/InspectorDatabaseInstrumentationInl.h $
+    gen/webkit/InspectorInstrumentationInl.h $
+    gen/webkit/InspectorOverridesInl.h gen/webkit/InstrumentingAgentsInl.h $
+    gen/webcore/InspectorInstrumentationImpl.cpp: $
+    inspector_instrumentation_sources_target_generateInspectorInstrumentation_40c5a26d6964658546a2aad4e20ea508 $
+    ../../third_party/WebKit/Source/core/inspector/CodeGeneratorInstrumentation.py $
+    ../../third_party/WebKit/Source/core/inspector/InspectorInstrumentation.idl
+
+build $
+    obj/third_party/WebKit/Source/core/inspector_instrumentation_sources.actions_rules_copies.stamp: $
+    stamp gen/webkit/InspectorCanvasInstrumentationInl.h $
+    gen/webkit/InspectorConsoleInstrumentationInl.h $
+    gen/webkit/InspectorDatabaseInstrumentationInl.h $
+    gen/webkit/InspectorInstrumentationInl.h $
+    gen/webkit/InspectorOverridesInl.h gen/webkit/InstrumentingAgentsInl.h $
+    gen/webcore/InspectorInstrumentationImpl.cpp
+

@@ -1,0 +1,72 @@
+build $
+    obj/third_party/leveldatabase/leveldb_crc32c_test.actions_depends.stamp: $
+    stamp obj/third_party/leveldatabase/libleveldb_testutil.a $
+    obj/base/libbase.a obj/base/libbase_static.a $
+    obj/base/allocator/liballocator_extension_thunks.a $
+    obj/third_party/modp_b64/libmodp_b64.a $
+    obj/base/third_party/dynamic_annotations/libdynamic_annotations.a $
+    obj/base/libsymbolize.a obj/base/libxdg_mime.a $
+    obj/third_party/libevent/libevent.a $
+    obj/third_party/leveldatabase/libleveldatabase.a $
+    obj/third_party/re2/libre2.a obj/third_party/snappy/libsnappy.a
+
+defines = -DLEVELDB_PLATFORM_CHROMIUM=1 -DANGLE_DX11 -D_FILE_OFFSET_BITS=64 $
+    -DNO_TCMALLOC -DDISABLE_NACL -DUSE_SNAPPY=1 -DCHROMIUM_BUILD $
+    -DUSE_DEFAULT_RENDER_THEME=1 -DUSE_LIBJPEG_TURBO=1 -DUSE_NSS=1 $
+    -DUSE_X11=1 -DENABLE_ONE_CLICK_SIGNIN -DGTK_DISABLE_SINGLE_INCLUDES=1 $
+    -DENABLE_REMOTING=1 -DENABLE_WEBRTC=1 -DENABLE_CONFIGURATION_POLICY $
+    -DENABLE_INPUT_SPEECH -DENABLE_NOTIFICATIONS -DENABLE_GPU=1 $
+    -DENABLE_EGLIMAGE=1 -DENABLE_TASK_MANAGER=1 -DENABLE_EXTENSIONS=1 $
+    -DENABLE_PLUGIN_INSTALLATION=1 -DENABLE_PLUGINS=1 $
+    -DENABLE_SESSION_SERVICE=1 -DENABLE_THEMES=1 -DENABLE_BACKGROUND=1 $
+    -DENABLE_AUTOMATION=1 -DENABLE_GOOGLE_NOW=1 $
+    -DENABLE_LANGUAGE_DETECTION=1 -DENABLE_PRINTING=1 $
+    -DENABLE_CAPTIVE_PORTAL_DETECTION=1 -DENABLE_MANAGED_USERS=1 -DNDEBUG $
+    -DOFFICIAL_BUILD -DNVALGRIND -DDYNAMIC_ANNOTATIONS_ENABLED=0
+includes = -I../../third_party/leveldatabase $
+    -I../../third_party/leveldatabase/src $
+    -I../../third_party/leveldatabase/src/include -I../..
+cflags = -fstack-protector --param=ssp-buffer-size=4  -pthread $
+    -fno-exceptions -fno-strict-aliasing -Wno-unused-parameter $
+    -Wno-missing-field-initializers -fvisibility=hidden -pipe -fPIC $
+    -Wheader-hygiene -Wno-char-subscripts -Wno-unused-function $
+    -Wno-covered-switch-default -Wstring-conversion -Wno-c++11-narrowing $
+    -Wno-reserved-user-defined-literal -fcolor-diagnostics $
+    -I/usr/local/include/gtk-2.0 -I/usr/local/include/gio-unix-2.0/ $
+    -I/usr/local/include/atk-1.0 -I/usr/local/include/cairo $
+    -I/usr/local/include/pixman-1 -D_THREAD_SAFE $
+    -I/usr/local/include/gdk-pixbuf-2.0 -I/usr/local/include/libpng15 $
+    -I/usr/local/include/pango-1.0 -I/usr/local/include/freetype2 $
+    -I/usr/local/include/harfbuzz -pthread -I/usr/local/include/glib-2.0 $
+    -I/usr/local/include -pthread -I/usr/local/include/glib-2.0 $
+    -I/usr/local/include -D_THREAD_SAFE -I/usr/local/include -Wno-format $
+    -O2 -fdata-sections -ffunction-sections
+cflags_c = -O2 -pipe -fno-strict-aliasing
+cflags_cc = -O2 -pipe -fno-strict-aliasing -fno-rtti $
+    -fno-threadsafe-statics -fvisibility-inlines-hidden -std=gnu++11 $
+    -Wno-deprecated
+
+build $
+    obj/third_party/leveldatabase/src/util/leveldb_crc32c_test.crc32c_test.o: $
+    cxx ../../third_party/leveldatabase/src/util/crc32c_test.cc
+
+ldflags = -Wl,-z,now -Wl,-z,relro -pthread -Wl,-z,noexecstack -fPIC $
+    -Wl,--no-keep-memory -L/usr/local/lib -Wl,-O1 -Wl,--as-needed
+libs =  -L/usr/local/lib -lexecinfo -lgmodule-2.0 -lgobject-2.0 $
+    -lgthread-2.0 -lglib-2.0 -lintl -lXtst -lgtk-x11-2.0 -lgdk-x11-2.0 $
+    -lpangocairo-1.0 -lXext -lXrender -lXinerama -lXi -lXrandr -lXcursor $
+    -lXcomposite -lXdamage -lXfixes -lX11 -latk-1.0 -lcairo $
+    -lgdk_pixbuf-2.0 -lgio-2.0 -lpangoft2-1.0 -lpango-1.0 -lfreetype $
+    -lfontconfig
+build leveldb_crc32c_test: link $
+    obj/third_party/leveldatabase/src/util/leveldb_crc32c_test.crc32c_test.o $
+    obj/third_party/re2/libre2.a $
+    obj/base/allocator/liballocator_extension_thunks.a $
+    obj/third_party/leveldatabase/libleveldb_testutil.a $
+    obj/base/libbase_static.a obj/third_party/modp_b64/libmodp_b64.a $
+    obj/third_party/snappy/libsnappy.a obj/base/libbase.a $
+    obj/base/libxdg_mime.a obj/base/libsymbolize.a $
+    obj/base/third_party/dynamic_annotations/libdynamic_annotations.a $
+    obj/third_party/libevent/libevent.a $
+    obj/third_party/leveldatabase/libleveldatabase.a
+  postbuilds = 

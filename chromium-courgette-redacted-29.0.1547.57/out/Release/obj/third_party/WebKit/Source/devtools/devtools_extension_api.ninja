@@ -1,0 +1,16 @@
+rule $
+    devtools_extension_api_target_devtools_html_490e092cc9abfed91818c31ae696be16
+  command = cd ../../third_party/WebKit/Source/devtools; python $
+      scripts/generate_devtools_extension_api.py $
+      ../../../../out/Release/resources/inspector/devtools_extension_api.js $
+      front_end/ExtensionAPI.js front_end/DevToolsExtensionAPI.js
+  description = ACTION devtools_extension_api: $
+      devtools_html_490e092cc9abfed91818c31ae696be16
+  restat = 1
+
+build resources/inspector/devtools_extension_api.js: $
+    devtools_extension_api_target_devtools_html_490e092cc9abfed91818c31ae696be16 $
+    ../../third_party/WebKit/Source/devtools/scripts/generate_devtools_extension_api.py $
+    ../../third_party/WebKit/Source/devtools/front_end/ExtensionAPI.js $
+    ../../third_party/WebKit/Source/devtools/front_end/DevToolsExtensionAPI.js
+

@@ -1,0 +1,320 @@
+build obj/remoting/remoting_host.actions_depends.stamp: stamp $
+    obj/remoting/libremoting_base.a $
+    obj/remoting/proto/libchromotocol_proto_lib.a
+
+build obj/remoting/remoting_host.compile_depends.stamp: stamp $
+    obj/remoting/remoting_base.compile_depends.stamp $
+    obj/remoting/proto/chromotocol_proto_lib.actions_rules_copies.stamp
+
+defines = -DANGLE_DX11 -D_FILE_OFFSET_BITS=64 -DNO_TCMALLOC -DDISABLE_NACL $
+    -DCHROMIUM_BUILD -DUSE_DEFAULT_RENDER_THEME=1 -DUSE_LIBJPEG_TURBO=1 $
+    -DUSE_NSS=1 -DUSE_X11=1 -DENABLE_ONE_CLICK_SIGNIN $
+    -DGTK_DISABLE_SINGLE_INCLUDES=1 -DENABLE_REMOTING=1 -DENABLE_WEBRTC=1 $
+    -DENABLE_CONFIGURATION_POLICY -DENABLE_INPUT_SPEECH $
+    -DENABLE_NOTIFICATIONS -DENABLE_GPU=1 -DENABLE_EGLIMAGE=1 $
+    -DENABLE_TASK_MANAGER=1 -DENABLE_EXTENSIONS=1 $
+    -DENABLE_PLUGIN_INSTALLATION=1 -DENABLE_PLUGINS=1 $
+    -DENABLE_SESSION_SERVICE=1 -DENABLE_THEMES=1 -DENABLE_BACKGROUND=1 $
+    -DENABLE_AUTOMATION=1 -DENABLE_GOOGLE_NOW=1 $
+    -DENABLE_LANGUAGE_DETECTION=1 -DENABLE_PRINTING=1 $
+    -DENABLE_CAPTIVE_PORTAL_DETECTION=1 -DENABLE_MANAGED_USERS=1 $
+    -DVERSION=29.0.1547.57 -DSK_BUILD_NO_IMAGE_ENCODE $
+    -DSK_DEFERRED_CANVAS_USES_GPIPE=1 $
+    '-DGR_GL_CUSTOM_SETUP_HEADER="GrGLConfig_chrome.h"' $
+    -DGR_AGGRESSIVE_SHADER_OPTS=1 -DSK_ENABLE_INST_COUNT=0 $
+    -DSK_USE_POSIX_THREADS -DPROTOBUF_USE_DLLS -DGOOGLE_PROTOBUF_NO_RTTI $
+    -DGOOGLE_PROTOBUF_NO_STATIC_INITIALIZER -DFEATURE_ENABLE_SSL $
+    -DFEATURE_ENABLE_VOICEMAIL -DEXPAT_RELATIVE_PATH -DGTEST_RELATIVE_PATH $
+    -DJSONCPP_RELATIVE_PATH -DNO_MAIN_THREAD_WRAPPING -DNO_SOUND_SYSTEM $
+    -DPOSIX -DBSD -DFREEBSD -DWEBRTC_CHROMIUM_BUILD $
+    -D__STDC_CONSTANT_MACROS -D__STDC_FORMAT_MACROS $
+    -DDYNAMIC_ANNOTATIONS_ENABLED=1 -DWTF_USE_DYNAMIC_ANNOTATIONS=1 -D_DEBUG
+includes = -I../.. -I../../skia/config -I../../third_party/skia/src/core $
+    -I../../third_party/skia/include/config $
+    -I../../third_party/skia/include/core $
+    -I../../third_party/skia/include/effects $
+    -I../../third_party/skia/include/pdf $
+    -I../../third_party/skia/include/gpu $
+    -I../../third_party/skia/include/gpu/gl $
+    -I../../third_party/skia/include/pathops $
+    -I../../third_party/skia/include/pipe $
+    -I../../third_party/skia/include/ports $
+    -I../../third_party/skia/include/utils -I../../skia/ext $
+    -I../../third_party/protobuf -I../../third_party/protobuf/src $
+    -Igen/protoc_out -I../../third_party/libjingle/overrides $
+    -I../../third_party/libjingle/source -I../../testing/gtest/include $
+    -I../../third_party -I../../third_party/webrtc $
+    -I../../third_party/jsoncpp/overrides/include $
+    -I../../third_party/jsoncpp/source/include -I../../net/third_party/nss/ssl
+cflags = -fstack-protector --param=ssp-buffer-size=4  -pthread $
+    -fno-exceptions -fno-strict-aliasing -Wall -Wno-unused-parameter $
+    -Wno-missing-field-initializers -fvisibility=hidden -pipe -fPIC $
+    -Wheader-hygiene -Wno-char-subscripts -Wno-unused-function $
+    -Wno-covered-switch-default -Wstring-conversion -Wno-c++11-narrowing $
+    -Wno-reserved-user-defined-literal -fcolor-diagnostics $
+    -I/usr/local/include/gtk-2.0 -I/usr/local/include/gio-unix-2.0/ $
+    -I/usr/local/include/atk-1.0 -I/usr/local/include/cairo $
+    -I/usr/local/include/pixman-1 -D_THREAD_SAFE $
+    -I/usr/local/include/gdk-pixbuf-2.0 -I/usr/local/include/libpng15 $
+    -I/usr/local/include/pango-1.0 -I/usr/local/include/freetype2 $
+    -I/usr/local/include/harfbuzz -pthread -I/usr/local/include/glib-2.0 $
+    -I/usr/local/include -pthread -I/usr/local/include/glib-2.0 $
+    -I/usr/local/include -D_THREAD_SAFE -I/usr/local/include $
+    -I/usr/local/include/nss -I/usr/local/include/nss/nss $
+    -I/usr/local/include/nspr -Wexit-time-destructors -O0 -g
+cflags_c = -O2 -pipe -fno-strict-aliasing
+cflags_cc = -O2 -pipe -fno-strict-aliasing -fno-rtti $
+    -fno-threadsafe-statics -fvisibility-inlines-hidden -Wsign-compare $
+    -std=gnu++11
+
+build obj/remoting/host/remoting_host.audio_capturer.o: cxx $
+    ../../remoting/host/audio_capturer.cc || $
+    obj/remoting/remoting_host.compile_depends.stamp
+build obj/remoting/host/remoting_host.audio_capturer_linux.o: cxx $
+    ../../remoting/host/audio_capturer_linux.cc || $
+    obj/remoting/remoting_host.compile_depends.stamp
+build obj/remoting/host/remoting_host.audio_scheduler.o: cxx $
+    ../../remoting/host/audio_scheduler.cc || $
+    obj/remoting/remoting_host.compile_depends.stamp
+build obj/remoting/host/remoting_host.audio_silence_detector.o: cxx $
+    ../../remoting/host/audio_silence_detector.cc || $
+    obj/remoting/remoting_host.compile_depends.stamp
+build obj/remoting/host/remoting_host.basic_desktop_environment.o: cxx $
+    ../../remoting/host/basic_desktop_environment.cc || $
+    obj/remoting/remoting_host.compile_depends.stamp
+build obj/remoting/host/remoting_host.capture_scheduler.o: cxx $
+    ../../remoting/host/capture_scheduler.cc || $
+    obj/remoting/remoting_host.compile_depends.stamp
+build obj/remoting/host/remoting_host.chromoting_host.o: cxx $
+    ../../remoting/host/chromoting_host.cc || $
+    obj/remoting/remoting_host.compile_depends.stamp
+build obj/remoting/host/remoting_host.chromoting_host_context.o: cxx $
+    ../../remoting/host/chromoting_host_context.cc || $
+    obj/remoting/remoting_host.compile_depends.stamp
+build obj/remoting/host/remoting_host.chromoting_messages.o: cxx $
+    ../../remoting/host/chromoting_messages.cc || $
+    obj/remoting/remoting_host.compile_depends.stamp
+build obj/remoting/host/remoting_host.chromoting_param_traits.o: cxx $
+    ../../remoting/host/chromoting_param_traits.cc || $
+    obj/remoting/remoting_host.compile_depends.stamp
+build obj/remoting/host/remoting_host.client_session.o: cxx $
+    ../../remoting/host/client_session.cc || $
+    obj/remoting/remoting_host.compile_depends.stamp
+build obj/remoting/host/remoting_host.clipboard_x11.o: cxx $
+    ../../remoting/host/clipboard_x11.cc || $
+    obj/remoting/remoting_host.compile_depends.stamp
+build obj/remoting/host/remoting_host.config_file_watcher.o: cxx $
+    ../../remoting/host/config_file_watcher.cc || $
+    obj/remoting/remoting_host.compile_depends.stamp
+build obj/remoting/host/remoting_host.continue_window.o: cxx $
+    ../../remoting/host/continue_window.cc || $
+    obj/remoting/remoting_host.compile_depends.stamp
+build obj/remoting/host/remoting_host.continue_window_gtk.o: cxx $
+    ../../remoting/host/continue_window_gtk.cc || $
+    obj/remoting/remoting_host.compile_depends.stamp
+build obj/remoting/host/remoting_host.desktop_resizer_linux.o: cxx $
+    ../../remoting/host/desktop_resizer_linux.cc || $
+    obj/remoting/remoting_host.compile_depends.stamp
+build obj/remoting/host/remoting_host.desktop_session_proxy.o: cxx $
+    ../../remoting/host/desktop_session_proxy.cc || $
+    obj/remoting/remoting_host.compile_depends.stamp
+build obj/remoting/host/remoting_host.disconnect_window_gtk.o: cxx $
+    ../../remoting/host/disconnect_window_gtk.cc || $
+    obj/remoting/remoting_host.compile_depends.stamp
+build obj/remoting/host/remoting_host.dns_blackhole_checker.o: cxx $
+    ../../remoting/host/dns_blackhole_checker.cc || $
+    obj/remoting/remoting_host.compile_depends.stamp
+build obj/remoting/host/remoting_host.heartbeat_sender.o: cxx $
+    ../../remoting/host/heartbeat_sender.cc || $
+    obj/remoting/remoting_host.compile_depends.stamp
+build obj/remoting/host/remoting_host.host_change_notification_listener.o: $
+    cxx ../../remoting/host/host_change_notification_listener.cc || $
+    obj/remoting/remoting_host.compile_depends.stamp
+build obj/remoting/host/remoting_host.host_config.o: cxx $
+    ../../remoting/host/host_config.cc || $
+    obj/remoting/remoting_host.compile_depends.stamp
+build obj/remoting/host/remoting_host.host_secret.o: cxx $
+    ../../remoting/host/host_secret.cc || $
+    obj/remoting/remoting_host.compile_depends.stamp
+build obj/remoting/host/remoting_host.host_window_proxy.o: cxx $
+    ../../remoting/host/host_window_proxy.cc || $
+    obj/remoting/remoting_host.compile_depends.stamp
+build obj/remoting/host/remoting_host.in_memory_host_config.o: cxx $
+    ../../remoting/host/in_memory_host_config.cc || $
+    obj/remoting/remoting_host.compile_depends.stamp
+build obj/remoting/host/remoting_host.input_injector_linux.o: cxx $
+    ../../remoting/host/input_injector_linux.cc || $
+    obj/remoting/remoting_host.compile_depends.stamp
+build obj/remoting/host/remoting_host.ipc_audio_capturer.o: cxx $
+    ../../remoting/host/ipc_audio_capturer.cc || $
+    obj/remoting/remoting_host.compile_depends.stamp
+build obj/remoting/host/remoting_host.ipc_constants.o: cxx $
+    ../../remoting/host/ipc_constants.cc || $
+    obj/remoting/remoting_host.compile_depends.stamp
+build obj/remoting/host/remoting_host.ipc_desktop_environment.o: cxx $
+    ../../remoting/host/ipc_desktop_environment.cc || $
+    obj/remoting/remoting_host.compile_depends.stamp
+build obj/remoting/host/remoting_host.ipc_host_event_logger.o: cxx $
+    ../../remoting/host/ipc_host_event_logger.cc || $
+    obj/remoting/remoting_host.compile_depends.stamp
+build obj/remoting/host/remoting_host.ipc_input_injector.o: cxx $
+    ../../remoting/host/ipc_input_injector.cc || $
+    obj/remoting/remoting_host.compile_depends.stamp
+build obj/remoting/host/remoting_host.ipc_screen_controls.o: cxx $
+    ../../remoting/host/ipc_screen_controls.cc || $
+    obj/remoting/remoting_host.compile_depends.stamp
+build obj/remoting/host/remoting_host.ipc_util_posix.o: cxx $
+    ../../remoting/host/ipc_util_posix.cc || $
+    obj/remoting/remoting_host.compile_depends.stamp
+build obj/remoting/host/remoting_host.ipc_video_frame_capturer.o: cxx $
+    ../../remoting/host/ipc_video_frame_capturer.cc || $
+    obj/remoting/remoting_host.compile_depends.stamp
+build obj/remoting/host/remoting_host.it2me_desktop_environment.o: cxx $
+    ../../remoting/host/it2me_desktop_environment.cc || $
+    obj/remoting/remoting_host.compile_depends.stamp
+build obj/remoting/host/remoting_host.json_host_config.o: cxx $
+    ../../remoting/host/json_host_config.cc || $
+    obj/remoting/remoting_host.compile_depends.stamp
+build obj/remoting/host/linux/remoting_host.audio_pipe_reader.o: cxx $
+    ../../remoting/host/linux/audio_pipe_reader.cc || $
+    obj/remoting/remoting_host.compile_depends.stamp
+build obj/remoting/host/linux/remoting_host.x11_util.o: cxx $
+    ../../remoting/host/linux/x11_util.cc || $
+    obj/remoting/remoting_host.compile_depends.stamp
+build obj/remoting/host/linux/remoting_host.x_server_clipboard.o: cxx $
+    ../../remoting/host/linux/x_server_clipboard.cc || $
+    obj/remoting/remoting_host.compile_depends.stamp
+build obj/remoting/host/remoting_host.local_input_monitor_linux.o: cxx $
+    ../../remoting/host/local_input_monitor_linux.cc || $
+    obj/remoting/remoting_host.compile_depends.stamp
+build obj/remoting/host/remoting_host.log_to_server.o: cxx $
+    ../../remoting/host/log_to_server.cc || $
+    obj/remoting/remoting_host.compile_depends.stamp
+build obj/remoting/host/remoting_host.me2me_desktop_environment.o: cxx $
+    ../../remoting/host/me2me_desktop_environment.cc || $
+    obj/remoting/remoting_host.compile_depends.stamp
+build obj/remoting/host/remoting_host.mouse_clamping_filter.o: cxx $
+    ../../remoting/host/mouse_clamping_filter.cc || $
+    obj/remoting/remoting_host.compile_depends.stamp
+build obj/remoting/host/remoting_host.pairing_registry_delegate_linux.o: $
+    cxx ../../remoting/host/pairing_registry_delegate_linux.cc || $
+    obj/remoting/remoting_host.compile_depends.stamp
+build obj/remoting/host/remoting_host.pam_authorization_factory_posix.o: $
+    cxx ../../remoting/host/pam_authorization_factory_posix.cc || $
+    obj/remoting/remoting_host.compile_depends.stamp
+build obj/remoting/host/remoting_host.pin_hash.o: cxx $
+    ../../remoting/host/pin_hash.cc || $
+    obj/remoting/remoting_host.compile_depends.stamp
+build obj/remoting/host/policy_hack/remoting_host.policy_watcher.o: cxx $
+    ../../remoting/host/policy_hack/policy_watcher.cc || $
+    obj/remoting/remoting_host.compile_depends.stamp
+build obj/remoting/host/policy_hack/remoting_host.policy_watcher_linux.o: $
+    cxx ../../remoting/host/policy_hack/policy_watcher_linux.cc || $
+    obj/remoting/remoting_host.compile_depends.stamp
+build obj/remoting/host/remoting_host.register_support_host_request.o: cxx $
+    ../../remoting/host/register_support_host_request.cc || $
+    obj/remoting/remoting_host.compile_depends.stamp
+build obj/remoting/host/remoting_host.remote_input_filter.o: cxx $
+    ../../remoting/host/remote_input_filter.cc || $
+    obj/remoting/remoting_host.compile_depends.stamp
+build obj/remoting/host/remoting_host.resizing_host_observer.o: cxx $
+    ../../remoting/host/resizing_host_observer.cc || $
+    obj/remoting/remoting_host.compile_depends.stamp
+build obj/remoting/host/remoting_host.screen_resolution.o: cxx $
+    ../../remoting/host/screen_resolution.cc || $
+    obj/remoting/remoting_host.compile_depends.stamp
+build obj/remoting/host/remoting_host.server_log_entry.o: cxx $
+    ../../remoting/host/server_log_entry.cc || $
+    obj/remoting/remoting_host.compile_depends.stamp
+build obj/remoting/host/remoting_host.service_client.o: cxx $
+    ../../remoting/host/service_client.cc || $
+    obj/remoting/remoting_host.compile_depends.stamp
+build obj/remoting/host/remoting_host.service_urls.o: cxx $
+    ../../remoting/host/service_urls.cc || $
+    obj/remoting/remoting_host.compile_depends.stamp
+build obj/remoting/host/remoting_host.session_manager_factory.o: cxx $
+    ../../remoting/host/session_manager_factory.cc || $
+    obj/remoting/remoting_host.compile_depends.stamp
+build obj/remoting/host/remoting_host.signaling_connector.o: cxx $
+    ../../remoting/host/signaling_connector.cc || $
+    obj/remoting/remoting_host.compile_depends.stamp
+build obj/remoting/host/remoting_host.token_validator_factory_impl.o: cxx $
+    ../../remoting/host/token_validator_factory_impl.cc || $
+    obj/remoting/remoting_host.compile_depends.stamp
+build obj/remoting/host/remoting_host.ui_strings.o: cxx $
+    ../../remoting/host/ui_strings.cc || $
+    obj/remoting/remoting_host.compile_depends.stamp
+build obj/remoting/host/remoting_host.url_request_context.o: cxx $
+    ../../remoting/host/url_request_context.cc || $
+    obj/remoting/remoting_host.compile_depends.stamp
+build obj/remoting/host/remoting_host.video_scheduler.o: cxx $
+    ../../remoting/host/video_scheduler.cc || $
+    obj/remoting/remoting_host.compile_depends.stamp
+build obj/remoting/host/remoting_host.vlog_net_log.o: cxx $
+    ../../remoting/host/vlog_net_log.cc || $
+    obj/remoting/remoting_host.compile_depends.stamp
+
+build obj/remoting/libremoting_host.a: alink_thin $
+    obj/remoting/host/remoting_host.audio_capturer.o $
+    obj/remoting/host/remoting_host.audio_capturer_linux.o $
+    obj/remoting/host/remoting_host.audio_scheduler.o $
+    obj/remoting/host/remoting_host.audio_silence_detector.o $
+    obj/remoting/host/remoting_host.basic_desktop_environment.o $
+    obj/remoting/host/remoting_host.capture_scheduler.o $
+    obj/remoting/host/remoting_host.chromoting_host.o $
+    obj/remoting/host/remoting_host.chromoting_host_context.o $
+    obj/remoting/host/remoting_host.chromoting_messages.o $
+    obj/remoting/host/remoting_host.chromoting_param_traits.o $
+    obj/remoting/host/remoting_host.client_session.o $
+    obj/remoting/host/remoting_host.clipboard_x11.o $
+    obj/remoting/host/remoting_host.config_file_watcher.o $
+    obj/remoting/host/remoting_host.continue_window.o $
+    obj/remoting/host/remoting_host.continue_window_gtk.o $
+    obj/remoting/host/remoting_host.desktop_resizer_linux.o $
+    obj/remoting/host/remoting_host.desktop_session_proxy.o $
+    obj/remoting/host/remoting_host.disconnect_window_gtk.o $
+    obj/remoting/host/remoting_host.dns_blackhole_checker.o $
+    obj/remoting/host/remoting_host.heartbeat_sender.o $
+    obj/remoting/host/remoting_host.host_change_notification_listener.o $
+    obj/remoting/host/remoting_host.host_config.o $
+    obj/remoting/host/remoting_host.host_secret.o $
+    obj/remoting/host/remoting_host.host_window_proxy.o $
+    obj/remoting/host/remoting_host.in_memory_host_config.o $
+    obj/remoting/host/remoting_host.input_injector_linux.o $
+    obj/remoting/host/remoting_host.ipc_audio_capturer.o $
+    obj/remoting/host/remoting_host.ipc_constants.o $
+    obj/remoting/host/remoting_host.ipc_desktop_environment.o $
+    obj/remoting/host/remoting_host.ipc_host_event_logger.o $
+    obj/remoting/host/remoting_host.ipc_input_injector.o $
+    obj/remoting/host/remoting_host.ipc_screen_controls.o $
+    obj/remoting/host/remoting_host.ipc_util_posix.o $
+    obj/remoting/host/remoting_host.ipc_video_frame_capturer.o $
+    obj/remoting/host/remoting_host.it2me_desktop_environment.o $
+    obj/remoting/host/remoting_host.json_host_config.o $
+    obj/remoting/host/linux/remoting_host.audio_pipe_reader.o $
+    obj/remoting/host/linux/remoting_host.x11_util.o $
+    obj/remoting/host/linux/remoting_host.x_server_clipboard.o $
+    obj/remoting/host/remoting_host.local_input_monitor_linux.o $
+    obj/remoting/host/remoting_host.log_to_server.o $
+    obj/remoting/host/remoting_host.me2me_desktop_environment.o $
+    obj/remoting/host/remoting_host.mouse_clamping_filter.o $
+    obj/remoting/host/remoting_host.pairing_registry_delegate_linux.o $
+    obj/remoting/host/remoting_host.pam_authorization_factory_posix.o $
+    obj/remoting/host/remoting_host.pin_hash.o $
+    obj/remoting/host/policy_hack/remoting_host.policy_watcher.o $
+    obj/remoting/host/policy_hack/remoting_host.policy_watcher_linux.o $
+    obj/remoting/host/remoting_host.register_support_host_request.o $
+    obj/remoting/host/remoting_host.remote_input_filter.o $
+    obj/remoting/host/remoting_host.resizing_host_observer.o $
+    obj/remoting/host/remoting_host.screen_resolution.o $
+    obj/remoting/host/remoting_host.server_log_entry.o $
+    obj/remoting/host/remoting_host.service_client.o $
+    obj/remoting/host/remoting_host.service_urls.o $
+    obj/remoting/host/remoting_host.session_manager_factory.o $
+    obj/remoting/host/remoting_host.signaling_connector.o $
+    obj/remoting/host/remoting_host.token_validator_factory_impl.o $
+    obj/remoting/host/remoting_host.ui_strings.o $
+    obj/remoting/host/remoting_host.url_request_context.o $
+    obj/remoting/host/remoting_host.video_scheduler.o $
+    obj/remoting/host/remoting_host.vlog_net_log.o || $
+    obj/remoting/remoting_host.actions_depends.stamp

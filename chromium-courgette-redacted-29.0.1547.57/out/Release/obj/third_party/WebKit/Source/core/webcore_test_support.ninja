@@ -1,0 +1,154 @@
+build $
+    obj/third_party/WebKit/Source/core/webcore_test_support.actions_depends.stamp: $
+    stamp obj/third_party/WebKit/Source/core/webcore.actions_depends.stamp $
+    obj/third_party/WebKit/Source/core/libwebcore_derived.a
+
+build $
+    obj/third_party/WebKit/Source/core/webcore_test_support.compile_depends.stamp: $
+    stamp obj/third_party/WebKit/Source/core/webcore.compile_depends.stamp $
+    obj/third_party/WebKit/Source/core/webcore_derived.compile_depends.stamp
+
+defines = -DANGLE_DX11 -D_FILE_OFFSET_BITS=64 -DNO_TCMALLOC -DDISABLE_NACL $
+    -DCHROMIUM_BUILD -DUSE_DEFAULT_RENDER_THEME=1 -DUSE_LIBJPEG_TURBO=1 $
+    -DUSE_NSS=1 -DUSE_X11=1 -DENABLE_ONE_CLICK_SIGNIN $
+    -DGTK_DISABLE_SINGLE_INCLUDES=1 -DENABLE_REMOTING=1 -DENABLE_WEBRTC=1 $
+    -DENABLE_CONFIGURATION_POLICY -DENABLE_INPUT_SPEECH $
+    -DENABLE_NOTIFICATIONS -DENABLE_GPU=1 -DENABLE_EGLIMAGE=1 $
+    -DENABLE_TASK_MANAGER=1 -DENABLE_EXTENSIONS=1 $
+    -DENABLE_PLUGIN_INSTALLATION=1 -DENABLE_PLUGINS=1 $
+    -DENABLE_SESSION_SERVICE=1 -DENABLE_THEMES=1 -DENABLE_BACKGROUND=1 $
+    -DENABLE_AUTOMATION=1 -DENABLE_GOOGLE_NOW=1 $
+    -DENABLE_LANGUAGE_DETECTION=1 -DENABLE_PRINTING=1 $
+    -DENABLE_CAPTIVE_PORTAL_DETECTION=1 -DENABLE_MANAGED_USERS=1 $
+    -DWEBKIT_IMPLEMENTATION=1 -DINSIDE_WEBKIT -DGL_GLEXT_PROTOTYPES $
+    -DENABLE_CANVAS_USES_MAILBOX=1 -DENABLE_CSS3_TEXT=0 $
+    -DENABLE_CSS_EXCLUSIONS=1 -DENABLE_CSS_REGIONS=1 $
+    -DENABLE_CUSTOM_SCHEME_HANDLER=0 -DENABLE_ENCRYPTED_MEDIA_V2=1 $
+    -DENABLE_GRAPHICS_CONTEXT_ANNOTATIONS=0 -DENABLE_SVG_FONTS=1 $
+    -DENABLE_TOUCH_ICON_LOADING=0 -DENABLE_XHR_TIMEOUT=0 $
+    -DENABLE_GDI_FONTS_ON_WINDOWS=1 -DENABLE_PARTITION_ALLOC=1 $
+    -DWTF_USE_CONCATENATED_IMPULSE_RESPONSES=1 -DENABLE_CALENDAR_PICKER=1 $
+    -DENABLE_INPUT_SPEECH=1 -DENABLE_INPUT_MULTIPLE_FIELDS_UI=1 $
+    -DENABLE_LEGACY_NOTIFICATIONS=1 -DENABLE_MEDIA_CAPTURE=0 $
+    -DENABLE_NAVIGATOR_CONTENT_UTILS=1 -DENABLE_NOTIFICATIONS=1 $
+    -DENABLE_ORIENTATION_EVENTS=0 -DENABLE_WEB_AUDIO=1 $
+    -DENABLE_8BIT_TEXTRUN=1 -DWTF_USE_WEBAUDIO_FFMPEG=1 $
+    -DENABLE_OPENTYPE_VERTICAL=1 -DWTF_USE_HARFBUZZ=1 $
+    -DENABLE_DEFAULT_RENDER_THEME=1 -DU_USING_ICU_NAMESPACE=0 $
+    -DU_STATIC_IMPLEMENTATION -DSK_BUILD_NO_IMAGE_ENCODE $
+    -DSK_DEFERRED_CANVAS_USES_GPIPE=1 $
+    '-DGR_GL_CUSTOM_SETUP_HEADER="GrGLConfig_chrome.h"' $
+    -DGR_AGGRESSIVE_SHADER_OPTS=1 -DSK_ENABLE_INST_COUNT=0 $
+    -DSK_USE_POSIX_THREADS -DNDEBUG -DOFFICIAL_BUILD -DNVALGRIND $
+    -DDYNAMIC_ANNOTATIONS_ENABLED=0
+includes = -I../../third_party/icu/public/common $
+    -I../../third_party/icu/public/i18n $
+    -I../../third_party/WebKit/Source/bindings/v8 $
+    -I../../third_party/WebKit/Source/core/testing $
+    -I../../third_party/WebKit/Source/core/testing/v8 $
+    -I../../third_party/khronos -I../../gpu -I../.. $
+    -I../../third_party/WebKit/Source -I../../third_party/WebKit $
+    -Igen/webkit -Igen/webkit/bindings -I../../skia/config $
+    -I../../third_party/skia/src/core $
+    -I../../third_party/skia/include/config $
+    -I../../third_party/skia/include/core $
+    -I../../third_party/skia/include/effects $
+    -I../../third_party/skia/include/pdf $
+    -I../../third_party/skia/include/gpu $
+    -I../../third_party/skia/include/gpu/gl $
+    -I../../third_party/skia/include/pathops $
+    -I../../third_party/skia/include/pipe $
+    -I../../third_party/skia/include/ports $
+    -I../../third_party/skia/include/utils -I../../skia/ext $
+    -I../../third_party/npapi -I../../third_party/npapi/bindings $
+    -I../../third_party/qcms/src -I../../v8/include
+cflags = -fstack-protector --param=ssp-buffer-size=4  -pthread $
+    -fno-exceptions -fno-strict-aliasing -Wno-unused-parameter $
+    -Wno-missing-field-initializers -fvisibility=hidden -pipe -fPIC $
+    -Wheader-hygiene -Wno-char-subscripts -Wno-unused-function $
+    -Wno-covered-switch-default -Wstring-conversion -Wno-c++11-narrowing $
+    -Wno-reserved-user-defined-literal -fcolor-diagnostics $
+    -I/usr/local/include/gtk-2.0 -I/usr/local/include/gio-unix-2.0/ $
+    -I/usr/local/include/atk-1.0 -I/usr/local/include/cairo $
+    -I/usr/local/include/pixman-1 -D_THREAD_SAFE $
+    -I/usr/local/include/gdk-pixbuf-2.0 -I/usr/local/include/libpng15 $
+    -I/usr/local/include/pango-1.0 -I/usr/local/include/freetype2 $
+    -I/usr/local/include/harfbuzz -pthread -I/usr/local/include/glib-2.0 $
+    -I/usr/local/include -Wglobal-constructors -Wexit-time-destructors $
+    -Wno-format -O2 -fdata-sections -ffunction-sections
+cflags_c = -O2 -pipe -fno-strict-aliasing
+cflags_cc = -O2 -pipe -fno-strict-aliasing -fno-rtti $
+    -fno-threadsafe-statics -fvisibility-inlines-hidden -std=gnu++11 $
+    -Wno-deprecated
+
+build $
+    obj/third_party/WebKit/Source/core/testing/v8/webcore_test_support.WebCoreTestSupport.o: $
+    cxx $
+    ../../third_party/WebKit/Source/core/testing/v8/WebCoreTestSupport.cpp $
+    || $
+    obj/third_party/WebKit/Source/core/webcore_test_support.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/testing/webcore_test_support.InspectorFrontendClientLocal.o: $
+    cxx $
+    ../../third_party/WebKit/Source/core/testing/InspectorFrontendClientLocal.cpp $
+    || $
+    obj/third_party/WebKit/Source/core/webcore_test_support.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/testing/webcore_test_support.Internals.o: $
+    cxx ../../third_party/WebKit/Source/core/testing/Internals.cpp || $
+    obj/third_party/WebKit/Source/core/webcore_test_support.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/testing/webcore_test_support.InternalSettings.o: $
+    cxx ../../third_party/WebKit/Source/core/testing/InternalSettings.cpp $
+    || $
+    obj/third_party/WebKit/Source/core/webcore_test_support.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/testing/webcore_test_support.MockPagePopupDriver.o: $
+    cxx $
+    ../../third_party/WebKit/Source/core/testing/MockPagePopupDriver.cpp || $
+    obj/third_party/WebKit/Source/core/webcore_test_support.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/gen/webkit/webcore_test_support.InternalSettingsGenerated.o: $
+    cxx gen/webkit/InternalSettingsGenerated.cpp || $
+    obj/third_party/WebKit/Source/core/webcore_test_support.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/gen/webcore/bindings/webcore_test_support.V8MallocStatistics.o: $
+    cxx gen/webcore/bindings/V8MallocStatistics.cpp || $
+    obj/third_party/WebKit/Source/core/webcore_test_support.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/gen/webcore/bindings/webcore_test_support.V8TypeConversions.o: $
+    cxx gen/webcore/bindings/V8TypeConversions.cpp || $
+    obj/third_party/WebKit/Source/core/webcore_test_support.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/gen/webcore/bindings/webcore_test_support.V8Internals.o: $
+    cxx gen/webcore/bindings/V8Internals.cpp || $
+    obj/third_party/WebKit/Source/core/webcore_test_support.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/gen/webcore/bindings/webcore_test_support.V8InternalSettings.o: $
+    cxx gen/webcore/bindings/V8InternalSettings.cpp || $
+    obj/third_party/WebKit/Source/core/webcore_test_support.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/gen/webcore/bindings/webcore_test_support.V8InternalSettingsGenerated.o: $
+    cxx gen/webcore/bindings/V8InternalSettingsGenerated.cpp || $
+    obj/third_party/WebKit/Source/core/webcore_test_support.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/gen/webcore/bindings/webcore_test_support.V8InternalRuntimeFlags.o: $
+    cxx gen/webcore/bindings/V8InternalRuntimeFlags.cpp || $
+    obj/third_party/WebKit/Source/core/webcore_test_support.compile_depends.stamp
+
+build obj/third_party/WebKit/Source/core/libwebcore_test_support.a: $
+    alink_thin $
+    obj/third_party/WebKit/Source/core/testing/v8/webcore_test_support.WebCoreTestSupport.o $
+    obj/third_party/WebKit/Source/core/testing/webcore_test_support.InspectorFrontendClientLocal.o $
+    obj/third_party/WebKit/Source/core/testing/webcore_test_support.Internals.o $
+    obj/third_party/WebKit/Source/core/testing/webcore_test_support.InternalSettings.o $
+    obj/third_party/WebKit/Source/core/testing/webcore_test_support.MockPagePopupDriver.o $
+    obj/third_party/WebKit/Source/core/gen/webkit/webcore_test_support.InternalSettingsGenerated.o $
+    obj/third_party/WebKit/Source/core/gen/webcore/bindings/webcore_test_support.V8MallocStatistics.o $
+    obj/third_party/WebKit/Source/core/gen/webcore/bindings/webcore_test_support.V8TypeConversions.o $
+    obj/third_party/WebKit/Source/core/gen/webcore/bindings/webcore_test_support.V8Internals.o $
+    obj/third_party/WebKit/Source/core/gen/webcore/bindings/webcore_test_support.V8InternalSettings.o $
+    obj/third_party/WebKit/Source/core/gen/webcore/bindings/webcore_test_support.V8InternalSettingsGenerated.o $
+    obj/third_party/WebKit/Source/core/gen/webcore/bindings/webcore_test_support.V8InternalRuntimeFlags.o $
+    || $
+    obj/third_party/WebKit/Source/core/webcore_test_support.actions_depends.stamp

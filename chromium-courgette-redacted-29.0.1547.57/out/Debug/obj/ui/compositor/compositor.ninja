@@ -1,0 +1,118 @@
+build obj/ui/compositor/compositor.actions_depends.stamp: stamp $
+    obj/third_party/WebKit/Source/WebKit/chromium/libblink_common.a $
+    obj/ui/gl/libgl_wrapper.a
+
+defines = -DANGLE_DX11 -D_FILE_OFFSET_BITS=64 -DNO_TCMALLOC -DDISABLE_NACL $
+    -DCHROMIUM_BUILD -DUSE_DEFAULT_RENDER_THEME=1 -DUSE_LIBJPEG_TURBO=1 $
+    -DUSE_NSS=1 -DUSE_X11=1 -DENABLE_ONE_CLICK_SIGNIN $
+    -DGTK_DISABLE_SINGLE_INCLUDES=1 -DENABLE_REMOTING=1 -DENABLE_WEBRTC=1 $
+    -DENABLE_CONFIGURATION_POLICY -DENABLE_INPUT_SPEECH $
+    -DENABLE_NOTIFICATIONS -DENABLE_GPU=1 -DENABLE_EGLIMAGE=1 $
+    -DENABLE_TASK_MANAGER=1 -DENABLE_EXTENSIONS=1 $
+    -DENABLE_PLUGIN_INSTALLATION=1 -DENABLE_PLUGINS=1 $
+    -DENABLE_SESSION_SERVICE=1 -DENABLE_THEMES=1 -DENABLE_BACKGROUND=1 $
+    -DENABLE_AUTOMATION=1 -DENABLE_GOOGLE_NOW=1 $
+    -DENABLE_LANGUAGE_DETECTION=1 -DENABLE_PRINTING=1 $
+    -DENABLE_CAPTIVE_PORTAL_DETECTION=1 -DENABLE_MANAGED_USERS=1 $
+    -DCOMPOSITOR_IMPLEMENTATION -DGL_GLEXT_PROTOTYPES $
+    -DSK_BUILD_NO_IMAGE_ENCODE -DSK_DEFERRED_CANVAS_USES_GPIPE=1 $
+    '-DGR_GL_CUSTOM_SETUP_HEADER="GrGLConfig_chrome.h"' $
+    -DGR_AGGRESSIVE_SHADER_OPTS=1 -DSK_ENABLE_INST_COUNT=0 $
+    -DSK_USE_POSIX_THREADS -DU_USING_ICU_NAMESPACE=0 $
+    -DU_STATIC_IMPLEMENTATION -D__STDC_CONSTANT_MACROS $
+    -D__STDC_FORMAT_MACROS -DDYNAMIC_ANNOTATIONS_ENABLED=1 $
+    -DWTF_USE_DYNAMIC_ANNOTATIONS=1 -D_DEBUG
+includes = -I../../third_party/icu/public/common $
+    -I../../third_party/icu/public/i18n -I../.. -I../../third_party/khronos $
+    -I../../gpu -I../../skia/config -I../../third_party/skia/src/core $
+    -I../../third_party/skia/include/config $
+    -I../../third_party/skia/include/core $
+    -I../../third_party/skia/include/effects $
+    -I../../third_party/skia/include/pdf $
+    -I../../third_party/skia/include/gpu $
+    -I../../third_party/skia/include/gpu/gl $
+    -I../../third_party/skia/include/pathops $
+    -I../../third_party/skia/include/pipe $
+    -I../../third_party/skia/include/ports $
+    -I../../third_party/skia/include/utils -I../../skia/ext -Igen/ui/gl $
+    -I../../third_party/mesa/src/include
+cflags = -fstack-protector --param=ssp-buffer-size=4  -pthread $
+    -fno-exceptions -fno-strict-aliasing -Wall -Wno-unused-parameter $
+    -Wno-missing-field-initializers -fvisibility=hidden -pipe -fPIC $
+    -Wheader-hygiene -Wno-char-subscripts -Wno-unused-function $
+    -Wno-covered-switch-default -Wstring-conversion -Wno-c++11-narrowing $
+    -Wno-reserved-user-defined-literal -fcolor-diagnostics $
+    -I/usr/local/include/gtk-2.0 -I/usr/local/include/gio-unix-2.0/ $
+    -I/usr/local/include/atk-1.0 -I/usr/local/include/cairo $
+    -I/usr/local/include/pixman-1 -D_THREAD_SAFE $
+    -I/usr/local/include/gdk-pixbuf-2.0 -I/usr/local/include/libpng15 $
+    -I/usr/local/include/pango-1.0 -I/usr/local/include/freetype2 $
+    -I/usr/local/include/harfbuzz -pthread -I/usr/local/include/glib-2.0 $
+    -I/usr/local/include -pthread -I/usr/local/include/glib-2.0 $
+    -I/usr/local/include -D_THREAD_SAFE -I/usr/local/include -O0 -g
+cflags_c = -O2 -pipe -fno-strict-aliasing
+cflags_cc = -O2 -pipe -fno-strict-aliasing -fno-rtti $
+    -fno-threadsafe-statics -fvisibility-inlines-hidden -Wsign-compare $
+    -std=gnu++11
+
+build obj/ui/compositor/compositor.compositor.o: cxx $
+    ../../ui/compositor/compositor.cc || $
+    obj/ui/gl/gl.actions_rules_copies.stamp
+build obj/ui/compositor/compositor.compositor_switches.o: cxx $
+    ../../ui/compositor/compositor_switches.cc || $
+    obj/ui/gl/gl.actions_rules_copies.stamp
+build obj/ui/compositor/compositor.debug_utils.o: cxx $
+    ../../ui/compositor/debug_utils.cc || $
+    obj/ui/gl/gl.actions_rules_copies.stamp
+build obj/ui/compositor/compositor.dip_util.o: cxx $
+    ../../ui/compositor/dip_util.cc || obj/ui/gl/gl.actions_rules_copies.stamp
+build obj/ui/compositor/compositor.float_animation_curve_adapter.o: cxx $
+    ../../ui/compositor/float_animation_curve_adapter.cc || $
+    obj/ui/gl/gl.actions_rules_copies.stamp
+build obj/ui/compositor/compositor.layer.o: cxx $
+    ../../ui/compositor/layer.cc || obj/ui/gl/gl.actions_rules_copies.stamp
+build obj/ui/compositor/compositor.layer_animation_element.o: cxx $
+    ../../ui/compositor/layer_animation_element.cc || $
+    obj/ui/gl/gl.actions_rules_copies.stamp
+build obj/ui/compositor/compositor.layer_animation_observer.o: cxx $
+    ../../ui/compositor/layer_animation_observer.cc || $
+    obj/ui/gl/gl.actions_rules_copies.stamp
+build obj/ui/compositor/compositor.layer_animation_sequence.o: cxx $
+    ../../ui/compositor/layer_animation_sequence.cc || $
+    obj/ui/gl/gl.actions_rules_copies.stamp
+build obj/ui/compositor/compositor.layer_animator.o: cxx $
+    ../../ui/compositor/layer_animator.cc || $
+    obj/ui/gl/gl.actions_rules_copies.stamp
+build obj/ui/compositor/compositor.layer_owner.o: cxx $
+    ../../ui/compositor/layer_owner.cc || $
+    obj/ui/gl/gl.actions_rules_copies.stamp
+build obj/ui/compositor/compositor.scoped_animation_duration_scale_mode.o: $
+    cxx ../../ui/compositor/scoped_animation_duration_scale_mode.cc || $
+    obj/ui/gl/gl.actions_rules_copies.stamp
+build obj/ui/compositor/compositor.scoped_layer_animation_settings.o: cxx $
+    ../../ui/compositor/scoped_layer_animation_settings.cc || $
+    obj/ui/gl/gl.actions_rules_copies.stamp
+build obj/ui/compositor/compositor.test_web_graphics_context_3d.o: cxx $
+    ../../ui/compositor/test_web_graphics_context_3d.cc || $
+    obj/ui/gl/gl.actions_rules_copies.stamp
+build obj/ui/compositor/compositor.transform_animation_curve_adapter.o: cxx $
+    ../../ui/compositor/transform_animation_curve_adapter.cc || $
+    obj/ui/gl/gl.actions_rules_copies.stamp
+
+build obj/ui/compositor/libcompositor.a: alink_thin $
+    obj/ui/compositor/compositor.compositor.o $
+    obj/ui/compositor/compositor.compositor_switches.o $
+    obj/ui/compositor/compositor.debug_utils.o $
+    obj/ui/compositor/compositor.dip_util.o $
+    obj/ui/compositor/compositor.float_animation_curve_adapter.o $
+    obj/ui/compositor/compositor.layer.o $
+    obj/ui/compositor/compositor.layer_animation_element.o $
+    obj/ui/compositor/compositor.layer_animation_observer.o $
+    obj/ui/compositor/compositor.layer_animation_sequence.o $
+    obj/ui/compositor/compositor.layer_animator.o $
+    obj/ui/compositor/compositor.layer_owner.o $
+    obj/ui/compositor/compositor.scoped_animation_duration_scale_mode.o $
+    obj/ui/compositor/compositor.scoped_layer_animation_settings.o $
+    obj/ui/compositor/compositor.test_web_graphics_context_3d.o $
+    obj/ui/compositor/compositor.transform_animation_curve_adapter.o || $
+    obj/ui/compositor/compositor.actions_depends.stamp

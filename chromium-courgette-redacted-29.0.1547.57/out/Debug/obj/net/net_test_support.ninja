@@ -1,0 +1,169 @@
+build obj/net/net_test_support.actions_depends.stamp: stamp $
+    obj/third_party/protobuf/py_proto.actions_rules_copies.stamp $
+    obj/build/linux/ssl.actions_depends.stamp
+
+defines = -DANGLE_DX11 -D_FILE_OFFSET_BITS=64 -DNO_TCMALLOC -DDISABLE_NACL $
+    -DCHROMIUM_BUILD -DUSE_DEFAULT_RENDER_THEME=1 -DUSE_LIBJPEG_TURBO=1 $
+    -DUSE_NSS=1 -DUSE_X11=1 -DENABLE_ONE_CLICK_SIGNIN $
+    -DGTK_DISABLE_SINGLE_INCLUDES=1 -DENABLE_REMOTING=1 -DENABLE_WEBRTC=1 $
+    -DENABLE_CONFIGURATION_POLICY -DENABLE_INPUT_SPEECH $
+    -DENABLE_NOTIFICATIONS -DENABLE_GPU=1 -DENABLE_EGLIMAGE=1 $
+    -DENABLE_TASK_MANAGER=1 -DENABLE_EXTENSIONS=1 $
+    -DENABLE_PLUGIN_INSTALLATION=1 -DENABLE_PLUGINS=1 $
+    -DENABLE_SESSION_SERVICE=1 -DENABLE_THEMES=1 -DENABLE_BACKGROUND=1 $
+    -DENABLE_AUTOMATION=1 -DENABLE_GOOGLE_NOW=1 $
+    -DENABLE_LANGUAGE_DETECTION=1 -DENABLE_PRINTING=1 $
+    -DENABLE_CAPTIVE_PORTAL_DETECTION=1 -DENABLE_MANAGED_USERS=1 $
+    -DUNIT_TEST -DGTEST_HAS_RTTI=0 -D__STDC_CONSTANT_MACROS $
+    -D__STDC_FORMAT_MACROS -DDYNAMIC_ANNOTATIONS_ENABLED=1 $
+    -DWTF_USE_DYNAMIC_ANNOTATIONS=1 -D_DEBUG
+includes = -I../.. -I../../testing/gtest/include $
+    -I../../testing/gmock/include -I../../net/third_party/nss/ssl
+cflags = -fstack-protector --param=ssp-buffer-size=4  -pthread $
+    -fno-exceptions -fno-strict-aliasing -Wall -Wno-unused-parameter $
+    -Wno-missing-field-initializers -fvisibility=hidden -pipe -fPIC $
+    -Wheader-hygiene -Wno-char-subscripts -Wno-unused-function $
+    -Wno-covered-switch-default -Wstring-conversion -Wno-c++11-narrowing $
+    -Wno-reserved-user-defined-literal -fcolor-diagnostics $
+    -I/usr/local/include/gtk-2.0 -I/usr/local/include/gio-unix-2.0/ $
+    -I/usr/local/include/atk-1.0 -I/usr/local/include/cairo $
+    -I/usr/local/include/pixman-1 -D_THREAD_SAFE $
+    -I/usr/local/include/gdk-pixbuf-2.0 -I/usr/local/include/libpng15 $
+    -I/usr/local/include/pango-1.0 -I/usr/local/include/freetype2 $
+    -I/usr/local/include/harfbuzz -pthread -I/usr/local/include/glib-2.0 $
+    -I/usr/local/include -pthread -I/usr/local/include/glib-2.0 $
+    -I/usr/local/include -D_THREAD_SAFE -I/usr/local/include $
+    -I/usr/local/include/nss -I/usr/local/include/nss/nss $
+    -I/usr/local/include/nspr -O0 -g
+cflags_c = -O2 -pipe -fno-strict-aliasing
+cflags_cc = -O2 -pipe -fno-strict-aliasing -fno-rtti $
+    -fno-threadsafe-statics -fvisibility-inlines-hidden -Wsign-compare $
+    -std=gnu++11
+
+build obj/net/base/net_test_support.capturing_net_log.o: cxx $
+    ../../net/base/capturing_net_log.cc || $
+    obj/third_party/protobuf/py_proto.actions_rules_copies.stamp
+build obj/net/base/net_test_support.load_timing_info_test_util.o: cxx $
+    ../../net/base/load_timing_info_test_util.cc || $
+    obj/third_party/protobuf/py_proto.actions_rules_copies.stamp
+build obj/net/base/net_test_support.mock_file_stream.o: cxx $
+    ../../net/base/mock_file_stream.cc || $
+    obj/third_party/protobuf/py_proto.actions_rules_copies.stamp
+build obj/net/base/net_test_support.test_completion_callback.o: cxx $
+    ../../net/base/test_completion_callback.cc || $
+    obj/third_party/protobuf/py_proto.actions_rules_copies.stamp
+build obj/net/base/net_test_support.test_data_directory.o: cxx $
+    ../../net/base/test_data_directory.cc || $
+    obj/third_party/protobuf/py_proto.actions_rules_copies.stamp
+build obj/net/cert/net_test_support.mock_cert_verifier.o: cxx $
+    ../../net/cert/mock_cert_verifier.cc || $
+    obj/third_party/protobuf/py_proto.actions_rules_copies.stamp
+build obj/net/cookies/net_test_support.cookie_monster_store_test.o: cxx $
+    ../../net/cookies/cookie_monster_store_test.cc || $
+    obj/third_party/protobuf/py_proto.actions_rules_copies.stamp
+build obj/net/cookies/net_test_support.cookie_store_test_callbacks.o: cxx $
+    ../../net/cookies/cookie_store_test_callbacks.cc || $
+    obj/third_party/protobuf/py_proto.actions_rules_copies.stamp
+build obj/net/cookies/net_test_support.cookie_store_test_helpers.o: cxx $
+    ../../net/cookies/cookie_store_test_helpers.cc || $
+    obj/third_party/protobuf/py_proto.actions_rules_copies.stamp
+build obj/net/disk_cache/net_test_support.disk_cache_test_base.o: cxx $
+    ../../net/disk_cache/disk_cache_test_base.cc || $
+    obj/third_party/protobuf/py_proto.actions_rules_copies.stamp
+build obj/net/disk_cache/net_test_support.disk_cache_test_util.o: cxx $
+    ../../net/disk_cache/disk_cache_test_util.cc || $
+    obj/third_party/protobuf/py_proto.actions_rules_copies.stamp
+build obj/net/disk_cache/flash/net_test_support.flash_cache_test_base.o: $
+    cxx ../../net/disk_cache/flash/flash_cache_test_base.cc || $
+    obj/third_party/protobuf/py_proto.actions_rules_copies.stamp
+build obj/net/dns/net_test_support.dns_test_util.o: cxx $
+    ../../net/dns/dns_test_util.cc || $
+    obj/third_party/protobuf/py_proto.actions_rules_copies.stamp
+build obj/net/dns/net_test_support.mock_host_resolver.o: cxx $
+    ../../net/dns/mock_host_resolver.cc || $
+    obj/third_party/protobuf/py_proto.actions_rules_copies.stamp
+build obj/net/proxy/net_test_support.mock_proxy_resolver.o: cxx $
+    ../../net/proxy/mock_proxy_resolver.cc || $
+    obj/third_party/protobuf/py_proto.actions_rules_copies.stamp
+build obj/net/proxy/net_test_support.mock_proxy_script_fetcher.o: cxx $
+    ../../net/proxy/mock_proxy_script_fetcher.cc || $
+    obj/third_party/protobuf/py_proto.actions_rules_copies.stamp
+build $
+    obj/net/proxy/net_test_support.proxy_config_service_common_unittest.o: $
+    cxx ../../net/proxy/proxy_config_service_common_unittest.cc || $
+    obj/third_party/protobuf/py_proto.actions_rules_copies.stamp
+build obj/net/socket/net_test_support.socket_test_util.o: cxx $
+    ../../net/socket/socket_test_util.cc || $
+    obj/third_party/protobuf/py_proto.actions_rules_copies.stamp
+build obj/net/test/net_test_support.cert_test_util.o: cxx $
+    ../../net/test/cert_test_util.cc || $
+    obj/third_party/protobuf/py_proto.actions_rules_copies.stamp
+build $
+    obj/net/test/embedded_test_server/net_test_support.embedded_test_server.o: $
+    cxx ../../net/test/embedded_test_server/embedded_test_server.cc || $
+    obj/third_party/protobuf/py_proto.actions_rules_copies.stamp
+build obj/net/test/embedded_test_server/net_test_support.http_connection.o: $
+    cxx ../../net/test/embedded_test_server/http_connection.cc || $
+    obj/third_party/protobuf/py_proto.actions_rules_copies.stamp
+build obj/net/test/embedded_test_server/net_test_support.http_request.o: $
+    cxx ../../net/test/embedded_test_server/http_request.cc || $
+    obj/third_party/protobuf/py_proto.actions_rules_copies.stamp
+build obj/net/test/embedded_test_server/net_test_support.http_response.o: $
+    cxx ../../net/test/embedded_test_server/http_response.cc || $
+    obj/third_party/protobuf/py_proto.actions_rules_copies.stamp
+build obj/net/test/net_test_support.net_test_suite.o: cxx $
+    ../../net/test/net_test_suite.cc || $
+    obj/third_party/protobuf/py_proto.actions_rules_copies.stamp
+build obj/net/test/net_test_support.python_utils.o: cxx $
+    ../../net/test/python_utils.cc || $
+    obj/third_party/protobuf/py_proto.actions_rules_copies.stamp
+build obj/net/test/spawned_test_server/net_test_support.base_test_server.o: $
+    cxx ../../net/test/spawned_test_server/base_test_server.cc || $
+    obj/third_party/protobuf/py_proto.actions_rules_copies.stamp
+build $
+    obj/net/test/spawned_test_server/net_test_support.local_test_server_posix.o: $
+    cxx ../../net/test/spawned_test_server/local_test_server_posix.cc || $
+    obj/third_party/protobuf/py_proto.actions_rules_copies.stamp
+build $
+    obj/net/test/spawned_test_server/net_test_support.local_test_server.o: $
+    cxx ../../net/test/spawned_test_server/local_test_server.cc || $
+    obj/third_party/protobuf/py_proto.actions_rules_copies.stamp
+build obj/net/url_request/net_test_support.test_url_fetcher_factory.o: cxx $
+    ../../net/url_request/test_url_fetcher_factory.cc || $
+    obj/third_party/protobuf/py_proto.actions_rules_copies.stamp
+build obj/net/url_request/net_test_support.url_request_test_util.o: cxx $
+    ../../net/url_request/url_request_test_util.cc || $
+    obj/third_party/protobuf/py_proto.actions_rules_copies.stamp
+
+build obj/net/libnet_test_support.a: alink_thin $
+    obj/net/base/net_test_support.capturing_net_log.o $
+    obj/net/base/net_test_support.load_timing_info_test_util.o $
+    obj/net/base/net_test_support.mock_file_stream.o $
+    obj/net/base/net_test_support.test_completion_callback.o $
+    obj/net/base/net_test_support.test_data_directory.o $
+    obj/net/cert/net_test_support.mock_cert_verifier.o $
+    obj/net/cookies/net_test_support.cookie_monster_store_test.o $
+    obj/net/cookies/net_test_support.cookie_store_test_callbacks.o $
+    obj/net/cookies/net_test_support.cookie_store_test_helpers.o $
+    obj/net/disk_cache/net_test_support.disk_cache_test_base.o $
+    obj/net/disk_cache/net_test_support.disk_cache_test_util.o $
+    obj/net/disk_cache/flash/net_test_support.flash_cache_test_base.o $
+    obj/net/dns/net_test_support.dns_test_util.o $
+    obj/net/dns/net_test_support.mock_host_resolver.o $
+    obj/net/proxy/net_test_support.mock_proxy_resolver.o $
+    obj/net/proxy/net_test_support.mock_proxy_script_fetcher.o $
+    obj/net/proxy/net_test_support.proxy_config_service_common_unittest.o $
+    obj/net/socket/net_test_support.socket_test_util.o $
+    obj/net/test/net_test_support.cert_test_util.o $
+    obj/net/test/embedded_test_server/net_test_support.embedded_test_server.o $
+    obj/net/test/embedded_test_server/net_test_support.http_connection.o $
+    obj/net/test/embedded_test_server/net_test_support.http_request.o $
+    obj/net/test/embedded_test_server/net_test_support.http_response.o $
+    obj/net/test/net_test_support.net_test_suite.o $
+    obj/net/test/net_test_support.python_utils.o $
+    obj/net/test/spawned_test_server/net_test_support.base_test_server.o $
+    obj/net/test/spawned_test_server/net_test_support.local_test_server_posix.o $
+    obj/net/test/spawned_test_server/net_test_support.local_test_server.o $
+    obj/net/url_request/net_test_support.test_url_fetcher_factory.o $
+    obj/net/url_request/net_test_support.url_request_test_util.o || $
+    obj/net/net_test_support.actions_depends.stamp

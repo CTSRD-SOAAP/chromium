@@ -1,0 +1,79 @@
+defines = -DANGLE_DX11 -D_FILE_OFFSET_BITS=64 -DNO_TCMALLOC -DDISABLE_NACL $
+    -DCHROMIUM_BUILD -DUSE_DEFAULT_RENDER_THEME=1 -DUSE_LIBJPEG_TURBO=1 $
+    -DUSE_NSS=1 -DUSE_X11=1 -DENABLE_ONE_CLICK_SIGNIN $
+    -DGTK_DISABLE_SINGLE_INCLUDES=1 -DENABLE_REMOTING=1 -DENABLE_WEBRTC=1 $
+    -DENABLE_CONFIGURATION_POLICY -DENABLE_INPUT_SPEECH $
+    -DENABLE_NOTIFICATIONS -DENABLE_GPU=1 -DENABLE_EGLIMAGE=1 $
+    -DENABLE_TASK_MANAGER=1 -DENABLE_EXTENSIONS=1 $
+    -DENABLE_PLUGIN_INSTALLATION=1 -DENABLE_PLUGINS=1 $
+    -DENABLE_SESSION_SERVICE=1 -DENABLE_THEMES=1 -DENABLE_BACKGROUND=1 $
+    -DENABLE_AUTOMATION=1 -DENABLE_GOOGLE_NOW=1 $
+    -DENABLE_LANGUAGE_DETECTION=1 -DENABLE_PRINTING=1 $
+    -DENABLE_CAPTIVE_PORTAL_DETECTION=1 -DENABLE_MANAGED_USERS=1 -DNDEBUG $
+    -DOFFICIAL_BUILD -DNVALGRIND -DDYNAMIC_ANNOTATIONS_ENABLED=0
+includes = -I../../third_party/libwebp
+cflags = -fstack-protector --param=ssp-buffer-size=4  -pthread $
+    -fno-exceptions -fno-strict-aliasing -Wno-unused-parameter $
+    -Wno-missing-field-initializers -fvisibility=hidden -pipe -fPIC $
+    -Wheader-hygiene -Wno-char-subscripts -Wno-unused-function $
+    -Wno-covered-switch-default -Wstring-conversion -Wno-c++11-narrowing $
+    -Wno-reserved-user-defined-literal -fcolor-diagnostics -Wno-format -O2 $
+    -fdata-sections -ffunction-sections
+cflags_c = -O2 -pipe -fno-strict-aliasing
+cflags_cc = -O2 -pipe -fno-strict-aliasing -fno-rtti $
+    -fno-threadsafe-statics -fvisibility-inlines-hidden -std=gnu++11 $
+    -Wno-deprecated
+
+build obj/third_party/libwebp/enc/libwebp_enc.alpha.o: cc $
+    ../../third_party/libwebp/enc/alpha.c
+build obj/third_party/libwebp/enc/libwebp_enc.analysis.o: cc $
+    ../../third_party/libwebp/enc/analysis.c
+build obj/third_party/libwebp/enc/libwebp_enc.backward_references.o: cc $
+    ../../third_party/libwebp/enc/backward_references.c
+build obj/third_party/libwebp/enc/libwebp_enc.config.o: cc $
+    ../../third_party/libwebp/enc/config.c
+build obj/third_party/libwebp/enc/libwebp_enc.cost.o: cc $
+    ../../third_party/libwebp/enc/cost.c
+build obj/third_party/libwebp/enc/libwebp_enc.filter.o: cc $
+    ../../third_party/libwebp/enc/filter.c
+build obj/third_party/libwebp/enc/libwebp_enc.frame.o: cc $
+    ../../third_party/libwebp/enc/frame.c
+build obj/third_party/libwebp/enc/libwebp_enc.histogram.o: cc $
+    ../../third_party/libwebp/enc/histogram.c
+build obj/third_party/libwebp/enc/libwebp_enc.iterator.o: cc $
+    ../../third_party/libwebp/enc/iterator.c
+build obj/third_party/libwebp/enc/libwebp_enc.layer.o: cc $
+    ../../third_party/libwebp/enc/layer.c
+build obj/third_party/libwebp/enc/libwebp_enc.picture.o: cc $
+    ../../third_party/libwebp/enc/picture.c
+build obj/third_party/libwebp/enc/libwebp_enc.quant.o: cc $
+    ../../third_party/libwebp/enc/quant.c
+build obj/third_party/libwebp/enc/libwebp_enc.syntax.o: cc $
+    ../../third_party/libwebp/enc/syntax.c
+build obj/third_party/libwebp/enc/libwebp_enc.token.o: cc $
+    ../../third_party/libwebp/enc/token.c
+build obj/third_party/libwebp/enc/libwebp_enc.tree.o: cc $
+    ../../third_party/libwebp/enc/tree.c
+build obj/third_party/libwebp/enc/libwebp_enc.vp8l.o: cc $
+    ../../third_party/libwebp/enc/vp8l.c
+build obj/third_party/libwebp/enc/libwebp_enc.webpenc.o: cc $
+    ../../third_party/libwebp/enc/webpenc.c
+
+build obj/third_party/libwebp/libwebp_enc.a: alink_thin $
+    obj/third_party/libwebp/enc/libwebp_enc.alpha.o $
+    obj/third_party/libwebp/enc/libwebp_enc.analysis.o $
+    obj/third_party/libwebp/enc/libwebp_enc.backward_references.o $
+    obj/third_party/libwebp/enc/libwebp_enc.config.o $
+    obj/third_party/libwebp/enc/libwebp_enc.cost.o $
+    obj/third_party/libwebp/enc/libwebp_enc.filter.o $
+    obj/third_party/libwebp/enc/libwebp_enc.frame.o $
+    obj/third_party/libwebp/enc/libwebp_enc.histogram.o $
+    obj/third_party/libwebp/enc/libwebp_enc.iterator.o $
+    obj/third_party/libwebp/enc/libwebp_enc.layer.o $
+    obj/third_party/libwebp/enc/libwebp_enc.picture.o $
+    obj/third_party/libwebp/enc/libwebp_enc.quant.o $
+    obj/third_party/libwebp/enc/libwebp_enc.syntax.o $
+    obj/third_party/libwebp/enc/libwebp_enc.token.o $
+    obj/third_party/libwebp/enc/libwebp_enc.tree.o $
+    obj/third_party/libwebp/enc/libwebp_enc.vp8l.o $
+    obj/third_party/libwebp/enc/libwebp_enc.webpenc.o

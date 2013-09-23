@@ -1,0 +1,64 @@
+rule sync_file_system_proto_target_genproto_8839b1022ed1eb53e5d15d687cacf99f
+  command = cd ../../chrome; python $
+      ../tools/protoc_wrapper/protoc_wrapper.py --include "" --protobuf $
+      "../out/Debug/gen/protoc_out/chrome/browser/sync_file_system/${root}.pb.h" $
+      --proto-in-dir browser/sync_file_system --proto-in-file $
+      "${root}${ext}" "--use-system-protobuf=0" -- ../out/Debug/protoc $
+      --cpp_out ../out/Debug/gen/protoc_out/chrome/browser/sync_file_system $
+      --python_out ../out/Debug/pyproto/chrome/browser/sync_file_system
+  description = RULE Generating C++ and Python code from ${source}
+  restat = 1
+
+build pyproto/chrome/browser/sync_file_system/sync_file_system_pb2.py $
+    gen/protoc_out/chrome/browser/sync_file_system/sync_file_system.pb.cc $
+    gen/protoc_out/chrome/browser/sync_file_system/sync_file_system.pb.h: $
+    sync_file_system_proto_target_genproto_8839b1022ed1eb53e5d15d687cacf99f $
+    ../../chrome/browser/sync_file_system/sync_file_system.proto | $
+    ../../tools/protoc_wrapper/protoc_wrapper.py protoc || protoc
+  source = browser/sync_file_system/sync_file_system.proto
+  ext = .proto
+  root = sync_file_system
+  unique_name = 5590c97300627be9278c79eba067b523
+build obj/chrome/sync_file_system_proto.actions_rules_copies.stamp: stamp $
+    pyproto/chrome/browser/sync_file_system/sync_file_system_pb2.py $
+    gen/protoc_out/chrome/browser/sync_file_system/sync_file_system.pb.cc $
+    gen/protoc_out/chrome/browser/sync_file_system/sync_file_system.pb.h
+
+defines = -DANGLE_DX11 -D_FILE_OFFSET_BITS=64 -DNO_TCMALLOC -DDISABLE_NACL $
+    -DCHROMIUM_BUILD -DUSE_DEFAULT_RENDER_THEME=1 -DUSE_LIBJPEG_TURBO=1 $
+    -DUSE_NSS=1 -DUSE_X11=1 -DENABLE_ONE_CLICK_SIGNIN $
+    -DGTK_DISABLE_SINGLE_INCLUDES=1 -DENABLE_REMOTING=1 -DENABLE_WEBRTC=1 $
+    -DENABLE_CONFIGURATION_POLICY -DENABLE_INPUT_SPEECH $
+    -DENABLE_NOTIFICATIONS -DENABLE_GPU=1 -DENABLE_EGLIMAGE=1 $
+    -DENABLE_TASK_MANAGER=1 -DENABLE_EXTENSIONS=1 $
+    -DENABLE_PLUGIN_INSTALLATION=1 -DENABLE_PLUGINS=1 $
+    -DENABLE_SESSION_SERVICE=1 -DENABLE_THEMES=1 -DENABLE_BACKGROUND=1 $
+    -DENABLE_AUTOMATION=1 -DENABLE_GOOGLE_NOW=1 $
+    -DENABLE_LANGUAGE_DETECTION=1 -DENABLE_PRINTING=1 $
+    -DENABLE_CAPTIVE_PORTAL_DETECTION=1 -DENABLE_MANAGED_USERS=1 $
+    -DPROTOBUF_USE_DLLS -DGOOGLE_PROTOBUF_NO_RTTI $
+    -DGOOGLE_PROTOBUF_NO_STATIC_INITIALIZER -D__STDC_CONSTANT_MACROS $
+    -D__STDC_FORMAT_MACROS -DDYNAMIC_ANNOTATIONS_ENABLED=1 $
+    -DWTF_USE_DYNAMIC_ANNOTATIONS=1 -D_DEBUG
+includes = -Igen/protoc_out -I../.. -I../../third_party/protobuf $
+    -I../../third_party/protobuf/src
+cflags = -fstack-protector --param=ssp-buffer-size=4  -pthread $
+    -fno-exceptions -fno-strict-aliasing -Wall -Wno-unused-parameter $
+    -Wno-missing-field-initializers -fvisibility=hidden -pipe -fPIC $
+    -Wheader-hygiene -Wno-char-subscripts -Wno-unused-function $
+    -Wno-covered-switch-default -Wstring-conversion -Wno-c++11-narrowing $
+    -Wno-reserved-user-defined-literal -fcolor-diagnostics -O0 -g
+cflags_c = -O2 -pipe -fno-strict-aliasing
+cflags_cc = -O2 -pipe -fno-strict-aliasing -fno-rtti $
+    -fno-threadsafe-statics -fvisibility-inlines-hidden -Wsign-compare $
+    -std=gnu++11
+
+build $
+    obj/chrome/gen/protoc_out/chrome/browser/sync_file_system/sync_file_system_proto.sync_file_system.pb.o: $
+    cxx $
+    gen/protoc_out/chrome/browser/sync_file_system/sync_file_system.pb.cc $
+    || obj/chrome/sync_file_system_proto.actions_rules_copies.stamp
+
+build obj/chrome/libsync_file_system_proto.a: alink_thin $
+    obj/chrome/gen/protoc_out/chrome/browser/sync_file_system/sync_file_system_proto.sync_file_system.pb.o $
+    || obj/chrome/sync_file_system_proto.actions_rules_copies.stamp

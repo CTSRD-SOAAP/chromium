@@ -1,0 +1,14 @@
+rule $
+    injected_script_source_target_ConvertFileToHeaderWithCharacterArray_161e346faa0cab3c995c8a1d5c28ebf6
+  command = cd ../../third_party/WebKit/Source/core; perl inspector/xxd.pl $
+      InjectedScriptSource_js inspector/InjectedScriptSource.js $
+      ../../../../out/Debug/gen/webkit/InjectedScriptSource.h
+  description = ACTION Generating gen/webkit/InjectedScriptSource.h from $
+      inspector/InjectedScriptSource.js
+  restat = 1
+
+build gen/webkit/InjectedScriptSource.h: $
+    injected_script_source_target_ConvertFileToHeaderWithCharacterArray_161e346faa0cab3c995c8a1d5c28ebf6 $
+    ../../third_party/WebKit/Source/core/inspector/xxd.pl $
+    ../../third_party/WebKit/Source/core/inspector/InjectedScriptSource.js
+

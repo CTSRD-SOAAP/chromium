@@ -1,0 +1,211 @@
+rule metrics_proto_target_genproto_ec0328dac14b0d9fc4fec0b22ce0fef1
+  command = cd ../../chrome; python $
+      ../tools/protoc_wrapper/protoc_wrapper.py --include "" --protobuf $
+      "../out/Release/gen/protoc_out/chrome/common/metrics/proto/${root}.pb.h" $
+      --proto-in-dir common/metrics/proto --proto-in-file "${root}${ext}" $
+      "--use-system-protobuf=0" -- ../out/Release/protoc --cpp_out $
+      ../out/Release/gen/protoc_out/chrome/common/metrics/proto $
+      --python_out ../out/Release/pyproto/chrome/common/metrics/proto
+  description = RULE Generating C++ and Python code from ${source}
+  restat = 1
+
+build pyproto/chrome/common/metrics/proto/chrome_experiments_pb2.py $
+    gen/protoc_out/chrome/common/metrics/proto/chrome_experiments.pb.cc $
+    gen/protoc_out/chrome/common/metrics/proto/chrome_experiments.pb.h: $
+    metrics_proto_target_genproto_ec0328dac14b0d9fc4fec0b22ce0fef1 $
+    ../../chrome/common/metrics/proto/chrome_experiments.proto | $
+    ../../tools/protoc_wrapper/protoc_wrapper.py protoc || protoc
+  source = common/metrics/proto/chrome_experiments.proto
+  ext = .proto
+  root = chrome_experiments
+  unique_name = 5e7b4c2bcdcd9450ab7cb7b16dbfa09b
+build $
+    pyproto/chrome/common/metrics/proto/chrome_user_metrics_extension_pb2.py $
+    gen/protoc_out/chrome/common/metrics/proto/chrome_user_metrics_extension.pb.cc $
+    gen/protoc_out/chrome/common/metrics/proto/chrome_user_metrics_extension.pb.h: $
+    metrics_proto_target_genproto_ec0328dac14b0d9fc4fec0b22ce0fef1 $
+    ../../chrome/common/metrics/proto/chrome_user_metrics_extension.proto | $
+    ../../tools/protoc_wrapper/protoc_wrapper.py protoc || protoc
+  source = common/metrics/proto/chrome_user_metrics_extension.proto
+  ext = .proto
+  root = chrome_user_metrics_extension
+  unique_name = 3f7fe5deb8755c1489bc49748be5336c
+build pyproto/chrome/common/metrics/proto/histogram_event_pb2.py $
+    gen/protoc_out/chrome/common/metrics/proto/histogram_event.pb.cc $
+    gen/protoc_out/chrome/common/metrics/proto/histogram_event.pb.h: $
+    metrics_proto_target_genproto_ec0328dac14b0d9fc4fec0b22ce0fef1 $
+    ../../chrome/common/metrics/proto/histogram_event.proto | $
+    ../../tools/protoc_wrapper/protoc_wrapper.py protoc || protoc
+  source = common/metrics/proto/histogram_event.proto
+  ext = .proto
+  root = histogram_event
+  unique_name = 7dcad334d2ae553aff88575bb3c95270
+build pyproto/chrome/common/metrics/proto/omnibox_event_pb2.py $
+    gen/protoc_out/chrome/common/metrics/proto/omnibox_event.pb.cc $
+    gen/protoc_out/chrome/common/metrics/proto/omnibox_event.pb.h: $
+    metrics_proto_target_genproto_ec0328dac14b0d9fc4fec0b22ce0fef1 $
+    ../../chrome/common/metrics/proto/omnibox_event.proto | $
+    ../../tools/protoc_wrapper/protoc_wrapper.py protoc || protoc
+  source = common/metrics/proto/omnibox_event.proto
+  ext = .proto
+  root = omnibox_event
+  unique_name = 67862b154aee36535d18a8e9f8661081
+build pyproto/chrome/common/metrics/proto/perf_data_pb2.py $
+    gen/protoc_out/chrome/common/metrics/proto/perf_data.pb.cc $
+    gen/protoc_out/chrome/common/metrics/proto/perf_data.pb.h: $
+    metrics_proto_target_genproto_ec0328dac14b0d9fc4fec0b22ce0fef1 $
+    ../../chrome/common/metrics/proto/perf_data.proto | $
+    ../../tools/protoc_wrapper/protoc_wrapper.py protoc || protoc
+  source = common/metrics/proto/perf_data.proto
+  ext = .proto
+  root = perf_data
+  unique_name = c0989854298a31124b3fcfe02f39ed0b
+build pyproto/chrome/common/metrics/proto/permuted_entropy_cache_pb2.py $
+    gen/protoc_out/chrome/common/metrics/proto/permuted_entropy_cache.pb.cc $
+    gen/protoc_out/chrome/common/metrics/proto/permuted_entropy_cache.pb.h: $
+    metrics_proto_target_genproto_ec0328dac14b0d9fc4fec0b22ce0fef1 $
+    ../../chrome/common/metrics/proto/permuted_entropy_cache.proto | $
+    ../../tools/protoc_wrapper/protoc_wrapper.py protoc || protoc
+  source = common/metrics/proto/permuted_entropy_cache.proto
+  ext = .proto
+  root = permuted_entropy_cache
+  unique_name = bdb6b6f3e1c9b469e6973a4417324646
+build pyproto/chrome/common/metrics/proto/profiler_event_pb2.py $
+    gen/protoc_out/chrome/common/metrics/proto/profiler_event.pb.cc $
+    gen/protoc_out/chrome/common/metrics/proto/profiler_event.pb.h: $
+    metrics_proto_target_genproto_ec0328dac14b0d9fc4fec0b22ce0fef1 $
+    ../../chrome/common/metrics/proto/profiler_event.proto | $
+    ../../tools/protoc_wrapper/protoc_wrapper.py protoc || protoc
+  source = common/metrics/proto/profiler_event.proto
+  ext = .proto
+  root = profiler_event
+  unique_name = e2e660024adf6cd01db012537e31160d
+build pyproto/chrome/common/metrics/proto/system_profile_pb2.py $
+    gen/protoc_out/chrome/common/metrics/proto/system_profile.pb.cc $
+    gen/protoc_out/chrome/common/metrics/proto/system_profile.pb.h: $
+    metrics_proto_target_genproto_ec0328dac14b0d9fc4fec0b22ce0fef1 $
+    ../../chrome/common/metrics/proto/system_profile.proto | $
+    ../../tools/protoc_wrapper/protoc_wrapper.py protoc || protoc
+  source = common/metrics/proto/system_profile.proto
+  ext = .proto
+  root = system_profile
+  unique_name = a7330b25c205b16550146cab65b4c4cc
+build pyproto/chrome/common/metrics/proto/user_action_event_pb2.py $
+    gen/protoc_out/chrome/common/metrics/proto/user_action_event.pb.cc $
+    gen/protoc_out/chrome/common/metrics/proto/user_action_event.pb.h: $
+    metrics_proto_target_genproto_ec0328dac14b0d9fc4fec0b22ce0fef1 $
+    ../../chrome/common/metrics/proto/user_action_event.proto | $
+    ../../tools/protoc_wrapper/protoc_wrapper.py protoc || protoc
+  source = common/metrics/proto/user_action_event.proto
+  ext = .proto
+  root = user_action_event
+  unique_name = a6d9ce8d33579cfa799e0166d22e05b2
+build obj/chrome/metrics_proto.actions_rules_copies.stamp: stamp $
+    pyproto/chrome/common/metrics/proto/chrome_experiments_pb2.py $
+    gen/protoc_out/chrome/common/metrics/proto/chrome_experiments.pb.cc $
+    gen/protoc_out/chrome/common/metrics/proto/chrome_experiments.pb.h $
+    pyproto/chrome/common/metrics/proto/chrome_user_metrics_extension_pb2.py $
+    gen/protoc_out/chrome/common/metrics/proto/chrome_user_metrics_extension.pb.cc $
+    gen/protoc_out/chrome/common/metrics/proto/chrome_user_metrics_extension.pb.h $
+    pyproto/chrome/common/metrics/proto/histogram_event_pb2.py $
+    gen/protoc_out/chrome/common/metrics/proto/histogram_event.pb.cc $
+    gen/protoc_out/chrome/common/metrics/proto/histogram_event.pb.h $
+    pyproto/chrome/common/metrics/proto/omnibox_event_pb2.py $
+    gen/protoc_out/chrome/common/metrics/proto/omnibox_event.pb.cc $
+    gen/protoc_out/chrome/common/metrics/proto/omnibox_event.pb.h $
+    pyproto/chrome/common/metrics/proto/perf_data_pb2.py $
+    gen/protoc_out/chrome/common/metrics/proto/perf_data.pb.cc $
+    gen/protoc_out/chrome/common/metrics/proto/perf_data.pb.h $
+    pyproto/chrome/common/metrics/proto/permuted_entropy_cache_pb2.py $
+    gen/protoc_out/chrome/common/metrics/proto/permuted_entropy_cache.pb.cc $
+    gen/protoc_out/chrome/common/metrics/proto/permuted_entropy_cache.pb.h $
+    pyproto/chrome/common/metrics/proto/profiler_event_pb2.py $
+    gen/protoc_out/chrome/common/metrics/proto/profiler_event.pb.cc $
+    gen/protoc_out/chrome/common/metrics/proto/profiler_event.pb.h $
+    pyproto/chrome/common/metrics/proto/system_profile_pb2.py $
+    gen/protoc_out/chrome/common/metrics/proto/system_profile.pb.cc $
+    gen/protoc_out/chrome/common/metrics/proto/system_profile.pb.h $
+    pyproto/chrome/common/metrics/proto/user_action_event_pb2.py $
+    gen/protoc_out/chrome/common/metrics/proto/user_action_event.pb.cc $
+    gen/protoc_out/chrome/common/metrics/proto/user_action_event.pb.h
+
+defines = -DANGLE_DX11 -D_FILE_OFFSET_BITS=64 -DNO_TCMALLOC -DDISABLE_NACL $
+    -DCHROMIUM_BUILD -DUSE_DEFAULT_RENDER_THEME=1 -DUSE_LIBJPEG_TURBO=1 $
+    -DUSE_NSS=1 -DUSE_X11=1 -DENABLE_ONE_CLICK_SIGNIN $
+    -DGTK_DISABLE_SINGLE_INCLUDES=1 -DENABLE_REMOTING=1 -DENABLE_WEBRTC=1 $
+    -DENABLE_CONFIGURATION_POLICY -DENABLE_INPUT_SPEECH $
+    -DENABLE_NOTIFICATIONS -DENABLE_GPU=1 -DENABLE_EGLIMAGE=1 $
+    -DENABLE_TASK_MANAGER=1 -DENABLE_EXTENSIONS=1 $
+    -DENABLE_PLUGIN_INSTALLATION=1 -DENABLE_PLUGINS=1 $
+    -DENABLE_SESSION_SERVICE=1 -DENABLE_THEMES=1 -DENABLE_BACKGROUND=1 $
+    -DENABLE_AUTOMATION=1 -DENABLE_GOOGLE_NOW=1 $
+    -DENABLE_LANGUAGE_DETECTION=1 -DENABLE_PRINTING=1 $
+    -DENABLE_CAPTIVE_PORTAL_DETECTION=1 -DENABLE_MANAGED_USERS=1 $
+    -DPROTOBUF_USE_DLLS -DGOOGLE_PROTOBUF_NO_RTTI $
+    -DGOOGLE_PROTOBUF_NO_STATIC_INITIALIZER -D__STDC_CONSTANT_MACROS $
+    -D__STDC_FORMAT_MACROS -DNDEBUG -DOFFICIAL_BUILD -DNVALGRIND $
+    -DDYNAMIC_ANNOTATIONS_ENABLED=0 -D_FORTIFY_SOURCE=2
+includes = -Igen/protoc_out -I../.. -I../../third_party/protobuf $
+    -I../../third_party/protobuf/src
+cflags = -fstack-protector --param=ssp-buffer-size=4  -pthread $
+    -fno-exceptions -fno-strict-aliasing -Wall -Wno-unused-parameter $
+    -Wno-missing-field-initializers -fvisibility=hidden -pipe -fPIC $
+    -Wheader-hygiene -Wno-char-subscripts -Wno-unused-function $
+    -Wno-covered-switch-default -Wstring-conversion -Wno-c++11-narrowing $
+    -Wno-reserved-user-defined-literal -fcolor-diagnostics -O2 $
+    -fdata-sections -ffunction-sections
+cflags_c = -O2 -pipe -fno-strict-aliasing
+cflags_cc = -O2 -pipe -fno-strict-aliasing -fno-rtti $
+    -fno-threadsafe-statics -fvisibility-inlines-hidden -Wsign-compare $
+    -std=gnu++11
+
+build $
+    obj/chrome/gen/protoc_out/chrome/common/metrics/proto/metrics_proto.chrome_experiments.pb.o: $
+    cxx gen/protoc_out/chrome/common/metrics/proto/chrome_experiments.pb.cc $
+    || obj/chrome/metrics_proto.actions_rules_copies.stamp
+build $
+    obj/chrome/gen/protoc_out/chrome/common/metrics/proto/metrics_proto.chrome_user_metrics_extension.pb.o: $
+    cxx $
+    gen/protoc_out/chrome/common/metrics/proto/chrome_user_metrics_extension.pb.cc $
+    || obj/chrome/metrics_proto.actions_rules_copies.stamp
+build $
+    obj/chrome/gen/protoc_out/chrome/common/metrics/proto/metrics_proto.histogram_event.pb.o: $
+    cxx gen/protoc_out/chrome/common/metrics/proto/histogram_event.pb.cc || $
+    obj/chrome/metrics_proto.actions_rules_copies.stamp
+build $
+    obj/chrome/gen/protoc_out/chrome/common/metrics/proto/metrics_proto.omnibox_event.pb.o: $
+    cxx gen/protoc_out/chrome/common/metrics/proto/omnibox_event.pb.cc || $
+    obj/chrome/metrics_proto.actions_rules_copies.stamp
+build $
+    obj/chrome/gen/protoc_out/chrome/common/metrics/proto/metrics_proto.perf_data.pb.o: $
+    cxx gen/protoc_out/chrome/common/metrics/proto/perf_data.pb.cc || $
+    obj/chrome/metrics_proto.actions_rules_copies.stamp
+build $
+    obj/chrome/gen/protoc_out/chrome/common/metrics/proto/metrics_proto.permuted_entropy_cache.pb.o: $
+    cxx $
+    gen/protoc_out/chrome/common/metrics/proto/permuted_entropy_cache.pb.cc $
+    || obj/chrome/metrics_proto.actions_rules_copies.stamp
+build $
+    obj/chrome/gen/protoc_out/chrome/common/metrics/proto/metrics_proto.profiler_event.pb.o: $
+    cxx gen/protoc_out/chrome/common/metrics/proto/profiler_event.pb.cc || $
+    obj/chrome/metrics_proto.actions_rules_copies.stamp
+build $
+    obj/chrome/gen/protoc_out/chrome/common/metrics/proto/metrics_proto.system_profile.pb.o: $
+    cxx gen/protoc_out/chrome/common/metrics/proto/system_profile.pb.cc || $
+    obj/chrome/metrics_proto.actions_rules_copies.stamp
+build $
+    obj/chrome/gen/protoc_out/chrome/common/metrics/proto/metrics_proto.user_action_event.pb.o: $
+    cxx gen/protoc_out/chrome/common/metrics/proto/user_action_event.pb.cc $
+    || obj/chrome/metrics_proto.actions_rules_copies.stamp
+
+build obj/chrome/libmetrics_proto.a: alink_thin $
+    obj/chrome/gen/protoc_out/chrome/common/metrics/proto/metrics_proto.chrome_experiments.pb.o $
+    obj/chrome/gen/protoc_out/chrome/common/metrics/proto/metrics_proto.chrome_user_metrics_extension.pb.o $
+    obj/chrome/gen/protoc_out/chrome/common/metrics/proto/metrics_proto.histogram_event.pb.o $
+    obj/chrome/gen/protoc_out/chrome/common/metrics/proto/metrics_proto.omnibox_event.pb.o $
+    obj/chrome/gen/protoc_out/chrome/common/metrics/proto/metrics_proto.perf_data.pb.o $
+    obj/chrome/gen/protoc_out/chrome/common/metrics/proto/metrics_proto.permuted_entropy_cache.pb.o $
+    obj/chrome/gen/protoc_out/chrome/common/metrics/proto/metrics_proto.profiler_event.pb.o $
+    obj/chrome/gen/protoc_out/chrome/common/metrics/proto/metrics_proto.system_profile.pb.o $
+    obj/chrome/gen/protoc_out/chrome/common/metrics/proto/metrics_proto.user_action_event.pb.o $
+    || obj/chrome/metrics_proto.actions_rules_copies.stamp

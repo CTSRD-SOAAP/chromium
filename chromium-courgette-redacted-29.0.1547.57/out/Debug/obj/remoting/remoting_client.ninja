@@ -1,0 +1,105 @@
+build obj/remoting/remoting_client.actions_depends.stamp: stamp $
+    obj/remoting/libremoting_base.a $
+    obj/remoting/proto/libchromotocol_proto_lib.a
+
+build obj/remoting/remoting_client.compile_depends.stamp: stamp $
+    obj/remoting/remoting_base.compile_depends.stamp $
+    obj/remoting/proto/chromotocol_proto_lib.actions_rules_copies.stamp
+
+defines = -DANGLE_DX11 -D_FILE_OFFSET_BITS=64 -DNO_TCMALLOC -DDISABLE_NACL $
+    -DCHROMIUM_BUILD -DUSE_DEFAULT_RENDER_THEME=1 -DUSE_LIBJPEG_TURBO=1 $
+    -DUSE_NSS=1 -DUSE_X11=1 -DENABLE_ONE_CLICK_SIGNIN $
+    -DGTK_DISABLE_SINGLE_INCLUDES=1 -DENABLE_REMOTING=1 -DENABLE_WEBRTC=1 $
+    -DENABLE_CONFIGURATION_POLICY -DENABLE_INPUT_SPEECH $
+    -DENABLE_NOTIFICATIONS -DENABLE_GPU=1 -DENABLE_EGLIMAGE=1 $
+    -DENABLE_TASK_MANAGER=1 -DENABLE_EXTENSIONS=1 $
+    -DENABLE_PLUGIN_INSTALLATION=1 -DENABLE_PLUGINS=1 $
+    -DENABLE_SESSION_SERVICE=1 -DENABLE_THEMES=1 -DENABLE_BACKGROUND=1 $
+    -DENABLE_AUTOMATION=1 -DENABLE_GOOGLE_NOW=1 $
+    -DENABLE_LANGUAGE_DETECTION=1 -DENABLE_PRINTING=1 $
+    -DENABLE_CAPTIVE_PORTAL_DETECTION=1 -DENABLE_MANAGED_USERS=1 $
+    -DSK_BUILD_NO_IMAGE_ENCODE -DSK_DEFERRED_CANVAS_USES_GPIPE=1 $
+    '-DGR_GL_CUSTOM_SETUP_HEADER="GrGLConfig_chrome.h"' $
+    -DGR_AGGRESSIVE_SHADER_OPTS=1 -DSK_ENABLE_INST_COUNT=0 $
+    -DSK_USE_POSIX_THREADS -DPROTOBUF_USE_DLLS -DGOOGLE_PROTOBUF_NO_RTTI $
+    -DGOOGLE_PROTOBUF_NO_STATIC_INITIALIZER -DFEATURE_ENABLE_SSL $
+    -DFEATURE_ENABLE_VOICEMAIL -DEXPAT_RELATIVE_PATH -DGTEST_RELATIVE_PATH $
+    -DJSONCPP_RELATIVE_PATH -DNO_MAIN_THREAD_WRAPPING -DNO_SOUND_SYSTEM $
+    -DPOSIX -DBSD -DFREEBSD -D__STDC_CONSTANT_MACROS -D__STDC_FORMAT_MACROS $
+    -DDYNAMIC_ANNOTATIONS_ENABLED=1 -DWTF_USE_DYNAMIC_ANNOTATIONS=1 -D_DEBUG
+includes = -I../.. -I../../skia/config -I../../third_party/skia/src/core $
+    -I../../third_party/skia/include/config $
+    -I../../third_party/skia/include/core $
+    -I../../third_party/skia/include/effects $
+    -I../../third_party/skia/include/pdf $
+    -I../../third_party/skia/include/gpu $
+    -I../../third_party/skia/include/gpu/gl $
+    -I../../third_party/skia/include/pathops $
+    -I../../third_party/skia/include/pipe $
+    -I../../third_party/skia/include/ports $
+    -I../../third_party/skia/include/utils -I../../skia/ext $
+    -I../../third_party/protobuf -I../../third_party/protobuf/src $
+    -Igen/protoc_out -I../../third_party/libjingle/overrides $
+    -I../../third_party/libjingle/source -I../../testing/gtest/include $
+    -I../../third_party -I../../third_party/webrtc $
+    -I../../third_party/jsoncpp/overrides/include $
+    -I../../third_party/jsoncpp/source/include
+cflags = -fstack-protector --param=ssp-buffer-size=4  -pthread $
+    -fno-exceptions -fno-strict-aliasing -Wall -Wno-unused-parameter $
+    -Wno-missing-field-initializers -fvisibility=hidden -pipe -fPIC $
+    -Wheader-hygiene -Wno-char-subscripts -Wno-unused-function $
+    -Wno-covered-switch-default -Wstring-conversion -Wno-c++11-narrowing $
+    -Wno-reserved-user-defined-literal -fcolor-diagnostics $
+    -I/usr/local/include/gtk-2.0 -I/usr/local/include/gio-unix-2.0/ $
+    -I/usr/local/include/atk-1.0 -I/usr/local/include/cairo $
+    -I/usr/local/include/pixman-1 -D_THREAD_SAFE $
+    -I/usr/local/include/gdk-pixbuf-2.0 -I/usr/local/include/libpng15 $
+    -I/usr/local/include/pango-1.0 -I/usr/local/include/freetype2 $
+    -I/usr/local/include/harfbuzz -pthread -I/usr/local/include/glib-2.0 $
+    -I/usr/local/include -pthread -I/usr/local/include/glib-2.0 $
+    -I/usr/local/include -D_THREAD_SAFE -I/usr/local/include $
+    -Wexit-time-destructors -O0 -g
+cflags_c = -O2 -pipe -fno-strict-aliasing
+cflags_cc = -O2 -pipe -fno-strict-aliasing -fno-rtti $
+    -fno-threadsafe-statics -fvisibility-inlines-hidden -Wsign-compare $
+    -std=gnu++11
+
+build obj/remoting/client/remoting_client.audio_decode_scheduler.o: cxx $
+    ../../remoting/client/audio_decode_scheduler.cc || $
+    obj/remoting/remoting_client.compile_depends.stamp
+build obj/remoting/client/remoting_client.audio_player.o: cxx $
+    ../../remoting/client/audio_player.cc || $
+    obj/remoting/remoting_client.compile_depends.stamp
+build obj/remoting/client/remoting_client.chromoting_client.o: cxx $
+    ../../remoting/client/chromoting_client.cc || $
+    obj/remoting/remoting_client.compile_depends.stamp
+build obj/remoting/client/remoting_client.chromoting_stats.o: cxx $
+    ../../remoting/client/chromoting_stats.cc || $
+    obj/remoting/remoting_client.compile_depends.stamp
+build obj/remoting/client/remoting_client.client_config.o: cxx $
+    ../../remoting/client/client_config.cc || $
+    obj/remoting/remoting_client.compile_depends.stamp
+build obj/remoting/client/remoting_client.client_context.o: cxx $
+    ../../remoting/client/client_context.cc || $
+    obj/remoting/remoting_client.compile_depends.stamp
+build obj/remoting/client/remoting_client.frame_consumer_proxy.o: cxx $
+    ../../remoting/client/frame_consumer_proxy.cc || $
+    obj/remoting/remoting_client.compile_depends.stamp
+build obj/remoting/client/remoting_client.key_event_mapper.o: cxx $
+    ../../remoting/client/key_event_mapper.cc || $
+    obj/remoting/remoting_client.compile_depends.stamp
+build obj/remoting/client/remoting_client.rectangle_update_decoder.o: cxx $
+    ../../remoting/client/rectangle_update_decoder.cc || $
+    obj/remoting/remoting_client.compile_depends.stamp
+
+build obj/remoting/libremoting_client.a: alink_thin $
+    obj/remoting/client/remoting_client.audio_decode_scheduler.o $
+    obj/remoting/client/remoting_client.audio_player.o $
+    obj/remoting/client/remoting_client.chromoting_client.o $
+    obj/remoting/client/remoting_client.chromoting_stats.o $
+    obj/remoting/client/remoting_client.client_config.o $
+    obj/remoting/client/remoting_client.client_context.o $
+    obj/remoting/client/remoting_client.frame_consumer_proxy.o $
+    obj/remoting/client/remoting_client.key_event_mapper.o $
+    obj/remoting/client/remoting_client.rectangle_update_decoder.o || $
+    obj/remoting/remoting_client.actions_depends.stamp

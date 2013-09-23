@@ -1,0 +1,2260 @@
+build obj/chrome/browser_ui.actions_depends.stamp: stamp $
+    obj/chrome/libcert_logger_proto.a $
+    obj/chrome/chrome_extra_resources.actions_rules_copies.stamp $
+    obj/chrome/chrome_resources.actions_rules_copies.stamp $
+    obj/chrome/chrome_strings.actions_rules_copies.stamp $
+    obj/chrome/platform_locale_settings.actions_rules_copies.stamp $
+    obj/chrome/theme_resources.actions_depends.stamp $
+    obj/chrome/libmetrics_proto.a $
+    obj/chrome/libin_memory_url_index_cache_proto.a $
+    obj/chrome/libsafe_browsing_proto.a $
+    obj/chrome/libsafe_browsing_report_proto.a $
+    obj/chrome/libfeedback_proto.a obj/chrome/libvariations_seed_proto.a $
+    obj/sync/sync.actions_depends.stamp obj/sync/libsync_proto.a $
+    obj/third_party/cacheinvalidation/libcacheinvalidation_proto_cpp.a $
+    obj/ui/base/strings/ui_strings.actions_rules_copies.stamp $
+    obj/ui/ui_resources.actions_rules_copies.stamp $
+    obj/chrome/browser/performance_monitor/libperformance_monitor.a $
+    obj/chrome/common/extensions/api/libapi.a $
+    obj/components/libautofill_content_risk_proto.a $
+    obj/components/component_strings.actions_rules_copies.stamp $
+    gen/flapper_version.h $
+    obj/third_party/libphonenumber/libphonenumber_without_metadata.a $
+    obj/v8/tools/gyp/v8.actions_depends.stamp obj/webkit/support/libglue.a $
+    obj/webkit/support/webkit_resources.actions_rules_copies.stamp $
+    obj/chrome/app/policy/libpolicy.a $
+    obj/build/linux/ssl.actions_depends.stamp
+
+build obj/chrome/browser_ui.compile_depends.stamp: stamp $
+    obj/chrome/cert_logger_proto.actions_rules_copies.stamp $
+    obj/chrome/chrome_extra_resources.actions_rules_copies.stamp $
+    obj/chrome/chrome_resources.actions_rules_copies.stamp $
+    obj/chrome/chrome_strings.actions_rules_copies.stamp $
+    obj/chrome/platform_locale_settings.actions_rules_copies.stamp $
+    obj/chrome/theme_resources.compile_depends.stamp $
+    obj/chrome/metrics_proto.actions_rules_copies.stamp $
+    obj/chrome/in_memory_url_index_cache_proto.actions_rules_copies.stamp $
+    obj/chrome/safe_browsing_proto.actions_rules_copies.stamp $
+    obj/chrome/safe_browsing_report_proto.actions_rules_copies.stamp $
+    obj/chrome/feedback_proto.actions_rules_copies.stamp $
+    obj/chrome/variations_seed_proto.actions_rules_copies.stamp $
+    obj/sync/sync.compile_depends.stamp $
+    obj/sync/sync_proto.actions_rules_copies.stamp $
+    obj/third_party/cacheinvalidation/cacheinvalidation_proto_cpp.actions_rules_copies.stamp $
+    obj/ui/base/strings/ui_strings.actions_rules_copies.stamp $
+    obj/ui/ui_resources.actions_rules_copies.stamp $
+    obj/chrome/browser/performance_monitor/performance_monitor.actions_rules_copies.stamp $
+    obj/chrome/common/extensions/api/api.actions_rules_copies.stamp $
+    obj/components/autofill_content_risk_proto.actions_rules_copies.stamp $
+    obj/components/component_strings.actions_rules_copies.stamp $
+    gen/flapper_version.h $
+    obj/third_party/libphonenumber/libphonenumber_without_metadata.actions_rules_copies.stamp $
+    obj/v8/tools/gyp/v8_snapshot.gen/snapshot.cc $
+    obj/webkit/support/glue.compile_depends.stamp $
+    obj/webkit/support/webkit_resources.actions_rules_copies.stamp $
+    obj/chrome/app/policy/policy.compile_depends.stamp
+
+defines = -DANGLE_DX11 -D_FILE_OFFSET_BITS=64 -DNO_TCMALLOC -DDISABLE_NACL $
+    -DCHROMIUM_BUILD -DUSE_DEFAULT_RENDER_THEME=1 -DUSE_LIBJPEG_TURBO=1 $
+    -DUSE_NSS=1 -DUSE_X11=1 -DENABLE_ONE_CLICK_SIGNIN $
+    -DGTK_DISABLE_SINGLE_INCLUDES=1 -DENABLE_REMOTING=1 -DENABLE_WEBRTC=1 $
+    -DENABLE_CONFIGURATION_POLICY -DENABLE_INPUT_SPEECH $
+    -DENABLE_NOTIFICATIONS -DENABLE_GPU=1 -DENABLE_EGLIMAGE=1 $
+    -DENABLE_TASK_MANAGER=1 -DENABLE_EXTENSIONS=1 $
+    -DENABLE_PLUGIN_INSTALLATION=1 -DENABLE_PLUGINS=1 $
+    -DENABLE_SESSION_SERVICE=1 -DENABLE_THEMES=1 -DENABLE_BACKGROUND=1 $
+    -DENABLE_AUTOMATION=1 -DENABLE_GOOGLE_NOW=1 $
+    -DENABLE_LANGUAGE_DETECTION=1 -DENABLE_PRINTING=1 $
+    -DENABLE_CAPTIVE_PORTAL_DETECTION=1 -DENABLE_MANAGED_USERS=1 $
+    -DNACL_TARGET_SUBARCH=64 -DNACL_TARGET_ARCH=x86 -DNACL_BUILD_SUBARCH=64 $
+    -DNACL_BUILD_ARCH=x86 -DFULL_SAFE_BROWSING -DGL_GLEXT_PROTOTYPES $
+    -DLIBPEERCONNECTION_LIB=1 -DPROTOBUF_USE_DLLS -DGOOGLE_PROTOBUF_NO_RTTI $
+    -DGOOGLE_PROTOBUF_NO_STATIC_INITIALIZER -DSK_BUILD_NO_IMAGE_ENCODE $
+    -DSK_DEFERRED_CANVAS_USES_GPIPE=1 $
+    '-DGR_GL_CUSTOM_SETUP_HEADER="GrGLConfig_chrome.h"' $
+    -DGR_AGGRESSIVE_SHADER_OPTS=1 -DSK_ENABLE_INST_COUNT=0 $
+    -DSK_USE_POSIX_THREADS -DU_USING_ICU_NAMESPACE=0 $
+    -DU_STATIC_IMPLEMENTATION -DUSE_SYSTEM_LIBXML -DHUNSPELL_STATIC $
+    -DHUNSPELL_CHROME_CLIENT -DUSE_HUNSPELL -DFEATURE_ENABLE_SSL $
+    -DFEATURE_ENABLE_VOICEMAIL -DEXPAT_RELATIVE_PATH -DGTEST_RELATIVE_PATH $
+    -DJSONCPP_RELATIVE_PATH -DNO_MAIN_THREAD_WRAPPING -DNO_SOUND_SYSTEM $
+    -DPOSIX -DBSD -DFREEBSD -DUSE_CUPS -D__STDC_CONSTANT_MACROS $
+    -D__STDC_FORMAT_MACROS -DDYNAMIC_ANNOTATIONS_ENABLED=1 $
+    -DWTF_USE_DYNAMIC_ANNOTATIONS=1 -D_DEBUG
+includes = -I../../third_party/icu/public/common $
+    -I../../third_party/icu/public/i18n -I../.. -Iobj/chrome/browser_ui.gen $
+    -Igen -I../../third_party/khronos -I../../gpu -Igen/protoc_out $
+    -I../../third_party/protobuf -I../../third_party/protobuf/src $
+    -Igen/chrome -I../../third_party/sqlite -I../../skia/config $
+    -I../../third_party/skia/src/core $
+    -I../../third_party/skia/include/config $
+    -I../../third_party/skia/include/core $
+    -I../../third_party/skia/include/effects $
+    -I../../third_party/skia/include/pdf $
+    -I../../third_party/skia/include/gpu $
+    -I../../third_party/skia/include/gpu/gl $
+    -I../../third_party/skia/include/pathops $
+    -I../../third_party/skia/include/pipe $
+    -I../../third_party/skia/include/ports $
+    -I../../third_party/skia/include/utils -I../../skia/ext $
+    -I../../third_party/cacheinvalidation/overrides $
+    -I../../third_party/cacheinvalidation/src $
+    -I../../third_party/cacheinvalidation/google/cacheinvalidation $
+    -I../../third_party/libusb/src/libusb -I../../third_party/zlib $
+    -Igen/ui/app_locale_settings -Igen/ui/ui_strings -Igen/ui/ui_resources $
+    -Igen/components/strings -I../../third_party/leveldatabase/src/include $
+    -I../../third_party/leveldatabase/src -I../../third_party/leveldatabase $
+    -I../../third_party/libjingle/overrides $
+    -I../../third_party/libjingle/source -I../../testing/gtest/include $
+    -I../../third_party -I../../third_party/webrtc $
+    -I../../third_party/jsoncpp/overrides/include $
+    -I../../third_party/jsoncpp/source/include $
+    -Igen/protoc_out/third_party/libphonenumber $
+    -I../../third_party/libphonenumber/src -I../../third_party/npapi $
+    -I../../third_party/npapi/bindings -I../../third_party/re2 $
+    -I../../v8/include -Igen/webkit -Igen/policy $
+    -I../../net/third_party/nss/ssl
+cflags = -fstack-protector --param=ssp-buffer-size=4  -pthread $
+    -fno-exceptions -fno-strict-aliasing -Wall -Wno-unused-parameter $
+    -Wno-missing-field-initializers -fvisibility=hidden -pipe -fPIC $
+    -Wheader-hygiene -Wno-char-subscripts -Wno-unused-function $
+    -Wno-covered-switch-default -Wstring-conversion -Wno-c++11-narrowing $
+    -Wno-reserved-user-defined-literal -fcolor-diagnostics $
+    -I/usr/local/include/gtk-2.0 -I/usr/local/include/gio-unix-2.0/ $
+    -I/usr/local/include/atk-1.0 -I/usr/local/include/cairo $
+    -I/usr/local/include/pixman-1 -D_THREAD_SAFE $
+    -I/usr/local/include/gdk-pixbuf-2.0 -I/usr/local/include/libpng15 $
+    -I/usr/local/include/pango-1.0 -I/usr/local/include/freetype2 $
+    -I/usr/local/include/harfbuzz -pthread -I/usr/local/include/glib-2.0 $
+    -I/usr/local/include -pthread -I/usr/local/include/glib-2.0 $
+    -I/usr/local/include -I/usr/local/include/libxml2 -I/usr/local/include $
+    -I/usr/local/include -pthread -I/usr/local/include/dbus-1.0 $
+    -I/usr/local/include/dbus-1.0/include $
+    -I/usr/local/include/gtk-unix-print-2.0 -I/usr/local/include/gtk-2.0 $
+    -I/usr/local/include/gio-unix-2.0/ -I/usr/local/include/atk-1.0 $
+    -I/usr/local/include/cairo -I/usr/local/include/pixman-1 -D_THREAD_SAFE $
+    -I/usr/local/include/gdk-pixbuf-2.0 -I/usr/local/include/libpng15 $
+    -I/usr/local/include/pango-1.0 -pthread -I/usr/local/include/glib-2.0 $
+    -I/usr/local/include/freetype2 -I/usr/local/include $
+    -I/usr/local/include/harfbuzz -I/usr/local/include/nss $
+    -I/usr/local/include/nss/nss -I/usr/local/include/nspr -D_THREAD_SAFE $
+    -I/usr/local/include -Wexit-time-destructors -O0 -g
+cflags_c = -O2 -pipe -fno-strict-aliasing
+cflags_cc = -O2 -pipe -fno-strict-aliasing -fno-rtti $
+    -fno-threadsafe-statics -fvisibility-inlines-hidden -Wsign-compare $
+    -std=gnu++11
+
+build obj/chrome/browser/ui/browser_ui.active_tab_tracker.o: cxx $
+    ../../chrome/browser/ui/active_tab_tracker.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/browser_ui.alternate_error_tab_observer.o: cxx $
+    ../../chrome/browser/ui/alternate_error_tab_observer.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build $
+    obj/chrome/browser/ui/app_list/browser_ui.app_list_service_disabled.o: $
+    cxx ../../chrome/browser/ui/app_list/app_list_service_disabled.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build $
+    obj/chrome/browser/ui/app_modal_dialogs/browser_ui.app_modal_dialog.o: $
+    cxx ../../chrome/browser/ui/app_modal_dialogs/app_modal_dialog.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build $
+    obj/chrome/browser/ui/app_modal_dialogs/browser_ui.app_modal_dialog_queue.o: $
+    cxx ../../chrome/browser/ui/app_modal_dialogs/app_modal_dialog_queue.cc $
+    || obj/chrome/browser_ui.compile_depends.stamp
+build $
+    obj/chrome/browser/ui/app_modal_dialogs/browser_ui.javascript_app_modal_dialog.o: $
+    cxx $
+    ../../chrome/browser/ui/app_modal_dialogs/javascript_app_modal_dialog.cc $
+    || obj/chrome/browser_ui.compile_depends.stamp
+build $
+    obj/chrome/browser/ui/app_modal_dialogs/browser_ui.javascript_dialog_manager.o: $
+    cxx $
+    ../../chrome/browser/ui/app_modal_dialogs/javascript_dialog_manager.cc $
+    || obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/autofill/browser_ui.account_chooser_model.o: $
+    cxx ../../chrome/browser/ui/autofill/account_chooser_model.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/autofill/browser_ui.autocheckout_bubble.o: cxx $
+    ../../chrome/browser/ui/autofill/autocheckout_bubble.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build $
+    obj/chrome/browser/ui/autofill/browser_ui.autocheckout_bubble_controller.o: $
+    cxx ../../chrome/browser/ui/autofill/autocheckout_bubble_controller.cc $
+    || obj/chrome/browser_ui.compile_depends.stamp
+build $
+    obj/chrome/browser/ui/autofill/browser_ui.autofill_dialog_controller_impl.o: $
+    cxx ../../chrome/browser/ui/autofill/autofill_dialog_controller_impl.cc $
+    || obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/autofill/browser_ui.autofill_dialog_models.o: $
+    cxx ../../chrome/browser/ui/autofill/autofill_dialog_models.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build $
+    obj/chrome/browser/ui/autofill/browser_ui.autofill_dialog_sign_in_delegate.o: $
+    cxx $
+    ../../chrome/browser/ui/autofill/autofill_dialog_sign_in_delegate.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/autofill/browser_ui.autofill_dialog_types.o: $
+    cxx ../../chrome/browser/ui/autofill/autofill_dialog_types.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/autofill/browser_ui.autofill_dialog_view.o: cxx $
+    ../../chrome/browser/ui/autofill/autofill_dialog_view.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build $
+    obj/chrome/browser/ui/autofill/browser_ui.autofill_popup_controller_impl.o: $
+    cxx ../../chrome/browser/ui/autofill/autofill_popup_controller_impl.cc $
+    || obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/autofill/browser_ui.autofill_popup_view.o: cxx $
+    ../../chrome/browser/ui/autofill/autofill_popup_view.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/autofill/browser_ui.country_combobox_model.o: $
+    cxx ../../chrome/browser/ui/autofill/country_combobox_model.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/autofill/browser_ui.data_model_wrapper.o: cxx $
+    ../../chrome/browser/ui/autofill/data_model_wrapper.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build $
+    obj/chrome/browser/ui/autofill/browser_ui.tab_autofill_manager_delegate.o: $
+    cxx ../../chrome/browser/ui/autofill/tab_autofill_manager_delegate.cc $
+    || obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/browser_ui.auto_login_infobar_delegate.o: cxx $
+    ../../chrome/browser/ui/auto_login_infobar_delegate.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/browser_ui.auto_login_prompter.o: cxx $
+    ../../chrome/browser/ui/auto_login_prompter.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build $
+    obj/chrome/browser/ui/blocked_content/browser_ui.blocked_content_container.o: $
+    cxx $
+    ../../chrome/browser/ui/blocked_content/blocked_content_container.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build $
+    obj/chrome/browser/ui/blocked_content/browser_ui.blocked_content_tab_helper.o: $
+    cxx $
+    ../../chrome/browser/ui/blocked_content/blocked_content_tab_helper.cc $
+    || obj/chrome/browser_ui.compile_depends.stamp
+build $
+    obj/chrome/browser/ui/blocked_content/browser_ui.blocked_content_tab_helper_delegate.o: $
+    cxx $
+    ../../chrome/browser/ui/blocked_content/blocked_content_tab_helper_delegate.cc $
+    || obj/chrome/browser_ui.compile_depends.stamp
+build $
+    obj/chrome/browser/ui/bookmarks/browser_ui.bookmark_context_menu_controller.o: $
+    cxx $
+    ../../chrome/browser/ui/bookmarks/bookmark_context_menu_controller.cc $
+    || obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/bookmarks/browser_ui.bookmark_drag_drop.o: cxx $
+    ../../chrome/browser/ui/bookmarks/bookmark_drag_drop.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build $
+    obj/chrome/browser/ui/bookmarks/browser_ui.bookmark_prompt_controller.o: $
+    cxx ../../chrome/browser/ui/bookmarks/bookmark_prompt_controller.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/bookmarks/browser_ui.bookmark_tab_helper.o: cxx $
+    ../../chrome/browser/ui/bookmarks/bookmark_tab_helper.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build $
+    obj/chrome/browser/ui/bookmarks/browser_ui.bookmark_tab_helper_delegate.o: $
+    cxx ../../chrome/browser/ui/bookmarks/bookmark_tab_helper_delegate.cc $
+    || obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/bookmarks/browser_ui.bookmark_utils.o: cxx $
+    ../../chrome/browser/ui/bookmarks/bookmark_utils.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build $
+    obj/chrome/browser/ui/bookmarks/browser_ui.recently_used_folders_combo_model.o: $
+    cxx $
+    ../../chrome/browser/ui/bookmarks/recently_used_folders_combo_model.cc $
+    || obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/browser_ui.browser.o: cxx $
+    ../../chrome/browser/ui/browser.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/browser_ui.browser_commands.o: cxx $
+    ../../chrome/browser/ui/browser_commands.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/browser_ui.browser_command_controller.o: cxx $
+    ../../chrome/browser/ui/browser_command_controller.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build $
+    obj/chrome/browser/ui/browser_ui.browser_content_setting_bubble_model_delegate.o: $
+    cxx $
+    ../../chrome/browser/ui/browser_content_setting_bubble_model_delegate.cc $
+    || obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/browser_ui.browser_finder.o: cxx $
+    ../../chrome/browser/ui/browser_finder.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/browser_ui.browser_instant_controller.o: cxx $
+    ../../chrome/browser/ui/browser_instant_controller.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/browser_ui.browser_iterator.o: cxx $
+    ../../chrome/browser/ui/browser_iterator.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/browser_ui.browser_list.o: cxx $
+    ../../chrome/browser/ui/browser_list.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/browser_ui.browser_navigator.o: cxx $
+    ../../chrome/browser/ui/browser_navigator.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/browser_ui.browser_otr_state.o: cxx $
+    ../../chrome/browser/ui/browser_otr_state.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/browser_ui.browser_ui_prefs.o: cxx $
+    ../../chrome/browser/ui/browser_ui_prefs.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/browser_ui.browser_tab_contents.o: cxx $
+    ../../chrome/browser/ui/browser_tab_contents.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build $
+    obj/chrome/browser/ui/browser_ui.browser_tab_restore_service_delegate.o: $
+    cxx ../../chrome/browser/ui/browser_tab_restore_service_delegate.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/browser_ui.browser_tab_strip_model_delegate.o: $
+    cxx ../../chrome/browser/ui/browser_tab_strip_model_delegate.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/browser_ui.browser_tabrestore.o: cxx $
+    ../../chrome/browser/ui/browser_tabrestore.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/browser_ui.browser_tabstrip.o: cxx $
+    ../../chrome/browser/ui/browser_tabstrip.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/browser_ui.browser_toolbar_model_delegate.o: $
+    cxx ../../chrome/browser/ui/browser_toolbar_model_delegate.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/browser_ui.browser_view_prefs.o: cxx $
+    ../../chrome/browser/ui/browser_view_prefs.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/browser_ui.browser_window_state.o: cxx $
+    ../../chrome/browser/ui/browser_window_state.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/browser_ui.certificate_dialogs.o: cxx $
+    ../../chrome/browser/ui/certificate_dialogs.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/browser_ui.chrome_pages.o: cxx $
+    ../../chrome/browser/ui/chrome_pages.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/browser_ui.chrome_select_file_policy.o: cxx $
+    ../../chrome/browser/ui/chrome_select_file_policy.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/browser_ui.chrome_style.o: cxx $
+    ../../chrome/browser/ui/chrome_style.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build $
+    obj/chrome/browser/ui/browser_ui.chrome_web_modal_dialog_manager_delegate.o: $
+    cxx ../../chrome/browser/ui/chrome_web_modal_dialog_manager_delegate.cc $
+    || obj/chrome/browser_ui.compile_depends.stamp
+build $
+    obj/chrome/browser/ui/browser_ui.collected_cookies_infobar_delegate.o: $
+    cxx ../../chrome/browser/ui/collected_cookies_infobar_delegate.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/browser_ui.confirm_bubble_model.o: cxx $
+    ../../chrome/browser/ui/confirm_bubble_model.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build $
+    obj/chrome/browser/ui/content_settings/browser_ui.content_setting_bubble_model.o: $
+    cxx $
+    ../../chrome/browser/ui/content_settings/content_setting_bubble_model.cc $
+    || obj/chrome/browser_ui.compile_depends.stamp
+build $
+    obj/chrome/browser/ui/content_settings/browser_ui.content_setting_changed_infobar_delegate.o: $
+    cxx $
+    ../../chrome/browser/ui/content_settings/content_setting_changed_infobar_delegate.cc $
+    || obj/chrome/browser_ui.compile_depends.stamp
+build $
+    obj/chrome/browser/ui/content_settings/browser_ui.content_setting_image_model.o: $
+    cxx $
+    ../../chrome/browser/ui/content_settings/content_setting_image_model.cc $
+    || obj/chrome/browser_ui.compile_depends.stamp
+build $
+    obj/chrome/browser/ui/content_settings/browser_ui.content_setting_media_menu_model.o: $
+    cxx $
+    ../../chrome/browser/ui/content_settings/content_setting_media_menu_model.cc $
+    || obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/browser_ui.crypto_module_password_dialog.o: cxx $
+    ../../chrome/browser/ui/crypto_module_password_dialog.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/browser_ui.crypto_module_password_dialog_nss.o: $
+    cxx ../../chrome/browser/ui/crypto_module_password_dialog_nss.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/extensions/browser_ui.application_launch.o: cxx $
+    ../../chrome/browser/ui/extensions/application_launch.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build $
+    obj/chrome/browser/ui/extensions/browser_ui.extension_install_ui_default.o: $
+    cxx ../../chrome/browser/ui/extensions/extension_install_ui_default.cc $
+    || obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/extensions/browser_ui.extension_enable_flow.o: $
+    cxx ../../chrome/browser/ui/extensions/extension_enable_flow.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/extensions/browser_ui.shell_window.o: cxx $
+    ../../chrome/browser/ui/extensions/shell_window.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/browser_ui.external_protocol_dialog_delegate.o: $
+    cxx ../../chrome/browser/ui/external_protocol_dialog_delegate.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/find_bar/browser_ui.find_bar_controller.o: cxx $
+    ../../chrome/browser/ui/find_bar/find_bar_controller.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/find_bar/browser_ui.find_bar_state_factory.o: $
+    cxx ../../chrome/browser/ui/find_bar/find_bar_state_factory.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/find_bar/browser_ui.find_tab_helper.o: cxx $
+    ../../chrome/browser/ui/find_bar/find_tab_helper.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/fullscreen/browser_ui.fullscreen_controller.o: $
+    cxx ../../chrome/browser/ui/fullscreen/fullscreen_controller.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/fullscreen/browser_ui.fullscreen_exit_bubble.o: $
+    cxx ../../chrome/browser/ui/fullscreen/fullscreen_exit_bubble.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build $
+    obj/chrome/browser/ui/fullscreen/browser_ui.fullscreen_exit_bubble_type.o: $
+    cxx ../../chrome/browser/ui/fullscreen/fullscreen_exit_bubble_type.cc $
+    || obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/global_error/browser_ui.global_error.o: cxx $
+    ../../chrome/browser/ui/global_error/global_error.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/global_error/browser_ui.global_error_service.o: $
+    cxx ../../chrome/browser/ui/global_error/global_error_service.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build $
+    obj/chrome/browser/ui/global_error/browser_ui.global_error_service_factory.o: $
+    cxx $
+    ../../chrome/browser/ui/global_error/global_error_service_factory.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/gtk/browser_ui.accelerator_utils_gtk.o: cxx $
+    ../../chrome/browser/ui/gtk/accelerator_utils_gtk.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/gtk/browser_ui.accelerators_gtk.o: cxx $
+    ../../chrome/browser/ui/gtk/accelerators_gtk.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/gtk/browser_ui.action_box_button_gtk.o: cxx $
+    ../../chrome/browser/ui/gtk/action_box_button_gtk.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build $
+    obj/chrome/browser/ui/gtk/autofill/browser_ui.autofill_popup_view_gtk.o: $
+    cxx ../../chrome/browser/ui/gtk/autofill/autofill_popup_view_gtk.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/gtk/browser_ui.avatar_menu_bubble_gtk.o: cxx $
+    ../../chrome/browser/ui/gtk/avatar_menu_bubble_gtk.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/gtk/browser_ui.avatar_menu_button_gtk.o: cxx $
+    ../../chrome/browser/ui/gtk/avatar_menu_button_gtk.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/gtk/browser_ui.avatar_menu_item_gtk.o: cxx $
+    ../../chrome/browser/ui/gtk/avatar_menu_item_gtk.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/gtk/browser_ui.back_forward_button_gtk.o: cxx $
+    ../../chrome/browser/ui/gtk/back_forward_button_gtk.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/gtk/bookmarks/browser_ui.bookmark_bar_gtk.o: $
+    cxx ../../chrome/browser/ui/gtk/bookmarks/bookmark_bar_gtk.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build $
+    obj/chrome/browser/ui/gtk/bookmarks/browser_ui.bookmark_bar_instructions_gtk.o: $
+    cxx $
+    ../../chrome/browser/ui/gtk/bookmarks/bookmark_bar_instructions_gtk.cc $
+    || obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/gtk/bookmarks/browser_ui.bookmark_bubble_gtk.o: $
+    cxx ../../chrome/browser/ui/gtk/bookmarks/bookmark_bubble_gtk.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build $
+    obj/chrome/browser/ui/gtk/bookmarks/browser_ui.bookmark_drag_drop_gtk.o: $
+    cxx ../../chrome/browser/ui/gtk/bookmarks/bookmark_drag_drop_gtk.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/gtk/bookmarks/browser_ui.bookmark_editor_gtk.o: $
+    cxx ../../chrome/browser/ui/gtk/bookmarks/bookmark_editor_gtk.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build $
+    obj/chrome/browser/ui/gtk/bookmarks/browser_ui.bookmark_menu_controller_gtk.o: $
+    cxx $
+    ../../chrome/browser/ui/gtk/bookmarks/bookmark_menu_controller_gtk.cc $
+    || obj/chrome/browser_ui.compile_depends.stamp
+build $
+    obj/chrome/browser/ui/gtk/bookmarks/browser_ui.bookmark_sub_menu_model_gtk.o: $
+    cxx $
+    ../../chrome/browser/ui/gtk/bookmarks/bookmark_sub_menu_model_gtk.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/gtk/bookmarks/browser_ui.bookmark_tree_model.o: $
+    cxx ../../chrome/browser/ui/gtk/bookmarks/bookmark_tree_model.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/gtk/bookmarks/browser_ui.bookmark_utils_gtk.o: $
+    cxx ../../chrome/browser/ui/gtk/bookmarks/bookmark_utils_gtk.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/gtk/browser_ui.browser_actions_toolbar_gtk.o: $
+    cxx ../../chrome/browser/ui/gtk/browser_actions_toolbar_gtk.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/gtk/browser_ui.browser_titlebar.o: cxx $
+    ../../chrome/browser/ui/gtk/browser_titlebar.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/gtk/browser_ui.browser_toolbar_gtk.o: cxx $
+    ../../chrome/browser/ui/gtk/browser_toolbar_gtk.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/gtk/browser_ui.browser_window_gtk.o: cxx $
+    ../../chrome/browser/ui/gtk/browser_window_gtk.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build $
+    obj/chrome/browser/ui/gtk/bubble/browser_ui.bubble_accelerators_gtk.o: $
+    cxx ../../chrome/browser/ui/gtk/bubble/bubble_accelerators_gtk.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/gtk/bubble/browser_ui.bubble_gtk.o: cxx $
+    ../../chrome/browser/ui/gtk/bubble/bubble_gtk.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/gtk/browser_ui.certificate_viewer_gtk.o: cxx $
+    ../../chrome/browser/ui/gtk/certificate_viewer_gtk.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build $
+    obj/chrome/browser/ui/gtk/browser_ui.chrome_browser_main_extra_parts_gtk.o: $
+    cxx ../../chrome/browser/ui/gtk/chrome_browser_main_extra_parts_gtk.cc $
+    || obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/gtk/browser_ui.chrome_gtk_frame.o: cxx $
+    ../../chrome/browser/ui/gtk/chrome_gtk_frame.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/gtk/browser_ui.chrome_to_mobile_bubble_gtk.o: $
+    cxx ../../chrome/browser/ui/gtk/chrome_to_mobile_bubble_gtk.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/gtk/browser_ui.collected_cookies_gtk.o: cxx $
+    ../../chrome/browser/ui/gtk/collected_cookies_gtk.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/gtk/browser_ui.confirm_bubble_gtk.o: cxx $
+    ../../chrome/browser/ui/gtk/confirm_bubble_gtk.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/gtk/browser_ui.color_chooser_gtk.o: cxx $
+    ../../chrome/browser/ui/gtk/color_chooser_gtk.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build $
+    obj/chrome/browser/ui/gtk/browser_ui.constrained_web_dialog_delegate_gtk.o: $
+    cxx ../../chrome/browser/ui/gtk/constrained_web_dialog_delegate_gtk.cc $
+    || obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/gtk/browser_ui.constrained_window_gtk.o: cxx $
+    ../../chrome/browser/ui/gtk/constrained_window_gtk.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/gtk/browser_ui.content_setting_bubble_gtk.o: $
+    cxx ../../chrome/browser/ui/gtk/content_setting_bubble_gtk.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build $
+    obj/chrome/browser/ui/gtk/browser_ui.create_application_shortcuts_dialog_gtk.o: $
+    cxx $
+    ../../chrome/browser/ui/gtk/create_application_shortcuts_dialog_gtk.cc $
+    || obj/chrome/browser_ui.compile_depends.stamp
+build $
+    obj/chrome/browser/ui/gtk/browser_ui.crypto_module_password_dialog_gtk.o: $
+    cxx ../../chrome/browser/ui/gtk/crypto_module_password_dialog_gtk.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/gtk/browser_ui.custom_button.o: cxx $
+    ../../chrome/browser/ui/gtk/custom_button.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/gtk/browser_ui.custom_drag.o: cxx $
+    ../../chrome/browser/ui/gtk/custom_drag.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build $
+    obj/chrome/browser/ui/gtk/download/browser_ui.download_in_progress_dialog_gtk.o: $
+    cxx $
+    ../../chrome/browser/ui/gtk/download/download_in_progress_dialog_gtk.cc $
+    || obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/gtk/download/browser_ui.download_item_gtk.o: $
+    cxx ../../chrome/browser/ui/gtk/download/download_item_gtk.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build $
+    obj/chrome/browser/ui/gtk/download/browser_ui.download_shelf_context_menu_gtk.o: $
+    cxx $
+    ../../chrome/browser/ui/gtk/download/download_shelf_context_menu_gtk.cc $
+    || obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/gtk/download/browser_ui.download_shelf_gtk.o: $
+    cxx ../../chrome/browser/ui/gtk/download/download_shelf_gtk.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build $
+    obj/chrome/browser/ui/gtk/download/browser_ui.download_started_animation_gtk.o: $
+    cxx $
+    ../../chrome/browser/ui/gtk/download/download_started_animation_gtk.cc $
+    || obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/gtk/browser_ui.edit_search_engine_dialog.o: cxx $
+    ../../chrome/browser/ui/gtk/edit_search_engine_dialog.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/gtk/browser_ui.event_utils.o: cxx $
+    ../../chrome/browser/ui/gtk/event_utils.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build $
+    obj/chrome/browser/ui/gtk/extensions/browser_ui.browser_action_test_util_gtk.o: $
+    cxx $
+    ../../chrome/browser/ui/gtk/extensions/browser_action_test_util_gtk.cc $
+    || obj/chrome/browser_ui.compile_depends.stamp
+build $
+    obj/chrome/browser/ui/gtk/extensions/browser_ui.bundle_installed_bubble_gtk.o: $
+    cxx $
+    ../../chrome/browser/ui/gtk/extensions/bundle_installed_bubble_gtk.cc $
+    || obj/chrome/browser_ui.compile_depends.stamp
+build $
+    obj/chrome/browser/ui/gtk/extensions/browser_ui.extension_install_dialog_gtk.o: $
+    cxx $
+    ../../chrome/browser/ui/gtk/extensions/extension_install_dialog_gtk.cc $
+    || obj/chrome/browser_ui.compile_depends.stamp
+build $
+    obj/chrome/browser/ui/gtk/extensions/browser_ui.extension_installed_bubble_gtk.o: $
+    cxx $
+    ../../chrome/browser/ui/gtk/extensions/extension_installed_bubble_gtk.cc $
+    || obj/chrome/browser_ui.compile_depends.stamp
+build $
+    obj/chrome/browser/ui/gtk/extensions/browser_ui.extension_keybinding_registry_gtk.o: $
+    cxx $
+    ../../chrome/browser/ui/gtk/extensions/extension_keybinding_registry_gtk.cc $
+    || obj/chrome/browser_ui.compile_depends.stamp
+build $
+    obj/chrome/browser/ui/gtk/extensions/browser_ui.extension_popup_gtk.o: $
+    cxx ../../chrome/browser/ui/gtk/extensions/extension_popup_gtk.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build $
+    obj/chrome/browser/ui/gtk/extensions/browser_ui.extension_uninstall_dialog_gtk.o: $
+    cxx $
+    ../../chrome/browser/ui/gtk/extensions/extension_uninstall_dialog_gtk.cc $
+    || obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/gtk/extensions/browser_ui.extension_view_gtk.o: $
+    cxx ../../chrome/browser/ui/gtk/extensions/extension_view_gtk.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build $
+    obj/chrome/browser/ui/gtk/extensions/browser_ui.media_galleries_dialog_gtk.o: $
+    cxx $
+    ../../chrome/browser/ui/gtk/extensions/media_galleries_dialog_gtk.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build $
+    obj/chrome/browser/ui/gtk/extensions/browser_ui.native_app_window_gtk.o: $
+    cxx ../../chrome/browser/ui/gtk/extensions/native_app_window_gtk.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/gtk/browser_ui.find_bar_gtk.o: cxx $
+    ../../chrome/browser/ui/gtk/find_bar_gtk.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/gtk/browser_ui.first_run_bubble.o: cxx $
+    ../../chrome/browser/ui/gtk/first_run_bubble.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/gtk/browser_ui.first_run_dialog.o: cxx $
+    ../../chrome/browser/ui/gtk/first_run_dialog.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/gtk/browser_ui.fullscreen_exit_bubble_gtk.o: $
+    cxx ../../chrome/browser/ui/gtk/fullscreen_exit_bubble_gtk.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/gtk/browser_ui.global_error_bubble.o: cxx $
+    ../../chrome/browser/ui/gtk/global_error_bubble.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/gtk/browser_ui.global_history_menu.o: cxx $
+    ../../chrome/browser/ui/gtk/global_history_menu.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/gtk/browser_ui.global_menu_bar.o: cxx $
+    ../../chrome/browser/ui/gtk/global_menu_bar.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/gtk/browser_ui.gtk_chrome_button.o: cxx $
+    ../../chrome/browser/ui/gtk/gtk_chrome_button.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/gtk/browser_ui.gtk_chrome_cookie_view.o: cxx $
+    ../../chrome/browser/ui/gtk/gtk_chrome_cookie_view.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/gtk/browser_ui.gtk_chrome_link_button.o: cxx $
+    ../../chrome/browser/ui/gtk/gtk_chrome_link_button.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/gtk/browser_ui.gtk_chrome_shrinkable_hbox.o: $
+    cxx ../../chrome/browser/ui/gtk/gtk_chrome_shrinkable_hbox.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/gtk/browser_ui.gtk_custom_menu.o: cxx $
+    ../../chrome/browser/ui/gtk/gtk_custom_menu.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/gtk/browser_ui.gtk_custom_menu_item.o: cxx $
+    ../../chrome/browser/ui/gtk/gtk_custom_menu_item.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/gtk/browser_ui.gtk_input_event_box.o: cxx $
+    ../../chrome/browser/ui/gtk/gtk_input_event_box.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/gtk/browser_ui.gtk_theme_service.o: cxx $
+    ../../chrome/browser/ui/gtk/gtk_theme_service.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/gtk/browser_ui.gtk_tree.o: cxx $
+    ../../chrome/browser/ui/gtk/gtk_tree.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/gtk/browser_ui.gtk_util.o: cxx $
+    ../../chrome/browser/ui/gtk/gtk_util.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/gtk/browser_ui.gtk_window_util.o: cxx $
+    ../../chrome/browser/ui/gtk/gtk_window_util.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/gtk/browser_ui.hover_controller_gtk.o: cxx $
+    ../../chrome/browser/ui/gtk/hover_controller_gtk.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/gtk/browser_ui.hung_renderer_dialog_gtk.o: cxx $
+    ../../chrome/browser/ui/gtk/hung_renderer_dialog_gtk.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build $
+    obj/chrome/browser/ui/gtk/importer/browser_ui.import_lock_dialog_gtk.o: $
+    cxx ../../chrome/browser/ui/gtk/importer/import_lock_dialog_gtk.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build $
+    obj/chrome/browser/ui/gtk/infobars/browser_ui.after_translate_infobar_gtk.o: $
+    cxx ../../chrome/browser/ui/gtk/infobars/after_translate_infobar_gtk.cc $
+    || obj/chrome/browser_ui.compile_depends.stamp
+build $
+    obj/chrome/browser/ui/gtk/infobars/browser_ui.alternate_nav_infobar_gtk.o: $
+    cxx ../../chrome/browser/ui/gtk/infobars/alternate_nav_infobar_gtk.cc $
+    || obj/chrome/browser_ui.compile_depends.stamp
+build $
+    obj/chrome/browser/ui/gtk/infobars/browser_ui.before_translate_infobar_gtk.o: $
+    cxx $
+    ../../chrome/browser/ui/gtk/infobars/before_translate_infobar_gtk.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/gtk/infobars/browser_ui.confirm_infobar_gtk.o: $
+    cxx ../../chrome/browser/ui/gtk/infobars/confirm_infobar_gtk.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build $
+    obj/chrome/browser/ui/gtk/infobars/browser_ui.extension_infobar_gtk.o: $
+    cxx ../../chrome/browser/ui/gtk/infobars/extension_infobar_gtk.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build $
+    obj/chrome/browser/ui/gtk/infobars/browser_ui.infobar_container_gtk.o: $
+    cxx ../../chrome/browser/ui/gtk/infobars/infobar_container_gtk.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/gtk/infobars/browser_ui.infobar_gtk.o: cxx $
+    ../../chrome/browser/ui/gtk/infobars/infobar_gtk.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build $
+    obj/chrome/browser/ui/gtk/infobars/browser_ui.translate_infobar_base_gtk.o: $
+    cxx ../../chrome/browser/ui/gtk/infobars/translate_infobar_base_gtk.cc $
+    || obj/chrome/browser_ui.compile_depends.stamp
+build $
+    obj/chrome/browser/ui/gtk/infobars/browser_ui.translate_message_infobar_gtk.o: $
+    cxx $
+    ../../chrome/browser/ui/gtk/infobars/translate_message_infobar_gtk.cc $
+    || obj/chrome/browser_ui.compile_depends.stamp
+build $
+    obj/chrome/browser/ui/gtk/browser_ui.instant_overlay_controller_gtk.o: $
+    cxx ../../chrome/browser/ui/gtk/instant_overlay_controller_gtk.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build $
+    obj/chrome/browser/ui/gtk/browser_ui.javascript_app_modal_dialog_gtk.o: $
+    cxx ../../chrome/browser/ui/gtk/javascript_app_modal_dialog_gtk.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/gtk/browser_ui.location_bar_view_gtk.o: cxx $
+    ../../chrome/browser/ui/gtk/location_bar_view_gtk.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/gtk/browser_ui.login_prompt_gtk.o: cxx $
+    ../../chrome/browser/ui/gtk/login_prompt_gtk.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/gtk/browser_ui.menu_bar_helper.o: cxx $
+    ../../chrome/browser/ui/gtk/menu_bar_helper.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/gtk/browser_ui.menu_gtk.o: cxx $
+    ../../chrome/browser/ui/gtk/menu_gtk.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/gtk/browser_ui.nine_box.o: cxx $
+    ../../chrome/browser/ui/gtk/nine_box.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build $
+    obj/chrome/browser/ui/gtk/notifications/browser_ui.balloon_collection_gtk.o: $
+    cxx ../../chrome/browser/ui/gtk/notifications/balloon_collection_gtk.cc $
+    || obj/chrome/browser_ui.compile_depends.stamp
+build $
+    obj/chrome/browser/ui/gtk/notifications/browser_ui.balloon_view_gtk.o: $
+    cxx ../../chrome/browser/ui/gtk/notifications/balloon_view_gtk.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build $
+    obj/chrome/browser/ui/gtk/notifications/browser_ui.balloon_view_host_gtk.o: $
+    cxx ../../chrome/browser/ui/gtk/notifications/balloon_view_host_gtk.cc $
+    || obj/chrome/browser_ui.compile_depends.stamp
+build $
+    obj/chrome/browser/ui/gtk/omnibox/browser_ui.omnibox_popup_view_gtk.o: $
+    cxx ../../chrome/browser/ui/gtk/omnibox/omnibox_popup_view_gtk.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/gtk/omnibox/browser_ui.omnibox_view_gtk.o: cxx $
+    ../../chrome/browser/ui/gtk/omnibox/omnibox_view_gtk.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/gtk/browser_ui.one_click_signin_bubble_gtk.o: $
+    cxx ../../chrome/browser/ui/gtk/one_click_signin_bubble_gtk.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/gtk/browser_ui.overflow_button.o: cxx $
+    ../../chrome/browser/ui/gtk/overflow_button.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build $
+    obj/chrome/browser/ui/gtk/panels/browser_ui.display_settings_provider_gtk.o: $
+    cxx ../../chrome/browser/ui/gtk/panels/display_settings_provider_gtk.cc $
+    || obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/gtk/panels/browser_ui.panel_drag_gtk.o: cxx $
+    ../../chrome/browser/ui/gtk/panels/panel_drag_gtk.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/gtk/panels/browser_ui.panel_gtk.o: cxx $
+    ../../chrome/browser/ui/gtk/panels/panel_gtk.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/gtk/panels/browser_ui.panel_stack_window_gtk.o: $
+    cxx ../../chrome/browser/ui/gtk/panels/panel_stack_window_gtk.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/gtk/panels/browser_ui.panel_titlebar_gtk.o: cxx $
+    ../../chrome/browser/ui/gtk/panels/panel_titlebar_gtk.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build $
+    obj/chrome/browser/ui/gtk/browser_ui.password_generation_bubble_gtk.o: $
+    cxx ../../chrome/browser/ui/gtk/password_generation_bubble_gtk.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/gtk/browser_ui.process_singleton_dialog.o: cxx $
+    ../../chrome/browser/ui/gtk/process_singleton_dialog.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/gtk/browser_ui.protocol_dialog_gtk.o: cxx $
+    ../../chrome/browser/ui/gtk/protocol_dialog_gtk.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/gtk/browser_ui.reload_button_gtk.o: cxx $
+    ../../chrome/browser/ui/gtk/reload_button_gtk.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/gtk/browser_ui.rounded_window.o: cxx $
+    ../../chrome/browser/ui/gtk/rounded_window.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/gtk/browser_ui.sad_tab_gtk.o: cxx $
+    ../../chrome/browser/ui/gtk/sad_tab_gtk.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build $
+    obj/chrome/browser/ui/gtk/browser_ui.screen_capture_notification_ui_gtk.o: $
+    cxx ../../chrome/browser/ui/gtk/screen_capture_notification_ui_gtk.cc $
+    || obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/gtk/browser_ui.script_bubble_gtk.o: cxx $
+    ../../chrome/browser/ui/gtk/script_bubble_gtk.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/gtk/browser_ui.simple_message_box_gtk.o: cxx $
+    ../../chrome/browser/ui/gtk/simple_message_box_gtk.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/gtk/browser_ui.slide_animator_gtk.o: cxx $
+    ../../chrome/browser/ui/gtk/slide_animator_gtk.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/gtk/browser_ui.speech_recognition_bubble_gtk.o: $
+    cxx ../../chrome/browser/ui/gtk/speech_recognition_bubble_gtk.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build $
+    obj/chrome/browser/ui/gtk/browser_ui.ssl_client_certificate_selector.o: $
+    cxx ../../chrome/browser/ui/gtk/ssl_client_certificate_selector.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/gtk/browser_ui.status_bubble_gtk.o: cxx $
+    ../../chrome/browser/ui/gtk/status_bubble_gtk.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/gtk/status_icons/browser_ui.status_icon_gtk.o: $
+    cxx ../../chrome/browser/ui/gtk/status_icons/status_icon_gtk.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/gtk/status_icons/browser_ui.status_tray_gtk.o: $
+    cxx ../../chrome/browser/ui/gtk/status_icons/status_tray_gtk.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build $
+    obj/chrome/browser/ui/gtk/tab_contents/browser_ui.chrome_web_contents_view_delegate_gtk.o: $
+    cxx $
+    ../../chrome/browser/ui/gtk/tab_contents/chrome_web_contents_view_delegate_gtk.cc $
+    || obj/chrome/browser_ui.compile_depends.stamp
+build $
+    obj/chrome/browser/ui/gtk/tab_contents/browser_ui.render_view_context_menu_gtk.o: $
+    cxx $
+    ../../chrome/browser/ui/gtk/tab_contents/render_view_context_menu_gtk.cc $
+    || obj/chrome/browser_ui.compile_depends.stamp
+build $
+    obj/chrome/browser/ui/gtk/tab_contents/browser_ui.web_drag_bookmark_handler_gtk.o: $
+    cxx $
+    ../../chrome/browser/ui/gtk/tab_contents/web_drag_bookmark_handler_gtk.cc $
+    || obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/gtk/browser_ui.tab_contents_container_gtk.o: $
+    cxx ../../chrome/browser/ui/gtk/tab_contents_container_gtk.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/gtk/browser_ui.tab_modal_confirm_dialog_gtk.o: $
+    cxx ../../chrome/browser/ui/gtk/tab_modal_confirm_dialog_gtk.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/gtk/tabs/browser_ui.dock_info_gtk.o: cxx $
+    ../../chrome/browser/ui/gtk/tabs/dock_info_gtk.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/gtk/tabs/browser_ui.drag_data.o: cxx $
+    ../../chrome/browser/ui/gtk/tabs/drag_data.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build $
+    obj/chrome/browser/ui/gtk/tabs/browser_ui.dragged_tab_controller_gtk.o: $
+    cxx ../../chrome/browser/ui/gtk/tabs/dragged_tab_controller_gtk.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/gtk/tabs/browser_ui.dragged_view_gtk.o: cxx $
+    ../../chrome/browser/ui/gtk/tabs/dragged_view_gtk.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/gtk/tabs/browser_ui.tab_gtk.o: cxx $
+    ../../chrome/browser/ui/gtk/tabs/tab_gtk.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/gtk/tabs/browser_ui.tab_renderer_gtk.o: cxx $
+    ../../chrome/browser/ui/gtk/tabs/tab_renderer_gtk.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/gtk/tabs/browser_ui.tab_strip_gtk.o: cxx $
+    ../../chrome/browser/ui/gtk/tabs/tab_strip_gtk.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build $
+    obj/chrome/browser/ui/gtk/tabs/browser_ui.tab_strip_menu_controller.o: $
+    cxx ../../chrome/browser/ui/gtk/tabs/tab_strip_menu_controller.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/gtk/browser_ui.task_manager_gtk.o: cxx $
+    ../../chrome/browser/ui/gtk/task_manager_gtk.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/gtk/browser_ui.throbber_gtk.o: cxx $
+    ../../chrome/browser/ui/gtk/throbber_gtk.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/gtk/browser_ui.titlebar_throb_animation.o: cxx $
+    ../../chrome/browser/ui/gtk/titlebar_throb_animation.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/gtk/browser_ui.unity_service.o: cxx $
+    ../../chrome/browser/ui/gtk/unity_service.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/gtk/browser_ui.update_recommended_dialog.o: cxx $
+    ../../chrome/browser/ui/gtk/update_recommended_dialog.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/gtk/browser_ui.validation_message_bubble_gtk.o: $
+    cxx ../../chrome/browser/ui/gtk/validation_message_bubble_gtk.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/gtk/browser_ui.view_id_util.o: cxx $
+    ../../chrome/browser/ui/gtk/view_id_util.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build $
+    obj/chrome/browser/ui/gtk/browser_ui.web_contents_modal_dialog_manager_gtk.o: $
+    cxx $
+    ../../chrome/browser/ui/gtk/web_contents_modal_dialog_manager_gtk.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/gtk/browser_ui.web_dialog_gtk.o: cxx $
+    ../../chrome/browser/ui/gtk/web_dialog_gtk.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build $
+    obj/chrome/browser/ui/gtk/website_settings/browser_ui.permission_selector.o: $
+    cxx ../../chrome/browser/ui/gtk/website_settings/permission_selector.cc $
+    || obj/chrome/browser_ui.compile_depends.stamp
+build $
+    obj/chrome/browser/ui/gtk/website_settings/browser_ui.website_settings_popup_gtk.o: $
+    cxx $
+    ../../chrome/browser/ui/gtk/website_settings/website_settings_popup_gtk.cc $
+    || obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/gtk/browser_ui.zoom_bubble_gtk.o: cxx $
+    ../../chrome/browser/ui/gtk/zoom_bubble_gtk.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/browser_ui.host_desktop.o: cxx $
+    ../../chrome/browser/ui/host_desktop.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/browser_ui.hung_plugin_tab_helper.o: cxx $
+    ../../chrome/browser/ui/hung_plugin_tab_helper.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build $
+    obj/chrome/browser/ui/browser_ui.immersive_fullscreen_configuration.o: $
+    cxx ../../chrome/browser/ui/immersive_fullscreen_configuration.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/login/browser_ui.login_prompt.o: cxx $
+    ../../chrome/browser/ui/login/login_prompt.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/browser_ui.ntp_background_util.o: cxx $
+    ../../chrome/browser/ui/ntp_background_util.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build $
+    obj/chrome/browser/ui/omnibox/browser_ui.alternate_nav_infobar_delegate.o: $
+    cxx ../../chrome/browser/ui/omnibox/alternate_nav_infobar_delegate.cc $
+    || obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/omnibox/browser_ui.alternate_nav_url_fetcher.o: $
+    cxx ../../chrome/browser/ui/omnibox/alternate_nav_url_fetcher.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/omnibox/browser_ui.location_bar_util.o: cxx $
+    ../../chrome/browser/ui/omnibox/location_bar_util.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/omnibox/browser_ui.omnibox_controller.o: cxx $
+    ../../chrome/browser/ui/omnibox/omnibox_controller.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build $
+    obj/chrome/browser/ui/omnibox/browser_ui.omnibox_current_page_delegate_impl.o: $
+    cxx $
+    ../../chrome/browser/ui/omnibox/omnibox_current_page_delegate_impl.cc $
+    || obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/omnibox/browser_ui.omnibox_edit_model.o: cxx $
+    ../../chrome/browser/ui/omnibox/omnibox_edit_model.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/omnibox/browser_ui.omnibox_popup_model.o: cxx $
+    ../../chrome/browser/ui/omnibox/omnibox_popup_model.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/omnibox/browser_ui.omnibox_popup_non_view.o: $
+    cxx ../../chrome/browser/ui/omnibox/omnibox_popup_non_view.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/omnibox/browser_ui.omnibox_view.o: cxx $
+    ../../chrome/browser/ui/omnibox/omnibox_view.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/options/browser_ui.options_util.o: cxx $
+    ../../chrome/browser/ui/options/options_util.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/panels/browser_ui.detached_panel_collection.o: $
+    cxx ../../chrome/browser/ui/panels/detached_panel_collection.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build $
+    obj/chrome/browser/ui/panels/browser_ui.detached_panel_drag_handler.o: $
+    cxx ../../chrome/browser/ui/panels/detached_panel_drag_handler.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/panels/browser_ui.display_settings_provider.o: $
+    cxx ../../chrome/browser/ui/panels/display_settings_provider.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/panels/browser_ui.docked_panel_collection.o: $
+    cxx ../../chrome/browser/ui/panels/docked_panel_collection.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/panels/browser_ui.docked_panel_drag_handler.o: $
+    cxx ../../chrome/browser/ui/panels/docked_panel_drag_handler.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/panels/browser_ui.panel.o: cxx $
+    ../../chrome/browser/ui/panels/panel.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/panels/browser_ui.panel_bounds_animation.o: cxx $
+    ../../chrome/browser/ui/panels/panel_bounds_animation.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/panels/browser_ui.panel_collection.o: cxx $
+    ../../chrome/browser/ui/panels/panel_collection.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/panels/browser_ui.panel_drag_controller.o: cxx $
+    ../../chrome/browser/ui/panels/panel_drag_controller.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/panels/browser_ui.panel_host.o: cxx $
+    ../../chrome/browser/ui/panels/panel_host.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/panels/browser_ui.panel_resize_controller.o: $
+    cxx ../../chrome/browser/ui/panels/panel_resize_controller.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/panels/browser_ui.panel_manager.o: cxx $
+    ../../chrome/browser/ui/panels/panel_manager.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/panels/browser_ui.panel_mouse_watcher.o: cxx $
+    ../../chrome/browser/ui/panels/panel_mouse_watcher.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/panels/browser_ui.panel_mouse_watcher_timer.o: $
+    cxx ../../chrome/browser/ui/panels/panel_mouse_watcher_timer.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/panels/browser_ui.stacked_panel_collection.o: $
+    cxx ../../chrome/browser/ui/panels/stacked_panel_collection.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/panels/browser_ui.stacked_panel_drag_handler.o: $
+    cxx ../../chrome/browser/ui/panels/stacked_panel_drag_handler.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/pdf/browser_ui.pdf_tab_helper.o: cxx $
+    ../../chrome/browser/ui/pdf/pdf_tab_helper.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/pdf/browser_ui.pdf_unsupported_feature.o: cxx $
+    ../../chrome/browser/ui/pdf/pdf_unsupported_feature.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/prefs/browser_ui.prefs_tab_helper.o: cxx $
+    ../../chrome/browser/ui/prefs/prefs_tab_helper.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/browser_ui.profile_error_dialog.o: cxx $
+    ../../chrome/browser/ui/profile_error_dialog.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/browser_ui.sad_tab.o: cxx $
+    ../../chrome/browser/ui/sad_tab.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/browser_ui.sad_tab_helper.o: cxx $
+    ../../chrome/browser/ui/sad_tab_helper.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/search/browser_ui.instant_controller.o: cxx $
+    ../../chrome/browser/ui/search/instant_controller.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/search/browser_ui.instant_ipc_sender.o: cxx $
+    ../../chrome/browser/ui/search/instant_ipc_sender.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/search/browser_ui.instant_loader.o: cxx $
+    ../../chrome/browser/ui/search/instant_loader.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/search/browser_ui.instant_ntp.o: cxx $
+    ../../chrome/browser/ui/search/instant_ntp.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/search/browser_ui.instant_overlay.o: cxx $
+    ../../chrome/browser/ui/search/instant_overlay.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/search/browser_ui.instant_overlay_controller.o: $
+    cxx ../../chrome/browser/ui/search/instant_overlay_controller.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/search/browser_ui.instant_overlay_model.o: cxx $
+    ../../chrome/browser/ui/search/instant_overlay_model.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/search/browser_ui.instant_page.o: cxx $
+    ../../chrome/browser/ui/search/instant_page.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/search/browser_ui.instant_tab.o: cxx $
+    ../../chrome/browser/ui/search/instant_tab.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/search/browser_ui.instant_unload_handler.o: cxx $
+    ../../chrome/browser/ui/search/instant_unload_handler.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/search/browser_ui.search_delegate.o: cxx $
+    ../../chrome/browser/ui/search/search_delegate.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/search/browser_ui.search_model.o: cxx $
+    ../../chrome/browser/ui/search/search_model.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/search/browser_ui.search_tab_helper.o: cxx $
+    ../../chrome/browser/ui/search/search_tab_helper.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/search/browser_ui.search_ui.o: cxx $
+    ../../chrome/browser/ui/search/search_ui.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build $
+    obj/chrome/browser/ui/search_engines/browser_ui.edit_search_engine_controller.o: $
+    cxx $
+    ../../chrome/browser/ui/search_engines/edit_search_engine_controller.cc $
+    || obj/chrome/browser_ui.compile_depends.stamp
+build $
+    obj/chrome/browser/ui/search_engines/browser_ui.keyword_editor_controller.o: $
+    cxx ../../chrome/browser/ui/search_engines/keyword_editor_controller.cc $
+    || obj/chrome/browser_ui.compile_depends.stamp
+build $
+    obj/chrome/browser/ui/search_engines/browser_ui.search_engine_tab_helper.o: $
+    cxx ../../chrome/browser/ui/search_engines/search_engine_tab_helper.cc $
+    || obj/chrome/browser_ui.compile_depends.stamp
+build $
+    obj/chrome/browser/ui/search_engines/browser_ui.search_engine_tab_helper_delegate.o: $
+    cxx $
+    ../../chrome/browser/ui/search_engines/search_engine_tab_helper_delegate.cc $
+    || obj/chrome/browser_ui.compile_depends.stamp
+build $
+    obj/chrome/browser/ui/search_engines/browser_ui.template_url_fetcher_ui_callbacks.o: $
+    cxx $
+    ../../chrome/browser/ui/search_engines/template_url_fetcher_ui_callbacks.cc $
+    || obj/chrome/browser_ui.compile_depends.stamp
+build $
+    obj/chrome/browser/ui/search_engines/browser_ui.template_url_table_model.o: $
+    cxx ../../chrome/browser/ui/search_engines/template_url_table_model.cc $
+    || obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/browser_ui.send_feedback_experiment.o: cxx $
+    ../../chrome/browser/ui/send_feedback_experiment.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/browser_ui.singleton_tabs.o: cxx $
+    ../../chrome/browser/ui/singleton_tabs.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/startup/browser_ui.autolaunch_prompt.o: cxx $
+    ../../chrome/browser/ui/startup/autolaunch_prompt.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/startup/browser_ui.bad_flags_prompt.o: cxx $
+    ../../chrome/browser/ui/startup/bad_flags_prompt.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/startup/browser_ui.default_browser_prompt.o: $
+    cxx ../../chrome/browser/ui/startup/default_browser_prompt.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build $
+    obj/chrome/browser/ui/startup/browser_ui.google_api_keys_infobar_delegate.o: $
+    cxx ../../chrome/browser/ui/startup/google_api_keys_infobar_delegate.cc $
+    || obj/chrome/browser_ui.compile_depends.stamp
+build $
+    obj/chrome/browser/ui/startup/browser_ui.obsolete_os_infobar_delegate.o: $
+    cxx ../../chrome/browser/ui/startup/obsolete_os_infobar_delegate.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/startup/browser_ui.session_crashed_prompt.o: $
+    cxx ../../chrome/browser/ui/startup/session_crashed_prompt.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/startup/browser_ui.startup_browser_creator.o: $
+    cxx ../../chrome/browser/ui/startup/startup_browser_creator.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build $
+    obj/chrome/browser/ui/startup/browser_ui.startup_browser_creator_impl.o: $
+    cxx ../../chrome/browser/ui/startup/startup_browser_creator_impl.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/startup/browser_ui.startup_tab.o: cxx $
+    ../../chrome/browser/ui/startup/startup_tab.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build $
+    obj/chrome/browser/ui/sync/browser_ui.browser_synced_window_delegate.o: $
+    cxx ../../chrome/browser/ui/sync/browser_synced_window_delegate.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/sync/browser_ui.inline_login_dialog.o: cxx $
+    ../../chrome/browser/ui/sync/inline_login_dialog.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/sync/browser_ui.one_click_signin_helper.o: cxx $
+    ../../chrome/browser/ui/sync/one_click_signin_helper.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build $
+    obj/chrome/browser/ui/sync/browser_ui.one_click_signin_sync_starter.o: $
+    cxx ../../chrome/browser/ui/sync/one_click_signin_sync_starter.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build $
+    obj/chrome/browser/ui/sync/browser_ui.profile_signin_confirmation_helper.o: $
+    cxx ../../chrome/browser/ui/sync/profile_signin_confirmation_helper.cc $
+    || obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/sync/browser_ui.sync_promo_ui.o: cxx $
+    ../../chrome/browser/ui/sync/sync_promo_ui.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build $
+    obj/chrome/browser/ui/sync/browser_ui.tab_contents_synced_tab_delegate.o: $
+    cxx ../../chrome/browser/ui/sync/tab_contents_synced_tab_delegate.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/tab_contents/browser_ui.core_tab_helper.o: cxx $
+    ../../chrome/browser/ui/tab_contents/core_tab_helper.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build $
+    obj/chrome/browser/ui/tab_contents/browser_ui.core_tab_helper_delegate.o: $
+    cxx ../../chrome/browser/ui/tab_contents/core_tab_helper_delegate.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build $
+    obj/chrome/browser/ui/tab_contents/browser_ui.tab_contents_iterator.o: $
+    cxx ../../chrome/browser/ui/tab_contents/tab_contents_iterator.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/browser_ui.tab_modal_confirm_dialog_delegate.o: $
+    cxx ../../chrome/browser/ui/tab_modal_confirm_dialog_delegate.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/tabs/browser_ui.dock_info.o: cxx $
+    ../../chrome/browser/ui/tabs/dock_info.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/tabs/browser_ui.hover_tab_selector.o: cxx $
+    ../../chrome/browser/ui/tabs/hover_tab_selector.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/tabs/browser_ui.pinned_tab_codec.o: cxx $
+    ../../chrome/browser/ui/tabs/pinned_tab_codec.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/tabs/browser_ui.pinned_tab_service.o: cxx $
+    ../../chrome/browser/ui/tabs/pinned_tab_service.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/tabs/browser_ui.pinned_tab_service_factory.o: $
+    cxx ../../chrome/browser/ui/tabs/pinned_tab_service_factory.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/tabs/browser_ui.tab_audio_indicator.o: cxx $
+    ../../chrome/browser/ui/tabs/tab_audio_indicator.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/tabs/browser_ui.tab_menu_model.o: cxx $
+    ../../chrome/browser/ui/tabs/tab_menu_model.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/tabs/browser_ui.tab_resources.o: cxx $
+    ../../chrome/browser/ui/tabs/tab_resources.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/tabs/browser_ui.tab_strip_model.o: cxx $
+    ../../chrome/browser/ui/tabs/tab_strip_model.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/tabs/browser_ui.tab_strip_model_observer.o: cxx $
+    ../../chrome/browser/ui/tabs/tab_strip_model_observer.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build $
+    obj/chrome/browser/ui/tabs/browser_ui.tab_strip_model_order_controller.o: $
+    cxx ../../chrome/browser/ui/tabs/tab_strip_model_order_controller.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/tabs/browser_ui.tab_strip_model_utils.o: cxx $
+    ../../chrome/browser/ui/tabs/tab_strip_model_utils.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/tabs/browser_ui.tab_utils.o: cxx $
+    ../../chrome/browser/ui/tabs/tab_utils.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build $
+    obj/chrome/browser/ui/toolbar/browser_ui.action_box_button_controller.o: $
+    cxx ../../chrome/browser/ui/toolbar/action_box_button_controller.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build $
+    obj/chrome/browser/ui/toolbar/browser_ui.action_box_context_menu_controller.o: $
+    cxx $
+    ../../chrome/browser/ui/toolbar/action_box_context_menu_controller.cc $
+    || obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/toolbar/browser_ui.action_box_menu_model.o: cxx $
+    ../../chrome/browser/ui/toolbar/action_box_menu_model.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/toolbar/browser_ui.back_forward_menu_model.o: $
+    cxx ../../chrome/browser/ui/toolbar/back_forward_menu_model.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/toolbar/browser_ui.encoding_menu_controller.o: $
+    cxx ../../chrome/browser/ui/toolbar/encoding_menu_controller.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build $
+    obj/chrome/browser/ui/toolbar/browser_ui.recent_tabs_sub_menu_model.o: $
+    cxx ../../chrome/browser/ui/toolbar/recent_tabs_sub_menu_model.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/toolbar/browser_ui.toolbar_model_impl.o: cxx $
+    ../../chrome/browser/ui/toolbar/toolbar_model_impl.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/toolbar/browser_ui.wrench_icon_painter.o: cxx $
+    ../../chrome/browser/ui/toolbar/wrench_icon_painter.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/toolbar/browser_ui.wrench_menu_model.o: cxx $
+    ../../chrome/browser/ui/toolbar/wrench_menu_model.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/browser_ui.uma_browsing_activity_observer.o: $
+    cxx ../../chrome/browser/ui/uma_browsing_activity_observer.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/browser_ui.unload_controller.o: cxx $
+    ../../chrome/browser/ui/unload_controller.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/web_applications/browser_ui.web_app_ui.o: cxx $
+    ../../chrome/browser/ui/web_applications/web_app_ui.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build $
+    obj/chrome/browser/ui/website_settings/browser_ui.permission_menu_model.o: $
+    cxx ../../chrome/browser/ui/website_settings/permission_menu_model.cc $
+    || obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/website_settings/browser_ui.website_settings.o: $
+    cxx ../../chrome/browser/ui/website_settings/website_settings.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build $
+    obj/chrome/browser/ui/website_settings/browser_ui.website_settings_infobar_delegate.o: $
+    cxx $
+    ../../chrome/browser/ui/website_settings/website_settings_infobar_delegate.cc $
+    || obj/chrome/browser_ui.compile_depends.stamp
+build $
+    obj/chrome/browser/ui/website_settings/browser_ui.website_settings_ui.o: $
+    cxx ../../chrome/browser/ui/website_settings/website_settings_ui.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build $
+    obj/chrome/browser/ui/website_settings/browser_ui.website_settings_utils.o: $
+    cxx ../../chrome/browser/ui/website_settings/website_settings_utils.cc $
+    || obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/webui/browser_ui.about_ui.o: cxx $
+    ../../chrome/browser/ui/webui/about_ui.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/webui/browser_ui.app_launcher_page_ui.o: cxx $
+    ../../chrome/browser/ui/webui/app_launcher_page_ui.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/webui/browser_ui.bookmarks_ui.o: cxx $
+    ../../chrome/browser/ui/webui/bookmarks_ui.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/webui/browser_ui.certificate_viewer_webui.o: $
+    cxx ../../chrome/browser/ui/webui/certificate_viewer_webui.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/webui/browser_ui.certificate_viewer_ui.o: cxx $
+    ../../chrome/browser/ui/webui/certificate_viewer_ui.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/webui/browser_ui.chrome_web_contents_handler.o: $
+    cxx ../../chrome/browser/ui/webui/chrome_web_contents_handler.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build $
+    obj/chrome/browser/ui/webui/browser_ui.chrome_web_ui_controller_factory.o: $
+    cxx ../../chrome/browser/ui/webui/chrome_web_ui_controller_factory.cc $
+    || obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/webui/browser_ui.constrained_web_dialog_ui.o: $
+    cxx ../../chrome/browser/ui/webui/constrained_web_dialog_ui.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build $
+    obj/chrome/browser/ui/webui/browser_ui.constrained_web_dialog_delegate_base.o: $
+    cxx $
+    ../../chrome/browser/ui/webui/constrained_web_dialog_delegate_base.cc $
+    || obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/webui/browser_ui.cookies_tree_model_util.o: cxx $
+    ../../chrome/browser/ui/webui/cookies_tree_model_util.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/webui/browser_ui.crashes_ui.o: cxx $
+    ../../chrome/browser/ui/webui/crashes_ui.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/webui/browser_ui.devtools_ui.o: cxx $
+    ../../chrome/browser/ui/webui/devtools_ui.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/webui/browser_ui.downloads_dom_handler.o: cxx $
+    ../../chrome/browser/ui/webui/downloads_dom_handler.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/webui/browser_ui.downloads_ui.o: cxx $
+    ../../chrome/browser/ui/webui/downloads_ui.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/webui/extensions/browser_ui.command_handler.o: $
+    cxx ../../chrome/browser/ui/webui/extensions/command_handler.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build $
+    obj/chrome/browser/ui/webui/extensions/browser_ui.extension_basic_info.o: $
+    cxx ../../chrome/browser/ui/webui/extensions/extension_basic_info.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build $
+    obj/chrome/browser/ui/webui/extensions/browser_ui.extension_icon_source.o: $
+    cxx ../../chrome/browser/ui/webui/extensions/extension_icon_source.cc $
+    || obj/chrome/browser_ui.compile_depends.stamp
+build $
+    obj/chrome/browser/ui/webui/extensions/browser_ui.extension_info_ui.o: $
+    cxx ../../chrome/browser/ui/webui/extensions/extension_info_ui.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build $
+    obj/chrome/browser/ui/webui/extensions/browser_ui.extension_settings_handler.o: $
+    cxx $
+    ../../chrome/browser/ui/webui/extensions/extension_settings_handler.cc $
+    || obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/webui/extensions/browser_ui.extensions_ui.o: $
+    cxx ../../chrome/browser/ui/webui/extensions/extensions_ui.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build $
+    obj/chrome/browser/ui/webui/extensions/browser_ui.install_extension_handler.o: $
+    cxx $
+    ../../chrome/browser/ui/webui/extensions/install_extension_handler.cc $
+    || obj/chrome/browser_ui.compile_depends.stamp
+build $
+    obj/chrome/browser/ui/webui/extensions/browser_ui.pack_extension_handler.o: $
+    cxx ../../chrome/browser/ui/webui/extensions/pack_extension_handler.cc $
+    || obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/webui/browser_ui.favicon_source.o: cxx $
+    ../../chrome/browser/ui/webui/favicon_source.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/webui/browser_ui.feedback_ui.o: cxx $
+    ../../chrome/browser/ui/webui/feedback_ui.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/webui/browser_ui.fileicon_source.o: cxx $
+    ../../chrome/browser/ui/webui/fileicon_source.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/webui/browser_ui.flags_ui.o: cxx $
+    ../../chrome/browser/ui/webui/flags_ui.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/webui/browser_ui.flash_ui.o: cxx $
+    ../../chrome/browser/ui/webui/flash_ui.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/webui/help/browser_ui.help_handler.o: cxx $
+    ../../chrome/browser/ui/webui/help/help_handler.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/webui/help/browser_ui.help_ui.o: cxx $
+    ../../chrome/browser/ui/webui/help/help_ui.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/webui/help/browser_ui.version_updater_basic.o: $
+    cxx ../../chrome/browser/ui/webui/help/version_updater_basic.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/webui/browser_ui.history_ui.o: cxx $
+    ../../chrome/browser/ui/webui/history_ui.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/webui/browser_ui.identity_internals_ui.o: cxx $
+    ../../chrome/browser/ui/webui/identity_internals_ui.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/webui/browser_ui.inline_login_ui.o: cxx $
+    ../../chrome/browser/ui/webui/inline_login_ui.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/webui/browser_ui.inspect_ui.o: cxx $
+    ../../chrome/browser/ui/webui/inspect_ui.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/webui/browser_ui.instant_ui.o: cxx $
+    ../../chrome/browser/ui/webui/instant_ui.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build $
+    obj/chrome/browser/ui/webui/memory_internals/browser_ui.memory_internals_handler.o: $
+    cxx $
+    ../../chrome/browser/ui/webui/memory_internals/memory_internals_handler.cc $
+    || obj/chrome/browser_ui.compile_depends.stamp
+build $
+    obj/chrome/browser/ui/webui/memory_internals/browser_ui.memory_internals_proxy.o: $
+    cxx $
+    ../../chrome/browser/ui/webui/memory_internals/memory_internals_proxy.cc $
+    || obj/chrome/browser_ui.compile_depends.stamp
+build $
+    obj/chrome/browser/ui/webui/memory_internals/browser_ui.memory_internals_ui.o: $
+    cxx $
+    ../../chrome/browser/ui/webui/memory_internals/memory_internals_ui.cc $
+    || obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/webui/browser_ui.metrics_handler.o: cxx $
+    ../../chrome/browser/ui/webui/metrics_handler.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/webui/browser_ui.nacl_ui.o: cxx $
+    ../../chrome/browser/ui/webui/nacl_ui.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/webui/browser_ui.net_export_ui.o: cxx $
+    ../../chrome/browser/ui/webui/net_export_ui.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build $
+    obj/chrome/browser/ui/webui/net_internals/browser_ui.net_internals_ui.o: $
+    cxx ../../chrome/browser/ui/webui/net_internals/net_internals_ui.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/webui/ntp/browser_ui.app_launcher_handler.o: $
+    cxx ../../chrome/browser/ui/webui/ntp/app_launcher_handler.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build $
+    obj/chrome/browser/ui/webui/ntp/browser_ui.app_resource_cache_factory.o: $
+    cxx ../../chrome/browser/ui/webui/ntp/app_resource_cache_factory.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/webui/ntp/browser_ui.favicon_webui_handler.o: $
+    cxx ../../chrome/browser/ui/webui/ntp/favicon_webui_handler.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/webui/ntp/browser_ui.foreign_session_handler.o: $
+    cxx ../../chrome/browser/ui/webui/ntp/foreign_session_handler.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/webui/ntp/browser_ui.most_visited_handler.o: $
+    cxx ../../chrome/browser/ui/webui/ntp/most_visited_handler.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/webui/ntp/browser_ui.new_tab_page_handler.o: $
+    cxx ../../chrome/browser/ui/webui/ntp/new_tab_page_handler.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build $
+    obj/chrome/browser/ui/webui/ntp/browser_ui.new_tab_page_sync_handler.o: $
+    cxx ../../chrome/browser/ui/webui/ntp/new_tab_page_sync_handler.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/webui/ntp/browser_ui.new_tab_ui.o: cxx $
+    ../../chrome/browser/ui/webui/ntp/new_tab_ui.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/webui/ntp/browser_ui.ntp_login_handler.o: cxx $
+    ../../chrome/browser/ui/webui/ntp/ntp_login_handler.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/webui/ntp/browser_ui.ntp_resource_cache.o: cxx $
+    ../../chrome/browser/ui/webui/ntp/ntp_resource_cache.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build $
+    obj/chrome/browser/ui/webui/ntp/browser_ui.ntp_resource_cache_factory.o: $
+    cxx ../../chrome/browser/ui/webui/ntp/ntp_resource_cache_factory.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build $
+    obj/chrome/browser/ui/webui/ntp/browser_ui.recently_closed_tabs_handler.o: $
+    cxx ../../chrome/browser/ui/webui/ntp/recently_closed_tabs_handler.cc $
+    || obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/webui/ntp/browser_ui.suggestions_combiner.o: $
+    cxx ../../chrome/browser/ui/webui/ntp/suggestions_combiner.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build $
+    obj/chrome/browser/ui/webui/ntp/browser_ui.suggestions_page_handler.o: $
+    cxx ../../chrome/browser/ui/webui/ntp/suggestions_page_handler.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build $
+    obj/chrome/browser/ui/webui/ntp/browser_ui.suggestions_source_discovery.o: $
+    cxx ../../chrome/browser/ui/webui/ntp/suggestions_source_discovery.cc $
+    || obj/chrome/browser_ui.compile_depends.stamp
+build $
+    obj/chrome/browser/ui/webui/ntp/browser_ui.suggestions_source_top_sites.o: $
+    cxx ../../chrome/browser/ui/webui/ntp/suggestions_source_top_sites.cc $
+    || obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/webui/ntp/browser_ui.thumbnail_source.o: cxx $
+    ../../chrome/browser/ui/webui/ntp/thumbnail_source.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/webui/omnibox/browser_ui.omnibox_ui.o: cxx $
+    ../../chrome/browser/ui/webui/omnibox/omnibox_ui.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/webui/omnibox/browser_ui.omnibox_ui_handler.o: $
+    cxx ../../chrome/browser/ui/webui/omnibox/omnibox_ui_handler.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build $
+    obj/chrome/browser/ui/webui/options/browser_ui.advanced_options_utils_x11.o: $
+    cxx ../../chrome/browser/ui/webui/options/advanced_options_utils_x11.cc $
+    || obj/chrome/browser_ui.compile_depends.stamp
+build $
+    obj/chrome/browser/ui/webui/options/browser_ui.autofill_options_handler.o: $
+    cxx ../../chrome/browser/ui/webui/options/autofill_options_handler.cc $
+    || obj/chrome/browser_ui.compile_depends.stamp
+build $
+    obj/chrome/browser/ui/webui/options/browser_ui.browser_options_handler.o: $
+    cxx ../../chrome/browser/ui/webui/options/browser_options_handler.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build $
+    obj/chrome/browser/ui/webui/options/browser_ui.certificate_manager_handler.o: $
+    cxx $
+    ../../chrome/browser/ui/webui/options/certificate_manager_handler.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build $
+    obj/chrome/browser/ui/webui/options/browser_ui.clear_browser_data_handler.o: $
+    cxx ../../chrome/browser/ui/webui/options/clear_browser_data_handler.cc $
+    || obj/chrome/browser_ui.compile_depends.stamp
+build $
+    obj/chrome/browser/ui/webui/options/browser_ui.content_settings_handler.o: $
+    cxx ../../chrome/browser/ui/webui/options/content_settings_handler.cc $
+    || obj/chrome/browser_ui.compile_depends.stamp
+build $
+    obj/chrome/browser/ui/webui/options/browser_ui.cookies_view_handler.o: $
+    cxx ../../chrome/browser/ui/webui/options/cookies_view_handler.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build $
+    obj/chrome/browser/ui/webui/options/browser_ui.core_options_handler.o: $
+    cxx ../../chrome/browser/ui/webui/options/core_options_handler.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build $
+    obj/chrome/browser/ui/webui/options/browser_ui.font_settings_handler.o: $
+    cxx ../../chrome/browser/ui/webui/options/font_settings_handler.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build $
+    obj/chrome/browser/ui/webui/options/browser_ui.font_settings_utils_linux.o: $
+    cxx ../../chrome/browser/ui/webui/options/font_settings_utils_linux.cc $
+    || obj/chrome/browser_ui.compile_depends.stamp
+build $
+    obj/chrome/browser/ui/webui/options/browser_ui.geolocation_options_handler.o: $
+    cxx $
+    ../../chrome/browser/ui/webui/options/geolocation_options_handler.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build $
+    obj/chrome/browser/ui/webui/options/browser_ui.handler_options_handler.o: $
+    cxx ../../chrome/browser/ui/webui/options/handler_options_handler.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build $
+    obj/chrome/browser/ui/webui/options/browser_ui.home_page_overlay_handler.o: $
+    cxx ../../chrome/browser/ui/webui/options/home_page_overlay_handler.cc $
+    || obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/webui/options/browser_ui.import_data_handler.o: $
+    cxx ../../chrome/browser/ui/webui/options/import_data_handler.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build $
+    obj/chrome/browser/ui/webui/options/browser_ui.language_dictionary_overlay_handler.o: $
+    cxx $
+    ../../chrome/browser/ui/webui/options/language_dictionary_overlay_handler.cc $
+    || obj/chrome/browser_ui.compile_depends.stamp
+build $
+    obj/chrome/browser/ui/webui/options/browser_ui.language_options_handler.o: $
+    cxx ../../chrome/browser/ui/webui/options/language_options_handler.cc $
+    || obj/chrome/browser_ui.compile_depends.stamp
+build $
+    obj/chrome/browser/ui/webui/options/browser_ui.language_options_handler_common.o: $
+    cxx $
+    ../../chrome/browser/ui/webui/options/language_options_handler_common.cc $
+    || obj/chrome/browser_ui.compile_depends.stamp
+build $
+    obj/chrome/browser/ui/webui/options/browser_ui.managed_user_create_confirm_handler.o: $
+    cxx $
+    ../../chrome/browser/ui/webui/options/managed_user_create_confirm_handler.cc $
+    || obj/chrome/browser_ui.compile_depends.stamp
+build $
+    obj/chrome/browser/ui/webui/options/browser_ui.managed_user_learn_more_handler.o: $
+    cxx $
+    ../../chrome/browser/ui/webui/options/managed_user_learn_more_handler.cc $
+    || obj/chrome/browser_ui.compile_depends.stamp
+build $
+    obj/chrome/browser/ui/webui/options/browser_ui.manage_profile_handler.o: $
+    cxx ../../chrome/browser/ui/webui/options/manage_profile_handler.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build $
+    obj/chrome/browser/ui/webui/options/browser_ui.media_devices_selection_handler.o: $
+    cxx $
+    ../../chrome/browser/ui/webui/options/media_devices_selection_handler.cc $
+    || obj/chrome/browser_ui.compile_depends.stamp
+build $
+    obj/chrome/browser/ui/webui/options/browser_ui.media_galleries_handler.o: $
+    cxx ../../chrome/browser/ui/webui/options/media_galleries_handler.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/webui/options/browser_ui.options_ui.o: cxx $
+    ../../chrome/browser/ui/webui/options/options_ui.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build $
+    obj/chrome/browser/ui/webui/options/browser_ui.password_manager_handler.o: $
+    cxx ../../chrome/browser/ui/webui/options/password_manager_handler.cc $
+    || obj/chrome/browser_ui.compile_depends.stamp
+build $
+    obj/chrome/browser/ui/webui/options/browser_ui.pepper_flash_content_settings_utils.o: $
+    cxx $
+    ../../chrome/browser/ui/webui/options/pepper_flash_content_settings_utils.cc $
+    || obj/chrome/browser_ui.compile_depends.stamp
+build $
+    obj/chrome/browser/ui/webui/options/browser_ui.reset_profile_settings_handler.o: $
+    cxx $
+    ../../chrome/browser/ui/webui/options/reset_profile_settings_handler.cc $
+    || obj/chrome/browser_ui.compile_depends.stamp
+build $
+    obj/chrome/browser/ui/webui/options/browser_ui.search_engine_manager_handler.o: $
+    cxx $
+    ../../chrome/browser/ui/webui/options/search_engine_manager_handler.cc $
+    || obj/chrome/browser_ui.compile_depends.stamp
+build $
+    obj/chrome/browser/ui/webui/options/browser_ui.startup_pages_handler.o: $
+    cxx ../../chrome/browser/ui/webui/options/startup_pages_handler.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build $
+    obj/chrome/browser/ui/webui/performance_monitor/browser_ui.performance_monitor_l10n.o: $
+    cxx $
+    ../../chrome/browser/ui/webui/performance_monitor/performance_monitor_l10n.cc $
+    || obj/chrome/browser_ui.compile_depends.stamp
+build $
+    obj/chrome/browser/ui/webui/performance_monitor/browser_ui.performance_monitor_ui_constants.o: $
+    cxx $
+    ../../chrome/browser/ui/webui/performance_monitor/performance_monitor_ui_constants.cc $
+    || obj/chrome/browser_ui.compile_depends.stamp
+build $
+    obj/chrome/browser/ui/webui/performance_monitor/browser_ui.performance_monitor_ui_util.o: $
+    cxx $
+    ../../chrome/browser/ui/webui/performance_monitor/performance_monitor_ui_util.cc $
+    || obj/chrome/browser_ui.compile_depends.stamp
+build $
+    obj/chrome/browser/ui/webui/performance_monitor/browser_ui.performance_monitor_ui.o: $
+    cxx $
+    ../../chrome/browser/ui/webui/performance_monitor/performance_monitor_ui.cc $
+    || obj/chrome/browser_ui.compile_depends.stamp
+build $
+    obj/chrome/browser/ui/webui/performance_monitor/browser_ui.performance_monitor_handler.o: $
+    cxx $
+    ../../chrome/browser/ui/webui/performance_monitor/performance_monitor_handler.cc $
+    || obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/webui/browser_ui.plugins_ui.o: cxx $
+    ../../chrome/browser/ui/webui/plugins_ui.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/webui/browser_ui.policy_ui.o: cxx $
+    ../../chrome/browser/ui/webui/policy_ui.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build $
+    obj/chrome/browser/ui/webui/predictors/browser_ui.predictors_handler.o: $
+    cxx ../../chrome/browser/ui/webui/predictors/predictors_handler.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/webui/predictors/browser_ui.predictors_ui.o: $
+    cxx ../../chrome/browser/ui/webui/predictors/predictors_ui.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build $
+    obj/chrome/browser/ui/webui/print_preview/browser_ui.print_preview_handler.o: $
+    cxx $
+    ../../chrome/browser/ui/webui/print_preview/print_preview_handler.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build $
+    obj/chrome/browser/ui/webui/print_preview/browser_ui.print_preview_ui.o: $
+    cxx ../../chrome/browser/ui/webui/print_preview/print_preview_ui.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build $
+    obj/chrome/browser/ui/webui/print_preview/browser_ui.sticky_settings.o: $
+    cxx ../../chrome/browser/ui/webui/print_preview/sticky_settings.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/webui/browser_ui.profiler_ui.o: cxx $
+    ../../chrome/browser/ui/webui/profiler_ui.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build $
+    obj/chrome/browser/ui/webui/quota_internals/browser_ui.quota_internals_handler.o: $
+    cxx $
+    ../../chrome/browser/ui/webui/quota_internals/quota_internals_handler.cc $
+    || obj/chrome/browser_ui.compile_depends.stamp
+build $
+    obj/chrome/browser/ui/webui/quota_internals/browser_ui.quota_internals_proxy.o: $
+    cxx $
+    ../../chrome/browser/ui/webui/quota_internals/quota_internals_proxy.cc $
+    || obj/chrome/browser_ui.compile_depends.stamp
+build $
+    obj/chrome/browser/ui/webui/quota_internals/browser_ui.quota_internals_types.o: $
+    cxx $
+    ../../chrome/browser/ui/webui/quota_internals/quota_internals_types.cc $
+    || obj/chrome/browser_ui.compile_depends.stamp
+build $
+    obj/chrome/browser/ui/webui/quota_internals/browser_ui.quota_internals_ui.o: $
+    cxx ../../chrome/browser/ui/webui/quota_internals/quota_internals_ui.cc $
+    || obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/webui/browser_ui.screenshot_source.o: cxx $
+    ../../chrome/browser/ui/webui/screenshot_source.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/webui/browser_ui.session_favicon_source.o: cxx $
+    ../../chrome/browser/ui/webui/session_favicon_source.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/webui/signin/browser_ui.login_ui_service.o: cxx $
+    ../../chrome/browser/ui/webui/signin/login_ui_service.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build $
+    obj/chrome/browser/ui/webui/signin/browser_ui.login_ui_service_factory.o: $
+    cxx ../../chrome/browser/ui/webui/signin/login_ui_service_factory.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build $
+    obj/chrome/browser/ui/webui/signin/browser_ui.profile_signin_confirmation_dialog.o: $
+    cxx $
+    ../../chrome/browser/ui/webui/signin/profile_signin_confirmation_dialog.cc $
+    || obj/chrome/browser_ui.compile_depends.stamp
+build $
+    obj/chrome/browser/ui/webui/signin/browser_ui.profile_signin_confirmation_ui.o: $
+    cxx $
+    ../../chrome/browser/ui/webui/signin/profile_signin_confirmation_ui.cc $
+    || obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/webui/browser_ui.signin_internals_ui.o: cxx $
+    ../../chrome/browser/ui/webui/signin_internals_ui.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build $
+    obj/chrome/browser/ui/webui/suggestions_internals/browser_ui.suggestions_internals_ui.o: $
+    cxx $
+    ../../chrome/browser/ui/webui/suggestions_internals/suggestions_internals_ui.cc $
+    || obj/chrome/browser_ui.compile_depends.stamp
+build $
+    obj/chrome/browser/ui/webui/suggestions_internals/browser_ui.suggestions_internals_ui_handler.o: $
+    cxx $
+    ../../chrome/browser/ui/webui/suggestions_internals/suggestions_internals_ui_handler.cc $
+    || obj/chrome/browser_ui.compile_depends.stamp
+build $
+    obj/chrome/browser/ui/webui/sync_file_system_internals/browser_ui.extension_statuses_handler.o: $
+    cxx $
+    ../../chrome/browser/ui/webui/sync_file_system_internals/extension_statuses_handler.cc $
+    || obj/chrome/browser_ui.compile_depends.stamp
+build $
+    obj/chrome/browser/ui/webui/sync_file_system_internals/browser_ui.file_metadata_handler.o: $
+    cxx $
+    ../../chrome/browser/ui/webui/sync_file_system_internals/file_metadata_handler.cc $
+    || obj/chrome/browser_ui.compile_depends.stamp
+build $
+    obj/chrome/browser/ui/webui/sync_file_system_internals/browser_ui.sync_file_system_internals_handler.o: $
+    cxx $
+    ../../chrome/browser/ui/webui/sync_file_system_internals/sync_file_system_internals_handler.cc $
+    || obj/chrome/browser_ui.compile_depends.stamp
+build $
+    obj/chrome/browser/ui/webui/sync_file_system_internals/browser_ui.sync_file_system_internals_ui.o: $
+    cxx $
+    ../../chrome/browser/ui/webui/sync_file_system_internals/sync_file_system_internals_ui.cc $
+    || obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/webui/browser_ui.sync_internals_ui.o: cxx $
+    ../../chrome/browser/ui/webui/sync_internals_ui.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/webui/sync_promo/browser_ui.sync_promo_trial.o: $
+    cxx ../../chrome/browser/ui/webui/sync_promo/sync_promo_trial.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/webui/browser_ui.sync_setup_handler.o: cxx $
+    ../../chrome/browser/ui/webui/sync_setup_handler.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/webui/browser_ui.theme_handler.o: cxx $
+    ../../chrome/browser/ui/webui/theme_handler.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/webui/browser_ui.theme_source.o: cxx $
+    ../../chrome/browser/ui/webui/theme_source.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build $
+    obj/chrome/browser/ui/webui/translate_internals/browser_ui.translate_internals_handler.o: $
+    cxx $
+    ../../chrome/browser/ui/webui/translate_internals/translate_internals_handler.cc $
+    || obj/chrome/browser_ui.compile_depends.stamp
+build $
+    obj/chrome/browser/ui/webui/translate_internals/browser_ui.translate_internals_ui.o: $
+    cxx $
+    ../../chrome/browser/ui/webui/translate_internals/translate_internals_ui.cc $
+    || obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/webui/uber/browser_ui.uber_ui.o: cxx $
+    ../../chrome/browser/ui/webui/uber/uber_ui.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build $
+    obj/chrome/browser/ui/webui/user_actions/browser_ui.user_actions_ui.o: $
+    cxx ../../chrome/browser/ui/webui/user_actions/user_actions_ui.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build $
+    obj/chrome/browser/ui/webui/user_actions/browser_ui.user_actions_ui_handler.o: $
+    cxx $
+    ../../chrome/browser/ui/webui/user_actions/user_actions_ui_handler.cc $
+    || obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/webui/browser_ui.version_handler.o: cxx $
+    ../../chrome/browser/ui/webui/version_handler.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/webui/browser_ui.version_ui.o: cxx $
+    ../../chrome/browser/ui/webui/version_ui.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/window_sizer/browser_ui.window_sizer.o: cxx $
+    ../../chrome/browser/ui/window_sizer/window_sizer.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/window_sizer/browser_ui.window_sizer_gtk.o: cxx $
+    ../../chrome/browser/ui/window_sizer/window_sizer_gtk.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/window_snapshot/browser_ui.window_snapshot.o: $
+    cxx ../../chrome/browser/ui/window_snapshot/window_snapshot.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+build obj/chrome/browser/ui/zoom/browser_ui.zoom_controller.o: cxx $
+    ../../chrome/browser/ui/zoom/zoom_controller.cc || $
+    obj/chrome/browser_ui.compile_depends.stamp
+
+build obj/chrome/libbrowser_ui.a: alink_thin $
+    obj/chrome/browser/ui/browser_ui.active_tab_tracker.o $
+    obj/chrome/browser/ui/browser_ui.alternate_error_tab_observer.o $
+    obj/chrome/browser/ui/app_list/browser_ui.app_list_service_disabled.o $
+    obj/chrome/browser/ui/app_modal_dialogs/browser_ui.app_modal_dialog.o $
+    obj/chrome/browser/ui/app_modal_dialogs/browser_ui.app_modal_dialog_queue.o $
+    obj/chrome/browser/ui/app_modal_dialogs/browser_ui.javascript_app_modal_dialog.o $
+    obj/chrome/browser/ui/app_modal_dialogs/browser_ui.javascript_dialog_manager.o $
+    obj/chrome/browser/ui/autofill/browser_ui.account_chooser_model.o $
+    obj/chrome/browser/ui/autofill/browser_ui.autocheckout_bubble.o $
+    obj/chrome/browser/ui/autofill/browser_ui.autocheckout_bubble_controller.o $
+    obj/chrome/browser/ui/autofill/browser_ui.autofill_dialog_controller_impl.o $
+    obj/chrome/browser/ui/autofill/browser_ui.autofill_dialog_models.o $
+    obj/chrome/browser/ui/autofill/browser_ui.autofill_dialog_sign_in_delegate.o $
+    obj/chrome/browser/ui/autofill/browser_ui.autofill_dialog_types.o $
+    obj/chrome/browser/ui/autofill/browser_ui.autofill_dialog_view.o $
+    obj/chrome/browser/ui/autofill/browser_ui.autofill_popup_controller_impl.o $
+    obj/chrome/browser/ui/autofill/browser_ui.autofill_popup_view.o $
+    obj/chrome/browser/ui/autofill/browser_ui.country_combobox_model.o $
+    obj/chrome/browser/ui/autofill/browser_ui.data_model_wrapper.o $
+    obj/chrome/browser/ui/autofill/browser_ui.tab_autofill_manager_delegate.o $
+    obj/chrome/browser/ui/browser_ui.auto_login_infobar_delegate.o $
+    obj/chrome/browser/ui/browser_ui.auto_login_prompter.o $
+    obj/chrome/browser/ui/blocked_content/browser_ui.blocked_content_container.o $
+    obj/chrome/browser/ui/blocked_content/browser_ui.blocked_content_tab_helper.o $
+    obj/chrome/browser/ui/blocked_content/browser_ui.blocked_content_tab_helper_delegate.o $
+    obj/chrome/browser/ui/bookmarks/browser_ui.bookmark_context_menu_controller.o $
+    obj/chrome/browser/ui/bookmarks/browser_ui.bookmark_drag_drop.o $
+    obj/chrome/browser/ui/bookmarks/browser_ui.bookmark_prompt_controller.o $
+    obj/chrome/browser/ui/bookmarks/browser_ui.bookmark_tab_helper.o $
+    obj/chrome/browser/ui/bookmarks/browser_ui.bookmark_tab_helper_delegate.o $
+    obj/chrome/browser/ui/bookmarks/browser_ui.bookmark_utils.o $
+    obj/chrome/browser/ui/bookmarks/browser_ui.recently_used_folders_combo_model.o $
+    obj/chrome/browser/ui/browser_ui.browser.o $
+    obj/chrome/browser/ui/browser_ui.browser_commands.o $
+    obj/chrome/browser/ui/browser_ui.browser_command_controller.o $
+    obj/chrome/browser/ui/browser_ui.browser_content_setting_bubble_model_delegate.o $
+    obj/chrome/browser/ui/browser_ui.browser_finder.o $
+    obj/chrome/browser/ui/browser_ui.browser_instant_controller.o $
+    obj/chrome/browser/ui/browser_ui.browser_iterator.o $
+    obj/chrome/browser/ui/browser_ui.browser_list.o $
+    obj/chrome/browser/ui/browser_ui.browser_navigator.o $
+    obj/chrome/browser/ui/browser_ui.browser_otr_state.o $
+    obj/chrome/browser/ui/browser_ui.browser_ui_prefs.o $
+    obj/chrome/browser/ui/browser_ui.browser_tab_contents.o $
+    obj/chrome/browser/ui/browser_ui.browser_tab_restore_service_delegate.o $
+    obj/chrome/browser/ui/browser_ui.browser_tab_strip_model_delegate.o $
+    obj/chrome/browser/ui/browser_ui.browser_tabrestore.o $
+    obj/chrome/browser/ui/browser_ui.browser_tabstrip.o $
+    obj/chrome/browser/ui/browser_ui.browser_toolbar_model_delegate.o $
+    obj/chrome/browser/ui/browser_ui.browser_view_prefs.o $
+    obj/chrome/browser/ui/browser_ui.browser_window_state.o $
+    obj/chrome/browser/ui/browser_ui.certificate_dialogs.o $
+    obj/chrome/browser/ui/browser_ui.chrome_pages.o $
+    obj/chrome/browser/ui/browser_ui.chrome_select_file_policy.o $
+    obj/chrome/browser/ui/browser_ui.chrome_style.o $
+    obj/chrome/browser/ui/browser_ui.chrome_web_modal_dialog_manager_delegate.o $
+    obj/chrome/browser/ui/browser_ui.collected_cookies_infobar_delegate.o $
+    obj/chrome/browser/ui/browser_ui.confirm_bubble_model.o $
+    obj/chrome/browser/ui/content_settings/browser_ui.content_setting_bubble_model.o $
+    obj/chrome/browser/ui/content_settings/browser_ui.content_setting_changed_infobar_delegate.o $
+    obj/chrome/browser/ui/content_settings/browser_ui.content_setting_image_model.o $
+    obj/chrome/browser/ui/content_settings/browser_ui.content_setting_media_menu_model.o $
+    obj/chrome/browser/ui/browser_ui.crypto_module_password_dialog.o $
+    obj/chrome/browser/ui/browser_ui.crypto_module_password_dialog_nss.o $
+    obj/chrome/browser/ui/extensions/browser_ui.application_launch.o $
+    obj/chrome/browser/ui/extensions/browser_ui.extension_install_ui_default.o $
+    obj/chrome/browser/ui/extensions/browser_ui.extension_enable_flow.o $
+    obj/chrome/browser/ui/extensions/browser_ui.shell_window.o $
+    obj/chrome/browser/ui/browser_ui.external_protocol_dialog_delegate.o $
+    obj/chrome/browser/ui/find_bar/browser_ui.find_bar_controller.o $
+    obj/chrome/browser/ui/find_bar/browser_ui.find_bar_state_factory.o $
+    obj/chrome/browser/ui/find_bar/browser_ui.find_tab_helper.o $
+    obj/chrome/browser/ui/fullscreen/browser_ui.fullscreen_controller.o $
+    obj/chrome/browser/ui/fullscreen/browser_ui.fullscreen_exit_bubble.o $
+    obj/chrome/browser/ui/fullscreen/browser_ui.fullscreen_exit_bubble_type.o $
+    obj/chrome/browser/ui/global_error/browser_ui.global_error.o $
+    obj/chrome/browser/ui/global_error/browser_ui.global_error_service.o $
+    obj/chrome/browser/ui/global_error/browser_ui.global_error_service_factory.o $
+    obj/chrome/browser/ui/gtk/browser_ui.accelerator_utils_gtk.o $
+    obj/chrome/browser/ui/gtk/browser_ui.accelerators_gtk.o $
+    obj/chrome/browser/ui/gtk/browser_ui.action_box_button_gtk.o $
+    obj/chrome/browser/ui/gtk/autofill/browser_ui.autofill_popup_view_gtk.o $
+    obj/chrome/browser/ui/gtk/browser_ui.avatar_menu_bubble_gtk.o $
+    obj/chrome/browser/ui/gtk/browser_ui.avatar_menu_button_gtk.o $
+    obj/chrome/browser/ui/gtk/browser_ui.avatar_menu_item_gtk.o $
+    obj/chrome/browser/ui/gtk/browser_ui.back_forward_button_gtk.o $
+    obj/chrome/browser/ui/gtk/bookmarks/browser_ui.bookmark_bar_gtk.o $
+    obj/chrome/browser/ui/gtk/bookmarks/browser_ui.bookmark_bar_instructions_gtk.o $
+    obj/chrome/browser/ui/gtk/bookmarks/browser_ui.bookmark_bubble_gtk.o $
+    obj/chrome/browser/ui/gtk/bookmarks/browser_ui.bookmark_drag_drop_gtk.o $
+    obj/chrome/browser/ui/gtk/bookmarks/browser_ui.bookmark_editor_gtk.o $
+    obj/chrome/browser/ui/gtk/bookmarks/browser_ui.bookmark_menu_controller_gtk.o $
+    obj/chrome/browser/ui/gtk/bookmarks/browser_ui.bookmark_sub_menu_model_gtk.o $
+    obj/chrome/browser/ui/gtk/bookmarks/browser_ui.bookmark_tree_model.o $
+    obj/chrome/browser/ui/gtk/bookmarks/browser_ui.bookmark_utils_gtk.o $
+    obj/chrome/browser/ui/gtk/browser_ui.browser_actions_toolbar_gtk.o $
+    obj/chrome/browser/ui/gtk/browser_ui.browser_titlebar.o $
+    obj/chrome/browser/ui/gtk/browser_ui.browser_toolbar_gtk.o $
+    obj/chrome/browser/ui/gtk/browser_ui.browser_window_gtk.o $
+    obj/chrome/browser/ui/gtk/bubble/browser_ui.bubble_accelerators_gtk.o $
+    obj/chrome/browser/ui/gtk/bubble/browser_ui.bubble_gtk.o $
+    obj/chrome/browser/ui/gtk/browser_ui.certificate_viewer_gtk.o $
+    obj/chrome/browser/ui/gtk/browser_ui.chrome_browser_main_extra_parts_gtk.o $
+    obj/chrome/browser/ui/gtk/browser_ui.chrome_gtk_frame.o $
+    obj/chrome/browser/ui/gtk/browser_ui.chrome_to_mobile_bubble_gtk.o $
+    obj/chrome/browser/ui/gtk/browser_ui.collected_cookies_gtk.o $
+    obj/chrome/browser/ui/gtk/browser_ui.confirm_bubble_gtk.o $
+    obj/chrome/browser/ui/gtk/browser_ui.color_chooser_gtk.o $
+    obj/chrome/browser/ui/gtk/browser_ui.constrained_web_dialog_delegate_gtk.o $
+    obj/chrome/browser/ui/gtk/browser_ui.constrained_window_gtk.o $
+    obj/chrome/browser/ui/gtk/browser_ui.content_setting_bubble_gtk.o $
+    obj/chrome/browser/ui/gtk/browser_ui.create_application_shortcuts_dialog_gtk.o $
+    obj/chrome/browser/ui/gtk/browser_ui.crypto_module_password_dialog_gtk.o $
+    obj/chrome/browser/ui/gtk/browser_ui.custom_button.o $
+    obj/chrome/browser/ui/gtk/browser_ui.custom_drag.o $
+    obj/chrome/browser/ui/gtk/download/browser_ui.download_in_progress_dialog_gtk.o $
+    obj/chrome/browser/ui/gtk/download/browser_ui.download_item_gtk.o $
+    obj/chrome/browser/ui/gtk/download/browser_ui.download_shelf_context_menu_gtk.o $
+    obj/chrome/browser/ui/gtk/download/browser_ui.download_shelf_gtk.o $
+    obj/chrome/browser/ui/gtk/download/browser_ui.download_started_animation_gtk.o $
+    obj/chrome/browser/ui/gtk/browser_ui.edit_search_engine_dialog.o $
+    obj/chrome/browser/ui/gtk/browser_ui.event_utils.o $
+    obj/chrome/browser/ui/gtk/extensions/browser_ui.browser_action_test_util_gtk.o $
+    obj/chrome/browser/ui/gtk/extensions/browser_ui.bundle_installed_bubble_gtk.o $
+    obj/chrome/browser/ui/gtk/extensions/browser_ui.extension_install_dialog_gtk.o $
+    obj/chrome/browser/ui/gtk/extensions/browser_ui.extension_installed_bubble_gtk.o $
+    obj/chrome/browser/ui/gtk/extensions/browser_ui.extension_keybinding_registry_gtk.o $
+    obj/chrome/browser/ui/gtk/extensions/browser_ui.extension_popup_gtk.o $
+    obj/chrome/browser/ui/gtk/extensions/browser_ui.extension_uninstall_dialog_gtk.o $
+    obj/chrome/browser/ui/gtk/extensions/browser_ui.extension_view_gtk.o $
+    obj/chrome/browser/ui/gtk/extensions/browser_ui.media_galleries_dialog_gtk.o $
+    obj/chrome/browser/ui/gtk/extensions/browser_ui.native_app_window_gtk.o $
+    obj/chrome/browser/ui/gtk/browser_ui.find_bar_gtk.o $
+    obj/chrome/browser/ui/gtk/browser_ui.first_run_bubble.o $
+    obj/chrome/browser/ui/gtk/browser_ui.first_run_dialog.o $
+    obj/chrome/browser/ui/gtk/browser_ui.fullscreen_exit_bubble_gtk.o $
+    obj/chrome/browser/ui/gtk/browser_ui.global_error_bubble.o $
+    obj/chrome/browser/ui/gtk/browser_ui.global_history_menu.o $
+    obj/chrome/browser/ui/gtk/browser_ui.global_menu_bar.o $
+    obj/chrome/browser/ui/gtk/browser_ui.gtk_chrome_button.o $
+    obj/chrome/browser/ui/gtk/browser_ui.gtk_chrome_cookie_view.o $
+    obj/chrome/browser/ui/gtk/browser_ui.gtk_chrome_link_button.o $
+    obj/chrome/browser/ui/gtk/browser_ui.gtk_chrome_shrinkable_hbox.o $
+    obj/chrome/browser/ui/gtk/browser_ui.gtk_custom_menu.o $
+    obj/chrome/browser/ui/gtk/browser_ui.gtk_custom_menu_item.o $
+    obj/chrome/browser/ui/gtk/browser_ui.gtk_input_event_box.o $
+    obj/chrome/browser/ui/gtk/browser_ui.gtk_theme_service.o $
+    obj/chrome/browser/ui/gtk/browser_ui.gtk_tree.o $
+    obj/chrome/browser/ui/gtk/browser_ui.gtk_util.o $
+    obj/chrome/browser/ui/gtk/browser_ui.gtk_window_util.o $
+    obj/chrome/browser/ui/gtk/browser_ui.hover_controller_gtk.o $
+    obj/chrome/browser/ui/gtk/browser_ui.hung_renderer_dialog_gtk.o $
+    obj/chrome/browser/ui/gtk/importer/browser_ui.import_lock_dialog_gtk.o $
+    obj/chrome/browser/ui/gtk/infobars/browser_ui.after_translate_infobar_gtk.o $
+    obj/chrome/browser/ui/gtk/infobars/browser_ui.alternate_nav_infobar_gtk.o $
+    obj/chrome/browser/ui/gtk/infobars/browser_ui.before_translate_infobar_gtk.o $
+    obj/chrome/browser/ui/gtk/infobars/browser_ui.confirm_infobar_gtk.o $
+    obj/chrome/browser/ui/gtk/infobars/browser_ui.extension_infobar_gtk.o $
+    obj/chrome/browser/ui/gtk/infobars/browser_ui.infobar_container_gtk.o $
+    obj/chrome/browser/ui/gtk/infobars/browser_ui.infobar_gtk.o $
+    obj/chrome/browser/ui/gtk/infobars/browser_ui.translate_infobar_base_gtk.o $
+    obj/chrome/browser/ui/gtk/infobars/browser_ui.translate_message_infobar_gtk.o $
+    obj/chrome/browser/ui/gtk/browser_ui.instant_overlay_controller_gtk.o $
+    obj/chrome/browser/ui/gtk/browser_ui.javascript_app_modal_dialog_gtk.o $
+    obj/chrome/browser/ui/gtk/browser_ui.location_bar_view_gtk.o $
+    obj/chrome/browser/ui/gtk/browser_ui.login_prompt_gtk.o $
+    obj/chrome/browser/ui/gtk/browser_ui.menu_bar_helper.o $
+    obj/chrome/browser/ui/gtk/browser_ui.menu_gtk.o $
+    obj/chrome/browser/ui/gtk/browser_ui.nine_box.o $
+    obj/chrome/browser/ui/gtk/notifications/browser_ui.balloon_collection_gtk.o $
+    obj/chrome/browser/ui/gtk/notifications/browser_ui.balloon_view_gtk.o $
+    obj/chrome/browser/ui/gtk/notifications/browser_ui.balloon_view_host_gtk.o $
+    obj/chrome/browser/ui/gtk/omnibox/browser_ui.omnibox_popup_view_gtk.o $
+    obj/chrome/browser/ui/gtk/omnibox/browser_ui.omnibox_view_gtk.o $
+    obj/chrome/browser/ui/gtk/browser_ui.one_click_signin_bubble_gtk.o $
+    obj/chrome/browser/ui/gtk/browser_ui.overflow_button.o $
+    obj/chrome/browser/ui/gtk/panels/browser_ui.display_settings_provider_gtk.o $
+    obj/chrome/browser/ui/gtk/panels/browser_ui.panel_drag_gtk.o $
+    obj/chrome/browser/ui/gtk/panels/browser_ui.panel_gtk.o $
+    obj/chrome/browser/ui/gtk/panels/browser_ui.panel_stack_window_gtk.o $
+    obj/chrome/browser/ui/gtk/panels/browser_ui.panel_titlebar_gtk.o $
+    obj/chrome/browser/ui/gtk/browser_ui.password_generation_bubble_gtk.o $
+    obj/chrome/browser/ui/gtk/browser_ui.process_singleton_dialog.o $
+    obj/chrome/browser/ui/gtk/browser_ui.protocol_dialog_gtk.o $
+    obj/chrome/browser/ui/gtk/browser_ui.reload_button_gtk.o $
+    obj/chrome/browser/ui/gtk/browser_ui.rounded_window.o $
+    obj/chrome/browser/ui/gtk/browser_ui.sad_tab_gtk.o $
+    obj/chrome/browser/ui/gtk/browser_ui.screen_capture_notification_ui_gtk.o $
+    obj/chrome/browser/ui/gtk/browser_ui.script_bubble_gtk.o $
+    obj/chrome/browser/ui/gtk/browser_ui.simple_message_box_gtk.o $
+    obj/chrome/browser/ui/gtk/browser_ui.slide_animator_gtk.o $
+    obj/chrome/browser/ui/gtk/browser_ui.speech_recognition_bubble_gtk.o $
+    obj/chrome/browser/ui/gtk/browser_ui.ssl_client_certificate_selector.o $
+    obj/chrome/browser/ui/gtk/browser_ui.status_bubble_gtk.o $
+    obj/chrome/browser/ui/gtk/status_icons/browser_ui.status_icon_gtk.o $
+    obj/chrome/browser/ui/gtk/status_icons/browser_ui.status_tray_gtk.o $
+    obj/chrome/browser/ui/gtk/tab_contents/browser_ui.chrome_web_contents_view_delegate_gtk.o $
+    obj/chrome/browser/ui/gtk/tab_contents/browser_ui.render_view_context_menu_gtk.o $
+    obj/chrome/browser/ui/gtk/tab_contents/browser_ui.web_drag_bookmark_handler_gtk.o $
+    obj/chrome/browser/ui/gtk/browser_ui.tab_contents_container_gtk.o $
+    obj/chrome/browser/ui/gtk/browser_ui.tab_modal_confirm_dialog_gtk.o $
+    obj/chrome/browser/ui/gtk/tabs/browser_ui.dock_info_gtk.o $
+    obj/chrome/browser/ui/gtk/tabs/browser_ui.drag_data.o $
+    obj/chrome/browser/ui/gtk/tabs/browser_ui.dragged_tab_controller_gtk.o $
+    obj/chrome/browser/ui/gtk/tabs/browser_ui.dragged_view_gtk.o $
+    obj/chrome/browser/ui/gtk/tabs/browser_ui.tab_gtk.o $
+    obj/chrome/browser/ui/gtk/tabs/browser_ui.tab_renderer_gtk.o $
+    obj/chrome/browser/ui/gtk/tabs/browser_ui.tab_strip_gtk.o $
+    obj/chrome/browser/ui/gtk/tabs/browser_ui.tab_strip_menu_controller.o $
+    obj/chrome/browser/ui/gtk/browser_ui.task_manager_gtk.o $
+    obj/chrome/browser/ui/gtk/browser_ui.throbber_gtk.o $
+    obj/chrome/browser/ui/gtk/browser_ui.titlebar_throb_animation.o $
+    obj/chrome/browser/ui/gtk/browser_ui.unity_service.o $
+    obj/chrome/browser/ui/gtk/browser_ui.update_recommended_dialog.o $
+    obj/chrome/browser/ui/gtk/browser_ui.validation_message_bubble_gtk.o $
+    obj/chrome/browser/ui/gtk/browser_ui.view_id_util.o $
+    obj/chrome/browser/ui/gtk/browser_ui.web_contents_modal_dialog_manager_gtk.o $
+    obj/chrome/browser/ui/gtk/browser_ui.web_dialog_gtk.o $
+    obj/chrome/browser/ui/gtk/website_settings/browser_ui.permission_selector.o $
+    obj/chrome/browser/ui/gtk/website_settings/browser_ui.website_settings_popup_gtk.o $
+    obj/chrome/browser/ui/gtk/browser_ui.zoom_bubble_gtk.o $
+    obj/chrome/browser/ui/browser_ui.host_desktop.o $
+    obj/chrome/browser/ui/browser_ui.hung_plugin_tab_helper.o $
+    obj/chrome/browser/ui/browser_ui.immersive_fullscreen_configuration.o $
+    obj/chrome/browser/ui/login/browser_ui.login_prompt.o $
+    obj/chrome/browser/ui/browser_ui.ntp_background_util.o $
+    obj/chrome/browser/ui/omnibox/browser_ui.alternate_nav_infobar_delegate.o $
+    obj/chrome/browser/ui/omnibox/browser_ui.alternate_nav_url_fetcher.o $
+    obj/chrome/browser/ui/omnibox/browser_ui.location_bar_util.o $
+    obj/chrome/browser/ui/omnibox/browser_ui.omnibox_controller.o $
+    obj/chrome/browser/ui/omnibox/browser_ui.omnibox_current_page_delegate_impl.o $
+    obj/chrome/browser/ui/omnibox/browser_ui.omnibox_edit_model.o $
+    obj/chrome/browser/ui/omnibox/browser_ui.omnibox_popup_model.o $
+    obj/chrome/browser/ui/omnibox/browser_ui.omnibox_popup_non_view.o $
+    obj/chrome/browser/ui/omnibox/browser_ui.omnibox_view.o $
+    obj/chrome/browser/ui/options/browser_ui.options_util.o $
+    obj/chrome/browser/ui/panels/browser_ui.detached_panel_collection.o $
+    obj/chrome/browser/ui/panels/browser_ui.detached_panel_drag_handler.o $
+    obj/chrome/browser/ui/panels/browser_ui.display_settings_provider.o $
+    obj/chrome/browser/ui/panels/browser_ui.docked_panel_collection.o $
+    obj/chrome/browser/ui/panels/browser_ui.docked_panel_drag_handler.o $
+    obj/chrome/browser/ui/panels/browser_ui.panel.o $
+    obj/chrome/browser/ui/panels/browser_ui.panel_bounds_animation.o $
+    obj/chrome/browser/ui/panels/browser_ui.panel_collection.o $
+    obj/chrome/browser/ui/panels/browser_ui.panel_drag_controller.o $
+    obj/chrome/browser/ui/panels/browser_ui.panel_host.o $
+    obj/chrome/browser/ui/panels/browser_ui.panel_resize_controller.o $
+    obj/chrome/browser/ui/panels/browser_ui.panel_manager.o $
+    obj/chrome/browser/ui/panels/browser_ui.panel_mouse_watcher.o $
+    obj/chrome/browser/ui/panels/browser_ui.panel_mouse_watcher_timer.o $
+    obj/chrome/browser/ui/panels/browser_ui.stacked_panel_collection.o $
+    obj/chrome/browser/ui/panels/browser_ui.stacked_panel_drag_handler.o $
+    obj/chrome/browser/ui/pdf/browser_ui.pdf_tab_helper.o $
+    obj/chrome/browser/ui/pdf/browser_ui.pdf_unsupported_feature.o $
+    obj/chrome/browser/ui/prefs/browser_ui.prefs_tab_helper.o $
+    obj/chrome/browser/ui/browser_ui.profile_error_dialog.o $
+    obj/chrome/browser/ui/browser_ui.sad_tab.o $
+    obj/chrome/browser/ui/browser_ui.sad_tab_helper.o $
+    obj/chrome/browser/ui/search/browser_ui.instant_controller.o $
+    obj/chrome/browser/ui/search/browser_ui.instant_ipc_sender.o $
+    obj/chrome/browser/ui/search/browser_ui.instant_loader.o $
+    obj/chrome/browser/ui/search/browser_ui.instant_ntp.o $
+    obj/chrome/browser/ui/search/browser_ui.instant_overlay.o $
+    obj/chrome/browser/ui/search/browser_ui.instant_overlay_controller.o $
+    obj/chrome/browser/ui/search/browser_ui.instant_overlay_model.o $
+    obj/chrome/browser/ui/search/browser_ui.instant_page.o $
+    obj/chrome/browser/ui/search/browser_ui.instant_tab.o $
+    obj/chrome/browser/ui/search/browser_ui.instant_unload_handler.o $
+    obj/chrome/browser/ui/search/browser_ui.search_delegate.o $
+    obj/chrome/browser/ui/search/browser_ui.search_model.o $
+    obj/chrome/browser/ui/search/browser_ui.search_tab_helper.o $
+    obj/chrome/browser/ui/search/browser_ui.search_ui.o $
+    obj/chrome/browser/ui/search_engines/browser_ui.edit_search_engine_controller.o $
+    obj/chrome/browser/ui/search_engines/browser_ui.keyword_editor_controller.o $
+    obj/chrome/browser/ui/search_engines/browser_ui.search_engine_tab_helper.o $
+    obj/chrome/browser/ui/search_engines/browser_ui.search_engine_tab_helper_delegate.o $
+    obj/chrome/browser/ui/search_engines/browser_ui.template_url_fetcher_ui_callbacks.o $
+    obj/chrome/browser/ui/search_engines/browser_ui.template_url_table_model.o $
+    obj/chrome/browser/ui/browser_ui.send_feedback_experiment.o $
+    obj/chrome/browser/ui/browser_ui.singleton_tabs.o $
+    obj/chrome/browser/ui/startup/browser_ui.autolaunch_prompt.o $
+    obj/chrome/browser/ui/startup/browser_ui.bad_flags_prompt.o $
+    obj/chrome/browser/ui/startup/browser_ui.default_browser_prompt.o $
+    obj/chrome/browser/ui/startup/browser_ui.google_api_keys_infobar_delegate.o $
+    obj/chrome/browser/ui/startup/browser_ui.obsolete_os_infobar_delegate.o $
+    obj/chrome/browser/ui/startup/browser_ui.session_crashed_prompt.o $
+    obj/chrome/browser/ui/startup/browser_ui.startup_browser_creator.o $
+    obj/chrome/browser/ui/startup/browser_ui.startup_browser_creator_impl.o $
+    obj/chrome/browser/ui/startup/browser_ui.startup_tab.o $
+    obj/chrome/browser/ui/sync/browser_ui.browser_synced_window_delegate.o $
+    obj/chrome/browser/ui/sync/browser_ui.inline_login_dialog.o $
+    obj/chrome/browser/ui/sync/browser_ui.one_click_signin_helper.o $
+    obj/chrome/browser/ui/sync/browser_ui.one_click_signin_sync_starter.o $
+    obj/chrome/browser/ui/sync/browser_ui.profile_signin_confirmation_helper.o $
+    obj/chrome/browser/ui/sync/browser_ui.sync_promo_ui.o $
+    obj/chrome/browser/ui/sync/browser_ui.tab_contents_synced_tab_delegate.o $
+    obj/chrome/browser/ui/tab_contents/browser_ui.core_tab_helper.o $
+    obj/chrome/browser/ui/tab_contents/browser_ui.core_tab_helper_delegate.o $
+    obj/chrome/browser/ui/tab_contents/browser_ui.tab_contents_iterator.o $
+    obj/chrome/browser/ui/browser_ui.tab_modal_confirm_dialog_delegate.o $
+    obj/chrome/browser/ui/tabs/browser_ui.dock_info.o $
+    obj/chrome/browser/ui/tabs/browser_ui.hover_tab_selector.o $
+    obj/chrome/browser/ui/tabs/browser_ui.pinned_tab_codec.o $
+    obj/chrome/browser/ui/tabs/browser_ui.pinned_tab_service.o $
+    obj/chrome/browser/ui/tabs/browser_ui.pinned_tab_service_factory.o $
+    obj/chrome/browser/ui/tabs/browser_ui.tab_audio_indicator.o $
+    obj/chrome/browser/ui/tabs/browser_ui.tab_menu_model.o $
+    obj/chrome/browser/ui/tabs/browser_ui.tab_resources.o $
+    obj/chrome/browser/ui/tabs/browser_ui.tab_strip_model.o $
+    obj/chrome/browser/ui/tabs/browser_ui.tab_strip_model_observer.o $
+    obj/chrome/browser/ui/tabs/browser_ui.tab_strip_model_order_controller.o $
+    obj/chrome/browser/ui/tabs/browser_ui.tab_strip_model_utils.o $
+    obj/chrome/browser/ui/tabs/browser_ui.tab_utils.o $
+    obj/chrome/browser/ui/toolbar/browser_ui.action_box_button_controller.o $
+    obj/chrome/browser/ui/toolbar/browser_ui.action_box_context_menu_controller.o $
+    obj/chrome/browser/ui/toolbar/browser_ui.action_box_menu_model.o $
+    obj/chrome/browser/ui/toolbar/browser_ui.back_forward_menu_model.o $
+    obj/chrome/browser/ui/toolbar/browser_ui.encoding_menu_controller.o $
+    obj/chrome/browser/ui/toolbar/browser_ui.recent_tabs_sub_menu_model.o $
+    obj/chrome/browser/ui/toolbar/browser_ui.toolbar_model_impl.o $
+    obj/chrome/browser/ui/toolbar/browser_ui.wrench_icon_painter.o $
+    obj/chrome/browser/ui/toolbar/browser_ui.wrench_menu_model.o $
+    obj/chrome/browser/ui/browser_ui.uma_browsing_activity_observer.o $
+    obj/chrome/browser/ui/browser_ui.unload_controller.o $
+    obj/chrome/browser/ui/web_applications/browser_ui.web_app_ui.o $
+    obj/chrome/browser/ui/website_settings/browser_ui.permission_menu_model.o $
+    obj/chrome/browser/ui/website_settings/browser_ui.website_settings.o $
+    obj/chrome/browser/ui/website_settings/browser_ui.website_settings_infobar_delegate.o $
+    obj/chrome/browser/ui/website_settings/browser_ui.website_settings_ui.o $
+    obj/chrome/browser/ui/website_settings/browser_ui.website_settings_utils.o $
+    obj/chrome/browser/ui/webui/browser_ui.about_ui.o $
+    obj/chrome/browser/ui/webui/browser_ui.app_launcher_page_ui.o $
+    obj/chrome/browser/ui/webui/browser_ui.bookmarks_ui.o $
+    obj/chrome/browser/ui/webui/browser_ui.certificate_viewer_webui.o $
+    obj/chrome/browser/ui/webui/browser_ui.certificate_viewer_ui.o $
+    obj/chrome/browser/ui/webui/browser_ui.chrome_web_contents_handler.o $
+    obj/chrome/browser/ui/webui/browser_ui.chrome_web_ui_controller_factory.o $
+    obj/chrome/browser/ui/webui/browser_ui.constrained_web_dialog_ui.o $
+    obj/chrome/browser/ui/webui/browser_ui.constrained_web_dialog_delegate_base.o $
+    obj/chrome/browser/ui/webui/browser_ui.cookies_tree_model_util.o $
+    obj/chrome/browser/ui/webui/browser_ui.crashes_ui.o $
+    obj/chrome/browser/ui/webui/browser_ui.devtools_ui.o $
+    obj/chrome/browser/ui/webui/browser_ui.downloads_dom_handler.o $
+    obj/chrome/browser/ui/webui/browser_ui.downloads_ui.o $
+    obj/chrome/browser/ui/webui/extensions/browser_ui.command_handler.o $
+    obj/chrome/browser/ui/webui/extensions/browser_ui.extension_basic_info.o $
+    obj/chrome/browser/ui/webui/extensions/browser_ui.extension_icon_source.o $
+    obj/chrome/browser/ui/webui/extensions/browser_ui.extension_info_ui.o $
+    obj/chrome/browser/ui/webui/extensions/browser_ui.extension_settings_handler.o $
+    obj/chrome/browser/ui/webui/extensions/browser_ui.extensions_ui.o $
+    obj/chrome/browser/ui/webui/extensions/browser_ui.install_extension_handler.o $
+    obj/chrome/browser/ui/webui/extensions/browser_ui.pack_extension_handler.o $
+    obj/chrome/browser/ui/webui/browser_ui.favicon_source.o $
+    obj/chrome/browser/ui/webui/browser_ui.feedback_ui.o $
+    obj/chrome/browser/ui/webui/browser_ui.fileicon_source.o $
+    obj/chrome/browser/ui/webui/browser_ui.flags_ui.o $
+    obj/chrome/browser/ui/webui/browser_ui.flash_ui.o $
+    obj/chrome/browser/ui/webui/help/browser_ui.help_handler.o $
+    obj/chrome/browser/ui/webui/help/browser_ui.help_ui.o $
+    obj/chrome/browser/ui/webui/help/browser_ui.version_updater_basic.o $
+    obj/chrome/browser/ui/webui/browser_ui.history_ui.o $
+    obj/chrome/browser/ui/webui/browser_ui.identity_internals_ui.o $
+    obj/chrome/browser/ui/webui/browser_ui.inline_login_ui.o $
+    obj/chrome/browser/ui/webui/browser_ui.inspect_ui.o $
+    obj/chrome/browser/ui/webui/browser_ui.instant_ui.o $
+    obj/chrome/browser/ui/webui/memory_internals/browser_ui.memory_internals_handler.o $
+    obj/chrome/browser/ui/webui/memory_internals/browser_ui.memory_internals_proxy.o $
+    obj/chrome/browser/ui/webui/memory_internals/browser_ui.memory_internals_ui.o $
+    obj/chrome/browser/ui/webui/browser_ui.metrics_handler.o $
+    obj/chrome/browser/ui/webui/browser_ui.nacl_ui.o $
+    obj/chrome/browser/ui/webui/browser_ui.net_export_ui.o $
+    obj/chrome/browser/ui/webui/net_internals/browser_ui.net_internals_ui.o $
+    obj/chrome/browser/ui/webui/ntp/browser_ui.app_launcher_handler.o $
+    obj/chrome/browser/ui/webui/ntp/browser_ui.app_resource_cache_factory.o $
+    obj/chrome/browser/ui/webui/ntp/browser_ui.favicon_webui_handler.o $
+    obj/chrome/browser/ui/webui/ntp/browser_ui.foreign_session_handler.o $
+    obj/chrome/browser/ui/webui/ntp/browser_ui.most_visited_handler.o $
+    obj/chrome/browser/ui/webui/ntp/browser_ui.new_tab_page_handler.o $
+    obj/chrome/browser/ui/webui/ntp/browser_ui.new_tab_page_sync_handler.o $
+    obj/chrome/browser/ui/webui/ntp/browser_ui.new_tab_ui.o $
+    obj/chrome/browser/ui/webui/ntp/browser_ui.ntp_login_handler.o $
+    obj/chrome/browser/ui/webui/ntp/browser_ui.ntp_resource_cache.o $
+    obj/chrome/browser/ui/webui/ntp/browser_ui.ntp_resource_cache_factory.o $
+    obj/chrome/browser/ui/webui/ntp/browser_ui.recently_closed_tabs_handler.o $
+    obj/chrome/browser/ui/webui/ntp/browser_ui.suggestions_combiner.o $
+    obj/chrome/browser/ui/webui/ntp/browser_ui.suggestions_page_handler.o $
+    obj/chrome/browser/ui/webui/ntp/browser_ui.suggestions_source_discovery.o $
+    obj/chrome/browser/ui/webui/ntp/browser_ui.suggestions_source_top_sites.o $
+    obj/chrome/browser/ui/webui/ntp/browser_ui.thumbnail_source.o $
+    obj/chrome/browser/ui/webui/omnibox/browser_ui.omnibox_ui.o $
+    obj/chrome/browser/ui/webui/omnibox/browser_ui.omnibox_ui_handler.o $
+    obj/chrome/browser/ui/webui/options/browser_ui.advanced_options_utils_x11.o $
+    obj/chrome/browser/ui/webui/options/browser_ui.autofill_options_handler.o $
+    obj/chrome/browser/ui/webui/options/browser_ui.browser_options_handler.o $
+    obj/chrome/browser/ui/webui/options/browser_ui.certificate_manager_handler.o $
+    obj/chrome/browser/ui/webui/options/browser_ui.clear_browser_data_handler.o $
+    obj/chrome/browser/ui/webui/options/browser_ui.content_settings_handler.o $
+    obj/chrome/browser/ui/webui/options/browser_ui.cookies_view_handler.o $
+    obj/chrome/browser/ui/webui/options/browser_ui.core_options_handler.o $
+    obj/chrome/browser/ui/webui/options/browser_ui.font_settings_handler.o $
+    obj/chrome/browser/ui/webui/options/browser_ui.font_settings_utils_linux.o $
+    obj/chrome/browser/ui/webui/options/browser_ui.geolocation_options_handler.o $
+    obj/chrome/browser/ui/webui/options/browser_ui.handler_options_handler.o $
+    obj/chrome/browser/ui/webui/options/browser_ui.home_page_overlay_handler.o $
+    obj/chrome/browser/ui/webui/options/browser_ui.import_data_handler.o $
+    obj/chrome/browser/ui/webui/options/browser_ui.language_dictionary_overlay_handler.o $
+    obj/chrome/browser/ui/webui/options/browser_ui.language_options_handler.o $
+    obj/chrome/browser/ui/webui/options/browser_ui.language_options_handler_common.o $
+    obj/chrome/browser/ui/webui/options/browser_ui.managed_user_create_confirm_handler.o $
+    obj/chrome/browser/ui/webui/options/browser_ui.managed_user_learn_more_handler.o $
+    obj/chrome/browser/ui/webui/options/browser_ui.manage_profile_handler.o $
+    obj/chrome/browser/ui/webui/options/browser_ui.media_devices_selection_handler.o $
+    obj/chrome/browser/ui/webui/options/browser_ui.media_galleries_handler.o $
+    obj/chrome/browser/ui/webui/options/browser_ui.options_ui.o $
+    obj/chrome/browser/ui/webui/options/browser_ui.password_manager_handler.o $
+    obj/chrome/browser/ui/webui/options/browser_ui.pepper_flash_content_settings_utils.o $
+    obj/chrome/browser/ui/webui/options/browser_ui.reset_profile_settings_handler.o $
+    obj/chrome/browser/ui/webui/options/browser_ui.search_engine_manager_handler.o $
+    obj/chrome/browser/ui/webui/options/browser_ui.startup_pages_handler.o $
+    obj/chrome/browser/ui/webui/performance_monitor/browser_ui.performance_monitor_l10n.o $
+    obj/chrome/browser/ui/webui/performance_monitor/browser_ui.performance_monitor_ui_constants.o $
+    obj/chrome/browser/ui/webui/performance_monitor/browser_ui.performance_monitor_ui_util.o $
+    obj/chrome/browser/ui/webui/performance_monitor/browser_ui.performance_monitor_ui.o $
+    obj/chrome/browser/ui/webui/performance_monitor/browser_ui.performance_monitor_handler.o $
+    obj/chrome/browser/ui/webui/browser_ui.plugins_ui.o $
+    obj/chrome/browser/ui/webui/browser_ui.policy_ui.o $
+    obj/chrome/browser/ui/webui/predictors/browser_ui.predictors_handler.o $
+    obj/chrome/browser/ui/webui/predictors/browser_ui.predictors_ui.o $
+    obj/chrome/browser/ui/webui/print_preview/browser_ui.print_preview_handler.o $
+    obj/chrome/browser/ui/webui/print_preview/browser_ui.print_preview_ui.o $
+    obj/chrome/browser/ui/webui/print_preview/browser_ui.sticky_settings.o $
+    obj/chrome/browser/ui/webui/browser_ui.profiler_ui.o $
+    obj/chrome/browser/ui/webui/quota_internals/browser_ui.quota_internals_handler.o $
+    obj/chrome/browser/ui/webui/quota_internals/browser_ui.quota_internals_proxy.o $
+    obj/chrome/browser/ui/webui/quota_internals/browser_ui.quota_internals_types.o $
+    obj/chrome/browser/ui/webui/quota_internals/browser_ui.quota_internals_ui.o $
+    obj/chrome/browser/ui/webui/browser_ui.screenshot_source.o $
+    obj/chrome/browser/ui/webui/browser_ui.session_favicon_source.o $
+    obj/chrome/browser/ui/webui/signin/browser_ui.login_ui_service.o $
+    obj/chrome/browser/ui/webui/signin/browser_ui.login_ui_service_factory.o $
+    obj/chrome/browser/ui/webui/signin/browser_ui.profile_signin_confirmation_dialog.o $
+    obj/chrome/browser/ui/webui/signin/browser_ui.profile_signin_confirmation_ui.o $
+    obj/chrome/browser/ui/webui/browser_ui.signin_internals_ui.o $
+    obj/chrome/browser/ui/webui/suggestions_internals/browser_ui.suggestions_internals_ui.o $
+    obj/chrome/browser/ui/webui/suggestions_internals/browser_ui.suggestions_internals_ui_handler.o $
+    obj/chrome/browser/ui/webui/sync_file_system_internals/browser_ui.extension_statuses_handler.o $
+    obj/chrome/browser/ui/webui/sync_file_system_internals/browser_ui.file_metadata_handler.o $
+    obj/chrome/browser/ui/webui/sync_file_system_internals/browser_ui.sync_file_system_internals_handler.o $
+    obj/chrome/browser/ui/webui/sync_file_system_internals/browser_ui.sync_file_system_internals_ui.o $
+    obj/chrome/browser/ui/webui/browser_ui.sync_internals_ui.o $
+    obj/chrome/browser/ui/webui/sync_promo/browser_ui.sync_promo_trial.o $
+    obj/chrome/browser/ui/webui/browser_ui.sync_setup_handler.o $
+    obj/chrome/browser/ui/webui/browser_ui.theme_handler.o $
+    obj/chrome/browser/ui/webui/browser_ui.theme_source.o $
+    obj/chrome/browser/ui/webui/translate_internals/browser_ui.translate_internals_handler.o $
+    obj/chrome/browser/ui/webui/translate_internals/browser_ui.translate_internals_ui.o $
+    obj/chrome/browser/ui/webui/uber/browser_ui.uber_ui.o $
+    obj/chrome/browser/ui/webui/user_actions/browser_ui.user_actions_ui.o $
+    obj/chrome/browser/ui/webui/user_actions/browser_ui.user_actions_ui_handler.o $
+    obj/chrome/browser/ui/webui/browser_ui.version_handler.o $
+    obj/chrome/browser/ui/webui/browser_ui.version_ui.o $
+    obj/chrome/browser/ui/window_sizer/browser_ui.window_sizer.o $
+    obj/chrome/browser/ui/window_sizer/browser_ui.window_sizer_gtk.o $
+    obj/chrome/browser/ui/window_snapshot/browser_ui.window_snapshot.o $
+    obj/chrome/browser/ui/zoom/browser_ui.zoom_controller.o || $
+    obj/chrome/browser_ui.actions_depends.stamp

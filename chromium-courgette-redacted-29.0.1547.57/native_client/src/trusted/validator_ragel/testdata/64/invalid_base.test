@@ -1,0 +1,10 @@
+@hex:
+  # Invalid base register in memory offset, since it isn't R15, RBP, or RSP.
+  48 89 43 36
+  
+  
+@dis:
+     0:	48 89 43 36                                  	mov    %rax,0x36(%rbx)
+@rdfa_output:
+  0: [0] improper memory address - bad base
+  return code: 1

@@ -1,0 +1,412 @@
+defines = -DANGLE_DX11 -D_FILE_OFFSET_BITS=64 -DNO_TCMALLOC -DDISABLE_NACL $
+    -DCHROMIUM_BUILD -DUSE_DEFAULT_RENDER_THEME=1 -DUSE_LIBJPEG_TURBO=1 $
+    -DUSE_NSS=1 -DUSE_X11=1 -DENABLE_ONE_CLICK_SIGNIN $
+    -DGTK_DISABLE_SINGLE_INCLUDES=1 -DENABLE_REMOTING=1 -DENABLE_WEBRTC=1 $
+    -DENABLE_CONFIGURATION_POLICY -DENABLE_INPUT_SPEECH $
+    -DENABLE_NOTIFICATIONS -DENABLE_GPU=1 -DENABLE_EGLIMAGE=1 $
+    -DENABLE_TASK_MANAGER=1 -DENABLE_EXTENSIONS=1 $
+    -DENABLE_PLUGIN_INSTALLATION=1 -DENABLE_PLUGINS=1 $
+    -DENABLE_SESSION_SERVICE=1 -DENABLE_THEMES=1 -DENABLE_BACKGROUND=1 $
+    -DENABLE_AUTOMATION=1 -DENABLE_GOOGLE_NOW=1 $
+    -DENABLE_LANGUAGE_DETECTION=1 -DENABLE_PRINTING=1 $
+    -DENABLE_CAPTIVE_PORTAL_DETECTION=1 -DENABLE_MANAGED_USERS=1 $
+    -DGL_GLEXT_PROTOTYPES -DSK_BUILD_NO_IMAGE_ENCODE $
+    -DSK_DEFERRED_CANVAS_USES_GPIPE=1 $
+    '-DGR_GL_CUSTOM_SETUP_HEADER="GrGLConfig_chrome.h"' $
+    -DGR_AGGRESSIVE_SHADER_OPTS=1 -DSK_ENABLE_INST_COUNT=0 $
+    -DSK_USE_POSIX_THREADS -DU_USING_ICU_NAMESPACE=0 $
+    -DU_STATIC_IMPLEMENTATION -D__STDC_CONSTANT_MACROS $
+    -D__STDC_FORMAT_MACROS -DPPAPI_PROXY_IMPLEMENTATION -DNDEBUG $
+    -DOFFICIAL_BUILD -DNVALGRIND -DDYNAMIC_ANNOTATIONS_ENABLED=0 $
+    -D_FORTIFY_SOURCE=2
+includes = -I../../third_party/icu/public/i18n $
+    -I../../third_party/icu/public/common -I../../third_party/khronos $
+    -I../../gpu -I../.. -I../../skia/config $
+    -I../../third_party/skia/src/core $
+    -I../../third_party/skia/include/config $
+    -I../../third_party/skia/include/core $
+    -I../../third_party/skia/include/effects $
+    -I../../third_party/skia/include/pdf $
+    -I../../third_party/skia/include/gpu $
+    -I../../third_party/skia/include/gpu/gl $
+    -I../../third_party/skia/include/pathops $
+    -I../../third_party/skia/include/pipe $
+    -I../../third_party/skia/include/ports $
+    -I../../third_party/skia/include/utils -I../../skia/ext $
+    -I../../third_party/WebKit -I../../third_party/npapi $
+    -I../../third_party/npapi/bindings -I../../v8/include
+cflags = -fstack-protector --param=ssp-buffer-size=4  -pthread $
+    -fno-exceptions -fno-strict-aliasing -Wall -Wno-unused-parameter $
+    -Wno-missing-field-initializers -fvisibility=hidden -pipe -fPIC $
+    -Wheader-hygiene -Wno-char-subscripts -Wno-unused-function $
+    -Wno-covered-switch-default -Wstring-conversion -Wno-c++11-narrowing $
+    -Wno-reserved-user-defined-literal -fcolor-diagnostics -fPIC $
+    -fvisibility=hidden -I/usr/local/include/gtk-2.0 $
+    -I/usr/local/include/gio-unix-2.0/ -I/usr/local/include/atk-1.0 $
+    -I/usr/local/include/cairo -I/usr/local/include/pixman-1 -D_THREAD_SAFE $
+    -I/usr/local/include/gdk-pixbuf-2.0 -I/usr/local/include/libpng15 $
+    -I/usr/local/include/pango-1.0 -I/usr/local/include/freetype2 $
+    -I/usr/local/include/harfbuzz -pthread -I/usr/local/include/glib-2.0 $
+    -I/usr/local/include -pthread -I/usr/local/include/glib-2.0 $
+    -I/usr/local/include -D_THREAD_SAFE -I/usr/local/include -O2 $
+    -fdata-sections -ffunction-sections
+cflags_c = -O2 -pipe -fno-strict-aliasing
+cflags_cc = -O2 -pipe -fno-strict-aliasing -fno-rtti $
+    -fno-threadsafe-statics -fvisibility-inlines-hidden -Wsign-compare $
+    -std=gnu++11
+
+build obj/ppapi/proxy/ppapi_proxy.audio_input_resource.o: cxx $
+    ../../ppapi/proxy/audio_input_resource.cc || $
+    obj/third_party/WebKit/Source/WebKit/chromium/webkit.compile_depends.stamp
+build obj/ppapi/proxy/ppapi_proxy.broker_dispatcher.o: cxx $
+    ../../ppapi/proxy/broker_dispatcher.cc || $
+    obj/third_party/WebKit/Source/WebKit/chromium/webkit.compile_depends.stamp
+build obj/ppapi/proxy/ppapi_proxy.broker_resource.o: cxx $
+    ../../ppapi/proxy/broker_resource.cc || $
+    obj/third_party/WebKit/Source/WebKit/chromium/webkit.compile_depends.stamp
+build obj/ppapi/proxy/ppapi_proxy.browser_font_resource_trusted.o: cxx $
+    ../../ppapi/proxy/browser_font_resource_trusted.cc || $
+    obj/third_party/WebKit/Source/WebKit/chromium/webkit.compile_depends.stamp
+build obj/ppapi/proxy/ppapi_proxy.browser_font_singleton_resource.o: cxx $
+    ../../ppapi/proxy/browser_font_singleton_resource.cc || $
+    obj/third_party/WebKit/Source/WebKit/chromium/webkit.compile_depends.stamp
+build obj/ppapi/proxy/ppapi_proxy.device_enumeration_resource_helper.o: cxx $
+    ../../ppapi/proxy/device_enumeration_resource_helper.cc || $
+    obj/third_party/WebKit/Source/WebKit/chromium/webkit.compile_depends.stamp
+build obj/ppapi/proxy/ppapi_proxy.dispatcher.o: cxx $
+    ../../ppapi/proxy/dispatcher.cc || $
+    obj/third_party/WebKit/Source/WebKit/chromium/webkit.compile_depends.stamp
+build obj/ppapi/proxy/ppapi_proxy.extensions_common_resource.o: cxx $
+    ../../ppapi/proxy/extensions_common_resource.cc || $
+    obj/third_party/WebKit/Source/WebKit/chromium/webkit.compile_depends.stamp
+build obj/ppapi/proxy/ppapi_proxy.ext_crx_file_system_private_resource.o: $
+    cxx ../../ppapi/proxy/ext_crx_file_system_private_resource.cc || $
+    obj/third_party/WebKit/Source/WebKit/chromium/webkit.compile_depends.stamp
+build obj/ppapi/proxy/ppapi_proxy.file_chooser_resource.o: cxx $
+    ../../ppapi/proxy/file_chooser_resource.cc || $
+    obj/third_party/WebKit/Source/WebKit/chromium/webkit.compile_depends.stamp
+build obj/ppapi/proxy/ppapi_proxy.flash_clipboard_resource.o: cxx $
+    ../../ppapi/proxy/flash_clipboard_resource.cc || $
+    obj/third_party/WebKit/Source/WebKit/chromium/webkit.compile_depends.stamp
+build obj/ppapi/proxy/ppapi_proxy.flash_drm_resource.o: cxx $
+    ../../ppapi/proxy/flash_drm_resource.cc || $
+    obj/third_party/WebKit/Source/WebKit/chromium/webkit.compile_depends.stamp
+build obj/ppapi/proxy/ppapi_proxy.flash_file_resource.o: cxx $
+    ../../ppapi/proxy/flash_file_resource.cc || $
+    obj/third_party/WebKit/Source/WebKit/chromium/webkit.compile_depends.stamp
+build obj/ppapi/proxy/ppapi_proxy.flash_font_file_resource.o: cxx $
+    ../../ppapi/proxy/flash_font_file_resource.cc || $
+    obj/third_party/WebKit/Source/WebKit/chromium/webkit.compile_depends.stamp
+build obj/ppapi/proxy/ppapi_proxy.flash_fullscreen_resource.o: cxx $
+    ../../ppapi/proxy/flash_fullscreen_resource.cc || $
+    obj/third_party/WebKit/Source/WebKit/chromium/webkit.compile_depends.stamp
+build obj/ppapi/proxy/ppapi_proxy.flash_menu_resource.o: cxx $
+    ../../ppapi/proxy/flash_menu_resource.cc || $
+    obj/third_party/WebKit/Source/WebKit/chromium/webkit.compile_depends.stamp
+build obj/ppapi/proxy/ppapi_proxy.flash_resource.o: cxx $
+    ../../ppapi/proxy/flash_resource.cc || $
+    obj/third_party/WebKit/Source/WebKit/chromium/webkit.compile_depends.stamp
+build obj/ppapi/proxy/ppapi_proxy.file_io_resource.o: cxx $
+    ../../ppapi/proxy/file_io_resource.cc || $
+    obj/third_party/WebKit/Source/WebKit/chromium/webkit.compile_depends.stamp
+build obj/ppapi/proxy/ppapi_proxy.file_system_resource.o: cxx $
+    ../../ppapi/proxy/file_system_resource.cc || $
+    obj/third_party/WebKit/Source/WebKit/chromium/webkit.compile_depends.stamp
+build obj/ppapi/proxy/ppapi_proxy.gamepad_resource.o: cxx $
+    ../../ppapi/proxy/gamepad_resource.cc || $
+    obj/third_party/WebKit/Source/WebKit/chromium/webkit.compile_depends.stamp
+build obj/ppapi/proxy/ppapi_proxy.graphics_2d_resource.o: cxx $
+    ../../ppapi/proxy/graphics_2d_resource.cc || $
+    obj/third_party/WebKit/Source/WebKit/chromium/webkit.compile_depends.stamp
+build obj/ppapi/proxy/ppapi_proxy.host_dispatcher.o: cxx $
+    ../../ppapi/proxy/host_dispatcher.cc || $
+    obj/third_party/WebKit/Source/WebKit/chromium/webkit.compile_depends.stamp
+build obj/ppapi/proxy/ppapi_proxy.host_resolver_private_resource.o: cxx $
+    ../../ppapi/proxy/host_resolver_private_resource.cc || $
+    obj/third_party/WebKit/Source/WebKit/chromium/webkit.compile_depends.stamp
+build obj/ppapi/proxy/ppapi_proxy.host_resolver_resource.o: cxx $
+    ../../ppapi/proxy/host_resolver_resource.cc || $
+    obj/third_party/WebKit/Source/WebKit/chromium/webkit.compile_depends.stamp
+build obj/ppapi/proxy/ppapi_proxy.host_resolver_resource_base.o: cxx $
+    ../../ppapi/proxy/host_resolver_resource_base.cc || $
+    obj/third_party/WebKit/Source/WebKit/chromium/webkit.compile_depends.stamp
+build obj/ppapi/proxy/ppapi_proxy.host_var_serialization_rules.o: cxx $
+    ../../ppapi/proxy/host_var_serialization_rules.cc || $
+    obj/third_party/WebKit/Source/WebKit/chromium/webkit.compile_depends.stamp
+build obj/ppapi/proxy/ppapi_proxy.interface_list.o: cxx $
+    ../../ppapi/proxy/interface_list.cc || $
+    obj/third_party/WebKit/Source/WebKit/chromium/webkit.compile_depends.stamp
+build obj/ppapi/proxy/ppapi_proxy.interface_proxy.o: cxx $
+    ../../ppapi/proxy/interface_proxy.cc || $
+    obj/third_party/WebKit/Source/WebKit/chromium/webkit.compile_depends.stamp
+build obj/ppapi/proxy/ppapi_proxy.net_address_resource.o: cxx $
+    ../../ppapi/proxy/net_address_resource.cc || $
+    obj/third_party/WebKit/Source/WebKit/chromium/webkit.compile_depends.stamp
+build obj/ppapi/proxy/ppapi_proxy.network_proxy_resource.o: cxx $
+    ../../ppapi/proxy/network_proxy_resource.cc || $
+    obj/third_party/WebKit/Source/WebKit/chromium/webkit.compile_depends.stamp
+build obj/ppapi/proxy/ppapi_proxy.pdf_resource.o: cxx $
+    ../../ppapi/proxy/pdf_resource.cc || $
+    obj/third_party/WebKit/Source/WebKit/chromium/webkit.compile_depends.stamp
+build obj/ppapi/proxy/ppapi_proxy.plugin_array_buffer_var.o: cxx $
+    ../../ppapi/proxy/plugin_array_buffer_var.cc || $
+    obj/third_party/WebKit/Source/WebKit/chromium/webkit.compile_depends.stamp
+build obj/ppapi/proxy/ppapi_proxy.plugin_dispatcher.o: cxx $
+    ../../ppapi/proxy/plugin_dispatcher.cc || $
+    obj/third_party/WebKit/Source/WebKit/chromium/webkit.compile_depends.stamp
+build obj/ppapi/proxy/ppapi_proxy.plugin_globals.o: cxx $
+    ../../ppapi/proxy/plugin_globals.cc || $
+    obj/third_party/WebKit/Source/WebKit/chromium/webkit.compile_depends.stamp
+build obj/ppapi/proxy/ppapi_proxy.plugin_message_filter.o: cxx $
+    ../../ppapi/proxy/plugin_message_filter.cc || $
+    obj/third_party/WebKit/Source/WebKit/chromium/webkit.compile_depends.stamp
+build obj/ppapi/proxy/ppapi_proxy.plugin_resource.o: cxx $
+    ../../ppapi/proxy/plugin_resource.cc || $
+    obj/third_party/WebKit/Source/WebKit/chromium/webkit.compile_depends.stamp
+build obj/ppapi/proxy/ppapi_proxy.plugin_resource_tracker.o: cxx $
+    ../../ppapi/proxy/plugin_resource_tracker.cc || $
+    obj/third_party/WebKit/Source/WebKit/chromium/webkit.compile_depends.stamp
+build obj/ppapi/proxy/ppapi_proxy.plugin_var_serialization_rules.o: cxx $
+    ../../ppapi/proxy/plugin_var_serialization_rules.cc || $
+    obj/third_party/WebKit/Source/WebKit/chromium/webkit.compile_depends.stamp
+build obj/ppapi/proxy/ppapi_proxy.plugin_var_tracker.o: cxx $
+    ../../ppapi/proxy/plugin_var_tracker.cc || $
+    obj/third_party/WebKit/Source/WebKit/chromium/webkit.compile_depends.stamp
+build obj/ppapi/proxy/ppapi_proxy.ppapi_command_buffer_proxy.o: cxx $
+    ../../ppapi/proxy/ppapi_command_buffer_proxy.cc || $
+    obj/third_party/WebKit/Source/WebKit/chromium/webkit.compile_depends.stamp
+build obj/ppapi/proxy/ppapi_proxy.ppb_audio_proxy.o: cxx $
+    ../../ppapi/proxy/ppb_audio_proxy.cc || $
+    obj/third_party/WebKit/Source/WebKit/chromium/webkit.compile_depends.stamp
+build obj/ppapi/proxy/ppapi_proxy.ppb_broker_proxy.o: cxx $
+    ../../ppapi/proxy/ppb_broker_proxy.cc || $
+    obj/third_party/WebKit/Source/WebKit/chromium/webkit.compile_depends.stamp
+build obj/ppapi/proxy/ppapi_proxy.ppb_buffer_proxy.o: cxx $
+    ../../ppapi/proxy/ppb_buffer_proxy.cc || $
+    obj/third_party/WebKit/Source/WebKit/chromium/webkit.compile_depends.stamp
+build obj/ppapi/proxy/ppapi_proxy.ppb_core_proxy.o: cxx $
+    ../../ppapi/proxy/ppb_core_proxy.cc || $
+    obj/third_party/WebKit/Source/WebKit/chromium/webkit.compile_depends.stamp
+build obj/ppapi/proxy/ppapi_proxy.ppb_file_ref_proxy.o: cxx $
+    ../../ppapi/proxy/ppb_file_ref_proxy.cc || $
+    obj/third_party/WebKit/Source/WebKit/chromium/webkit.compile_depends.stamp
+build obj/ppapi/proxy/ppapi_proxy.ppb_flash_message_loop_proxy.o: cxx $
+    ../../ppapi/proxy/ppb_flash_message_loop_proxy.cc || $
+    obj/third_party/WebKit/Source/WebKit/chromium/webkit.compile_depends.stamp
+build obj/ppapi/proxy/ppapi_proxy.ppb_graphics_3d_proxy.o: cxx $
+    ../../ppapi/proxy/ppb_graphics_3d_proxy.cc || $
+    obj/third_party/WebKit/Source/WebKit/chromium/webkit.compile_depends.stamp
+build obj/ppapi/proxy/ppapi_proxy.ppb_image_data_proxy.o: cxx $
+    ../../ppapi/proxy/ppb_image_data_proxy.cc || $
+    obj/third_party/WebKit/Source/WebKit/chromium/webkit.compile_depends.stamp
+build obj/ppapi/proxy/ppapi_proxy.ppb_instance_proxy.o: cxx $
+    ../../ppapi/proxy/ppb_instance_proxy.cc || $
+    obj/third_party/WebKit/Source/WebKit/chromium/webkit.compile_depends.stamp
+build obj/ppapi/proxy/ppapi_proxy.ppb_message_loop_proxy.o: cxx $
+    ../../ppapi/proxy/ppb_message_loop_proxy.cc || $
+    obj/third_party/WebKit/Source/WebKit/chromium/webkit.compile_depends.stamp
+build obj/ppapi/proxy/ppapi_proxy.ppb_network_monitor_private_proxy.o: cxx $
+    ../../ppapi/proxy/ppb_network_monitor_private_proxy.cc || $
+    obj/third_party/WebKit/Source/WebKit/chromium/webkit.compile_depends.stamp
+build obj/ppapi/proxy/ppapi_proxy.ppb_tcp_server_socket_private_proxy.o: $
+    cxx ../../ppapi/proxy/ppb_tcp_server_socket_private_proxy.cc || $
+    obj/third_party/WebKit/Source/WebKit/chromium/webkit.compile_depends.stamp
+build obj/ppapi/proxy/ppapi_proxy.ppb_tcp_socket_proxy.o: cxx $
+    ../../ppapi/proxy/ppb_tcp_socket_proxy.cc || $
+    obj/third_party/WebKit/Source/WebKit/chromium/webkit.compile_depends.stamp
+build obj/ppapi/proxy/ppapi_proxy.ppb_tcp_socket_private_proxy.o: cxx $
+    ../../ppapi/proxy/ppb_tcp_socket_private_proxy.cc || $
+    obj/third_party/WebKit/Source/WebKit/chromium/webkit.compile_depends.stamp
+build obj/ppapi/proxy/ppapi_proxy.ppb_testing_proxy.o: cxx $
+    ../../ppapi/proxy/ppb_testing_proxy.cc || $
+    obj/third_party/WebKit/Source/WebKit/chromium/webkit.compile_depends.stamp
+build obj/ppapi/proxy/ppapi_proxy.ppb_var_deprecated_proxy.o: cxx $
+    ../../ppapi/proxy/ppb_var_deprecated_proxy.cc || $
+    obj/third_party/WebKit/Source/WebKit/chromium/webkit.compile_depends.stamp
+build obj/ppapi/proxy/ppapi_proxy.ppb_video_decoder_proxy.o: cxx $
+    ../../ppapi/proxy/ppb_video_decoder_proxy.cc || $
+    obj/third_party/WebKit/Source/WebKit/chromium/webkit.compile_depends.stamp
+build obj/ppapi/proxy/ppapi_proxy.ppb_x509_certificate_private_proxy.o: cxx $
+    ../../ppapi/proxy/ppb_x509_certificate_private_proxy.cc || $
+    obj/third_party/WebKit/Source/WebKit/chromium/webkit.compile_depends.stamp
+build obj/ppapi/proxy/ppapi_proxy.ppp_class_proxy.o: cxx $
+    ../../ppapi/proxy/ppp_class_proxy.cc || $
+    obj/third_party/WebKit/Source/WebKit/chromium/webkit.compile_depends.stamp
+build obj/ppapi/proxy/ppapi_proxy.ppp_content_decryptor_private_proxy.o: $
+    cxx ../../ppapi/proxy/ppp_content_decryptor_private_proxy.cc || $
+    obj/third_party/WebKit/Source/WebKit/chromium/webkit.compile_depends.stamp
+build obj/ppapi/proxy/ppapi_proxy.ppp_graphics_3d_proxy.o: cxx $
+    ../../ppapi/proxy/ppp_graphics_3d_proxy.cc || $
+    obj/third_party/WebKit/Source/WebKit/chromium/webkit.compile_depends.stamp
+build obj/ppapi/proxy/ppapi_proxy.ppp_input_event_proxy.o: cxx $
+    ../../ppapi/proxy/ppp_input_event_proxy.cc || $
+    obj/third_party/WebKit/Source/WebKit/chromium/webkit.compile_depends.stamp
+build obj/ppapi/proxy/ppapi_proxy.ppp_instance_private_proxy.o: cxx $
+    ../../ppapi/proxy/ppp_instance_private_proxy.cc || $
+    obj/third_party/WebKit/Source/WebKit/chromium/webkit.compile_depends.stamp
+build obj/ppapi/proxy/ppapi_proxy.ppp_instance_proxy.o: cxx $
+    ../../ppapi/proxy/ppp_instance_proxy.cc || $
+    obj/third_party/WebKit/Source/WebKit/chromium/webkit.compile_depends.stamp
+build obj/ppapi/proxy/ppapi_proxy.ppp_messaging_proxy.o: cxx $
+    ../../ppapi/proxy/ppp_messaging_proxy.cc || $
+    obj/third_party/WebKit/Source/WebKit/chromium/webkit.compile_depends.stamp
+build obj/ppapi/proxy/ppapi_proxy.ppp_mouse_lock_proxy.o: cxx $
+    ../../ppapi/proxy/ppp_mouse_lock_proxy.cc || $
+    obj/third_party/WebKit/Source/WebKit/chromium/webkit.compile_depends.stamp
+build obj/ppapi/proxy/ppapi_proxy.ppp_printing_proxy.o: cxx $
+    ../../ppapi/proxy/ppp_printing_proxy.cc || $
+    obj/third_party/WebKit/Source/WebKit/chromium/webkit.compile_depends.stamp
+build obj/ppapi/proxy/ppapi_proxy.ppp_text_input_proxy.o: cxx $
+    ../../ppapi/proxy/ppp_text_input_proxy.cc || $
+    obj/third_party/WebKit/Source/WebKit/chromium/webkit.compile_depends.stamp
+build obj/ppapi/proxy/ppapi_proxy.ppp_video_decoder_proxy.o: cxx $
+    ../../ppapi/proxy/ppp_video_decoder_proxy.cc || $
+    obj/third_party/WebKit/Source/WebKit/chromium/webkit.compile_depends.stamp
+build obj/ppapi/proxy/ppapi_proxy.printing_resource.o: cxx $
+    ../../ppapi/proxy/printing_resource.cc || $
+    obj/third_party/WebKit/Source/WebKit/chromium/webkit.compile_depends.stamp
+build obj/ppapi/proxy/ppapi_proxy.proxy_array_output.o: cxx $
+    ../../ppapi/proxy/proxy_array_output.cc || $
+    obj/third_party/WebKit/Source/WebKit/chromium/webkit.compile_depends.stamp
+build obj/ppapi/proxy/ppapi_proxy.proxy_channel.o: cxx $
+    ../../ppapi/proxy/proxy_channel.cc || $
+    obj/third_party/WebKit/Source/WebKit/chromium/webkit.compile_depends.stamp
+build obj/ppapi/proxy/ppapi_proxy.proxy_module.o: cxx $
+    ../../ppapi/proxy/proxy_module.cc || $
+    obj/third_party/WebKit/Source/WebKit/chromium/webkit.compile_depends.stamp
+build obj/ppapi/proxy/ppapi_proxy.proxy_object_var.o: cxx $
+    ../../ppapi/proxy/proxy_object_var.cc || $
+    obj/third_party/WebKit/Source/WebKit/chromium/webkit.compile_depends.stamp
+build obj/ppapi/proxy/ppapi_proxy.resource_creation_proxy.o: cxx $
+    ../../ppapi/proxy/resource_creation_proxy.cc || $
+    obj/third_party/WebKit/Source/WebKit/chromium/webkit.compile_depends.stamp
+build obj/ppapi/proxy/ppapi_proxy.talk_resource.o: cxx $
+    ../../ppapi/proxy/talk_resource.cc || $
+    obj/third_party/WebKit/Source/WebKit/chromium/webkit.compile_depends.stamp
+build obj/ppapi/proxy/ppapi_proxy.truetype_font_resource.o: cxx $
+    ../../ppapi/proxy/truetype_font_resource.cc || $
+    obj/third_party/WebKit/Source/WebKit/chromium/webkit.compile_depends.stamp
+build obj/ppapi/proxy/ppapi_proxy.truetype_font_singleton_resource.o: cxx $
+    ../../ppapi/proxy/truetype_font_singleton_resource.cc || $
+    obj/third_party/WebKit/Source/WebKit/chromium/webkit.compile_depends.stamp
+build obj/ppapi/proxy/ppapi_proxy.udp_socket_private_resource.o: cxx $
+    ../../ppapi/proxy/udp_socket_private_resource.cc || $
+    obj/third_party/WebKit/Source/WebKit/chromium/webkit.compile_depends.stamp
+build obj/ppapi/proxy/ppapi_proxy.udp_socket_resource.o: cxx $
+    ../../ppapi/proxy/udp_socket_resource.cc || $
+    obj/third_party/WebKit/Source/WebKit/chromium/webkit.compile_depends.stamp
+build obj/ppapi/proxy/ppapi_proxy.udp_socket_resource_base.o: cxx $
+    ../../ppapi/proxy/udp_socket_resource_base.cc || $
+    obj/third_party/WebKit/Source/WebKit/chromium/webkit.compile_depends.stamp
+build obj/ppapi/proxy/ppapi_proxy.url_loader_resource.o: cxx $
+    ../../ppapi/proxy/url_loader_resource.cc || $
+    obj/third_party/WebKit/Source/WebKit/chromium/webkit.compile_depends.stamp
+build obj/ppapi/proxy/ppapi_proxy.url_request_info_resource.o: cxx $
+    ../../ppapi/proxy/url_request_info_resource.cc || $
+    obj/third_party/WebKit/Source/WebKit/chromium/webkit.compile_depends.stamp
+build obj/ppapi/proxy/ppapi_proxy.url_response_info_resource.o: cxx $
+    ../../ppapi/proxy/url_response_info_resource.cc || $
+    obj/third_party/WebKit/Source/WebKit/chromium/webkit.compile_depends.stamp
+build obj/ppapi/proxy/ppapi_proxy.video_capture_resource.o: cxx $
+    ../../ppapi/proxy/video_capture_resource.cc || $
+    obj/third_party/WebKit/Source/WebKit/chromium/webkit.compile_depends.stamp
+build obj/ppapi/proxy/ppapi_proxy.video_destination_resource.o: cxx $
+    ../../ppapi/proxy/video_destination_resource.cc || $
+    obj/third_party/WebKit/Source/WebKit/chromium/webkit.compile_depends.stamp
+build obj/ppapi/proxy/ppapi_proxy.video_source_resource.o: cxx $
+    ../../ppapi/proxy/video_source_resource.cc || $
+    obj/third_party/WebKit/Source/WebKit/chromium/webkit.compile_depends.stamp
+build obj/ppapi/proxy/ppapi_proxy.websocket_resource.o: cxx $
+    ../../ppapi/proxy/websocket_resource.cc || $
+    obj/third_party/WebKit/Source/WebKit/chromium/webkit.compile_depends.stamp
+
+build obj/ppapi/libppapi_proxy.a: alink_thin $
+    obj/ppapi/proxy/ppapi_proxy.audio_input_resource.o $
+    obj/ppapi/proxy/ppapi_proxy.broker_dispatcher.o $
+    obj/ppapi/proxy/ppapi_proxy.broker_resource.o $
+    obj/ppapi/proxy/ppapi_proxy.browser_font_resource_trusted.o $
+    obj/ppapi/proxy/ppapi_proxy.browser_font_singleton_resource.o $
+    obj/ppapi/proxy/ppapi_proxy.device_enumeration_resource_helper.o $
+    obj/ppapi/proxy/ppapi_proxy.dispatcher.o $
+    obj/ppapi/proxy/ppapi_proxy.extensions_common_resource.o $
+    obj/ppapi/proxy/ppapi_proxy.ext_crx_file_system_private_resource.o $
+    obj/ppapi/proxy/ppapi_proxy.file_chooser_resource.o $
+    obj/ppapi/proxy/ppapi_proxy.flash_clipboard_resource.o $
+    obj/ppapi/proxy/ppapi_proxy.flash_drm_resource.o $
+    obj/ppapi/proxy/ppapi_proxy.flash_file_resource.o $
+    obj/ppapi/proxy/ppapi_proxy.flash_font_file_resource.o $
+    obj/ppapi/proxy/ppapi_proxy.flash_fullscreen_resource.o $
+    obj/ppapi/proxy/ppapi_proxy.flash_menu_resource.o $
+    obj/ppapi/proxy/ppapi_proxy.flash_resource.o $
+    obj/ppapi/proxy/ppapi_proxy.file_io_resource.o $
+    obj/ppapi/proxy/ppapi_proxy.file_system_resource.o $
+    obj/ppapi/proxy/ppapi_proxy.gamepad_resource.o $
+    obj/ppapi/proxy/ppapi_proxy.graphics_2d_resource.o $
+    obj/ppapi/proxy/ppapi_proxy.host_dispatcher.o $
+    obj/ppapi/proxy/ppapi_proxy.host_resolver_private_resource.o $
+    obj/ppapi/proxy/ppapi_proxy.host_resolver_resource.o $
+    obj/ppapi/proxy/ppapi_proxy.host_resolver_resource_base.o $
+    obj/ppapi/proxy/ppapi_proxy.host_var_serialization_rules.o $
+    obj/ppapi/proxy/ppapi_proxy.interface_list.o $
+    obj/ppapi/proxy/ppapi_proxy.interface_proxy.o $
+    obj/ppapi/proxy/ppapi_proxy.net_address_resource.o $
+    obj/ppapi/proxy/ppapi_proxy.network_proxy_resource.o $
+    obj/ppapi/proxy/ppapi_proxy.pdf_resource.o $
+    obj/ppapi/proxy/ppapi_proxy.plugin_array_buffer_var.o $
+    obj/ppapi/proxy/ppapi_proxy.plugin_dispatcher.o $
+    obj/ppapi/proxy/ppapi_proxy.plugin_globals.o $
+    obj/ppapi/proxy/ppapi_proxy.plugin_message_filter.o $
+    obj/ppapi/proxy/ppapi_proxy.plugin_resource.o $
+    obj/ppapi/proxy/ppapi_proxy.plugin_resource_tracker.o $
+    obj/ppapi/proxy/ppapi_proxy.plugin_var_serialization_rules.o $
+    obj/ppapi/proxy/ppapi_proxy.plugin_var_tracker.o $
+    obj/ppapi/proxy/ppapi_proxy.ppapi_command_buffer_proxy.o $
+    obj/ppapi/proxy/ppapi_proxy.ppb_audio_proxy.o $
+    obj/ppapi/proxy/ppapi_proxy.ppb_broker_proxy.o $
+    obj/ppapi/proxy/ppapi_proxy.ppb_buffer_proxy.o $
+    obj/ppapi/proxy/ppapi_proxy.ppb_core_proxy.o $
+    obj/ppapi/proxy/ppapi_proxy.ppb_file_ref_proxy.o $
+    obj/ppapi/proxy/ppapi_proxy.ppb_flash_message_loop_proxy.o $
+    obj/ppapi/proxy/ppapi_proxy.ppb_graphics_3d_proxy.o $
+    obj/ppapi/proxy/ppapi_proxy.ppb_image_data_proxy.o $
+    obj/ppapi/proxy/ppapi_proxy.ppb_instance_proxy.o $
+    obj/ppapi/proxy/ppapi_proxy.ppb_message_loop_proxy.o $
+    obj/ppapi/proxy/ppapi_proxy.ppb_network_monitor_private_proxy.o $
+    obj/ppapi/proxy/ppapi_proxy.ppb_tcp_server_socket_private_proxy.o $
+    obj/ppapi/proxy/ppapi_proxy.ppb_tcp_socket_proxy.o $
+    obj/ppapi/proxy/ppapi_proxy.ppb_tcp_socket_private_proxy.o $
+    obj/ppapi/proxy/ppapi_proxy.ppb_testing_proxy.o $
+    obj/ppapi/proxy/ppapi_proxy.ppb_var_deprecated_proxy.o $
+    obj/ppapi/proxy/ppapi_proxy.ppb_video_decoder_proxy.o $
+    obj/ppapi/proxy/ppapi_proxy.ppb_x509_certificate_private_proxy.o $
+    obj/ppapi/proxy/ppapi_proxy.ppp_class_proxy.o $
+    obj/ppapi/proxy/ppapi_proxy.ppp_content_decryptor_private_proxy.o $
+    obj/ppapi/proxy/ppapi_proxy.ppp_graphics_3d_proxy.o $
+    obj/ppapi/proxy/ppapi_proxy.ppp_input_event_proxy.o $
+    obj/ppapi/proxy/ppapi_proxy.ppp_instance_private_proxy.o $
+    obj/ppapi/proxy/ppapi_proxy.ppp_instance_proxy.o $
+    obj/ppapi/proxy/ppapi_proxy.ppp_messaging_proxy.o $
+    obj/ppapi/proxy/ppapi_proxy.ppp_mouse_lock_proxy.o $
+    obj/ppapi/proxy/ppapi_proxy.ppp_printing_proxy.o $
+    obj/ppapi/proxy/ppapi_proxy.ppp_text_input_proxy.o $
+    obj/ppapi/proxy/ppapi_proxy.ppp_video_decoder_proxy.o $
+    obj/ppapi/proxy/ppapi_proxy.printing_resource.o $
+    obj/ppapi/proxy/ppapi_proxy.proxy_array_output.o $
+    obj/ppapi/proxy/ppapi_proxy.proxy_channel.o $
+    obj/ppapi/proxy/ppapi_proxy.proxy_module.o $
+    obj/ppapi/proxy/ppapi_proxy.proxy_object_var.o $
+    obj/ppapi/proxy/ppapi_proxy.resource_creation_proxy.o $
+    obj/ppapi/proxy/ppapi_proxy.talk_resource.o $
+    obj/ppapi/proxy/ppapi_proxy.truetype_font_resource.o $
+    obj/ppapi/proxy/ppapi_proxy.truetype_font_singleton_resource.o $
+    obj/ppapi/proxy/ppapi_proxy.udp_socket_private_resource.o $
+    obj/ppapi/proxy/ppapi_proxy.udp_socket_resource.o $
+    obj/ppapi/proxy/ppapi_proxy.udp_socket_resource_base.o $
+    obj/ppapi/proxy/ppapi_proxy.url_loader_resource.o $
+    obj/ppapi/proxy/ppapi_proxy.url_request_info_resource.o $
+    obj/ppapi/proxy/ppapi_proxy.url_response_info_resource.o $
+    obj/ppapi/proxy/ppapi_proxy.video_capture_resource.o $
+    obj/ppapi/proxy/ppapi_proxy.video_destination_resource.o $
+    obj/ppapi/proxy/ppapi_proxy.video_source_resource.o $
+    obj/ppapi/proxy/ppapi_proxy.websocket_resource.o || $
+    obj/third_party/WebKit/public/blink.actions_depends.stamp

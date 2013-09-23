@@ -1,0 +1,583 @@
+build obj/chrome/renderer.actions_depends.stamp: stamp $
+    obj/chrome/libmetrics_proto.a $
+    obj/chrome/chrome_resources.actions_rules_copies.stamp $
+    obj/chrome/chrome_strings.actions_rules_copies.stamp $
+    obj/third_party/WebKit/public/blink.actions_depends.stamp $
+    gen/widevine_cdm_version.h obj/webkit/support/libglue.a $
+    obj/webkit/support/webkit_resources.actions_rules_copies.stamp $
+    obj/chrome/libsafe_browsing_proto.a
+
+build obj/chrome/renderer.compile_depends.stamp: stamp $
+    obj/chrome/metrics_proto.actions_rules_copies.stamp $
+    obj/chrome/chrome_resources.actions_rules_copies.stamp $
+    obj/chrome/chrome_strings.actions_rules_copies.stamp $
+    obj/third_party/WebKit/Source/WebKit/chromium/webkit.compile_depends.stamp $
+    gen/widevine_cdm_version.h $
+    obj/webkit/support/glue.compile_depends.stamp $
+    obj/webkit/support/webkit_resources.actions_rules_copies.stamp $
+    obj/chrome/safe_browsing_proto.actions_rules_copies.stamp
+
+defines = -DANGLE_DX11 -D_FILE_OFFSET_BITS=64 -DNO_TCMALLOC -DDISABLE_NACL $
+    -DCHROMIUM_BUILD -DUSE_DEFAULT_RENDER_THEME=1 -DUSE_LIBJPEG_TURBO=1 $
+    -DUSE_NSS=1 -DUSE_X11=1 -DENABLE_ONE_CLICK_SIGNIN $
+    -DGTK_DISABLE_SINGLE_INCLUDES=1 -DENABLE_REMOTING=1 -DENABLE_WEBRTC=1 $
+    -DENABLE_CONFIGURATION_POLICY -DENABLE_INPUT_SPEECH $
+    -DENABLE_NOTIFICATIONS -DENABLE_GPU=1 -DENABLE_EGLIMAGE=1 $
+    -DENABLE_TASK_MANAGER=1 -DENABLE_EXTENSIONS=1 $
+    -DENABLE_PLUGIN_INSTALLATION=1 -DENABLE_PLUGINS=1 $
+    -DENABLE_SESSION_SERVICE=1 -DENABLE_THEMES=1 -DENABLE_BACKGROUND=1 $
+    -DENABLE_AUTOMATION=1 -DENABLE_GOOGLE_NOW=1 $
+    -DENABLE_LANGUAGE_DETECTION=1 -DENABLE_PRINTING=1 $
+    -DENABLE_CAPTIVE_PORTAL_DETECTION=1 -DENABLE_MANAGED_USERS=1 $
+    -DNACL_TARGET_SUBARCH=64 -DNACL_TARGET_ARCH=x86 -DNACL_BUILD_SUBARCH=64 $
+    -DNACL_BUILD_ARCH=x86 -DFULL_SAFE_BROWSING -DGL_GLEXT_PROTOTYPES $
+    -DLIBPEERCONNECTION_LIB=1 -DPROTOBUF_USE_DLLS -DGOOGLE_PROTOBUF_NO_RTTI $
+    -DGOOGLE_PROTOBUF_NO_STATIC_INITIALIZER -DSK_BUILD_NO_IMAGE_ENCODE $
+    -DSK_DEFERRED_CANVAS_USES_GPIPE=1 $
+    '-DGR_GL_CUSTOM_SETUP_HEADER="GrGLConfig_chrome.h"' $
+    -DGR_AGGRESSIVE_SHADER_OPTS=1 -DSK_ENABLE_INST_COUNT=0 $
+    -DSK_USE_POSIX_THREADS -DHUNSPELL_STATIC -DHUNSPELL_CHROME_CLIENT $
+    -DUSE_HUNSPELL -DU_USING_ICU_NAMESPACE=0 -DU_STATIC_IMPLEMENTATION $
+    -DCLD_WINDOWS -DCOMPILER_GCC -D__STDC_CONSTANT_MACROS $
+    -D__STDC_FORMAT_MACROS -DNDEBUG -DOFFICIAL_BUILD -DNVALGRIND $
+    -DDYNAMIC_ANNOTATIONS_ENABLED=0 -D_FORTIFY_SOURCE=2
+includes = -I../../third_party/icu/public/common $
+    -I../../third_party/icu/public/i18n -I../.. -Igen $
+    -I../../third_party/cld -I../../third_party/khronos -I../../gpu $
+    -Igen/protoc_out -I../../third_party/protobuf $
+    -I../../third_party/protobuf/src -I../../third_party/sqlite $
+    -Igen/chrome -I../../skia/config -I../../third_party/skia/src/core $
+    -I../../third_party/skia/include/config $
+    -I../../third_party/skia/include/core $
+    -I../../third_party/skia/include/effects $
+    -I../../third_party/skia/include/pdf $
+    -I../../third_party/skia/include/gpu $
+    -I../../third_party/skia/include/gpu/gl $
+    -I../../third_party/skia/include/pathops $
+    -I../../third_party/skia/include/pipe $
+    -I../../third_party/skia/include/ports $
+    -I../../third_party/skia/include/utils -I../../skia/ext $
+    -I../../third_party/npapi -I../../third_party/npapi/bindings $
+    -I../../third_party/re2 -I../../third_party/WebKit -I../../v8/include $
+    -Igen/webkit
+cflags = -fstack-protector --param=ssp-buffer-size=4  -pthread $
+    -fno-exceptions -fno-strict-aliasing -Wall -Wno-unused-parameter $
+    -Wno-missing-field-initializers -fvisibility=hidden -pipe -fPIC $
+    -Wheader-hygiene -Wno-char-subscripts -Wno-unused-function $
+    -Wno-covered-switch-default -Wstring-conversion -Wno-c++11-narrowing $
+    -Wno-reserved-user-defined-literal -fcolor-diagnostics $
+    -I/usr/local/include/gtk-2.0 -I/usr/local/include/gio-unix-2.0/ $
+    -I/usr/local/include/atk-1.0 -I/usr/local/include/cairo $
+    -I/usr/local/include/pixman-1 -D_THREAD_SAFE $
+    -I/usr/local/include/gdk-pixbuf-2.0 -I/usr/local/include/libpng15 $
+    -I/usr/local/include/pango-1.0 -I/usr/local/include/freetype2 $
+    -I/usr/local/include/harfbuzz -pthread -I/usr/local/include/glib-2.0 $
+    -I/usr/local/include -pthread -I/usr/local/include/glib-2.0 $
+    -I/usr/local/include -D_THREAD_SAFE -I/usr/local/include $
+    -Wexit-time-destructors -O2 -fdata-sections -ffunction-sections
+cflags_c = -O2 -pipe -fno-strict-aliasing
+cflags_cc = -O2 -pipe -fno-strict-aliasing -fno-rtti $
+    -fno-threadsafe-statics -fvisibility-inlines-hidden -Wsign-compare $
+    -std=gnu++11
+
+build obj/chrome/renderer/renderer.benchmarking_extension.o: cxx $
+    ../../chrome/renderer/benchmarking_extension.cc || $
+    obj/chrome/renderer.compile_depends.stamp
+build obj/chrome/renderer/extensions/renderer.api_activity_logger.o: cxx $
+    ../../chrome/renderer/extensions/api_activity_logger.cc || $
+    obj/chrome/renderer.compile_depends.stamp
+build obj/chrome/renderer/extensions/renderer.api_definitions_natives.o: $
+    cxx ../../chrome/renderer/extensions/api_definitions_natives.cc || $
+    obj/chrome/renderer.compile_depends.stamp
+build obj/chrome/renderer/extensions/renderer.app_bindings.o: cxx $
+    ../../chrome/renderer/extensions/app_bindings.cc || $
+    obj/chrome/renderer.compile_depends.stamp
+build $
+    obj/chrome/renderer/extensions/renderer.app_runtime_custom_bindings.o: $
+    cxx ../../chrome/renderer/extensions/app_runtime_custom_bindings.cc || $
+    obj/chrome/renderer.compile_depends.stamp
+build obj/chrome/renderer/extensions/renderer.app_window_custom_bindings.o: $
+    cxx ../../chrome/renderer/extensions/app_window_custom_bindings.cc || $
+    obj/chrome/renderer.compile_depends.stamp
+build $
+    obj/chrome/renderer/extensions/renderer.binding_generating_native_handler.o: $
+    cxx $
+    ../../chrome/renderer/extensions/binding_generating_native_handler.cc $
+    || obj/chrome/renderer.compile_depends.stamp
+build obj/chrome/renderer/extensions/renderer.chrome_v8_context.o: cxx $
+    ../../chrome/renderer/extensions/chrome_v8_context.cc || $
+    obj/chrome/renderer.compile_depends.stamp
+build obj/chrome/renderer/extensions/renderer.chrome_v8_context_set.o: cxx $
+    ../../chrome/renderer/extensions/chrome_v8_context_set.cc || $
+    obj/chrome/renderer.compile_depends.stamp
+build obj/chrome/renderer/extensions/renderer.chrome_v8_extension.o: cxx $
+    ../../chrome/renderer/extensions/chrome_v8_extension.cc || $
+    obj/chrome/renderer.compile_depends.stamp
+build $
+    obj/chrome/renderer/extensions/renderer.chrome_v8_extension_handler.o: $
+    cxx ../../chrome/renderer/extensions/chrome_v8_extension_handler.cc || $
+    obj/chrome/renderer.compile_depends.stamp
+build obj/chrome/renderer/extensions/renderer.console.o: cxx $
+    ../../chrome/renderer/extensions/console.cc || $
+    obj/chrome/renderer.compile_depends.stamp
+build obj/chrome/renderer/extensions/renderer.content_watcher.o: cxx $
+    ../../chrome/renderer/extensions/content_watcher.cc || $
+    obj/chrome/renderer.compile_depends.stamp
+build $
+    obj/chrome/renderer/extensions/renderer.context_menus_custom_bindings.o: $
+    cxx ../../chrome/renderer/extensions/context_menus_custom_bindings.cc $
+    || obj/chrome/renderer.compile_depends.stamp
+build obj/chrome/renderer/extensions/renderer.dispatcher.o: cxx $
+    ../../chrome/renderer/extensions/dispatcher.cc || $
+    obj/chrome/renderer.compile_depends.stamp
+build obj/chrome/renderer/extensions/renderer.dom_activity_logger.o: cxx $
+    ../../chrome/renderer/extensions/dom_activity_logger.cc || $
+    obj/chrome/renderer.compile_depends.stamp
+build obj/chrome/renderer/extensions/renderer.event_bindings.o: cxx $
+    ../../chrome/renderer/extensions/event_bindings.cc || $
+    obj/chrome/renderer.compile_depends.stamp
+build obj/chrome/renderer/extensions/renderer.extension_custom_bindings.o: $
+    cxx ../../chrome/renderer/extensions/extension_custom_bindings.cc || $
+    obj/chrome/renderer.compile_depends.stamp
+build obj/chrome/renderer/extensions/renderer.extension_helper.o: cxx $
+    ../../chrome/renderer/extensions/extension_helper.cc || $
+    obj/chrome/renderer.compile_depends.stamp
+build $
+    obj/chrome/renderer/extensions/renderer.feedback_private_custom_bindings.o: $
+    cxx $
+    ../../chrome/renderer/extensions/feedback_private_custom_bindings.cc || $
+    obj/chrome/renderer.compile_depends.stamp
+build $
+    obj/chrome/renderer/extensions/renderer.file_browser_handler_custom_bindings.o: $
+    cxx $
+    ../../chrome/renderer/extensions/file_browser_handler_custom_bindings.cc $
+    || obj/chrome/renderer.compile_depends.stamp
+build $
+    obj/chrome/renderer/extensions/renderer.file_browser_private_custom_bindings.o: $
+    cxx $
+    ../../chrome/renderer/extensions/file_browser_private_custom_bindings.cc $
+    || obj/chrome/renderer.compile_depends.stamp
+build obj/chrome/renderer/extensions/renderer.file_system_natives.o: cxx $
+    ../../chrome/renderer/extensions/file_system_natives.cc || $
+    obj/chrome/renderer.compile_depends.stamp
+build obj/chrome/renderer/extensions/renderer.i18n_custom_bindings.o: cxx $
+    ../../chrome/renderer/extensions/i18n_custom_bindings.cc || $
+    obj/chrome/renderer.compile_depends.stamp
+build obj/chrome/renderer/extensions/renderer.logging_native_handler.o: cxx $
+    ../../chrome/renderer/extensions/logging_native_handler.cc || $
+    obj/chrome/renderer.compile_depends.stamp
+build $
+    obj/chrome/renderer/extensions/renderer.media_galleries_custom_bindings.o: $
+    cxx ../../chrome/renderer/extensions/media_galleries_custom_bindings.cc $
+    || obj/chrome/renderer.compile_depends.stamp
+build obj/chrome/renderer/extensions/renderer.miscellaneous_bindings.o: cxx $
+    ../../chrome/renderer/extensions/miscellaneous_bindings.cc || $
+    obj/chrome/renderer.compile_depends.stamp
+build obj/chrome/renderer/extensions/renderer.module_system.o: cxx $
+    ../../chrome/renderer/extensions/module_system.cc || $
+    obj/chrome/renderer.compile_depends.stamp
+build obj/chrome/renderer/extensions/renderer.native_handler.o: cxx $
+    ../../chrome/renderer/extensions/native_handler.cc || $
+    obj/chrome/renderer.compile_depends.stamp
+build $
+    obj/chrome/renderer/extensions/renderer.object_backed_native_handler.o: $
+    cxx ../../chrome/renderer/extensions/object_backed_native_handler.cc || $
+    obj/chrome/renderer.compile_depends.stamp
+build $
+    obj/chrome/renderer/extensions/renderer.page_actions_custom_bindings.o: $
+    cxx ../../chrome/renderer/extensions/page_actions_custom_bindings.cc || $
+    obj/chrome/renderer.compile_depends.stamp
+build $
+    obj/chrome/renderer/extensions/renderer.page_capture_custom_bindings.o: $
+    cxx ../../chrome/renderer/extensions/page_capture_custom_bindings.cc || $
+    obj/chrome/renderer.compile_depends.stamp
+build $
+    obj/chrome/renderer/extensions/renderer.renderer_permissions_policy_delegate.o: $
+    cxx $
+    ../../chrome/renderer/extensions/renderer_permissions_policy_delegate.cc $
+    || obj/chrome/renderer.compile_depends.stamp
+build $
+    obj/chrome/renderer/extensions/renderer.render_view_observer_natives.o: $
+    cxx ../../chrome/renderer/extensions/render_view_observer_natives.cc || $
+    obj/chrome/renderer.compile_depends.stamp
+build obj/chrome/renderer/extensions/renderer.request_sender.o: cxx $
+    ../../chrome/renderer/extensions/request_sender.cc || $
+    obj/chrome/renderer.compile_depends.stamp
+build obj/chrome/renderer/extensions/renderer.resource_request_policy.o: $
+    cxx ../../chrome/renderer/extensions/resource_request_policy.cc || $
+    obj/chrome/renderer.compile_depends.stamp
+build obj/chrome/renderer/extensions/renderer.runtime_custom_bindings.o: $
+    cxx ../../chrome/renderer/extensions/runtime_custom_bindings.cc || $
+    obj/chrome/renderer.compile_depends.stamp
+build obj/chrome/renderer/extensions/renderer.safe_builtins.o: cxx $
+    ../../chrome/renderer/extensions/safe_builtins.cc || $
+    obj/chrome/renderer.compile_depends.stamp
+build obj/chrome/renderer/extensions/renderer.send_request_natives.o: cxx $
+    ../../chrome/renderer/extensions/send_request_natives.cc || $
+    obj/chrome/renderer.compile_depends.stamp
+build obj/chrome/renderer/extensions/renderer.set_icon_natives.o: cxx $
+    ../../chrome/renderer/extensions/set_icon_natives.cc || $
+    obj/chrome/renderer.compile_depends.stamp
+build $
+    obj/chrome/renderer/extensions/renderer.sync_file_system_custom_bindings.o: $
+    cxx $
+    ../../chrome/renderer/extensions/sync_file_system_custom_bindings.cc || $
+    obj/chrome/renderer.compile_depends.stamp
+build obj/chrome/renderer/extensions/renderer.tab_finder.o: cxx $
+    ../../chrome/renderer/extensions/tab_finder.cc || $
+    obj/chrome/renderer.compile_depends.stamp
+build obj/chrome/renderer/extensions/renderer.tabs_custom_bindings.o: cxx $
+    ../../chrome/renderer/extensions/tabs_custom_bindings.cc || $
+    obj/chrome/renderer.compile_depends.stamp
+build obj/chrome/renderer/extensions/renderer.tts_custom_bindings.o: cxx $
+    ../../chrome/renderer/extensions/tts_custom_bindings.cc || $
+    obj/chrome/renderer.compile_depends.stamp
+build obj/chrome/renderer/extensions/renderer.user_script_scheduler.o: cxx $
+    ../../chrome/renderer/extensions/user_script_scheduler.cc || $
+    obj/chrome/renderer.compile_depends.stamp
+build obj/chrome/renderer/extensions/renderer.user_script_slave.o: cxx $
+    ../../chrome/renderer/extensions/user_script_slave.cc || $
+    obj/chrome/renderer.compile_depends.stamp
+build obj/chrome/renderer/extensions/renderer.v8_schema_registry.o: cxx $
+    ../../chrome/renderer/extensions/v8_schema_registry.cc || $
+    obj/chrome/renderer.compile_depends.stamp
+build $
+    obj/chrome/renderer/extensions/renderer.web_request_custom_bindings.o: $
+    cxx ../../chrome/renderer/extensions/web_request_custom_bindings.cc || $
+    obj/chrome/renderer.compile_depends.stamp
+build obj/chrome/renderer/extensions/renderer.webstore_bindings.o: cxx $
+    ../../chrome/renderer/extensions/webstore_bindings.cc || $
+    obj/chrome/renderer.compile_depends.stamp
+build obj/chrome/renderer/renderer.frame_sniffer.o: cxx $
+    ../../chrome/renderer/frame_sniffer.cc || $
+    obj/chrome/renderer.compile_depends.stamp
+build obj/chrome/renderer/renderer.loadtimes_extension_bindings.o: cxx $
+    ../../chrome/renderer/loadtimes_extension_bindings.cc || $
+    obj/chrome/renderer.compile_depends.stamp
+build obj/chrome/renderer/media/renderer.webrtc_logging_handler_impl.o: cxx $
+    ../../chrome/renderer/media/webrtc_logging_handler_impl.cc || $
+    obj/chrome/renderer.compile_depends.stamp
+build obj/chrome/renderer/media/renderer.webrtc_logging_message_filter.o: $
+    cxx ../../chrome/renderer/media/webrtc_logging_message_filter.cc || $
+    obj/chrome/renderer.compile_depends.stamp
+build obj/chrome/renderer/net/renderer.net_error_helper.o: cxx $
+    ../../chrome/renderer/net/net_error_helper.cc || $
+    obj/chrome/renderer.compile_depends.stamp
+build obj/chrome/renderer/net/renderer.predictor_queue.o: cxx $
+    ../../chrome/renderer/net/predictor_queue.cc || $
+    obj/chrome/renderer.compile_depends.stamp
+build obj/chrome/renderer/net/renderer.prescient_networking_dispatcher.o: $
+    cxx ../../chrome/renderer/net/prescient_networking_dispatcher.cc || $
+    obj/chrome/renderer.compile_depends.stamp
+build obj/chrome/renderer/net/renderer.renderer_net_predictor.o: cxx $
+    ../../chrome/renderer/net/renderer_net_predictor.cc || $
+    obj/chrome/renderer.compile_depends.stamp
+build obj/chrome/renderer/renderer.net_benchmarking_extension.o: cxx $
+    ../../chrome/renderer/net_benchmarking_extension.cc || $
+    obj/chrome/renderer.compile_depends.stamp
+build obj/chrome/renderer/renderer.one_click_signin_agent.o: cxx $
+    ../../chrome/renderer/one_click_signin_agent.cc || $
+    obj/chrome/renderer.compile_depends.stamp
+build obj/chrome/renderer/renderer.playback_extension.o: cxx $
+    ../../chrome/renderer/playback_extension.cc || $
+    obj/chrome/renderer.compile_depends.stamp
+build obj/chrome/renderer/renderer.resource_bundle_source_map.o: cxx $
+    ../../chrome/renderer/resource_bundle_source_map.cc || $
+    obj/chrome/renderer.compile_depends.stamp
+build obj/chrome/renderer/renderer.chrome_content_renderer_client.o: cxx $
+    ../../chrome/renderer/chrome_content_renderer_client.cc || $
+    obj/chrome/renderer.compile_depends.stamp
+build obj/chrome/renderer/renderer.chrome_render_process_observer.o: cxx $
+    ../../chrome/renderer/chrome_render_process_observer.cc || $
+    obj/chrome/renderer.compile_depends.stamp
+build obj/chrome/renderer/renderer.chrome_render_view_observer.o: cxx $
+    ../../chrome/renderer/chrome_render_view_observer.cc || $
+    obj/chrome/renderer.compile_depends.stamp
+build obj/chrome/renderer/renderer.content_settings_observer.o: cxx $
+    ../../chrome/renderer/content_settings_observer.cc || $
+    obj/chrome/renderer.compile_depends.stamp
+build obj/chrome/renderer/renderer.external_host_bindings.o: cxx $
+    ../../chrome/renderer/external_host_bindings.cc || $
+    obj/chrome/renderer.compile_depends.stamp
+build obj/chrome/renderer/renderer.external_extension.o: cxx $
+    ../../chrome/renderer/external_extension.cc || $
+    obj/chrome/renderer.compile_depends.stamp
+build obj/chrome/renderer/renderer.page_load_histograms.o: cxx $
+    ../../chrome/renderer/page_load_histograms.cc || $
+    obj/chrome/renderer.compile_depends.stamp
+build obj/chrome/renderer/pepper/renderer.chrome_ppapi_interfaces.o: cxx $
+    ../../chrome/renderer/pepper/chrome_ppapi_interfaces.cc || $
+    obj/chrome/renderer.compile_depends.stamp
+build $
+    obj/chrome/renderer/pepper/renderer.chrome_renderer_pepper_host_factory.o: $
+    cxx ../../chrome/renderer/pepper/chrome_renderer_pepper_host_factory.cc $
+    || obj/chrome/renderer.compile_depends.stamp
+build obj/chrome/renderer/pepper/renderer.pepper_extensions_common_host.o: $
+    cxx ../../chrome/renderer/pepper/pepper_extensions_common_host.cc || $
+    obj/chrome/renderer.compile_depends.stamp
+build obj/chrome/renderer/pepper/renderer.pepper_flash_drm_renderer_host.o: $
+    cxx ../../chrome/renderer/pepper/pepper_flash_drm_renderer_host.cc || $
+    obj/chrome/renderer.compile_depends.stamp
+build obj/chrome/renderer/pepper/renderer.pepper_flash_font_file_host.o: $
+    cxx ../../chrome/renderer/pepper/pepper_flash_font_file_host.cc || $
+    obj/chrome/renderer.compile_depends.stamp
+build obj/chrome/renderer/pepper/renderer.pepper_flash_fullscreen_host.o: $
+    cxx ../../chrome/renderer/pepper/pepper_flash_fullscreen_host.cc || $
+    obj/chrome/renderer.compile_depends.stamp
+build obj/chrome/renderer/pepper/renderer.pepper_flash_menu_host.o: cxx $
+    ../../chrome/renderer/pepper/pepper_flash_menu_host.cc || $
+    obj/chrome/renderer.compile_depends.stamp
+build obj/chrome/renderer/pepper/renderer.pepper_flash_renderer_host.o: cxx $
+    ../../chrome/renderer/pepper/pepper_flash_renderer_host.cc || $
+    obj/chrome/renderer.compile_depends.stamp
+build obj/chrome/renderer/pepper/renderer.pepper_helper.o: cxx $
+    ../../chrome/renderer/pepper/pepper_helper.cc || $
+    obj/chrome/renderer.compile_depends.stamp
+build obj/chrome/renderer/pepper/renderer.pepper_pdf_host.o: cxx $
+    ../../chrome/renderer/pepper/pepper_pdf_host.cc || $
+    obj/chrome/renderer.compile_depends.stamp
+build $
+    obj/chrome/renderer/pepper/renderer.pepper_shared_memory_message_filter.o: $
+    cxx ../../chrome/renderer/pepper/pepper_shared_memory_message_filter.cc $
+    || obj/chrome/renderer.compile_depends.stamp
+build obj/chrome/renderer/pepper/renderer.ppb_nacl_private_impl.o: cxx $
+    ../../chrome/renderer/pepper/ppb_nacl_private_impl.cc || $
+    obj/chrome/renderer.compile_depends.stamp
+build obj/chrome/renderer/pepper/renderer.ppb_pdf_impl.o: cxx $
+    ../../chrome/renderer/pepper/ppb_pdf_impl.cc || $
+    obj/chrome/renderer.compile_depends.stamp
+build obj/chrome/renderer/plugins/renderer.plugin_placeholder.o: cxx $
+    ../../chrome/renderer/plugins/plugin_placeholder.cc || $
+    obj/chrome/renderer.compile_depends.stamp
+build obj/chrome/renderer/plugins/renderer.plugin_uma.o: cxx $
+    ../../chrome/renderer/plugins/plugin_uma.cc || $
+    obj/chrome/renderer.compile_depends.stamp
+build obj/chrome/renderer/plugins/renderer.webview_plugin.o: cxx $
+    ../../chrome/renderer/plugins/webview_plugin.cc || $
+    obj/chrome/renderer.compile_depends.stamp
+build obj/chrome/renderer/prerender/renderer.prerender_dispatcher.o: cxx $
+    ../../chrome/renderer/prerender/prerender_dispatcher.cc || $
+    obj/chrome/renderer.compile_depends.stamp
+build obj/chrome/renderer/prerender/renderer.prerender_extra_data.o: cxx $
+    ../../chrome/renderer/prerender/prerender_extra_data.cc || $
+    obj/chrome/renderer.compile_depends.stamp
+build obj/chrome/renderer/prerender/renderer.prerender_helper.o: cxx $
+    ../../chrome/renderer/prerender/prerender_helper.cc || $
+    obj/chrome/renderer.compile_depends.stamp
+build obj/chrome/renderer/prerender/renderer.prerender_webmediaplayer.o: $
+    cxx ../../chrome/renderer/prerender/prerender_webmediaplayer.cc || $
+    obj/chrome/renderer.compile_depends.stamp
+build obj/chrome/renderer/prerender/renderer.prerenderer_client.o: cxx $
+    ../../chrome/renderer/prerender/prerenderer_client.cc || $
+    obj/chrome/renderer.compile_depends.stamp
+build obj/chrome/renderer/printing/renderer.print_web_view_helper.o: cxx $
+    ../../chrome/renderer/printing/print_web_view_helper.cc || $
+    obj/chrome/renderer.compile_depends.stamp
+build obj/chrome/renderer/printing/renderer.print_web_view_helper_linux.o: $
+    cxx ../../chrome/renderer/printing/print_web_view_helper_linux.cc || $
+    obj/chrome/renderer.compile_depends.stamp
+build obj/chrome/renderer/safe_browsing/renderer.feature_extractor_clock.o: $
+    cxx ../../chrome/renderer/safe_browsing/feature_extractor_clock.cc || $
+    obj/chrome/renderer.compile_depends.stamp
+build obj/chrome/renderer/safe_browsing/renderer.features.o: cxx $
+    ../../chrome/renderer/safe_browsing/features.cc || $
+    obj/chrome/renderer.compile_depends.stamp
+build obj/chrome/renderer/safe_browsing/renderer.malware_dom_details.o: cxx $
+    ../../chrome/renderer/safe_browsing/malware_dom_details.cc || $
+    obj/chrome/renderer.compile_depends.stamp
+build obj/chrome/renderer/safe_browsing/renderer.murmurhash3_util.o: cxx $
+    ../../chrome/renderer/safe_browsing/murmurhash3_util.cc || $
+    obj/chrome/renderer.compile_depends.stamp
+build obj/chrome/renderer/safe_browsing/renderer.phishing_classifier.o: cxx $
+    ../../chrome/renderer/safe_browsing/phishing_classifier.cc || $
+    obj/chrome/renderer.compile_depends.stamp
+build $
+    obj/chrome/renderer/safe_browsing/renderer.phishing_classifier_delegate.o: $
+    cxx ../../chrome/renderer/safe_browsing/phishing_classifier_delegate.cc $
+    || obj/chrome/renderer.compile_depends.stamp
+build $
+    obj/chrome/renderer/safe_browsing/renderer.phishing_dom_feature_extractor.o: $
+    cxx $
+    ../../chrome/renderer/safe_browsing/phishing_dom_feature_extractor.cc $
+    || obj/chrome/renderer.compile_depends.stamp
+build $
+    obj/chrome/renderer/safe_browsing/renderer.phishing_term_feature_extractor.o: $
+    cxx $
+    ../../chrome/renderer/safe_browsing/phishing_term_feature_extractor.cc $
+    || obj/chrome/renderer.compile_depends.stamp
+build $
+    obj/chrome/renderer/safe_browsing/renderer.phishing_url_feature_extractor.o: $
+    cxx $
+    ../../chrome/renderer/safe_browsing/phishing_url_feature_extractor.cc $
+    || obj/chrome/renderer.compile_depends.stamp
+build obj/chrome/renderer/safe_browsing/renderer.scorer.o: cxx $
+    ../../chrome/renderer/safe_browsing/scorer.cc || $
+    obj/chrome/renderer.compile_depends.stamp
+build obj/chrome/renderer/searchbox/renderer.searchbox.o: cxx $
+    ../../chrome/renderer/searchbox/searchbox.cc || $
+    obj/chrome/renderer.compile_depends.stamp
+build obj/chrome/renderer/searchbox/renderer.searchbox_extension.o: cxx $
+    ../../chrome/renderer/searchbox/searchbox_extension.cc || $
+    obj/chrome/renderer.compile_depends.stamp
+build obj/chrome/renderer/renderer.security_filter_peer.o: cxx $
+    ../../chrome/renderer/security_filter_peer.cc || $
+    obj/chrome/renderer.compile_depends.stamp
+build obj/chrome/renderer/spellchecker/renderer.custom_dictionary_engine.o: $
+    cxx ../../chrome/renderer/spellchecker/custom_dictionary_engine.cc || $
+    obj/chrome/renderer.compile_depends.stamp
+build obj/chrome/renderer/spellchecker/renderer.hunspell_engine.o: cxx $
+    ../../chrome/renderer/spellchecker/hunspell_engine.cc || $
+    obj/chrome/renderer.compile_depends.stamp
+build obj/chrome/renderer/spellchecker/renderer.spellcheck_provider.o: cxx $
+    ../../chrome/renderer/spellchecker/spellcheck_provider.cc || $
+    obj/chrome/renderer.compile_depends.stamp
+build obj/chrome/renderer/spellchecker/renderer.spellcheck.o: cxx $
+    ../../chrome/renderer/spellchecker/spellcheck.cc || $
+    obj/chrome/renderer.compile_depends.stamp
+build obj/chrome/renderer/spellchecker/renderer.spellcheck_language.o: cxx $
+    ../../chrome/renderer/spellchecker/spellcheck_language.cc || $
+    obj/chrome/renderer.compile_depends.stamp
+build obj/chrome/renderer/spellchecker/renderer.spellcheck_worditerator.o: $
+    cxx ../../chrome/renderer/spellchecker/spellcheck_worditerator.cc || $
+    obj/chrome/renderer.compile_depends.stamp
+build obj/chrome/renderer/renderer.static_v8_external_string_resource.o: $
+    cxx ../../chrome/renderer/static_v8_external_string_resource.cc || $
+    obj/chrome/renderer.compile_depends.stamp
+build obj/chrome/renderer/renderer.tts_dispatcher.o: cxx $
+    ../../chrome/renderer/tts_dispatcher.cc || $
+    obj/chrome/renderer.compile_depends.stamp
+build obj/chrome/renderer/translate/renderer.translate_helper.o: cxx $
+    ../../chrome/renderer/translate/translate_helper.cc || $
+    obj/chrome/renderer.compile_depends.stamp
+build obj/chrome/renderer/translate/renderer.translate_helper_metrics.o: $
+    cxx ../../chrome/renderer/translate/translate_helper_metrics.cc || $
+    obj/chrome/renderer.compile_depends.stamp
+build obj/chrome/renderer/renderer.validation_message_agent.o: cxx $
+    ../../chrome/renderer/validation_message_agent.cc || $
+    obj/chrome/renderer.compile_depends.stamp
+build obj/chrome/renderer/renderer.web_apps.o: cxx $
+    ../../chrome/renderer/web_apps.cc || $
+    obj/chrome/renderer.compile_depends.stamp
+build obj/chrome/renderer/renderer.webview_color_overlay.o: cxx $
+    ../../chrome/renderer/webview_color_overlay.cc || $
+    obj/chrome/renderer.compile_depends.stamp
+
+build obj/chrome/librenderer.a: alink_thin $
+    obj/chrome/renderer/renderer.benchmarking_extension.o $
+    obj/chrome/renderer/extensions/renderer.api_activity_logger.o $
+    obj/chrome/renderer/extensions/renderer.api_definitions_natives.o $
+    obj/chrome/renderer/extensions/renderer.app_bindings.o $
+    obj/chrome/renderer/extensions/renderer.app_runtime_custom_bindings.o $
+    obj/chrome/renderer/extensions/renderer.app_window_custom_bindings.o $
+    obj/chrome/renderer/extensions/renderer.binding_generating_native_handler.o $
+    obj/chrome/renderer/extensions/renderer.chrome_v8_context.o $
+    obj/chrome/renderer/extensions/renderer.chrome_v8_context_set.o $
+    obj/chrome/renderer/extensions/renderer.chrome_v8_extension.o $
+    obj/chrome/renderer/extensions/renderer.chrome_v8_extension_handler.o $
+    obj/chrome/renderer/extensions/renderer.console.o $
+    obj/chrome/renderer/extensions/renderer.content_watcher.o $
+    obj/chrome/renderer/extensions/renderer.context_menus_custom_bindings.o $
+    obj/chrome/renderer/extensions/renderer.dispatcher.o $
+    obj/chrome/renderer/extensions/renderer.dom_activity_logger.o $
+    obj/chrome/renderer/extensions/renderer.event_bindings.o $
+    obj/chrome/renderer/extensions/renderer.extension_custom_bindings.o $
+    obj/chrome/renderer/extensions/renderer.extension_helper.o $
+    obj/chrome/renderer/extensions/renderer.feedback_private_custom_bindings.o $
+    obj/chrome/renderer/extensions/renderer.file_browser_handler_custom_bindings.o $
+    obj/chrome/renderer/extensions/renderer.file_browser_private_custom_bindings.o $
+    obj/chrome/renderer/extensions/renderer.file_system_natives.o $
+    obj/chrome/renderer/extensions/renderer.i18n_custom_bindings.o $
+    obj/chrome/renderer/extensions/renderer.logging_native_handler.o $
+    obj/chrome/renderer/extensions/renderer.media_galleries_custom_bindings.o $
+    obj/chrome/renderer/extensions/renderer.miscellaneous_bindings.o $
+    obj/chrome/renderer/extensions/renderer.module_system.o $
+    obj/chrome/renderer/extensions/renderer.native_handler.o $
+    obj/chrome/renderer/extensions/renderer.object_backed_native_handler.o $
+    obj/chrome/renderer/extensions/renderer.page_actions_custom_bindings.o $
+    obj/chrome/renderer/extensions/renderer.page_capture_custom_bindings.o $
+    obj/chrome/renderer/extensions/renderer.renderer_permissions_policy_delegate.o $
+    obj/chrome/renderer/extensions/renderer.render_view_observer_natives.o $
+    obj/chrome/renderer/extensions/renderer.request_sender.o $
+    obj/chrome/renderer/extensions/renderer.resource_request_policy.o $
+    obj/chrome/renderer/extensions/renderer.runtime_custom_bindings.o $
+    obj/chrome/renderer/extensions/renderer.safe_builtins.o $
+    obj/chrome/renderer/extensions/renderer.send_request_natives.o $
+    obj/chrome/renderer/extensions/renderer.set_icon_natives.o $
+    obj/chrome/renderer/extensions/renderer.sync_file_system_custom_bindings.o $
+    obj/chrome/renderer/extensions/renderer.tab_finder.o $
+    obj/chrome/renderer/extensions/renderer.tabs_custom_bindings.o $
+    obj/chrome/renderer/extensions/renderer.tts_custom_bindings.o $
+    obj/chrome/renderer/extensions/renderer.user_script_scheduler.o $
+    obj/chrome/renderer/extensions/renderer.user_script_slave.o $
+    obj/chrome/renderer/extensions/renderer.v8_schema_registry.o $
+    obj/chrome/renderer/extensions/renderer.web_request_custom_bindings.o $
+    obj/chrome/renderer/extensions/renderer.webstore_bindings.o $
+    obj/chrome/renderer/renderer.frame_sniffer.o $
+    obj/chrome/renderer/renderer.loadtimes_extension_bindings.o $
+    obj/chrome/renderer/media/renderer.webrtc_logging_handler_impl.o $
+    obj/chrome/renderer/media/renderer.webrtc_logging_message_filter.o $
+    obj/chrome/renderer/net/renderer.net_error_helper.o $
+    obj/chrome/renderer/net/renderer.predictor_queue.o $
+    obj/chrome/renderer/net/renderer.prescient_networking_dispatcher.o $
+    obj/chrome/renderer/net/renderer.renderer_net_predictor.o $
+    obj/chrome/renderer/renderer.net_benchmarking_extension.o $
+    obj/chrome/renderer/renderer.one_click_signin_agent.o $
+    obj/chrome/renderer/renderer.playback_extension.o $
+    obj/chrome/renderer/renderer.resource_bundle_source_map.o $
+    obj/chrome/renderer/renderer.chrome_content_renderer_client.o $
+    obj/chrome/renderer/renderer.chrome_render_process_observer.o $
+    obj/chrome/renderer/renderer.chrome_render_view_observer.o $
+    obj/chrome/renderer/renderer.content_settings_observer.o $
+    obj/chrome/renderer/renderer.external_host_bindings.o $
+    obj/chrome/renderer/renderer.external_extension.o $
+    obj/chrome/renderer/renderer.page_load_histograms.o $
+    obj/chrome/renderer/pepper/renderer.chrome_ppapi_interfaces.o $
+    obj/chrome/renderer/pepper/renderer.chrome_renderer_pepper_host_factory.o $
+    obj/chrome/renderer/pepper/renderer.pepper_extensions_common_host.o $
+    obj/chrome/renderer/pepper/renderer.pepper_flash_drm_renderer_host.o $
+    obj/chrome/renderer/pepper/renderer.pepper_flash_font_file_host.o $
+    obj/chrome/renderer/pepper/renderer.pepper_flash_fullscreen_host.o $
+    obj/chrome/renderer/pepper/renderer.pepper_flash_menu_host.o $
+    obj/chrome/renderer/pepper/renderer.pepper_flash_renderer_host.o $
+    obj/chrome/renderer/pepper/renderer.pepper_helper.o $
+    obj/chrome/renderer/pepper/renderer.pepper_pdf_host.o $
+    obj/chrome/renderer/pepper/renderer.pepper_shared_memory_message_filter.o $
+    obj/chrome/renderer/pepper/renderer.ppb_nacl_private_impl.o $
+    obj/chrome/renderer/pepper/renderer.ppb_pdf_impl.o $
+    obj/chrome/renderer/plugins/renderer.plugin_placeholder.o $
+    obj/chrome/renderer/plugins/renderer.plugin_uma.o $
+    obj/chrome/renderer/plugins/renderer.webview_plugin.o $
+    obj/chrome/renderer/prerender/renderer.prerender_dispatcher.o $
+    obj/chrome/renderer/prerender/renderer.prerender_extra_data.o $
+    obj/chrome/renderer/prerender/renderer.prerender_helper.o $
+    obj/chrome/renderer/prerender/renderer.prerender_webmediaplayer.o $
+    obj/chrome/renderer/prerender/renderer.prerenderer_client.o $
+    obj/chrome/renderer/printing/renderer.print_web_view_helper.o $
+    obj/chrome/renderer/printing/renderer.print_web_view_helper_linux.o $
+    obj/chrome/renderer/safe_browsing/renderer.feature_extractor_clock.o $
+    obj/chrome/renderer/safe_browsing/renderer.features.o $
+    obj/chrome/renderer/safe_browsing/renderer.malware_dom_details.o $
+    obj/chrome/renderer/safe_browsing/renderer.murmurhash3_util.o $
+    obj/chrome/renderer/safe_browsing/renderer.phishing_classifier.o $
+    obj/chrome/renderer/safe_browsing/renderer.phishing_classifier_delegate.o $
+    obj/chrome/renderer/safe_browsing/renderer.phishing_dom_feature_extractor.o $
+    obj/chrome/renderer/safe_browsing/renderer.phishing_term_feature_extractor.o $
+    obj/chrome/renderer/safe_browsing/renderer.phishing_url_feature_extractor.o $
+    obj/chrome/renderer/safe_browsing/renderer.scorer.o $
+    obj/chrome/renderer/searchbox/renderer.searchbox.o $
+    obj/chrome/renderer/searchbox/renderer.searchbox_extension.o $
+    obj/chrome/renderer/renderer.security_filter_peer.o $
+    obj/chrome/renderer/spellchecker/renderer.custom_dictionary_engine.o $
+    obj/chrome/renderer/spellchecker/renderer.hunspell_engine.o $
+    obj/chrome/renderer/spellchecker/renderer.spellcheck_provider.o $
+    obj/chrome/renderer/spellchecker/renderer.spellcheck.o $
+    obj/chrome/renderer/spellchecker/renderer.spellcheck_language.o $
+    obj/chrome/renderer/spellchecker/renderer.spellcheck_worditerator.o $
+    obj/chrome/renderer/renderer.static_v8_external_string_resource.o $
+    obj/chrome/renderer/renderer.tts_dispatcher.o $
+    obj/chrome/renderer/translate/renderer.translate_helper.o $
+    obj/chrome/renderer/translate/renderer.translate_helper_metrics.o $
+    obj/chrome/renderer/renderer.validation_message_agent.o $
+    obj/chrome/renderer/renderer.web_apps.o $
+    obj/chrome/renderer/renderer.webview_color_overlay.o || $
+    obj/chrome/renderer.actions_depends.stamp

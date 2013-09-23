@@ -1,0 +1,130 @@
+build $
+    obj/third_party/webrtc/tools/force_mic_volume_max.actions_depends.stamp: $
+    stamp obj/third_party/webrtc/voice_engine/libvoice_engine.a $
+    obj/third_party/webrtc/common_audio/libcommon_audio.a $
+    obj/third_party/webrtc/system_wrappers/source/libsystem_wrappers.a $
+    obj/third_party/webrtc/common_audio/libcommon_audio_sse2.a $
+    obj/third_party/webrtc/modules/libaudio_coding_module.a $
+    obj/third_party/webrtc/modules/libCNG.a $
+    obj/third_party/webrtc/modules/libG711.a $
+    obj/third_party/webrtc/modules/libG722.a $
+    obj/third_party/webrtc/modules/libiLBC.a $
+    obj/third_party/webrtc/modules/libiSAC.a $
+    obj/third_party/webrtc/modules/libiSACFix.a $
+    obj/third_party/webrtc/modules/libPCM16B.a $
+    obj/third_party/webrtc/modules/libNetEq.a $
+    obj/third_party/webrtc/modules/libwebrtc_opus.a $
+    obj/third_party/opus/libopus.a $
+    obj/third_party/webrtc/modules/libaudio_conference_mixer.a $
+    obj/third_party/webrtc/modules/libaudio_processing.a $
+    obj/third_party/webrtc/modules/libaudioproc_debug_proto.a $
+    obj/third_party/protobuf/libprotobuf_lite.a $
+    obj/third_party/webrtc/modules/libaudio_processing_sse2.a $
+    obj/third_party/webrtc/modules/libwebrtc_utility.a $
+    obj/third_party/webrtc/modules/libwebrtc_video_coding.a $
+    obj/third_party/webrtc/modules/libwebrtc_i420.a $
+    obj/third_party/webrtc/common_video/libcommon_video.a $
+    obj/third_party/libjpeg_turbo/libjpeg_turbo.a libyuv.a $
+    obj/third_party/webrtc/modules/video_coding/utility/libvideo_coding_utility.a $
+    obj/third_party/webrtc/modules/video_coding/codecs/vp8/libwebrtc_vp8.a $
+    obj/third_party/libvpx/libvpx.a $
+    obj/third_party/libvpx/gen_asm_offsets_vp8.actions_rules_copies.stamp $
+    obj/third_party/libvpx/libvpx_asm_offsets_vp8.a $
+    obj/third_party/libvpx/libvpx_intrinsics_mmx.a $
+    obj/third_party/libvpx/libvpx_intrinsics_sse2.a $
+    obj/third_party/libvpx/libvpx_intrinsics_ssse3.a $
+    obj/third_party/webrtc/modules/libaudio_device.a $
+    obj/third_party/webrtc/modules/libmedia_file.a $
+    obj/third_party/webrtc/modules/librtp_rtcp.a $
+    obj/third_party/webrtc/modules/libremote_bitrate_estimator.a $
+    obj/third_party/webrtc/modules/libpaced_sender.a
+
+build $
+    obj/third_party/webrtc/tools/force_mic_volume_max.compile_depends.stamp: $
+    stamp $
+    obj/third_party/webrtc/modules/audioproc_debug_proto.actions_rules_copies.stamp $
+    obj/third_party/webrtc/modules/audioproc_debug_proto.actions_rules_copies.stamp $
+    obj/third_party/libjpeg_turbo/libjpeg.actions_rules_copies.stamp $
+    obj/third_party/libvpx/libvpx.actions_rules_copies.stamp $
+    obj/third_party/libvpx/gen_asm_offsets_vp8.actions_rules_copies.stamp
+
+defines = -DANGLE_DX11 '-DWEBRTC_SVNREVISION="Unavailable(issue687)"' $
+    -D_FILE_OFFSET_BITS=64 -DNO_TCMALLOC -DDISABLE_NACL -DCHROMIUM_BUILD $
+    -DUSE_DEFAULT_RENDER_THEME=1 -DUSE_LIBJPEG_TURBO=1 -DUSE_NSS=1 $
+    -DUSE_X11=1 -DENABLE_ONE_CLICK_SIGNIN -DGTK_DISABLE_SINGLE_INCLUDES=1 $
+    -DENABLE_REMOTING=1 -DENABLE_WEBRTC=1 -DENABLE_CONFIGURATION_POLICY $
+    -DENABLE_INPUT_SPEECH -DENABLE_NOTIFICATIONS -DENABLE_GPU=1 $
+    -DENABLE_EGLIMAGE=1 -DENABLE_TASK_MANAGER=1 -DENABLE_EXTENSIONS=1 $
+    -DENABLE_PLUGIN_INSTALLATION=1 -DENABLE_PLUGINS=1 $
+    -DENABLE_SESSION_SERVICE=1 -DENABLE_THEMES=1 -DENABLE_BACKGROUND=1 $
+    -DENABLE_AUTOMATION=1 -DENABLE_GOOGLE_NOW=1 $
+    -DENABLE_LANGUAGE_DETECTION=1 -DENABLE_PRINTING=1 $
+    -DENABLE_CAPTIVE_PORTAL_DETECTION=1 -DENABLE_MANAGED_USERS=1 $
+    -DWEBRTC_CHROMIUM_BUILD -DWEBRTC_BSD -DWEBRTC_LINUX -DWEBRTC_THREAD_RR $
+    -D__STDC_CONSTANT_MACROS -D__STDC_FORMAT_MACROS -DNDEBUG $
+    -DOFFICIAL_BUILD -DNVALGRIND -DDYNAMIC_ANNOTATIONS_ENABLED=0 $
+    -D_FORTIFY_SOURCE=2
+includes = -I../../third_party/webrtc -I../../third_party -I../.. $
+    -I../../third_party/webrtc/voice_engine/include
+cflags = -fstack-protector --param=ssp-buffer-size=4  -pthread $
+    -fno-exceptions -fno-strict-aliasing -Wall -Wno-unused-parameter $
+    -Wno-missing-field-initializers -fvisibility=hidden -pipe -fPIC $
+    -Wheader-hygiene -Wno-char-subscripts -Wno-unused-function $
+    -Wno-covered-switch-default -Wstring-conversion -Wno-c++11-narrowing $
+    -Wno-reserved-user-defined-literal -fcolor-diagnostics -O2 $
+    -fdata-sections -ffunction-sections
+cflags_c = -O2 -pipe -fno-strict-aliasing
+cflags_cc = -O2 -pipe -fno-strict-aliasing -fno-rtti $
+    -fno-threadsafe-statics -fvisibility-inlines-hidden -Wsign-compare $
+    -std=gnu++11
+
+build $
+    obj/third_party/webrtc/tools/force_mic_volume_max/force_mic_volume_max.force_mic_volume_max.o: $
+    cxx $
+    ../../third_party/webrtc/tools/force_mic_volume_max/force_mic_volume_max.cc $
+    || obj/third_party/webrtc/tools/force_mic_volume_max.compile_depends.stamp
+
+ldflags = -Wl,-z,now -Wl,-z,relro -pthread -Wl,-z,noexecstack -fPIC $
+    -Wl,--no-keep-memory -Wl,-O1 -Wl,--as-needed
+libs = 
+build force_mic_volume_max: link $
+    obj/third_party/webrtc/tools/force_mic_volume_max/force_mic_volume_max.force_mic_volume_max.o $
+    obj/third_party/libvpx/libvpx_intrinsics_ssse3.a $
+    obj/third_party/webrtc/modules/libaudioproc_debug_proto.a $
+    obj/third_party/webrtc/modules/libaudio_conference_mixer.a $
+    obj/third_party/libvpx/libvpx.a $
+    obj/third_party/webrtc/modules/libwebrtc_opus.a $
+    obj/third_party/libvpx/libvpx_asm_offsets_vp8.a $
+    obj/third_party/opus/libopus.a $
+    obj/third_party/webrtc/modules/libpaced_sender.a $
+    obj/third_party/webrtc/modules/libG722.a $
+    obj/third_party/webrtc/common_audio/libcommon_audio_sse2.a $
+    obj/third_party/webrtc/common_video/libcommon_video.a $
+    obj/third_party/webrtc/modules/libaudio_device.a $
+    obj/third_party/webrtc/modules/libCNG.a $
+    obj/third_party/webrtc/modules/libwebrtc_i420.a $
+    obj/third_party/webrtc/modules/libPCM16B.a $
+    obj/third_party/libvpx/libvpx_intrinsics_mmx.a $
+    obj/third_party/webrtc/common_audio/libcommon_audio.a $
+    obj/third_party/webrtc/modules/libmedia_file.a $
+    obj/third_party/webrtc/modules/libiSAC.a $
+    obj/third_party/webrtc/modules/libiLBC.a $
+    obj/third_party/webrtc/system_wrappers/source/libsystem_wrappers.a $
+    obj/third_party/webrtc/modules/video_coding/utility/libvideo_coding_utility.a $
+    obj/third_party/libjpeg_turbo/libjpeg_turbo.a $
+    obj/third_party/webrtc/modules/libaudio_processing_sse2.a $
+    obj/third_party/webrtc/modules/libiSACFix.a $
+    obj/third_party/protobuf/libprotobuf_lite.a $
+    obj/third_party/webrtc/modules/libaudio_coding_module.a $
+    obj/third_party/webrtc/voice_engine/libvoice_engine.a $
+    obj/third_party/webrtc/modules/librtp_rtcp.a $
+    obj/third_party/webrtc/modules/video_coding/codecs/vp8/libwebrtc_vp8.a $
+    obj/third_party/libvpx/libvpx_intrinsics_sse2.a $
+    obj/third_party/webrtc/modules/libremote_bitrate_estimator.a libyuv.a $
+    obj/third_party/webrtc/modules/libG711.a $
+    obj/third_party/webrtc/modules/libwebrtc_utility.a $
+    obj/third_party/webrtc/modules/libwebrtc_video_coding.a $
+    obj/third_party/webrtc/modules/libNetEq.a $
+    obj/third_party/webrtc/modules/libaudio_processing.a | $
+    obj/third_party/libvpx/gen_asm_offsets_vp8.actions_rules_copies.stamp
+  postbuilds = 

@@ -1,0 +1,81 @@
+defines = -DANGLE_DX11 -D_FILE_OFFSET_BITS=64 -DNO_TCMALLOC -DDISABLE_NACL $
+    -DCHROMIUM_BUILD -DUSE_DEFAULT_RENDER_THEME=1 -DUSE_LIBJPEG_TURBO=1 $
+    -DUSE_NSS=1 -DUSE_X11=1 -DENABLE_ONE_CLICK_SIGNIN $
+    -DGTK_DISABLE_SINGLE_INCLUDES=1 -DENABLE_REMOTING=1 -DENABLE_WEBRTC=1 $
+    -DENABLE_CONFIGURATION_POLICY -DENABLE_INPUT_SPEECH $
+    -DENABLE_NOTIFICATIONS -DENABLE_GPU=1 -DENABLE_EGLIMAGE=1 $
+    -DENABLE_TASK_MANAGER=1 -DENABLE_EXTENSIONS=1 $
+    -DENABLE_PLUGIN_INSTALLATION=1 -DENABLE_PLUGINS=1 $
+    -DENABLE_SESSION_SERVICE=1 -DENABLE_THEMES=1 -DENABLE_BACKGROUND=1 $
+    -DENABLE_AUTOMATION=1 -DENABLE_GOOGLE_NOW=1 $
+    -DENABLE_LANGUAGE_DETECTION=1 -DENABLE_PRINTING=1 $
+    -DENABLE_CAPTIVE_PORTAL_DETECTION=1 -DENABLE_MANAGED_USERS=1 $
+    -DPPAPI_HOST_IMPLEMENTATION -DGL_GLEXT_PROTOTYPES $
+    -DSK_BUILD_NO_IMAGE_ENCODE -DSK_DEFERRED_CANVAS_USES_GPIPE=1 $
+    '-DGR_GL_CUSTOM_SETUP_HEADER="GrGLConfig_chrome.h"' $
+    -DGR_AGGRESSIVE_SHADER_OPTS=1 -DSK_ENABLE_INST_COUNT=0 $
+    -DSK_USE_POSIX_THREADS -DU_USING_ICU_NAMESPACE=0 $
+    -DU_STATIC_IMPLEMENTATION -D__STDC_CONSTANT_MACROS $
+    -D__STDC_FORMAT_MACROS -DDYNAMIC_ANNOTATIONS_ENABLED=1 $
+    -DWTF_USE_DYNAMIC_ANNOTATIONS=1 -D_DEBUG
+includes = -I../../third_party/icu/public/common $
+    -I../../third_party/khronos -I../../gpu -I../.. $
+    -I../../third_party/WebKit -I../../skia/config $
+    -I../../third_party/skia/src/core $
+    -I../../third_party/skia/include/config $
+    -I../../third_party/skia/include/core $
+    -I../../third_party/skia/include/effects $
+    -I../../third_party/skia/include/pdf $
+    -I../../third_party/skia/include/gpu $
+    -I../../third_party/skia/include/gpu/gl $
+    -I../../third_party/skia/include/pathops $
+    -I../../third_party/skia/include/pipe $
+    -I../../third_party/skia/include/ports $
+    -I../../third_party/skia/include/utils -I../../skia/ext $
+    -I../../third_party/npapi -I../../third_party/npapi/bindings $
+    -I../../v8/include
+cflags = -fstack-protector --param=ssp-buffer-size=4  -pthread $
+    -fno-exceptions -fno-strict-aliasing -Wall -Wno-unused-parameter $
+    -Wno-missing-field-initializers -fvisibility=hidden -pipe -fPIC $
+    -Wheader-hygiene -Wno-char-subscripts -Wno-unused-function $
+    -Wno-covered-switch-default -Wstring-conversion -Wno-c++11-narrowing $
+    -Wno-reserved-user-defined-literal -fcolor-diagnostics -fPIC $
+    -fvisibility=hidden -I/usr/local/include/gtk-2.0 $
+    -I/usr/local/include/gio-unix-2.0/ -I/usr/local/include/atk-1.0 $
+    -I/usr/local/include/cairo -I/usr/local/include/pixman-1 -D_THREAD_SAFE $
+    -I/usr/local/include/gdk-pixbuf-2.0 -I/usr/local/include/libpng15 $
+    -I/usr/local/include/pango-1.0 -I/usr/local/include/freetype2 $
+    -I/usr/local/include/harfbuzz -pthread -I/usr/local/include/glib-2.0 $
+    -I/usr/local/include -pthread -I/usr/local/include/glib-2.0 $
+    -I/usr/local/include -D_THREAD_SAFE -I/usr/local/include -O0 -g
+cflags_c = -O2 -pipe -fno-strict-aliasing
+cflags_cc = -O2 -pipe -fno-strict-aliasing -fno-rtti $
+    -fno-threadsafe-statics -fvisibility-inlines-hidden -Wsign-compare $
+    -std=gnu++11
+
+build obj/ppapi/host/ppapi_host.error_conversion.o: cxx $
+    ../../ppapi/host/error_conversion.cc
+build obj/ppapi/host/ppapi_host.host_message_context.o: cxx $
+    ../../ppapi/host/host_message_context.cc
+build obj/ppapi/host/ppapi_host.instance_message_filter.o: cxx $
+    ../../ppapi/host/instance_message_filter.cc
+build obj/ppapi/host/ppapi_host.message_filter_host.o: cxx $
+    ../../ppapi/host/message_filter_host.cc
+build obj/ppapi/host/ppapi_host.ppapi_host.o: cxx $
+    ../../ppapi/host/ppapi_host.cc
+build obj/ppapi/host/ppapi_host.resource_host.o: cxx $
+    ../../ppapi/host/resource_host.cc
+build obj/ppapi/host/ppapi_host.resource_message_filter.o: cxx $
+    ../../ppapi/host/resource_message_filter.cc
+build obj/ppapi/host/ppapi_host.resource_message_handler.o: cxx $
+    ../../ppapi/host/resource_message_handler.cc
+
+build obj/ppapi/libppapi_host.a: alink_thin $
+    obj/ppapi/host/ppapi_host.error_conversion.o $
+    obj/ppapi/host/ppapi_host.host_message_context.o $
+    obj/ppapi/host/ppapi_host.instance_message_filter.o $
+    obj/ppapi/host/ppapi_host.message_filter_host.o $
+    obj/ppapi/host/ppapi_host.ppapi_host.o $
+    obj/ppapi/host/ppapi_host.resource_host.o $
+    obj/ppapi/host/ppapi_host.resource_message_filter.o $
+    obj/ppapi/host/ppapi_host.resource_message_handler.o
