@@ -1,0 +1,194 @@
+rule $
+    libphonenumber_without_metadata_target_genproto_16bc2cce6dc77e402da89a88ff86d91e
+  command = cd ../../third_party/libphonenumber; python $
+      ../../tools/protoc_wrapper/protoc_wrapper.py --include "" --protobuf $
+      "../../out/Debug/gen/protoc_out/third_party/libphonenumber/phonenumbers/${root}.pb.h" $
+      --proto-in-dir src/resources --proto-in-file "${root}${ext}" $
+      "--use-system-protobuf=0" -- ../../out/Debug/protoc --cpp_out $
+      ../../out/Debug/gen/protoc_out/third_party/libphonenumber/phonenumbers $
+      --python_out $
+      ../../out/Debug/pyproto/third_party/libphonenumber/phonenumbers
+  description = RULE Generating C++ and Python code from ${source}
+  restat = 1
+
+build pyproto/third_party/libphonenumber/phonenumbers/phonemetadata_pb2.py $
+    gen/protoc_out/third_party/libphonenumber/phonenumbers/phonemetadata.pb.cc $
+    gen/protoc_out/third_party/libphonenumber/phonenumbers/phonemetadata.pb.h: $
+    libphonenumber_without_metadata_target_genproto_16bc2cce6dc77e402da89a88ff86d91e $
+    ../../third_party/libphonenumber/src/resources/phonemetadata.proto | $
+    ../../tools/protoc_wrapper/protoc_wrapper.py protoc || protoc
+  source = src/resources/phonemetadata.proto
+  ext = .proto
+  root = phonemetadata
+  unique_name = ae68b597e286a755cdc8be6afe08ecd9
+build pyproto/third_party/libphonenumber/phonenumbers/phonenumber_pb2.py $
+    gen/protoc_out/third_party/libphonenumber/phonenumbers/phonenumber.pb.cc $
+    gen/protoc_out/third_party/libphonenumber/phonenumbers/phonenumber.pb.h: $
+    libphonenumber_without_metadata_target_genproto_16bc2cce6dc77e402da89a88ff86d91e $
+    ../../third_party/libphonenumber/src/resources/phonenumber.proto | $
+    ../../tools/protoc_wrapper/protoc_wrapper.py protoc || protoc
+  source = src/resources/phonenumber.proto
+  ext = .proto
+  root = phonenumber
+  unique_name = 8857092ff49dbcd98aa1167142eb6cc1
+build $
+    obj/third_party/libphonenumber/libphonenumber_without_metadata.actions_rules_copies.stamp: $
+    stamp $
+    pyproto/third_party/libphonenumber/phonenumbers/phonemetadata_pb2.py $
+    gen/protoc_out/third_party/libphonenumber/phonenumbers/phonemetadata.pb.cc $
+    gen/protoc_out/third_party/libphonenumber/phonenumbers/phonemetadata.pb.h $
+    pyproto/third_party/libphonenumber/phonenumbers/phonenumber_pb2.py $
+    gen/protoc_out/third_party/libphonenumber/phonenumbers/phonenumber.pb.cc $
+    gen/protoc_out/third_party/libphonenumber/phonenumbers/phonenumber.pb.h
+
+defines = -DUSE_HASH_MAP=1 -DUSE_GOOGLE_BASE=1 -DUSE_ICU_REGEXP=1 $
+    -DANGLE_DX11 -D_FILE_OFFSET_BITS=64 -DNO_TCMALLOC -DDISABLE_NACL $
+    -DCHROMIUM_BUILD -DUSE_DEFAULT_RENDER_THEME=1 -DUSE_LIBJPEG_TURBO=1 $
+    -DUSE_NSS=1 -DUSE_X11=1 -DENABLE_ONE_CLICK_SIGNIN $
+    -DGTK_DISABLE_SINGLE_INCLUDES=1 -DENABLE_REMOTING=1 -DENABLE_WEBRTC=1 $
+    -DENABLE_CONFIGURATION_POLICY -DENABLE_INPUT_SPEECH $
+    -DENABLE_NOTIFICATIONS -DENABLE_GPU=1 -DENABLE_EGLIMAGE=1 $
+    -DENABLE_TASK_MANAGER=1 -DENABLE_EXTENSIONS=1 $
+    -DENABLE_PLUGIN_INSTALLATION=1 -DENABLE_PLUGINS=1 $
+    -DENABLE_SESSION_SERVICE=1 -DENABLE_THEMES=1 -DENABLE_BACKGROUND=1 $
+    -DENABLE_AUTOMATION=1 -DENABLE_GOOGLE_NOW=1 $
+    -DENABLE_LANGUAGE_DETECTION=1 -DENABLE_PRINTING=1 $
+    -DENABLE_CAPTIVE_PORTAL_DETECTION=1 -DENABLE_MANAGED_USERS=1 $
+    -DU_USING_ICU_NAMESPACE=0 -DU_STATIC_IMPLEMENTATION -DPROTOBUF_USE_DLLS $
+    -DGOOGLE_PROTOBUF_NO_RTTI -DGOOGLE_PROTOBUF_NO_STATIC_INITIALIZER $
+    -DDYNAMIC_ANNOTATIONS_ENABLED=1 -DWTF_USE_DYNAMIC_ANNOTATIONS=1 -D_DEBUG
+includes = -I../../third_party/icu/public/common $
+    -I../../third_party/icu/public/i18n -I../.. $
+    -I../../third_party/libphonenumber/src $
+    -I../../third_party/libphonenumber/src/test $
+    -Igen/protoc_out/third_party/libphonenumber -Igen/protoc_out $
+    -I../../third_party/protobuf -I../../third_party/protobuf/src
+cflags = -fstack-protector --param=ssp-buffer-size=4  -pthread $
+    -fno-exceptions -fno-strict-aliasing -Wno-unused-parameter $
+    -Wno-missing-field-initializers -fvisibility=hidden -pipe -fPIC $
+    -Wheader-hygiene -Wno-char-subscripts -Wno-unused-function $
+    -Wno-covered-switch-default -Wstring-conversion -Wno-c++11-narrowing $
+    -Wno-reserved-user-defined-literal -fcolor-diagnostics $
+    -I/usr/local/include/gtk-2.0 -I/usr/local/include/gio-unix-2.0/ $
+    -I/usr/local/include/atk-1.0 -I/usr/local/include/cairo $
+    -I/usr/local/include/pixman-1 -D_THREAD_SAFE $
+    -I/usr/local/include/gdk-pixbuf-2.0 -I/usr/local/include/libpng15 $
+    -I/usr/local/include/pango-1.0 -I/usr/local/include/freetype2 $
+    -I/usr/local/include/harfbuzz -pthread -I/usr/local/include/glib-2.0 $
+    -I/usr/local/include -pthread -I/usr/local/include/glib-2.0 $
+    -I/usr/local/include -D_THREAD_SAFE -I/usr/local/include -Wno-format $
+    -O0 -g
+cflags_c = -O2 -pipe -fno-strict-aliasing
+cflags_cc = -O2 -pipe -fno-strict-aliasing -fno-rtti $
+    -fno-threadsafe-statics -fvisibility-inlines-hidden -std=gnu++11 $
+    -Wno-deprecated
+
+build $
+    obj/third_party/libphonenumber/src/phonenumbers/libphonenumber_without_metadata.asyoutypeformatter.o: $
+    cxx $
+    ../../third_party/libphonenumber/src/phonenumbers/asyoutypeformatter.cc $
+    || $
+    obj/third_party/libphonenumber/libphonenumber_without_metadata.actions_rules_copies.stamp
+build $
+    obj/third_party/libphonenumber/src/phonenumbers/libphonenumber_without_metadata.default_logger.o: $
+    cxx ../../third_party/libphonenumber/src/phonenumbers/default_logger.cc $
+    || $
+    obj/third_party/libphonenumber/libphonenumber_without_metadata.actions_rules_copies.stamp
+build $
+    obj/third_party/libphonenumber/src/phonenumbers/libphonenumber_without_metadata.logger.o: $
+    cxx ../../third_party/libphonenumber/src/phonenumbers/logger.cc || $
+    obj/third_party/libphonenumber/libphonenumber_without_metadata.actions_rules_copies.stamp
+build $
+    obj/third_party/libphonenumber/src/phonenumbers/libphonenumber_without_metadata.phonenumber.o: $
+    cxx ../../third_party/libphonenumber/src/phonenumbers/phonenumber.cc || $
+    obj/third_party/libphonenumber/libphonenumber_without_metadata.actions_rules_copies.stamp
+build $
+    obj/third_party/libphonenumber/src/phonenumbers/libphonenumber_without_metadata.phonenumbermatch.o: $
+    cxx $
+    ../../third_party/libphonenumber/src/phonenumbers/phonenumbermatch.cc $
+    || $
+    obj/third_party/libphonenumber/libphonenumber_without_metadata.actions_rules_copies.stamp
+build $
+    obj/third_party/libphonenumber/src/phonenumbers/libphonenumber_without_metadata.phonenumbermatcher.o: $
+    cxx $
+    ../../third_party/libphonenumber/src/phonenumbers/phonenumbermatcher.cc $
+    || $
+    obj/third_party/libphonenumber/libphonenumber_without_metadata.actions_rules_copies.stamp
+build $
+    obj/third_party/libphonenumber/src/phonenumbers/libphonenumber_without_metadata.phonenumberutil.o: $
+    cxx $
+    ../../third_party/libphonenumber/src/phonenumbers/phonenumberutil.cc || $
+    obj/third_party/libphonenumber/libphonenumber_without_metadata.actions_rules_copies.stamp
+build $
+    obj/third_party/libphonenumber/src/phonenumbers/libphonenumber_without_metadata.regexp_adapter_icu.o: $
+    cxx $
+    ../../third_party/libphonenumber/src/phonenumbers/regexp_adapter_icu.cc $
+    || $
+    obj/third_party/libphonenumber/libphonenumber_without_metadata.actions_rules_copies.stamp
+build $
+    obj/third_party/libphonenumber/src/phonenumbers/libphonenumber_without_metadata.regexp_cache.o: $
+    cxx ../../third_party/libphonenumber/src/phonenumbers/regexp_cache.cc $
+    || $
+    obj/third_party/libphonenumber/libphonenumber_without_metadata.actions_rules_copies.stamp
+build $
+    obj/third_party/libphonenumber/src/phonenumbers/libphonenumber_without_metadata.string_byte_sink.o: $
+    cxx $
+    ../../third_party/libphonenumber/src/phonenumbers/string_byte_sink.cc $
+    || $
+    obj/third_party/libphonenumber/libphonenumber_without_metadata.actions_rules_copies.stamp
+build $
+    obj/third_party/libphonenumber/src/phonenumbers/libphonenumber_without_metadata.stringutil.o: $
+    cxx ../../third_party/libphonenumber/src/phonenumbers/stringutil.cc || $
+    obj/third_party/libphonenumber/libphonenumber_without_metadata.actions_rules_copies.stamp
+build $
+    obj/third_party/libphonenumber/src/phonenumbers/libphonenumber_without_metadata.unicodestring.o: $
+    cxx ../../third_party/libphonenumber/src/phonenumbers/unicodestring.cc $
+    || $
+    obj/third_party/libphonenumber/libphonenumber_without_metadata.actions_rules_copies.stamp
+build $
+    obj/third_party/libphonenumber/src/phonenumbers/utf/libphonenumber_without_metadata.rune.o: $
+    cc ../../third_party/libphonenumber/src/phonenumbers/utf/rune.c || $
+    obj/third_party/libphonenumber/libphonenumber_without_metadata.actions_rules_copies.stamp
+build $
+    obj/third_party/libphonenumber/src/phonenumbers/utf/libphonenumber_without_metadata.unicodetext.o: $
+    cxx $
+    ../../third_party/libphonenumber/src/phonenumbers/utf/unicodetext.cc || $
+    obj/third_party/libphonenumber/libphonenumber_without_metadata.actions_rules_copies.stamp
+build $
+    obj/third_party/libphonenumber/src/phonenumbers/utf/libphonenumber_without_metadata.unilib.o: $
+    cxx ../../third_party/libphonenumber/src/phonenumbers/utf/unilib.cc || $
+    obj/third_party/libphonenumber/libphonenumber_without_metadata.actions_rules_copies.stamp
+build $
+    obj/third_party/libphonenumber/gen/protoc_out/third_party/libphonenumber/phonenumbers/libphonenumber_without_metadata.phonemetadata.pb.o: $
+    cxx $
+    gen/protoc_out/third_party/libphonenumber/phonenumbers/phonemetadata.pb.cc $
+    || $
+    obj/third_party/libphonenumber/libphonenumber_without_metadata.actions_rules_copies.stamp
+build $
+    obj/third_party/libphonenumber/gen/protoc_out/third_party/libphonenumber/phonenumbers/libphonenumber_without_metadata.phonenumber.pb.o: $
+    cxx $
+    gen/protoc_out/third_party/libphonenumber/phonenumbers/phonenumber.pb.cc $
+    || $
+    obj/third_party/libphonenumber/libphonenumber_without_metadata.actions_rules_copies.stamp
+
+build obj/third_party/libphonenumber/libphonenumber_without_metadata.a: $
+    alink_thin $
+    obj/third_party/libphonenumber/src/phonenumbers/libphonenumber_without_metadata.asyoutypeformatter.o $
+    obj/third_party/libphonenumber/src/phonenumbers/libphonenumber_without_metadata.default_logger.o $
+    obj/third_party/libphonenumber/src/phonenumbers/libphonenumber_without_metadata.logger.o $
+    obj/third_party/libphonenumber/src/phonenumbers/libphonenumber_without_metadata.phonenumber.o $
+    obj/third_party/libphonenumber/src/phonenumbers/libphonenumber_without_metadata.phonenumbermatch.o $
+    obj/third_party/libphonenumber/src/phonenumbers/libphonenumber_without_metadata.phonenumbermatcher.o $
+    obj/third_party/libphonenumber/src/phonenumbers/libphonenumber_without_metadata.phonenumberutil.o $
+    obj/third_party/libphonenumber/src/phonenumbers/libphonenumber_without_metadata.regexp_adapter_icu.o $
+    obj/third_party/libphonenumber/src/phonenumbers/libphonenumber_without_metadata.regexp_cache.o $
+    obj/third_party/libphonenumber/src/phonenumbers/libphonenumber_without_metadata.string_byte_sink.o $
+    obj/third_party/libphonenumber/src/phonenumbers/libphonenumber_without_metadata.stringutil.o $
+    obj/third_party/libphonenumber/src/phonenumbers/libphonenumber_without_metadata.unicodestring.o $
+    obj/third_party/libphonenumber/src/phonenumbers/utf/libphonenumber_without_metadata.rune.o $
+    obj/third_party/libphonenumber/src/phonenumbers/utf/libphonenumber_without_metadata.unicodetext.o $
+    obj/third_party/libphonenumber/src/phonenumbers/utf/libphonenumber_without_metadata.unilib.o $
+    obj/third_party/libphonenumber/gen/protoc_out/third_party/libphonenumber/phonenumbers/libphonenumber_without_metadata.phonemetadata.pb.o $
+    obj/third_party/libphonenumber/gen/protoc_out/third_party/libphonenumber/phonenumbers/libphonenumber_without_metadata.phonenumber.pb.o $
+    || $
+    obj/third_party/libphonenumber/libphonenumber_without_metadata.actions_rules_copies.stamp

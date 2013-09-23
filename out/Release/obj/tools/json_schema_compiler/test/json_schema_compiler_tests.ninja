@@ -1,0 +1,383 @@
+rule json_schema_compiler_tests_target_genapi_c66eb5a7379f3f041fbc3d713659288c
+  command = cd ../../tools/json_schema_compiler/test; python $
+      ../../../tools/json_schema_compiler/compiler.py "${source}" $
+      "--root=../../.." "--destdir=../../../out/Release/gen" $
+      "--namespace=test::api" "--generator=cpp"
+  description = RULE Generating C++ code from ${source} json files
+  restat = 1
+
+build gen/tools/json_schema_compiler/test/additional_properties.cc $
+    gen/tools/json_schema_compiler/test/additional_properties.h: $
+    json_schema_compiler_tests_target_genapi_c66eb5a7379f3f041fbc3d713659288c $
+    ../../tools/json_schema_compiler/test/additional_properties.json | $
+    ../../tools/json_schema_compiler/cc_generator.py $
+    ../../tools/json_schema_compiler/code.py $
+    ../../tools/json_schema_compiler/compiler.py $
+    ../../tools/json_schema_compiler/cpp_generator.py $
+    ../../tools/json_schema_compiler/cpp_type_generator.py $
+    ../../tools/json_schema_compiler/cpp_util.py $
+    ../../tools/json_schema_compiler/h_generator.py $
+    ../../tools/json_schema_compiler/json_schema.py $
+    ../../tools/json_schema_compiler/model.py $
+    ../../tools/json_schema_compiler/util.cc $
+    ../../tools/json_schema_compiler/util.h $
+    ../../tools/json_schema_compiler/util_cc_helper.py
+  source = additional_properties.json
+  unique_name = 8dbe2186cafc4fdbda326f60ae8e4012
+build gen/tools/json_schema_compiler/test/any.cc $
+    gen/tools/json_schema_compiler/test/any.h: $
+    json_schema_compiler_tests_target_genapi_c66eb5a7379f3f041fbc3d713659288c $
+    ../../tools/json_schema_compiler/test/any.json | $
+    ../../tools/json_schema_compiler/cc_generator.py $
+    ../../tools/json_schema_compiler/code.py $
+    ../../tools/json_schema_compiler/compiler.py $
+    ../../tools/json_schema_compiler/cpp_generator.py $
+    ../../tools/json_schema_compiler/cpp_type_generator.py $
+    ../../tools/json_schema_compiler/cpp_util.py $
+    ../../tools/json_schema_compiler/h_generator.py $
+    ../../tools/json_schema_compiler/json_schema.py $
+    ../../tools/json_schema_compiler/model.py $
+    ../../tools/json_schema_compiler/util.cc $
+    ../../tools/json_schema_compiler/util.h $
+    ../../tools/json_schema_compiler/util_cc_helper.py
+  source = any.json
+  unique_name = 508369bdc67b092721ed3e47c1523d8d
+build gen/tools/json_schema_compiler/test/arrays.cc $
+    gen/tools/json_schema_compiler/test/arrays.h: $
+    json_schema_compiler_tests_target_genapi_c66eb5a7379f3f041fbc3d713659288c $
+    ../../tools/json_schema_compiler/test/arrays.json | $
+    ../../tools/json_schema_compiler/cc_generator.py $
+    ../../tools/json_schema_compiler/code.py $
+    ../../tools/json_schema_compiler/compiler.py $
+    ../../tools/json_schema_compiler/cpp_generator.py $
+    ../../tools/json_schema_compiler/cpp_type_generator.py $
+    ../../tools/json_schema_compiler/cpp_util.py $
+    ../../tools/json_schema_compiler/h_generator.py $
+    ../../tools/json_schema_compiler/json_schema.py $
+    ../../tools/json_schema_compiler/model.py $
+    ../../tools/json_schema_compiler/util.cc $
+    ../../tools/json_schema_compiler/util.h $
+    ../../tools/json_schema_compiler/util_cc_helper.py
+  source = arrays.json
+  unique_name = bd5c99aa7aa72f39769f1a7119e1f3b1
+build gen/tools/json_schema_compiler/test/callbacks.cc $
+    gen/tools/json_schema_compiler/test/callbacks.h: $
+    json_schema_compiler_tests_target_genapi_c66eb5a7379f3f041fbc3d713659288c $
+    ../../tools/json_schema_compiler/test/callbacks.json | $
+    ../../tools/json_schema_compiler/cc_generator.py $
+    ../../tools/json_schema_compiler/code.py $
+    ../../tools/json_schema_compiler/compiler.py $
+    ../../tools/json_schema_compiler/cpp_generator.py $
+    ../../tools/json_schema_compiler/cpp_type_generator.py $
+    ../../tools/json_schema_compiler/cpp_util.py $
+    ../../tools/json_schema_compiler/h_generator.py $
+    ../../tools/json_schema_compiler/json_schema.py $
+    ../../tools/json_schema_compiler/model.py $
+    ../../tools/json_schema_compiler/util.cc $
+    ../../tools/json_schema_compiler/util.h $
+    ../../tools/json_schema_compiler/util_cc_helper.py
+  source = callbacks.json
+  unique_name = a85be27b32d166ab31b03b6d012b5abd
+build gen/tools/json_schema_compiler/test/choices.cc $
+    gen/tools/json_schema_compiler/test/choices.h: $
+    json_schema_compiler_tests_target_genapi_c66eb5a7379f3f041fbc3d713659288c $
+    ../../tools/json_schema_compiler/test/choices.json | $
+    ../../tools/json_schema_compiler/cc_generator.py $
+    ../../tools/json_schema_compiler/code.py $
+    ../../tools/json_schema_compiler/compiler.py $
+    ../../tools/json_schema_compiler/cpp_generator.py $
+    ../../tools/json_schema_compiler/cpp_type_generator.py $
+    ../../tools/json_schema_compiler/cpp_util.py $
+    ../../tools/json_schema_compiler/h_generator.py $
+    ../../tools/json_schema_compiler/json_schema.py $
+    ../../tools/json_schema_compiler/model.py $
+    ../../tools/json_schema_compiler/util.cc $
+    ../../tools/json_schema_compiler/util.h $
+    ../../tools/json_schema_compiler/util_cc_helper.py
+  source = choices.json
+  unique_name = fcfd03287255a7f45d3634f8743f185f
+build gen/tools/json_schema_compiler/test/crossref.cc $
+    gen/tools/json_schema_compiler/test/crossref.h: $
+    json_schema_compiler_tests_target_genapi_c66eb5a7379f3f041fbc3d713659288c $
+    ../../tools/json_schema_compiler/test/crossref.json | $
+    ../../tools/json_schema_compiler/cc_generator.py $
+    ../../tools/json_schema_compiler/code.py $
+    ../../tools/json_schema_compiler/compiler.py $
+    ../../tools/json_schema_compiler/cpp_generator.py $
+    ../../tools/json_schema_compiler/cpp_type_generator.py $
+    ../../tools/json_schema_compiler/cpp_util.py $
+    ../../tools/json_schema_compiler/h_generator.py $
+    ../../tools/json_schema_compiler/json_schema.py $
+    ../../tools/json_schema_compiler/model.py $
+    ../../tools/json_schema_compiler/util.cc $
+    ../../tools/json_schema_compiler/util.h $
+    ../../tools/json_schema_compiler/util_cc_helper.py
+  source = crossref.json
+  unique_name = b9ae65df180e5d7bbee9485ab0885374
+build gen/tools/json_schema_compiler/test/enums.cc $
+    gen/tools/json_schema_compiler/test/enums.h: $
+    json_schema_compiler_tests_target_genapi_c66eb5a7379f3f041fbc3d713659288c $
+    ../../tools/json_schema_compiler/test/enums.json | $
+    ../../tools/json_schema_compiler/cc_generator.py $
+    ../../tools/json_schema_compiler/code.py $
+    ../../tools/json_schema_compiler/compiler.py $
+    ../../tools/json_schema_compiler/cpp_generator.py $
+    ../../tools/json_schema_compiler/cpp_type_generator.py $
+    ../../tools/json_schema_compiler/cpp_util.py $
+    ../../tools/json_schema_compiler/h_generator.py $
+    ../../tools/json_schema_compiler/json_schema.py $
+    ../../tools/json_schema_compiler/model.py $
+    ../../tools/json_schema_compiler/util.cc $
+    ../../tools/json_schema_compiler/util.h $
+    ../../tools/json_schema_compiler/util_cc_helper.py
+  source = enums.json
+  unique_name = 4a7aee16d049d0093bf24b5918862d36
+build gen/tools/json_schema_compiler/test/functions_as_parameters.cc $
+    gen/tools/json_schema_compiler/test/functions_as_parameters.h: $
+    json_schema_compiler_tests_target_genapi_c66eb5a7379f3f041fbc3d713659288c $
+    ../../tools/json_schema_compiler/test/functions_as_parameters.json | $
+    ../../tools/json_schema_compiler/cc_generator.py $
+    ../../tools/json_schema_compiler/code.py $
+    ../../tools/json_schema_compiler/compiler.py $
+    ../../tools/json_schema_compiler/cpp_generator.py $
+    ../../tools/json_schema_compiler/cpp_type_generator.py $
+    ../../tools/json_schema_compiler/cpp_util.py $
+    ../../tools/json_schema_compiler/h_generator.py $
+    ../../tools/json_schema_compiler/json_schema.py $
+    ../../tools/json_schema_compiler/model.py $
+    ../../tools/json_schema_compiler/util.cc $
+    ../../tools/json_schema_compiler/util.h $
+    ../../tools/json_schema_compiler/util_cc_helper.py
+  source = functions_as_parameters.json
+  unique_name = aeb91f1796f152bba13f7a5797ff2feb
+build gen/tools/json_schema_compiler/test/functions_on_types.cc $
+    gen/tools/json_schema_compiler/test/functions_on_types.h: $
+    json_schema_compiler_tests_target_genapi_c66eb5a7379f3f041fbc3d713659288c $
+    ../../tools/json_schema_compiler/test/functions_on_types.json | $
+    ../../tools/json_schema_compiler/cc_generator.py $
+    ../../tools/json_schema_compiler/code.py $
+    ../../tools/json_schema_compiler/compiler.py $
+    ../../tools/json_schema_compiler/cpp_generator.py $
+    ../../tools/json_schema_compiler/cpp_type_generator.py $
+    ../../tools/json_schema_compiler/cpp_util.py $
+    ../../tools/json_schema_compiler/h_generator.py $
+    ../../tools/json_schema_compiler/json_schema.py $
+    ../../tools/json_schema_compiler/model.py $
+    ../../tools/json_schema_compiler/util.cc $
+    ../../tools/json_schema_compiler/util.h $
+    ../../tools/json_schema_compiler/util_cc_helper.py
+  source = functions_on_types.json
+  unique_name = 32a24a965bf062963266a6505c027ab1
+build gen/tools/json_schema_compiler/test/objects.cc $
+    gen/tools/json_schema_compiler/test/objects.h: $
+    json_schema_compiler_tests_target_genapi_c66eb5a7379f3f041fbc3d713659288c $
+    ../../tools/json_schema_compiler/test/objects.json | $
+    ../../tools/json_schema_compiler/cc_generator.py $
+    ../../tools/json_schema_compiler/code.py $
+    ../../tools/json_schema_compiler/compiler.py $
+    ../../tools/json_schema_compiler/cpp_generator.py $
+    ../../tools/json_schema_compiler/cpp_type_generator.py $
+    ../../tools/json_schema_compiler/cpp_util.py $
+    ../../tools/json_schema_compiler/h_generator.py $
+    ../../tools/json_schema_compiler/json_schema.py $
+    ../../tools/json_schema_compiler/model.py $
+    ../../tools/json_schema_compiler/util.cc $
+    ../../tools/json_schema_compiler/util.h $
+    ../../tools/json_schema_compiler/util_cc_helper.py
+  source = objects.json
+  unique_name = 367eb263535b5df326b774debce17d0d
+build gen/tools/json_schema_compiler/test/simple_api.cc $
+    gen/tools/json_schema_compiler/test/simple_api.h: $
+    json_schema_compiler_tests_target_genapi_c66eb5a7379f3f041fbc3d713659288c $
+    ../../tools/json_schema_compiler/test/simple_api.json | $
+    ../../tools/json_schema_compiler/cc_generator.py $
+    ../../tools/json_schema_compiler/code.py $
+    ../../tools/json_schema_compiler/compiler.py $
+    ../../tools/json_schema_compiler/cpp_generator.py $
+    ../../tools/json_schema_compiler/cpp_type_generator.py $
+    ../../tools/json_schema_compiler/cpp_util.py $
+    ../../tools/json_schema_compiler/h_generator.py $
+    ../../tools/json_schema_compiler/json_schema.py $
+    ../../tools/json_schema_compiler/model.py $
+    ../../tools/json_schema_compiler/util.cc $
+    ../../tools/json_schema_compiler/util.h $
+    ../../tools/json_schema_compiler/util_cc_helper.py
+  source = simple_api.json
+  unique_name = 623f4f8fd97a5ca4617709eb768a51de
+rule $
+    json_schema_compiler_tests_target_genapi_idl_c66eb5a7379f3f041fbc3d713659288c
+  command = cd ../../tools/json_schema_compiler/test; python $
+      ../../../tools/json_schema_compiler/compiler.py "${source}" $
+      "--root=../../.." "--destdir=../../../out/Release/gen" $
+      "--namespace=test::api" "--generator=cpp"
+  description = RULE Generating C++ code from ${source} IDL files
+  restat = 1
+
+build gen/tools/json_schema_compiler/test/idl_basics.cc $
+    gen/tools/json_schema_compiler/test/idl_basics.h: $
+    json_schema_compiler_tests_target_genapi_idl_c66eb5a7379f3f041fbc3d713659288c $
+    ../../tools/json_schema_compiler/test/idl_basics.idl | $
+    ../../tools/json_schema_compiler/cc_generator.py $
+    ../../tools/json_schema_compiler/code.py $
+    ../../tools/json_schema_compiler/compiler.py $
+    ../../tools/json_schema_compiler/cpp_generator.py $
+    ../../tools/json_schema_compiler/cpp_type_generator.py $
+    ../../tools/json_schema_compiler/cpp_util.py $
+    ../../tools/json_schema_compiler/h_generator.py $
+    ../../tools/json_schema_compiler/idl_schema.py $
+    ../../tools/json_schema_compiler/model.py $
+    ../../tools/json_schema_compiler/util.cc $
+    ../../tools/json_schema_compiler/util.h $
+    ../../tools/json_schema_compiler/util_cc_helper.py
+  source = idl_basics.idl
+  unique_name = 6727d1fc18c7bd0d17f2d51ad0496c9d
+build gen/tools/json_schema_compiler/test/idl_object_types.cc $
+    gen/tools/json_schema_compiler/test/idl_object_types.h: $
+    json_schema_compiler_tests_target_genapi_idl_c66eb5a7379f3f041fbc3d713659288c $
+    ../../tools/json_schema_compiler/test/idl_object_types.idl | $
+    ../../tools/json_schema_compiler/cc_generator.py $
+    ../../tools/json_schema_compiler/code.py $
+    ../../tools/json_schema_compiler/compiler.py $
+    ../../tools/json_schema_compiler/cpp_generator.py $
+    ../../tools/json_schema_compiler/cpp_type_generator.py $
+    ../../tools/json_schema_compiler/cpp_util.py $
+    ../../tools/json_schema_compiler/h_generator.py $
+    ../../tools/json_schema_compiler/idl_schema.py $
+    ../../tools/json_schema_compiler/model.py $
+    ../../tools/json_schema_compiler/util.cc $
+    ../../tools/json_schema_compiler/util.h $
+    ../../tools/json_schema_compiler/util_cc_helper.py
+  source = idl_object_types.idl
+  unique_name = 382bec1149b715c79a9a435c3cc9f3c0
+build $
+    obj/tools/json_schema_compiler/test/json_schema_compiler_tests.actions_rules_copies.stamp: $
+    stamp gen/tools/json_schema_compiler/test/additional_properties.cc $
+    gen/tools/json_schema_compiler/test/additional_properties.h $
+    gen/tools/json_schema_compiler/test/any.cc $
+    gen/tools/json_schema_compiler/test/any.h $
+    gen/tools/json_schema_compiler/test/arrays.cc $
+    gen/tools/json_schema_compiler/test/arrays.h $
+    gen/tools/json_schema_compiler/test/callbacks.cc $
+    gen/tools/json_schema_compiler/test/callbacks.h $
+    gen/tools/json_schema_compiler/test/choices.cc $
+    gen/tools/json_schema_compiler/test/choices.h $
+    gen/tools/json_schema_compiler/test/crossref.cc $
+    gen/tools/json_schema_compiler/test/crossref.h $
+    gen/tools/json_schema_compiler/test/enums.cc $
+    gen/tools/json_schema_compiler/test/enums.h $
+    gen/tools/json_schema_compiler/test/functions_as_parameters.cc $
+    gen/tools/json_schema_compiler/test/functions_as_parameters.h $
+    gen/tools/json_schema_compiler/test/functions_on_types.cc $
+    gen/tools/json_schema_compiler/test/functions_on_types.h $
+    gen/tools/json_schema_compiler/test/objects.cc $
+    gen/tools/json_schema_compiler/test/objects.h $
+    gen/tools/json_schema_compiler/test/simple_api.cc $
+    gen/tools/json_schema_compiler/test/simple_api.h $
+    gen/tools/json_schema_compiler/test/idl_basics.cc $
+    gen/tools/json_schema_compiler/test/idl_basics.h $
+    gen/tools/json_schema_compiler/test/idl_object_types.cc $
+    gen/tools/json_schema_compiler/test/idl_object_types.h
+
+defines = -DANGLE_DX11 -D_FILE_OFFSET_BITS=64 -DNO_TCMALLOC -DDISABLE_NACL $
+    -DCHROMIUM_BUILD -DUSE_DEFAULT_RENDER_THEME=1 -DUSE_LIBJPEG_TURBO=1 $
+    -DUSE_NSS=1 -DUSE_X11=1 -DENABLE_ONE_CLICK_SIGNIN $
+    -DGTK_DISABLE_SINGLE_INCLUDES=1 -DENABLE_REMOTING=1 -DENABLE_WEBRTC=1 $
+    -DENABLE_CONFIGURATION_POLICY -DENABLE_INPUT_SPEECH $
+    -DENABLE_NOTIFICATIONS -DENABLE_GPU=1 -DENABLE_EGLIMAGE=1 $
+    -DENABLE_TASK_MANAGER=1 -DENABLE_EXTENSIONS=1 $
+    -DENABLE_PLUGIN_INSTALLATION=1 -DENABLE_PLUGINS=1 $
+    -DENABLE_SESSION_SERVICE=1 -DENABLE_THEMES=1 -DENABLE_BACKGROUND=1 $
+    -DENABLE_AUTOMATION=1 -DENABLE_GOOGLE_NOW=1 $
+    -DENABLE_LANGUAGE_DETECTION=1 -DENABLE_PRINTING=1 $
+    -DENABLE_CAPTIVE_PORTAL_DETECTION=1 -DENABLE_MANAGED_USERS=1 $
+    -D__STDC_CONSTANT_MACROS -D__STDC_FORMAT_MACROS -DNDEBUG $
+    -DOFFICIAL_BUILD -DNVALGRIND -DDYNAMIC_ANNOTATIONS_ENABLED=0
+includes = -Igen -I../..
+cflags = -fstack-protector --param=ssp-buffer-size=4  -pthread $
+    -fno-exceptions -fno-strict-aliasing -Wall -Wno-unused-parameter $
+    -Wno-missing-field-initializers -fvisibility=hidden -pipe -fPIC $
+    -Wheader-hygiene -Wno-char-subscripts -Wno-unused-function $
+    -Wno-covered-switch-default -Wstring-conversion -Wno-c++11-narrowing $
+    -Wno-reserved-user-defined-literal -fcolor-diagnostics $
+    -I/usr/local/include/gtk-2.0 -I/usr/local/include/gio-unix-2.0/ $
+    -I/usr/local/include/atk-1.0 -I/usr/local/include/cairo $
+    -I/usr/local/include/pixman-1 -D_THREAD_SAFE $
+    -I/usr/local/include/gdk-pixbuf-2.0 -I/usr/local/include/libpng15 $
+    -I/usr/local/include/pango-1.0 -I/usr/local/include/freetype2 $
+    -I/usr/local/include/harfbuzz -pthread -I/usr/local/include/glib-2.0 $
+    -I/usr/local/include -O2 -fdata-sections -ffunction-sections
+cflags_c = -O2 -pipe -fno-strict-aliasing
+cflags_cc = -O2 -pipe -fno-strict-aliasing -fno-rtti $
+    -fno-threadsafe-statics -fvisibility-inlines-hidden -Wsign-compare $
+    -std=gnu++11
+
+build $
+    obj/tools/json_schema_compiler/test/gen/tools/json_schema_compiler/test/json_schema_compiler_tests.additional_properties.o: $
+    cxx gen/tools/json_schema_compiler/test/additional_properties.cc || $
+    obj/tools/json_schema_compiler/test/json_schema_compiler_tests.actions_rules_copies.stamp
+build $
+    obj/tools/json_schema_compiler/test/gen/tools/json_schema_compiler/test/json_schema_compiler_tests.any.o: $
+    cxx gen/tools/json_schema_compiler/test/any.cc || $
+    obj/tools/json_schema_compiler/test/json_schema_compiler_tests.actions_rules_copies.stamp
+build $
+    obj/tools/json_schema_compiler/test/gen/tools/json_schema_compiler/test/json_schema_compiler_tests.arrays.o: $
+    cxx gen/tools/json_schema_compiler/test/arrays.cc || $
+    obj/tools/json_schema_compiler/test/json_schema_compiler_tests.actions_rules_copies.stamp
+build $
+    obj/tools/json_schema_compiler/test/gen/tools/json_schema_compiler/test/json_schema_compiler_tests.callbacks.o: $
+    cxx gen/tools/json_schema_compiler/test/callbacks.cc || $
+    obj/tools/json_schema_compiler/test/json_schema_compiler_tests.actions_rules_copies.stamp
+build $
+    obj/tools/json_schema_compiler/test/gen/tools/json_schema_compiler/test/json_schema_compiler_tests.choices.o: $
+    cxx gen/tools/json_schema_compiler/test/choices.cc || $
+    obj/tools/json_schema_compiler/test/json_schema_compiler_tests.actions_rules_copies.stamp
+build $
+    obj/tools/json_schema_compiler/test/gen/tools/json_schema_compiler/test/json_schema_compiler_tests.crossref.o: $
+    cxx gen/tools/json_schema_compiler/test/crossref.cc || $
+    obj/tools/json_schema_compiler/test/json_schema_compiler_tests.actions_rules_copies.stamp
+build $
+    obj/tools/json_schema_compiler/test/gen/tools/json_schema_compiler/test/json_schema_compiler_tests.enums.o: $
+    cxx gen/tools/json_schema_compiler/test/enums.cc || $
+    obj/tools/json_schema_compiler/test/json_schema_compiler_tests.actions_rules_copies.stamp
+build $
+    obj/tools/json_schema_compiler/test/gen/tools/json_schema_compiler/test/json_schema_compiler_tests.functions_as_parameters.o: $
+    cxx gen/tools/json_schema_compiler/test/functions_as_parameters.cc || $
+    obj/tools/json_schema_compiler/test/json_schema_compiler_tests.actions_rules_copies.stamp
+build $
+    obj/tools/json_schema_compiler/test/gen/tools/json_schema_compiler/test/json_schema_compiler_tests.functions_on_types.o: $
+    cxx gen/tools/json_schema_compiler/test/functions_on_types.cc || $
+    obj/tools/json_schema_compiler/test/json_schema_compiler_tests.actions_rules_copies.stamp
+build $
+    obj/tools/json_schema_compiler/test/gen/tools/json_schema_compiler/test/json_schema_compiler_tests.objects.o: $
+    cxx gen/tools/json_schema_compiler/test/objects.cc || $
+    obj/tools/json_schema_compiler/test/json_schema_compiler_tests.actions_rules_copies.stamp
+build $
+    obj/tools/json_schema_compiler/test/gen/tools/json_schema_compiler/test/json_schema_compiler_tests.simple_api.o: $
+    cxx gen/tools/json_schema_compiler/test/simple_api.cc || $
+    obj/tools/json_schema_compiler/test/json_schema_compiler_tests.actions_rules_copies.stamp
+build $
+    obj/tools/json_schema_compiler/test/gen/tools/json_schema_compiler/test/json_schema_compiler_tests.idl_basics.o: $
+    cxx gen/tools/json_schema_compiler/test/idl_basics.cc || $
+    obj/tools/json_schema_compiler/test/json_schema_compiler_tests.actions_rules_copies.stamp
+build $
+    obj/tools/json_schema_compiler/test/gen/tools/json_schema_compiler/test/json_schema_compiler_tests.idl_object_types.o: $
+    cxx gen/tools/json_schema_compiler/test/idl_object_types.cc || $
+    obj/tools/json_schema_compiler/test/json_schema_compiler_tests.actions_rules_copies.stamp
+
+build obj/tools/json_schema_compiler/test/libjson_schema_compiler_tests.a: $
+    alink_thin $
+    obj/tools/json_schema_compiler/test/gen/tools/json_schema_compiler/test/json_schema_compiler_tests.additional_properties.o $
+    obj/tools/json_schema_compiler/test/gen/tools/json_schema_compiler/test/json_schema_compiler_tests.any.o $
+    obj/tools/json_schema_compiler/test/gen/tools/json_schema_compiler/test/json_schema_compiler_tests.arrays.o $
+    obj/tools/json_schema_compiler/test/gen/tools/json_schema_compiler/test/json_schema_compiler_tests.callbacks.o $
+    obj/tools/json_schema_compiler/test/gen/tools/json_schema_compiler/test/json_schema_compiler_tests.choices.o $
+    obj/tools/json_schema_compiler/test/gen/tools/json_schema_compiler/test/json_schema_compiler_tests.crossref.o $
+    obj/tools/json_schema_compiler/test/gen/tools/json_schema_compiler/test/json_schema_compiler_tests.enums.o $
+    obj/tools/json_schema_compiler/test/gen/tools/json_schema_compiler/test/json_schema_compiler_tests.functions_as_parameters.o $
+    obj/tools/json_schema_compiler/test/gen/tools/json_schema_compiler/test/json_schema_compiler_tests.functions_on_types.o $
+    obj/tools/json_schema_compiler/test/gen/tools/json_schema_compiler/test/json_schema_compiler_tests.objects.o $
+    obj/tools/json_schema_compiler/test/gen/tools/json_schema_compiler/test/json_schema_compiler_tests.simple_api.o $
+    obj/tools/json_schema_compiler/test/gen/tools/json_schema_compiler/test/json_schema_compiler_tests.idl_basics.o $
+    obj/tools/json_schema_compiler/test/gen/tools/json_schema_compiler/test/json_schema_compiler_tests.idl_object_types.o $
+    || $
+    obj/tools/json_schema_compiler/test/json_schema_compiler_tests.actions_rules_copies.stamp

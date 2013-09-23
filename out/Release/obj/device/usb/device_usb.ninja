@@ -1,0 +1,49 @@
+rule device_usb_target_generate_usb_ids_a625a52449ffe4fc5752a446b0b8b01f
+  command = cd ../../device/usb; python ../../tools/usb_ids/usb_ids.py -i $
+      ../../third_party/usb_ids/usb.ids -o $
+      ../../out/Release/gen/device/usb/usb_ids_gen.cc
+  description = ACTION device_usb: $
+      generate_usb_ids_a625a52449ffe4fc5752a446b0b8b01f
+  restat = 1
+
+build gen/device/usb/usb_ids_gen.cc: $
+    device_usb_target_generate_usb_ids_a625a52449ffe4fc5752a446b0b8b01f $
+    ../../third_party/usb_ids/usb.ids ../../tools/usb_ids/usb_ids.py
+
+defines = -DANGLE_DX11 -D_FILE_OFFSET_BITS=64 -DNO_TCMALLOC -DDISABLE_NACL $
+    -DCHROMIUM_BUILD -DUSE_DEFAULT_RENDER_THEME=1 -DUSE_LIBJPEG_TURBO=1 $
+    -DUSE_NSS=1 -DUSE_X11=1 -DENABLE_ONE_CLICK_SIGNIN $
+    -DGTK_DISABLE_SINGLE_INCLUDES=1 -DENABLE_REMOTING=1 -DENABLE_WEBRTC=1 $
+    -DENABLE_CONFIGURATION_POLICY -DENABLE_INPUT_SPEECH $
+    -DENABLE_NOTIFICATIONS -DENABLE_GPU=1 -DENABLE_EGLIMAGE=1 $
+    -DENABLE_TASK_MANAGER=1 -DENABLE_EXTENSIONS=1 $
+    -DENABLE_PLUGIN_INSTALLATION=1 -DENABLE_PLUGINS=1 $
+    -DENABLE_SESSION_SERVICE=1 -DENABLE_THEMES=1 -DENABLE_BACKGROUND=1 $
+    -DENABLE_AUTOMATION=1 -DENABLE_GOOGLE_NOW=1 $
+    -DENABLE_LANGUAGE_DETECTION=1 -DENABLE_PRINTING=1 $
+    -DENABLE_CAPTIVE_PORTAL_DETECTION=1 -DENABLE_MANAGED_USERS=1 $
+    -D__STDC_CONSTANT_MACROS -D__STDC_FORMAT_MACROS -DNDEBUG $
+    -DOFFICIAL_BUILD -DNVALGRIND -DDYNAMIC_ANNOTATIONS_ENABLED=0 $
+    -D_FORTIFY_SOURCE=2
+includes = -I../..
+cflags = -fstack-protector --param=ssp-buffer-size=4  -pthread $
+    -fno-exceptions -fno-strict-aliasing -Wall -Wno-unused-parameter $
+    -Wno-missing-field-initializers -fvisibility=hidden -pipe -fPIC $
+    -Wheader-hygiene -Wno-char-subscripts -Wno-unused-function $
+    -Wno-covered-switch-default -Wstring-conversion -Wno-c++11-narrowing $
+    -Wno-reserved-user-defined-literal -fcolor-diagnostics -O2 $
+    -fdata-sections -ffunction-sections
+cflags_c = -O2 -pipe -fno-strict-aliasing
+cflags_cc = -O2 -pipe -fno-strict-aliasing -fno-rtti $
+    -fno-threadsafe-statics -fvisibility-inlines-hidden -Wsign-compare $
+    -std=gnu++11
+
+build obj/device/usb/device_usb.usb_ids.o: cxx ../../device/usb/usb_ids.cc $
+    || gen/device/usb/usb_ids_gen.cc
+build obj/device/usb/gen/device/usb/device_usb.usb_ids_gen.o: cxx $
+    gen/device/usb/usb_ids_gen.cc || gen/device/usb/usb_ids_gen.cc
+
+build obj/device/usb/libdevice_usb.a: alink_thin $
+    obj/device/usb/device_usb.usb_ids.o $
+    obj/device/usb/gen/device/usb/device_usb.usb_ids_gen.o || $
+    gen/device/usb/usb_ids_gen.cc

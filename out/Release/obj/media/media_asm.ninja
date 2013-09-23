@@ -1,0 +1,199 @@
+rule media_asm_target_assemble_0b964539f5c8a43ca5cfadbc4d39a056
+  command = cd ../../media; /usr/local/bin/yasm -DCHROMIUM -I.. -DPIC $
+      -felf64 -m amd64 -DARCH_X86_64 -DELF -DPIC -o $
+      "../out/Release/gen/media/${root}.o" "${source}"
+  description = RULE Compile assembly ${source}.
+  restat = 1
+
+build gen/media/convert_rgb_to_yuv_ssse3.o: $
+    media_asm_target_assemble_0b964539f5c8a43ca5cfadbc4d39a056 $
+    ../../media/base/simd/convert_rgb_to_yuv_ssse3.asm | $
+    /usr/local/bin/yasm ../../third_party/x86inc/x86inc.asm $
+    ../../media/base/simd/convert_rgb_to_yuv_ssse3.inc $
+    ../../media/base/simd/convert_yuv_to_rgb_mmx.inc $
+    ../../media/base/simd/convert_yuva_to_argb_mmx.inc $
+    ../../media/base/simd/linear_scale_yuv_to_rgb_mmx.inc $
+    ../../media/base/simd/media_export.asm $
+    ../../media/base/simd/scale_yuv_to_rgb_mmx.inc
+  source = base/simd/convert_rgb_to_yuv_ssse3.asm
+  root = convert_rgb_to_yuv_ssse3
+  unique_name = f900d021370f40bb89aafb2467e8df1e
+build gen/media/convert_yuv_to_rgb_mmx.o: $
+    media_asm_target_assemble_0b964539f5c8a43ca5cfadbc4d39a056 $
+    ../../media/base/simd/convert_yuv_to_rgb_mmx.asm | /usr/local/bin/yasm $
+    ../../third_party/x86inc/x86inc.asm $
+    ../../media/base/simd/convert_rgb_to_yuv_ssse3.inc $
+    ../../media/base/simd/convert_yuv_to_rgb_mmx.inc $
+    ../../media/base/simd/convert_yuva_to_argb_mmx.inc $
+    ../../media/base/simd/linear_scale_yuv_to_rgb_mmx.inc $
+    ../../media/base/simd/media_export.asm $
+    ../../media/base/simd/scale_yuv_to_rgb_mmx.inc
+  source = base/simd/convert_yuv_to_rgb_mmx.asm
+  root = convert_yuv_to_rgb_mmx
+  unique_name = 602c01f948780976108e0355547be337
+build gen/media/convert_yuv_to_rgb_sse.o: $
+    media_asm_target_assemble_0b964539f5c8a43ca5cfadbc4d39a056 $
+    ../../media/base/simd/convert_yuv_to_rgb_sse.asm | /usr/local/bin/yasm $
+    ../../third_party/x86inc/x86inc.asm $
+    ../../media/base/simd/convert_rgb_to_yuv_ssse3.inc $
+    ../../media/base/simd/convert_yuv_to_rgb_mmx.inc $
+    ../../media/base/simd/convert_yuva_to_argb_mmx.inc $
+    ../../media/base/simd/linear_scale_yuv_to_rgb_mmx.inc $
+    ../../media/base/simd/media_export.asm $
+    ../../media/base/simd/scale_yuv_to_rgb_mmx.inc
+  source = base/simd/convert_yuv_to_rgb_sse.asm
+  root = convert_yuv_to_rgb_sse
+  unique_name = bf04f1f6319c96e1f146b76915c0ec49
+build gen/media/convert_yuva_to_argb_mmx.o: $
+    media_asm_target_assemble_0b964539f5c8a43ca5cfadbc4d39a056 $
+    ../../media/base/simd/convert_yuva_to_argb_mmx.asm | $
+    /usr/local/bin/yasm ../../third_party/x86inc/x86inc.asm $
+    ../../media/base/simd/convert_rgb_to_yuv_ssse3.inc $
+    ../../media/base/simd/convert_yuv_to_rgb_mmx.inc $
+    ../../media/base/simd/convert_yuva_to_argb_mmx.inc $
+    ../../media/base/simd/linear_scale_yuv_to_rgb_mmx.inc $
+    ../../media/base/simd/media_export.asm $
+    ../../media/base/simd/scale_yuv_to_rgb_mmx.inc
+  source = base/simd/convert_yuva_to_argb_mmx.asm
+  root = convert_yuva_to_argb_mmx
+  unique_name = 1f1d7a5f329f7f62fb303aab335abeff
+build gen/media/empty_register_state_mmx.o: $
+    media_asm_target_assemble_0b964539f5c8a43ca5cfadbc4d39a056 $
+    ../../media/base/simd/empty_register_state_mmx.asm | $
+    /usr/local/bin/yasm ../../third_party/x86inc/x86inc.asm $
+    ../../media/base/simd/convert_rgb_to_yuv_ssse3.inc $
+    ../../media/base/simd/convert_yuv_to_rgb_mmx.inc $
+    ../../media/base/simd/convert_yuva_to_argb_mmx.inc $
+    ../../media/base/simd/linear_scale_yuv_to_rgb_mmx.inc $
+    ../../media/base/simd/media_export.asm $
+    ../../media/base/simd/scale_yuv_to_rgb_mmx.inc
+  source = base/simd/empty_register_state_mmx.asm
+  root = empty_register_state_mmx
+  unique_name = 1539065365258af2aa795df1a8647de7
+build gen/media/linear_scale_yuv_to_rgb_mmx.o: $
+    media_asm_target_assemble_0b964539f5c8a43ca5cfadbc4d39a056 $
+    ../../media/base/simd/linear_scale_yuv_to_rgb_mmx.asm | $
+    /usr/local/bin/yasm ../../third_party/x86inc/x86inc.asm $
+    ../../media/base/simd/convert_rgb_to_yuv_ssse3.inc $
+    ../../media/base/simd/convert_yuv_to_rgb_mmx.inc $
+    ../../media/base/simd/convert_yuva_to_argb_mmx.inc $
+    ../../media/base/simd/linear_scale_yuv_to_rgb_mmx.inc $
+    ../../media/base/simd/media_export.asm $
+    ../../media/base/simd/scale_yuv_to_rgb_mmx.inc
+  source = base/simd/linear_scale_yuv_to_rgb_mmx.asm
+  root = linear_scale_yuv_to_rgb_mmx
+  unique_name = 91f9ef014dfb54ec791b49acf55ac442
+build gen/media/linear_scale_yuv_to_rgb_sse.o: $
+    media_asm_target_assemble_0b964539f5c8a43ca5cfadbc4d39a056 $
+    ../../media/base/simd/linear_scale_yuv_to_rgb_sse.asm | $
+    /usr/local/bin/yasm ../../third_party/x86inc/x86inc.asm $
+    ../../media/base/simd/convert_rgb_to_yuv_ssse3.inc $
+    ../../media/base/simd/convert_yuv_to_rgb_mmx.inc $
+    ../../media/base/simd/convert_yuva_to_argb_mmx.inc $
+    ../../media/base/simd/linear_scale_yuv_to_rgb_mmx.inc $
+    ../../media/base/simd/media_export.asm $
+    ../../media/base/simd/scale_yuv_to_rgb_mmx.inc
+  source = base/simd/linear_scale_yuv_to_rgb_sse.asm
+  root = linear_scale_yuv_to_rgb_sse
+  unique_name = 13c259abae7ceeb260d3481502c2e179
+build gen/media/scale_yuv_to_rgb_mmx.o: $
+    media_asm_target_assemble_0b964539f5c8a43ca5cfadbc4d39a056 $
+    ../../media/base/simd/scale_yuv_to_rgb_mmx.asm | /usr/local/bin/yasm $
+    ../../third_party/x86inc/x86inc.asm $
+    ../../media/base/simd/convert_rgb_to_yuv_ssse3.inc $
+    ../../media/base/simd/convert_yuv_to_rgb_mmx.inc $
+    ../../media/base/simd/convert_yuva_to_argb_mmx.inc $
+    ../../media/base/simd/linear_scale_yuv_to_rgb_mmx.inc $
+    ../../media/base/simd/media_export.asm $
+    ../../media/base/simd/scale_yuv_to_rgb_mmx.inc
+  source = base/simd/scale_yuv_to_rgb_mmx.asm
+  root = scale_yuv_to_rgb_mmx
+  unique_name = 160bb350ab48c5e5c4bbaeede3810ed1
+build gen/media/scale_yuv_to_rgb_sse.o: $
+    media_asm_target_assemble_0b964539f5c8a43ca5cfadbc4d39a056 $
+    ../../media/base/simd/scale_yuv_to_rgb_sse.asm | /usr/local/bin/yasm $
+    ../../third_party/x86inc/x86inc.asm $
+    ../../media/base/simd/convert_rgb_to_yuv_ssse3.inc $
+    ../../media/base/simd/convert_yuv_to_rgb_mmx.inc $
+    ../../media/base/simd/convert_yuva_to_argb_mmx.inc $
+    ../../media/base/simd/linear_scale_yuv_to_rgb_mmx.inc $
+    ../../media/base/simd/media_export.asm $
+    ../../media/base/simd/scale_yuv_to_rgb_mmx.inc
+  source = base/simd/scale_yuv_to_rgb_sse.asm
+  root = scale_yuv_to_rgb_sse
+  unique_name = 24f91cd989719650ff5eaaf6f873527d
+build gen/media/linear_scale_yuv_to_rgb_mmx_x64.o: $
+    media_asm_target_assemble_0b964539f5c8a43ca5cfadbc4d39a056 $
+    ../../media/base/simd/linear_scale_yuv_to_rgb_mmx_x64.asm | $
+    /usr/local/bin/yasm ../../third_party/x86inc/x86inc.asm $
+    ../../media/base/simd/convert_rgb_to_yuv_ssse3.inc $
+    ../../media/base/simd/convert_yuv_to_rgb_mmx.inc $
+    ../../media/base/simd/convert_yuva_to_argb_mmx.inc $
+    ../../media/base/simd/linear_scale_yuv_to_rgb_mmx.inc $
+    ../../media/base/simd/media_export.asm $
+    ../../media/base/simd/scale_yuv_to_rgb_mmx.inc
+  source = base/simd/linear_scale_yuv_to_rgb_mmx_x64.asm
+  root = linear_scale_yuv_to_rgb_mmx_x64
+  unique_name = 74a9ae8eded489963afed6f57224b264
+build gen/media/scale_yuv_to_rgb_sse2_x64.o: $
+    media_asm_target_assemble_0b964539f5c8a43ca5cfadbc4d39a056 $
+    ../../media/base/simd/scale_yuv_to_rgb_sse2_x64.asm | $
+    /usr/local/bin/yasm ../../third_party/x86inc/x86inc.asm $
+    ../../media/base/simd/convert_rgb_to_yuv_ssse3.inc $
+    ../../media/base/simd/convert_yuv_to_rgb_mmx.inc $
+    ../../media/base/simd/convert_yuva_to_argb_mmx.inc $
+    ../../media/base/simd/linear_scale_yuv_to_rgb_mmx.inc $
+    ../../media/base/simd/media_export.asm $
+    ../../media/base/simd/scale_yuv_to_rgb_mmx.inc
+  source = base/simd/scale_yuv_to_rgb_sse2_x64.asm
+  root = scale_yuv_to_rgb_sse2_x64
+  unique_name = 2f138f2cc462606ee7bc5d9dd69c9a63
+build obj/media/media_asm.actions_rules_copies.stamp: stamp $
+    gen/media/convert_rgb_to_yuv_ssse3.o gen/media/convert_yuv_to_rgb_mmx.o $
+    gen/media/convert_yuv_to_rgb_sse.o gen/media/convert_yuva_to_argb_mmx.o $
+    gen/media/empty_register_state_mmx.o $
+    gen/media/linear_scale_yuv_to_rgb_mmx.o $
+    gen/media/linear_scale_yuv_to_rgb_sse.o $
+    gen/media/scale_yuv_to_rgb_mmx.o gen/media/scale_yuv_to_rgb_sse.o $
+    gen/media/linear_scale_yuv_to_rgb_mmx_x64.o $
+    gen/media/scale_yuv_to_rgb_sse2_x64.o
+
+defines = -DANGLE_DX11 -D_FILE_OFFSET_BITS=64 -DNO_TCMALLOC -DDISABLE_NACL $
+    -DCHROMIUM_BUILD -DUSE_DEFAULT_RENDER_THEME=1 -DUSE_LIBJPEG_TURBO=1 $
+    -DUSE_NSS=1 -DUSE_X11=1 -DENABLE_ONE_CLICK_SIGNIN $
+    -DGTK_DISABLE_SINGLE_INCLUDES=1 -DENABLE_REMOTING=1 -DENABLE_WEBRTC=1 $
+    -DENABLE_CONFIGURATION_POLICY -DENABLE_INPUT_SPEECH $
+    -DENABLE_NOTIFICATIONS -DENABLE_GPU=1 -DENABLE_EGLIMAGE=1 $
+    -DENABLE_TASK_MANAGER=1 -DENABLE_EXTENSIONS=1 $
+    -DENABLE_PLUGIN_INSTALLATION=1 -DENABLE_PLUGINS=1 $
+    -DENABLE_SESSION_SERVICE=1 -DENABLE_THEMES=1 -DENABLE_BACKGROUND=1 $
+    -DENABLE_AUTOMATION=1 -DENABLE_GOOGLE_NOW=1 $
+    -DENABLE_LANGUAGE_DETECTION=1 -DENABLE_PRINTING=1 $
+    -DENABLE_CAPTIVE_PORTAL_DETECTION=1 -DENABLE_MANAGED_USERS=1 $
+    -D__STDC_CONSTANT_MACROS -D__STDC_FORMAT_MACROS -DNDEBUG $
+    -DOFFICIAL_BUILD -DNVALGRIND -DDYNAMIC_ANNOTATIONS_ENABLED=0 $
+    -D_FORTIFY_SOURCE=2
+includes = 
+cflags = -fstack-protector --param=ssp-buffer-size=4  -pthread $
+    -fno-exceptions -fno-strict-aliasing -Wall -Wno-unused-parameter $
+    -Wno-missing-field-initializers -fvisibility=hidden -pipe -fPIC $
+    -Wheader-hygiene -Wno-char-subscripts -Wno-unused-function $
+    -Wno-covered-switch-default -Wstring-conversion -Wno-c++11-narrowing $
+    -Wno-reserved-user-defined-literal -fcolor-diagnostics -O2 $
+    -fdata-sections -ffunction-sections
+cflags_c = -O2 -pipe -fno-strict-aliasing
+cflags_cc = -O2 -pipe -fno-strict-aliasing -fno-rtti $
+    -fno-threadsafe-statics -fvisibility-inlines-hidden -Wsign-compare $
+    -std=gnu++11
+
+
+build obj/media/libmedia_asm.a: alink_thin $
+    gen/media/convert_rgb_to_yuv_ssse3.o gen/media/convert_yuv_to_rgb_mmx.o $
+    gen/media/convert_yuv_to_rgb_sse.o gen/media/convert_yuva_to_argb_mmx.o $
+    gen/media/empty_register_state_mmx.o $
+    gen/media/linear_scale_yuv_to_rgb_mmx.o $
+    gen/media/linear_scale_yuv_to_rgb_sse.o $
+    gen/media/scale_yuv_to_rgb_mmx.o gen/media/scale_yuv_to_rgb_sse.o $
+    gen/media/linear_scale_yuv_to_rgb_mmx_x64.o $
+    gen/media/scale_yuv_to_rgb_sse2_x64.o || $
+    obj/media/media_asm.actions_rules_copies.stamp

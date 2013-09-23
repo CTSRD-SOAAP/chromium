@@ -1,0 +1,11 @@
+rule $
+    googleurl_unittests_target_copy_url_unittests_62479e2abcdf9c5dc1f29c343683e7ca
+  command = cd ../../url; python ../build/cp.py ../out/Debug/url_unittests $
+      ../out/Debug/googleurl_unittests
+  description = ACTION TEMPORARY: Copying url_unittests to googleurl_unittests
+  restat = 1
+
+build googleurl_unittests: $
+    googleurl_unittests_target_copy_url_unittests_62479e2abcdf9c5dc1f29c343683e7ca $
+    ../../build/cp.py url_unittests || url_unittests
+

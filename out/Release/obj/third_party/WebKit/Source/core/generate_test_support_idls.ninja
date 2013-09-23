@@ -1,0 +1,51 @@
+rule $
+    generate_test_support_idls_target_Settings_fd6a7efa0d2257c7a7e36e1bcec46817
+  command = cd ../../third_party/WebKit/Source/core; python $
+      scripts/action_makenames.py $
+      ../../../../out/Release/gen/webkit/SettingsMacros.h $
+      ../../../../out/Release/gen/webkit/InternalSettingsGenerated.idl $
+      ../../../../out/Release/gen/webkit/InternalSettingsGenerated.cpp $
+      ../../../../out/Release/gen/webkit/InternalSettingsGenerated.h -- $
+      page/make_settings.pl page/Settings.in
+  description = ACTION generate_test_support_idls: $
+      Settings_fd6a7efa0d2257c7a7e36e1bcec46817
+  restat = 1
+
+build gen/webkit/SettingsMacros.h gen/webkit/InternalSettingsGenerated.idl $
+    gen/webkit/InternalSettingsGenerated.cpp $
+    gen/webkit/InternalSettingsGenerated.h: $
+    generate_test_support_idls_target_Settings_fd6a7efa0d2257c7a7e36e1bcec46817 $
+    ../../third_party/WebKit/Source/core/page/make_settings.pl $
+    ../../third_party/WebKit/Source/core/page/Settings.in
+
+rule $
+    generate_test_support_idls_target_InternalRuntimeFlags_fd6a7efa0d2257c7a7e36e1bcec46817
+  command = cd ../../third_party/WebKit/Source/core; python $
+      scripts/make_internal_runtime_flags.py page/RuntimeEnabledFeatures.in $
+      --output_dir ../../../../out/Release/gen/webkit/
+  description = ACTION generate_test_support_idls: $
+      InternalRuntimeFlags_fd6a7efa0d2257c7a7e36e1bcec46817
+  restat = 1
+
+build gen/webkit/InternalRuntimeFlags.idl $
+    gen/webkit/InternalRuntimeFlags.h: $
+    generate_test_support_idls_target_InternalRuntimeFlags_fd6a7efa0d2257c7a7e36e1bcec46817 $
+    ../../third_party/WebKit/Source/core/scripts/in_file.py $
+    ../../third_party/WebKit/Source/core/scripts/in_generator.py $
+    ../../third_party/WebKit/Source/core/scripts/license.py $
+    ../../third_party/WebKit/Source/core/scripts/name_macros.py $
+    ../../third_party/WebKit/Source/core/scripts/template_expander.py $
+    ../../third_party/WebKit/Source/core/scripts/templates/macros.tmpl $
+    ../../third_party/WebKit/Source/core/scripts/make_internal_runtime_flags.py $
+    ../../third_party/WebKit/Source/core/page/RuntimeEnabledFeatures.in $
+    ../../third_party/WebKit/Source/core/scripts/templates/InternalRuntimeFlags.h.tmpl $
+    ../../third_party/WebKit/Source/core/scripts/templates/InternalRuntimeFlags.idl.tmpl
+
+build $
+    obj/third_party/WebKit/Source/core/generate_test_support_idls.actions_rules_copies.stamp: $
+    stamp gen/webkit/SettingsMacros.h $
+    gen/webkit/InternalSettingsGenerated.idl $
+    gen/webkit/InternalSettingsGenerated.cpp $
+    gen/webkit/InternalSettingsGenerated.h $
+    gen/webkit/InternalRuntimeFlags.idl gen/webkit/InternalRuntimeFlags.h
+

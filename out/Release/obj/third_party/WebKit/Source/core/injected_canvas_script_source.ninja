@@ -1,0 +1,16 @@
+rule $
+    injected_canvas_script_source_target_ConvertFileToHeaderWithCharacterArray_dffb8c6fd7ce917647f180c5528b4258
+  command = cd ../../third_party/WebKit/Source/core; perl inspector/xxd.pl $
+      InjectedScriptCanvasModuleSource_js $
+      inspector/InjectedScriptCanvasModuleSource.js $
+      ../../../../out/Release/gen/webkit/InjectedScriptCanvasModuleSource.h
+  description = ACTION Generating $
+      gen/webkit/InjectedScriptCanvasModuleSource.h from $
+      inspector/InjectedScriptCanvasModuleSource.js
+  restat = 1
+
+build gen/webkit/InjectedScriptCanvasModuleSource.h: $
+    injected_canvas_script_source_target_ConvertFileToHeaderWithCharacterArray_dffb8c6fd7ce917647f180c5528b4258 $
+    ../../third_party/WebKit/Source/core/inspector/xxd.pl $
+    ../../third_party/WebKit/Source/core/inspector/InjectedScriptCanvasModuleSource.js
+

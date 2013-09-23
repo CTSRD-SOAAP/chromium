@@ -1,0 +1,142 @@
+defines = -DANGLE_DX11 '-DWEBRTC_SVNREVISION="Unavailable(issue687)"' $
+    -D_FILE_OFFSET_BITS=64 -DNO_TCMALLOC -DDISABLE_NACL -DCHROMIUM_BUILD $
+    -DUSE_DEFAULT_RENDER_THEME=1 -DUSE_LIBJPEG_TURBO=1 -DUSE_NSS=1 $
+    -DUSE_X11=1 -DENABLE_ONE_CLICK_SIGNIN -DGTK_DISABLE_SINGLE_INCLUDES=1 $
+    -DENABLE_REMOTING=1 -DENABLE_WEBRTC=1 -DENABLE_CONFIGURATION_POLICY $
+    -DENABLE_INPUT_SPEECH -DENABLE_NOTIFICATIONS -DENABLE_GPU=1 $
+    -DENABLE_EGLIMAGE=1 -DENABLE_TASK_MANAGER=1 -DENABLE_EXTENSIONS=1 $
+    -DENABLE_PLUGIN_INSTALLATION=1 -DENABLE_PLUGINS=1 $
+    -DENABLE_SESSION_SERVICE=1 -DENABLE_THEMES=1 -DENABLE_BACKGROUND=1 $
+    -DENABLE_AUTOMATION=1 -DENABLE_GOOGLE_NOW=1 $
+    -DENABLE_LANGUAGE_DETECTION=1 -DENABLE_PRINTING=1 $
+    -DENABLE_CAPTIVE_PORTAL_DETECTION=1 -DENABLE_MANAGED_USERS=1 $
+    -DWEBRTC_CHROMIUM_BUILD -DWEBRTC_BSD -DWEBRTC_LINUX -DWEBRTC_THREAD_RR $
+    -D__STDC_CONSTANT_MACROS -D__STDC_FORMAT_MACROS -DNDEBUG $
+    -DOFFICIAL_BUILD -DNVALGRIND -DDYNAMIC_ANNOTATIONS_ENABLED=0 $
+    -D_FORTIFY_SOURCE=2
+includes = -I../../third_party/webrtc -I../../third_party -I../.. $
+    -I../../third_party/webrtc/system_wrappers/source/spreadsortlib $
+    -I../../third_party/webrtc/system_wrappers/interface
+cflags = -fstack-protector --param=ssp-buffer-size=4  -pthread $
+    -fno-exceptions -fno-strict-aliasing -Wall -Wno-unused-parameter $
+    -Wno-missing-field-initializers -fvisibility=hidden -pipe -fPIC $
+    -Wheader-hygiene -Wno-char-subscripts -Wno-unused-function $
+    -Wno-covered-switch-default -Wstring-conversion -Wno-c++11-narrowing $
+    -Wno-reserved-user-defined-literal -fcolor-diagnostics -O2 $
+    -fdata-sections -ffunction-sections
+cflags_c = -O2 -pipe -fno-strict-aliasing
+cflags_cc = -O2 -pipe -fno-strict-aliasing -fno-rtti $
+    -fno-threadsafe-statics -fvisibility-inlines-hidden -Wsign-compare $
+    -std=gnu++11
+
+build $
+    obj/third_party/webrtc/system_wrappers/source/system_wrappers.aligned_malloc.o: $
+    cxx ../../third_party/webrtc/system_wrappers/source/aligned_malloc.cc
+build $
+    obj/third_party/webrtc/system_wrappers/source/system_wrappers.atomic32_posix.o: $
+    cxx ../../third_party/webrtc/system_wrappers/source/atomic32_posix.cc
+build $
+    obj/third_party/webrtc/system_wrappers/source/system_wrappers.clock.o: $
+    cxx ../../third_party/webrtc/system_wrappers/source/clock.cc
+build $
+    obj/third_party/webrtc/system_wrappers/source/system_wrappers.condition_variable.o: $
+    cxx ../../third_party/webrtc/system_wrappers/source/condition_variable.cc
+build $
+    obj/third_party/webrtc/system_wrappers/source/system_wrappers.condition_variable_posix.o: $
+    cxx $
+    ../../third_party/webrtc/system_wrappers/source/condition_variable_posix.cc
+build $
+    obj/third_party/webrtc/system_wrappers/source/system_wrappers.cpu_info.o: $
+    cxx ../../third_party/webrtc/system_wrappers/source/cpu_info.cc
+build $
+    obj/third_party/webrtc/system_wrappers/source/system_wrappers.cpu_features.o: $
+    cxx ../../third_party/webrtc/system_wrappers/source/cpu_features.cc
+build $
+    obj/third_party/webrtc/system_wrappers/source/system_wrappers.critical_section.o: $
+    cxx ../../third_party/webrtc/system_wrappers/source/critical_section.cc
+build $
+    obj/third_party/webrtc/system_wrappers/source/system_wrappers.critical_section_posix.o: $
+    cxx $
+    ../../third_party/webrtc/system_wrappers/source/critical_section_posix.cc
+build $
+    obj/third_party/webrtc/system_wrappers/source/system_wrappers.data_log_c.o: $
+    cxx ../../third_party/webrtc/system_wrappers/source/data_log_c.cc
+build $
+    obj/third_party/webrtc/system_wrappers/source/system_wrappers.data_log_no_op.o: $
+    cxx ../../third_party/webrtc/system_wrappers/source/data_log_no_op.cc
+build $
+    obj/third_party/webrtc/system_wrappers/source/system_wrappers.event.o: $
+    cxx ../../third_party/webrtc/system_wrappers/source/event.cc
+build $
+    obj/third_party/webrtc/system_wrappers/source/system_wrappers.event_posix.o: $
+    cxx ../../third_party/webrtc/system_wrappers/source/event_posix.cc
+build $
+    obj/third_party/webrtc/system_wrappers/source/system_wrappers.event_tracer.o: $
+    cxx ../../third_party/webrtc/system_wrappers/source/event_tracer.cc
+build $
+    obj/third_party/webrtc/system_wrappers/source/system_wrappers.file_impl.o: $
+    cxx ../../third_party/webrtc/system_wrappers/source/file_impl.cc
+build $
+    obj/third_party/webrtc/system_wrappers/source/system_wrappers.list_no_stl.o: $
+    cxx ../../third_party/webrtc/system_wrappers/source/list_no_stl.cc
+build $
+    obj/third_party/webrtc/system_wrappers/source/system_wrappers.logging_no_op.o: $
+    cxx ../../third_party/webrtc/system_wrappers/source/logging_no_op.cc
+build obj/third_party/webrtc/system_wrappers/source/system_wrappers.map.o: $
+    cxx ../../third_party/webrtc/system_wrappers/source/map.cc
+build $
+    obj/third_party/webrtc/system_wrappers/source/system_wrappers.rw_lock.o: $
+    cxx ../../third_party/webrtc/system_wrappers/source/rw_lock.cc
+build $
+    obj/third_party/webrtc/system_wrappers/source/system_wrappers.rw_lock_generic.o: $
+    cxx ../../third_party/webrtc/system_wrappers/source/rw_lock_generic.cc
+build $
+    obj/third_party/webrtc/system_wrappers/source/system_wrappers.rw_lock_posix.o: $
+    cxx ../../third_party/webrtc/system_wrappers/source/rw_lock_posix.cc
+build $
+    obj/third_party/webrtc/system_wrappers/source/system_wrappers.sleep.o: $
+    cxx ../../third_party/webrtc/system_wrappers/source/sleep.cc
+build obj/third_party/webrtc/system_wrappers/source/system_wrappers.sort.o: $
+    cxx ../../third_party/webrtc/system_wrappers/source/sort.cc
+build $
+    obj/third_party/webrtc/system_wrappers/source/system_wrappers.tick_util.o: $
+    cxx ../../third_party/webrtc/system_wrappers/source/tick_util.cc
+build $
+    obj/third_party/webrtc/system_wrappers/source/system_wrappers.thread.o: $
+    cxx ../../third_party/webrtc/system_wrappers/source/thread.cc
+build $
+    obj/third_party/webrtc/system_wrappers/source/system_wrappers.thread_posix.o: $
+    cxx ../../third_party/webrtc/system_wrappers/source/thread_posix.cc
+build $
+    obj/third_party/webrtc/system_wrappers/source/system_wrappers.trace_impl_no_op.o: $
+    cxx ../../third_party/webrtc/system_wrappers/source/trace_impl_no_op.cc
+
+build obj/third_party/webrtc/system_wrappers/source/libsystem_wrappers.a: $
+    alink_thin $
+    obj/third_party/webrtc/system_wrappers/source/system_wrappers.aligned_malloc.o $
+    obj/third_party/webrtc/system_wrappers/source/system_wrappers.atomic32_posix.o $
+    obj/third_party/webrtc/system_wrappers/source/system_wrappers.clock.o $
+    obj/third_party/webrtc/system_wrappers/source/system_wrappers.condition_variable.o $
+    obj/third_party/webrtc/system_wrappers/source/system_wrappers.condition_variable_posix.o $
+    obj/third_party/webrtc/system_wrappers/source/system_wrappers.cpu_info.o $
+    obj/third_party/webrtc/system_wrappers/source/system_wrappers.cpu_features.o $
+    obj/third_party/webrtc/system_wrappers/source/system_wrappers.critical_section.o $
+    obj/third_party/webrtc/system_wrappers/source/system_wrappers.critical_section_posix.o $
+    obj/third_party/webrtc/system_wrappers/source/system_wrappers.data_log_c.o $
+    obj/third_party/webrtc/system_wrappers/source/system_wrappers.data_log_no_op.o $
+    obj/third_party/webrtc/system_wrappers/source/system_wrappers.event.o $
+    obj/third_party/webrtc/system_wrappers/source/system_wrappers.event_posix.o $
+    obj/third_party/webrtc/system_wrappers/source/system_wrappers.event_tracer.o $
+    obj/third_party/webrtc/system_wrappers/source/system_wrappers.file_impl.o $
+    obj/third_party/webrtc/system_wrappers/source/system_wrappers.list_no_stl.o $
+    obj/third_party/webrtc/system_wrappers/source/system_wrappers.logging_no_op.o $
+    obj/third_party/webrtc/system_wrappers/source/system_wrappers.map.o $
+    obj/third_party/webrtc/system_wrappers/source/system_wrappers.rw_lock.o $
+    obj/third_party/webrtc/system_wrappers/source/system_wrappers.rw_lock_generic.o $
+    obj/third_party/webrtc/system_wrappers/source/system_wrappers.rw_lock_posix.o $
+    obj/third_party/webrtc/system_wrappers/source/system_wrappers.sleep.o $
+    obj/third_party/webrtc/system_wrappers/source/system_wrappers.sort.o $
+    obj/third_party/webrtc/system_wrappers/source/system_wrappers.tick_util.o $
+    obj/third_party/webrtc/system_wrappers/source/system_wrappers.thread.o $
+    obj/third_party/webrtc/system_wrappers/source/system_wrappers.thread_posix.o $
+    obj/third_party/webrtc/system_wrappers/source/system_wrappers.trace_impl_no_op.o

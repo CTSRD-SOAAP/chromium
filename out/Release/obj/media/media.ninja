@@ -1,0 +1,587 @@
+defines = -DANGLE_DX11 -D_FILE_OFFSET_BITS=64 -DNO_TCMALLOC -DDISABLE_NACL $
+    -DCHROMIUM_BUILD -DUSE_DEFAULT_RENDER_THEME=1 -DUSE_LIBJPEG_TURBO=1 $
+    -DUSE_NSS=1 -DUSE_X11=1 -DENABLE_ONE_CLICK_SIGNIN $
+    -DGTK_DISABLE_SINGLE_INCLUDES=1 -DENABLE_REMOTING=1 -DENABLE_WEBRTC=1 $
+    -DENABLE_CONFIGURATION_POLICY -DENABLE_INPUT_SPEECH $
+    -DENABLE_NOTIFICATIONS -DENABLE_GPU=1 -DENABLE_EGLIMAGE=1 $
+    -DENABLE_TASK_MANAGER=1 -DENABLE_EXTENSIONS=1 $
+    -DENABLE_PLUGIN_INSTALLATION=1 -DENABLE_PLUGINS=1 $
+    -DENABLE_SESSION_SERVICE=1 -DENABLE_THEMES=1 -DENABLE_BACKGROUND=1 $
+    -DENABLE_AUTOMATION=1 -DENABLE_GOOGLE_NOW=1 $
+    -DENABLE_LANGUAGE_DETECTION=1 -DENABLE_PRINTING=1 $
+    -DENABLE_CAPTIVE_PORTAL_DETECTION=1 -DENABLE_MANAGED_USERS=1 $
+    -DMEDIA_IMPLEMENTATION -DUSE_NEON -DSK_BUILD_NO_IMAGE_ENCODE $
+    -DSK_DEFERRED_CANVAS_USES_GPIPE=1 $
+    '-DGR_GL_CUSTOM_SETUP_HEADER="GrGLConfig_chrome.h"' $
+    -DGR_AGGRESSIVE_SHADER_OPTS=1 -DSK_ENABLE_INST_COUNT=0 $
+    -DSK_USE_POSIX_THREADS -DU_USING_ICU_NAMESPACE=0 $
+    -DU_STATIC_IMPLEMENTATION -D__STDC_CONSTANT_MACROS $
+    -D__STDC_FORMAT_MACROS -DNDEBUG -DOFFICIAL_BUILD -DNVALGRIND $
+    -DDYNAMIC_ANNOTATIONS_ENABLED=0 -D_FORTIFY_SOURCE=2
+includes = -I../../third_party/icu/public/common $
+    -I../../third_party/icu/public/i18n -I../.. $
+    -I../../net/third_party/nss/ssl -I../../skia/config $
+    -I../../third_party/skia/src/core $
+    -I../../third_party/skia/include/config $
+    -I../../third_party/skia/include/core $
+    -I../../third_party/skia/include/effects $
+    -I../../third_party/skia/include/pdf $
+    -I../../third_party/skia/include/gpu $
+    -I../../third_party/skia/include/gpu/gl $
+    -I../../third_party/skia/include/pathops $
+    -I../../third_party/skia/include/pipe $
+    -I../../third_party/skia/include/ports $
+    -I../../third_party/skia/include/utils -I../../skia/ext $
+    -I../../third_party/opus/src/include -Igen/ffmpeg $
+    -I../../third_party/ffmpeg/chromium/config/Chromium/linux/x64 $
+    -I../../third_party/ffmpeg -I../../third_party/libvpx/source/libvpx
+cflags = -fstack-protector --param=ssp-buffer-size=4  -pthread $
+    -fno-exceptions -fno-strict-aliasing -Wall -Wno-unused-parameter $
+    -Wno-missing-field-initializers -fvisibility=hidden -pipe -fPIC $
+    -Wheader-hygiene -Wno-char-subscripts -Wno-unused-function $
+    -Wno-covered-switch-default -Wstring-conversion -Wno-c++11-narrowing $
+    -Wno-reserved-user-defined-literal -fcolor-diagnostics $
+    -I/usr/local/include/gtk-2.0 -I/usr/local/include/gio-unix-2.0/ $
+    -I/usr/local/include/atk-1.0 -I/usr/local/include/cairo $
+    -I/usr/local/include/pixman-1 -D_THREAD_SAFE $
+    -I/usr/local/include/gdk-pixbuf-2.0 -I/usr/local/include/libpng15 $
+    -I/usr/local/include/pango-1.0 -I/usr/local/include/freetype2 $
+    -I/usr/local/include/harfbuzz -pthread -I/usr/local/include/glib-2.0 $
+    -I/usr/local/include -pthread -I/usr/local/include/glib-2.0 $
+    -I/usr/local/include -D_THREAD_SAFE -I/usr/local/include $
+    -I/usr/local/include/nss -I/usr/local/include/nss/nss $
+    -I/usr/local/include/nspr -O2 -fdata-sections -ffunction-sections
+cflags_c = -O2 -pipe -fno-strict-aliasing
+cflags_cc = -O2 -pipe -fno-strict-aliasing -fno-rtti $
+    -fno-threadsafe-statics -fvisibility-inlines-hidden -Wsign-compare $
+    -std=gnu++11
+
+build obj/media/audio/media.async_socket_io_handler_posix.o: cxx $
+    ../../media/audio/async_socket_io_handler_posix.cc || $
+    obj/third_party/ffmpeg/ffmpeg.actions_rules_copies.stamp
+build obj/media/audio/media.audio_buffers_state.o: cxx $
+    ../../media/audio/audio_buffers_state.cc || $
+    obj/third_party/ffmpeg/ffmpeg.actions_rules_copies.stamp
+build obj/media/audio/media.audio_device_name.o: cxx $
+    ../../media/audio/audio_device_name.cc || $
+    obj/third_party/ffmpeg/ffmpeg.actions_rules_copies.stamp
+build obj/media/audio/media.audio_device_thread.o: cxx $
+    ../../media/audio/audio_device_thread.cc || $
+    obj/third_party/ffmpeg/ffmpeg.actions_rules_copies.stamp
+build obj/media/audio/media.audio_input_controller.o: cxx $
+    ../../media/audio/audio_input_controller.cc || $
+    obj/third_party/ffmpeg/ffmpeg.actions_rules_copies.stamp
+build obj/media/audio/media.audio_input_device.o: cxx $
+    ../../media/audio/audio_input_device.cc || $
+    obj/third_party/ffmpeg/ffmpeg.actions_rules_copies.stamp
+build obj/media/audio/media.audio_input_ipc.o: cxx $
+    ../../media/audio/audio_input_ipc.cc || $
+    obj/third_party/ffmpeg/ffmpeg.actions_rules_copies.stamp
+build obj/media/audio/media.audio_manager.o: cxx $
+    ../../media/audio/audio_manager.cc || $
+    obj/third_party/ffmpeg/ffmpeg.actions_rules_copies.stamp
+build obj/media/audio/media.audio_manager_base.o: cxx $
+    ../../media/audio/audio_manager_base.cc || $
+    obj/third_party/ffmpeg/ffmpeg.actions_rules_copies.stamp
+build obj/media/audio/media.audio_output_controller.o: cxx $
+    ../../media/audio/audio_output_controller.cc || $
+    obj/third_party/ffmpeg/ffmpeg.actions_rules_copies.stamp
+build obj/media/audio/media.audio_output_device.o: cxx $
+    ../../media/audio/audio_output_device.cc || $
+    obj/third_party/ffmpeg/ffmpeg.actions_rules_copies.stamp
+build obj/media/audio/media.audio_output_dispatcher.o: cxx $
+    ../../media/audio/audio_output_dispatcher.cc || $
+    obj/third_party/ffmpeg/ffmpeg.actions_rules_copies.stamp
+build obj/media/audio/media.audio_output_dispatcher_impl.o: cxx $
+    ../../media/audio/audio_output_dispatcher_impl.cc || $
+    obj/third_party/ffmpeg/ffmpeg.actions_rules_copies.stamp
+build obj/media/audio/media.audio_output_ipc.o: cxx $
+    ../../media/audio/audio_output_ipc.cc || $
+    obj/third_party/ffmpeg/ffmpeg.actions_rules_copies.stamp
+build obj/media/audio/media.audio_output_proxy.o: cxx $
+    ../../media/audio/audio_output_proxy.cc || $
+    obj/third_party/ffmpeg/ffmpeg.actions_rules_copies.stamp
+build obj/media/audio/media.audio_output_resampler.o: cxx $
+    ../../media/audio/audio_output_resampler.cc || $
+    obj/third_party/ffmpeg/ffmpeg.actions_rules_copies.stamp
+build obj/media/audio/media.audio_silence_detector.o: cxx $
+    ../../media/audio/audio_silence_detector.cc || $
+    obj/third_party/ffmpeg/ffmpeg.actions_rules_copies.stamp
+build obj/media/audio/media.audio_util.o: cxx $
+    ../../media/audio/audio_util.cc || $
+    obj/third_party/ffmpeg/ffmpeg.actions_rules_copies.stamp
+build obj/media/audio/media.cross_process_notification.o: cxx $
+    ../../media/audio/cross_process_notification.cc || $
+    obj/third_party/ffmpeg/ffmpeg.actions_rules_copies.stamp
+build obj/media/audio/media.cross_process_notification_posix.o: cxx $
+    ../../media/audio/cross_process_notification_posix.cc || $
+    obj/third_party/ffmpeg/ffmpeg.actions_rules_copies.stamp
+build obj/media/audio/media.fake_audio_consumer.o: cxx $
+    ../../media/audio/fake_audio_consumer.cc || $
+    obj/third_party/ffmpeg/ffmpeg.actions_rules_copies.stamp
+build obj/media/audio/media.fake_audio_input_stream.o: cxx $
+    ../../media/audio/fake_audio_input_stream.cc || $
+    obj/third_party/ffmpeg/ffmpeg.actions_rules_copies.stamp
+build obj/media/audio/media.fake_audio_output_stream.o: cxx $
+    ../../media/audio/fake_audio_output_stream.cc || $
+    obj/third_party/ffmpeg/ffmpeg.actions_rules_copies.stamp
+build obj/media/audio/linux/media.alsa_input.o: cxx $
+    ../../media/audio/linux/alsa_input.cc || $
+    obj/third_party/ffmpeg/ffmpeg.actions_rules_copies.stamp
+build obj/media/audio/linux/media.alsa_output.o: cxx $
+    ../../media/audio/linux/alsa_output.cc || $
+    obj/third_party/ffmpeg/ffmpeg.actions_rules_copies.stamp
+build obj/media/audio/linux/media.alsa_util.o: cxx $
+    ../../media/audio/linux/alsa_util.cc || $
+    obj/third_party/ffmpeg/ffmpeg.actions_rules_copies.stamp
+build obj/media/audio/linux/media.alsa_wrapper.o: cxx $
+    ../../media/audio/linux/alsa_wrapper.cc || $
+    obj/third_party/ffmpeg/ffmpeg.actions_rules_copies.stamp
+build obj/media/audio/linux/media.audio_manager_linux.o: cxx $
+    ../../media/audio/linux/audio_manager_linux.cc || $
+    obj/third_party/ffmpeg/ffmpeg.actions_rules_copies.stamp
+build obj/media/audio/media.null_audio_sink.o: cxx $
+    ../../media/audio/null_audio_sink.cc || $
+    obj/third_party/ffmpeg/ffmpeg.actions_rules_copies.stamp
+build obj/media/audio/media.sample_rates.o: cxx $
+    ../../media/audio/sample_rates.cc || $
+    obj/third_party/ffmpeg/ffmpeg.actions_rules_copies.stamp
+build obj/media/audio/media.scoped_loop_observer.o: cxx $
+    ../../media/audio/scoped_loop_observer.cc || $
+    obj/third_party/ffmpeg/ffmpeg.actions_rules_copies.stamp
+build obj/media/audio/media.simple_sources.o: cxx $
+    ../../media/audio/simple_sources.cc || $
+    obj/third_party/ffmpeg/ffmpeg.actions_rules_copies.stamp
+build obj/media/audio/media.virtual_audio_input_stream.o: cxx $
+    ../../media/audio/virtual_audio_input_stream.cc || $
+    obj/third_party/ffmpeg/ffmpeg.actions_rules_copies.stamp
+build obj/media/audio/media.virtual_audio_output_stream.o: cxx $
+    ../../media/audio/virtual_audio_output_stream.cc || $
+    obj/third_party/ffmpeg/ffmpeg.actions_rules_copies.stamp
+build obj/media/base/media.audio_buffer.o: cxx $
+    ../../media/base/audio_buffer.cc || $
+    obj/third_party/ffmpeg/ffmpeg.actions_rules_copies.stamp
+build obj/media/base/media.audio_buffer_queue.o: cxx $
+    ../../media/base/audio_buffer_queue.cc || $
+    obj/third_party/ffmpeg/ffmpeg.actions_rules_copies.stamp
+build obj/media/base/media.audio_converter.o: cxx $
+    ../../media/base/audio_converter.cc || $
+    obj/third_party/ffmpeg/ffmpeg.actions_rules_copies.stamp
+build obj/media/base/media.audio_decoder.o: cxx $
+    ../../media/base/audio_decoder.cc || $
+    obj/third_party/ffmpeg/ffmpeg.actions_rules_copies.stamp
+build obj/media/base/media.audio_decoder_config.o: cxx $
+    ../../media/base/audio_decoder_config.cc || $
+    obj/third_party/ffmpeg/ffmpeg.actions_rules_copies.stamp
+build obj/media/base/media.audio_fifo.o: cxx ../../media/base/audio_fifo.cc $
+    || obj/third_party/ffmpeg/ffmpeg.actions_rules_copies.stamp
+build obj/media/base/media.audio_hardware_config.o: cxx $
+    ../../media/base/audio_hardware_config.cc || $
+    obj/third_party/ffmpeg/ffmpeg.actions_rules_copies.stamp
+build obj/media/base/media.audio_hash.o: cxx ../../media/base/audio_hash.cc $
+    || obj/third_party/ffmpeg/ffmpeg.actions_rules_copies.stamp
+build obj/media/base/media.audio_pull_fifo.o: cxx $
+    ../../media/base/audio_pull_fifo.cc || $
+    obj/third_party/ffmpeg/ffmpeg.actions_rules_copies.stamp
+build obj/media/base/media.audio_renderer.o: cxx $
+    ../../media/base/audio_renderer.cc || $
+    obj/third_party/ffmpeg/ffmpeg.actions_rules_copies.stamp
+build obj/media/base/media.audio_renderer_mixer.o: cxx $
+    ../../media/base/audio_renderer_mixer.cc || $
+    obj/third_party/ffmpeg/ffmpeg.actions_rules_copies.stamp
+build obj/media/base/media.audio_renderer_mixer_input.o: cxx $
+    ../../media/base/audio_renderer_mixer_input.cc || $
+    obj/third_party/ffmpeg/ffmpeg.actions_rules_copies.stamp
+build obj/media/base/media.audio_splicer.o: cxx $
+    ../../media/base/audio_splicer.cc || $
+    obj/third_party/ffmpeg/ffmpeg.actions_rules_copies.stamp
+build obj/media/base/media.audio_timestamp_helper.o: cxx $
+    ../../media/base/audio_timestamp_helper.cc || $
+    obj/third_party/ffmpeg/ffmpeg.actions_rules_copies.stamp
+build obj/media/base/media.bit_reader.o: cxx ../../media/base/bit_reader.cc $
+    || obj/third_party/ffmpeg/ffmpeg.actions_rules_copies.stamp
+build obj/media/base/media.byte_queue.o: cxx ../../media/base/byte_queue.cc $
+    || obj/third_party/ffmpeg/ffmpeg.actions_rules_copies.stamp
+build obj/media/base/media.channel_mixer.o: cxx $
+    ../../media/base/channel_mixer.cc || $
+    obj/third_party/ffmpeg/ffmpeg.actions_rules_copies.stamp
+build obj/media/base/media.clock.o: cxx ../../media/base/clock.cc || $
+    obj/third_party/ffmpeg/ffmpeg.actions_rules_copies.stamp
+build obj/media/base/media.container_names.o: cxx $
+    ../../media/base/container_names.cc || $
+    obj/third_party/ffmpeg/ffmpeg.actions_rules_copies.stamp
+build obj/media/base/media.data_buffer.o: cxx $
+    ../../media/base/data_buffer.cc || $
+    obj/third_party/ffmpeg/ffmpeg.actions_rules_copies.stamp
+build obj/media/base/media.data_source.o: cxx $
+    ../../media/base/data_source.cc || $
+    obj/third_party/ffmpeg/ffmpeg.actions_rules_copies.stamp
+build obj/media/base/media.decoder_buffer.o: cxx $
+    ../../media/base/decoder_buffer.cc || $
+    obj/third_party/ffmpeg/ffmpeg.actions_rules_copies.stamp
+build obj/media/base/media.decoder_buffer_queue.o: cxx $
+    ../../media/base/decoder_buffer_queue.cc || $
+    obj/third_party/ffmpeg/ffmpeg.actions_rules_copies.stamp
+build obj/media/base/media.decryptor.o: cxx ../../media/base/decryptor.cc $
+    || obj/third_party/ffmpeg/ffmpeg.actions_rules_copies.stamp
+build obj/media/base/media.decrypt_config.o: cxx $
+    ../../media/base/decrypt_config.cc || $
+    obj/third_party/ffmpeg/ffmpeg.actions_rules_copies.stamp
+build obj/media/base/media.demuxer.o: cxx ../../media/base/demuxer.cc || $
+    obj/third_party/ffmpeg/ffmpeg.actions_rules_copies.stamp
+build obj/media/base/media.demuxer_stream.o: cxx $
+    ../../media/base/demuxer_stream.cc || $
+    obj/third_party/ffmpeg/ffmpeg.actions_rules_copies.stamp
+build obj/media/base/media.djb2.o: cxx ../../media/base/djb2.cc || $
+    obj/third_party/ffmpeg/ffmpeg.actions_rules_copies.stamp
+build obj/media/base/media.filter_collection.o: cxx $
+    ../../media/base/filter_collection.cc || $
+    obj/third_party/ffmpeg/ffmpeg.actions_rules_copies.stamp
+build obj/media/base/media.media.o: cxx ../../media/base/media.cc || $
+    obj/third_party/ffmpeg/ffmpeg.actions_rules_copies.stamp
+build obj/media/base/media.media_keys.o: cxx ../../media/base/media_keys.cc $
+    || obj/third_party/ffmpeg/ffmpeg.actions_rules_copies.stamp
+build obj/media/base/media.media_log.o: cxx ../../media/base/media_log.cc $
+    || obj/third_party/ffmpeg/ffmpeg.actions_rules_copies.stamp
+build obj/media/base/media.media_posix.o: cxx $
+    ../../media/base/media_posix.cc || $
+    obj/third_party/ffmpeg/ffmpeg.actions_rules_copies.stamp
+build obj/media/base/media.media_switches.o: cxx $
+    ../../media/base/media_switches.cc || $
+    obj/third_party/ffmpeg/ffmpeg.actions_rules_copies.stamp
+build obj/media/base/media.multi_channel_resampler.o: cxx $
+    ../../media/base/multi_channel_resampler.cc || $
+    obj/third_party/ffmpeg/ffmpeg.actions_rules_copies.stamp
+build obj/media/base/media.pipeline.o: cxx ../../media/base/pipeline.cc || $
+    obj/third_party/ffmpeg/ffmpeg.actions_rules_copies.stamp
+build obj/media/base/media.pipeline_status.o: cxx $
+    ../../media/base/pipeline_status.cc || $
+    obj/third_party/ffmpeg/ffmpeg.actions_rules_copies.stamp
+build obj/media/base/media.ranges.o: cxx ../../media/base/ranges.cc || $
+    obj/third_party/ffmpeg/ffmpeg.actions_rules_copies.stamp
+build obj/media/base/media.sample_format.o: cxx $
+    ../../media/base/sample_format.cc || $
+    obj/third_party/ffmpeg/ffmpeg.actions_rules_copies.stamp
+build obj/media/base/media.seekable_buffer.o: cxx $
+    ../../media/base/seekable_buffer.cc || $
+    obj/third_party/ffmpeg/ffmpeg.actions_rules_copies.stamp
+build obj/media/base/media.serial_runner.o: cxx $
+    ../../media/base/serial_runner.cc || $
+    obj/third_party/ffmpeg/ffmpeg.actions_rules_copies.stamp
+build obj/media/base/simd/media.convert_rgb_to_yuv_c.o: cxx $
+    ../../media/base/simd/convert_rgb_to_yuv_c.cc || $
+    obj/third_party/ffmpeg/ffmpeg.actions_rules_copies.stamp
+build obj/media/base/simd/media.convert_yuv_to_rgb_c.o: cxx $
+    ../../media/base/simd/convert_yuv_to_rgb_c.cc || $
+    obj/third_party/ffmpeg/ffmpeg.actions_rules_copies.stamp
+build obj/media/base/simd/media.filter_yuv_c.o: cxx $
+    ../../media/base/simd/filter_yuv_c.cc || $
+    obj/third_party/ffmpeg/ffmpeg.actions_rules_copies.stamp
+build obj/media/base/simd/media.yuv_to_rgb_table.o: cxx $
+    ../../media/base/simd/yuv_to_rgb_table.cc || $
+    obj/third_party/ffmpeg/ffmpeg.actions_rules_copies.stamp
+build obj/media/base/media.sinc_resampler.o: cxx $
+    ../../media/base/sinc_resampler.cc || $
+    obj/third_party/ffmpeg/ffmpeg.actions_rules_copies.stamp
+build obj/media/base/media.stream_parser.o: cxx $
+    ../../media/base/stream_parser.cc || $
+    obj/third_party/ffmpeg/ffmpeg.actions_rules_copies.stamp
+build obj/media/base/media.stream_parser_buffer.o: cxx $
+    ../../media/base/stream_parser_buffer.cc || $
+    obj/third_party/ffmpeg/ffmpeg.actions_rules_copies.stamp
+build obj/media/base/media.video_decoder.o: cxx $
+    ../../media/base/video_decoder.cc || $
+    obj/third_party/ffmpeg/ffmpeg.actions_rules_copies.stamp
+build obj/media/base/media.video_decoder_config.o: cxx $
+    ../../media/base/video_decoder_config.cc || $
+    obj/third_party/ffmpeg/ffmpeg.actions_rules_copies.stamp
+build obj/media/base/media.video_frame.o: cxx $
+    ../../media/base/video_frame.cc || $
+    obj/third_party/ffmpeg/ffmpeg.actions_rules_copies.stamp
+build obj/media/base/media.video_renderer.o: cxx $
+    ../../media/base/video_renderer.cc || $
+    obj/third_party/ffmpeg/ffmpeg.actions_rules_copies.stamp
+build obj/media/base/media.video_util.o: cxx ../../media/base/video_util.cc $
+    || obj/third_party/ffmpeg/ffmpeg.actions_rules_copies.stamp
+build obj/media/base/media.yuv_convert.o: cxx $
+    ../../media/base/yuv_convert.cc || $
+    obj/third_party/ffmpeg/ffmpeg.actions_rules_copies.stamp
+build obj/media/crypto/media.aes_decryptor.o: cxx $
+    ../../media/crypto/aes_decryptor.cc || $
+    obj/third_party/ffmpeg/ffmpeg.actions_rules_copies.stamp
+build obj/media/ffmpeg/media.ffmpeg_common.o: cxx $
+    ../../media/ffmpeg/ffmpeg_common.cc || $
+    obj/third_party/ffmpeg/ffmpeg.actions_rules_copies.stamp
+build obj/media/filters/media.audio_decoder_selector.o: cxx $
+    ../../media/filters/audio_decoder_selector.cc || $
+    obj/third_party/ffmpeg/ffmpeg.actions_rules_copies.stamp
+build obj/media/filters/media.audio_file_reader.o: cxx $
+    ../../media/filters/audio_file_reader.cc || $
+    obj/third_party/ffmpeg/ffmpeg.actions_rules_copies.stamp
+build obj/media/filters/media.audio_renderer_algorithm.o: cxx $
+    ../../media/filters/audio_renderer_algorithm.cc || $
+    obj/third_party/ffmpeg/ffmpeg.actions_rules_copies.stamp
+build obj/media/filters/media.audio_renderer_impl.o: cxx $
+    ../../media/filters/audio_renderer_impl.cc || $
+    obj/third_party/ffmpeg/ffmpeg.actions_rules_copies.stamp
+build obj/media/filters/media.blocking_url_protocol.o: cxx $
+    ../../media/filters/blocking_url_protocol.cc || $
+    obj/third_party/ffmpeg/ffmpeg.actions_rules_copies.stamp
+build obj/media/filters/media.chunk_demuxer.o: cxx $
+    ../../media/filters/chunk_demuxer.cc || $
+    obj/third_party/ffmpeg/ffmpeg.actions_rules_copies.stamp
+build obj/media/filters/media.decrypting_audio_decoder.o: cxx $
+    ../../media/filters/decrypting_audio_decoder.cc || $
+    obj/third_party/ffmpeg/ffmpeg.actions_rules_copies.stamp
+build obj/media/filters/media.decrypting_demuxer_stream.o: cxx $
+    ../../media/filters/decrypting_demuxer_stream.cc || $
+    obj/third_party/ffmpeg/ffmpeg.actions_rules_copies.stamp
+build obj/media/filters/media.decrypting_video_decoder.o: cxx $
+    ../../media/filters/decrypting_video_decoder.cc || $
+    obj/third_party/ffmpeg/ffmpeg.actions_rules_copies.stamp
+build obj/media/filters/media.fake_demuxer_stream.o: cxx $
+    ../../media/filters/fake_demuxer_stream.cc || $
+    obj/third_party/ffmpeg/ffmpeg.actions_rules_copies.stamp
+build obj/media/filters/media.fake_video_decoder.o: cxx $
+    ../../media/filters/fake_video_decoder.cc || $
+    obj/third_party/ffmpeg/ffmpeg.actions_rules_copies.stamp
+build obj/media/filters/media.ffmpeg_audio_decoder.o: cxx $
+    ../../media/filters/ffmpeg_audio_decoder.cc || $
+    obj/third_party/ffmpeg/ffmpeg.actions_rules_copies.stamp
+build obj/media/filters/media.ffmpeg_demuxer.o: cxx $
+    ../../media/filters/ffmpeg_demuxer.cc || $
+    obj/third_party/ffmpeg/ffmpeg.actions_rules_copies.stamp
+build obj/media/filters/media.ffmpeg_glue.o: cxx $
+    ../../media/filters/ffmpeg_glue.cc || $
+    obj/third_party/ffmpeg/ffmpeg.actions_rules_copies.stamp
+build obj/media/filters/media.ffmpeg_h264_to_annex_b_bitstream_converter.o: $
+    cxx ../../media/filters/ffmpeg_h264_to_annex_b_bitstream_converter.cc $
+    || obj/third_party/ffmpeg/ffmpeg.actions_rules_copies.stamp
+build obj/media/filters/media.ffmpeg_video_decoder.o: cxx $
+    ../../media/filters/ffmpeg_video_decoder.cc || $
+    obj/third_party/ffmpeg/ffmpeg.actions_rules_copies.stamp
+build obj/media/filters/media.file_data_source.o: cxx $
+    ../../media/filters/file_data_source.cc || $
+    obj/third_party/ffmpeg/ffmpeg.actions_rules_copies.stamp
+build obj/media/filters/media.gpu_video_decoder.o: cxx $
+    ../../media/filters/gpu_video_decoder.cc || $
+    obj/third_party/ffmpeg/ffmpeg.actions_rules_copies.stamp
+build obj/media/filters/media.h264_to_annex_b_bitstream_converter.o: cxx $
+    ../../media/filters/h264_to_annex_b_bitstream_converter.cc || $
+    obj/third_party/ffmpeg/ffmpeg.actions_rules_copies.stamp
+build obj/media/filters/media.in_memory_url_protocol.o: cxx $
+    ../../media/filters/in_memory_url_protocol.cc || $
+    obj/third_party/ffmpeg/ffmpeg.actions_rules_copies.stamp
+build obj/media/filters/media.opus_audio_decoder.o: cxx $
+    ../../media/filters/opus_audio_decoder.cc || $
+    obj/third_party/ffmpeg/ffmpeg.actions_rules_copies.stamp
+build obj/media/filters/media.skcanvas_video_renderer.o: cxx $
+    ../../media/filters/skcanvas_video_renderer.cc || $
+    obj/third_party/ffmpeg/ffmpeg.actions_rules_copies.stamp
+build obj/media/filters/media.source_buffer_stream.o: cxx $
+    ../../media/filters/source_buffer_stream.cc || $
+    obj/third_party/ffmpeg/ffmpeg.actions_rules_copies.stamp
+build obj/media/filters/media.stream_parser_factory.o: cxx $
+    ../../media/filters/stream_parser_factory.cc || $
+    obj/third_party/ffmpeg/ffmpeg.actions_rules_copies.stamp
+build obj/media/filters/media.video_decoder_selector.o: cxx $
+    ../../media/filters/video_decoder_selector.cc || $
+    obj/third_party/ffmpeg/ffmpeg.actions_rules_copies.stamp
+build obj/media/filters/media.video_frame_stream.o: cxx $
+    ../../media/filters/video_frame_stream.cc || $
+    obj/third_party/ffmpeg/ffmpeg.actions_rules_copies.stamp
+build obj/media/filters/media.video_renderer_base.o: cxx $
+    ../../media/filters/video_renderer_base.cc || $
+    obj/third_party/ffmpeg/ffmpeg.actions_rules_copies.stamp
+build obj/media/filters/media.vpx_video_decoder.o: cxx $
+    ../../media/filters/vpx_video_decoder.cc || $
+    obj/third_party/ffmpeg/ffmpeg.actions_rules_copies.stamp
+build obj/media/midi/media.midi_manager.o: cxx $
+    ../../media/midi/midi_manager.cc || $
+    obj/third_party/ffmpeg/ffmpeg.actions_rules_copies.stamp
+build obj/media/midi/media.midi_port_info.o: cxx $
+    ../../media/midi/midi_port_info.cc || $
+    obj/third_party/ffmpeg/ffmpeg.actions_rules_copies.stamp
+build obj/media/video/capture/media.fake_video_capture_device.o: cxx $
+    ../../media/video/capture/fake_video_capture_device.cc || $
+    obj/third_party/ffmpeg/ffmpeg.actions_rules_copies.stamp
+build obj/media/video/capture/linux/media.video_capture_device_linux.o: cxx $
+    ../../media/video/capture/linux/video_capture_device_linux.cc || $
+    obj/third_party/ffmpeg/ffmpeg.actions_rules_copies.stamp
+build obj/media/video/capture/media.video_capture_proxy.o: cxx $
+    ../../media/video/capture/video_capture_proxy.cc || $
+    obj/third_party/ffmpeg/ffmpeg.actions_rules_copies.stamp
+build obj/media/video/media.picture.o: cxx ../../media/video/picture.cc || $
+    obj/third_party/ffmpeg/ffmpeg.actions_rules_copies.stamp
+build obj/media/video/media.video_decode_accelerator.o: cxx $
+    ../../media/video/video_decode_accelerator.cc || $
+    obj/third_party/ffmpeg/ffmpeg.actions_rules_copies.stamp
+build obj/media/webm/media.webm_audio_client.o: cxx $
+    ../../media/webm/webm_audio_client.cc || $
+    obj/third_party/ffmpeg/ffmpeg.actions_rules_copies.stamp
+build obj/media/webm/media.webm_cluster_parser.o: cxx $
+    ../../media/webm/webm_cluster_parser.cc || $
+    obj/third_party/ffmpeg/ffmpeg.actions_rules_copies.stamp
+build obj/media/webm/media.webm_constants.o: cxx $
+    ../../media/webm/webm_constants.cc || $
+    obj/third_party/ffmpeg/ffmpeg.actions_rules_copies.stamp
+build obj/media/webm/media.webm_content_encodings.o: cxx $
+    ../../media/webm/webm_content_encodings.cc || $
+    obj/third_party/ffmpeg/ffmpeg.actions_rules_copies.stamp
+build obj/media/webm/media.webm_content_encodings_client.o: cxx $
+    ../../media/webm/webm_content_encodings_client.cc || $
+    obj/third_party/ffmpeg/ffmpeg.actions_rules_copies.stamp
+build obj/media/webm/media.webm_crypto_helpers.o: cxx $
+    ../../media/webm/webm_crypto_helpers.cc || $
+    obj/third_party/ffmpeg/ffmpeg.actions_rules_copies.stamp
+build obj/media/webm/media.webm_info_parser.o: cxx $
+    ../../media/webm/webm_info_parser.cc || $
+    obj/third_party/ffmpeg/ffmpeg.actions_rules_copies.stamp
+build obj/media/webm/media.webm_parser.o: cxx $
+    ../../media/webm/webm_parser.cc || $
+    obj/third_party/ffmpeg/ffmpeg.actions_rules_copies.stamp
+build obj/media/webm/media.webm_stream_parser.o: cxx $
+    ../../media/webm/webm_stream_parser.cc || $
+    obj/third_party/ffmpeg/ffmpeg.actions_rules_copies.stamp
+build obj/media/webm/media.webm_tracks_parser.o: cxx $
+    ../../media/webm/webm_tracks_parser.cc || $
+    obj/third_party/ffmpeg/ffmpeg.actions_rules_copies.stamp
+build obj/media/webm/media.webm_video_client.o: cxx $
+    ../../media/webm/webm_video_client.cc || $
+    obj/third_party/ffmpeg/ffmpeg.actions_rules_copies.stamp
+build obj/media/webm/media.webm_webvtt_parser.o: cxx $
+    ../../media/webm/webm_webvtt_parser.cc || $
+    obj/third_party/ffmpeg/ffmpeg.actions_rules_copies.stamp
+build obj/media/base/simd/media.convert_yuv_to_rgb_x86.o: cxx $
+    ../../media/base/simd/convert_yuv_to_rgb_x86.cc || $
+    obj/third_party/ffmpeg/ffmpeg.actions_rules_copies.stamp
+
+build obj/media/libmedia.a: alink_thin $
+    obj/media/audio/media.async_socket_io_handler_posix.o $
+    obj/media/audio/media.audio_buffers_state.o $
+    obj/media/audio/media.audio_device_name.o $
+    obj/media/audio/media.audio_device_thread.o $
+    obj/media/audio/media.audio_input_controller.o $
+    obj/media/audio/media.audio_input_device.o $
+    obj/media/audio/media.audio_input_ipc.o $
+    obj/media/audio/media.audio_manager.o $
+    obj/media/audio/media.audio_manager_base.o $
+    obj/media/audio/media.audio_output_controller.o $
+    obj/media/audio/media.audio_output_device.o $
+    obj/media/audio/media.audio_output_dispatcher.o $
+    obj/media/audio/media.audio_output_dispatcher_impl.o $
+    obj/media/audio/media.audio_output_ipc.o $
+    obj/media/audio/media.audio_output_proxy.o $
+    obj/media/audio/media.audio_output_resampler.o $
+    obj/media/audio/media.audio_silence_detector.o $
+    obj/media/audio/media.audio_util.o $
+    obj/media/audio/media.cross_process_notification.o $
+    obj/media/audio/media.cross_process_notification_posix.o $
+    obj/media/audio/media.fake_audio_consumer.o $
+    obj/media/audio/media.fake_audio_input_stream.o $
+    obj/media/audio/media.fake_audio_output_stream.o $
+    obj/media/audio/linux/media.alsa_input.o $
+    obj/media/audio/linux/media.alsa_output.o $
+    obj/media/audio/linux/media.alsa_util.o $
+    obj/media/audio/linux/media.alsa_wrapper.o $
+    obj/media/audio/linux/media.audio_manager_linux.o $
+    obj/media/audio/media.null_audio_sink.o $
+    obj/media/audio/media.sample_rates.o $
+    obj/media/audio/media.scoped_loop_observer.o $
+    obj/media/audio/media.simple_sources.o $
+    obj/media/audio/media.virtual_audio_input_stream.o $
+    obj/media/audio/media.virtual_audio_output_stream.o $
+    obj/media/base/media.audio_buffer.o $
+    obj/media/base/media.audio_buffer_queue.o $
+    obj/media/base/media.audio_converter.o $
+    obj/media/base/media.audio_decoder.o $
+    obj/media/base/media.audio_decoder_config.o $
+    obj/media/base/media.audio_fifo.o $
+    obj/media/base/media.audio_hardware_config.o $
+    obj/media/base/media.audio_hash.o $
+    obj/media/base/media.audio_pull_fifo.o $
+    obj/media/base/media.audio_renderer.o $
+    obj/media/base/media.audio_renderer_mixer.o $
+    obj/media/base/media.audio_renderer_mixer_input.o $
+    obj/media/base/media.audio_splicer.o $
+    obj/media/base/media.audio_timestamp_helper.o $
+    obj/media/base/media.bit_reader.o obj/media/base/media.byte_queue.o $
+    obj/media/base/media.channel_mixer.o obj/media/base/media.clock.o $
+    obj/media/base/media.container_names.o $
+    obj/media/base/media.data_buffer.o obj/media/base/media.data_source.o $
+    obj/media/base/media.decoder_buffer.o $
+    obj/media/base/media.decoder_buffer_queue.o $
+    obj/media/base/media.decryptor.o obj/media/base/media.decrypt_config.o $
+    obj/media/base/media.demuxer.o obj/media/base/media.demuxer_stream.o $
+    obj/media/base/media.djb2.o obj/media/base/media.filter_collection.o $
+    obj/media/base/media.media.o obj/media/base/media.media_keys.o $
+    obj/media/base/media.media_log.o obj/media/base/media.media_posix.o $
+    obj/media/base/media.media_switches.o $
+    obj/media/base/media.multi_channel_resampler.o $
+    obj/media/base/media.pipeline.o obj/media/base/media.pipeline_status.o $
+    obj/media/base/media.ranges.o obj/media/base/media.sample_format.o $
+    obj/media/base/media.seekable_buffer.o $
+    obj/media/base/media.serial_runner.o $
+    obj/media/base/simd/media.convert_rgb_to_yuv_c.o $
+    obj/media/base/simd/media.convert_yuv_to_rgb_c.o $
+    obj/media/base/simd/media.filter_yuv_c.o $
+    obj/media/base/simd/media.yuv_to_rgb_table.o $
+    obj/media/base/media.sinc_resampler.o $
+    obj/media/base/media.stream_parser.o $
+    obj/media/base/media.stream_parser_buffer.o $
+    obj/media/base/media.video_decoder.o $
+    obj/media/base/media.video_decoder_config.o $
+    obj/media/base/media.video_frame.o $
+    obj/media/base/media.video_renderer.o obj/media/base/media.video_util.o $
+    obj/media/base/media.yuv_convert.o $
+    obj/media/crypto/media.aes_decryptor.o $
+    obj/media/ffmpeg/media.ffmpeg_common.o $
+    obj/media/filters/media.audio_decoder_selector.o $
+    obj/media/filters/media.audio_file_reader.o $
+    obj/media/filters/media.audio_renderer_algorithm.o $
+    obj/media/filters/media.audio_renderer_impl.o $
+    obj/media/filters/media.blocking_url_protocol.o $
+    obj/media/filters/media.chunk_demuxer.o $
+    obj/media/filters/media.decrypting_audio_decoder.o $
+    obj/media/filters/media.decrypting_demuxer_stream.o $
+    obj/media/filters/media.decrypting_video_decoder.o $
+    obj/media/filters/media.fake_demuxer_stream.o $
+    obj/media/filters/media.fake_video_decoder.o $
+    obj/media/filters/media.ffmpeg_audio_decoder.o $
+    obj/media/filters/media.ffmpeg_demuxer.o $
+    obj/media/filters/media.ffmpeg_glue.o $
+    obj/media/filters/media.ffmpeg_h264_to_annex_b_bitstream_converter.o $
+    obj/media/filters/media.ffmpeg_video_decoder.o $
+    obj/media/filters/media.file_data_source.o $
+    obj/media/filters/media.gpu_video_decoder.o $
+    obj/media/filters/media.h264_to_annex_b_bitstream_converter.o $
+    obj/media/filters/media.in_memory_url_protocol.o $
+    obj/media/filters/media.opus_audio_decoder.o $
+    obj/media/filters/media.skcanvas_video_renderer.o $
+    obj/media/filters/media.source_buffer_stream.o $
+    obj/media/filters/media.stream_parser_factory.o $
+    obj/media/filters/media.video_decoder_selector.o $
+    obj/media/filters/media.video_frame_stream.o $
+    obj/media/filters/media.video_renderer_base.o $
+    obj/media/filters/media.vpx_video_decoder.o $
+    obj/media/midi/media.midi_manager.o $
+    obj/media/midi/media.midi_port_info.o $
+    obj/media/video/capture/media.fake_video_capture_device.o $
+    obj/media/video/capture/linux/media.video_capture_device_linux.o $
+    obj/media/video/capture/media.video_capture_proxy.o $
+    obj/media/video/media.picture.o $
+    obj/media/video/media.video_decode_accelerator.o $
+    obj/media/webm/media.webm_audio_client.o $
+    obj/media/webm/media.webm_cluster_parser.o $
+    obj/media/webm/media.webm_constants.o $
+    obj/media/webm/media.webm_content_encodings.o $
+    obj/media/webm/media.webm_content_encodings_client.o $
+    obj/media/webm/media.webm_crypto_helpers.o $
+    obj/media/webm/media.webm_info_parser.o $
+    obj/media/webm/media.webm_parser.o $
+    obj/media/webm/media.webm_stream_parser.o $
+    obj/media/webm/media.webm_tracks_parser.o $
+    obj/media/webm/media.webm_video_client.o $
+    obj/media/webm/media.webm_webvtt_parser.o $
+    obj/media/base/simd/media.convert_yuv_to_rgb_x86.o || $
+    obj/third_party/ffmpeg/libffmpeg.a

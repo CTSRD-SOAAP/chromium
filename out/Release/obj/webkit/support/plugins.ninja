@@ -1,0 +1,294 @@
+build obj/webkit/support/plugins.actions_depends.stamp: stamp $
+    obj/third_party/WebKit/public/blink.actions_depends.stamp $
+    obj/ui/gl/libgl_wrapper.a $
+    obj/ui/ui_resources.actions_rules_copies.stamp $
+    obj/v8/tools/gyp/v8.actions_depends.stamp
+
+build obj/webkit/support/plugins.compile_depends.stamp: stamp $
+    obj/third_party/WebKit/Source/WebKit/chromium/webkit.compile_depends.stamp $
+    obj/ui/gl/gl.actions_rules_copies.stamp $
+    obj/ui/ui_resources.actions_rules_copies.stamp $
+    obj/v8/tools/gyp/v8_snapshot.gen/snapshot.cc
+
+defines = -DANGLE_DX11 -D_FILE_OFFSET_BITS=64 -DNO_TCMALLOC -DDISABLE_NACL $
+    -DCHROMIUM_BUILD -DUSE_DEFAULT_RENDER_THEME=1 -DUSE_LIBJPEG_TURBO=1 $
+    -DUSE_NSS=1 -DUSE_X11=1 -DENABLE_ONE_CLICK_SIGNIN $
+    -DGTK_DISABLE_SINGLE_INCLUDES=1 -DENABLE_REMOTING=1 -DENABLE_WEBRTC=1 $
+    -DENABLE_CONFIGURATION_POLICY -DENABLE_INPUT_SPEECH $
+    -DENABLE_NOTIFICATIONS -DENABLE_GPU=1 -DENABLE_EGLIMAGE=1 $
+    -DENABLE_TASK_MANAGER=1 -DENABLE_EXTENSIONS=1 $
+    -DENABLE_PLUGIN_INSTALLATION=1 -DENABLE_PLUGINS=1 $
+    -DENABLE_SESSION_SERVICE=1 -DENABLE_THEMES=1 -DENABLE_BACKGROUND=1 $
+    -DENABLE_AUTOMATION=1 -DENABLE_GOOGLE_NOW=1 $
+    -DENABLE_LANGUAGE_DETECTION=1 -DENABLE_PRINTING=1 $
+    -DENABLE_CAPTIVE_PORTAL_DETECTION=1 -DENABLE_MANAGED_USERS=1 $
+    -DWEBKIT_PLUGINS_IMPLEMENTATION -DGL_GLEXT_PROTOTYPES $
+    -DSK_BUILD_NO_IMAGE_ENCODE -DSK_DEFERRED_CANVAS_USES_GPIPE=1 $
+    '-DGR_GL_CUSTOM_SETUP_HEADER="GrGLConfig_chrome.h"' $
+    -DGR_AGGRESSIVE_SHADER_OPTS=1 -DSK_ENABLE_INST_COUNT=0 $
+    -DSK_USE_POSIX_THREADS -DU_USING_ICU_NAMESPACE=0 $
+    -DU_STATIC_IMPLEMENTATION -D__STDC_CONSTANT_MACROS $
+    -D__STDC_FORMAT_MACROS -DNDEBUG -DOFFICIAL_BUILD -DNVALGRIND $
+    -DDYNAMIC_ANNOTATIONS_ENABLED=0 -D_FORTIFY_SOURCE=2
+includes = -I../../third_party/icu/public/i18n $
+    -I../../third_party/icu/public/common -Iobj/webkit/support/plugins.gen $
+    -Igen/webkit -Igen/ui -I../../third_party/khronos -I../../gpu -I../.. $
+    -I../../skia/config -I../../third_party/skia/src/core $
+    -I../../third_party/skia/include/config $
+    -I../../third_party/skia/include/core $
+    -I../../third_party/skia/include/effects $
+    -I../../third_party/skia/include/pdf $
+    -I../../third_party/skia/include/gpu $
+    -I../../third_party/skia/include/gpu/gl $
+    -I../../third_party/skia/include/pathops $
+    -I../../third_party/skia/include/pipe $
+    -I../../third_party/skia/include/ports $
+    -I../../third_party/skia/include/utils -I../../skia/ext $
+    -I../../third_party/WebKit -I../../third_party/npapi $
+    -I../../third_party/npapi/bindings -Igen/ui/gl $
+    -I../../third_party/mesa/src/include -Igen/ui/ui_resources $
+    -I../../v8/include
+cflags = -Wno-narrowing -fstack-protector --param=ssp-buffer-size=4  $
+    -pthread -fno-exceptions -fno-strict-aliasing -Wall $
+    -Wno-unused-parameter -Wno-missing-field-initializers $
+    -fvisibility=hidden -pipe -fPIC -Wheader-hygiene -Wno-char-subscripts $
+    -Wno-unused-function -Wno-covered-switch-default -Wstring-conversion $
+    -Wno-c++11-narrowing -Wno-reserved-user-defined-literal $
+    -fcolor-diagnostics -I/usr/local/include/gtk-2.0 $
+    -I/usr/local/include/gio-unix-2.0/ -I/usr/local/include/atk-1.0 $
+    -I/usr/local/include/cairo -I/usr/local/include/pixman-1 -D_THREAD_SAFE $
+    -I/usr/local/include/gdk-pixbuf-2.0 -I/usr/local/include/libpng15 $
+    -I/usr/local/include/pango-1.0 -I/usr/local/include/freetype2 $
+    -I/usr/local/include/harfbuzz -pthread -I/usr/local/include/glib-2.0 $
+    -I/usr/local/include -pthread -I/usr/local/include/glib-2.0 $
+    -I/usr/local/include -D_THREAD_SAFE -I/usr/local/include -O2 $
+    -fdata-sections -ffunction-sections
+cflags_c = -O2 -pipe -fno-strict-aliasing
+cflags_cc = -O2 -pipe -fno-strict-aliasing -Wno-narrowing -fno-rtti $
+    -fno-threadsafe-statics -fvisibility-inlines-hidden -Wsign-compare $
+    -std=gnu++11
+
+build obj/webkit/plugins/npapi/plugins.gtk_plugin_container.o: cxx $
+    ../../webkit/plugins/npapi/gtk_plugin_container.cc || $
+    obj/webkit/support/plugins.compile_depends.stamp
+build obj/webkit/plugins/npapi/plugins.gtk_plugin_container_manager.o: cxx $
+    ../../webkit/plugins/npapi/gtk_plugin_container_manager.cc || $
+    obj/webkit/support/plugins.compile_depends.stamp
+build obj/webkit/plugins/npapi/plugins.plugin_host.o: cxx $
+    ../../webkit/plugins/npapi/plugin_host.cc || $
+    obj/webkit/support/plugins.compile_depends.stamp
+build obj/webkit/plugins/npapi/plugins.plugin_instance.o: cxx $
+    ../../webkit/plugins/npapi/plugin_instance.cc || $
+    obj/webkit/support/plugins.compile_depends.stamp
+build obj/webkit/plugins/npapi/plugins.plugin_lib.o: cxx $
+    ../../webkit/plugins/npapi/plugin_lib.cc || $
+    obj/webkit/support/plugins.compile_depends.stamp
+build obj/webkit/plugins/npapi/plugins.plugin_stream.o: cxx $
+    ../../webkit/plugins/npapi/plugin_stream.cc || $
+    obj/webkit/support/plugins.compile_depends.stamp
+build obj/webkit/plugins/npapi/plugins.plugin_stream_posix.o: cxx $
+    ../../webkit/plugins/npapi/plugin_stream_posix.cc || $
+    obj/webkit/support/plugins.compile_depends.stamp
+build obj/webkit/plugins/npapi/plugins.plugin_stream_url.o: cxx $
+    ../../webkit/plugins/npapi/plugin_stream_url.cc || $
+    obj/webkit/support/plugins.compile_depends.stamp
+build obj/webkit/plugins/npapi/plugins.plugin_string_stream.o: cxx $
+    ../../webkit/plugins/npapi/plugin_string_stream.cc || $
+    obj/webkit/support/plugins.compile_depends.stamp
+build obj/webkit/plugins/npapi/plugins.webplugin.o: cxx $
+    ../../webkit/plugins/npapi/webplugin.cc || $
+    obj/webkit/support/plugins.compile_depends.stamp
+build obj/webkit/plugins/npapi/plugins.webplugin_delegate_impl.o: cxx $
+    ../../webkit/plugins/npapi/webplugin_delegate_impl.cc || $
+    obj/webkit/support/plugins.compile_depends.stamp
+build obj/webkit/plugins/npapi/plugins.webplugin_delegate_impl_gtk.o: cxx $
+    ../../webkit/plugins/npapi/webplugin_delegate_impl_gtk.cc || $
+    obj/webkit/support/plugins.compile_depends.stamp
+build obj/webkit/plugins/npapi/plugins.webplugin_impl.o: cxx $
+    ../../webkit/plugins/npapi/webplugin_impl.cc || $
+    obj/webkit/support/plugins.compile_depends.stamp
+build obj/webkit/plugins/ppapi/plugins.audio_helper.o: cxx $
+    ../../webkit/plugins/ppapi/audio_helper.cc || $
+    obj/webkit/support/plugins.compile_depends.stamp
+build obj/webkit/plugins/ppapi/plugins.content_decryptor_delegate.o: cxx $
+    ../../webkit/plugins/ppapi/content_decryptor_delegate.cc || $
+    obj/webkit/support/plugins.compile_depends.stamp
+build obj/webkit/plugins/ppapi/plugins.event_conversion.o: cxx $
+    ../../webkit/plugins/ppapi/event_conversion.cc || $
+    obj/webkit/support/plugins.compile_depends.stamp
+build obj/webkit/plugins/ppapi/plugins.host_array_buffer_var.o: cxx $
+    ../../webkit/plugins/ppapi/host_array_buffer_var.cc || $
+    obj/webkit/support/plugins.compile_depends.stamp
+build obj/webkit/plugins/ppapi/plugins.host_globals.o: cxx $
+    ../../webkit/plugins/ppapi/host_globals.cc || $
+    obj/webkit/support/plugins.compile_depends.stamp
+build obj/webkit/plugins/ppapi/plugins.host_var_tracker.o: cxx $
+    ../../webkit/plugins/ppapi/host_var_tracker.cc || $
+    obj/webkit/support/plugins.compile_depends.stamp
+build obj/webkit/plugins/ppapi/plugins.message_channel.o: cxx $
+    ../../webkit/plugins/ppapi/message_channel.cc || $
+    obj/webkit/support/plugins.compile_depends.stamp
+build obj/webkit/plugins/ppapi/plugins.npapi_glue.o: cxx $
+    ../../webkit/plugins/ppapi/npapi_glue.cc || $
+    obj/webkit/support/plugins.compile_depends.stamp
+build obj/webkit/plugins/ppapi/plugins.npobject_var.o: cxx $
+    ../../webkit/plugins/ppapi/npobject_var.cc || $
+    obj/webkit/support/plugins.compile_depends.stamp
+build obj/webkit/plugins/ppapi/plugins.plugin_module.o: cxx $
+    ../../webkit/plugins/ppapi/plugin_module.cc || $
+    obj/webkit/support/plugins.compile_depends.stamp
+build obj/webkit/plugins/ppapi/plugins.plugin_object.o: cxx $
+    ../../webkit/plugins/ppapi/plugin_object.cc || $
+    obj/webkit/support/plugins.compile_depends.stamp
+build obj/webkit/plugins/ppapi/plugins.ppapi_interface_factory.o: cxx $
+    ../../webkit/plugins/ppapi/ppapi_interface_factory.cc || $
+    obj/webkit/support/plugins.compile_depends.stamp
+build obj/webkit/plugins/ppapi/plugins.ppapi_plugin_instance.o: cxx $
+    ../../webkit/plugins/ppapi/ppapi_plugin_instance.cc || $
+    obj/webkit/support/plugins.compile_depends.stamp
+build obj/webkit/plugins/ppapi/plugins.ppapi_webplugin_impl.o: cxx $
+    ../../webkit/plugins/ppapi/ppapi_webplugin_impl.cc || $
+    obj/webkit/support/plugins.compile_depends.stamp
+build obj/webkit/plugins/ppapi/plugins.ppb_audio_impl.o: cxx $
+    ../../webkit/plugins/ppapi/ppb_audio_impl.cc || $
+    obj/webkit/support/plugins.compile_depends.stamp
+build obj/webkit/plugins/ppapi/plugins.ppb_broker_impl.o: cxx $
+    ../../webkit/plugins/ppapi/ppb_broker_impl.cc || $
+    obj/webkit/support/plugins.compile_depends.stamp
+build obj/webkit/plugins/ppapi/plugins.ppb_buffer_impl.o: cxx $
+    ../../webkit/plugins/ppapi/ppb_buffer_impl.cc || $
+    obj/webkit/support/plugins.compile_depends.stamp
+build obj/webkit/plugins/ppapi/plugins.ppb_file_ref_impl.o: cxx $
+    ../../webkit/plugins/ppapi/ppb_file_ref_impl.cc || $
+    obj/webkit/support/plugins.compile_depends.stamp
+build obj/webkit/plugins/ppapi/plugins.ppb_flash_message_loop_impl.o: cxx $
+    ../../webkit/plugins/ppapi/ppb_flash_message_loop_impl.cc || $
+    obj/webkit/support/plugins.compile_depends.stamp
+build obj/webkit/plugins/ppapi/plugins.ppb_gpu_blacklist_private_impl.o: $
+    cxx ../../webkit/plugins/ppapi/ppb_gpu_blacklist_private_impl.cc || $
+    obj/webkit/support/plugins.compile_depends.stamp
+build obj/webkit/plugins/ppapi/plugins.ppb_graphics_3d_impl.o: cxx $
+    ../../webkit/plugins/ppapi/ppb_graphics_3d_impl.cc || $
+    obj/webkit/support/plugins.compile_depends.stamp
+build obj/webkit/plugins/ppapi/plugins.ppb_image_data_impl.o: cxx $
+    ../../webkit/plugins/ppapi/ppb_image_data_impl.cc || $
+    obj/webkit/support/plugins.compile_depends.stamp
+build obj/webkit/plugins/ppapi/plugins.ppb_network_monitor_private_impl.o: $
+    cxx ../../webkit/plugins/ppapi/ppb_network_monitor_private_impl.cc || $
+    obj/webkit/support/plugins.compile_depends.stamp
+build obj/webkit/plugins/ppapi/plugins.ppb_proxy_impl.o: cxx $
+    ../../webkit/plugins/ppapi/ppb_proxy_impl.cc || $
+    obj/webkit/support/plugins.compile_depends.stamp
+build obj/webkit/plugins/ppapi/plugins.ppb_scrollbar_impl.o: cxx $
+    ../../webkit/plugins/ppapi/ppb_scrollbar_impl.cc || $
+    obj/webkit/support/plugins.compile_depends.stamp
+build $
+    obj/webkit/plugins/ppapi/plugins.ppb_tcp_server_socket_private_impl.o: $
+    cxx ../../webkit/plugins/ppapi/ppb_tcp_server_socket_private_impl.cc || $
+    obj/webkit/support/plugins.compile_depends.stamp
+build obj/webkit/plugins/ppapi/plugins.ppb_tcp_socket_private_impl.o: cxx $
+    ../../webkit/plugins/ppapi/ppb_tcp_socket_private_impl.cc || $
+    obj/webkit/support/plugins.compile_depends.stamp
+build obj/webkit/plugins/ppapi/plugins.ppb_uma_private_impl.o: cxx $
+    ../../webkit/plugins/ppapi/ppb_uma_private_impl.cc || $
+    obj/webkit/support/plugins.compile_depends.stamp
+build obj/webkit/plugins/ppapi/plugins.ppb_var_deprecated_impl.o: cxx $
+    ../../webkit/plugins/ppapi/ppb_var_deprecated_impl.cc || $
+    obj/webkit/support/plugins.compile_depends.stamp
+build obj/webkit/plugins/ppapi/plugins.ppb_video_decoder_impl.o: cxx $
+    ../../webkit/plugins/ppapi/ppb_video_decoder_impl.cc || $
+    obj/webkit/support/plugins.compile_depends.stamp
+build obj/webkit/plugins/ppapi/plugins.ppb_widget_impl.o: cxx $
+    ../../webkit/plugins/ppapi/ppb_widget_impl.cc || $
+    obj/webkit/support/plugins.compile_depends.stamp
+build obj/webkit/plugins/ppapi/plugins.ppb_x509_certificate_private_impl.o: $
+    cxx ../../webkit/plugins/ppapi/ppb_x509_certificate_private_impl.cc || $
+    obj/webkit/support/plugins.compile_depends.stamp
+build obj/webkit/plugins/ppapi/plugins.quota_file_io.o: cxx $
+    ../../webkit/plugins/ppapi/quota_file_io.cc || $
+    obj/webkit/support/plugins.compile_depends.stamp
+build obj/webkit/plugins/ppapi/plugins.resource_creation_impl.o: cxx $
+    ../../webkit/plugins/ppapi/resource_creation_impl.cc || $
+    obj/webkit/support/plugins.compile_depends.stamp
+build obj/webkit/plugins/ppapi/plugins.resource_helper.o: cxx $
+    ../../webkit/plugins/ppapi/resource_helper.cc || $
+    obj/webkit/support/plugins.compile_depends.stamp
+build obj/webkit/plugins/ppapi/plugins.string.o: cxx $
+    ../../webkit/plugins/ppapi/string.cc || $
+    obj/webkit/support/plugins.compile_depends.stamp
+build obj/webkit/plugins/ppapi/plugins.url_response_info_util.o: cxx $
+    ../../webkit/plugins/ppapi/url_response_info_util.cc || $
+    obj/webkit/support/plugins.compile_depends.stamp
+build obj/webkit/plugins/ppapi/plugins.url_request_info_util.o: cxx $
+    ../../webkit/plugins/ppapi/url_request_info_util.cc || $
+    obj/webkit/support/plugins.compile_depends.stamp
+build obj/webkit/plugins/ppapi/plugins.usb_key_code_conversion.o: cxx $
+    ../../webkit/plugins/ppapi/usb_key_code_conversion.cc || $
+    obj/webkit/support/plugins.compile_depends.stamp
+build obj/webkit/plugins/ppapi/plugins.usb_key_code_conversion_linux.o: cxx $
+    ../../webkit/plugins/ppapi/usb_key_code_conversion_linux.cc || $
+    obj/webkit/support/plugins.compile_depends.stamp
+build obj/webkit/plugins/ppapi/plugins.v8_var_converter.o: cxx $
+    ../../webkit/plugins/ppapi/v8_var_converter.cc || $
+    obj/webkit/support/plugins.compile_depends.stamp
+build obj/webkit/plugins/plugins.sad_plugin.o: cxx $
+    ../../webkit/plugins/sad_plugin.cc || $
+    obj/webkit/support/plugins.compile_depends.stamp
+
+build obj/webkit/support/libplugins.a: alink_thin $
+    obj/webkit/plugins/npapi/plugins.gtk_plugin_container.o $
+    obj/webkit/plugins/npapi/plugins.gtk_plugin_container_manager.o $
+    obj/webkit/plugins/npapi/plugins.plugin_host.o $
+    obj/webkit/plugins/npapi/plugins.plugin_instance.o $
+    obj/webkit/plugins/npapi/plugins.plugin_lib.o $
+    obj/webkit/plugins/npapi/plugins.plugin_stream.o $
+    obj/webkit/plugins/npapi/plugins.plugin_stream_posix.o $
+    obj/webkit/plugins/npapi/plugins.plugin_stream_url.o $
+    obj/webkit/plugins/npapi/plugins.plugin_string_stream.o $
+    obj/webkit/plugins/npapi/plugins.webplugin.o $
+    obj/webkit/plugins/npapi/plugins.webplugin_delegate_impl.o $
+    obj/webkit/plugins/npapi/plugins.webplugin_delegate_impl_gtk.o $
+    obj/webkit/plugins/npapi/plugins.webplugin_impl.o $
+    obj/webkit/plugins/ppapi/plugins.audio_helper.o $
+    obj/webkit/plugins/ppapi/plugins.content_decryptor_delegate.o $
+    obj/webkit/plugins/ppapi/plugins.event_conversion.o $
+    obj/webkit/plugins/ppapi/plugins.host_array_buffer_var.o $
+    obj/webkit/plugins/ppapi/plugins.host_globals.o $
+    obj/webkit/plugins/ppapi/plugins.host_var_tracker.o $
+    obj/webkit/plugins/ppapi/plugins.message_channel.o $
+    obj/webkit/plugins/ppapi/plugins.npapi_glue.o $
+    obj/webkit/plugins/ppapi/plugins.npobject_var.o $
+    obj/webkit/plugins/ppapi/plugins.plugin_module.o $
+    obj/webkit/plugins/ppapi/plugins.plugin_object.o $
+    obj/webkit/plugins/ppapi/plugins.ppapi_interface_factory.o $
+    obj/webkit/plugins/ppapi/plugins.ppapi_plugin_instance.o $
+    obj/webkit/plugins/ppapi/plugins.ppapi_webplugin_impl.o $
+    obj/webkit/plugins/ppapi/plugins.ppb_audio_impl.o $
+    obj/webkit/plugins/ppapi/plugins.ppb_broker_impl.o $
+    obj/webkit/plugins/ppapi/plugins.ppb_buffer_impl.o $
+    obj/webkit/plugins/ppapi/plugins.ppb_file_ref_impl.o $
+    obj/webkit/plugins/ppapi/plugins.ppb_flash_message_loop_impl.o $
+    obj/webkit/plugins/ppapi/plugins.ppb_gpu_blacklist_private_impl.o $
+    obj/webkit/plugins/ppapi/plugins.ppb_graphics_3d_impl.o $
+    obj/webkit/plugins/ppapi/plugins.ppb_image_data_impl.o $
+    obj/webkit/plugins/ppapi/plugins.ppb_network_monitor_private_impl.o $
+    obj/webkit/plugins/ppapi/plugins.ppb_proxy_impl.o $
+    obj/webkit/plugins/ppapi/plugins.ppb_scrollbar_impl.o $
+    obj/webkit/plugins/ppapi/plugins.ppb_tcp_server_socket_private_impl.o $
+    obj/webkit/plugins/ppapi/plugins.ppb_tcp_socket_private_impl.o $
+    obj/webkit/plugins/ppapi/plugins.ppb_uma_private_impl.o $
+    obj/webkit/plugins/ppapi/plugins.ppb_var_deprecated_impl.o $
+    obj/webkit/plugins/ppapi/plugins.ppb_video_decoder_impl.o $
+    obj/webkit/plugins/ppapi/plugins.ppb_widget_impl.o $
+    obj/webkit/plugins/ppapi/plugins.ppb_x509_certificate_private_impl.o $
+    obj/webkit/plugins/ppapi/plugins.quota_file_io.o $
+    obj/webkit/plugins/ppapi/plugins.resource_creation_impl.o $
+    obj/webkit/plugins/ppapi/plugins.resource_helper.o $
+    obj/webkit/plugins/ppapi/plugins.string.o $
+    obj/webkit/plugins/ppapi/plugins.url_response_info_util.o $
+    obj/webkit/plugins/ppapi/plugins.url_request_info_util.o $
+    obj/webkit/plugins/ppapi/plugins.usb_key_code_conversion.o $
+    obj/webkit/plugins/ppapi/plugins.usb_key_code_conversion_linux.o $
+    obj/webkit/plugins/ppapi/plugins.v8_var_converter.o $
+    obj/webkit/plugins/plugins.sad_plugin.o || $
+    obj/webkit/support/plugins.actions_depends.stamp

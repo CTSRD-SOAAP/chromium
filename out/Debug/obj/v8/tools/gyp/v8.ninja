@@ -1,0 +1,3 @@
+build obj/v8/tools/gyp/v8.actions_depends.stamp: stamp $
+    obj/v8/tools/gyp/libv8_base.x64.a obj/v8/tools/gyp/libv8_snapshot.a
+

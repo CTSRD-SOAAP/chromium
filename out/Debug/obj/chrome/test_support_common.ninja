@@ -1,0 +1,555 @@
+build obj/chrome/test_support_common.actions_depends.stamp: stamp $
+    obj/chrome/app/policy/policy_test_support.actions_depends.stamp $
+    obj/chrome/chrome_resources.actions_rules_copies.stamp $
+    obj/chrome/chrome_strings.actions_rules_copies.stamp $
+    obj/chrome/theme_resources.actions_depends.stamp $
+    obj/chrome/libmetrics_proto.a obj/sync/sync.actions_depends.stamp $
+    obj/sync/libsync_proto.a obj/chrome/libcloud_policy_proto.a $
+    obj/chrome/common/extensions/api/libapi.a $
+    obj/build/linux/ssl.actions_depends.stamp
+
+build obj/chrome/test_support_common.compile_depends.stamp: stamp $
+    obj/chrome/app/policy/policy_test_support.compile_depends.stamp $
+    obj/chrome/chrome_resources.actions_rules_copies.stamp $
+    obj/chrome/chrome_strings.actions_rules_copies.stamp $
+    obj/chrome/theme_resources.compile_depends.stamp $
+    obj/chrome/metrics_proto.actions_rules_copies.stamp $
+    obj/sync/sync.compile_depends.stamp $
+    obj/sync/sync_proto.actions_rules_copies.stamp $
+    obj/chrome/cloud_policy_proto.actions_rules_copies.stamp $
+    obj/chrome/common/extensions/api/api.actions_rules_copies.stamp
+
+defines = -DANGLE_DX11 -D_FILE_OFFSET_BITS=64 -DNO_TCMALLOC -DDISABLE_NACL $
+    -DCHROMIUM_BUILD -DUSE_DEFAULT_RENDER_THEME=1 -DUSE_LIBJPEG_TURBO=1 $
+    -DUSE_NSS=1 -DUSE_X11=1 -DENABLE_ONE_CLICK_SIGNIN $
+    -DGTK_DISABLE_SINGLE_INCLUDES=1 -DENABLE_REMOTING=1 -DENABLE_WEBRTC=1 $
+    -DENABLE_CONFIGURATION_POLICY -DENABLE_INPUT_SPEECH $
+    -DENABLE_NOTIFICATIONS -DENABLE_GPU=1 -DENABLE_EGLIMAGE=1 $
+    -DENABLE_TASK_MANAGER=1 -DENABLE_EXTENSIONS=1 $
+    -DENABLE_PLUGIN_INSTALLATION=1 -DENABLE_PLUGINS=1 $
+    -DENABLE_SESSION_SERVICE=1 -DENABLE_THEMES=1 -DENABLE_BACKGROUND=1 $
+    -DENABLE_AUTOMATION=1 -DENABLE_GOOGLE_NOW=1 $
+    -DENABLE_LANGUAGE_DETECTION=1 -DENABLE_PRINTING=1 $
+    -DENABLE_CAPTIVE_PORTAL_DETECTION=1 -DENABLE_MANAGED_USERS=1 $
+    -DGL_GLEXT_PROTOTYPES -DLIBPEERCONNECTION_LIB=1 $
+    -DNACL_TARGET_SUBARCH=64 -DNACL_TARGET_ARCH=x86 -DNACL_BUILD_SUBARCH=64 $
+    -DNACL_BUILD_ARCH=x86 -DPROTOBUF_USE_DLLS -DGOOGLE_PROTOBUF_NO_RTTI $
+    -DGOOGLE_PROTOBUF_NO_STATIC_INITIALIZER -DSK_BUILD_NO_IMAGE_ENCODE $
+    -DSK_DEFERRED_CANVAS_USES_GPIPE=1 $
+    '-DGR_GL_CUSTOM_SETUP_HEADER="GrGLConfig_chrome.h"' $
+    -DGR_AGGRESSIVE_SHADER_OPTS=1 -DSK_ENABLE_INST_COUNT=0 $
+    -DSK_USE_POSIX_THREADS -DFEATURE_ENABLE_SSL -DFEATURE_ENABLE_VOICEMAIL $
+    -DEXPAT_RELATIVE_PATH -DGTEST_RELATIVE_PATH -DJSONCPP_RELATIVE_PATH $
+    -DNO_MAIN_THREAD_WRAPPING -DNO_SOUND_SYSTEM -DPOSIX -DBSD -DFREEBSD $
+    -DUNIT_TEST -DGTEST_HAS_RTTI=0 -DU_USING_ICU_NAMESPACE=0 $
+    -DU_STATIC_IMPLEMENTATION -D__STDC_CONSTANT_MACROS $
+    -D__STDC_FORMAT_MACROS -DDYNAMIC_ANNOTATIONS_ENABLED=1 $
+    -DWTF_USE_DYNAMIC_ANNOTATIONS=1 -D_DEBUG
+includes = -I../../third_party/icu/public/common -I../.. $
+    -I../../third_party/khronos -I../../gpu -Igen/policy -Igen/protoc_out $
+    -Igen/chrome -I../../third_party/protobuf $
+    -I../../third_party/protobuf/src -I../../third_party/sqlite $
+    -I../../skia/config -I../../third_party/skia/src/core $
+    -I../../third_party/skia/include/config $
+    -I../../third_party/skia/include/core $
+    -I../../third_party/skia/include/effects $
+    -I../../third_party/skia/include/pdf $
+    -I../../third_party/skia/include/gpu $
+    -I../../third_party/skia/include/gpu/gl $
+    -I../../third_party/skia/include/pathops $
+    -I../../third_party/skia/include/pipe $
+    -I../../third_party/skia/include/ports $
+    -I../../third_party/skia/include/utils -I../../skia/ext $
+    -I../../third_party/libjingle/overrides $
+    -I../../third_party/libjingle/source -I../../testing/gtest/include $
+    -I../../third_party -I../../third_party/webrtc $
+    -I../../third_party/jsoncpp/overrides/include $
+    -I../../third_party/jsoncpp/source/include $
+    -I../../third_party/cacheinvalidation/overrides $
+    -I../../third_party/cacheinvalidation/src -I../../testing/gmock/include $
+    -I../../third_party/zlib -Igen -I../../third_party/WebKit $
+    -I../../third_party/npapi -I../../third_party/npapi/bindings $
+    -I../../v8/include -I../../third_party/leveldatabase/src/include $
+    -I../../third_party/leveldatabase/src -I../../third_party/leveldatabase $
+    -I../../net/third_party/nss/ssl
+cflags = -fstack-protector --param=ssp-buffer-size=4  -pthread $
+    -fno-exceptions -fno-strict-aliasing -Wall -Wno-unused-parameter $
+    -Wno-missing-field-initializers -fvisibility=hidden -pipe -fPIC $
+    -Wheader-hygiene -Wno-char-subscripts -Wno-unused-function $
+    -Wno-covered-switch-default -Wstring-conversion -Wno-c++11-narrowing $
+    -Wno-reserved-user-defined-literal -fcolor-diagnostics $
+    -I/usr/local/include/gtk-2.0 -I/usr/local/include/gio-unix-2.0/ $
+    -I/usr/local/include/atk-1.0 -I/usr/local/include/cairo $
+    -I/usr/local/include/pixman-1 -D_THREAD_SAFE $
+    -I/usr/local/include/gdk-pixbuf-2.0 -I/usr/local/include/libpng15 $
+    -I/usr/local/include/pango-1.0 -I/usr/local/include/freetype2 $
+    -I/usr/local/include/harfbuzz -pthread -I/usr/local/include/glib-2.0 $
+    -I/usr/local/include -pthread -I/usr/local/include/glib-2.0 $
+    -I/usr/local/include -D_THREAD_SAFE -I/usr/local/include $
+    -I/usr/local/include/nss -I/usr/local/include/nss/nss $
+    -I/usr/local/include/nspr -O0 -g
+cflags_c = -O2 -pipe -fno-strict-aliasing
+cflags_cc = -O2 -pipe -fno-strict-aliasing -fno-rtti $
+    -fno-threadsafe-statics -fvisibility-inlines-hidden -Wsign-compare $
+    -std=gnu++11
+
+build obj/chrome/app/test_support_common.chrome_main_delegate.o: cxx $
+    ../../chrome/app/chrome_main_delegate.cc || $
+    obj/chrome/test_support_common.compile_depends.stamp
+build $
+    obj/chrome/browser/browsing_data/test_support_common.mock_browsing_data_appcache_helper.o: $
+    cxx $
+    ../../chrome/browser/browsing_data/mock_browsing_data_appcache_helper.cc $
+    || obj/chrome/test_support_common.compile_depends.stamp
+build $
+    obj/chrome/browser/browsing_data/test_support_common.mock_browsing_data_cookie_helper.o: $
+    cxx $
+    ../../chrome/browser/browsing_data/mock_browsing_data_cookie_helper.cc $
+    || obj/chrome/test_support_common.compile_depends.stamp
+build $
+    obj/chrome/browser/browsing_data/test_support_common.mock_browsing_data_database_helper.o: $
+    cxx $
+    ../../chrome/browser/browsing_data/mock_browsing_data_database_helper.cc $
+    || obj/chrome/test_support_common.compile_depends.stamp
+build $
+    obj/chrome/browser/browsing_data/test_support_common.mock_browsing_data_file_system_helper.o: $
+    cxx $
+    ../../chrome/browser/browsing_data/mock_browsing_data_file_system_helper.cc $
+    || obj/chrome/test_support_common.compile_depends.stamp
+build $
+    obj/chrome/browser/browsing_data/test_support_common.mock_browsing_data_flash_lso_helper.o: $
+    cxx $
+    ../../chrome/browser/browsing_data/mock_browsing_data_flash_lso_helper.cc $
+    || obj/chrome/test_support_common.compile_depends.stamp
+build $
+    obj/chrome/browser/browsing_data/test_support_common.mock_browsing_data_indexed_db_helper.o: $
+    cxx $
+    ../../chrome/browser/browsing_data/mock_browsing_data_indexed_db_helper.cc $
+    || obj/chrome/test_support_common.compile_depends.stamp
+build $
+    obj/chrome/browser/browsing_data/test_support_common.mock_browsing_data_local_storage_helper.o: $
+    cxx $
+    ../../chrome/browser/browsing_data/mock_browsing_data_local_storage_helper.cc $
+    || obj/chrome/test_support_common.compile_depends.stamp
+build $
+    obj/chrome/browser/browsing_data/test_support_common.mock_browsing_data_quota_helper.o: $
+    cxx $
+    ../../chrome/browser/browsing_data/mock_browsing_data_quota_helper.cc $
+    || obj/chrome/test_support_common.compile_depends.stamp
+build $
+    obj/chrome/browser/browsing_data/test_support_common.mock_browsing_data_server_bound_cert_helper.o: $
+    cxx $
+    ../../chrome/browser/browsing_data/mock_browsing_data_server_bound_cert_helper.cc $
+    || obj/chrome/test_support_common.compile_depends.stamp
+build $
+    obj/chrome/browser/download/test_support_common.download_test_file_activity_observer.o: $
+    cxx $
+    ../../chrome/browser/download/download_test_file_activity_observer.cc $
+    || obj/chrome/test_support_common.compile_depends.stamp
+build $
+    obj/chrome/browser/download/test_support_common.test_download_shelf.o: $
+    cxx ../../chrome/browser/download/test_download_shelf.cc || $
+    obj/chrome/test_support_common.compile_depends.stamp
+build obj/chrome/browser/drive/test_support_common.dummy_drive_service.o: $
+    cxx ../../chrome/browser/drive/dummy_drive_service.cc || $
+    obj/chrome/test_support_common.compile_depends.stamp
+build obj/chrome/browser/drive/test_support_common.mock_drive_service.o: $
+    cxx ../../chrome/browser/drive/mock_drive_service.cc || $
+    obj/chrome/test_support_common.compile_depends.stamp
+build obj/chrome/browser/drive/test_support_common.fake_drive_service.o: $
+    cxx ../../chrome/browser/drive/fake_drive_service.cc || $
+    obj/chrome/test_support_common.compile_depends.stamp
+build $
+    obj/chrome/browser/extensions/api/messaging/test_support_common.native_messaging_test_util.o: $
+    cxx $
+    ../../chrome/browser/extensions/api/messaging/native_messaging_test_util.cc $
+    || obj/chrome/test_support_common.compile_depends.stamp
+build $
+    obj/chrome/browser/extensions/test_support_common.fake_safe_browsing_database_manager.o: $
+    cxx $
+    ../../chrome/browser/extensions/fake_safe_browsing_database_manager.cc $
+    || obj/chrome/test_support_common.compile_depends.stamp
+build $
+    obj/chrome/browser/extensions/test_support_common.mock_extension_special_storage_policy.o: $
+    cxx $
+    ../../chrome/browser/extensions/mock_extension_special_storage_policy.cc $
+    || obj/chrome/test_support_common.compile_depends.stamp
+build obj/chrome/browser/extensions/test_support_common.test_blacklist.o: $
+    cxx ../../chrome/browser/extensions/test_blacklist.cc || $
+    obj/chrome/test_support_common.compile_depends.stamp
+build $
+    obj/chrome/browser/extensions/test_support_common.test_extension_environment.o: $
+    cxx ../../chrome/browser/extensions/test_extension_environment.cc || $
+    obj/chrome/test_support_common.compile_depends.stamp
+build $
+    obj/chrome/browser/extensions/test_support_common.test_extension_prefs.o: $
+    cxx ../../chrome/browser/extensions/test_extension_prefs.cc || $
+    obj/chrome/test_support_common.compile_depends.stamp
+build $
+    obj/chrome/browser/extensions/test_support_common.test_extension_service.o: $
+    cxx ../../chrome/browser/extensions/test_extension_service.cc || $
+    obj/chrome/test_support_common.compile_depends.stamp
+build $
+    obj/chrome/browser/extensions/test_support_common.test_extension_system.o: $
+    cxx ../../chrome/browser/extensions/test_extension_system.cc || $
+    obj/chrome/test_support_common.compile_depends.stamp
+build $
+    obj/chrome/browser/extensions/test_support_common.test_management_policy.o: $
+    cxx ../../chrome/browser/extensions/test_management_policy.cc || $
+    obj/chrome/test_support_common.compile_depends.stamp
+build obj/chrome/browser/google_apis/test_support_common.test_util.o: cxx $
+    ../../chrome/browser/google_apis/test_util.cc || $
+    obj/chrome/test_support_common.compile_depends.stamp
+build $
+    obj/chrome/browser/media_galleries/fileapi/picasa/test_support_common.pmp_test_helper.o: $
+    cxx $
+    ../../chrome/browser/media_galleries/fileapi/picasa/pmp_test_helper.cc $
+    || obj/chrome/test_support_common.compile_depends.stamp
+build $
+    obj/chrome/browser/media_galleries/test_support_common.media_galleries_test_util.o: $
+    cxx ../../chrome/browser/media_galleries/media_galleries_test_util.cc $
+    || obj/chrome/test_support_common.compile_depends.stamp
+build obj/chrome/browser/net/test_support_common.url_request_mock_util.o: $
+    cxx ../../chrome/browser/net/url_request_mock_util.cc || $
+    obj/chrome/test_support_common.compile_depends.stamp
+build $
+    obj/chrome/browser/notifications/test_support_common.notification_test_util.o: $
+    cxx ../../chrome/browser/notifications/notification_test_util.cc || $
+    obj/chrome/test_support_common.compile_depends.stamp
+build $
+    obj/chrome/browser/password_manager/test_support_common.mock_password_store.o: $
+    cxx ../../chrome/browser/password_manager/mock_password_store.cc || $
+    obj/chrome/test_support_common.compile_depends.stamp
+build $
+    obj/chrome/browser/password_manager/test_support_common.password_form_data.o: $
+    cxx ../../chrome/browser/password_manager/password_form_data.cc || $
+    obj/chrome/test_support_common.compile_depends.stamp
+build $
+    obj/chrome/browser/password_manager/test_support_common.test_password_store.o: $
+    cxx ../../chrome/browser/password_manager/test_password_store.cc || $
+    obj/chrome/test_support_common.compile_depends.stamp
+build $
+    obj/chrome/browser/policy/cloud/test_support_common.mock_cloud_policy_client.o: $
+    cxx ../../chrome/browser/policy/cloud/mock_cloud_policy_client.cc || $
+    obj/chrome/test_support_common.compile_depends.stamp
+build $
+    obj/chrome/browser/policy/cloud/test_support_common.mock_cloud_policy_store.o: $
+    cxx ../../chrome/browser/policy/cloud/mock_cloud_policy_store.cc || $
+    obj/chrome/test_support_common.compile_depends.stamp
+build obj/chrome/browser/policy/cloud/test_support_common.policy_builder.o: $
+    cxx ../../chrome/browser/policy/cloud/policy_builder.cc || $
+    obj/chrome/test_support_common.compile_depends.stamp
+build $
+    obj/chrome/browser/policy/test_support_common.mock_configuration_policy_provider.o: $
+    cxx ../../chrome/browser/policy/mock_configuration_policy_provider.cc $
+    || obj/chrome/test_support_common.compile_depends.stamp
+build $
+    obj/chrome/browser/policy/test/test_support_common.local_policy_test_server.o: $
+    cxx ../../chrome/browser/policy/test/local_policy_test_server.cc || $
+    obj/chrome/test_support_common.compile_depends.stamp
+build $
+    obj/chrome/browser/prefs/test_support_common.pref_service_mock_builder.o: $
+    cxx ../../chrome/browser/prefs/pref_service_mock_builder.cc || $
+    obj/chrome/test_support_common.compile_depends.stamp
+build $
+    obj/chrome/browser/profile_resetter/test_support_common.profile_resetter_test_base.o: $
+    cxx ../../chrome/browser/profile_resetter/profile_resetter_test_base.cc $
+    || obj/chrome/test_support_common.compile_depends.stamp
+build $
+    obj/chrome/browser/search_engines/test_support_common.template_url_service_test_util.o: $
+    cxx $
+    ../../chrome/browser/search_engines/template_url_service_test_util.cc $
+    || obj/chrome/test_support_common.compile_depends.stamp
+build $
+    obj/chrome/browser/sessions/test_support_common.session_service_test_helper.o: $
+    cxx ../../chrome/browser/sessions/session_service_test_helper.cc || $
+    obj/chrome/test_support_common.compile_depends.stamp
+build obj/chrome/browser/signin/test_support_common.fake_signin_manager.o: $
+    cxx ../../chrome/browser/signin/fake_signin_manager.cc || $
+    obj/chrome/test_support_common.compile_depends.stamp
+build $
+    obj/chrome/browser/ssl/test_support_common.ssl_client_auth_requestor_mock.o: $
+    cxx ../../chrome/browser/ssl/ssl_client_auth_requestor_mock.cc || $
+    obj/chrome/test_support_common.compile_depends.stamp
+build $
+    obj/chrome/browser/storage_monitor/test_support_common.test_storage_monitor.o: $
+    cxx ../../chrome/browser/storage_monitor/test_storage_monitor.cc || $
+    obj/chrome/test_support_common.compile_depends.stamp
+build $
+    obj/chrome/browser/ui/fullscreen/test_support_common.fullscreen_controller_state_test.o: $
+    cxx $
+    ../../chrome/browser/ui/fullscreen/fullscreen_controller_state_test.cc $
+    || obj/chrome/test_support_common.compile_depends.stamp
+build $
+    obj/chrome/browser/ui/fullscreen/test_support_common.fullscreen_controller_test.o: $
+    cxx ../../chrome/browser/ui/fullscreen/fullscreen_controller_test.cc || $
+    obj/chrome/test_support_common.compile_depends.stamp
+build $
+    obj/chrome/browser/ui/gtk/test_support_common.find_bar_host_unittest_util_gtk.o: $
+    cxx ../../chrome/browser/ui/gtk/find_bar_host_unittest_util_gtk.cc || $
+    obj/chrome/test_support_common.compile_depends.stamp
+build $
+    obj/chrome/browser/ui/test/test_support_common.test_confirm_bubble_model.o: $
+    cxx ../../chrome/browser/ui/test/test_confirm_bubble_model.cc || $
+    obj/chrome/test_support_common.compile_depends.stamp
+build obj/chrome/common/extensions/test_support_common.extension_builder.o: $
+    cxx ../../chrome/common/extensions/extension_builder.cc || $
+    obj/chrome/test_support_common.compile_depends.stamp
+build $
+    obj/chrome/common/extensions/test_support_common.extension_test_util.o: $
+    cxx ../../chrome/common/extensions/extension_test_util.cc || $
+    obj/chrome/test_support_common.compile_depends.stamp
+build $
+    obj/chrome/common/extensions/permissions/test_support_common.scoped_testing_permissions_info.o: $
+    cxx $
+    ../../chrome/common/extensions/permissions/scoped_testing_permissions_info.cc $
+    || obj/chrome/test_support_common.compile_depends.stamp
+build obj/chrome/common/extensions/test_support_common.value_builder.o: cxx $
+    ../../chrome/common/extensions/value_builder.cc || $
+    obj/chrome/test_support_common.compile_depends.stamp
+build obj/chrome/renderer/test_support_common.chrome_mock_render_thread.o: $
+    cxx ../../chrome/renderer/chrome_mock_render_thread.cc || $
+    obj/chrome/test_support_common.compile_depends.stamp
+build obj/chrome/renderer/test_support_common.mock_printer.o: cxx $
+    ../../chrome/renderer/mock_printer.cc || $
+    obj/chrome/test_support_common.compile_depends.stamp
+build $
+    obj/chrome/renderer/safe_browsing/test_support_common.mock_feature_extractor_clock.o: $
+    cxx ../../chrome/renderer/safe_browsing/mock_feature_extractor_clock.cc $
+    || obj/chrome/test_support_common.compile_depends.stamp
+build obj/chrome/renderer/safe_browsing/test_support_common.test_utils.o: $
+    cxx ../../chrome/renderer/safe_browsing/test_utils.cc || $
+    obj/chrome/test_support_common.compile_depends.stamp
+build $
+    obj/chrome/test/automation/test_support_common.automation_handle_tracker.o: $
+    cxx ../../chrome/test/automation/automation_handle_tracker.cc || $
+    obj/chrome/test_support_common.compile_depends.stamp
+build $
+    obj/chrome/test/automation/test_support_common.automation_json_requests.o: $
+    cxx ../../chrome/test/automation/automation_json_requests.cc || $
+    obj/chrome/test_support_common.compile_depends.stamp
+build obj/chrome/test/automation/test_support_common.automation_proxy.o: $
+    cxx ../../chrome/test/automation/automation_proxy.cc || $
+    obj/chrome/test_support_common.compile_depends.stamp
+build obj/chrome/test/automation/test_support_common.browser_proxy.o: cxx $
+    ../../chrome/test/automation/browser_proxy.cc || $
+    obj/chrome/test_support_common.compile_depends.stamp
+build obj/chrome/test/automation/test_support_common.tab_proxy.o: cxx $
+    ../../chrome/test/automation/tab_proxy.cc || $
+    obj/chrome/test_support_common.compile_depends.stamp
+build $
+    obj/chrome/test/automation/test_support_common.value_conversion_traits.o: $
+    cxx ../../chrome/test/automation/value_conversion_traits.cc || $
+    obj/chrome/test_support_common.compile_depends.stamp
+build obj/chrome/test/automation/test_support_common.window_proxy.o: cxx $
+    ../../chrome/test/automation/window_proxy.cc || $
+    obj/chrome/test_support_common.compile_depends.stamp
+build obj/chrome/test/base/test_support_common.bookmark_load_observer.o: $
+    cxx ../../chrome/test/base/bookmark_load_observer.cc || $
+    obj/chrome/test_support_common.compile_depends.stamp
+build $
+    obj/chrome/test/base/test_support_common.chrome_render_view_host_test_harness.o: $
+    cxx ../../chrome/test/base/chrome_render_view_host_test_harness.cc || $
+    obj/chrome/test_support_common.compile_depends.stamp
+build obj/chrome/test/base/test_support_common.chrome_test_suite.o: cxx $
+    ../../chrome/test/base/chrome_test_suite.cc || $
+    obj/chrome/test_support_common.compile_depends.stamp
+build obj/chrome/test/base/test_support_common.find_in_page_observer.o: cxx $
+    ../../chrome/test/base/find_in_page_observer.cc || $
+    obj/chrome/test_support_common.compile_depends.stamp
+build $
+    obj/chrome/test/base/test_support_common.history_index_restore_observer.o: $
+    cxx ../../chrome/test/base/history_index_restore_observer.cc || $
+    obj/chrome/test_support_common.compile_depends.stamp
+build obj/chrome/test/base/test_support_common.in_process_browser_test.o: $
+    cxx ../../chrome/test/base/in_process_browser_test.cc || $
+    obj/chrome/test_support_common.compile_depends.stamp
+build obj/chrome/test/base/test_support_common.javascript_test_observer.o: $
+    cxx ../../chrome/test/base/javascript_test_observer.cc || $
+    obj/chrome/test_support_common.compile_depends.stamp
+build obj/chrome/test/base/test_support_common.model_test_utils.o: cxx $
+    ../../chrome/test/base/model_test_utils.cc || $
+    obj/chrome/test_support_common.compile_depends.stamp
+build obj/chrome/test/base/test_support_common.module_system_test.o: cxx $
+    ../../chrome/test/base/module_system_test.cc || $
+    obj/chrome/test_support_common.compile_depends.stamp
+build obj/chrome/test/base/test_support_common.profile_mock.o: cxx $
+    ../../chrome/test/base/profile_mock.cc || $
+    obj/chrome/test_support_common.compile_depends.stamp
+build $
+    obj/chrome/test/base/test_support_common.scoped_testing_local_state.o: $
+    cxx ../../chrome/test/base/scoped_testing_local_state.cc || $
+    obj/chrome/test_support_common.compile_depends.stamp
+build obj/chrome/test/base/test_support_common.test_browser_window.o: cxx $
+    ../../chrome/test/base/test_browser_window.cc || $
+    obj/chrome/test_support_common.compile_depends.stamp
+build obj/chrome/test/base/test_support_common.test_launcher_utils.o: cxx $
+    ../../chrome/test/base/test_launcher_utils.cc || $
+    obj/chrome/test_support_common.compile_depends.stamp
+build obj/chrome/test/base/test_support_common.test_location_bar.o: cxx $
+    ../../chrome/test/base/test_location_bar.cc || $
+    obj/chrome/test_support_common.compile_depends.stamp
+build $
+    obj/chrome/test/base/test_support_common.test_tab_strip_model_observer.o: $
+    cxx ../../chrome/test/base/test_tab_strip_model_observer.cc || $
+    obj/chrome/test_support_common.compile_depends.stamp
+build obj/chrome/test/base/test_support_common.testing_browser_process.o: $
+    cxx ../../chrome/test/base/testing_browser_process.cc || $
+    obj/chrome/test_support_common.compile_depends.stamp
+build $
+    obj/chrome/test/base/test_support_common.testing_browser_process_platform_part.o: $
+    cxx ../../chrome/test/base/testing_browser_process_platform_part.cc || $
+    obj/chrome/test_support_common.compile_depends.stamp
+build $
+    obj/chrome/test/base/test_support_common.testing_pref_service_syncable.o: $
+    cxx ../../chrome/test/base/testing_pref_service_syncable.cc || $
+    obj/chrome/test_support_common.compile_depends.stamp
+build obj/chrome/test/base/test_support_common.testing_profile.o: cxx $
+    ../../chrome/test/base/testing_profile.cc || $
+    obj/chrome/test_support_common.compile_depends.stamp
+build obj/chrome/test/base/test_support_common.testing_profile_manager.o: $
+    cxx ../../chrome/test/base/testing_profile_manager.cc || $
+    obj/chrome/test_support_common.compile_depends.stamp
+build obj/chrome/test/base/test_support_common.tracing.o: cxx $
+    ../../chrome/test/base/tracing.cc || $
+    obj/chrome/test_support_common.compile_depends.stamp
+build obj/chrome/test/base/test_support_common.ui_test_utils.o: cxx $
+    ../../chrome/test/base/ui_test_utils.cc || $
+    obj/chrome/test_support_common.compile_depends.stamp
+build obj/chrome/test/base/test_support_common.uma_histogram_helper.o: cxx $
+    ../../chrome/test/base/uma_histogram_helper.cc || $
+    obj/chrome/test_support_common.compile_depends.stamp
+build obj/chrome/test/ppapi/test_support_common.ppapi_test.o: cxx $
+    ../../chrome/test/ppapi/ppapi_test.cc || $
+    obj/chrome/test_support_common.compile_depends.stamp
+build $
+    obj/components/autofill/core/browser/test_support_common.autofill_common_test.o: $
+    cxx ../../components/autofill/core/browser/autofill_common_test.cc || $
+    obj/chrome/test_support_common.compile_depends.stamp
+build $
+    obj/components/autofill/core/browser/test_support_common.data_driven_test.o: $
+    cxx ../../components/autofill/core/browser/data_driven_test.cc || $
+    obj/chrome/test_support_common.compile_depends.stamp
+build $
+    obj/components/autofill/core/browser/test_support_common.test_autofill_driver.o: $
+    cxx ../../components/autofill/core/browser/test_autofill_driver.cc || $
+    obj/chrome/test_support_common.compile_depends.stamp
+build $
+    obj/components/autofill/core/browser/test_support_common.test_autofill_external_delegate.o: $
+    cxx $
+    ../../components/autofill/core/browser/test_autofill_external_delegate.cc $
+    || obj/chrome/test_support_common.compile_depends.stamp
+build $
+    obj/components/autofill/core/browser/test_support_common.test_autofill_manager_delegate.o: $
+    cxx $
+    ../../components/autofill/core/browser/test_autofill_manager_delegate.cc $
+    || obj/chrome/test_support_common.compile_depends.stamp
+build $
+    obj/components/autofill/core/browser/test_support_common.test_personal_data_manager.o: $
+    cxx $
+    ../../components/autofill/core/browser/test_personal_data_manager.cc || $
+    obj/chrome/test_support_common.compile_depends.stamp
+build obj/ui/gfx/image/test_support_common.image_unittest_util.o: cxx $
+    ../../ui/gfx/image/image_unittest_util.cc || $
+    obj/chrome/test_support_common.compile_depends.stamp
+build obj/webkit/browser/quota/test_support_common.mock_quota_manager.o: $
+    cxx ../../webkit/browser/quota/mock_quota_manager.cc || $
+    obj/chrome/test_support_common.compile_depends.stamp
+
+build obj/chrome/libtest_support_common.a: alink_thin $
+    obj/chrome/app/test_support_common.chrome_main_delegate.o $
+    obj/chrome/browser/browsing_data/test_support_common.mock_browsing_data_appcache_helper.o $
+    obj/chrome/browser/browsing_data/test_support_common.mock_browsing_data_cookie_helper.o $
+    obj/chrome/browser/browsing_data/test_support_common.mock_browsing_data_database_helper.o $
+    obj/chrome/browser/browsing_data/test_support_common.mock_browsing_data_file_system_helper.o $
+    obj/chrome/browser/browsing_data/test_support_common.mock_browsing_data_flash_lso_helper.o $
+    obj/chrome/browser/browsing_data/test_support_common.mock_browsing_data_indexed_db_helper.o $
+    obj/chrome/browser/browsing_data/test_support_common.mock_browsing_data_local_storage_helper.o $
+    obj/chrome/browser/browsing_data/test_support_common.mock_browsing_data_quota_helper.o $
+    obj/chrome/browser/browsing_data/test_support_common.mock_browsing_data_server_bound_cert_helper.o $
+    obj/chrome/browser/download/test_support_common.download_test_file_activity_observer.o $
+    obj/chrome/browser/download/test_support_common.test_download_shelf.o $
+    obj/chrome/browser/drive/test_support_common.dummy_drive_service.o $
+    obj/chrome/browser/drive/test_support_common.mock_drive_service.o $
+    obj/chrome/browser/drive/test_support_common.fake_drive_service.o $
+    obj/chrome/browser/extensions/api/messaging/test_support_common.native_messaging_test_util.o $
+    obj/chrome/browser/extensions/test_support_common.fake_safe_browsing_database_manager.o $
+    obj/chrome/browser/extensions/test_support_common.mock_extension_special_storage_policy.o $
+    obj/chrome/browser/extensions/test_support_common.test_blacklist.o $
+    obj/chrome/browser/extensions/test_support_common.test_extension_environment.o $
+    obj/chrome/browser/extensions/test_support_common.test_extension_prefs.o $
+    obj/chrome/browser/extensions/test_support_common.test_extension_service.o $
+    obj/chrome/browser/extensions/test_support_common.test_extension_system.o $
+    obj/chrome/browser/extensions/test_support_common.test_management_policy.o $
+    obj/chrome/browser/google_apis/test_support_common.test_util.o $
+    obj/chrome/browser/media_galleries/fileapi/picasa/test_support_common.pmp_test_helper.o $
+    obj/chrome/browser/media_galleries/test_support_common.media_galleries_test_util.o $
+    obj/chrome/browser/net/test_support_common.url_request_mock_util.o $
+    obj/chrome/browser/notifications/test_support_common.notification_test_util.o $
+    obj/chrome/browser/password_manager/test_support_common.mock_password_store.o $
+    obj/chrome/browser/password_manager/test_support_common.password_form_data.o $
+    obj/chrome/browser/password_manager/test_support_common.test_password_store.o $
+    obj/chrome/browser/policy/cloud/test_support_common.mock_cloud_policy_client.o $
+    obj/chrome/browser/policy/cloud/test_support_common.mock_cloud_policy_store.o $
+    obj/chrome/browser/policy/cloud/test_support_common.policy_builder.o $
+    obj/chrome/browser/policy/test_support_common.mock_configuration_policy_provider.o $
+    obj/chrome/browser/policy/test/test_support_common.local_policy_test_server.o $
+    obj/chrome/browser/prefs/test_support_common.pref_service_mock_builder.o $
+    obj/chrome/browser/profile_resetter/test_support_common.profile_resetter_test_base.o $
+    obj/chrome/browser/search_engines/test_support_common.template_url_service_test_util.o $
+    obj/chrome/browser/sessions/test_support_common.session_service_test_helper.o $
+    obj/chrome/browser/signin/test_support_common.fake_signin_manager.o $
+    obj/chrome/browser/ssl/test_support_common.ssl_client_auth_requestor_mock.o $
+    obj/chrome/browser/storage_monitor/test_support_common.test_storage_monitor.o $
+    obj/chrome/browser/ui/fullscreen/test_support_common.fullscreen_controller_state_test.o $
+    obj/chrome/browser/ui/fullscreen/test_support_common.fullscreen_controller_test.o $
+    obj/chrome/browser/ui/gtk/test_support_common.find_bar_host_unittest_util_gtk.o $
+    obj/chrome/browser/ui/test/test_support_common.test_confirm_bubble_model.o $
+    obj/chrome/common/extensions/test_support_common.extension_builder.o $
+    obj/chrome/common/extensions/test_support_common.extension_test_util.o $
+    obj/chrome/common/extensions/permissions/test_support_common.scoped_testing_permissions_info.o $
+    obj/chrome/common/extensions/test_support_common.value_builder.o $
+    obj/chrome/renderer/test_support_common.chrome_mock_render_thread.o $
+    obj/chrome/renderer/test_support_common.mock_printer.o $
+    obj/chrome/renderer/safe_browsing/test_support_common.mock_feature_extractor_clock.o $
+    obj/chrome/renderer/safe_browsing/test_support_common.test_utils.o $
+    obj/chrome/test/automation/test_support_common.automation_handle_tracker.o $
+    obj/chrome/test/automation/test_support_common.automation_json_requests.o $
+    obj/chrome/test/automation/test_support_common.automation_proxy.o $
+    obj/chrome/test/automation/test_support_common.browser_proxy.o $
+    obj/chrome/test/automation/test_support_common.tab_proxy.o $
+    obj/chrome/test/automation/test_support_common.value_conversion_traits.o $
+    obj/chrome/test/automation/test_support_common.window_proxy.o $
+    obj/chrome/test/base/test_support_common.bookmark_load_observer.o $
+    obj/chrome/test/base/test_support_common.chrome_render_view_host_test_harness.o $
+    obj/chrome/test/base/test_support_common.chrome_test_suite.o $
+    obj/chrome/test/base/test_support_common.find_in_page_observer.o $
+    obj/chrome/test/base/test_support_common.history_index_restore_observer.o $
+    obj/chrome/test/base/test_support_common.in_process_browser_test.o $
+    obj/chrome/test/base/test_support_common.javascript_test_observer.o $
+    obj/chrome/test/base/test_support_common.model_test_utils.o $
+    obj/chrome/test/base/test_support_common.module_system_test.o $
+    obj/chrome/test/base/test_support_common.profile_mock.o $
+    obj/chrome/test/base/test_support_common.scoped_testing_local_state.o $
+    obj/chrome/test/base/test_support_common.test_browser_window.o $
+    obj/chrome/test/base/test_support_common.test_launcher_utils.o $
+    obj/chrome/test/base/test_support_common.test_location_bar.o $
+    obj/chrome/test/base/test_support_common.test_tab_strip_model_observer.o $
+    obj/chrome/test/base/test_support_common.testing_browser_process.o $
+    obj/chrome/test/base/test_support_common.testing_browser_process_platform_part.o $
+    obj/chrome/test/base/test_support_common.testing_pref_service_syncable.o $
+    obj/chrome/test/base/test_support_common.testing_profile.o $
+    obj/chrome/test/base/test_support_common.testing_profile_manager.o $
+    obj/chrome/test/base/test_support_common.tracing.o $
+    obj/chrome/test/base/test_support_common.ui_test_utils.o $
+    obj/chrome/test/base/test_support_common.uma_histogram_helper.o $
+    obj/chrome/test/ppapi/test_support_common.ppapi_test.o $
+    obj/components/autofill/core/browser/test_support_common.autofill_common_test.o $
+    obj/components/autofill/core/browser/test_support_common.data_driven_test.o $
+    obj/components/autofill/core/browser/test_support_common.test_autofill_driver.o $
+    obj/components/autofill/core/browser/test_support_common.test_autofill_external_delegate.o $
+    obj/components/autofill/core/browser/test_support_common.test_autofill_manager_delegate.o $
+    obj/components/autofill/core/browser/test_support_common.test_personal_data_manager.o $
+    obj/ui/gfx/image/test_support_common.image_unittest_util.o $
+    obj/webkit/browser/quota/test_support_common.mock_quota_manager.o || $
+    obj/chrome/test_support_common.actions_depends.stamp

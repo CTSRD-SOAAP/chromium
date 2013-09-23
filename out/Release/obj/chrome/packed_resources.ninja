@@ -1,0 +1,790 @@
+build obj/chrome/packed_resources.actions_depends.stamp: stamp $
+    obj/chrome/chrome_resources.actions_rules_copies.stamp $
+    obj/chrome/chrome_strings.actions_rules_copies.stamp $
+    obj/chrome/platform_locale_settings.actions_rules_copies.stamp $
+    obj/chrome/theme_resources.actions_depends.stamp $
+    obj/components/component_strings.actions_rules_copies.stamp $
+    obj/net/net_resources.actions_rules_copies.stamp $
+    obj/ui/base/strings/ui_strings.actions_rules_copies.stamp $
+    obj/ui/ui_resources.actions_rules_copies.stamp $
+    obj/ash/ash_strings.actions_rules_copies.stamp content_resources.pak $
+    obj/device/bluetooth/device_bluetooth_strings.actions_rules_copies.stamp $
+    obj/webkit/support/webkit_resources.actions_rules_copies.stamp $
+    obj/webkit/support/webkit_strings.actions_rules_copies.stamp
+
+build obj/chrome/packed_resources.compile_depends.stamp: stamp $
+    obj/chrome/chrome_resources.actions_rules_copies.stamp $
+    obj/chrome/chrome_strings.actions_rules_copies.stamp $
+    obj/chrome/platform_locale_settings.actions_rules_copies.stamp $
+    obj/chrome/theme_resources.compile_depends.stamp $
+    obj/components/component_strings.actions_rules_copies.stamp $
+    obj/net/net_resources.actions_rules_copies.stamp $
+    obj/ui/base/strings/ui_strings.actions_rules_copies.stamp $
+    obj/ui/ui_resources.actions_rules_copies.stamp $
+    obj/ash/ash_strings.actions_rules_copies.stamp content_resources.pak $
+    obj/device/bluetooth/device_bluetooth_strings.actions_rules_copies.stamp $
+    obj/webkit/support/webkit_resources.actions_rules_copies.stamp $
+    obj/webkit/support/webkit_strings.actions_rules_copies.stamp
+
+rule packed_resources_target_repack_chrome_323ebb212149d2b5c024b9aca810df96
+  command = cd ../../chrome; python ../tools/grit/grit/format/repack.py $
+      ../out/Release/gen/repack/chrome.pak $
+      ../out/Release/gen/chrome/browser_resources.pak $
+      ../out/Release/gen/chrome/common_resources.pak $
+      ../out/Release/gen/chrome/chrome_unscaled_resources.pak $
+      ../out/Release/gen/net/net_resources.pak $
+      ../out/Release/gen/content/content_resources.pak $
+      ../out/Release/gen/webkit/webkit_chromium_resources.pak $
+      ../out/Release/gen/chrome/extensions_api_resources.pak
+  description = ACTION packed_resources: $
+      repack_chrome_323ebb212149d2b5c024b9aca810df96
+  restat = 1
+
+build gen/repack/chrome.pak: $
+    packed_resources_target_repack_chrome_323ebb212149d2b5c024b9aca810df96 $
+    ../../tools/grit/grit/format/repack.py gen/chrome/browser_resources.pak $
+    gen/chrome/common_resources.pak $
+    gen/chrome/chrome_unscaled_resources.pak gen/net/net_resources.pak $
+    gen/content/content_resources.pak $
+    gen/webkit/webkit_chromium_resources.pak $
+    gen/chrome/extensions_api_resources.pak || $
+    obj/chrome/packed_resources.actions_depends.stamp
+
+rule packed_resources_target_repack_locales_323ebb212149d2b5c024b9aca810df96
+  command = cd ../../chrome; python tools/build/repack_locales.py -b $
+      chromium -p freebsd -g ../out/Release/gen/chrome -s $
+      ../out/Release/gen -x ../out/Release/gen/. am ar bg bn ca cs da de el $
+      en-GB en-US es-419 es et fa fi fil fr gu he hi hr hu id it ja kn ko $
+      lt lv ml mr ms nb nl pl pt-BR pt-PT ro ru sk sl sr sv sw ta te th tr $
+      uk vi zh-CN zh-TW
+  description = ACTION packed_resources: $
+      repack_locales_323ebb212149d2b5c024b9aca810df96
+  restat = 1
+
+build gen/repack/am.pak gen/repack/ar.pak gen/repack/bg.pak $
+    gen/repack/bn.pak gen/repack/ca.pak gen/repack/cs.pak gen/repack/da.pak $
+    gen/repack/de.pak gen/repack/el.pak gen/repack/en-GB.pak $
+    gen/repack/en-US.pak gen/repack/es-419.pak gen/repack/es.pak $
+    gen/repack/et.pak gen/repack/fa.pak gen/repack/fi.pak $
+    gen/repack/fil.pak gen/repack/fr.pak gen/repack/gu.pak $
+    gen/repack/he.pak gen/repack/hi.pak gen/repack/hr.pak gen/repack/hu.pak $
+    gen/repack/id.pak gen/repack/it.pak gen/repack/ja.pak gen/repack/kn.pak $
+    gen/repack/ko.pak gen/repack/lt.pak gen/repack/lv.pak gen/repack/ml.pak $
+    gen/repack/mr.pak gen/repack/ms.pak gen/repack/nb.pak gen/repack/nl.pak $
+    gen/repack/pl.pak gen/repack/pt-BR.pak gen/repack/pt-PT.pak $
+    gen/repack/ro.pak gen/repack/ru.pak gen/repack/sk.pak gen/repack/sl.pak $
+    gen/repack/sr.pak gen/repack/sv.pak gen/repack/sw.pak gen/repack/ta.pak $
+    gen/repack/te.pak gen/repack/th.pak gen/repack/tr.pak gen/repack/uk.pak $
+    gen/repack/vi.pak gen/repack/zh-CN.pak gen/repack/zh-TW.pak: $
+    packed_resources_target_repack_locales_323ebb212149d2b5c024b9aca810df96 $
+    ../../chrome/tools/build/repack_locales.py $
+    gen/chrome/generated_resources_am.pak gen/chrome/locale_settings_am.pak $
+    gen/chrome/platform_locale_settings_am.pak $
+    gen/components/strings/component_strings_am.pak $
+    gen/webkit/webkit_strings_am.pak gen/ui/ui_strings/ui_strings_am.pak $
+    gen/ash_strings/ash_strings_am.pak $
+    gen/device/bluetooth/strings/device_bluetooth_strings_am.pak $
+    gen/ui/app_locale_settings/app_locale_settings_am.pak $
+    gen/chrome/chromium_strings_am.pak $
+    gen/chrome/generated_resources_ar.pak gen/chrome/locale_settings_ar.pak $
+    gen/chrome/platform_locale_settings_ar.pak $
+    gen/components/strings/component_strings_ar.pak $
+    gen/webkit/webkit_strings_ar.pak gen/ui/ui_strings/ui_strings_ar.pak $
+    gen/ash_strings/ash_strings_ar.pak $
+    gen/device/bluetooth/strings/device_bluetooth_strings_ar.pak $
+    gen/ui/app_locale_settings/app_locale_settings_ar.pak $
+    gen/chrome/chromium_strings_ar.pak $
+    gen/chrome/generated_resources_bg.pak gen/chrome/locale_settings_bg.pak $
+    gen/chrome/platform_locale_settings_bg.pak $
+    gen/components/strings/component_strings_bg.pak $
+    gen/webkit/webkit_strings_bg.pak gen/ui/ui_strings/ui_strings_bg.pak $
+    gen/ash_strings/ash_strings_bg.pak $
+    gen/device/bluetooth/strings/device_bluetooth_strings_bg.pak $
+    gen/ui/app_locale_settings/app_locale_settings_bg.pak $
+    gen/chrome/chromium_strings_bg.pak $
+    gen/chrome/generated_resources_bn.pak gen/chrome/locale_settings_bn.pak $
+    gen/chrome/platform_locale_settings_bn.pak $
+    gen/components/strings/component_strings_bn.pak $
+    gen/webkit/webkit_strings_bn.pak gen/ui/ui_strings/ui_strings_bn.pak $
+    gen/ash_strings/ash_strings_bn.pak $
+    gen/device/bluetooth/strings/device_bluetooth_strings_bn.pak $
+    gen/ui/app_locale_settings/app_locale_settings_bn.pak $
+    gen/chrome/chromium_strings_bn.pak $
+    gen/chrome/generated_resources_ca.pak gen/chrome/locale_settings_ca.pak $
+    gen/chrome/platform_locale_settings_ca.pak $
+    gen/components/strings/component_strings_ca.pak $
+    gen/webkit/webkit_strings_ca.pak gen/ui/ui_strings/ui_strings_ca.pak $
+    gen/ash_strings/ash_strings_ca.pak $
+    gen/device/bluetooth/strings/device_bluetooth_strings_ca.pak $
+    gen/ui/app_locale_settings/app_locale_settings_ca.pak $
+    gen/chrome/chromium_strings_ca.pak $
+    gen/chrome/generated_resources_cs.pak gen/chrome/locale_settings_cs.pak $
+    gen/chrome/platform_locale_settings_cs.pak $
+    gen/components/strings/component_strings_cs.pak $
+    gen/webkit/webkit_strings_cs.pak gen/ui/ui_strings/ui_strings_cs.pak $
+    gen/ash_strings/ash_strings_cs.pak $
+    gen/device/bluetooth/strings/device_bluetooth_strings_cs.pak $
+    gen/ui/app_locale_settings/app_locale_settings_cs.pak $
+    gen/chrome/chromium_strings_cs.pak $
+    gen/chrome/generated_resources_da.pak gen/chrome/locale_settings_da.pak $
+    gen/chrome/platform_locale_settings_da.pak $
+    gen/components/strings/component_strings_da.pak $
+    gen/webkit/webkit_strings_da.pak gen/ui/ui_strings/ui_strings_da.pak $
+    gen/ash_strings/ash_strings_da.pak $
+    gen/device/bluetooth/strings/device_bluetooth_strings_da.pak $
+    gen/ui/app_locale_settings/app_locale_settings_da.pak $
+    gen/chrome/chromium_strings_da.pak $
+    gen/chrome/generated_resources_de.pak gen/chrome/locale_settings_de.pak $
+    gen/chrome/platform_locale_settings_de.pak $
+    gen/components/strings/component_strings_de.pak $
+    gen/webkit/webkit_strings_de.pak gen/ui/ui_strings/ui_strings_de.pak $
+    gen/ash_strings/ash_strings_de.pak $
+    gen/device/bluetooth/strings/device_bluetooth_strings_de.pak $
+    gen/ui/app_locale_settings/app_locale_settings_de.pak $
+    gen/chrome/chromium_strings_de.pak $
+    gen/chrome/generated_resources_el.pak gen/chrome/locale_settings_el.pak $
+    gen/chrome/platform_locale_settings_el.pak $
+    gen/components/strings/component_strings_el.pak $
+    gen/webkit/webkit_strings_el.pak gen/ui/ui_strings/ui_strings_el.pak $
+    gen/ash_strings/ash_strings_el.pak $
+    gen/device/bluetooth/strings/device_bluetooth_strings_el.pak $
+    gen/ui/app_locale_settings/app_locale_settings_el.pak $
+    gen/chrome/chromium_strings_el.pak $
+    gen/chrome/generated_resources_en-GB.pak $
+    gen/chrome/locale_settings_en-GB.pak $
+    gen/chrome/platform_locale_settings_en-GB.pak $
+    gen/components/strings/component_strings_en-GB.pak $
+    gen/webkit/webkit_strings_en-GB.pak $
+    gen/ui/ui_strings/ui_strings_en-GB.pak $
+    gen/ash_strings/ash_strings_en-GB.pak $
+    gen/device/bluetooth/strings/device_bluetooth_strings_en-GB.pak $
+    gen/ui/app_locale_settings/app_locale_settings_en-GB.pak $
+    gen/chrome/chromium_strings_en-GB.pak $
+    gen/chrome/generated_resources_en-US.pak $
+    gen/chrome/locale_settings_en-US.pak $
+    gen/chrome/platform_locale_settings_en-US.pak $
+    gen/components/strings/component_strings_en-US.pak $
+    gen/webkit/webkit_strings_en-US.pak $
+    gen/ui/ui_strings/ui_strings_en-US.pak $
+    gen/ash_strings/ash_strings_en-US.pak $
+    gen/device/bluetooth/strings/device_bluetooth_strings_en-US.pak $
+    gen/ui/app_locale_settings/app_locale_settings_en-US.pak $
+    gen/chrome/chromium_strings_en-US.pak $
+    gen/chrome/generated_resources_es-419.pak $
+    gen/chrome/locale_settings_es-419.pak $
+    gen/chrome/platform_locale_settings_es-419.pak $
+    gen/components/strings/component_strings_es-419.pak $
+    gen/webkit/webkit_strings_es-419.pak $
+    gen/ui/ui_strings/ui_strings_es-419.pak $
+    gen/ash_strings/ash_strings_es-419.pak $
+    gen/device/bluetooth/strings/device_bluetooth_strings_es-419.pak $
+    gen/ui/app_locale_settings/app_locale_settings_es-419.pak $
+    gen/chrome/chromium_strings_es-419.pak $
+    gen/chrome/generated_resources_es.pak gen/chrome/locale_settings_es.pak $
+    gen/chrome/platform_locale_settings_es.pak $
+    gen/components/strings/component_strings_es.pak $
+    gen/webkit/webkit_strings_es.pak gen/ui/ui_strings/ui_strings_es.pak $
+    gen/ash_strings/ash_strings_es.pak $
+    gen/device/bluetooth/strings/device_bluetooth_strings_es.pak $
+    gen/ui/app_locale_settings/app_locale_settings_es.pak $
+    gen/chrome/chromium_strings_es.pak $
+    gen/chrome/generated_resources_et.pak gen/chrome/locale_settings_et.pak $
+    gen/chrome/platform_locale_settings_et.pak $
+    gen/components/strings/component_strings_et.pak $
+    gen/webkit/webkit_strings_et.pak gen/ui/ui_strings/ui_strings_et.pak $
+    gen/ash_strings/ash_strings_et.pak $
+    gen/device/bluetooth/strings/device_bluetooth_strings_et.pak $
+    gen/ui/app_locale_settings/app_locale_settings_et.pak $
+    gen/chrome/chromium_strings_et.pak $
+    gen/chrome/generated_resources_fa.pak gen/chrome/locale_settings_fa.pak $
+    gen/chrome/platform_locale_settings_fa.pak $
+    gen/components/strings/component_strings_fa.pak $
+    gen/webkit/webkit_strings_fa.pak gen/ui/ui_strings/ui_strings_fa.pak $
+    gen/ash_strings/ash_strings_fa.pak $
+    gen/device/bluetooth/strings/device_bluetooth_strings_fa.pak $
+    gen/ui/app_locale_settings/app_locale_settings_fa.pak $
+    gen/chrome/chromium_strings_fa.pak $
+    gen/chrome/generated_resources_fi.pak gen/chrome/locale_settings_fi.pak $
+    gen/chrome/platform_locale_settings_fi.pak $
+    gen/components/strings/component_strings_fi.pak $
+    gen/webkit/webkit_strings_fi.pak gen/ui/ui_strings/ui_strings_fi.pak $
+    gen/ash_strings/ash_strings_fi.pak $
+    gen/device/bluetooth/strings/device_bluetooth_strings_fi.pak $
+    gen/ui/app_locale_settings/app_locale_settings_fi.pak $
+    gen/chrome/chromium_strings_fi.pak $
+    gen/chrome/generated_resources_fil.pak $
+    gen/chrome/locale_settings_fil.pak $
+    gen/chrome/platform_locale_settings_fil.pak $
+    gen/components/strings/component_strings_fil.pak $
+    gen/webkit/webkit_strings_fil.pak gen/ui/ui_strings/ui_strings_fil.pak $
+    gen/ash_strings/ash_strings_fil.pak $
+    gen/device/bluetooth/strings/device_bluetooth_strings_fil.pak $
+    gen/ui/app_locale_settings/app_locale_settings_fil.pak $
+    gen/chrome/chromium_strings_fil.pak $
+    gen/chrome/generated_resources_fr.pak gen/chrome/locale_settings_fr.pak $
+    gen/chrome/platform_locale_settings_fr.pak $
+    gen/components/strings/component_strings_fr.pak $
+    gen/webkit/webkit_strings_fr.pak gen/ui/ui_strings/ui_strings_fr.pak $
+    gen/ash_strings/ash_strings_fr.pak $
+    gen/device/bluetooth/strings/device_bluetooth_strings_fr.pak $
+    gen/ui/app_locale_settings/app_locale_settings_fr.pak $
+    gen/chrome/chromium_strings_fr.pak $
+    gen/chrome/generated_resources_gu.pak gen/chrome/locale_settings_gu.pak $
+    gen/chrome/platform_locale_settings_gu.pak $
+    gen/components/strings/component_strings_gu.pak $
+    gen/webkit/webkit_strings_gu.pak gen/ui/ui_strings/ui_strings_gu.pak $
+    gen/ash_strings/ash_strings_gu.pak $
+    gen/device/bluetooth/strings/device_bluetooth_strings_gu.pak $
+    gen/ui/app_locale_settings/app_locale_settings_gu.pak $
+    gen/chrome/chromium_strings_gu.pak $
+    gen/chrome/generated_resources_he.pak gen/chrome/locale_settings_he.pak $
+    gen/chrome/platform_locale_settings_he.pak $
+    gen/components/strings/component_strings_he.pak $
+    gen/webkit/webkit_strings_he.pak gen/ui/ui_strings/ui_strings_he.pak $
+    gen/ash_strings/ash_strings_he.pak $
+    gen/device/bluetooth/strings/device_bluetooth_strings_he.pak $
+    gen/ui/app_locale_settings/app_locale_settings_he.pak $
+    gen/chrome/chromium_strings_he.pak $
+    gen/chrome/generated_resources_hi.pak gen/chrome/locale_settings_hi.pak $
+    gen/chrome/platform_locale_settings_hi.pak $
+    gen/components/strings/component_strings_hi.pak $
+    gen/webkit/webkit_strings_hi.pak gen/ui/ui_strings/ui_strings_hi.pak $
+    gen/ash_strings/ash_strings_hi.pak $
+    gen/device/bluetooth/strings/device_bluetooth_strings_hi.pak $
+    gen/ui/app_locale_settings/app_locale_settings_hi.pak $
+    gen/chrome/chromium_strings_hi.pak $
+    gen/chrome/generated_resources_hr.pak gen/chrome/locale_settings_hr.pak $
+    gen/chrome/platform_locale_settings_hr.pak $
+    gen/components/strings/component_strings_hr.pak $
+    gen/webkit/webkit_strings_hr.pak gen/ui/ui_strings/ui_strings_hr.pak $
+    gen/ash_strings/ash_strings_hr.pak $
+    gen/device/bluetooth/strings/device_bluetooth_strings_hr.pak $
+    gen/ui/app_locale_settings/app_locale_settings_hr.pak $
+    gen/chrome/chromium_strings_hr.pak $
+    gen/chrome/generated_resources_hu.pak gen/chrome/locale_settings_hu.pak $
+    gen/chrome/platform_locale_settings_hu.pak $
+    gen/components/strings/component_strings_hu.pak $
+    gen/webkit/webkit_strings_hu.pak gen/ui/ui_strings/ui_strings_hu.pak $
+    gen/ash_strings/ash_strings_hu.pak $
+    gen/device/bluetooth/strings/device_bluetooth_strings_hu.pak $
+    gen/ui/app_locale_settings/app_locale_settings_hu.pak $
+    gen/chrome/chromium_strings_hu.pak $
+    gen/chrome/generated_resources_id.pak gen/chrome/locale_settings_id.pak $
+    gen/chrome/platform_locale_settings_id.pak $
+    gen/components/strings/component_strings_id.pak $
+    gen/webkit/webkit_strings_id.pak gen/ui/ui_strings/ui_strings_id.pak $
+    gen/ash_strings/ash_strings_id.pak $
+    gen/device/bluetooth/strings/device_bluetooth_strings_id.pak $
+    gen/ui/app_locale_settings/app_locale_settings_id.pak $
+    gen/chrome/chromium_strings_id.pak $
+    gen/chrome/generated_resources_it.pak gen/chrome/locale_settings_it.pak $
+    gen/chrome/platform_locale_settings_it.pak $
+    gen/components/strings/component_strings_it.pak $
+    gen/webkit/webkit_strings_it.pak gen/ui/ui_strings/ui_strings_it.pak $
+    gen/ash_strings/ash_strings_it.pak $
+    gen/device/bluetooth/strings/device_bluetooth_strings_it.pak $
+    gen/ui/app_locale_settings/app_locale_settings_it.pak $
+    gen/chrome/chromium_strings_it.pak $
+    gen/chrome/generated_resources_ja.pak gen/chrome/locale_settings_ja.pak $
+    gen/chrome/platform_locale_settings_ja.pak $
+    gen/components/strings/component_strings_ja.pak $
+    gen/webkit/webkit_strings_ja.pak gen/ui/ui_strings/ui_strings_ja.pak $
+    gen/ash_strings/ash_strings_ja.pak $
+    gen/device/bluetooth/strings/device_bluetooth_strings_ja.pak $
+    gen/ui/app_locale_settings/app_locale_settings_ja.pak $
+    gen/chrome/chromium_strings_ja.pak $
+    gen/chrome/generated_resources_kn.pak gen/chrome/locale_settings_kn.pak $
+    gen/chrome/platform_locale_settings_kn.pak $
+    gen/components/strings/component_strings_kn.pak $
+    gen/webkit/webkit_strings_kn.pak gen/ui/ui_strings/ui_strings_kn.pak $
+    gen/ash_strings/ash_strings_kn.pak $
+    gen/device/bluetooth/strings/device_bluetooth_strings_kn.pak $
+    gen/ui/app_locale_settings/app_locale_settings_kn.pak $
+    gen/chrome/chromium_strings_kn.pak $
+    gen/chrome/generated_resources_ko.pak gen/chrome/locale_settings_ko.pak $
+    gen/chrome/platform_locale_settings_ko.pak $
+    gen/components/strings/component_strings_ko.pak $
+    gen/webkit/webkit_strings_ko.pak gen/ui/ui_strings/ui_strings_ko.pak $
+    gen/ash_strings/ash_strings_ko.pak $
+    gen/device/bluetooth/strings/device_bluetooth_strings_ko.pak $
+    gen/ui/app_locale_settings/app_locale_settings_ko.pak $
+    gen/chrome/chromium_strings_ko.pak $
+    gen/chrome/generated_resources_lt.pak gen/chrome/locale_settings_lt.pak $
+    gen/chrome/platform_locale_settings_lt.pak $
+    gen/components/strings/component_strings_lt.pak $
+    gen/webkit/webkit_strings_lt.pak gen/ui/ui_strings/ui_strings_lt.pak $
+    gen/ash_strings/ash_strings_lt.pak $
+    gen/device/bluetooth/strings/device_bluetooth_strings_lt.pak $
+    gen/ui/app_locale_settings/app_locale_settings_lt.pak $
+    gen/chrome/chromium_strings_lt.pak $
+    gen/chrome/generated_resources_lv.pak gen/chrome/locale_settings_lv.pak $
+    gen/chrome/platform_locale_settings_lv.pak $
+    gen/components/strings/component_strings_lv.pak $
+    gen/webkit/webkit_strings_lv.pak gen/ui/ui_strings/ui_strings_lv.pak $
+    gen/ash_strings/ash_strings_lv.pak $
+    gen/device/bluetooth/strings/device_bluetooth_strings_lv.pak $
+    gen/ui/app_locale_settings/app_locale_settings_lv.pak $
+    gen/chrome/chromium_strings_lv.pak $
+    gen/chrome/generated_resources_ml.pak gen/chrome/locale_settings_ml.pak $
+    gen/chrome/platform_locale_settings_ml.pak $
+    gen/components/strings/component_strings_ml.pak $
+    gen/webkit/webkit_strings_ml.pak gen/ui/ui_strings/ui_strings_ml.pak $
+    gen/ash_strings/ash_strings_ml.pak $
+    gen/device/bluetooth/strings/device_bluetooth_strings_ml.pak $
+    gen/ui/app_locale_settings/app_locale_settings_ml.pak $
+    gen/chrome/chromium_strings_ml.pak $
+    gen/chrome/generated_resources_mr.pak gen/chrome/locale_settings_mr.pak $
+    gen/chrome/platform_locale_settings_mr.pak $
+    gen/components/strings/component_strings_mr.pak $
+    gen/webkit/webkit_strings_mr.pak gen/ui/ui_strings/ui_strings_mr.pak $
+    gen/ash_strings/ash_strings_mr.pak $
+    gen/device/bluetooth/strings/device_bluetooth_strings_mr.pak $
+    gen/ui/app_locale_settings/app_locale_settings_mr.pak $
+    gen/chrome/chromium_strings_mr.pak $
+    gen/chrome/generated_resources_ms.pak gen/chrome/locale_settings_ms.pak $
+    gen/chrome/platform_locale_settings_ms.pak $
+    gen/components/strings/component_strings_ms.pak $
+    gen/webkit/webkit_strings_ms.pak gen/ui/ui_strings/ui_strings_ms.pak $
+    gen/ash_strings/ash_strings_ms.pak $
+    gen/device/bluetooth/strings/device_bluetooth_strings_ms.pak $
+    gen/ui/app_locale_settings/app_locale_settings_ms.pak $
+    gen/chrome/chromium_strings_ms.pak $
+    gen/chrome/generated_resources_nb.pak gen/chrome/locale_settings_nb.pak $
+    gen/chrome/platform_locale_settings_nb.pak $
+    gen/components/strings/component_strings_nb.pak $
+    gen/webkit/webkit_strings_nb.pak gen/ui/ui_strings/ui_strings_nb.pak $
+    gen/ash_strings/ash_strings_nb.pak $
+    gen/device/bluetooth/strings/device_bluetooth_strings_nb.pak $
+    gen/ui/app_locale_settings/app_locale_settings_nb.pak $
+    gen/chrome/chromium_strings_nb.pak $
+    gen/chrome/generated_resources_nl.pak gen/chrome/locale_settings_nl.pak $
+    gen/chrome/platform_locale_settings_nl.pak $
+    gen/components/strings/component_strings_nl.pak $
+    gen/webkit/webkit_strings_nl.pak gen/ui/ui_strings/ui_strings_nl.pak $
+    gen/ash_strings/ash_strings_nl.pak $
+    gen/device/bluetooth/strings/device_bluetooth_strings_nl.pak $
+    gen/ui/app_locale_settings/app_locale_settings_nl.pak $
+    gen/chrome/chromium_strings_nl.pak $
+    gen/chrome/generated_resources_pl.pak gen/chrome/locale_settings_pl.pak $
+    gen/chrome/platform_locale_settings_pl.pak $
+    gen/components/strings/component_strings_pl.pak $
+    gen/webkit/webkit_strings_pl.pak gen/ui/ui_strings/ui_strings_pl.pak $
+    gen/ash_strings/ash_strings_pl.pak $
+    gen/device/bluetooth/strings/device_bluetooth_strings_pl.pak $
+    gen/ui/app_locale_settings/app_locale_settings_pl.pak $
+    gen/chrome/chromium_strings_pl.pak $
+    gen/chrome/generated_resources_pt-BR.pak $
+    gen/chrome/locale_settings_pt-BR.pak $
+    gen/chrome/platform_locale_settings_pt-BR.pak $
+    gen/components/strings/component_strings_pt-BR.pak $
+    gen/webkit/webkit_strings_pt-BR.pak $
+    gen/ui/ui_strings/ui_strings_pt-BR.pak $
+    gen/ash_strings/ash_strings_pt-BR.pak $
+    gen/device/bluetooth/strings/device_bluetooth_strings_pt-BR.pak $
+    gen/ui/app_locale_settings/app_locale_settings_pt-BR.pak $
+    gen/chrome/chromium_strings_pt-BR.pak $
+    gen/chrome/generated_resources_pt-PT.pak $
+    gen/chrome/locale_settings_pt-PT.pak $
+    gen/chrome/platform_locale_settings_pt-PT.pak $
+    gen/components/strings/component_strings_pt-PT.pak $
+    gen/webkit/webkit_strings_pt-PT.pak $
+    gen/ui/ui_strings/ui_strings_pt-PT.pak $
+    gen/ash_strings/ash_strings_pt-PT.pak $
+    gen/device/bluetooth/strings/device_bluetooth_strings_pt-PT.pak $
+    gen/ui/app_locale_settings/app_locale_settings_pt-PT.pak $
+    gen/chrome/chromium_strings_pt-PT.pak $
+    gen/chrome/generated_resources_ro.pak gen/chrome/locale_settings_ro.pak $
+    gen/chrome/platform_locale_settings_ro.pak $
+    gen/components/strings/component_strings_ro.pak $
+    gen/webkit/webkit_strings_ro.pak gen/ui/ui_strings/ui_strings_ro.pak $
+    gen/ash_strings/ash_strings_ro.pak $
+    gen/device/bluetooth/strings/device_bluetooth_strings_ro.pak $
+    gen/ui/app_locale_settings/app_locale_settings_ro.pak $
+    gen/chrome/chromium_strings_ro.pak $
+    gen/chrome/generated_resources_ru.pak gen/chrome/locale_settings_ru.pak $
+    gen/chrome/platform_locale_settings_ru.pak $
+    gen/components/strings/component_strings_ru.pak $
+    gen/webkit/webkit_strings_ru.pak gen/ui/ui_strings/ui_strings_ru.pak $
+    gen/ash_strings/ash_strings_ru.pak $
+    gen/device/bluetooth/strings/device_bluetooth_strings_ru.pak $
+    gen/ui/app_locale_settings/app_locale_settings_ru.pak $
+    gen/chrome/chromium_strings_ru.pak $
+    gen/chrome/generated_resources_sk.pak gen/chrome/locale_settings_sk.pak $
+    gen/chrome/platform_locale_settings_sk.pak $
+    gen/components/strings/component_strings_sk.pak $
+    gen/webkit/webkit_strings_sk.pak gen/ui/ui_strings/ui_strings_sk.pak $
+    gen/ash_strings/ash_strings_sk.pak $
+    gen/device/bluetooth/strings/device_bluetooth_strings_sk.pak $
+    gen/ui/app_locale_settings/app_locale_settings_sk.pak $
+    gen/chrome/chromium_strings_sk.pak $
+    gen/chrome/generated_resources_sl.pak gen/chrome/locale_settings_sl.pak $
+    gen/chrome/platform_locale_settings_sl.pak $
+    gen/components/strings/component_strings_sl.pak $
+    gen/webkit/webkit_strings_sl.pak gen/ui/ui_strings/ui_strings_sl.pak $
+    gen/ash_strings/ash_strings_sl.pak $
+    gen/device/bluetooth/strings/device_bluetooth_strings_sl.pak $
+    gen/ui/app_locale_settings/app_locale_settings_sl.pak $
+    gen/chrome/chromium_strings_sl.pak $
+    gen/chrome/generated_resources_sr.pak gen/chrome/locale_settings_sr.pak $
+    gen/chrome/platform_locale_settings_sr.pak $
+    gen/components/strings/component_strings_sr.pak $
+    gen/webkit/webkit_strings_sr.pak gen/ui/ui_strings/ui_strings_sr.pak $
+    gen/ash_strings/ash_strings_sr.pak $
+    gen/device/bluetooth/strings/device_bluetooth_strings_sr.pak $
+    gen/ui/app_locale_settings/app_locale_settings_sr.pak $
+    gen/chrome/chromium_strings_sr.pak $
+    gen/chrome/generated_resources_sv.pak gen/chrome/locale_settings_sv.pak $
+    gen/chrome/platform_locale_settings_sv.pak $
+    gen/components/strings/component_strings_sv.pak $
+    gen/webkit/webkit_strings_sv.pak gen/ui/ui_strings/ui_strings_sv.pak $
+    gen/ash_strings/ash_strings_sv.pak $
+    gen/device/bluetooth/strings/device_bluetooth_strings_sv.pak $
+    gen/ui/app_locale_settings/app_locale_settings_sv.pak $
+    gen/chrome/chromium_strings_sv.pak $
+    gen/chrome/generated_resources_sw.pak gen/chrome/locale_settings_sw.pak $
+    gen/chrome/platform_locale_settings_sw.pak $
+    gen/components/strings/component_strings_sw.pak $
+    gen/webkit/webkit_strings_sw.pak gen/ui/ui_strings/ui_strings_sw.pak $
+    gen/ash_strings/ash_strings_sw.pak $
+    gen/device/bluetooth/strings/device_bluetooth_strings_sw.pak $
+    gen/ui/app_locale_settings/app_locale_settings_sw.pak $
+    gen/chrome/chromium_strings_sw.pak $
+    gen/chrome/generated_resources_ta.pak gen/chrome/locale_settings_ta.pak $
+    gen/chrome/platform_locale_settings_ta.pak $
+    gen/components/strings/component_strings_ta.pak $
+    gen/webkit/webkit_strings_ta.pak gen/ui/ui_strings/ui_strings_ta.pak $
+    gen/ash_strings/ash_strings_ta.pak $
+    gen/device/bluetooth/strings/device_bluetooth_strings_ta.pak $
+    gen/ui/app_locale_settings/app_locale_settings_ta.pak $
+    gen/chrome/chromium_strings_ta.pak $
+    gen/chrome/generated_resources_te.pak gen/chrome/locale_settings_te.pak $
+    gen/chrome/platform_locale_settings_te.pak $
+    gen/components/strings/component_strings_te.pak $
+    gen/webkit/webkit_strings_te.pak gen/ui/ui_strings/ui_strings_te.pak $
+    gen/ash_strings/ash_strings_te.pak $
+    gen/device/bluetooth/strings/device_bluetooth_strings_te.pak $
+    gen/ui/app_locale_settings/app_locale_settings_te.pak $
+    gen/chrome/chromium_strings_te.pak $
+    gen/chrome/generated_resources_th.pak gen/chrome/locale_settings_th.pak $
+    gen/chrome/platform_locale_settings_th.pak $
+    gen/components/strings/component_strings_th.pak $
+    gen/webkit/webkit_strings_th.pak gen/ui/ui_strings/ui_strings_th.pak $
+    gen/ash_strings/ash_strings_th.pak $
+    gen/device/bluetooth/strings/device_bluetooth_strings_th.pak $
+    gen/ui/app_locale_settings/app_locale_settings_th.pak $
+    gen/chrome/chromium_strings_th.pak $
+    gen/chrome/generated_resources_tr.pak gen/chrome/locale_settings_tr.pak $
+    gen/chrome/platform_locale_settings_tr.pak $
+    gen/components/strings/component_strings_tr.pak $
+    gen/webkit/webkit_strings_tr.pak gen/ui/ui_strings/ui_strings_tr.pak $
+    gen/ash_strings/ash_strings_tr.pak $
+    gen/device/bluetooth/strings/device_bluetooth_strings_tr.pak $
+    gen/ui/app_locale_settings/app_locale_settings_tr.pak $
+    gen/chrome/chromium_strings_tr.pak $
+    gen/chrome/generated_resources_uk.pak gen/chrome/locale_settings_uk.pak $
+    gen/chrome/platform_locale_settings_uk.pak $
+    gen/components/strings/component_strings_uk.pak $
+    gen/webkit/webkit_strings_uk.pak gen/ui/ui_strings/ui_strings_uk.pak $
+    gen/ash_strings/ash_strings_uk.pak $
+    gen/device/bluetooth/strings/device_bluetooth_strings_uk.pak $
+    gen/ui/app_locale_settings/app_locale_settings_uk.pak $
+    gen/chrome/chromium_strings_uk.pak $
+    gen/chrome/generated_resources_vi.pak gen/chrome/locale_settings_vi.pak $
+    gen/chrome/platform_locale_settings_vi.pak $
+    gen/components/strings/component_strings_vi.pak $
+    gen/webkit/webkit_strings_vi.pak gen/ui/ui_strings/ui_strings_vi.pak $
+    gen/ash_strings/ash_strings_vi.pak $
+    gen/device/bluetooth/strings/device_bluetooth_strings_vi.pak $
+    gen/ui/app_locale_settings/app_locale_settings_vi.pak $
+    gen/chrome/chromium_strings_vi.pak $
+    gen/chrome/generated_resources_zh-CN.pak $
+    gen/chrome/locale_settings_zh-CN.pak $
+    gen/chrome/platform_locale_settings_zh-CN.pak $
+    gen/components/strings/component_strings_zh-CN.pak $
+    gen/webkit/webkit_strings_zh-CN.pak $
+    gen/ui/ui_strings/ui_strings_zh-CN.pak $
+    gen/ash_strings/ash_strings_zh-CN.pak $
+    gen/device/bluetooth/strings/device_bluetooth_strings_zh-CN.pak $
+    gen/ui/app_locale_settings/app_locale_settings_zh-CN.pak $
+    gen/chrome/chromium_strings_zh-CN.pak $
+    gen/chrome/generated_resources_zh-TW.pak $
+    gen/chrome/locale_settings_zh-TW.pak $
+    gen/chrome/platform_locale_settings_zh-TW.pak $
+    gen/components/strings/component_strings_zh-TW.pak $
+    gen/webkit/webkit_strings_zh-TW.pak $
+    gen/ui/ui_strings/ui_strings_zh-TW.pak $
+    gen/ash_strings/ash_strings_zh-TW.pak $
+    gen/device/bluetooth/strings/device_bluetooth_strings_zh-TW.pak $
+    gen/ui/app_locale_settings/app_locale_settings_zh-TW.pak $
+    gen/chrome/chromium_strings_zh-TW.pak || $
+    obj/chrome/packed_resources.actions_depends.stamp
+
+rule $
+    packed_resources_target_repack_pseudo_locales_323ebb212149d2b5c024b9aca810df96
+  command = cd ../../chrome; python tools/build/repack_locales.py -b $
+      chromium -p freebsd -g ../out/Release/gen/chrome -s $
+      ../out/Release/gen -x ../out/Release/gen/. fake-bidi
+  description = ACTION packed_resources: $
+      repack_pseudo_locales_323ebb212149d2b5c024b9aca810df96
+  restat = 1
+
+build gen/fake-bidi.pak: $
+    packed_resources_target_repack_pseudo_locales_323ebb212149d2b5c024b9aca810df96 $
+    ../../chrome/tools/build/repack_locales.py $
+    gen/chrome/generated_resources_fake-bidi.pak $
+    gen/chrome/locale_settings_fake-bidi.pak $
+    gen/chrome/platform_locale_settings_fake-bidi.pak $
+    gen/components/strings/component_strings_fake-bidi.pak $
+    gen/webkit/webkit_strings_fake-bidi.pak $
+    gen/ui/ui_strings/ui_strings_fake-bidi.pak $
+    gen/ash_strings/ash_strings_fake-bidi.pak $
+    gen/device/bluetooth/strings/device_bluetooth_strings_fake-bidi.pak $
+    gen/ui/app_locale_settings/app_locale_settings_fake-bidi.pak $
+    gen/chrome/chromium_strings_fake-bidi.pak || $
+    obj/chrome/packed_resources.actions_depends.stamp
+
+rule $
+    packed_resources_target_repack_chrome_resources_100_percent_323ebb212149d2b5c024b9aca810df96
+  command = cd ../../chrome; python ../tools/grit/grit/format/repack.py $
+      ../out/Release/gen/repack/chrome_100_percent.pak $
+      ../out/Release/gen/chrome/renderer_resources_100_percent.pak $
+      ../out/Release/gen/chrome/theme_resources_100_percent.pak $
+      ../out/Release/gen/ui/ui_resources/ui_resources_100_percent.pak $
+      ../out/Release/gen/webkit/webkit_resources_100_percent.pak
+  description = ACTION packed_resources: $
+      repack_chrome_resources_100_percent_323ebb212149d2b5c024b9aca810df96
+  restat = 1
+
+build gen/repack/chrome_100_percent.pak: $
+    packed_resources_target_repack_chrome_resources_100_percent_323ebb212149d2b5c024b9aca810df96 $
+    ../../tools/grit/grit/format/repack.py $
+    gen/chrome/renderer_resources_100_percent.pak $
+    gen/chrome/theme_resources_100_percent.pak $
+    gen/ui/ui_resources/ui_resources_100_percent.pak $
+    gen/webkit/webkit_resources_100_percent.pak || $
+    obj/chrome/packed_resources.actions_depends.stamp
+
+rule $
+    packed_resources_target_repack_chrome_resources_200_percent_323ebb212149d2b5c024b9aca810df96
+  command = cd ../../chrome; python ../tools/grit/grit/format/repack.py $
+      ../out/Release/gen/repack/chrome_200_percent.pak $
+      ../out/Release/gen/chrome/renderer_resources_200_percent.pak $
+      ../out/Release/gen/chrome/theme_resources_200_percent.pak $
+      ../out/Release/gen/ui/ui_resources/ui_resources_200_percent.pak $
+      ../out/Release/gen/webkit/webkit_resources_200_percent.pak
+  description = ACTION packed_resources: $
+      repack_chrome_resources_200_percent_323ebb212149d2b5c024b9aca810df96
+  restat = 1
+
+build gen/repack/chrome_200_percent.pak: $
+    packed_resources_target_repack_chrome_resources_200_percent_323ebb212149d2b5c024b9aca810df96 $
+    ../../tools/grit/grit/format/repack.py $
+    gen/chrome/renderer_resources_200_percent.pak $
+    gen/chrome/theme_resources_200_percent.pak $
+    gen/ui/ui_resources/ui_resources_200_percent.pak $
+    gen/webkit/webkit_resources_200_percent.pak || $
+    obj/chrome/packed_resources.actions_depends.stamp
+
+rule $
+    packed_resources_target_repack_chrome_touch_resources_100_percent_323ebb212149d2b5c024b9aca810df96
+  command = cd ../../chrome; python ../tools/grit/grit/format/repack.py $
+      ../out/Release/gen/repack/chrome_touch_100_percent.pak $
+      ../out/Release/gen/chrome/renderer_resources_100_percent.pak $
+      ../out/Release/gen/chrome/theme_resources_touch_100_percent.pak $
+      ../out/Release/gen/ui/ui_resources/ui_resources_touch_100_percent.pak $
+      ../out/Release/gen/webkit/webkit_resources_100_percent.pak
+  description = ACTION packed_resources: $
+      repack_chrome_touch_resources_100_percent_323ebb212149d2b5c024b9aca810df96
+  restat = 1
+
+build gen/repack/chrome_touch_100_percent.pak: $
+    packed_resources_target_repack_chrome_touch_resources_100_percent_323ebb212149d2b5c024b9aca810df96 $
+    ../../tools/grit/grit/format/repack.py $
+    gen/chrome/renderer_resources_100_percent.pak $
+    gen/chrome/theme_resources_touch_100_percent.pak $
+    gen/ui/ui_resources/ui_resources_touch_100_percent.pak $
+    gen/webkit/webkit_resources_100_percent.pak || $
+    obj/chrome/packed_resources.actions_depends.stamp
+
+rule $
+    packed_resources_target_repack_chrome_touch_resources_140_percent_323ebb212149d2b5c024b9aca810df96
+  command = cd ../../chrome; python ../tools/grit/grit/format/repack.py $
+      ../out/Release/gen/repack/chrome_touch_140_percent.pak $
+      ../out/Release/gen/chrome/theme_resources_touch_140_percent.pak $
+      ../out/Release/gen/ui/ui_resources/ui_resources_touch_140_percent.pak
+  description = ACTION packed_resources: $
+      repack_chrome_touch_resources_140_percent_323ebb212149d2b5c024b9aca810df96
+  restat = 1
+
+build gen/repack/chrome_touch_140_percent.pak: $
+    packed_resources_target_repack_chrome_touch_resources_140_percent_323ebb212149d2b5c024b9aca810df96 $
+    ../../tools/grit/grit/format/repack.py $
+    gen/chrome/theme_resources_touch_140_percent.pak $
+    gen/ui/ui_resources/ui_resources_touch_140_percent.pak || $
+    obj/chrome/packed_resources.actions_depends.stamp
+
+rule $
+    packed_resources_target_repack_chrome_touch_resources_180_percent_323ebb212149d2b5c024b9aca810df96
+  command = cd ../../chrome; python ../tools/grit/grit/format/repack.py $
+      ../out/Release/gen/repack/chrome_touch_180_percent.pak $
+      ../out/Release/gen/chrome/theme_resources_touch_180_percent.pak $
+      ../out/Release/gen/ui/ui_resources/ui_resources_touch_180_percent.pak
+  description = ACTION packed_resources: $
+      repack_chrome_touch_resources_180_percent_323ebb212149d2b5c024b9aca810df96
+  restat = 1
+
+build gen/repack/chrome_touch_180_percent.pak: $
+    packed_resources_target_repack_chrome_touch_resources_180_percent_323ebb212149d2b5c024b9aca810df96 $
+    ../../tools/grit/grit/format/repack.py $
+    gen/chrome/theme_resources_touch_180_percent.pak $
+    gen/ui/ui_resources/ui_resources_touch_180_percent.pak || $
+    obj/chrome/packed_resources.actions_depends.stamp
+
+build chrome.pak: copy gen/repack/chrome.pak || $
+    obj/chrome/packed_resources.actions_depends.stamp
+build chrome_100_percent.pak: copy gen/repack/chrome_100_percent.pak || $
+    obj/chrome/packed_resources.actions_depends.stamp
+build locales/am.pak: copy gen/repack/am.pak || $
+    obj/chrome/packed_resources.actions_depends.stamp
+build locales/ar.pak: copy gen/repack/ar.pak || $
+    obj/chrome/packed_resources.actions_depends.stamp
+build locales/bg.pak: copy gen/repack/bg.pak || $
+    obj/chrome/packed_resources.actions_depends.stamp
+build locales/bn.pak: copy gen/repack/bn.pak || $
+    obj/chrome/packed_resources.actions_depends.stamp
+build locales/ca.pak: copy gen/repack/ca.pak || $
+    obj/chrome/packed_resources.actions_depends.stamp
+build locales/cs.pak: copy gen/repack/cs.pak || $
+    obj/chrome/packed_resources.actions_depends.stamp
+build locales/da.pak: copy gen/repack/da.pak || $
+    obj/chrome/packed_resources.actions_depends.stamp
+build locales/de.pak: copy gen/repack/de.pak || $
+    obj/chrome/packed_resources.actions_depends.stamp
+build locales/el.pak: copy gen/repack/el.pak || $
+    obj/chrome/packed_resources.actions_depends.stamp
+build locales/en-GB.pak: copy gen/repack/en-GB.pak || $
+    obj/chrome/packed_resources.actions_depends.stamp
+build locales/en-US.pak: copy gen/repack/en-US.pak || $
+    obj/chrome/packed_resources.actions_depends.stamp
+build locales/es-419.pak: copy gen/repack/es-419.pak || $
+    obj/chrome/packed_resources.actions_depends.stamp
+build locales/es.pak: copy gen/repack/es.pak || $
+    obj/chrome/packed_resources.actions_depends.stamp
+build locales/et.pak: copy gen/repack/et.pak || $
+    obj/chrome/packed_resources.actions_depends.stamp
+build locales/fa.pak: copy gen/repack/fa.pak || $
+    obj/chrome/packed_resources.actions_depends.stamp
+build locales/fi.pak: copy gen/repack/fi.pak || $
+    obj/chrome/packed_resources.actions_depends.stamp
+build locales/fil.pak: copy gen/repack/fil.pak || $
+    obj/chrome/packed_resources.actions_depends.stamp
+build locales/fr.pak: copy gen/repack/fr.pak || $
+    obj/chrome/packed_resources.actions_depends.stamp
+build locales/gu.pak: copy gen/repack/gu.pak || $
+    obj/chrome/packed_resources.actions_depends.stamp
+build locales/he.pak: copy gen/repack/he.pak || $
+    obj/chrome/packed_resources.actions_depends.stamp
+build locales/hi.pak: copy gen/repack/hi.pak || $
+    obj/chrome/packed_resources.actions_depends.stamp
+build locales/hr.pak: copy gen/repack/hr.pak || $
+    obj/chrome/packed_resources.actions_depends.stamp
+build locales/hu.pak: copy gen/repack/hu.pak || $
+    obj/chrome/packed_resources.actions_depends.stamp
+build locales/id.pak: copy gen/repack/id.pak || $
+    obj/chrome/packed_resources.actions_depends.stamp
+build locales/it.pak: copy gen/repack/it.pak || $
+    obj/chrome/packed_resources.actions_depends.stamp
+build locales/ja.pak: copy gen/repack/ja.pak || $
+    obj/chrome/packed_resources.actions_depends.stamp
+build locales/kn.pak: copy gen/repack/kn.pak || $
+    obj/chrome/packed_resources.actions_depends.stamp
+build locales/ko.pak: copy gen/repack/ko.pak || $
+    obj/chrome/packed_resources.actions_depends.stamp
+build locales/lt.pak: copy gen/repack/lt.pak || $
+    obj/chrome/packed_resources.actions_depends.stamp
+build locales/lv.pak: copy gen/repack/lv.pak || $
+    obj/chrome/packed_resources.actions_depends.stamp
+build locales/ml.pak: copy gen/repack/ml.pak || $
+    obj/chrome/packed_resources.actions_depends.stamp
+build locales/mr.pak: copy gen/repack/mr.pak || $
+    obj/chrome/packed_resources.actions_depends.stamp
+build locales/ms.pak: copy gen/repack/ms.pak || $
+    obj/chrome/packed_resources.actions_depends.stamp
+build locales/nb.pak: copy gen/repack/nb.pak || $
+    obj/chrome/packed_resources.actions_depends.stamp
+build locales/nl.pak: copy gen/repack/nl.pak || $
+    obj/chrome/packed_resources.actions_depends.stamp
+build locales/pl.pak: copy gen/repack/pl.pak || $
+    obj/chrome/packed_resources.actions_depends.stamp
+build locales/pt-BR.pak: copy gen/repack/pt-BR.pak || $
+    obj/chrome/packed_resources.actions_depends.stamp
+build locales/pt-PT.pak: copy gen/repack/pt-PT.pak || $
+    obj/chrome/packed_resources.actions_depends.stamp
+build locales/ro.pak: copy gen/repack/ro.pak || $
+    obj/chrome/packed_resources.actions_depends.stamp
+build locales/ru.pak: copy gen/repack/ru.pak || $
+    obj/chrome/packed_resources.actions_depends.stamp
+build locales/sk.pak: copy gen/repack/sk.pak || $
+    obj/chrome/packed_resources.actions_depends.stamp
+build locales/sl.pak: copy gen/repack/sl.pak || $
+    obj/chrome/packed_resources.actions_depends.stamp
+build locales/sr.pak: copy gen/repack/sr.pak || $
+    obj/chrome/packed_resources.actions_depends.stamp
+build locales/sv.pak: copy gen/repack/sv.pak || $
+    obj/chrome/packed_resources.actions_depends.stamp
+build locales/sw.pak: copy gen/repack/sw.pak || $
+    obj/chrome/packed_resources.actions_depends.stamp
+build locales/ta.pak: copy gen/repack/ta.pak || $
+    obj/chrome/packed_resources.actions_depends.stamp
+build locales/te.pak: copy gen/repack/te.pak || $
+    obj/chrome/packed_resources.actions_depends.stamp
+build locales/th.pak: copy gen/repack/th.pak || $
+    obj/chrome/packed_resources.actions_depends.stamp
+build locales/tr.pak: copy gen/repack/tr.pak || $
+    obj/chrome/packed_resources.actions_depends.stamp
+build locales/uk.pak: copy gen/repack/uk.pak || $
+    obj/chrome/packed_resources.actions_depends.stamp
+build locales/vi.pak: copy gen/repack/vi.pak || $
+    obj/chrome/packed_resources.actions_depends.stamp
+build locales/zh-CN.pak: copy gen/repack/zh-CN.pak || $
+    obj/chrome/packed_resources.actions_depends.stamp
+build locales/zh-TW.pak: copy gen/repack/zh-TW.pak || $
+    obj/chrome/packed_resources.actions_depends.stamp
+build pseudo_locales/fake-bidi.pak: copy gen/fake-bidi.pak || $
+    obj/chrome/packed_resources.actions_depends.stamp
+build obj/chrome/packed_resources.actions_rules_copies.stamp: stamp $
+    gen/repack/chrome.pak gen/repack/am.pak gen/repack/ar.pak $
+    gen/repack/bg.pak gen/repack/bn.pak gen/repack/ca.pak gen/repack/cs.pak $
+    gen/repack/da.pak gen/repack/de.pak gen/repack/el.pak $
+    gen/repack/en-GB.pak gen/repack/en-US.pak gen/repack/es-419.pak $
+    gen/repack/es.pak gen/repack/et.pak gen/repack/fa.pak gen/repack/fi.pak $
+    gen/repack/fil.pak gen/repack/fr.pak gen/repack/gu.pak $
+    gen/repack/he.pak gen/repack/hi.pak gen/repack/hr.pak gen/repack/hu.pak $
+    gen/repack/id.pak gen/repack/it.pak gen/repack/ja.pak gen/repack/kn.pak $
+    gen/repack/ko.pak gen/repack/lt.pak gen/repack/lv.pak gen/repack/ml.pak $
+    gen/repack/mr.pak gen/repack/ms.pak gen/repack/nb.pak gen/repack/nl.pak $
+    gen/repack/pl.pak gen/repack/pt-BR.pak gen/repack/pt-PT.pak $
+    gen/repack/ro.pak gen/repack/ru.pak gen/repack/sk.pak gen/repack/sl.pak $
+    gen/repack/sr.pak gen/repack/sv.pak gen/repack/sw.pak gen/repack/ta.pak $
+    gen/repack/te.pak gen/repack/th.pak gen/repack/tr.pak gen/repack/uk.pak $
+    gen/repack/vi.pak gen/repack/zh-CN.pak gen/repack/zh-TW.pak $
+    gen/fake-bidi.pak gen/repack/chrome_100_percent.pak $
+    gen/repack/chrome_200_percent.pak $
+    gen/repack/chrome_touch_100_percent.pak $
+    gen/repack/chrome_touch_140_percent.pak $
+    gen/repack/chrome_touch_180_percent.pak chrome.pak $
+    chrome_100_percent.pak locales/am.pak locales/ar.pak locales/bg.pak $
+    locales/bn.pak locales/ca.pak locales/cs.pak locales/da.pak $
+    locales/de.pak locales/el.pak locales/en-GB.pak locales/en-US.pak $
+    locales/es-419.pak locales/es.pak locales/et.pak locales/fa.pak $
+    locales/fi.pak locales/fil.pak locales/fr.pak locales/gu.pak $
+    locales/he.pak locales/hi.pak locales/hr.pak locales/hu.pak $
+    locales/id.pak locales/it.pak locales/ja.pak locales/kn.pak $
+    locales/ko.pak locales/lt.pak locales/lv.pak locales/ml.pak $
+    locales/mr.pak locales/ms.pak locales/nb.pak locales/nl.pak $
+    locales/pl.pak locales/pt-BR.pak locales/pt-PT.pak locales/ro.pak $
+    locales/ru.pak locales/sk.pak locales/sl.pak locales/sr.pak $
+    locales/sv.pak locales/sw.pak locales/ta.pak locales/te.pak $
+    locales/th.pak locales/tr.pak locales/uk.pak locales/vi.pak $
+    locales/zh-CN.pak locales/zh-TW.pak pseudo_locales/fake-bidi.pak
+

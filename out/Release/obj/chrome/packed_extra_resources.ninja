@@ -1,0 +1,42 @@
+rule $
+    packed_extra_resources_target_repack_resources_aec54efff3e09b253f1070fde66fbd10
+  command = cd ../../chrome; python ../tools/grit/grit/format/repack.py $
+      ../out/Release/gen/repack/resources.pak $
+      ../out/Release/gen/chrome/memory_internals_resources.pak $
+      ../out/Release/gen/chrome/net_internals_resources.pak $
+      ../out/Release/gen/chrome/signin_internals_resources.pak $
+      ../out/Release/gen/chrome/sync_internals_resources.pak $
+      ../out/Release/gen/chrome/translate_internals_resources.pak $
+      ../out/Release/gen/ui/ui_resources/webui_resources.pak $
+      ../out/Release/gen/webkit/devtools_resources.pak $
+      ../out/Release/gen/chrome/component_extension_resources.pak $
+      ../out/Release/gen/chrome/options_resources.pak $
+      ../out/Release/gen/chrome/quota_internals_resources.pak $
+      ../out/Release/gen/chrome/sync_file_system_internals_resources.pak $
+      ../out/Release/gen/chrome/devtools_discovery_page_resources.pak
+  description = ACTION packed_extra_resources: $
+      repack_resources_aec54efff3e09b253f1070fde66fbd10
+  restat = 1
+
+build gen/repack/resources.pak: $
+    packed_extra_resources_target_repack_resources_aec54efff3e09b253f1070fde66fbd10 $
+    ../../tools/grit/grit/format/repack.py $
+    gen/chrome/memory_internals_resources.pak $
+    gen/chrome/net_internals_resources.pak $
+    gen/chrome/signin_internals_resources.pak $
+    gen/chrome/sync_internals_resources.pak $
+    gen/chrome/translate_internals_resources.pak $
+    gen/ui/ui_resources/webui_resources.pak $
+    gen/webkit/devtools_resources.pak $
+    gen/chrome/component_extension_resources.pak $
+    gen/chrome/options_resources.pak $
+    gen/chrome/quota_internals_resources.pak $
+    gen/chrome/sync_file_system_internals_resources.pak $
+    gen/chrome/devtools_discovery_page_resources.pak || $
+    obj/chrome/chrome_extra_resources.actions_rules_copies.stamp
+
+build resources.pak: copy gen/repack/resources.pak || $
+    obj/chrome/chrome_extra_resources.actions_rules_copies.stamp
+build obj/chrome/packed_extra_resources.actions_rules_copies.stamp: stamp $
+    gen/repack/resources.pak resources.pak
+

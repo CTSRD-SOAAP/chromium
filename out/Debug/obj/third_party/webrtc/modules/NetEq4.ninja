@@ -1,0 +1,178 @@
+defines = -DANGLE_DX11 '-DWEBRTC_SVNREVISION="Unavailable(issue687)"' $
+    -D_FILE_OFFSET_BITS=64 -DNO_TCMALLOC -DDISABLE_NACL -DCHROMIUM_BUILD $
+    -DUSE_DEFAULT_RENDER_THEME=1 -DUSE_LIBJPEG_TURBO=1 -DUSE_NSS=1 $
+    -DUSE_X11=1 -DENABLE_ONE_CLICK_SIGNIN -DGTK_DISABLE_SINGLE_INCLUDES=1 $
+    -DENABLE_REMOTING=1 -DENABLE_WEBRTC=1 -DENABLE_CONFIGURATION_POLICY $
+    -DENABLE_INPUT_SPEECH -DENABLE_NOTIFICATIONS -DENABLE_GPU=1 $
+    -DENABLE_EGLIMAGE=1 -DENABLE_TASK_MANAGER=1 -DENABLE_EXTENSIONS=1 $
+    -DENABLE_PLUGIN_INSTALLATION=1 -DENABLE_PLUGINS=1 $
+    -DENABLE_SESSION_SERVICE=1 -DENABLE_THEMES=1 -DENABLE_BACKGROUND=1 $
+    -DENABLE_AUTOMATION=1 -DENABLE_GOOGLE_NOW=1 $
+    -DENABLE_LANGUAGE_DETECTION=1 -DENABLE_PRINTING=1 $
+    -DENABLE_CAPTIVE_PORTAL_DETECTION=1 -DENABLE_MANAGED_USERS=1 $
+    -DWEBRTC_CHROMIUM_BUILD -DWEBRTC_BSD -DWEBRTC_LINUX -DWEBRTC_THREAD_RR $
+    -DWEBRTC_CODEC_OPUS -D__STDC_CONSTANT_MACROS -D__STDC_FORMAT_MACROS $
+    -DDYNAMIC_ANNOTATIONS_ENABLED=1 -DWTF_USE_DYNAMIC_ANNOTATIONS=1 -D_DEBUG
+includes = -I../../third_party/webrtc -I../../third_party -I../.. $
+    -I../../third_party/webrtc/modules/audio_coding/neteq4/interface $
+    -I../../third_party/webrtc/modules/audio_coding/codecs/g711/include $
+    -I../../third_party/webrtc/modules/audio_coding/codecs/g722/include $
+    -I../../third_party/webrtc/modules/audio_coding/codecs/pcm16b/include $
+    -I../../third_party/webrtc/modules/audio_coding/codecs/ilbc/interface $
+    -I../../third_party/webrtc/modules/audio_coding/codecs/isac/main/interface $
+    -I../../third_party/webrtc/modules/audio_coding/codecs/isac/fix/interface $
+    -I../../third_party/webrtc/modules/audio_coding/codecs/cng/include $
+    -I../../third_party/webrtc/common_audio/resampler/include $
+    -I../../third_party/webrtc/common_audio/signal_processing/include $
+    -I../../third_party/webrtc/common_audio/vad/include $
+    -I../../third_party/webrtc/system_wrappers/interface
+cflags = -fstack-protector --param=ssp-buffer-size=4  -pthread $
+    -fno-exceptions -fno-strict-aliasing -Wall -Wno-unused-parameter $
+    -Wno-missing-field-initializers -fvisibility=hidden -pipe -fPIC $
+    -Wheader-hygiene -Wno-char-subscripts -Wno-unused-function $
+    -Wno-covered-switch-default -Wstring-conversion -Wno-c++11-narrowing $
+    -Wno-reserved-user-defined-literal -fcolor-diagnostics -O0 -g
+cflags_c = -O2 -pipe -fno-strict-aliasing
+cflags_cc = -O2 -pipe -fno-strict-aliasing -fno-rtti $
+    -fno-threadsafe-statics -fvisibility-inlines-hidden -Wsign-compare $
+    -std=gnu++11
+
+build $
+    obj/third_party/webrtc/modules/audio_coding/neteq4/NetEq4.accelerate.o: $
+    cxx ../../third_party/webrtc/modules/audio_coding/neteq4/accelerate.cc
+build $
+    obj/third_party/webrtc/modules/audio_coding/neteq4/NetEq4.audio_decoder_impl.o: $
+    cxx $
+    ../../third_party/webrtc/modules/audio_coding/neteq4/audio_decoder_impl.cc
+build $
+    obj/third_party/webrtc/modules/audio_coding/neteq4/NetEq4.audio_decoder.o: $
+    cxx ../../third_party/webrtc/modules/audio_coding/neteq4/audio_decoder.cc
+build $
+    obj/third_party/webrtc/modules/audio_coding/neteq4/NetEq4.audio_multi_vector.o: $
+    cxx $
+    ../../third_party/webrtc/modules/audio_coding/neteq4/audio_multi_vector.cc
+build $
+    obj/third_party/webrtc/modules/audio_coding/neteq4/NetEq4.audio_vector.o: $
+    cxx ../../third_party/webrtc/modules/audio_coding/neteq4/audio_vector.cc
+build $
+    obj/third_party/webrtc/modules/audio_coding/neteq4/NetEq4.background_noise.o: $
+    cxx $
+    ../../third_party/webrtc/modules/audio_coding/neteq4/background_noise.cc
+build $
+    obj/third_party/webrtc/modules/audio_coding/neteq4/NetEq4.buffer_level_filter.o: $
+    cxx $
+    ../../third_party/webrtc/modules/audio_coding/neteq4/buffer_level_filter.cc
+build $
+    obj/third_party/webrtc/modules/audio_coding/neteq4/NetEq4.comfort_noise.o: $
+    cxx ../../third_party/webrtc/modules/audio_coding/neteq4/comfort_noise.cc
+build $
+    obj/third_party/webrtc/modules/audio_coding/neteq4/NetEq4.decision_logic.o: $
+    cxx ../../third_party/webrtc/modules/audio_coding/neteq4/decision_logic.cc
+build $
+    obj/third_party/webrtc/modules/audio_coding/neteq4/NetEq4.decision_logic_fax.o: $
+    cxx $
+    ../../third_party/webrtc/modules/audio_coding/neteq4/decision_logic_fax.cc
+build $
+    obj/third_party/webrtc/modules/audio_coding/neteq4/NetEq4.decision_logic_normal.o: $
+    cxx $
+    ../../third_party/webrtc/modules/audio_coding/neteq4/decision_logic_normal.cc
+build $
+    obj/third_party/webrtc/modules/audio_coding/neteq4/NetEq4.decoder_database.o: $
+    cxx $
+    ../../third_party/webrtc/modules/audio_coding/neteq4/decoder_database.cc
+build $
+    obj/third_party/webrtc/modules/audio_coding/neteq4/NetEq4.delay_manager.o: $
+    cxx ../../third_party/webrtc/modules/audio_coding/neteq4/delay_manager.cc
+build $
+    obj/third_party/webrtc/modules/audio_coding/neteq4/NetEq4.delay_peak_detector.o: $
+    cxx $
+    ../../third_party/webrtc/modules/audio_coding/neteq4/delay_peak_detector.cc
+build $
+    obj/third_party/webrtc/modules/audio_coding/neteq4/NetEq4.dsp_helper.o: $
+    cxx ../../third_party/webrtc/modules/audio_coding/neteq4/dsp_helper.cc
+build $
+    obj/third_party/webrtc/modules/audio_coding/neteq4/NetEq4.dtmf_buffer.o: $
+    cxx ../../third_party/webrtc/modules/audio_coding/neteq4/dtmf_buffer.cc
+build $
+    obj/third_party/webrtc/modules/audio_coding/neteq4/NetEq4.dtmf_tone_generator.o: $
+    cxx $
+    ../../third_party/webrtc/modules/audio_coding/neteq4/dtmf_tone_generator.cc
+build obj/third_party/webrtc/modules/audio_coding/neteq4/NetEq4.expand.o: $
+    cxx ../../third_party/webrtc/modules/audio_coding/neteq4/expand.cc
+build obj/third_party/webrtc/modules/audio_coding/neteq4/NetEq4.merge.o: $
+    cxx ../../third_party/webrtc/modules/audio_coding/neteq4/merge.cc
+build $
+    obj/third_party/webrtc/modules/audio_coding/neteq4/NetEq4.neteq_impl.o: $
+    cxx ../../third_party/webrtc/modules/audio_coding/neteq4/neteq_impl.cc
+build obj/third_party/webrtc/modules/audio_coding/neteq4/NetEq4.neteq.o: $
+    cxx ../../third_party/webrtc/modules/audio_coding/neteq4/neteq.cc
+build $
+    obj/third_party/webrtc/modules/audio_coding/neteq4/NetEq4.statistics_calculator.o: $
+    cxx $
+    ../../third_party/webrtc/modules/audio_coding/neteq4/statistics_calculator.cc
+build obj/third_party/webrtc/modules/audio_coding/neteq4/NetEq4.normal.o: $
+    cxx ../../third_party/webrtc/modules/audio_coding/neteq4/normal.cc
+build $
+    obj/third_party/webrtc/modules/audio_coding/neteq4/NetEq4.packet_buffer.o: $
+    cxx ../../third_party/webrtc/modules/audio_coding/neteq4/packet_buffer.cc
+build $
+    obj/third_party/webrtc/modules/audio_coding/neteq4/NetEq4.payload_splitter.o: $
+    cxx $
+    ../../third_party/webrtc/modules/audio_coding/neteq4/payload_splitter.cc
+build $
+    obj/third_party/webrtc/modules/audio_coding/neteq4/NetEq4.post_decode_vad.o: $
+    cxx $
+    ../../third_party/webrtc/modules/audio_coding/neteq4/post_decode_vad.cc
+build $
+    obj/third_party/webrtc/modules/audio_coding/neteq4/NetEq4.preemptive_expand.o: $
+    cxx $
+    ../../third_party/webrtc/modules/audio_coding/neteq4/preemptive_expand.cc
+build $
+    obj/third_party/webrtc/modules/audio_coding/neteq4/NetEq4.random_vector.o: $
+    cxx ../../third_party/webrtc/modules/audio_coding/neteq4/random_vector.cc
+build obj/third_party/webrtc/modules/audio_coding/neteq4/NetEq4.rtcp.o: cxx $
+    ../../third_party/webrtc/modules/audio_coding/neteq4/rtcp.cc
+build $
+    obj/third_party/webrtc/modules/audio_coding/neteq4/NetEq4.sync_buffer.o: $
+    cxx ../../third_party/webrtc/modules/audio_coding/neteq4/sync_buffer.cc
+build $
+    obj/third_party/webrtc/modules/audio_coding/neteq4/NetEq4.timestamp_scaler.o: $
+    cxx $
+    ../../third_party/webrtc/modules/audio_coding/neteq4/timestamp_scaler.cc
+build $
+    obj/third_party/webrtc/modules/audio_coding/neteq4/NetEq4.time_stretch.o: $
+    cxx ../../third_party/webrtc/modules/audio_coding/neteq4/time_stretch.cc
+
+build obj/third_party/webrtc/modules/libNetEq4.a: alink_thin $
+    obj/third_party/webrtc/modules/audio_coding/neteq4/NetEq4.accelerate.o $
+    obj/third_party/webrtc/modules/audio_coding/neteq4/NetEq4.audio_decoder_impl.o $
+    obj/third_party/webrtc/modules/audio_coding/neteq4/NetEq4.audio_decoder.o $
+    obj/third_party/webrtc/modules/audio_coding/neteq4/NetEq4.audio_multi_vector.o $
+    obj/third_party/webrtc/modules/audio_coding/neteq4/NetEq4.audio_vector.o $
+    obj/third_party/webrtc/modules/audio_coding/neteq4/NetEq4.background_noise.o $
+    obj/third_party/webrtc/modules/audio_coding/neteq4/NetEq4.buffer_level_filter.o $
+    obj/third_party/webrtc/modules/audio_coding/neteq4/NetEq4.comfort_noise.o $
+    obj/third_party/webrtc/modules/audio_coding/neteq4/NetEq4.decision_logic.o $
+    obj/third_party/webrtc/modules/audio_coding/neteq4/NetEq4.decision_logic_fax.o $
+    obj/third_party/webrtc/modules/audio_coding/neteq4/NetEq4.decision_logic_normal.o $
+    obj/third_party/webrtc/modules/audio_coding/neteq4/NetEq4.decoder_database.o $
+    obj/third_party/webrtc/modules/audio_coding/neteq4/NetEq4.delay_manager.o $
+    obj/third_party/webrtc/modules/audio_coding/neteq4/NetEq4.delay_peak_detector.o $
+    obj/third_party/webrtc/modules/audio_coding/neteq4/NetEq4.dsp_helper.o $
+    obj/third_party/webrtc/modules/audio_coding/neteq4/NetEq4.dtmf_buffer.o $
+    obj/third_party/webrtc/modules/audio_coding/neteq4/NetEq4.dtmf_tone_generator.o $
+    obj/third_party/webrtc/modules/audio_coding/neteq4/NetEq4.expand.o $
+    obj/third_party/webrtc/modules/audio_coding/neteq4/NetEq4.merge.o $
+    obj/third_party/webrtc/modules/audio_coding/neteq4/NetEq4.neteq_impl.o $
+    obj/third_party/webrtc/modules/audio_coding/neteq4/NetEq4.neteq.o $
+    obj/third_party/webrtc/modules/audio_coding/neteq4/NetEq4.statistics_calculator.o $
+    obj/third_party/webrtc/modules/audio_coding/neteq4/NetEq4.normal.o $
+    obj/third_party/webrtc/modules/audio_coding/neteq4/NetEq4.packet_buffer.o $
+    obj/third_party/webrtc/modules/audio_coding/neteq4/NetEq4.payload_splitter.o $
+    obj/third_party/webrtc/modules/audio_coding/neteq4/NetEq4.post_decode_vad.o $
+    obj/third_party/webrtc/modules/audio_coding/neteq4/NetEq4.preemptive_expand.o $
+    obj/third_party/webrtc/modules/audio_coding/neteq4/NetEq4.random_vector.o $
+    obj/third_party/webrtc/modules/audio_coding/neteq4/NetEq4.rtcp.o $
+    obj/third_party/webrtc/modules/audio_coding/neteq4/NetEq4.sync_buffer.o $
+    obj/third_party/webrtc/modules/audio_coding/neteq4/NetEq4.timestamp_scaler.o $
+    obj/third_party/webrtc/modules/audio_coding/neteq4/NetEq4.time_stretch.o

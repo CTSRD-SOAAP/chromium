@@ -1,0 +1,57 @@
+defines = -DANGLE_DX11 '-DWEBRTC_SVNREVISION="Unavailable(issue687)"' $
+    -D_FILE_OFFSET_BITS=64 -DNO_TCMALLOC -DDISABLE_NACL -DCHROMIUM_BUILD $
+    -DUSE_DEFAULT_RENDER_THEME=1 -DUSE_LIBJPEG_TURBO=1 -DUSE_NSS=1 $
+    -DUSE_X11=1 -DENABLE_ONE_CLICK_SIGNIN -DGTK_DISABLE_SINGLE_INCLUDES=1 $
+    -DENABLE_REMOTING=1 -DENABLE_WEBRTC=1 -DENABLE_CONFIGURATION_POLICY $
+    -DENABLE_INPUT_SPEECH -DENABLE_NOTIFICATIONS -DENABLE_GPU=1 $
+    -DENABLE_EGLIMAGE=1 -DENABLE_TASK_MANAGER=1 -DENABLE_EXTENSIONS=1 $
+    -DENABLE_PLUGIN_INSTALLATION=1 -DENABLE_PLUGINS=1 $
+    -DENABLE_SESSION_SERVICE=1 -DENABLE_THEMES=1 -DENABLE_BACKGROUND=1 $
+    -DENABLE_AUTOMATION=1 -DENABLE_GOOGLE_NOW=1 $
+    -DENABLE_LANGUAGE_DETECTION=1 -DENABLE_PRINTING=1 $
+    -DENABLE_CAPTIVE_PORTAL_DETECTION=1 -DENABLE_MANAGED_USERS=1 $
+    -DWEBRTC_CHROMIUM_BUILD -DWEBRTC_BSD -DWEBRTC_LINUX -DWEBRTC_THREAD_RR $
+    -D__STDC_CONSTANT_MACROS -D__STDC_FORMAT_MACROS -DNDEBUG $
+    -DOFFICIAL_BUILD -DNVALGRIND -DDYNAMIC_ANNOTATIONS_ENABLED=0 $
+    -D_FORTIFY_SOURCE=2
+includes = -I../../third_party/webrtc -I../../third_party -I../.. $
+    -I../../third_party/webrtc/modules/interface $
+    -I../../third_party/webrtc/common_video/interface $
+    -I../../third_party/webrtc/common_video/jpeg/include $
+    -I../../third_party/webrtc/common_video/libyuv/include $
+    -I../../third_party/webrtc/system_wrappers/interface $
+    -I../../third_party/libjpeg_turbo -I../../third_party/libyuv/include $
+    -I../../third_party/libyuv
+cflags = -fstack-protector --param=ssp-buffer-size=4  -pthread $
+    -fno-exceptions -fno-strict-aliasing -Wall -Wno-unused-parameter $
+    -Wno-missing-field-initializers -fvisibility=hidden -pipe -fPIC $
+    -Wheader-hygiene -Wno-char-subscripts -Wno-unused-function $
+    -Wno-covered-switch-default -Wstring-conversion -Wno-c++11-narrowing $
+    -Wno-reserved-user-defined-literal -fcolor-diagnostics -O2 $
+    -fdata-sections -ffunction-sections
+cflags_c = -O2 -pipe -fno-strict-aliasing
+cflags_cc = -O2 -pipe -fno-strict-aliasing -fno-rtti $
+    -fno-threadsafe-statics -fvisibility-inlines-hidden -Wsign-compare $
+    -std=gnu++11
+
+build obj/third_party/webrtc/common_video/common_video.i420_video_frame.o: $
+    cxx ../../third_party/webrtc/common_video/i420_video_frame.cc
+build obj/third_party/webrtc/common_video/jpeg/common_video.data_manager.o: $
+    cxx ../../third_party/webrtc/common_video/jpeg/data_manager.cc
+build obj/third_party/webrtc/common_video/jpeg/common_video.jpeg.o: cxx $
+    ../../third_party/webrtc/common_video/jpeg/jpeg.cc
+build $
+    obj/third_party/webrtc/common_video/libyuv/common_video.webrtc_libyuv.o: $
+    cxx ../../third_party/webrtc/common_video/libyuv/webrtc_libyuv.cc
+build obj/third_party/webrtc/common_video/libyuv/common_video.scaler.o: cxx $
+    ../../third_party/webrtc/common_video/libyuv/scaler.cc
+build obj/third_party/webrtc/common_video/common_video.plane.o: cxx $
+    ../../third_party/webrtc/common_video/plane.cc
+
+build obj/third_party/webrtc/common_video/libcommon_video.a: alink_thin $
+    obj/third_party/webrtc/common_video/common_video.i420_video_frame.o $
+    obj/third_party/webrtc/common_video/jpeg/common_video.data_manager.o $
+    obj/third_party/webrtc/common_video/jpeg/common_video.jpeg.o $
+    obj/third_party/webrtc/common_video/libyuv/common_video.webrtc_libyuv.o $
+    obj/third_party/webrtc/common_video/libyuv/common_video.scaler.o $
+    obj/third_party/webrtc/common_video/common_video.plane.o

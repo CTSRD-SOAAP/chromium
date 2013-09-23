@@ -1,0 +1,15 @@
+rule $
+    generate_inspector_protocol_version_target_generateInspectorProtocolVersion_da5128ffd7f877cf811536ed6a26c48a
+  command = cd ../../third_party/WebKit/Source/core; python $
+      inspector/generate-inspector-protocol-version -o $
+      ../../../../out/Release/gen/webkit/InspectorProtocolVersion.h $
+      ../devtools/protocol.json
+  description = ACTION Validate inspector protocol for backwards $
+      compatibility and generate version file
+  restat = 1
+
+build gen/webkit/InspectorProtocolVersion.h: $
+    generate_inspector_protocol_version_target_generateInspectorProtocolVersion_da5128ffd7f877cf811536ed6a26c48a $
+    ../../third_party/WebKit/Source/core/inspector/generate-inspector-protocol-version $
+    ../../third_party/WebKit/Source/devtools/protocol.json
+

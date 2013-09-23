@@ -1,0 +1,16 @@
+build obj/content/content.actions_depends.stamp: stamp $
+    obj/content/libcontent_app.a obj/content/libcontent_browser.a $
+    obj/content/libcontent_child.a obj/content/libcontent_common.a $
+    obj/content/libcontent_gpu.a obj/content/libcontent_plugin.a $
+    obj/content/libcontent_ppapi_plugin.a obj/content/libcontent_renderer.a $
+    obj/content/libcontent_utility.a obj/content/libcontent_worker.a
+
+build obj/content/content.compile_depends.stamp: stamp $
+    obj/content/content_browser.compile_depends.stamp $
+    obj/content/content_child.compile_depends.stamp $
+    obj/content/content_common.compile_depends.stamp $
+    obj/ui/gl/gl.actions_rules_copies.stamp $
+    obj/content/content_plugin.compile_depends.stamp $
+    obj/content/content_renderer.compile_depends.stamp $
+    obj/third_party/WebKit/Source/WebKit/chromium/webkit.compile_depends.stamp
+

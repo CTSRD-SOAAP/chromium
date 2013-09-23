@@ -1,0 +1,7 @@
+build obj/third_party/libwebp/libwebp.actions_depends.stamp: stamp $
+    obj/third_party/libwebp/libwebp_dec.a $
+    obj/third_party/libwebp/libwebp_demux.a $
+    obj/third_party/libwebp/libwebp_dsp.a $
+    obj/third_party/libwebp/libwebp_enc.a $
+    obj/third_party/libwebp/libwebp_utils.a
+

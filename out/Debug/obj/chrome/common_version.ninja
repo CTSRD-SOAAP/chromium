@@ -1,0 +1,14 @@
+rule common_version_target_posix_version_a07390802f3b6093294df7b5b6c88f98
+  command = cd ../../chrome; python tools/build/version.py -f VERSION -f $
+      app/theme/chromium/BRANDING -f ../build/util/LASTCHANGE $
+      common/chrome_version_info_posix.h.version $
+      ../out/Debug/gen/chrome/common/chrome_version_info_posix.h
+  description = ACTION Generating version information
+  restat = 1
+
+build gen/chrome/common/chrome_version_info_posix.h: $
+    common_version_target_posix_version_a07390802f3b6093294df7b5b6c88f98 $
+    ../../chrome/common/chrome_version_info_posix.h.version $
+    ../../chrome/VERSION ../../chrome/app/theme/chromium/BRANDING $
+    ../../build/util/LASTCHANGE
+

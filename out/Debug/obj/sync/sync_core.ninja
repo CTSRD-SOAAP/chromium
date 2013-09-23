@@ -1,0 +1,310 @@
+defines = -DANGLE_DX11 -D_FILE_OFFSET_BITS=64 -DNO_TCMALLOC -DDISABLE_NACL $
+    -DCHROMIUM_BUILD -DUSE_DEFAULT_RENDER_THEME=1 -DUSE_LIBJPEG_TURBO=1 $
+    -DUSE_NSS=1 -DUSE_X11=1 -DENABLE_ONE_CLICK_SIGNIN $
+    -DGTK_DISABLE_SINGLE_INCLUDES=1 -DENABLE_REMOTING=1 -DENABLE_WEBRTC=1 $
+    -DENABLE_CONFIGURATION_POLICY -DENABLE_INPUT_SPEECH $
+    -DENABLE_NOTIFICATIONS -DENABLE_GPU=1 -DENABLE_EGLIMAGE=1 $
+    -DENABLE_TASK_MANAGER=1 -DENABLE_EXTENSIONS=1 $
+    -DENABLE_PLUGIN_INSTALLATION=1 -DENABLE_PLUGINS=1 $
+    -DENABLE_SESSION_SERVICE=1 -DENABLE_THEMES=1 -DENABLE_BACKGROUND=1 $
+    -DENABLE_AUTOMATION=1 -DENABLE_GOOGLE_NOW=1 $
+    -DENABLE_LANGUAGE_DETECTION=1 -DENABLE_PRINTING=1 $
+    -DENABLE_CAPTIVE_PORTAL_DETECTION=1 -DENABLE_MANAGED_USERS=1 $
+    -DSYNC_IMPLEMENTATION -DPROTOBUF_USE_DLLS -DGOOGLE_PROTOBUF_NO_RTTI $
+    -DGOOGLE_PROTOBUF_NO_STATIC_INITIALIZER -D__STDC_CONSTANT_MACROS $
+    -D__STDC_FORMAT_MACROS -DDYNAMIC_ANNOTATIONS_ENABLED=1 $
+    -DWTF_USE_DYNAMIC_ANNOTATIONS=1 -D_DEBUG
+includes = -I../.. -Igen/protoc_out -I../../third_party/protobuf $
+    -I../../third_party/protobuf/src -I../../net/third_party/nss/ssl
+cflags = -fstack-protector --param=ssp-buffer-size=4  -pthread $
+    -fno-exceptions -fno-strict-aliasing -Wall -Wno-unused-parameter $
+    -Wno-missing-field-initializers -fvisibility=hidden -pipe -fPIC $
+    -Wheader-hygiene -Wno-char-subscripts -Wno-unused-function $
+    -Wno-covered-switch-default -Wstring-conversion -Wno-c++11-narrowing $
+    -Wno-reserved-user-defined-literal -fcolor-diagnostics $
+    -I/usr/local/include/gtk-2.0 -I/usr/local/include/gio-unix-2.0/ $
+    -I/usr/local/include/atk-1.0 -I/usr/local/include/cairo $
+    -I/usr/local/include/pixman-1 -D_THREAD_SAFE $
+    -I/usr/local/include/gdk-pixbuf-2.0 -I/usr/local/include/libpng15 $
+    -I/usr/local/include/pango-1.0 -I/usr/local/include/freetype2 $
+    -I/usr/local/include/harfbuzz -pthread -I/usr/local/include/glib-2.0 $
+    -I/usr/local/include -pthread -I/usr/local/include/glib-2.0 $
+    -I/usr/local/include -D_THREAD_SAFE -I/usr/local/include $
+    -I/usr/local/include/nss -I/usr/local/include/nss/nss $
+    -I/usr/local/include/nspr -Wexit-time-destructors -O0 -g
+cflags_c = -O2 -pipe -fno-strict-aliasing
+cflags_cc = -O2 -pipe -fno-strict-aliasing -fno-rtti $
+    -fno-threadsafe-statics -fvisibility-inlines-hidden -Wsign-compare $
+    -std=gnu++11
+
+build obj/sync/engine/sync_core.all_status.o: cxx $
+    ../../sync/engine/all_status.cc || $
+    obj/sync/sync_proto.actions_rules_copies.stamp
+build obj/sync/engine/sync_core.apply_control_data_updates.o: cxx $
+    ../../sync/engine/apply_control_data_updates.cc || $
+    obj/sync/sync_proto.actions_rules_copies.stamp
+build $
+    obj/sync/engine/sync_core.apply_updates_and_resolve_conflicts_command.o: $
+    cxx ../../sync/engine/apply_updates_and_resolve_conflicts_command.cc || $
+    obj/sync/sync_proto.actions_rules_copies.stamp
+build obj/sync/engine/sync_core.backoff_delay_provider.o: cxx $
+    ../../sync/engine/backoff_delay_provider.cc || $
+    obj/sync/sync_proto.actions_rules_copies.stamp
+build obj/sync/engine/sync_core.build_commit_command.o: cxx $
+    ../../sync/engine/build_commit_command.cc || $
+    obj/sync/sync_proto.actions_rules_copies.stamp
+build obj/sync/engine/sync_core.commit.o: cxx ../../sync/engine/commit.cc $
+    || obj/sync/sync_proto.actions_rules_copies.stamp
+build obj/sync/engine/sync_core.conflict_resolver.o: cxx $
+    ../../sync/engine/conflict_resolver.cc || $
+    obj/sync/sync_proto.actions_rules_copies.stamp
+build obj/sync/engine/sync_core.conflict_util.o: cxx $
+    ../../sync/engine/conflict_util.cc || $
+    obj/sync/sync_proto.actions_rules_copies.stamp
+build obj/sync/engine/sync_core.download_updates_command.o: cxx $
+    ../../sync/engine/download_updates_command.cc || $
+    obj/sync/sync_proto.actions_rules_copies.stamp
+build obj/sync/engine/sync_core.get_commit_ids_command.o: cxx $
+    ../../sync/engine/get_commit_ids_command.cc || $
+    obj/sync/sync_proto.actions_rules_copies.stamp
+build obj/sync/engine/sync_core.model_changing_syncer_command.o: cxx $
+    ../../sync/engine/model_changing_syncer_command.cc || $
+    obj/sync/sync_proto.actions_rules_copies.stamp
+build obj/sync/engine/net/sync_core.server_connection_manager.o: cxx $
+    ../../sync/engine/net/server_connection_manager.cc || $
+    obj/sync/sync_proto.actions_rules_copies.stamp
+build obj/sync/engine/net/sync_core.url_translator.o: cxx $
+    ../../sync/engine/net/url_translator.cc || $
+    obj/sync/sync_proto.actions_rules_copies.stamp
+build obj/sync/engine/sync_core.nudge_source.o: cxx $
+    ../../sync/engine/nudge_source.cc || $
+    obj/sync/sync_proto.actions_rules_copies.stamp
+build obj/sync/engine/sync_core.process_commit_response_command.o: cxx $
+    ../../sync/engine/process_commit_response_command.cc || $
+    obj/sync/sync_proto.actions_rules_copies.stamp
+build obj/sync/engine/sync_core.process_updates_command.o: cxx $
+    ../../sync/engine/process_updates_command.cc || $
+    obj/sync/sync_proto.actions_rules_copies.stamp
+build obj/sync/engine/sync_core.store_timestamps_command.o: cxx $
+    ../../sync/engine/store_timestamps_command.cc || $
+    obj/sync/sync_proto.actions_rules_copies.stamp
+build obj/sync/engine/sync_core.sync_engine_event.o: cxx $
+    ../../sync/engine/sync_engine_event.cc || $
+    obj/sync/sync_proto.actions_rules_copies.stamp
+build obj/sync/engine/sync_core.sync_scheduler.o: cxx $
+    ../../sync/engine/sync_scheduler.cc || $
+    obj/sync/sync_proto.actions_rules_copies.stamp
+build obj/sync/engine/sync_core.sync_scheduler_impl.o: cxx $
+    ../../sync/engine/sync_scheduler_impl.cc || $
+    obj/sync/sync_proto.actions_rules_copies.stamp
+build obj/sync/engine/sync_core.syncer.o: cxx ../../sync/engine/syncer.cc $
+    || obj/sync/sync_proto.actions_rules_copies.stamp
+build obj/sync/engine/sync_core.syncer_command.o: cxx $
+    ../../sync/engine/syncer_command.cc || $
+    obj/sync/sync_proto.actions_rules_copies.stamp
+build obj/sync/engine/sync_core.syncer_proto_util.o: cxx $
+    ../../sync/engine/syncer_proto_util.cc || $
+    obj/sync/sync_proto.actions_rules_copies.stamp
+build obj/sync/engine/sync_core.syncer_util.o: cxx $
+    ../../sync/engine/syncer_util.cc || $
+    obj/sync/sync_proto.actions_rules_copies.stamp
+build obj/sync/engine/sync_core.traffic_logger.o: cxx $
+    ../../sync/engine/traffic_logger.cc || $
+    obj/sync/sync_proto.actions_rules_copies.stamp
+build obj/sync/engine/sync_core.traffic_recorder.o: cxx $
+    ../../sync/engine/traffic_recorder.cc || $
+    obj/sync/sync_proto.actions_rules_copies.stamp
+build obj/sync/engine/sync_core.update_applicator.o: cxx $
+    ../../sync/engine/update_applicator.cc || $
+    obj/sync/sync_proto.actions_rules_copies.stamp
+build obj/sync/js/sync_core.js_arg_list.o: cxx ../../sync/js/js_arg_list.cc $
+    || obj/sync/sync_proto.actions_rules_copies.stamp
+build obj/sync/js/sync_core.js_event_details.o: cxx $
+    ../../sync/js/js_event_details.cc || $
+    obj/sync/sync_proto.actions_rules_copies.stamp
+build obj/sync/js/sync_core.sync_js_controller.o: cxx $
+    ../../sync/js/sync_js_controller.cc || $
+    obj/sync/sync_proto.actions_rules_copies.stamp
+build obj/sync/protocol/sync_core.proto_enum_conversions.o: cxx $
+    ../../sync/protocol/proto_enum_conversions.cc || $
+    obj/sync/sync_proto.actions_rules_copies.stamp
+build obj/sync/protocol/sync_core.proto_value_conversions.o: cxx $
+    ../../sync/protocol/proto_value_conversions.cc || $
+    obj/sync/sync_proto.actions_rules_copies.stamp
+build obj/sync/protocol/sync_core.sync_protocol_error.o: cxx $
+    ../../sync/protocol/sync_protocol_error.cc || $
+    obj/sync/sync_proto.actions_rules_copies.stamp
+build obj/sync/sessions/sync_core.data_type_tracker.o: cxx $
+    ../../sync/sessions/data_type_tracker.cc || $
+    obj/sync/sync_proto.actions_rules_copies.stamp
+build obj/sync/sessions/sync_core.nudge_tracker.o: cxx $
+    ../../sync/sessions/nudge_tracker.cc || $
+    obj/sync/sync_proto.actions_rules_copies.stamp
+build obj/sync/sessions/sync_core.ordered_commit_set.o: cxx $
+    ../../sync/sessions/ordered_commit_set.cc || $
+    obj/sync/sync_proto.actions_rules_copies.stamp
+build obj/sync/sessions/sync_core.status_controller.o: cxx $
+    ../../sync/sessions/status_controller.cc || $
+    obj/sync/sync_proto.actions_rules_copies.stamp
+build obj/sync/sessions/sync_core.sync_session.o: cxx $
+    ../../sync/sessions/sync_session.cc || $
+    obj/sync/sync_proto.actions_rules_copies.stamp
+build obj/sync/sessions/sync_core.sync_session_context.o: cxx $
+    ../../sync/sessions/sync_session_context.cc || $
+    obj/sync/sync_proto.actions_rules_copies.stamp
+build obj/sync/syncable/sync_core.directory.o: cxx $
+    ../../sync/syncable/directory.cc || $
+    obj/sync/sync_proto.actions_rules_copies.stamp
+build obj/sync/syncable/sync_core.directory_backing_store.o: cxx $
+    ../../sync/syncable/directory_backing_store.cc || $
+    obj/sync/sync_proto.actions_rules_copies.stamp
+build obj/sync/syncable/sync_core.entry.o: cxx ../../sync/syncable/entry.cc $
+    || obj/sync/sync_proto.actions_rules_copies.stamp
+build obj/sync/syncable/sync_core.entry_kernel.o: cxx $
+    ../../sync/syncable/entry_kernel.cc || $
+    obj/sync/sync_proto.actions_rules_copies.stamp
+build obj/sync/syncable/sync_core.in_memory_directory_backing_store.o: cxx $
+    ../../sync/syncable/in_memory_directory_backing_store.cc || $
+    obj/sync/sync_proto.actions_rules_copies.stamp
+build obj/sync/syncable/sync_core.invalid_directory_backing_store.o: cxx $
+    ../../sync/syncable/invalid_directory_backing_store.cc || $
+    obj/sync/sync_proto.actions_rules_copies.stamp
+build obj/sync/syncable/sync_core.model_type.o: cxx $
+    ../../sync/syncable/model_type.cc || $
+    obj/sync/sync_proto.actions_rules_copies.stamp
+build obj/sync/syncable/sync_core.mutable_entry.o: cxx $
+    ../../sync/syncable/mutable_entry.cc || $
+    obj/sync/sync_proto.actions_rules_copies.stamp
+build obj/sync/syncable/sync_core.nigori_handler.o: cxx $
+    ../../sync/syncable/nigori_handler.cc || $
+    obj/sync/sync_proto.actions_rules_copies.stamp
+build obj/sync/syncable/sync_core.nigori_util.o: cxx $
+    ../../sync/syncable/nigori_util.cc || $
+    obj/sync/sync_proto.actions_rules_copies.stamp
+build obj/sync/syncable/sync_core.on_disk_directory_backing_store.o: cxx $
+    ../../sync/syncable/on_disk_directory_backing_store.cc || $
+    obj/sync/sync_proto.actions_rules_copies.stamp
+build obj/sync/syncable/sync_core.parent_child_index.o: cxx $
+    ../../sync/syncable/parent_child_index.cc || $
+    obj/sync/sync_proto.actions_rules_copies.stamp
+build obj/sync/syncable/sync_core.scoped_kernel_lock.o: cxx $
+    ../../sync/syncable/scoped_kernel_lock.cc || $
+    obj/sync/sync_proto.actions_rules_copies.stamp
+build obj/sync/syncable/sync_core.scoped_parent_child_index_updater.o: cxx $
+    ../../sync/syncable/scoped_parent_child_index_updater.cc || $
+    obj/sync/sync_proto.actions_rules_copies.stamp
+build obj/sync/syncable/sync_core.syncable_base_transaction.o: cxx $
+    ../../sync/syncable/syncable_base_transaction.cc || $
+    obj/sync/sync_proto.actions_rules_copies.stamp
+build obj/sync/syncable/sync_core.syncable_delete_journal.o: cxx $
+    ../../sync/syncable/syncable_delete_journal.cc || $
+    obj/sync/sync_proto.actions_rules_copies.stamp
+build obj/sync/syncable/sync_core.syncable_enum_conversions.o: cxx $
+    ../../sync/syncable/syncable_enum_conversions.cc || $
+    obj/sync/sync_proto.actions_rules_copies.stamp
+build obj/sync/syncable/sync_core.syncable_id.o: cxx $
+    ../../sync/syncable/syncable_id.cc || $
+    obj/sync/sync_proto.actions_rules_copies.stamp
+build obj/sync/syncable/sync_core.syncable_proto_util.o: cxx $
+    ../../sync/syncable/syncable_proto_util.cc || $
+    obj/sync/sync_proto.actions_rules_copies.stamp
+build obj/sync/syncable/sync_core.syncable_read_transaction.o: cxx $
+    ../../sync/syncable/syncable_read_transaction.cc || $
+    obj/sync/sync_proto.actions_rules_copies.stamp
+build obj/sync/syncable/sync_core.syncable_util.o: cxx $
+    ../../sync/syncable/syncable_util.cc || $
+    obj/sync/sync_proto.actions_rules_copies.stamp
+build obj/sync/syncable/sync_core.syncable_write_transaction.o: cxx $
+    ../../sync/syncable/syncable_write_transaction.cc || $
+    obj/sync/sync_proto.actions_rules_copies.stamp
+build obj/sync/syncable/sync_core.write_transaction_info.o: cxx $
+    ../../sync/syncable/write_transaction_info.cc || $
+    obj/sync/sync_proto.actions_rules_copies.stamp
+build obj/sync/util/sync_core.cryptographer.o: cxx $
+    ../../sync/util/cryptographer.cc || $
+    obj/sync/sync_proto.actions_rules_copies.stamp
+build obj/sync/util/sync_core.extensions_activity_monitor.o: cxx $
+    ../../sync/util/extensions_activity_monitor.cc || $
+    obj/sync/sync_proto.actions_rules_copies.stamp
+build obj/sync/util/sync_core.get_session_name.o: cxx $
+    ../../sync/util/get_session_name.cc || $
+    obj/sync/sync_proto.actions_rules_copies.stamp
+build obj/sync/util/sync_core.get_session_name_linux.o: cxx $
+    ../../sync/util/get_session_name_linux.cc || $
+    obj/sync/sync_proto.actions_rules_copies.stamp
+build obj/sync/util/sync_core.logging.o: cxx ../../sync/util/logging.cc || $
+    obj/sync/sync_proto.actions_rules_copies.stamp
+build obj/sync/util/sync_core.nigori.o: cxx ../../sync/util/nigori.cc || $
+    obj/sync/sync_proto.actions_rules_copies.stamp
+build obj/sync/util/sync_core.time.o: cxx ../../sync/util/time.cc || $
+    obj/sync/sync_proto.actions_rules_copies.stamp
+
+build obj/sync/libsync_core.a: alink_thin $
+    obj/sync/engine/sync_core.all_status.o $
+    obj/sync/engine/sync_core.apply_control_data_updates.o $
+    obj/sync/engine/sync_core.apply_updates_and_resolve_conflicts_command.o $
+    obj/sync/engine/sync_core.backoff_delay_provider.o $
+    obj/sync/engine/sync_core.build_commit_command.o $
+    obj/sync/engine/sync_core.commit.o $
+    obj/sync/engine/sync_core.conflict_resolver.o $
+    obj/sync/engine/sync_core.conflict_util.o $
+    obj/sync/engine/sync_core.download_updates_command.o $
+    obj/sync/engine/sync_core.get_commit_ids_command.o $
+    obj/sync/engine/sync_core.model_changing_syncer_command.o $
+    obj/sync/engine/net/sync_core.server_connection_manager.o $
+    obj/sync/engine/net/sync_core.url_translator.o $
+    obj/sync/engine/sync_core.nudge_source.o $
+    obj/sync/engine/sync_core.process_commit_response_command.o $
+    obj/sync/engine/sync_core.process_updates_command.o $
+    obj/sync/engine/sync_core.store_timestamps_command.o $
+    obj/sync/engine/sync_core.sync_engine_event.o $
+    obj/sync/engine/sync_core.sync_scheduler.o $
+    obj/sync/engine/sync_core.sync_scheduler_impl.o $
+    obj/sync/engine/sync_core.syncer.o $
+    obj/sync/engine/sync_core.syncer_command.o $
+    obj/sync/engine/sync_core.syncer_proto_util.o $
+    obj/sync/engine/sync_core.syncer_util.o $
+    obj/sync/engine/sync_core.traffic_logger.o $
+    obj/sync/engine/sync_core.traffic_recorder.o $
+    obj/sync/engine/sync_core.update_applicator.o $
+    obj/sync/js/sync_core.js_arg_list.o $
+    obj/sync/js/sync_core.js_event_details.o $
+    obj/sync/js/sync_core.sync_js_controller.o $
+    obj/sync/protocol/sync_core.proto_enum_conversions.o $
+    obj/sync/protocol/sync_core.proto_value_conversions.o $
+    obj/sync/protocol/sync_core.sync_protocol_error.o $
+    obj/sync/sessions/sync_core.data_type_tracker.o $
+    obj/sync/sessions/sync_core.nudge_tracker.o $
+    obj/sync/sessions/sync_core.ordered_commit_set.o $
+    obj/sync/sessions/sync_core.status_controller.o $
+    obj/sync/sessions/sync_core.sync_session.o $
+    obj/sync/sessions/sync_core.sync_session_context.o $
+    obj/sync/syncable/sync_core.directory.o $
+    obj/sync/syncable/sync_core.directory_backing_store.o $
+    obj/sync/syncable/sync_core.entry.o $
+    obj/sync/syncable/sync_core.entry_kernel.o $
+    obj/sync/syncable/sync_core.in_memory_directory_backing_store.o $
+    obj/sync/syncable/sync_core.invalid_directory_backing_store.o $
+    obj/sync/syncable/sync_core.model_type.o $
+    obj/sync/syncable/sync_core.mutable_entry.o $
+    obj/sync/syncable/sync_core.nigori_handler.o $
+    obj/sync/syncable/sync_core.nigori_util.o $
+    obj/sync/syncable/sync_core.on_disk_directory_backing_store.o $
+    obj/sync/syncable/sync_core.parent_child_index.o $
+    obj/sync/syncable/sync_core.scoped_kernel_lock.o $
+    obj/sync/syncable/sync_core.scoped_parent_child_index_updater.o $
+    obj/sync/syncable/sync_core.syncable_base_transaction.o $
+    obj/sync/syncable/sync_core.syncable_delete_journal.o $
+    obj/sync/syncable/sync_core.syncable_enum_conversions.o $
+    obj/sync/syncable/sync_core.syncable_id.o $
+    obj/sync/syncable/sync_core.syncable_proto_util.o $
+    obj/sync/syncable/sync_core.syncable_read_transaction.o $
+    obj/sync/syncable/sync_core.syncable_util.o $
+    obj/sync/syncable/sync_core.syncable_write_transaction.o $
+    obj/sync/syncable/sync_core.write_transaction_info.o $
+    obj/sync/util/sync_core.cryptographer.o $
+    obj/sync/util/sync_core.extensions_activity_monitor.o $
+    obj/sync/util/sync_core.get_session_name.o $
+    obj/sync/util/sync_core.get_session_name_linux.o $
+    obj/sync/util/sync_core.logging.o obj/sync/util/sync_core.nigori.o $
+    obj/sync/util/sync_core.time.o || obj/sync/libsync_proto.a

@@ -1,0 +1,173 @@
+defines = -DANGLE_DX11 '-DWEBRTC_SVNREVISION="Unavailable(issue687)"' $
+    -D_FILE_OFFSET_BITS=64 -DNO_TCMALLOC -DDISABLE_NACL -DCHROMIUM_BUILD $
+    -DUSE_DEFAULT_RENDER_THEME=1 -DUSE_LIBJPEG_TURBO=1 -DUSE_NSS=1 $
+    -DUSE_X11=1 -DENABLE_ONE_CLICK_SIGNIN -DGTK_DISABLE_SINGLE_INCLUDES=1 $
+    -DENABLE_REMOTING=1 -DENABLE_WEBRTC=1 -DENABLE_CONFIGURATION_POLICY $
+    -DENABLE_INPUT_SPEECH -DENABLE_NOTIFICATIONS -DENABLE_GPU=1 $
+    -DENABLE_EGLIMAGE=1 -DENABLE_TASK_MANAGER=1 -DENABLE_EXTENSIONS=1 $
+    -DENABLE_PLUGIN_INSTALLATION=1 -DENABLE_PLUGINS=1 $
+    -DENABLE_SESSION_SERVICE=1 -DENABLE_THEMES=1 -DENABLE_BACKGROUND=1 $
+    -DENABLE_AUTOMATION=1 -DENABLE_GOOGLE_NOW=1 $
+    -DENABLE_LANGUAGE_DETECTION=1 -DENABLE_PRINTING=1 $
+    -DENABLE_CAPTIVE_PORTAL_DETECTION=1 -DENABLE_MANAGED_USERS=1 $
+    -DWEBRTC_CHROMIUM_BUILD -DWEBRTC_BSD -DWEBRTC_LINUX -DWEBRTC_THREAD_RR $
+    -D__STDC_CONSTANT_MACROS -D__STDC_FORMAT_MACROS $
+    -DDYNAMIC_ANNOTATIONS_ENABLED=1 -DWTF_USE_DYNAMIC_ANNOTATIONS=1 -D_DEBUG
+includes = -I../../third_party/webrtc -I../../third_party -I../.. $
+    -I../../third_party/webrtc/modules/audio_coding/codecs/isac/main/interface $
+    -I../../third_party/webrtc/common_audio/resampler/include $
+    -I../../third_party/webrtc/common_audio/signal_processing/include $
+    -I../../third_party/webrtc/common_audio/vad/include
+cflags = -fstack-protector --param=ssp-buffer-size=4  -pthread $
+    -fno-exceptions -fno-strict-aliasing -Wall -Wno-unused-parameter $
+    -Wno-missing-field-initializers -fvisibility=hidden -pipe -fPIC $
+    -Wheader-hygiene -Wno-char-subscripts -Wno-unused-function $
+    -Wno-covered-switch-default -Wstring-conversion -Wno-c++11-narrowing $
+    -Wno-reserved-user-defined-literal -fcolor-diagnostics -O0 -g
+cflags_c = -O2 -pipe -fno-strict-aliasing
+cflags_cc = -O2 -pipe -fno-strict-aliasing -fno-rtti $
+    -fno-threadsafe-statics -fvisibility-inlines-hidden -Wsign-compare $
+    -std=gnu++11
+
+build $
+    obj/third_party/webrtc/modules/audio_coding/codecs/isac/main/source/iSAC.arith_routines.o: $
+    cc $
+    ../../third_party/webrtc/modules/audio_coding/codecs/isac/main/source/arith_routines.c
+build $
+    obj/third_party/webrtc/modules/audio_coding/codecs/isac/main/source/iSAC.arith_routines_hist.o: $
+    cc $
+    ../../third_party/webrtc/modules/audio_coding/codecs/isac/main/source/arith_routines_hist.c
+build $
+    obj/third_party/webrtc/modules/audio_coding/codecs/isac/main/source/iSAC.arith_routines_logist.o: $
+    cc $
+    ../../third_party/webrtc/modules/audio_coding/codecs/isac/main/source/arith_routines_logist.c
+build $
+    obj/third_party/webrtc/modules/audio_coding/codecs/isac/main/source/iSAC.bandwidth_estimator.o: $
+    cc $
+    ../../third_party/webrtc/modules/audio_coding/codecs/isac/main/source/bandwidth_estimator.c
+build $
+    obj/third_party/webrtc/modules/audio_coding/codecs/isac/main/source/iSAC.crc.o: $
+    cc $
+    ../../third_party/webrtc/modules/audio_coding/codecs/isac/main/source/crc.c
+build $
+    obj/third_party/webrtc/modules/audio_coding/codecs/isac/main/source/iSAC.decode.o: $
+    cc $
+    ../../third_party/webrtc/modules/audio_coding/codecs/isac/main/source/decode.c
+build $
+    obj/third_party/webrtc/modules/audio_coding/codecs/isac/main/source/iSAC.decode_bwe.o: $
+    cc $
+    ../../third_party/webrtc/modules/audio_coding/codecs/isac/main/source/decode_bwe.c
+build $
+    obj/third_party/webrtc/modules/audio_coding/codecs/isac/main/source/iSAC.encode.o: $
+    cc $
+    ../../third_party/webrtc/modules/audio_coding/codecs/isac/main/source/encode.c
+build $
+    obj/third_party/webrtc/modules/audio_coding/codecs/isac/main/source/iSAC.encode_lpc_swb.o: $
+    cc $
+    ../../third_party/webrtc/modules/audio_coding/codecs/isac/main/source/encode_lpc_swb.c
+build $
+    obj/third_party/webrtc/modules/audio_coding/codecs/isac/main/source/iSAC.entropy_coding.o: $
+    cc $
+    ../../third_party/webrtc/modules/audio_coding/codecs/isac/main/source/entropy_coding.c
+build $
+    obj/third_party/webrtc/modules/audio_coding/codecs/isac/main/source/iSAC.fft.o: $
+    cc $
+    ../../third_party/webrtc/modules/audio_coding/codecs/isac/main/source/fft.c
+build $
+    obj/third_party/webrtc/modules/audio_coding/codecs/isac/main/source/iSAC.filter_functions.o: $
+    cc $
+    ../../third_party/webrtc/modules/audio_coding/codecs/isac/main/source/filter_functions.c
+build $
+    obj/third_party/webrtc/modules/audio_coding/codecs/isac/main/source/iSAC.filterbank_tables.o: $
+    cc $
+    ../../third_party/webrtc/modules/audio_coding/codecs/isac/main/source/filterbank_tables.c
+build $
+    obj/third_party/webrtc/modules/audio_coding/codecs/isac/main/source/iSAC.intialize.o: $
+    cc $
+    ../../third_party/webrtc/modules/audio_coding/codecs/isac/main/source/intialize.c
+build $
+    obj/third_party/webrtc/modules/audio_coding/codecs/isac/main/source/iSAC.isac.o: $
+    cc $
+    ../../third_party/webrtc/modules/audio_coding/codecs/isac/main/source/isac.c
+build $
+    obj/third_party/webrtc/modules/audio_coding/codecs/isac/main/source/iSAC.filterbanks.o: $
+    cc $
+    ../../third_party/webrtc/modules/audio_coding/codecs/isac/main/source/filterbanks.c
+build $
+    obj/third_party/webrtc/modules/audio_coding/codecs/isac/main/source/iSAC.pitch_lag_tables.o: $
+    cc $
+    ../../third_party/webrtc/modules/audio_coding/codecs/isac/main/source/pitch_lag_tables.c
+build $
+    obj/third_party/webrtc/modules/audio_coding/codecs/isac/main/source/iSAC.lattice.o: $
+    cc $
+    ../../third_party/webrtc/modules/audio_coding/codecs/isac/main/source/lattice.c
+build $
+    obj/third_party/webrtc/modules/audio_coding/codecs/isac/main/source/iSAC.lpc_gain_swb_tables.o: $
+    cc $
+    ../../third_party/webrtc/modules/audio_coding/codecs/isac/main/source/lpc_gain_swb_tables.c
+build $
+    obj/third_party/webrtc/modules/audio_coding/codecs/isac/main/source/iSAC.lpc_analysis.o: $
+    cc $
+    ../../third_party/webrtc/modules/audio_coding/codecs/isac/main/source/lpc_analysis.c
+build $
+    obj/third_party/webrtc/modules/audio_coding/codecs/isac/main/source/iSAC.lpc_shape_swb12_tables.o: $
+    cc $
+    ../../third_party/webrtc/modules/audio_coding/codecs/isac/main/source/lpc_shape_swb12_tables.c
+build $
+    obj/third_party/webrtc/modules/audio_coding/codecs/isac/main/source/iSAC.lpc_shape_swb16_tables.o: $
+    cc $
+    ../../third_party/webrtc/modules/audio_coding/codecs/isac/main/source/lpc_shape_swb16_tables.c
+build $
+    obj/third_party/webrtc/modules/audio_coding/codecs/isac/main/source/iSAC.lpc_tables.o: $
+    cc $
+    ../../third_party/webrtc/modules/audio_coding/codecs/isac/main/source/lpc_tables.c
+build $
+    obj/third_party/webrtc/modules/audio_coding/codecs/isac/main/source/iSAC.pitch_estimator.o: $
+    cc $
+    ../../third_party/webrtc/modules/audio_coding/codecs/isac/main/source/pitch_estimator.c
+build $
+    obj/third_party/webrtc/modules/audio_coding/codecs/isac/main/source/iSAC.pitch_filter.o: $
+    cc $
+    ../../third_party/webrtc/modules/audio_coding/codecs/isac/main/source/pitch_filter.c
+build $
+    obj/third_party/webrtc/modules/audio_coding/codecs/isac/main/source/iSAC.pitch_gain_tables.o: $
+    cc $
+    ../../third_party/webrtc/modules/audio_coding/codecs/isac/main/source/pitch_gain_tables.c
+build $
+    obj/third_party/webrtc/modules/audio_coding/codecs/isac/main/source/iSAC.spectrum_ar_model_tables.o: $
+    cc $
+    ../../third_party/webrtc/modules/audio_coding/codecs/isac/main/source/spectrum_ar_model_tables.c
+build $
+    obj/third_party/webrtc/modules/audio_coding/codecs/isac/main/source/iSAC.transform.o: $
+    cc $
+    ../../third_party/webrtc/modules/audio_coding/codecs/isac/main/source/transform.c
+
+build obj/third_party/webrtc/modules/libiSAC.a: alink_thin $
+    obj/third_party/webrtc/modules/audio_coding/codecs/isac/main/source/iSAC.arith_routines.o $
+    obj/third_party/webrtc/modules/audio_coding/codecs/isac/main/source/iSAC.arith_routines_hist.o $
+    obj/third_party/webrtc/modules/audio_coding/codecs/isac/main/source/iSAC.arith_routines_logist.o $
+    obj/third_party/webrtc/modules/audio_coding/codecs/isac/main/source/iSAC.bandwidth_estimator.o $
+    obj/third_party/webrtc/modules/audio_coding/codecs/isac/main/source/iSAC.crc.o $
+    obj/third_party/webrtc/modules/audio_coding/codecs/isac/main/source/iSAC.decode.o $
+    obj/third_party/webrtc/modules/audio_coding/codecs/isac/main/source/iSAC.decode_bwe.o $
+    obj/third_party/webrtc/modules/audio_coding/codecs/isac/main/source/iSAC.encode.o $
+    obj/third_party/webrtc/modules/audio_coding/codecs/isac/main/source/iSAC.encode_lpc_swb.o $
+    obj/third_party/webrtc/modules/audio_coding/codecs/isac/main/source/iSAC.entropy_coding.o $
+    obj/third_party/webrtc/modules/audio_coding/codecs/isac/main/source/iSAC.fft.o $
+    obj/third_party/webrtc/modules/audio_coding/codecs/isac/main/source/iSAC.filter_functions.o $
+    obj/third_party/webrtc/modules/audio_coding/codecs/isac/main/source/iSAC.filterbank_tables.o $
+    obj/third_party/webrtc/modules/audio_coding/codecs/isac/main/source/iSAC.intialize.o $
+    obj/third_party/webrtc/modules/audio_coding/codecs/isac/main/source/iSAC.isac.o $
+    obj/third_party/webrtc/modules/audio_coding/codecs/isac/main/source/iSAC.filterbanks.o $
+    obj/third_party/webrtc/modules/audio_coding/codecs/isac/main/source/iSAC.pitch_lag_tables.o $
+    obj/third_party/webrtc/modules/audio_coding/codecs/isac/main/source/iSAC.lattice.o $
+    obj/third_party/webrtc/modules/audio_coding/codecs/isac/main/source/iSAC.lpc_gain_swb_tables.o $
+    obj/third_party/webrtc/modules/audio_coding/codecs/isac/main/source/iSAC.lpc_analysis.o $
+    obj/third_party/webrtc/modules/audio_coding/codecs/isac/main/source/iSAC.lpc_shape_swb12_tables.o $
+    obj/third_party/webrtc/modules/audio_coding/codecs/isac/main/source/iSAC.lpc_shape_swb16_tables.o $
+    obj/third_party/webrtc/modules/audio_coding/codecs/isac/main/source/iSAC.lpc_tables.o $
+    obj/third_party/webrtc/modules/audio_coding/codecs/isac/main/source/iSAC.pitch_estimator.o $
+    obj/third_party/webrtc/modules/audio_coding/codecs/isac/main/source/iSAC.pitch_filter.o $
+    obj/third_party/webrtc/modules/audio_coding/codecs/isac/main/source/iSAC.pitch_gain_tables.o $
+    obj/third_party/webrtc/modules/audio_coding/codecs/isac/main/source/iSAC.spectrum_ar_model_tables.o $
+    obj/third_party/webrtc/modules/audio_coding/codecs/isac/main/source/iSAC.transform.o

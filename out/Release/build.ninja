@@ -1,0 +1,1385 @@
+cc = clang
+cxx = clang++
+ld = $cxx
+ar = ar
+ar_host = ar
+cc_host = clang
+cxx_host = clang++
+ld_host = $cxx_host
+
+pool link_pool
+  depth = 1
+
+rule cc
+  command = $cc -MMD -MF $out.d $defines $includes $cflags $cflags_c $cflags_pch_c -c $in -o $out
+  description = CC $out
+  depfile = $out.d
+  deps = gcc
+rule cc_s
+  command = $cc $defines $includes $cflags $cflags_c $cflags_pch_c -c $in -o $out
+  description = CC $out
+rule cxx
+  command = $cxx -MMD -MF $out.d $defines $includes $cflags $cflags_cc $cflags_pch_cc -c $in -o $out
+  description = CXX $out
+  depfile = $out.d
+  deps = gcc
+rule alink
+  command = rm -f $out && $ar rcs $out $in
+  description = AR $out
+rule alink_thin
+  command = rm -f $out && $ar rcsT $out $in
+  description = AR $out
+rule solink
+  command = if [ ! -e $lib -o ! -e ${lib}.TOC ]; then $ld -shared $ldflags -o $lib -Wl,-soname=$soname $
+      -Wl,--whole-archive $in $solibs -Wl,--no-whole-archive $libs && { readelf -d ${lib} | grep SONAME ; nm -gD -f p $
+      ${lib} | cut -f1-2 -d' '; } > ${lib}.TOC; else $ld -shared $ldflags -o $lib -Wl,-soname=$soname $
+      -Wl,--whole-archive $in $solibs -Wl,--no-whole-archive $libs && { readelf -d ${lib} | grep SONAME ; nm -gD -f p $
+      ${lib} | cut -f1-2 -d' '; } > ${lib}.tmp && if ! cmp -s ${lib}.tmp ${lib}.TOC; then mv ${lib}.tmp ${lib}.TOC ; $
+      fi; fi
+  description = SOLINK $lib
+  pool = link_pool
+  restat = 1
+rule solink_module
+  command = if [ ! -e $lib -o ! -e ${lib}.TOC ]; then $ld -shared $ldflags -o $lib -Wl,-soname=$soname $
+      -Wl,--start-group $in $solibs -Wl,--end-group $libs && { readelf -d ${lib} | grep SONAME ; nm -gD -f p ${lib} | $
+      cut -f1-2 -d' '; } > ${lib}.TOC; else $ld -shared $ldflags -o $lib -Wl,-soname=$soname -Wl,--start-group $in $
+      $solibs -Wl,--end-group $libs && { readelf -d ${lib} | grep SONAME ; nm -gD -f p ${lib} | cut -f1-2 -d' '; } > $
+      ${lib}.tmp && if ! cmp -s ${lib}.tmp ${lib}.TOC; then mv ${lib}.tmp ${lib}.TOC ; fi; fi
+  description = SOLINK(module) $lib
+  pool = link_pool
+  restat = 1
+rule link
+  command = $ld $ldflags -o $out -Wl,--start-group $in $solibs -Wl,--end-group $libs
+  description = LINK $out
+  pool = link_pool
+rule stamp
+  command = ${postbuilds}touch $out
+  description = STAMP $out
+rule copy
+  command = ln -f $in $out 2>/dev/null || (rm -rf $out && cp -af $in $out)
+  description = COPY $in $out
+
+subninja obj/build/linux/gnome_keyring_direct.ninja
+subninja obj/webkit/common/user_agent/webkit_version.ninja
+subninja obj/third_party/widevine/cdm/widevine_cdm_binaries.ninja
+subninja obj/chrome/default_extensions.ninja
+subninja obj/third_party/expat/expat.ninja
+subninja obj/third_party/WebKit/Source/devtools/concatenated_devtools_elements_js.ninja
+subninja obj/third_party/libvpx/libvpx_intrinsics_ssse3.ninja
+subninja obj/third_party/smhasher/pmurhash.ninja
+subninja obj/build/linux/xext.ninja
+subninja obj/third_party/WebKit/Source/devtools/concatenated_devtools_codemirror_js.ninja
+subninja obj/build/linux/x11.ninja
+subninja obj/ui/webui_test_support.ninja
+subninja obj/chrome/common_version.ninja
+subninja obj/third_party/WebKit/Source/devtools/concatenated_devtools_profiles_js.ninja
+subninja obj/build/linux/gtkprint.ninja
+subninja obj/third_party/WebKit/Source/core/generate_inspector_protocol_version.ninja
+subninja obj/net/net_resources.ninja
+subninja obj/chrome/app/policy/cloud_policy_code_generate.ninja
+subninja obj/third_party/lzma_sdk/lzma_sdk.ninja
+subninja obj/third_party/widevine/cdm/widevinecdmadapter.ninja
+subninja obj/components/nacl_switches.ninja
+subninja obj/third_party/WebKit/Source/core/injected_canvas_script_source.ninja
+subninja obj/third_party/WebKit/Source/devtools/concatenated_devtools_timeline_js.ninja
+subninja obj/skia/skia_opts_ssse3.ninja
+subninja obj/build/linux/gtk.ninja
+subninja obj/build/linux/gconf.ninja
+subninja obj/build/linux/udev.ninja
+subninja obj/third_party/webrtc/modules/G711.ninja
+subninja obj/chrome/chromedriver_support.ninja
+subninja obj/build/linux/xfixes.ninja
+subninja obj/third_party/libwebp/libwebp_dsp.ninja
+subninja obj/third_party/widevine/cdm/widevine_cdm_version_h.ninja
+subninja obj/third_party/jsoncpp/jsoncpp.ninja
+subninja obj/webkit/support/webkit_strings.ninja
+subninja obj/base/base_static.ninja
+subninja obj/third_party/WebKit/Source/devtools/devtools_html.ninja
+subninja obj/third_party/smhasher/murmurhash3.ninja
+subninja obj/third_party/WebKit/Source/core/inspector_instrumentation_sources.ninja
+subninja obj/third_party/libwebp/libwebp_demux.ninja
+subninja obj/third_party/undoview/undoview.ninja
+subninja obj/third_party/speex/libspeex.ninja
+subninja obj/base/xdg_mime.ninja
+subninja obj/printing/cups.ninja
+subninja obj/chrome/theme_resources_gen.ninja
+subninja obj/v8/tools/gyp/postmortem-metadata.ninja
+subninja obj/chrome/platform_locale_settings.ninja
+subninja obj/testing/gtest_prod.ninja
+subninja obj/third_party/WebKit/Source/devtools/concatenated_devtools_css.ninja
+subninja obj/webkit/support/webkit_resources.ninja
+subninja obj/ash/ash_strings.ninja
+subninja obj/third_party/protobuf/py_proto.ninja
+subninja obj/third_party/opus/opus.ninja
+subninja obj/device/bluetooth/device_bluetooth_strings.ninja
+subninja obj/build/linux/freetype2.ninja
+subninja obj/third_party/webrtc/modules/PCM16B.ninja
+subninja obj/chrome/nacl.ninja
+subninja obj/media/media_asm.ninja
+subninja obj/content/generate_content_shell_resources.ninja
+subninja obj/media/media_mmx.ninja
+subninja obj/third_party/WebKit/Source/devtools/concatenated_devtools_resources_js.ninja
+subninja obj/chrome/about_credits.ninja
+subninja obj/components/component_strings.ninja
+subninja obj/third_party/libjpeg_turbo/libjpeg.ninja
+subninja obj/base/allocator/allocator_extension_thunks.ninja
+subninja obj/third_party/libusb/libusb.ninja
+subninja obj/components/autofill_regexes.ninja
+subninja obj/build/linux/dbus.ninja
+subninja obj/media/shared_memory_support_sse.ninja
+subninja obj/skia/skia_opts_neon.ninja
+subninja obj/third_party/WebKit/Source/devtools/concatenated_devtools_scripts_js.ninja
+subninja obj/third_party/openssl/openssl.ninja
+subninja obj/third_party/libevent/libevent.ninja
+subninja obj/third_party/WebKit/Source/WebKit/chromium/skia_webkit.ninja
+subninja obj/ppapi/ppapi_example_skeleton.ninja
+subninja obj/third_party/zlib/zlib.ninja
+subninja obj/third_party/WebKit/Source/devtools/frontend_protocol_sources.ninja
+subninja obj/build/linux/libresolv.ninja
+subninja obj/third_party/WebKit/Source/core/inspector_overlay_page.ninja
+subninja obj/content/generate_content_resources.ninja
+subninja obj/testing/gtest.ninja
+subninja obj/third_party/libvpx/libvpx_obj_int_extract.ninja
+subninja obj/tools/xdisplaycheck/xdisplaycheck.ninja
+subninja obj/third_party/protobuf/protobuf_full_do_not_use.ninja
+subninja obj/third_party/protobuf/protobuf_lite.ninja
+subninja obj/components/autofill_content_test_util.ninja
+subninja obj/third_party/WebKit/Source/config.ninja
+subninja obj/build/linux/glib.ninja
+subninja obj/build/linux/gdk.ninja
+subninja obj/third_party/libxml/libxml.ninja
+subninja obj/third_party/libvpx/libvpx_intrinsics_mmx.ninja
+subninja obj/third_party/WebKit/Source/core/generate_test_support_idls.ninja
+subninja obj/build/linux/libgcrypt.ninja
+subninja obj/chrome/chrome_unscaled_resources.ninja
+subninja obj/media/media_sse.ninja
+subninja obj/third_party/WebKit/Source/devtools/concatenated_devtools_js.ninja
+subninja obj/sandbox/sandbox.ninja
+subninja obj/third_party/webrtc/system_wrappers/source/system_wrappers.ninja
+subninja obj/third_party/libvpx/libvpx_asm_offsets_vp8.ninja
+subninja obj/third_party/adobe/flash/flapper_binaries.ninja
+subninja obj/third_party/flac/libflac.ninja
+subninja obj/base/symbolize.ninja
+subninja obj/third_party/WebKit/Source/core/injected_script_source.ninja
+subninja obj/third_party/WebKit/Source/wtf/wtf_config.ninja
+subninja obj/third_party/libwebp/libwebp_utils.ninja
+subninja obj/net/third_party/nss/libssl.ninja
+subninja obj/third_party/WebKit/Source/devtools/devtools_extension_api.ninja
+subninja obj/third_party/libXNVCtrl/libXNVCtrl.ninja
+subninja obj/third_party/webrtc/modules/desktop_capture_differ_sse2.ninja
+subninja obj/third_party/WebKit/Source/devtools/concatenated_script_formatter_worker_js.ninja
+subninja obj/third_party/webrtc/modules/audio_processing_sse2.ninja
+subninja obj/ui/base/strings/ui_strings.ninja
+subninja obj/third_party/WebKit/Source/core/make_derived_sources.ninja
+subninja obj/third_party/hyphen/hyphen.ninja
+subninja obj/chrome/browser/search_engines/prepopulated_engines.ninja
+subninja obj/third_party/webrtc/modules/video_processing_sse2.ninja
+subninja obj/third_party/WebKit/Source/devtools/concatenated_devtools_network_js.ninja
+subninja obj/third_party/libsrtp/libsrtp.ninja
+subninja obj/third_party/WebKit/Source/devtools/concatenated_devtools_audits_js.ninja
+subninja obj/ppapi/ppapi_c.ninja
+subninja obj/third_party/npapi/npapi.ninja
+subninja obj/ui/ui_resources.ninja
+subninja obj/third_party/libxslt/libxslt.ninja
+subninja obj/third_party/opus/opus_demo.ninja
+subninja obj/third_party/WebKit/Source/core/debugger_script_source.ninja
+subninja obj/third_party/khronos/khronos_headers.ninja
+subninja obj/third_party/libvpx/libvpx_asm_offsets_vpx_scale.ninja
+subninja obj/third_party/libwebp/libwebp_dsp_neon.ninja
+subninja obj/third_party/WebKit/Source/devtools/concatenated_heap_snapshot_worker_js.ninja
+subninja obj/third_party/icu/icudata.ninja
+subninja obj/third_party/adobe/flash/flapper_version_h.ninja
+subninja obj/third_party/v8-i18n/build/api2c.ninja
+subninja obj/third_party/webrtc/common_audio/common_audio_sse2.ninja
+subninja obj/third_party/WebKit/Source/core/inspector_protocol_sources.ninja
+subninja obj/build/linux/pangocairo.ninja
+subninja obj/third_party/WebKit/Source/bindings/supplemental_dependencies.ninja
+subninja obj/third_party/libwebp/libwebp_enc.ninja
+subninja obj/device/usb/device_usb.ninja
+subninja obj/v8/tools/gyp/v8_base.x64.ninja
+subninja obj/chrome/chrome_strings.ninja
+subninja obj/third_party/mesa/mesa_headers.ninja
+subninja obj/base/third_party/dynamic_annotations/dynamic_annotations.ninja
+subninja obj/v8/tools/gyp/js2c.ninja
+subninja obj/media/media_sse2.ninja
+subninja obj/build/linux/gnome_keyring.ninja
+subninja obj/third_party/qcms/qcms.ninja
+subninja obj/skia/skia_opts.ninja
+subninja obj/chrome/chrome_resources.ninja
+subninja obj/build/linux/fontconfig.ninja
+subninja obj/third_party/modp_b64/modp_b64.ninja
+subninja obj/third_party/protobuf/protoc.ninja
+subninja obj/third_party/ffmpeg/ffmpeg_yasm.ninja
+subninja obj/third_party/smhasher/cityhash.ninja
+subninja obj/third_party/webrtc/tools/command_line_parser.ninja
+subninja obj/remoting/remoting_resources.ninja
+subninja obj/third_party/snappy/snappy.ninja
+subninja obj/chrome/in_memory_url_index_cache_proto.ninja
+subninja obj/chrome/app/policy/cloud_policy_proto_generated_compile.ninja
+subninja obj/third_party/webrtc/modules/G722.ninja
+subninja obj/third_party/libvpx/libvpx_intrinsics_sse2.ninja
+subninja obj/third_party/mt19937ar/mt19937ar.ninja
+subninja obj/third_party/angle_dx11/src/preprocessor.ninja
+subninja obj/third_party/WebKit/Source/core/webcore_arm_neon.ninja
+subninja obj/chrome/app/policy/chrome_settings_proto_generated_compile.ninja
+subninja obj/third_party/safe_browsing/safe_browsing.ninja
+subninja obj/chrome/feedback_proto.ninja
+subninja obj/third_party/webrtc/modules/desktop_capture.ninja
+subninja obj/third_party/libsrtp/rtpw.ninja
+subninja obj/third_party/libvpx/gen_asm_offsets_vpx_scale.ninja
+subninja obj/third_party/libsrtp/srtp_driver.ninja
+subninja obj/third_party/libyuv/libyuv.ninja
+subninja obj/remoting/proto/chromotocol_proto_lib.ninja
+subninja obj/chrome/theme_resources.ninja
+subninja obj/chrome/safe_browsing_proto.ninja
+subninja obj/third_party/libsrtp/srtp_test_cipher_driver.ninja
+subninja obj/content/content_shell_resources.ninja
+subninja obj/chrome/cert_logger_proto.ninja
+subninja obj/third_party/ffmpeg/ffmpegsumo.ninja
+subninja obj/third_party/icu/icuuc.ninja
+subninja obj/third_party/cacheinvalidation/cacheinvalidation_proto_cpp.ninja
+subninja obj/third_party/libsrtp/srtp_test_stat_driver.ninja
+subninja obj/third_party/libsrtp/srtp_test_rand_gen.ninja
+subninja obj/content/content_resources.ninja
+subninja obj/third_party/zlib/minizip.ninja
+subninja obj/ppapi/ppapi_example_c_stub.ninja
+subninja obj/third_party/harfbuzz-ng/harfbuzz-ng.ninja
+subninja obj/third_party/libpng/libpng.ninja
+subninja obj/third_party/ots/ots.ninja
+subninja obj/third_party/icu/icui18n.ninja
+subninja obj/third_party/libsrtp/srtp_test_sha1_driver.ninja
+subninja obj/third_party/webrtc/tools/rgba_to_i420_converter.ninja
+subninja obj/third_party/libsrtp/rdbx_driver.ninja
+subninja obj/sdch/sdch.ninja
+subninja obj/testing/gtest_main.ninja
+subninja obj/ppapi/ppapi_gles2.ninja
+subninja obj/third_party/webrtc/modules/webrtc_i420.ninja
+subninja obj/third_party/webrtc/modules/webrtc_opus.ninja
+subninja obj/third_party/webrtc/modules/remote_bitrate_estimator.ninja
+subninja obj/third_party/libsrtp/srtp_test_datatypes_driver.ninja
+subninja obj/chrome/sync_file_system_proto.ninja
+subninja obj/third_party/WebKit/Source/bindings/bindings_derived_sources.ninja
+subninja obj/third_party/WebKit/Tools/DumpRenderTree/DumpRenderTree.gyp/DumpRenderTree_resources.ninja
+subninja obj/testing/gmock.ninja
+subninja obj/third_party/iccjpeg/iccjpeg.ninja
+subninja obj/third_party/WebKit/Source/devtools/generate_devtools_grd.ninja
+subninja obj/third_party/webrtc/modules/video_coding/utility/video_coding_utility.ninja
+subninja obj/third_party/re2/re2.ninja
+subninja obj/ui/base/strings/ui_unittest_strings.ninja
+subninja obj/third_party/WebKit/Source/unittest_config.ninja
+subninja obj/third_party/WebKit/Tools/DumpRenderTree/DumpRenderTree.gyp/TestNetscapePlugIn.ninja
+subninja obj/third_party/libvpx/gen_asm_offsets_vp8.ninja
+subninja obj/chrome/safe_browsing_report_proto.ninja
+subninja obj/third_party/webrtc/modules/bitrate_controller.ninja
+subninja obj/third_party/WebKit/Source/devtools/devtools_frontend_resources.ninja
+subninja obj/third_party/libsrtp/srtp_test_env.ninja
+subninja obj/third_party/webrtc/modules/paced_sender.ninja
+subninja obj/third_party/libsrtp/roc_driver.ninja
+subninja obj/chrome/variations_seed_proto.ninja
+subninja obj/testing/gmock_main.ninja
+subninja obj/content/browser/speech/proto/speech_proto.ninja
+subninja obj/v8/tools/gyp/v8_nosnapshot.x64.ninja
+subninja obj/third_party/libwebp/libwebp_dec.ninja
+subninja obj/ppapi/ppapi_egl.ninja
+subninja obj/third_party/libsrtp/srtp_test_aes_calc.ninja
+subninja obj/base/base.ninja
+subninja obj/third_party/WebKit/Source/wtf/wtf.ninja
+subninja obj/third_party/libsrtp/replay_driver.ninja
+subninja obj/build/linux/ssl.ninja
+subninja obj/sync/sync_proto.ninja
+subninja obj/ppapi/ppapi_cpp_objects.ninja
+subninja obj/base/allocator/allocator.ninja
+subninja obj/webkit/plugins/npapi_test_common.ninja
+subninja obj/third_party/mesa/mesa.ninja
+subninja obj/ppapi/ppapi_example_graphics_2d.ninja
+subninja obj/third_party/webrtc/common_audio/common_audio.ninja
+subninja obj/gpu/disk_cache_proto.ninja
+subninja obj/third_party/libsrtp/srtp_test_kernel_driver.ninja
+subninja obj/build/linux/libpci.ninja
+subninja obj/third_party/snappy/snappy_unittest.ninja
+subninja obj/third_party/webrtc/modules/iSACFix.ninja
+subninja obj/webkit/support/webkit_support_gfx.ninja
+subninja obj/third_party/cacheinvalidation/cacheinvalidation.ninja
+subninja obj/chrome/metrics_proto.ninja
+subninja obj/base/base_prefs.ninja
+subninja obj/media/shared_memory_support.ninja
+subninja obj/third_party/webrtc/modules/audioproc_debug_proto.ninja
+subninja obj/third_party/angle_dx11/src/translator_common.ninja
+subninja obj/third_party/webrtc/common_video/common_video.ninja
+subninja obj/third_party/libwebp/libwebp.ninja
+subninja obj/chrome/packed_resources.ninja
+subninja obj/components/autofill_content_risk_proto.ninja
+subninja obj/chrome/cloud_policy_proto.ninja
+subninja obj/third_party/libsrtp/srtp_runtest.ninja
+subninja obj/third_party/ffmpeg/ffmpeg.ninja
+subninja obj/build/linux/libspeechd.ninja
+subninja obj/third_party/webrtc/modules/audio_processing.ninja
+subninja obj/remoting/remoting_breakpad.ninja
+subninja obj/dbus/dbus_test_proto.ninja
+subninja obj/third_party/sqlite/sqlite.ninja
+subninja obj/third_party/sfntly/sfntly.ninja
+subninja obj/third_party/WebKit/Tools/DumpRenderTree/DumpRenderTree.gyp/copy_TestNetscapePlugIn.ninja
+subninja obj/url/url_lib.ninja
+subninja obj/third_party/libvpx/libvpx.ninja
+subninja obj/sql/sql.ninja
+subninja obj/ppapi/ppapi_cpp.ninja
+subninja obj/third_party/mesa/osmesa.ninja
+subninja obj/third_party/cld/cld.ninja
+subninja obj/chrome/app/policy/policy.ninja
+subninja obj/third_party/leveldatabase/leveldatabase.ninja
+subninja obj/ppapi/ppapi_example_url_loader_file.ninja
+subninja obj/ppapi/ppapi_example_input.ninja
+subninja obj/third_party/webrtc/tools/video_quality_analysis.ninja
+subninja obj/chrome/common_constants.ninja
+subninja obj/chrome/app/policy/policy_test_support.ninja
+subninja obj/third_party/webrtc/modules/CNG.ninja
+subninja obj/ppapi/ppapi_example_ime.ninja
+subninja obj/base/test_support_perf.ninja
+subninja obj/gpu/command_buffer/gles2_utils.ninja
+subninja obj/ppapi/ppapi_example_simple_font.ninja
+subninja obj/third_party/webrtc/modules/iSAC.ninja
+subninja obj/base/check_example.ninja
+subninja obj/build/linux/gio.ninja
+subninja obj/base/base_prefs_test_support.ninja
+subninja obj/skia/skia.ninja
+subninja obj/remoting/remoting_host_logging.ninja
+subninja obj/ipc/ipc.ninja
+subninja obj/ppapi/ppapi_example_url_loader.ninja
+subninja obj/third_party/hunspell/hunspell.ninja
+subninja obj/ui/ui_test_support.ninja
+subninja obj/ppapi/ppapi_example_audio.ninja
+subninja obj/third_party/webrtc/modules/NetEq.ninja
+subninja obj/ppapi/ppapi_example_enumerate_devices.ninja
+subninja obj/third_party/webrtc/modules/rtp_rtcp.ninja
+subninja obj/third_party/libphonenumber/libphonenumber_without_metadata.ninja
+subninja obj/third_party/libphonenumber/libphonenumber.ninja
+subninja obj/chrome/convert_dict_lib.ninja
+subninja obj/third_party/libvpx/simple_encoder.ninja
+subninja obj/ppapi/ppapi_example_audio_input.ninja
+subninja obj/content/browser/devtools/devtools_resources.ninja
+subninja obj/dbus/dbus.ninja
+subninja obj/ppapi/ppapi_example_mouse_lock.ninja
+subninja obj/components/breakpad_common.ninja
+subninja obj/third_party/libvpx/simple_decoder.ninja
+subninja obj/tools/json_schema_compiler/api_gen_util.ninja
+subninja obj/ppapi/ppapi_example_flash_topmost.ninja
+subninja obj/third_party/WebKit/Tools/DumpRenderTree/DumpRenderTree.gyp/ImageDiff.ninja
+subninja obj/components/tracing.ninja
+subninja obj/v8/tools/gyp/mksnapshot.x64.ninja
+subninja obj/ipc/test_support_ipc.ninja
+subninja obj/ppapi/ppapi_example_video_effects.ninja
+subninja obj/third_party/webrtc/tools/psnr_ssim_analyzer.ninja
+subninja obj/third_party/WebKit/Source/WebKit/chromium/blink_common.ninja
+subninja obj/base/base_i18n.ninja
+subninja obj/third_party/WebKit/public/blink_minimal.ninja
+subninja obj/ppapi/ppapi_example_gamepad.ninja
+subninja obj/ppapi/ppapi_example_post_message.ninja
+subninja obj/third_party/zlib/zip.ninja
+subninja obj/third_party/angle_dx11/src/translator_glsl.ninja
+subninja obj/third_party/webrtc/tools/frame_editing_lib.ninja
+subninja obj/crypto/crypto.ninja
+subninja obj/ppapi/ppapi_example_cc_stub.ninja
+subninja obj/ppapi/ppapi_example_crxfs.ninja
+subninja obj/webkit/plugins/npapi_test_plugin.ninja
+subninja obj/third_party/webrtc/modules/iLBC.ninja
+subninja obj/net/tools/tld_cleanup/tld_cleanup_util.ninja
+subninja obj/chrome/convert_dict.ninja
+subninja obj/third_party/WebKit/Source/weborigin/weborigin.ninja
+subninja obj/third_party/WebKit/Tools/DumpRenderTree/DumpRenderTree.gyp/TestRunner_resources.ninja
+subninja obj/net/tld_cleanup.ninja
+subninja obj/third_party/webrtc/modules/audio_device.ninja
+subninja obj/ppapi/ppapi_example_vc.ninja
+subninja obj/ppapi/ppapi_example_scaling.ninja
+subninja obj/ppapi/ppapi_example_scroll.ninja
+subninja obj/ppapi/ppapi_example_mouse_cursor.ninja
+subninja obj/webkit/plugins/copy_npapi_test_plugin.ninja
+subninja obj/webkit/common/user_agent/user_agent.ninja
+subninja obj/sql/test_support_sql.ninja
+subninja obj/chrome/browser/performance_monitor/performance_monitor.ninja
+subninja obj/net/net.ninja
+subninja obj/net/dns_fuzz_stub.ninja
+subninja obj/ppapi/ppapi_example_paint_manager.ninja
+subninja obj/net/http_server.ninja
+subninja obj/third_party/webrtc/modules/video_coding/codecs/vp8/webrtc_vp8.ninja
+subninja obj/ppapi/ppapi_example_printing.ninja
+subninja obj/ppapi/ppapi_example_gles2.ninja
+subninja obj/third_party/sqlite/sqlite_shell.ninja
+subninja obj/base/test_support_base.ninja
+subninja obj/ppapi/ppapi_example_file_chooser.ninja
+subninja obj/dbus/dbus_test_support.ninja
+subninja obj/gpu/command_buffer_common.ninja
+subninja obj/chrome/policy_path_parser.ninja
+subninja obj/ipc/ipc_perftests.ninja
+subninja obj/third_party/leveldatabase/leveldb_testutil.ninja
+subninja obj/content/content_shell_pak.ninja
+subninja obj/skia/image_operations_bench.ninja
+subninja obj/google_apis/google_apis.ninja
+subninja obj/ppapi/ppapi_example_video_decode.ninja
+subninja obj/base/run_all_unittests.ninja
+subninja obj/chrome/installer_util.ninja
+subninja obj/third_party/leveldatabase/leveldb_corruption_test.ninja
+subninja obj/third_party/leveldatabase/leveldb_db_test.ninja
+subninja obj/third_party/webrtc/tools/frame_analyzer.ninja
+subninja obj/sync/sync_core.ninja
+subninja obj/url/url_unittests.ninja
+subninja obj/third_party/webrtc/modules/NetEq4.ninja
+subninja obj/v8/tools/gyp/v8_snapshot.ninja
+subninja obj/chrome/chrome_extra_resources.ninja
+subninja obj/third_party/libjingle/libjingle_p2p_constants.ninja
+subninja obj/third_party/leveldatabase/leveldb_bloom_test.ninja
+subninja obj/dbus/dbus_unittests.ninja
+subninja obj/ui/ui.ninja
+subninja obj/components/encryptor.ninja
+subninja obj/ipc/ipc_tests.ninja
+subninja obj/third_party/leveldatabase/leveldb_log_test.ninja
+subninja obj/third_party/leveldatabase/leveldb_crc32c_test.ninja
+subninja obj/third_party/libphonenumber/libphonenumber_unittests.ninja
+subninja obj/ui/run_ui_unittests.ninja
+subninja obj/third_party/webrtc/modules/webrtc_video_coding.ninja
+subninja obj/third_party/leveldatabase/leveldb_env_test.ninja
+subninja obj/webkit/plugins/plugins_common.ninja
+subninja obj/third_party/webrtc/tools/frame_editor.ninja
+subninja obj/device/bluetooth/device_bluetooth.ninja
+subninja obj/net/crl_set_dump.ninja
+subninja obj/chrome/chrome_devtools_lib.ninja
+subninja obj/third_party/leveldatabase/leveldb_skiplist_test.ninja
+subninja obj/third_party/leveldatabase/leveldb_arena_test.ninja
+subninja obj/tools/json_schema_compiler/test/json_schema_compiler_tests.ninja
+subninja obj/webkit/plugins/test_mock_plugin_list.ninja
+subninja obj/third_party/leveldatabase/leveldb_coding_test.ninja
+subninja obj/media/media.ninja
+subninja obj/sql/sql_unittests.ninja
+subninja obj/third_party/leveldatabase/leveldb_dbformat_test.ninja
+subninja obj/third_party/leveldatabase/leveldb_table_test.ninja
+subninja obj/gpu/command_buffer_client.ninja
+subninja obj/chrome/flush_cache.ninja
+subninja obj/third_party/leveldatabase/leveldb_version_edit_test.ninja
+subninja obj/third_party/leveldatabase/leveldb_filter_block_test.ninja
+subninja obj/net/fetch_server.ninja
+subninja obj/sync/test_support_accounts_client.ninja
+subninja obj/third_party/webrtc/modules/audio_coding_module.ninja
+subninja obj/components/auto_login_parser.ninja
+subninja obj/cc/cc_test_utils.ninja
+subninja obj/dbus/dbus_test_server.ninja
+subninja obj/crypto/crypto_unittests.ninja
+subninja obj/net/flip_balsa_and_epoll_library.ninja
+subninja obj/third_party/leveldatabase/env_chromium_unittests.ninja
+subninja obj/net/gdig.ninja
+subninja obj/ui/gl/gl.ninja
+subninja obj/net/quic_library.ninja
+subninja obj/net/get_server_time.ninja
+subninja obj/base/base_unittests.ninja
+subninja obj/third_party/leveldatabase/leveldb_filename_test.ninja
+subninja obj/chrome/chromedriver2_lib.ninja
+subninja obj/gpu/gpu_ipc.ninja
+subninja obj/third_party/cacheinvalidation/cacheinvalidation_unittests.ninja
+subninja obj/chrome/packed_extra_resources.ninja
+subninja obj/ui/gl/gl_unittest_utils.ninja
+subninja obj/device/bluetooth/device_bluetooth_mocks.ninja
+subninja obj/third_party/leveldatabase/leveldb_write_batch_test.ninja
+subninja obj/url/googleurl_unittests.ninja
+subninja obj/chrome/browser_ui_views.ninja
+subninja obj/third_party/leveldatabase/leveldb_db_bench.ninja
+subninja obj/third_party/webrtc/modules/webrtc_utility.ninja
+subninja obj/v8/tools/gyp/v8.ninja
+subninja obj/third_party/webrtc/modules/video_capture_module.ninja
+subninja obj/third_party/leveldatabase/leveldb_cache_test.ninja
+subninja obj/media/ffmpeg_tests.ninja
+subninja obj/printing/printing.ninja
+subninja obj/ui/snapshot/snapshot.ninja
+subninja obj/webkit/support/webkit_common.ninja
+subninja obj/v8/tools/gyp/v8_shell.ninja
+subninja obj/media/seek_tester.ninja
+subninja obj/chrome/common_net.ninja
+subninja obj/third_party/libjingle/libjingle.ninja
+subninja obj/webkit/support/clearkeycdm.ninja
+subninja obj/ui/message_center/message_center.ninja
+subninja obj/media/media_bench.ninja
+subninja obj/ui/shell_dialogs.ninja
+subninja obj/ui/native_theme/native_theme.ninja
+subninja obj/media/media_test_support.ninja
+subninja obj/gpu/gles2_cmd_helper.ninja
+subninja obj/printing/printing_unittests.ninja
+subninja obj/gpu/gles2_implementation_client_side_arrays.ninja
+subninja obj/gpu/gpu_config.ninja
+subninja obj/third_party/webrtc/modules/video_processing.ninja
+subninja obj/net/quic_client.ninja
+subninja obj/third_party/webrtc/modules/video_render_module.ninja
+subninja obj/webkit/support/clearkeycdmadapter.ninja
+subninja obj/third_party/webrtc/modules/audio_conference_mixer.ninja
+subninja obj/net/quic_unittests.ninja
+subninja obj/media/shader_bench.ninja
+subninja obj/ui/surface/surface.ninja
+subninja obj/ui/ui_unittests.ninja
+subninja obj/net/flip_in_mem_edsm_server.ninja
+subninja obj/media/demuxer_bench.ninja
+subninja obj/cc/cc_test_support.ninja
+subninja obj/gpu/command_buffer_service.ninja
+subninja obj/ui/snapshot/snapshot_unittests.ninja
+subninja obj/gpu/gles2_implementation_client_side_arrays_no_check.ninja
+subninja obj/net/quic_server.ninja
+subninja obj/media/player_x11.ninja
+subninja obj/sync/sync_endtoend_tests.ninja
+subninja obj/third_party/webrtc/modules/media_file.ninja
+subninja obj/third_party/webrtc/voice_engine/voice_engine.ninja
+subninja obj/third_party/libjingle/peerconnection_server.ninja
+subninja obj/third_party/webrtc/video_engine/video_engine_core.ninja
+subninja obj/chrome/chromedriver2_server_lib.ninja
+subninja obj/chrome/chromedriver2.ninja
+subninja obj/media/ffmpeg_unittests.ninja
+subninja obj/chrome/chromedriver2_server.ninja
+subninja obj/media/ffmpeg_regression_tests.ninja
+subninja obj/media/media_unittests.ninja
+subninja obj/chrome/chromedriver2_unittests.ninja
+subninja obj/jingle/jingle_glue.ninja
+subninja obj/third_party/v8-i18n/build/v8-i18n.ninja
+subninja obj/net/net_with_v8.ninja
+subninja obj/third_party/webrtc/tools/force_mic_volume_max.ninja
+subninja obj/gpu/gles2_implementation.ninja
+subninja obj/ui/message_center/message_center_test_support.ninja
+subninja obj/gpu/gles2_c_lib_nocheck.ninja
+subninja obj/net/net_watcher.ninja
+subninja obj/third_party/libjingle/libjingle_webrtc_common.ninja
+subninja obj/third_party/libjingle/libjingle_webrtc.ninja
+subninja obj/jingle/jingle_glue_test_util.ninja
+subninja obj/gpu/gles2_c_lib.ninja
+subninja obj/gpu/gpu.ninja
+subninja obj/net/fetch_client.ninja
+subninja obj/third_party/WebKit/Source/core/webcore_prerequisites.ninja
+subninja obj/third_party/WebKit/Source/core/webcore_platform_geometry.ninja
+subninja obj/third_party/WebKit/Source/core/webcore_platform.ninja
+subninja obj/ui/message_center/message_center_unittests.ninja
+subninja obj/webkit/common/gpu/webkit_gpu.ninja
+subninja obj/third_party/WebKit/Source/core/webcore_html.ninja
+subninja obj/jingle/notifier.ninja
+subninja obj/cc/cc.ninja
+subninja obj/net/net_test_support.ninja
+subninja obj/cc/cc_perftests.ninja
+subninja obj/net/net_unittests.ninja
+subninja obj/third_party/libjingle/libpeerconnection.ninja
+subninja obj/net/net_perftests.ninja
+subninja obj/chrome/chromedriver2_tests.ninja
+subninja obj/ui/compositor/compositor.ninja
+subninja obj/sync/sync_notifier.ninja
+subninja obj/third_party/WebKit/Source/core/webcore_remaining.ninja
+subninja obj/third_party/WebKit/Source/core/webcore_dom.ninja
+subninja obj/third_party/WebKit/Source/core/webcore_derived.ninja
+subninja obj/gpu/gpu_unittest_utils.ninja
+subninja obj/net/dump_cache.ninja
+subninja obj/net/stress_cache.ninja
+subninja obj/third_party/WebKit/Source/core/webcore_rendering.ninja
+subninja obj/third_party/WebKit/Source/core/webcore_svg.ninja
+subninja obj/cc/cc_unittests.ninja
+subninja obj/third_party/WebKit/Source/core/webcore.ninja
+subninja obj/jingle/notifier_test_util.ninja
+subninja obj/net/run_testserver.ninja
+subninja obj/remoting/remoting_jingle_glue.ninja
+subninja obj/net/crash_cache.ninja
+subninja obj/gpu/gl_tests.ninja
+subninja obj/remoting/remoting_base.ninja
+subninja obj/gpu/gpu_unittests.ninja
+subninja obj/sync/sync_internal_api.ninja
+subninja obj/third_party/WebKit/Source/core/webcore_test_support.ninja
+subninja obj/third_party/WebKit/Source/modules/modules.ninja
+subninja obj/jingle/jingle_unittests.ninja
+subninja obj/sync/sync_api.ninja
+subninja obj/ui/compositor/compositor_test_support.ninja
+subninja obj/remoting/remoting_host_keygen.ninja
+subninja obj/remoting/remoting_protocol.ninja
+subninja obj/remoting/remoting_host_event_logger.ninja
+subninja obj/remoting/remoting_client.ninja
+subninja obj/ui/compositor/compositor_unittests.ninja
+subninja obj/sync/sync.ninja
+subninja obj/sync/test_support_sync_notifier.ninja
+subninja obj/third_party/WebKit/Source/WebKit/chromium/webkit.ninja
+subninja obj/third_party/WebKit/Source/WebKit/chromium/webkit_test_support.ninja
+subninja obj/sync/sync_tools_helper.ninja
+subninja obj/remoting/remoting_host.ninja
+subninja obj/remoting/remoting_client_plugin.ninja
+subninja obj/chrome/common/extensions/api/api.ninja
+subninja obj/third_party/WebKit/public/blink.ninja
+subninja obj/sync/sync_notifier_tests.ninja
+subninja obj/webkit/renderer/compositor_bindings/webkit_compositor_bindings.ninja
+subninja obj/ppapi/ppapi_shared.ninja
+subninja obj/webkit/support/glue_common.ninja
+subninja obj/webkit/support/glue_renderer.ninja
+subninja obj/ppapi/ppapi_tests.ninja
+subninja obj/webkit/support/webkit_media.ninja
+subninja obj/sync/test_support_sync_testserver.ninja
+subninja obj/sync/test_support_sync_core.ninja
+subninja obj/components/sessions_test_support.ninja
+subninja obj/sync/sync_listen_notifications.ninja
+subninja obj/remoting/remoting_me2me_host_static.ninja
+subninja obj/remoting/remoting_me2me_host.ninja
+subninja obj/sync/test_support_sync_api.ninja
+subninja obj/webkit/renderer/compositor_bindings/webkit_compositor_support.ninja
+subninja obj/ppapi/ppapi_ipc.ninja
+subninja obj/remoting/remoting_host_setup_base.ninja
+subninja obj/third_party/WebKit/Tools/DumpRenderTree/DumpRenderTree.gyp/TestRunner.ninja
+subninja obj/sync/test_support_sync_internal_api.ninja
+subninja obj/webkit/base/webkit_base.ninja
+subninja obj/content/content_ppapi_plugin.ninja
+subninja obj/ppapi/ppapi_proxy.ninja
+subninja obj/remoting/remoting_host_plugin.ninja
+subninja obj/webkit/webkit_storage_common.ninja
+subninja obj/ppapi/ppapi_host.ninja
+subninja obj/webkit/webkit_storage_renderer.ninja
+subninja obj/sync/sync_api_tests.ninja
+subninja obj/sync/run_sync_testserver.ninja
+subninja obj/sync/sync_client.ninja
+subninja obj/sync/sync_core_tests.ninja
+subninja obj/webkit/webkit_storage_browser.ninja
+subninja obj/remoting/remoting_unittests.ninja
+subninja obj/remoting/remoting_native_messaging_host.ninja
+subninja obj/sync/sync_internal_api_tests.ninja
+subninja obj/remoting/remoting_webapp.ninja
+subninja obj/ppapi/ppapi_unittest_shared.ninja
+subninja obj/ppapi/ppapi_perftests.ninja
+subninja obj/webkit/dump_file_system.ninja
+subninja obj/webkit/support/plugins.ninja
+subninja obj/sync/sync_unit_tests.ninja
+subninja obj/ppapi/ppapi_unittests.ninja
+subninja obj/webkit/support/glue.ninja
+subninja obj/webkit/support/glue_child.ninja
+subninja obj/content/content_common.ninja
+subninja obj/components/visitedlink_common.ninja
+subninja obj/webkit/support/webkit_support_common.ninja
+subninja obj/webkit/support/webkit_support.ninja
+subninja obj/content/content_app.ninja
+subninja obj/content/content_child.ninja
+subninja obj/content/content_utility.ninja
+subninja obj/content/content_gpu.ninja
+subninja obj/components/autofill_core_common.ninja
+subninja obj/content/content_worker.ninja
+subninja obj/content/content_renderer.ninja
+subninja obj/components/autofill_content_renderer.ninja
+subninja obj/chrome/common.ninja
+subninja obj/chrome/service.ninja
+subninja obj/content/content_plugin.ninja
+subninja obj/chrome/plugin.ninja
+subninja obj/components/visitedlink_renderer.ninja
+subninja obj/chrome/utility.ninja
+subninja obj/content/content_browser.ninja
+subninja obj/chrome/renderer.ninja
+subninja obj/content/test_support_content.ninja
+subninja obj/components/web_modal.ninja
+subninja obj/content/content_unittests.ninja
+subninja obj/components/sessions.ninja
+subninja obj/content/content_gl_tests.ninja
+subninja obj/ui/web_dialogs/web_dialogs.ninja
+subninja obj/components/visitedlink_browser.ninja
+subninja obj/content/content_gl_benchmark.ninja
+subninja obj/components/navigation_interception.ninja
+subninja obj/components/user_prefs.ninja
+subninja obj/content/content_shell_lib.ninja
+subninja obj/ui/web_dialogs/web_dialogs_test_support.ninja
+subninja obj/components/browser_context_keyed_service.ninja
+subninja obj/content/content.ninja
+subninja obj/chrome/debugger.ninja
+subninja obj/components/webdata_common.ninja
+subninja obj/content/content_browsertests.ninja
+subninja obj/components/components_perftests.ninja
+subninja obj/chrome/browser_extensions.ninja
+subninja obj/chrome/browser_ui.ninja
+subninja obj/chrome/apps.ninja
+subninja obj/content/content_shell.ninja
+subninja obj/components/components_unittests.ninja
+subninja obj/components/autofill_core_browser.ninja
+subninja obj/content/content_shell_builder.ninja
+subninja obj/components/autofill_content_browser.ninja
+subninja obj/chrome/browser.ninja
+subninja obj/chrome/perf_tests.ninja
+subninja obj/chrome/chrome.ninja
+subninja obj/chrome/test_support_common.ninja
+subninja obj/chrome/interactive_ui_tests.ninja
+subninja obj/chrome/test_support_ui_runner.ninja
+subninja obj/chrome/sync_integration_tests.ninja
+subninja obj/chrome/sync_performance_tests.ninja
+subninja obj/chrome/test_support_unit.ninja
+subninja obj/chrome/pyautolib.ninja
+subninja obj/chrome/unit_tests.ninja
+subninja obj/chrome/chrome_app_unittests.ninja
+subninja obj/chrome/browser_tests.ninja
+subninja obj/chrome/performance_browser_tests.ninja
+subninja obj/chrome/ipclist.ninja
+subninja obj/chrome/test_support_ui.ninja
+subninja obj/chrome/performance_ui_tests.ninja
+subninja obj/chrome/automated_ui_tests.ninja
+subninja obj/chrome/gpu_tests.ninja
+subninja obj/chrome/reliability_tests.ninja
+subninja obj/chrome/soft_gpu_tests.ninja
+subninja obj/chrome/webrtc_test_tools.ninja
+subninja obj/chrome/chromedriver_lib.ninja
+subninja obj/chrome/chromedriver_unittests.ninja
+subninja obj/chrome/chromedriver.ninja
+
+# Short names for targets.
+build inspector_overlay_page: phony gen/webkit/InspectorOverlayPage.h
+build common_video: phony obj/third_party/webrtc/common_video/libcommon_video.a
+build webkit: phony obj/third_party/WebKit/Source/WebKit/chromium/libwebkit.a
+build remoting_host_event_logger: phony obj/remoting/libremoting_host_event_logger.a
+build audioproc_debug_proto: phony obj/third_party/webrtc/modules/libaudioproc_debug_proto.a
+build message_center: phony obj/ui/message_center/libmessage_center.a
+build navigation_interception: phony obj/components/libnavigation_interception.a
+build audio_conference_mixer: phony obj/third_party/webrtc/modules/libaudio_conference_mixer.a
+build skia: phony obj/skia/libskia.a
+build blink_common: phony obj/third_party/WebKit/Source/WebKit/chromium/libblink_common.a
+build gl: phony obj/ui/gl/libgl_wrapper.a
+build webkit_strings: phony obj/webkit/support/webkit_strings.actions_rules_copies.stamp
+build iSAC: phony obj/third_party/webrtc/modules/libiSAC.a
+build gpu_config: phony obj/gpu/libgpu_config.a
+build webcore_platform: phony obj/third_party/WebKit/Source/core/libwebcore_platform.a
+build test_support_perf: phony obj/base/libtest_support_perf.a
+build chromedriver_support: phony obj/chrome/libchromedriver_support.a
+build video_engine_core: phony obj/third_party/webrtc/video_engine/libvideo_engine_core.a
+build iccjpeg: phony obj/third_party/iccjpeg/libiccjpeg.a
+build libjingle_webrtc_common: phony obj/third_party/libjingle/libjingle_webrtc_common.a
+build packed_resources: phony obj/chrome/packed_resources.actions_rules_copies.stamp
+build user_prefs: phony obj/components/libuser_prefs.a
+build browser_ui: phony obj/chrome/libbrowser_ui.a
+build common_version: phony gen/chrome/common/chrome_version_info_posix.h
+build shared_memory_support: phony obj/media/libshared_memory_support.a
+build video_capture_module: phony obj/third_party/webrtc/modules/libvideo_capture_module.a
+build ui_strings: phony obj/ui/base/strings/ui_strings.actions_rules_copies.stamp
+build remoting_host: phony obj/remoting/libremoting_host.a
+build translator_glsl: phony obj/third_party/angle_dx11/src/libtranslator_glsl.a
+build base_i18n: phony obj/base/libbase_i18n.a
+build cacheinvalidation: phony obj/third_party/cacheinvalidation/libcacheinvalidation.a
+build libspeechd: phony obj/build/linux/libspeechd.a
+build audio_device: phony obj/third_party/webrtc/modules/libaudio_device.a
+build sync: phony obj/sync/sync.actions_depends.stamp
+build ppapi_example_vc: phony lib/libppapi_example_vc.so
+build gles2_implementation_client_side_arrays: phony obj/gpu/libgles2_implementation_client_side_arrays.a
+build installer_util: phony obj/chrome/libinstaller_util.a
+build devtools_extension_api: phony resources/inspector/devtools_extension_api.js
+build libwebp: phony obj/third_party/libwebp/libwebp.actions_depends.stamp
+build webkit_storage_browser: phony obj/webkit/libwebkit_storage_browser.a
+build convert_dict_lib: phony obj/chrome/libconvert_dict.a
+build clearkeycdmadapter: phony obj/webkit/support/clearkeycdmadapter.actions_depends.stamp
+build ppapi_host: phony obj/ppapi/libppapi_host.a
+build chrome_extra_resources: phony obj/chrome/chrome_extra_resources.actions_rules_copies.stamp
+build remote_bitrate_estimator: phony obj/third_party/webrtc/modules/libremote_bitrate_estimator.a
+build ppapi_example_audio: phony lib/libppapi_example_audio.so
+build mt19937ar: phony obj/third_party/mt19937ar/libmt19937ar.a
+build net: phony obj/net/libnet.a
+build api_gen_util: phony obj/tools/json_schema_compiler/libapi_gen_util.a
+build command_buffer_common: phony obj/gpu/libcommand_buffer_common.a
+build ui_test_support: phony obj/ui/libui_test_support.a
+build prepopulated_engines: phony obj/chrome/browser/search_engines/libprepopulated_engines.a
+build sync_internal_api_tests: phony obj/sync/sync_internal_api_tests.actions_depends.stamp
+build shared_memory_support_sse: phony obj/media/libshared_memory_support_sse.a
+build webcore_rendering: phony obj/third_party/WebKit/Source/core/libwebcore_rendering.a
+build gmock: phony obj/testing/libgmock.a
+build web_modal: phony obj/components/libweb_modal.a
+build media_sse2: phony obj/media/libmedia_sse2.a
+build PCM16B: phony obj/third_party/webrtc/modules/libPCM16B.a
+build sync_notifier: phony obj/sync/libsync_notifier.a
+build ipc: phony obj/ipc/libipc.a
+build safe_browsing_report_proto: phony obj/chrome/libsafe_browsing_report_proto.a
+build devtools_frontend_resources: phony $
+    obj/third_party/WebKit/Source/devtools/devtools_frontend_resources.actions_rules_copies.stamp
+build debugger: phony obj/chrome/libdebugger.a
+build ppapi_example_ime: phony lib/libppapi_example_ime.so
+build ppapi_example_gamepad: phony lib/libppapi_example_gamepad.so
+build api: phony obj/chrome/common/extensions/api/libapi.a
+build flapper_version_h: phony gen/flapper_version.h
+build allocator_extension_thunks: phony obj/base/allocator/liballocator_extension_thunks.a
+build webcore_prerequisites: phony obj/third_party/WebKit/Source/core/webcore_prerequisites.actions_depends.stamp
+build remoting_resources: phony obj/remoting/remoting_resources.actions_rules_copies.stamp
+build zip: phony obj/third_party/zlib/libzip.a
+build leveldb_testutil: phony obj/third_party/leveldatabase/libleveldb_testutil.a
+build translator_common: phony obj/third_party/angle_dx11/src/libtranslator_common.a
+build sessions: phony obj/components/libsessions.a
+build chromedriver2_lib: phony obj/chrome/libchromedriver2_lib.a
+build net_resources: phony obj/net/net_resources.actions_rules_copies.stamp
+build google_apis: phony obj/google_apis/libgoogle_apis.a
+build sync_internal_api: phony obj/sync/libsync_internal_api.a
+build printing: phony obj/printing/libprinting.a
+build copy_TestNetscapePlugIn: phony plugins/libTestNetscapePlugIn.so
+build test_support_accounts_client: phony obj/sync/libtest_support_accounts_client.a
+build gl_unittest_utils: phony obj/ui/gl/libgl_unittest_utils.a
+build sqlite: phony obj/third_party/sqlite/libsqlite3.a
+build ppapi_gles2: phony obj/ppapi/libppapi_gles2.a
+build webcore_derived: phony obj/third_party/WebKit/Source/core/libwebcore_derived.a
+build sync_core: phony obj/sync/libsync_core.a
+build safe_browsing_proto: phony obj/chrome/libsafe_browsing_proto.a
+build remoting_me2me_host_static: phony obj/remoting/libremoting_me2me_host_static.a
+build chrome_strings: phony obj/chrome/chrome_strings.actions_rules_copies.stamp
+build js2c: phony obj/v8/tools/gyp/js2c.actions_rules_copies.stamp
+build TestRunner_resources: phony $
+    obj/third_party/WebKit/Tools/DumpRenderTree/DumpRenderTree.gyp/TestRunner_resources.actions_rules_copies.stamp
+build webrtc_video_coding: phony obj/third_party/webrtc/modules/libwebrtc_video_coding.a
+build concatenated_devtools_audits_js: phony resources/inspector/AuditsPanel.js
+build media_file: phony obj/third_party/webrtc/modules/libmedia_file.a
+build system_wrappers: phony obj/third_party/webrtc/system_wrappers/source/libsystem_wrappers.a
+build iSACFix: phony obj/third_party/webrtc/modules/libiSACFix.a
+build make_derived_sources: phony obj/third_party/WebKit/Source/core/make_derived_sources.actions_rules_copies.stamp
+build mesa: phony obj/third_party/mesa/libmesa.a
+build sfntly: phony obj/third_party/sfntly/libsfntly.a
+build api2c: phony obj/third_party/v8-i18n/build/api2c.actions_rules_copies.stamp
+build content_utility: phony obj/content/libcontent_utility.a
+build plugins_common: phony obj/webkit/plugins/libplugins_common.a
+build protobuf_lite: phony obj/third_party/protobuf/libprotobuf_lite.a
+build url_lib: phony obj/url/liburl_lib.a
+build concatenated_devtools_scripts_js: phony resources/inspector/ScriptsPanel.js
+build video_processing_sse2: phony obj/third_party/webrtc/modules/libvideo_processing_sse2.a
+build generate_inspector_protocol_version: phony gen/webkit/InspectorProtocolVersion.h
+build media_sse: phony obj/media/libmedia_sse.a
+build remoting_client_plugin: phony obj/remoting/libremoting_client_plugin.a
+build webkit_resources: phony obj/webkit/support/webkit_resources.actions_rules_copies.stamp
+build device_bluetooth_strings: phony obj/device/bluetooth/device_bluetooth_strings.actions_rules_copies.stamp
+build webkit_gpu: phony obj/webkit/common/gpu/libwebkit_gpu.a
+build cld: phony obj/third_party/cld/libcld.a
+build concatenated_devtools_elements_js: phony resources/inspector/ElementsPanel.js
+build ffmpegsumo: phony libffmpegsumo.so
+build policy: phony obj/chrome/app/policy/libpolicy.a
+build web_dialogs: phony obj/ui/web_dialogs/libweb_dialogs.a
+build webrtc_opus: phony obj/third_party/webrtc/modules/libwebrtc_opus.a
+build libvpx_intrinsics_mmx: phony obj/third_party/libvpx/libvpx_intrinsics_mmx.a
+build autofill_content_test_util: phony obj/components/libautofill_content_test_util.a
+build content_common: phony obj/content/libcontent_common.a
+build webkit_support: phony obj/webkit/support/libwebkit_support.a
+build minizip: phony obj/third_party/zlib/libminizip.a
+build webkit_common: phony obj/webkit/support/libwebkit_common.a
+build dbus_test_support: phony obj/dbus/libdbus_test_support.a
+build webcore_dom: phony obj/third_party/WebKit/Source/core/libwebcore_dom.a
+build cloud_policy_code_generate: phony obj/chrome/app/policy/cloud_policy_code_generate.actions_rules_copies.stamp
+build libjpeg: phony obj/third_party/libjpeg_turbo/libjpeg_turbo.a
+build paced_sender: phony obj/third_party/webrtc/modules/libpaced_sender.a
+build dbus: phony obj/dbus/libdbus.a
+build sync_proto: phony obj/sync/libsync_proto.a
+build crypto: phony obj/crypto/libcrcrypto.a
+build G711: phony obj/third_party/webrtc/modules/libG711.a
+build libvpx_asm_offsets_vp8: phony obj/third_party/libvpx/libvpx_asm_offsets_vp8.a
+build libjingle: phony obj/third_party/libjingle/libjingle.a
+build http_server: phony obj/net/libhttp_server.a
+build visitedlink_common: phony obj/components/libvisitedlink_common.a
+build notifier: phony obj/jingle/libnotifier.a
+build renderer: phony obj/chrome/librenderer.a
+build ppapi_example_input: phony lib/libppapi_example_input.so
+build sync_api_tests: phony obj/sync/sync_api_tests.actions_depends.stamp
+build ppapi_example_url_loader: phony lib/libppapi_example_url_loader.so
+build browser_context_keyed_service: phony obj/components/libbrowser_context_keyed_service.a
+build gmock_main: phony obj/testing/libgmock_main.a
+build theme_resources_gen: phony obj/chrome/theme_resources_gen.actions_rules_copies.stamp
+build gles2_implementation: phony obj/gpu/libgles2_implementation.a
+build sdch: phony obj/sdch/libsdch.a
+build remoting_breakpad: phony obj/remoting/libremoting_breakpad.a
+build murmurhash3: phony obj/third_party/smhasher/libmurmurhash3.a
+build test_support_ui: phony obj/chrome/libtest_support_ui.a
+build pmurhash: phony obj/third_party/smhasher/libpmurhash.a
+build rtp_rtcp: phony obj/third_party/webrtc/modules/librtp_rtcp.a
+build content: phony obj/content/content.actions_depends.stamp
+build test_support_sync_internal_api: phony obj/sync/libtest_support_sync_internal_api.a
+build ppapi_cpp: phony obj/ppapi/libppapi_cpp.a
+build libvpx_asm_offsets_vpx_scale: phony obj/third_party/libvpx/libvpx_asm_offsets_vpx_scale.a
+build in_memory_url_index_cache_proto: phony obj/chrome/libin_memory_url_index_cache_proto.a
+build gen_asm_offsets_vpx_scale: phony obj/third_party/libvpx/gen_asm_offsets_vpx_scale.actions_rules_copies.stamp
+build flip_balsa_and_epoll_library: phony obj/net/libflip_balsa_and_epoll_library.a
+build ppapi_example_video_effects: phony lib/libppapi_example_video_effects.so
+build ppapi_example_flash_topmost: phony lib/libppapi_example_flash_topmost.so
+build packed_extra_resources: phony obj/chrome/packed_extra_resources.actions_rules_copies.stamp
+build video_render_module: phony obj/third_party/webrtc/modules/libvideo_render_module.a
+build base: phony obj/base/libbase.a
+build ppapi_example_c_stub: phony lib/libppapi_example_c_stub.so
+build libyuv: phony libyuv.a
+build content_worker: phony obj/content/libcontent_worker.a
+build osmesa: phony libosmesa.so
+build ppapi_example_enumerate_devices: phony lib/libppapi_example_enumerate_devices.so
+build re2: phony obj/third_party/re2/libre2.a
+build gen_asm_offsets_vp8: phony obj/third_party/libvpx/gen_asm_offsets_vp8.actions_rules_copies.stamp
+build nacl_switches: phony obj/components/libnacl_switches.a
+build openssl: phony obj/third_party/openssl/libopenssl.a
+build frontend_protocol_sources: phony gen/webcore/InspectorBackendCommands.js
+build test_support_content: phony obj/content/libtest_support_content.a
+build test_support_sync_core: phony obj/sync/libtest_support_sync_core.a
+build performance_monitor: phony obj/chrome/browser/performance_monitor/libperformance_monitor.a
+build symbolize: phony obj/base/libsymbolize.a
+build content_gpu: phony obj/content/libcontent_gpu.a
+build command_buffer_client: phony obj/gpu/libcommand_buffer_client.a
+build npapi_test_plugin: phony libnpapi_test_plugin.so
+build webcore_remaining: phony obj/third_party/WebKit/Source/core/libwebcore_remaining.a
+build chrome_resources: phony obj/chrome/chrome_resources.actions_rules_copies.stamp
+build supplemental_dependencies: phony $
+    obj/third_party/WebKit/Source/bindings/supplemental_dependencies.actions_rules_copies.stamp
+build blink: phony obj/third_party/WebKit/public/blink.actions_depends.stamp
+build concatenated_heap_snapshot_worker_js: phony resources/inspector/HeapSnapshotWorker.js
+build tld_cleanup_util: phony obj/net/tools/tld_cleanup/libtld_cleanup_util.a
+build glue_common: phony obj/webkit/support/libglue_common.a
+build remoting_jingle_glue: phony obj/remoting/libremoting_jingle_glue.a
+build webrtc_test_tools: phony obj/chrome/webrtc_test_tools.actions_depends.stamp
+build ppapi_proxy: phony obj/ppapi/libppapi_proxy.a
+build service: phony obj/chrome/libservice.a
+build content_app: phony obj/content/libcontent_app.a
+build common_audio_sse2: phony obj/third_party/webrtc/common_audio/libcommon_audio_sse2.a
+build gles2_utils: phony obj/gpu/command_buffer/libgles2_utils.a
+build gpu: phony obj/gpu/gpu.actions_depends.stamp
+build DumpRenderTree_resources: phony DumpRenderTree.pak
+build chrome_devtools_lib: phony obj/chrome/libchrome_devtools_lib.a
+build ppapi_example_url_loader_file: phony lib/libppapi_example_url_loader_file.so
+build concatenated_devtools_network_js: phony resources/inspector/NetworkPanel.js
+build G722: phony obj/third_party/webrtc/modules/libG722.a
+build libjingle_webrtc: phony obj/third_party/libjingle/libjingle_webrtc.a
+build webcore: phony obj/third_party/WebKit/Source/core/webcore.actions_depends.stamp
+build libevent: phony obj/third_party/libevent/libevent.a
+build compositor_test_support: phony obj/ui/compositor/libcompositor_test_support.a
+build ffmpeg: phony obj/third_party/ffmpeg/libffmpeg.a
+build unittest_config: phony obj/third_party/WebKit/Source/unittest_config.actions_depends.stamp
+build npapi_test_common: phony obj/webkit/plugins/libnpapi_test_common.a
+build webdata_common: phony obj/components/libwebdata_common.a
+build libpeerconnection: phony obj/third_party/libjingle/libpeerconnection.a
+build libwebp_demux: phony obj/third_party/libwebp/libwebp_demux.a
+build browser: phony obj/chrome/libbrowser.a
+build ppapi_example_simple_font: phony lib/libppapi_example_simple_font.so
+build devtools_resources: phony obj/content/browser/devtools/devtools_resources.actions_rules_copies.stamp
+build concatenated_script_formatter_worker_js: phony resources/inspector/ScriptFormatterWorker.js
+build base_prefs: phony obj/base/libbase_prefs.a
+build plugins: phony obj/webkit/support/libplugins.a
+build net_test_support: phony obj/net/libnet_test_support.a
+build gles2_cmd_helper: phony obj/gpu/libgles2_cmd_helper.a
+build widevine_cdm_version_h: phony gen/widevine_cdm_version.h
+build libwebp_dec: phony obj/third_party/libwebp/libwebp_dec.a
+build skia_opts_ssse3: phony obj/skia/libskia_opts_ssse3.a
+build libsrtp: phony obj/third_party/libsrtp/libsrtp.a
+build breakpad_common: phony obj/base/libbase.a
+build test_support_sync_api: phony obj/sync/libtest_support_sync_api.a
+build json_schema_compiler_tests: phony obj/tools/json_schema_compiler/test/libjson_schema_compiler_tests.a
+build test_support_base: phony obj/base/libtest_support_base.a
+build common_net: phony obj/chrome/libcommon_net.a
+build frame_editing_lib: phony obj/third_party/webrtc/tools/libframe_editing_lib.a
+build gpu_unittest_utils: phony obj/gpu/libgpu_unittest_utils.a
+build ui_unittest_strings: phony obj/ui/base/strings/ui_unittest_strings.actions_rules_copies.stamp
+build icuuc: phony obj/third_party/icu/libicuuc.a
+build chromotocol_proto_lib: phony obj/remoting/proto/libchromotocol_proto_lib.a
+build ppapi_example_file_chooser: phony lib/libppapi_example_file_chooser.so
+build dynamic_annotations: phony obj/base/third_party/dynamic_annotations/libdynamic_annotations.a
+build snapshot: phony obj/ui/snapshot/libsnapshot.a
+build test_support_sync_notifier: phony obj/sync/libtest_support_sync_notifier.a
+build remoting_webapp: phony obj/remoting/remoting_webapp.actions_rules_copies.stamp
+build video_processing: phony obj/third_party/webrtc/modules/libvideo_processing.a
+build webkit_storage_renderer: phony obj/webkit/libwebkit_storage_renderer.a
+build libwebp_dsp: phony obj/third_party/libwebp/libwebp_dsp.a
+build concatenated_devtools_js: phony resources/inspector/inspector.js
+build disk_cache_proto: phony obj/gpu/libdisk_cache_proto.a
+build metrics_proto: phony obj/chrome/libmetrics_proto.a
+build auto_login_parser: phony obj/components/libauto_login_parser.a
+build ppapi_example_crxfs: phony lib/libppapi_example_crxfs.so
+build libvpx_intrinsics_ssse3: phony obj/third_party/libvpx/libvpx_intrinsics_ssse3.a
+build NetEq: phony obj/third_party/webrtc/modules/libNetEq.a
+build content_renderer: phony obj/content/libcontent_renderer.a
+build webkit_test_support: phony obj/third_party/WebKit/Source/WebKit/chromium/libwebkit_test_support.a
+build protobuf_full_do_not_use: phony obj/third_party/protobuf/libprotobuf_full_do_not_use.a
+build v8_base.x64: phony obj/v8/tools/gyp/libv8_base.x64.a
+build variations_seed_proto: phony obj/chrome/libvariations_seed_proto.a
+build webrtc_vp8: phony obj/third_party/webrtc/modules/video_coding/codecs/vp8/libwebrtc_vp8.a
+build clearkeycdm: phony obj/webkit/support/clearkeycdm.actions_depends.stamp
+build py_proto: phony obj/third_party/protobuf/py_proto.actions_rules_copies.stamp
+build sessions_test_support: phony obj/components/libsessions_test_support.a
+build ssl: phony obj/build/linux/ssl.actions_depends.stamp
+build sync_core_tests: phony obj/sync/sync_core_tests.actions_depends.stamp
+build webkit_version: phony gen/webkit_version.h
+build content_browser: phony obj/content/libcontent_browser.a
+build ppapi_ipc: phony obj/ppapi/libppapi_ipc.a
+build device_bluetooth: phony obj/device/bluetooth/libdevice_bluetooth.a
+build chrome_unscaled_resources: phony obj/chrome/chrome_unscaled_resources.actions_rules_copies.stamp
+build inspector_instrumentation_sources: phony $
+    obj/third_party/WebKit/Source/core/inspector_instrumentation_sources.actions_rules_copies.stamp
+build sync_file_system_proto: phony obj/chrome/libsync_file_system_proto.a
+build common: phony obj/chrome/libcommon.a
+build theme_resources: phony obj/chrome/theme_resources.actions_depends.stamp
+build qcms: phony obj/third_party/qcms/libqcms.a
+build pyautolib: phony _pyautolib.so
+build webkit_compositor_bindings: phony obj/webkit/renderer/compositor_bindings/libwebkit_compositor_bindings.a
+build policy_test_support: phony obj/chrome/app/policy/policy_test_support.actions_depends.stamp
+build xdg_mime: phony obj/base/libxdg_mime.a
+build speech_proto: phony obj/content/browser/speech/proto/libspeech_proto.a
+build libphonenumber_without_metadata: phony obj/third_party/libphonenumber/libphonenumber_without_metadata.a
+build copy_npapi_test_plugin: phony plugins/libnpapi_test_plugin.so
+build net_with_v8: phony obj/net/libnet_with_v8.a
+build concatenated_devtools_resources_js: phony resources/inspector/ResourcesPanel.js
+build webcore_html: phony obj/third_party/WebKit/Source/core/libwebcore_html.a
+build browser_extensions: phony obj/chrome/libbrowser_extensions.a
+build gtest: phony obj/testing/libgtest.a
+build bitrate_controller: phony obj/third_party/webrtc/modules/libbitrate_controller.a
+build libpng: phony obj/third_party/libpng/libpng.a
+build ppapi_example_cc_stub: phony lib/libppapi_example_cc_stub.so
+build component_strings: phony obj/components/component_strings.actions_rules_copies.stamp
+build voice_engine: phony obj/third_party/webrtc/voice_engine/libvoice_engine.a
+build remoting_client: phony obj/remoting/libremoting_client.a
+build libwebp_utils: phony obj/third_party/libwebp/libwebp_utils.a
+build jingle_glue_test_util: phony obj/jingle/libjingle_glue_test_util.a
+build preprocessor: phony obj/third_party/angle_dx11/src/libpreprocessor.a
+build wtf: phony obj/third_party/WebKit/Source/wtf/libwtf.a
+build compositor: phony obj/ui/compositor/libcompositor.a
+build cc_test_utils: phony obj/cc/libcc_test_utils.a
+build blink_minimal: phony obj/third_party/WebKit/Source/WebKit/chromium/libblink_common.a
+build cloud_policy_proto_generated_compile: phony obj/chrome/app/policy/libcloud_policy_proto_generated_compile.a
+build glue_child: phony obj/webkit/support/libglue_child.a
+build remoting_host_plugin: phony libremoting_host_plugin.x64.so
+build plugin: phony obj/chrome/libplugin.a
+build content_shell_resources: phony shell_resources.pak
+build gles2_implementation_client_side_arrays_no_check: phony $
+    obj/gpu/libgles2_implementation_client_side_arrays_no_check.a
+build bindings_derived_sources: phony $
+    obj/third_party/WebKit/Source/bindings/bindings_derived_sources.actions_rules_copies.stamp
+build webkit_base: phony obj/webkit/base/libwebkit_base.a
+build command_buffer_service: phony obj/gpu/libcommand_buffer_service.a
+build leveldatabase: phony obj/third_party/leveldatabase/libleveldatabase.a
+build user_agent: phony obj/webkit/common/user_agent/libuser_agent.a
+build ppapi_example_video_decode: phony lib/libppapi_example_video_decode.so
+build icui18n: phony obj/third_party/icu/libicui18n.a
+build v8_nosnapshot.x64: phony obj/v8/tools/gyp/libv8_nosnapshot.x64.a
+build content_shell_pak: phony content_shell.pak
+build hyphen: phony obj/third_party/hyphen/libhyphen.a
+build inspector_protocol_sources: phony $
+    obj/third_party/WebKit/Source/core/inspector_protocol_sources.actions_rules_copies.stamp
+build libspeex: phony obj/third_party/speex/libspeex.a
+build ffmpeg_yasm: phony obj/third_party/ffmpeg/libffmpeg_yasm.a
+build sync_tools_helper: phony obj/sync/libsync_tools_helper.a
+build autofill_content_renderer: phony obj/components/libautofill_content_renderer.a
+build webrtc_utility: phony obj/third_party/webrtc/modules/libwebrtc_utility.a
+build v8-i18n: phony obj/third_party/v8-i18n/build/libv8-i18n.a
+build cacheinvalidation_proto_cpp: phony obj/third_party/cacheinvalidation/libcacheinvalidation_proto_cpp.a
+build ppapi_example_printing: phony lib/libppapi_example_printing.so
+build media_mmx: phony obj/media/libmedia_mmx.a
+build undoview: phony obj/third_party/undoview/libundoview.a
+build webkit_support_common: phony obj/webkit/support/libwebkit_support_common.a
+build ppapi_example_graphics_2d: phony lib/libppapi_example_graphics_2d.so
+build chromedriver_lib: phony obj/chrome/libchromedriver_lib.a
+build ots: phony obj/third_party/ots/libots.a
+build postmortem-metadata: phony gen/debug-support.cc
+build zlib: phony obj/third_party/zlib/libchrome_zlib.a
+build webkit_support_gfx: phony obj/webkit/support/libwebkit_support_gfx.a
+build autofill_core_common: phony obj/components/libautofill_core_common.a
+build visitedlink_renderer: phony obj/components/libvisitedlink_renderer.a
+build libwebp_enc: phony obj/third_party/libwebp/libwebp_enc.a
+build device_usb: phony obj/device/usb/libdevice_usb.a
+build common_constants: phony obj/chrome/libcommon_constants.a
+build ppapi_example_post_message: phony lib/libppapi_example_post_message.so
+build test_support_unit: phony obj/chrome/libtest_support_unit.a
+build surface: phony obj/ui/surface/libsurface.a
+build generate_content_resources: phony obj/content/generate_content_resources.actions_rules_copies.stamp
+build libxml: phony obj/third_party/libxml/libxml.a
+build desktop_capture: phony obj/third_party/webrtc/modules/libdesktop_capture.a
+build ppapi_egl: phony obj/ppapi/libppapi_egl.a
+build audio_coding_module: phony obj/third_party/webrtc/modules/libaudio_coding_module.a
+build cityhash: phony obj/third_party/smhasher/libcityhash.a
+build media: phony obj/media/libmedia.a
+build gles2_c_lib: phony obj/gpu/libgles2_c_lib.a
+build test_support_ui_runner: phony obj/chrome/libtest_support_ui_runner.a
+build cloud_policy_proto: phony obj/chrome/libcloud_policy_proto.a
+build libvpx_intrinsics_sse2: phony obj/third_party/libvpx/libvpx_intrinsics_sse2.a
+build webkit_storage_common: phony obj/webkit/libwebkit_storage_common.a
+build gpu_ipc: phony obj/gpu/libgpu_ipc.a
+build glue_renderer: phony obj/webkit/support/libglue_renderer.a
+build libphonenumber: phony obj/third_party/libphonenumber/libphonenumber.a
+build concatenated_devtools_css: phony $
+    obj/third_party/WebKit/Source/devtools/concatenated_devtools_css.actions_rules_copies.stamp
+build base_static: phony obj/base/libbase_static.a
+build libpci: phony obj/build/linux/libpci.a
+build v8: phony obj/v8/tools/gyp/v8.actions_depends.stamp
+build TestNetscapePlugIn: phony libTestNetscapePlugIn.so
+build content_shell_lib: phony obj/content/libcontent_shell_lib.a
+build ppapi_cpp_objects: phony obj/ppapi/libppapi_cpp_objects.a
+build remoting_host_logging: phony obj/remoting/libremoting_host_logging.a
+build ppapi_example_scaling: phony lib/libppapi_example_scaling.so
+build quic_library: phony obj/net/libquic_library.a
+build modp_b64: phony obj/third_party/modp_b64/libmodp_b64.a
+build generate_test_support_idls: phony $
+    obj/third_party/WebKit/Source/core/generate_test_support_idls.actions_rules_copies.stamp
+build iLBC: phony obj/third_party/webrtc/modules/libiLBC.a
+build webcore_svg: phony obj/third_party/WebKit/Source/core/libwebcore_svg.a
+build autofill_regexes: phony gen/autofill_regex_constants.cc
+build chromedriver2_server_lib: phony obj/chrome/libchromedriver2_server_lib.a
+build cert_logger_proto: phony obj/chrome/libcert_logger_proto.a
+build feedback_proto: phony obj/chrome/libfeedback_proto.a
+build libvpx: phony obj/third_party/libvpx/libvpx.a
+build chrome_settings_proto_generated_compile: phony obj/chrome/app/policy/libchrome_settings_proto_generated_compile.a
+build skia_opts: phony obj/skia/libskia_opts.a
+build remoting_host_setup_base: phony obj/remoting/libremoting_host_setup_base.a
+build test_support_sql: phony obj/sql/libtest_support_sql.a
+build glue: phony obj/webkit/support/libglue.a
+build sync_notifier_tests: phony obj/sync/sync_notifier_tests.actions_depends.stamp
+build ppapi_tests: phony libppapi_tests.so
+build libXNVCtrl: phony obj/third_party/libXNVCtrl/libXNVCtrl.a
+build dbus_test_proto: phony obj/dbus/libdbus_test_proto.a
+build concatenated_devtools_profiles_js: phony resources/inspector/ProfilesPanel.js
+build cc: phony obj/cc/libcc.a
+build snappy: phony obj/third_party/snappy/libsnappy.a
+build ppapi_unittest_shared: phony obj/ppapi/libppapi_unittest_shared.a
+build webkit_compositor_support: phony obj/webkit/renderer/compositor_bindings/libwebkit_compositor_support.a
+build base_prefs_test_support: phony obj/base/libbase_prefs_test_support.a
+build sync_api: phony obj/sync/libsync_api.a
+build browser_ui_views: phony obj/chrome/libbrowser_ui_views.a
+build ppapi_shared: phony obj/ppapi/libppapi_shared.a
+build concatenated_devtools_codemirror_js: phony resources/inspector/CodeMirrorTextEditor.js
+build autofill_core_browser: phony obj/components/libautofill_core_browser.a
+build gtest_main: phony obj/testing/libgtest_main.a
+build safe_browsing: phony obj/third_party/protobuf/py_proto.actions_rules_copies.stamp
+build ppapi_example_gles2: phony lib/libppapi_example_gles2.so
+build chromedriver2: phony libchromedriver2.so
+build jsoncpp: phony obj/third_party/jsoncpp/libjsoncpp.a
+build devtools_html: phony resources/inspector/devtools.html
+build debugger_script_source: phony gen/webkit/DebuggerScriptSource.h
+build injected_canvas_script_source: phony gen/webkit/InjectedScriptCanvasModuleSource.h
+build ppapi_example_audio_input: phony lib/libppapi_example_audio_input.so
+build ui_resources: phony obj/ui/ui_resources.actions_rules_copies.stamp
+build ppapi_example_mouse_lock: phony lib/libppapi_example_mouse_lock.so
+build TestRunner: phony obj/third_party/WebKit/Tools/DumpRenderTree/DumpRenderTree.gyp/libTestRunner.a
+build ppapi_example_mouse_cursor: phony lib/libppapi_example_mouse_cursor.so
+build srtp_runtest: phony obj/third_party/libsrtp/srtp_runtest.actions_depends.stamp
+build v8_snapshot: phony obj/v8/tools/gyp/libv8_snapshot.a
+build libssl: phony obj/net/third_party/nss/libcrssl.a
+build run_all_unittests: phony obj/base/librun_all_unittests.a
+build webkit_media: phony obj/webkit/support/libwebkit_media.a
+build weborigin: phony obj/third_party/WebKit/Source/weborigin/libweborigin.a
+build lzma_sdk: phony obj/third_party/lzma_sdk/liblzma_sdk.a
+build video_coding_utility: phony obj/third_party/webrtc/modules/video_coding/utility/libvideo_coding_utility.a
+build media_test_support: phony obj/media/libmedia_test_support.a
+build ppapi_example_paint_manager: phony lib/libppapi_example_paint_manager.so
+build NetEq4: phony obj/third_party/webrtc/modules/libNetEq4.a
+build webrtc_i420: phony obj/third_party/webrtc/modules/libwebrtc_i420.a
+build webcore_test_support: phony obj/third_party/WebKit/Source/core/libwebcore_test_support.a
+build content_resources: phony content_resources.pak
+build audio_processing_sse2: phony obj/third_party/webrtc/modules/libaudio_processing_sse2.a
+build test_support_sync_testserver: phony obj/sync/libtest_support_sync_testserver.a
+build tracing: phony obj/components/libtracing.a
+build notifier_test_util: phony obj/jingle/libnotifier_test_util.a
+build test_support_common: phony obj/chrome/libtest_support_common.a
+build visitedlink_browser: phony obj/components/libvisitedlink_browser.a
+build remoting_base: phony obj/remoting/libremoting_base.a
+build common_audio: phony obj/third_party/webrtc/common_audio/libcommon_audio.a
+build generate_content_shell_resources: phony obj/content/generate_content_shell_resources.actions_rules_copies.stamp
+build ash_strings: phony obj/ash/ash_strings.actions_rules_copies.stamp
+build content_ppapi_plugin: phony obj/content/libcontent_ppapi_plugin.a
+build device_bluetooth_mocks: phony obj/device/bluetooth/libdevice_bluetooth_mocks.a
+build harfbuzz-ng: phony obj/third_party/harfbuzz-ng/libharfbuzz-ng.a
+build test_support_ipc: phony obj/ipc/libtest_support_ipc.a
+build utility: phony obj/chrome/libutility.a
+build generate_devtools_grd: phony gen/devtools/devtools_resources.grd
+build apps: phony obj/chrome/libapps.a
+build run_ui_unittests: phony obj/ui/librun_ui_unittests.a
+build opus: phony obj/third_party/opus/libopus.a
+build content_child: phony obj/content/libcontent_child.a
+build gio: phony obj/build/linux/libgio.a
+build desktop_capture_differ_sse2: phony obj/third_party/webrtc/modules/libdesktop_capture_differ_sse2.a
+build platform_locale_settings: phony obj/chrome/platform_locale_settings.actions_rules_copies.stamp
+build audio_processing: phony obj/third_party/webrtc/modules/libaudio_processing.a
+build message_center_test_support: phony obj/ui/message_center/libmessage_center_test_support.a
+build jingle_glue: phony obj/jingle/libjingle_glue.a
+build media_asm: phony obj/media/libmedia_asm.a
+build icudata: phony obj/third_party/icu/libicudata.a
+build about_credits: phony gen/about_credits.html
+build gles2_c_lib_nocheck: phony obj/gpu/libgles2_c_lib_nocheck.a
+build autofill_content_browser: phony obj/components/libautofill_content_browser.a
+build cc_test_support: phony obj/cc/libcc_test_support.a
+build shell_dialogs: phony obj/ui/libshell_dialogs.a
+build ui: phony obj/ui/libui.a
+build hunspell: phony obj/third_party/hunspell/libhunspell.a
+build autofill_content_risk_proto: phony obj/components/libautofill_content_risk_proto.a
+build test_mock_plugin_list: phony obj/webkit/plugins/libtest_mock_plugin_list.a
+build ppapi_example_scroll: phony lib/libppapi_example_scroll.so
+build native_theme: phony obj/ui/native_theme/libnative_theme.a
+build web_dialogs_test_support: phony obj/ui/web_dialogs/libweb_dialogs_test_support.a
+build allocator: phony obj/base/allocator/liballocator.a
+build libflac: phony obj/third_party/flac/libflac.a
+build policy_path_parser: phony obj/chrome/libpolicy_path_parser.a
+build concatenated_devtools_timeline_js: phony resources/inspector/TimelinePanel.js
+build content_plugin: phony obj/content/libcontent_plugin.a
+build CNG: phony obj/third_party/webrtc/modules/libCNG.a
+build sql: phony obj/sql/libsql.a
+build webcore_platform_geometry: phony obj/third_party/WebKit/Source/core/libwebcore_platform_geometry.a
+build remoting_protocol: phony obj/remoting/libremoting_protocol.a
+build injected_script_source: phony gen/webkit/InjectedScriptSource.h
+build modules: phony obj/third_party/WebKit/Source/modules/libmodules.a
+build content_shell_builder: phony content_shell
+build video_quality_analysis: phony obj/third_party/webrtc/tools/libvideo_quality_analysis.a
+build libjingle_p2p_constants: phony obj/third_party/libjingle/libjingle_p2p_constants.a
+build command_line_parser: phony obj/third_party/webrtc/tools/libcommand_line_parser.a
+build encryptor: phony obj/components/libencryptor.a
+
+build all: phony obj/v8/tools/gyp/libv8_nosnapshot.x64.a obj/third_party/icu/libicuuc.a $
+    obj/third_party/libjingle/libjingle.a rgba_to_i420_converter obj/third_party/icu/libicudata.a $
+    obj/third_party/libvpx/libvpx.a obj/chrome/libservice.a obj/third_party/angle_dx11/src/libtranslator_glsl.a $
+    obj/third_party/WebKit/Source/core/make_derived_sources.actions_rules_copies.stamp $
+    obj/chrome/libchromedriver2_lib.a obj/chrome/libbrowser.a obj/content/libtest_support_content.a $
+    obj/third_party/webrtc/modules/libPCM16B.a obj/chrome/app/policy/libpolicy.a frame_analyzer soft_gpu_tests $
+    obj/chrome/packed_extra_resources.actions_rules_copies.stamp obj/jingle/libnotifier.a $
+    obj/third_party/hyphen/libhyphen.a obj/third_party/webrtc/modules/video_coding/utility/libvideo_coding_utility.a $
+    obj/base/libsymbolize.a gen/chrome/common/chrome_version_info_posix.h obj/third_party/protobuf/libprotobuf_lite.a $
+    obj/third_party/libwebp/libwebp.actions_depends.stamp obj/third_party/WebKit/Source/WebKit/chromium/libwebkit.a $
+    obj/chrome/chrome_unscaled_resources.actions_rules_copies.stamp $
+    obj/third_party/v8-i18n/build/api2c.actions_rules_copies.stamp sync_performance_tests $
+    obj/third_party/webrtc/tools/libvideo_quality_analysis.a $
+    obj/third_party/WebKit/Source/devtools/devtools_frontend_resources.actions_rules_copies.stamp $
+    obj/third_party/WebKit/Source/core/generate_test_support_idls.actions_rules_copies.stamp $
+    obj/media/libmedia_test_support.a chrome_app_unittests $
+    obj/third_party/WebKit/Source/devtools/concatenated_devtools_css.actions_rules_copies.stamp $
+    obj/base/libbase_static.a obj/third_party/webrtc/tools/libcommand_line_parser.a obj/ui/gl/libgl_wrapper.a $
+    chromedriver2_server obj/sync/libsync_notifier.a obj/webkit/plugins/libtest_mock_plugin_list.a $
+    obj/third_party/webrtc/modules/libaudio_device.a obj/chrome/libchromedriver_lib.a obj/chrome/libcommon.a $
+    obj/gpu/command_buffer/libgles2_utils.a obj/chrome/theme_resources_gen.actions_rules_copies.stamp $
+    obj/chrome/libsync_file_system_proto.a obj/sync/libsync_internal_api.a obj/ui/web_dialogs/libweb_dialogs.a $
+    obj/third_party/libXNVCtrl/libXNVCtrl.a obj/gpu/libcommand_buffer_common.a obj/chrome/libcert_logger_proto.a $
+    obj/third_party/WebKit/Source/core/libwebcore_derived.a obj/gpu/libgles2_implementation.a libvpx_obj_int_extract $
+    libffmpegsumo.so obj/tools/json_schema_compiler/test/libjson_schema_compiler_tests.a obj/media/libmedia_asm.a $
+    obj/base/libxdg_mime.a obj/content/libcontent_browser.a gen/webkit/InjectedScriptSource.h $
+    obj/base/third_party/dynamic_annotations/libdynamic_annotations.a resources/inspector/AuditsPanel.js $
+    obj/net/tools/tld_cleanup/libtld_cleanup_util.a obj/remoting/remoting_resources.actions_rules_copies.stamp $
+    obj/third_party/qcms/libqcms.a obj/sync/libtest_support_sync_testserver.a $
+    obj/third_party/webrtc/modules/libvideo_processing_sse2.a obj/components/libautofill_core_browser.a $
+    obj/third_party/webrtc/modules/libmedia_file.a obj/components/libsessions_test_support.a $
+    obj/third_party/angle_dx11/src/libtranslator_common.a obj/chrome/libin_memory_url_index_cache_proto.a $
+    obj/build/linux/libgio.a obj/media/libmedia_sse2.a obj/components/libnacl_switches.a obj/content/libcontent_gpu.a $
+    obj/third_party/lzma_sdk/liblzma_sdk.a obj/webkit/support/clearkeycdmadapter.actions_depends.stamp $
+    obj/v8/tools/gyp/js2c.actions_rules_copies.stamp obj/sync/libsync_proto.a resources/inspector/ResourcesPanel.js $
+    gen/widevine_cdm_version.h obj/chrome/common/extensions/api/libapi.a $
+    obj/webkit/support/libwebkit_support_common.a perf_tests obj/remoting/libremoting_client_plugin.a $
+    obj/remoting/libremoting_client.a obj/base/libtest_support_perf.a obj/third_party/icu/libicui18n.a $
+    obj/components/libvisitedlink_browser.a obj/webkit/common/gpu/libwebkit_gpu.a $
+    obj/third_party/protobuf/libprotobuf_full_do_not_use.a obj/sync/libtest_support_sync_api.a $
+    obj/third_party/webrtc/system_wrappers/source/libsystem_wrappers.a flush_cache $
+    obj/third_party/webrtc/modules/libaudio_processing.a obj/webkit/common/user_agent/libuser_agent.a unit_tests $
+    obj/dbus/libdbus_test_support.a libchromedriver2.so obj/sql/libsql.a obj/components/libtracing.a $
+    obj/ppapi/libppapi_host.a obj/third_party/libvpx/libvpx_asm_offsets_vp8.a obj/chrome/libmetrics_proto.a $
+    obj/webkit/support/libglue.a obj/content/libcontent_worker.a resources/inspector/devtools_extension_api.js $
+    obj/chrome/browser/performance_monitor/libperformance_monitor.a _pyautolib.so obj/sync/sync.actions_depends.stamp $
+    obj/chrome/app/policy/policy_test_support.actions_depends.stamp resources/inspector/ProfilesPanel.js $
+    obj/third_party/smhasher/libcityhash.a obj/components/libautofill_content_browser.a $
+    obj/third_party/mesa/libmesa.a obj/third_party/smhasher/libmurmurhash3.a obj/chrome/libtest_support_ui.a $
+    obj/third_party/webrtc/modules/libiSAC.a obj/url/liburl_lib.a obj/third_party/webrtc/modules/librtp_rtcp.a $
+    obj/v8/tools/gyp/libv8_snapshot.a obj/third_party/jsoncpp/libjsoncpp.a obj/device/bluetooth/libdevice_bluetooth.a $
+    obj/chrome/libdebugger.a obj/third_party/webrtc/modules/libG711.a obj/chrome/libfeedback_proto.a $
+    libppapi_tests.so obj/chrome/libapps.a obj/components/libuser_prefs.a obj/build/linux/libpci.a $
+    obj/third_party/mt19937ar/libmt19937ar.a obj/third_party/WebKit/Source/core/libwebcore_platform.a $
+    resources/inspector/TimelinePanel.js obj/third_party/libpng/libpng.a obj/base/librun_all_unittests.a $
+    obj/webkit/base/libwebkit_base.a obj/third_party/libwebp/libwebp_dsp.a $
+    obj/chrome/chrome_strings.actions_rules_copies.stamp libTestNetscapePlugIn.so gen/webkit/InspectorOverlayPage.h $
+    obj/third_party/cld/libcld.a gen/webkit/InjectedScriptCanvasModuleSource.h obj/chrome/libchromedriver_support.a $
+    obj/gpu/libdisk_cache_proto.a obj/build/linux/libspeechd.a obj/content/libcontent_utility.a $
+    obj/third_party/WebKit/Source/core/libwebcore_dom.a obj/ui/compositor/libcompositor.a $
+    obj/net/net_resources.actions_rules_copies.stamp $
+    obj/third_party/webrtc/modules/video_coding/codecs/vp8/libwebrtc_vp8.a $
+    obj/tools/json_schema_compiler/libapi_gen_util.a obj/third_party/cacheinvalidation/libcacheinvalidation.a $
+    obj/third_party/libvpx/libvpx_intrinsics_sse2.a obj/gpu/libcommand_buffer_client.a $
+    obj/third_party/libwebp/libwebp_enc.a obj/ppapi/libppapi_ipc.a obj/sdch/libsdch.a chromedriver_unittests $
+    resources/inspector/CodeMirrorTextEditor.js obj/ppapi/libppapi_shared.a obj/testing/libgmock.a $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.actions_depends.stamp obj/testing/libgtest.a $
+    obj/third_party/sfntly/libsfntly.a $
+    obj/third_party/WebKit/Tools/DumpRenderTree/DumpRenderTree.gyp/TestRunner_resources.actions_rules_copies.stamp $
+    obj/media/libshared_memory_support.a obj/third_party/webrtc/modules/libbitrate_controller.a $
+    obj/third_party/libwebp/libwebp_demux.a convert_dict $
+    obj/third_party/cacheinvalidation/libcacheinvalidation_proto_cpp.a $
+    obj/components/component_strings.actions_rules_copies.stamp obj/v8/tools/gyp/libv8_base.x64.a $
+    obj/sync/libsync_api.a obj/chrome/libtest_support_common.a obj/third_party/re2/libre2.a $
+    obj/ppapi/libppapi_proxy.a interactive_ui_tests obj/components/libautofill_content_risk_proto.a $
+    obj/base/libbase_i18n.a obj/base/libbase.a obj/third_party/libwebp/libwebp_dec.a $
+    obj/chrome/platform_locale_settings.actions_rules_copies.stamp obj/gpu/libgles2_c_lib.a $
+    obj/third_party/webrtc/modules/libaudio_conference_mixer.a chromedriver2_unittests sync_integration_tests $
+    obj/chrome/libtest_support_unit.a resources/inspector/inspector.js $
+    obj/third_party/WebKit/Tools/DumpRenderTree/DumpRenderTree.gyp/libTestRunner.a $
+    obj/third_party/webrtc/modules/libwebrtc_i420.a obj/third_party/WebKit/Source/core/libwebcore_test_support.a $
+    obj/chrome/libpolicy_path_parser.a gen/webkit/InspectorProtocolVersion.h resources/inspector/ScriptsPanel.js $
+    obj/ui/message_center/libmessage_center.a obj/components/libsessions.a obj/ui/libui.a $
+    obj/third_party/libjingle/libjingle_webrtc_common.a obj/ui/base/strings/ui_strings.actions_rules_copies.stamp $
+    obj/chrome/libsafe_browsing_report_proto.a $
+    obj/content/browser/devtools/devtools_resources.actions_rules_copies.stamp $
+    obj/chrome/webrtc_test_tools.actions_depends.stamp obj/third_party/ffmpeg/libffmpeg.a $
+    obj/third_party/webrtc/modules/libwebrtc_utility.a obj/third_party/WebKit/Source/weborigin/libweborigin.a $
+    obj/media/libmedia.a obj/components/libvisitedlink_common.a obj/chrome/libinstaller_util.a $
+    obj/media/libmedia_sse.a obj/skia/libskia_opts.a $
+    obj/third_party/WebKit/Source/core/inspector_instrumentation_sources.actions_rules_copies.stamp $
+    obj/third_party/webrtc/common_audio/libcommon_audio_sse2.a obj/third_party/leveldatabase/libleveldatabase.a $
+    obj/ppapi/libppapi_unittest_shared.a obj/sync/libsync_core.a xdisplaycheck reliability_tests $
+    obj/webkit/renderer/compositor_bindings/libwebkit_compositor_support.a $
+    obj/chrome/theme_resources.actions_depends.stamp obj/remoting/libremoting_protocol.a $
+    obj/third_party/flac/libflac.a obj/components/libbrowser_context_keyed_service.a $
+    obj/chrome/libbrowser_extensions.a obj/v8/tools/gyp/v8.actions_depends.stamp obj/skia/libskia_opts_ssse3.a $
+    obj/chrome/libcloud_policy_proto.a automated_ui_tests obj/third_party/WebKit/public/blink.actions_depends.stamp $
+    obj/components/libautofill_content_renderer.a obj/webkit/support/webkit_strings.actions_rules_copies.stamp $
+    obj/third_party/webrtc/modules/libremote_bitrate_estimator.a obj/webkit/plugins/libplugins_common.a $
+    obj/webkit/support/libglue_child.a obj/third_party/libevent/libevent.a $
+    obj/third_party/WebKit/Source/core/libwebcore_html.a $
+    obj/third_party/WebKit/Source/bindings/supplemental_dependencies.actions_rules_copies.stamp $
+    obj/third_party/opus/libopus.a obj/ui/snapshot/libsnapshot.a obj/third_party/harfbuzz-ng/libharfbuzz-ng.a $
+    obj/base/allocator/liballocator_extension_thunks.a obj/third_party/libjingle/libjingle_webrtc.a $
+    obj/third_party/snappy/libsnappy.a obj/base/libtest_support_base.a obj/net/libnet_test_support.a $
+    obj/chrome/libvariations_seed_proto.a obj/third_party/webrtc/modules/libiLBC.a $
+    obj/third_party/webrtc/modules/libpaced_sender.a $
+    obj/third_party/WebKit/Source/core/inspector_protocol_sources.actions_rules_copies.stamp $
+    obj/third_party/webrtc/modules/libvideo_capture_module.a obj/media/libmedia_mmx.a obj/gpu/libgpu_ipc.a $
+    obj/third_party/protobuf/py_proto.actions_rules_copies.stamp obj/ui/ui_resources.actions_rules_copies.stamp $
+    obj/third_party/libphonenumber/libphonenumber_without_metadata.a obj/net/third_party/nss/libcrssl.a $
+    obj/third_party/WebKit/Source/core/libwebcore_rendering.a $
+    obj/third_party/WebKit/Source/core/libwebcore_remaining.a protoc $
+    obj/content/browser/speech/proto/libspeech_proto.a obj/chrome/chrome_resources.actions_rules_copies.stamp $
+    chromedriver obj/webkit/libwebkit_storage_renderer.a gen/devtools/devtools_resources.grd $
+    obj/chrome/chrome_extra_resources.actions_rules_copies.stamp obj/third_party/WebKit/Source/wtf/libwtf.a $
+    obj/third_party/hunspell/libhunspell.a obj/third_party/zlib/libzip.a chrome $
+    obj/chrome/browser/search_engines/libprepopulated_engines.a obj/third_party/modp_b64/libmodp_b64.a $
+    obj/components/libvisitedlink_renderer.a obj/ui/libshell_dialogs.a obj/ipc/libtest_support_ipc.a $
+    obj/chrome/libcommon_net.a chromedriver2_tests obj/chrome/libutility.a obj/components/libauto_login_parser.a $
+    obj/third_party/libjpeg_turbo/libjpeg_turbo.a obj/third_party/libphonenumber/libphonenumber.a v8_shell $
+    obj/third_party/speex/libspeex.a resources/inspector/ElementsPanel.js gen/about_credits.html libyuv.a $
+    obj/components/libwebdata_common.a obj/third_party/libvpx/gen_asm_offsets_vp8.actions_rules_copies.stamp $
+    obj/content/libcontent_common.a obj/gpu/libgpu_unittest_utils.a obj/webkit/libwebkit_storage_common.a $
+    obj/webkit/support/libwebkit_common.a obj/content/libcontent_app.a obj/third_party/libsrtp/libsrtp.a $
+    obj/content/libcontent_renderer.a obj/components/libencryptor.a obj/skia/libskia.a $
+    obj/chrome/libsafe_browsing_proto.a obj/third_party/webrtc/common_audio/libcommon_audio.a $
+    obj/content/libcontent_ppapi_plugin.a plugins/libTestNetscapePlugIn.so $
+    obj/third_party/webrtc/modules/libaudio_processing_sse2.a ipclist obj/chrome/librenderer.a obj/net/libnet.a $
+    obj/third_party/WebKit/Source/core/libwebcore_platform_geometry.a obj/chrome/libchromedriver2_server_lib.a $
+    obj/third_party/webrtc/modules/libdesktop_capture_differ_sse2.a $
+    obj/third_party/WebKit/Source/core/libwebcore_svg.a obj/components/libnavigation_interception.a $
+    obj/base/libbase_prefs_test_support.a obj/third_party/zlib/libchrome_zlib.a resources/inspector/devtools.html $
+    ImageDiff gen/autofill_regex_constants.cc obj/third_party/zlib/libminizip.a $
+    resources/inspector/HeapSnapshotWorker.js libosmesa.so obj/device/bluetooth/libdevice_bluetooth_mocks.a $
+    obj/gpu/gpu.actions_depends.stamp obj/third_party/libwebp/libwebp_utils.a $
+    obj/third_party/webrtc/modules/libG722.a obj/third_party/webrtc/modules/libCNG.a $
+    obj/chrome/libtest_support_ui_runner.a gen/webkit/DebuggerScriptSource.h content_resources.pak $
+    obj/chrome/libchrome_devtools_lib.a obj/gpu/libgles2_cmd_helper.a $
+    obj/chrome/app/policy/libcloud_policy_proto_generated_compile.a obj/webkit/support/libglue_common.a $
+    obj/ipc/libipc.a peerconnection_server obj/third_party/ots/libots.a gpu_tests $
+    obj/third_party/webrtc/modules/libwebrtc_opus.a obj/third_party/webrtc/modules/libaudio_coding_module.a $
+    obj/ui/surface/libsurface.a obj/google_apis/libgoogle_apis.a $
+    obj/chrome/packed_resources.actions_rules_copies.stamp obj/build/linux/ssl.actions_depends.stamp $
+    obj/ui/native_theme/libnative_theme.a resources/inspector/ScriptFormatterWorker.js $
+    obj/third_party/webrtc/modules/libwebrtc_video_coding.a obj/components/libweb_modal.a $
+    obj/device/bluetooth/device_bluetooth_strings.actions_rules_copies.stamp gen/flapper_version.h $
+    obj/components/libautofill_content_test_util.a obj/third_party/webrtc/modules/libNetEq.a $
+    resources/inspector/NetworkPanel.js obj/third_party/angle_dx11/src/libpreprocessor.a $
+    obj/third_party/webrtc/modules/libvideo_render_module.a $
+    obj/third_party/WebKit/Source/WebKit/chromium/libwebkit_test_support.a obj/jingle/libjingle_glue.a $
+    performance_browser_tests obj/third_party/webrtc/video_engine/libvideo_engine_core.a performance_ui_tests $
+    obj/third_party/ffmpeg/libffmpeg_yasm.a obj/ui/web_dialogs/libweb_dialogs_test_support.a $
+    obj/third_party/libvpx/libvpx_intrinsics_mmx.a obj/remoting/libremoting_jingle_glue.a libnpapi_test_plugin.so $
+    obj/cc/libcc.a obj/third_party/libjingle/libjingle_p2p_constants.a obj/webkit/support/libplugins.a $
+    obj/chrome/libconvert_dict.a obj/remoting/proto/libchromotocol_proto_lib.a obj/content/libcontent_child.a $
+    obj/chrome/libbrowser_ui.a obj/device/usb/libdevice_usb.a obj/third_party/webrtc/modules/libiSACFix.a $
+    obj/chrome/libplugin.a obj/base/libbase_prefs.a obj/dbus/libdbus.a $
+    obj/third_party/webrtc/modules/libvideo_processing.a obj/remoting/libremoting_base.a $
+    obj/third_party/libxml/libxml.a obj/webkit/support/clearkeycdm.actions_depends.stamp $
+    obj/sync/libtest_support_sync_notifier.a obj/webkit/libwebkit_storage_browser.a obj/chrome/libcommon_constants.a $
+    obj/ppapi/libppapi_cpp_objects.a obj/ppapi/libppapi_cpp.a obj/crypto/libcrcrypto.a $
+    obj/webkit/renderer/compositor_bindings/libwebkit_compositor_bindings.a gen/webcore/InspectorBackendCommands.js $
+    obj/third_party/sqlite/libsqlite3.a obj/chrome/libbrowser_ui_views.a $
+    obj/ash/ash_strings.actions_rules_copies.stamp obj/third_party/WebKit/Source/WebKit/chromium/libblink_common.a $
+    browser_tests obj/content/generate_content_resources.actions_rules_copies.stamp $
+    obj/components/libautofill_core_common.a mksnapshot.x64 obj/third_party/libjingle/libpeerconnection.a $
+    obj/webkit/support/libglue_renderer.a obj/third_party/webrtc/modules/libaudioproc_debug_proto.a $
+    obj/webkit/support/libwebkit_media.a obj/third_party/undoview/libundoview.a obj/gpu/libgpu_config.a $
+    obj/chrome/app/policy/cloud_policy_code_generate.actions_rules_copies.stamp obj/net/libhttp_server.a $
+    obj/sync/libtest_support_sync_internal_api.a obj/third_party/webrtc/common_video/libcommon_video.a $
+    obj/printing/libprinting.a obj/third_party/libvpx/libvpx_intrinsics_ssse3.a obj/ui/gl/libgl_unittest_utils.a $
+    plugins/libnpapi_test_plugin.so obj/third_party/iccjpeg/libiccjpeg.a $
+    obj/chrome/app/policy/libchrome_settings_proto_generated_compile.a $
+    obj/third_party/webrtc/modules/libdesktop_capture.a obj/media/libshared_memory_support_sse.a $
+    obj/content/libcontent_plugin.a $
+    obj/third_party/WebKit/Source/bindings/bindings_derived_sources.actions_rules_copies.stamp $
+    obj/net/libnet_with_v8.a obj/third_party/WebKit/Source/core/webcore.actions_depends.stamp $
+    obj/ui/libui_test_support.a obj/third_party/webrtc/voice_engine/libvoice_engine.a $
+    obj/webkit/support/libwebkit_support_gfx.a obj/webkit/plugins/libnpapi_test_common.a $
+    obj/gpu/libcommand_buffer_service.a obj/third_party/v8-i18n/build/libv8-i18n.a gen/webkit_version.h $
+    obj/third_party/WebKit/Source/modules/libmodules.a obj/sync/libtest_support_sync_core.a $
+    obj/webkit/support/webkit_resources.actions_rules_copies.stamp
+default all
