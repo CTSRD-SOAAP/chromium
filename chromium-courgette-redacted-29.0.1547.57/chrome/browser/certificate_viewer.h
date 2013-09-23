@@ -28,4 +28,7 @@ void ShowCertificateViewer(content::WebContents* web_contents,
                            gfx::NativeWindow parent,
                            net::X509Certificate* cert);
 
+void ShowCertificateViewerWebUI(content::WebContents* web_contents,
+                           gfx::NativeWindow parent,
+                           net::X509Certificate* cert);
 #endif  // CHROME_BROWSER_CERTIFICATE_VIEWER_H_
