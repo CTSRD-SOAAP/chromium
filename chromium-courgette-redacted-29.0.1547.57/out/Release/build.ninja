@@ -68,7 +68,7 @@ rule chromebclink
   command = $ld -B /usr/local/bin -Wl,-z,now -Wl,-z,relro -pthread -Wl,-z,noexecstack -fPIC -Wl,--no-keep-memory -L. -L/usr/local/lib -L/usr/local/lib/nss -Wl,-O1 -Wl,--as-needed -o $out $in -lX11 -lXcursor -lXrender -lXss -lXext -L/usr/local/lib -lexecinfo -lgmodule-2.0 -lgobject-2.0 -lgthread-2.0 -lglib-2.0 -lintl -lXtst -lgtk-x11-2.0 -lgdk-x11-2.0 -lpangocairo-1.0 -lXinerama -lXi -lXrandr -lXcomposite -lXdamage -lXfixes -latk-1.0 -lcairo -lgdk_pixbuf-2.0 -lgio-2.0 -lpangoft2-1.0 -lpango-1.0 -lfreetype -lfontconfig -lnss3 -lsmime3 -lnssutil3 -lplds4 -lplc4 -lnspr4 -lasound -lxml2 -lxslt -lz -liconv -lm -lcups -lssl -lcrypto -pthread -lcrypt -lssp_nonshared -L/usr/local/lib -lgcrypt -lgpg-error -lexpat -lusb -ldbus-1 `cat objfiles.txt | xargs`
   description = CHROME_BCLINK $out
 rule soaap
-  command = $opt -load $soaap_build_dir/libsoaap.so -soaap ${SOAAP_FLAGS} -o /dev/null $in
+  command = $opt -analyze -load $soaap_build_dir/libsoaap.so -soaap ${SOAAP_FLAGS} -o /dev/null $in
   description = SOAAP $in
 
 subninja obj/build/linux/gnome_keyring_direct.ninja
