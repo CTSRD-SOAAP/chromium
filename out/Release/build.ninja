@@ -14,7 +14,7 @@ pool link_pool
   depth = 1
 
 rule cc
-  command = $cc -MMD -MF $out.d $defines $includes $cflags $cflags_c $cflags_pch_c -c $in -o $out ; $cc -MMD -MF $out.d $defines $includes `echo $cflags | sed 's/O2/O0/g'` `echo $cflags_c | sed 's/O2/O0/g'` `echo $cflags_pch_c | sed 's/O2/O0/g'` -c $in -g -emit-llvm -o $out.bc
+  command = $cc -MMD -MF $out.d $defines $includes $cflags $cflags_c $cflags_pch_c -c $in -o $out ; $cc -MMD -MF $out.d $defines $includes `echo $cflags | sed 's/O2/O0/g'` `echo $cflags_c | sed 's/O2/O0/g'` `echo $cflags_pch_c | sed 's/O2/O0/g'` -c $in -gline-tables-only -emit-llvm -o $out.bc
   description = CC $out
   depfile = $out.d
   deps = gcc
@@ -22,7 +22,7 @@ rule cc_s
   command = $cc $defines $includes $cflags $cflags_c $cflags_pch_c -c $in -o $out
   description = CC $out
 rule cxx
-  command = $cxx -MMD -MF $out.d $defines $includes $cflags $cflags_cc $cflags_pch_cc -c $in -o $out ; $cxx -MMD -MF $out.d $defines $includes -Xclang -load -Xclang $soaap_build_dir/libclassdebuginfo.so `echo $cflags | sed 's/O2/O0/g'` `echo $cflags_cc | sed 's/O2/O0/g' | sed 's/-fno-rtti//g'` `echo $cflags_pch_cc | sed 's/O2/O0/g'` -c $in -g -emit-llvm -o $out.bc
+  command = $cxx -MMD -MF $out.d $defines $includes $cflags $cflags_cc $cflags_pch_cc -c $in -o $out ; $cxx -MMD -MF $out.d $defines $includes `echo $cflags | sed 's/O2/O0/g'` `echo $cflags_cc | sed 's/O2/O0/g' | sed 's/-fno-rtti//g'` `echo $cflags_pch_cc | sed 's/O2/O0/g'` -c $in -gline-tables-only -gsoaap -emit-llvm -o $out.bc
   description = CXX $out
   depfile = $out.d
   deps = gcc
@@ -65,10 +65,10 @@ rule llc
   command = $llc -filetype=obj $in
   description = LLC $out
 rule chromebclink
-  command = $ld -B /usr/local/bin -Wl,-z,now -Wl,-z,relro -pthread -Wl,-z,noexecstack -fPIC -Wl,--no-keep-memory -L. -L/usr/local/lib -L/usr/local/lib/nss -Wl,-O1 -Wl,--as-needed -o $out $in -lX11 -lXcursor -lXrender -lXss -lXext -L/usr/local/lib -lexecinfo -lgmodule-2.0 -lgobject-2.0 -lgthread-2.0 -lglib-2.0 -lintl -lXtst -lgtk-x11-2.0 -lgdk-x11-2.0 -lpangocairo-1.0 -lXinerama -lXi -lXrandr -lXcomposite -lXdamage -lXfixes -latk-1.0 -lcairo -lgdk_pixbuf-2.0 -lgio-2.0 -lpangoft2-1.0 -lpango-1.0 -lfreetype -lfontconfig -lnss3 -lsmime3 -lnssutil3 -lplds4 -lplc4 -lnspr4 -lasound -lxml2 -lxslt -lz -liconv -lm -lcups -lssl -lcrypto -pthread -lcrypt -lssp_nonshared -L/usr/local/lib -lgcrypt -lgpg-error -lexpat -lusb -ldbus-1 `cat objfiles.txt | xargs`
+  command = $ld -B /usr/local/bin -Wl,-z,now -Wl,-z,relro -Wl,--unresolved-symbols=ignore-all -pthread -Wl,-z,noexecstack -fPIC -Wl,--no-keep-memory -L. -L/usr/local/lib -L/usr/local/lib/nss -Wl,-O1 -Wl,--as-needed -o $out $in -lX11 -lXcursor -lXrender -lXss -lXext -L/usr/local/lib -lexecinfo -lgmodule-2.0 -lgobject-2.0 -lgthread-2.0 -lglib-2.0 -lintl -lXtst -lgtk-x11-2.0 -lgdk-x11-2.0 -lpangocairo-1.0 -lXinerama -lXi -lXrandr -lXcomposite -lXdamage -lXfixes -latk-1.0 -lcairo -lgdk_pixbuf-2.0 -lgio-2.0 -lpangoft2-1.0 -lpango-1.0 -lfreetype -lfontconfig -lnss3 -lsmime3 -lnssutil3 -lplds4 -lplc4 -lnspr4 -lasound -lxml2 -lxslt -lz -liconv -lm -lcups -lssl -lcrypto -pthread -lcrypt -lssp_nonshared -L/usr/local/lib -lgcrypt -lgpg-error -lexpat -lusb -ldbus-1 `cat objfiles.txt | xargs`
   description = CHROME_BCLINK $out
 rule soaap
-  command = $opt -time-passes -analyze -disable-verify -load $soaap_build_dir/libsoaap.so -soaap ${SOAAP_FLAGS} -o /dev/null $in
+  command = $opt -analyze -disable-verify -load $soaap_build_dir/libsoaap.so -soaap ${SOAAP_FLAGS} -o /dev/null $in
   description = SOAAP $in
 
 subninja obj/build/linux/gnome_keyring_direct.ninja
