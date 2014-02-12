@@ -9,6 +9,7 @@
 
 namespace base {
 
+#ifdef OS_LINUX
 ProcessId GetParentProcessId(ProcessHandle process) {
   ProcessId pid =
       internal::ReadProcStatsAndGetFieldAsInt(process, internal::VM_PPID);
@@ -26,5 +27,6 @@ FilePath GetProcessExecutablePath(ProcessHandle process) {
   }
   return exe_name;
 }
+#endif
 
 }  // namespace base

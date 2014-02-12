@@ -12,6 +12,7 @@
 
 namespace base {
 
+#ifdef OS_BSD
 ProcessId GetParentProcessId(ProcessHandle process) {
   struct kinfo_proc info;
   size_t length = sizeof(struct kinfo_proc);
@@ -37,5 +38,6 @@ FilePath GetProcessExecutablePath(ProcessHandle process) {
     return FilePath();
   return FilePath(std::string(pathname));
 }
+#endif 
 
 }  // namespace base
