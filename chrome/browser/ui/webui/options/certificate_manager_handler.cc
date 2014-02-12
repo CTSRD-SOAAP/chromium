@@ -537,7 +537,7 @@ void CertificateManagerHandler::View(const ListValue* args) {
   net::X509Certificate* cert = cert_id_map_->CallbackArgsToCert(args);
   if (!cert)
     return;
-  ShowCertificateViewer(web_ui()->GetWebContents(), GetParentWindow(), cert);
+  ShowCertificateViewerWebUI(web_ui()->GetWebContents(), GetParentWindow(), cert);
 }
 
 void CertificateManagerHandler::GetCATrust(const ListValue* args) {

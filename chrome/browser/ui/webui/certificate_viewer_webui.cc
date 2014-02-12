@@ -27,7 +27,7 @@ using content::WebUIMessageHandler;
 using web_modal::NativeWebContentsModalDialog;
 
 // Shows a certificate using the WebUI certificate viewer.
-void ShowCertificateViewer(WebContents* web_contents,
+void ShowCertificateViewerWebUI(WebContents* web_contents,
                            gfx::NativeWindow parent,
                            net::X509Certificate* cert) {
   CertificateViewerDialog* dialog = new CertificateViewerDialog(cert);
