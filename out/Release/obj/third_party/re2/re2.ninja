@@ -1,0 +1,96 @@
+defines = -DANGLE_DX11 -D_FILE_OFFSET_BITS=64 -DNO_TCMALLOC -DDISABLE_NACL $
+    -DCHROMIUM_BUILD -DUSE_DEFAULT_RENDER_THEME=1 -DUSE_LIBJPEG_TURBO=1 $
+    -DUSE_NSS=1 -DUSE_X11=1 -DENABLE_ONE_CLICK_SIGNIN $
+    -DGTK_DISABLE_SINGLE_INCLUDES=1 -DUSE_XI2_MT=2 -DENABLE_REMOTING=1 $
+    -DENABLE_WEBRTC=1 -DUSE_PROPRIETARY_CODECS $
+    -DENABLE_CONFIGURATION_POLICY -DENABLE_INPUT_SPEECH $
+    -DENABLE_NOTIFICATIONS -DENABLE_EGLIMAGE=1 -DENABLE_TASK_MANAGER=1 $
+    -DENABLE_EXTENSIONS=1 -DENABLE_PLUGIN_INSTALLATION=1 -DENABLE_PLUGINS=1 $
+    -DENABLE_SESSION_SERVICE=1 -DENABLE_THEMES=1 -DENABLE_BACKGROUND=1 $
+    -DENABLE_AUTOMATION=1 -DENABLE_GOOGLE_NOW=1 -DCLD_VERSION=2 $
+    -DENABLE_FULL_PRINTING=1 -DENABLE_PRINTING=1 -DENABLE_SPELLCHECK=1 $
+    -DENABLE_CAPTIVE_PORTAL_DETECTION=1 -DENABLE_MANAGED_USERS=1 -DNDEBUG $
+    -DOFFICIAL_BUILD -DNVALGRIND -DDYNAMIC_ANNOTATIONS_ENABLED=0
+includes = -I../../third_party/re2 -I../..
+cflags = -fstack-protector --param=ssp-buffer-size=4  -pthread $
+    -fno-exceptions -fno-strict-aliasing -Wno-unused-parameter $
+    -Wno-missing-field-initializers -fvisibility=hidden -pipe -fPIC $
+    -Wheader-hygiene -Wno-char-subscripts -Wno-unused-function $
+    -Wno-covered-switch-default -Wstring-conversion -Wno-c++11-narrowing $
+    -Wno-reserved-user-defined-literal -Wno-deprecated-register $
+    -Wno-deprecated-declarations -fcolor-diagnostics -Wno-format -O2 $
+    -fdata-sections -ffunction-sections
+cflags_c = -O2 -pipe -fno-stack-protector -Wno-unknown-warning-option $
+    -fno-strict-aliasing
+cflags_cc = -O2 -pipe -fno-stack-protector -Wno-unknown-warning-option $
+    -fno-strict-aliasing -fno-rtti -fno-threadsafe-statics $
+    -fvisibility-inlines-hidden -std=gnu++11 -Wno-deprecated
+
+build obj/third_party/re2/re2/re2.bitstate.o: cxx $
+    ../../third_party/re2/re2/bitstate.cc
+build obj/third_party/re2/re2/re2.compile.o: cxx $
+    ../../third_party/re2/re2/compile.cc
+build obj/third_party/re2/re2/re2.dfa.o: cxx ../../third_party/re2/re2/dfa.cc
+build obj/third_party/re2/re2/re2.filtered_re2.o: cxx $
+    ../../third_party/re2/re2/filtered_re2.cc
+build obj/third_party/re2/re2/re2.mimics_pcre.o: cxx $
+    ../../third_party/re2/re2/mimics_pcre.cc
+build obj/third_party/re2/re2/re2.nfa.o: cxx ../../third_party/re2/re2/nfa.cc
+build obj/third_party/re2/re2/re2.onepass.o: cxx $
+    ../../third_party/re2/re2/onepass.cc
+build obj/third_party/re2/re2/re2.parse.o: cxx $
+    ../../third_party/re2/re2/parse.cc
+build obj/third_party/re2/re2/re2.perl_groups.o: cxx $
+    ../../third_party/re2/re2/perl_groups.cc
+build obj/third_party/re2/re2/re2.prefilter.o: cxx $
+    ../../third_party/re2/re2/prefilter.cc
+build obj/third_party/re2/re2/re2.prefilter_tree.o: cxx $
+    ../../third_party/re2/re2/prefilter_tree.cc
+build obj/third_party/re2/re2/re2.prog.o: cxx $
+    ../../third_party/re2/re2/prog.cc
+build obj/third_party/re2/re2/re2.re2.o: cxx ../../third_party/re2/re2/re2.cc
+build obj/third_party/re2/re2/re2.regexp.o: cxx $
+    ../../third_party/re2/re2/regexp.cc
+build obj/third_party/re2/re2/re2.set.o: cxx ../../third_party/re2/re2/set.cc
+build obj/third_party/re2/re2/re2.simplify.o: cxx $
+    ../../third_party/re2/re2/simplify.cc
+build obj/third_party/re2/re2/re2.tostring.o: cxx $
+    ../../third_party/re2/re2/tostring.cc
+build obj/third_party/re2/re2/re2.unicode_casefold.o: cxx $
+    ../../third_party/re2/re2/unicode_casefold.cc
+build obj/third_party/re2/re2/re2.unicode_groups.o: cxx $
+    ../../third_party/re2/re2/unicode_groups.cc
+build obj/third_party/re2/util/re2.arena.o: cxx $
+    ../../third_party/re2/util/arena.cc
+build obj/third_party/re2/util/re2.hash.o: cxx $
+    ../../third_party/re2/util/hash.cc
+build obj/third_party/re2/util/re2.rune.o: cxx $
+    ../../third_party/re2/util/rune.cc
+build obj/third_party/re2/util/re2.stringpiece.o: cxx $
+    ../../third_party/re2/util/stringpiece.cc
+build obj/third_party/re2/util/re2.stringprintf.o: cxx $
+    ../../third_party/re2/util/stringprintf.cc
+build obj/third_party/re2/util/re2.strutil.o: cxx $
+    ../../third_party/re2/util/strutil.cc
+
+build obj/third_party/re2/libre2.a: alink_thin $
+    obj/third_party/re2/re2/re2.bitstate.o $
+    obj/third_party/re2/re2/re2.compile.o obj/third_party/re2/re2/re2.dfa.o $
+    obj/third_party/re2/re2/re2.filtered_re2.o $
+    obj/third_party/re2/re2/re2.mimics_pcre.o $
+    obj/third_party/re2/re2/re2.nfa.o obj/third_party/re2/re2/re2.onepass.o $
+    obj/third_party/re2/re2/re2.parse.o $
+    obj/third_party/re2/re2/re2.perl_groups.o $
+    obj/third_party/re2/re2/re2.prefilter.o $
+    obj/third_party/re2/re2/re2.prefilter_tree.o $
+    obj/third_party/re2/re2/re2.prog.o obj/third_party/re2/re2/re2.re2.o $
+    obj/third_party/re2/re2/re2.regexp.o obj/third_party/re2/re2/re2.set.o $
+    obj/third_party/re2/re2/re2.simplify.o $
+    obj/third_party/re2/re2/re2.tostring.o $
+    obj/third_party/re2/re2/re2.unicode_casefold.o $
+    obj/third_party/re2/re2/re2.unicode_groups.o $
+    obj/third_party/re2/util/re2.arena.o $
+    obj/third_party/re2/util/re2.hash.o obj/third_party/re2/util/re2.rune.o $
+    obj/third_party/re2/util/re2.stringpiece.o $
+    obj/third_party/re2/util/re2.stringprintf.o $
+    obj/third_party/re2/util/re2.strutil.o

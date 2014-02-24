@@ -1,0 +1,9 @@
+build obj/sync/sync_core_tests.actions_depends.stamp: stamp $
+    obj/base/libbase.a obj/sql/libsql.a obj/testing/libgmock.a $
+    obj/testing/libgtest.a obj/sync/sync.actions_depends.stamp $
+    obj/sync/libtest_support_sync_core.a
+
+build obj/sync/sync_core_tests.compile_depends.stamp: stamp $
+    obj/sync/sync.compile_depends.stamp $
+    obj/sync/test_support_sync_core.compile_depends.stamp
+

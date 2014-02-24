@@ -1,0 +1,173 @@
+rule feedback_proto_target_genproto_03e46a204b5e2880f5ed181044847d33
+  command = cd ../../chrome; python $
+      ../tools/protoc_wrapper/protoc_wrapper.py --include "" --protobuf $
+      "../out/Debug/gen/protoc_out/chrome/browser/feedback/proto/${root}.pb.h" $
+      --proto-in-dir browser/feedback/proto --proto-in-file "${root}${ext}" $
+      "--use-system-protobuf=0" -- ../out/Debug/protoc --cpp_out $
+      ../out/Debug/gen/protoc_out/chrome/browser/feedback/proto $
+      --python_out ../out/Debug/pyproto/chrome/browser/feedback/proto
+  description = RULE Generating C++ and Python code from ${source}
+  restat = 1
+
+build pyproto/chrome/browser/feedback/proto/annotations_pb2.py $
+    gen/protoc_out/chrome/browser/feedback/proto/annotations.pb.cc $
+    gen/protoc_out/chrome/browser/feedback/proto/annotations.pb.h: $
+    feedback_proto_target_genproto_03e46a204b5e2880f5ed181044847d33 $
+    ../../chrome/browser/feedback/proto/annotations.proto | $
+    ../../tools/protoc_wrapper/protoc_wrapper.py protoc || protoc
+  source = browser/feedback/proto/annotations.proto
+  ext = .proto
+  root = annotations
+  unique_name = 324faab05fd8fd339bda4349aad355e4
+build pyproto/chrome/browser/feedback/proto/chrome_pb2.py $
+    gen/protoc_out/chrome/browser/feedback/proto/chrome.pb.cc $
+    gen/protoc_out/chrome/browser/feedback/proto/chrome.pb.h: $
+    feedback_proto_target_genproto_03e46a204b5e2880f5ed181044847d33 $
+    ../../chrome/browser/feedback/proto/chrome.proto | $
+    ../../tools/protoc_wrapper/protoc_wrapper.py protoc || protoc
+  source = browser/feedback/proto/chrome.proto
+  ext = .proto
+  root = chrome
+  unique_name = fefa67de5c8d3498ee211fb493d0b6aa
+build pyproto/chrome/browser/feedback/proto/common_pb2.py $
+    gen/protoc_out/chrome/browser/feedback/proto/common.pb.cc $
+    gen/protoc_out/chrome/browser/feedback/proto/common.pb.h: $
+    feedback_proto_target_genproto_03e46a204b5e2880f5ed181044847d33 $
+    ../../chrome/browser/feedback/proto/common.proto | $
+    ../../tools/protoc_wrapper/protoc_wrapper.py protoc || protoc
+  source = browser/feedback/proto/common.proto
+  ext = .proto
+  root = common
+  unique_name = 2cc67caa30055a1a112e48e3d4710a84
+build pyproto/chrome/browser/feedback/proto/dom_pb2.py $
+    gen/protoc_out/chrome/browser/feedback/proto/dom.pb.cc $
+    gen/protoc_out/chrome/browser/feedback/proto/dom.pb.h: $
+    feedback_proto_target_genproto_03e46a204b5e2880f5ed181044847d33 $
+    ../../chrome/browser/feedback/proto/dom.proto | $
+    ../../tools/protoc_wrapper/protoc_wrapper.py protoc || protoc
+  source = browser/feedback/proto/dom.proto
+  ext = .proto
+  root = dom
+  unique_name = ccd1823d555ddd5c340d551383a2e1de
+build pyproto/chrome/browser/feedback/proto/extension_pb2.py $
+    gen/protoc_out/chrome/browser/feedback/proto/extension.pb.cc $
+    gen/protoc_out/chrome/browser/feedback/proto/extension.pb.h: $
+    feedback_proto_target_genproto_03e46a204b5e2880f5ed181044847d33 $
+    ../../chrome/browser/feedback/proto/extension.proto | $
+    ../../tools/protoc_wrapper/protoc_wrapper.py protoc || protoc
+  source = browser/feedback/proto/extension.proto
+  ext = .proto
+  root = extension
+  unique_name = d95c5c9fb95601d2c2e7c4604176028d
+build pyproto/chrome/browser/feedback/proto/math_pb2.py $
+    gen/protoc_out/chrome/browser/feedback/proto/math.pb.cc $
+    gen/protoc_out/chrome/browser/feedback/proto/math.pb.h: $
+    feedback_proto_target_genproto_03e46a204b5e2880f5ed181044847d33 $
+    ../../chrome/browser/feedback/proto/math.proto | $
+    ../../tools/protoc_wrapper/protoc_wrapper.py protoc || protoc
+  source = browser/feedback/proto/math.proto
+  ext = .proto
+  root = math
+  unique_name = d50a29e46c0be1518c6a6a669fb33fcc
+build pyproto/chrome/browser/feedback/proto/web_pb2.py $
+    gen/protoc_out/chrome/browser/feedback/proto/web.pb.cc $
+    gen/protoc_out/chrome/browser/feedback/proto/web.pb.h: $
+    feedback_proto_target_genproto_03e46a204b5e2880f5ed181044847d33 $
+    ../../chrome/browser/feedback/proto/web.proto | $
+    ../../tools/protoc_wrapper/protoc_wrapper.py protoc || protoc
+  source = browser/feedback/proto/web.proto
+  ext = .proto
+  root = web
+  unique_name = 0983e886b3342c456fe1fc45b0887634
+build obj/chrome/feedback_proto.actions_rules_copies.stamp: stamp $
+    pyproto/chrome/browser/feedback/proto/annotations_pb2.py $
+    gen/protoc_out/chrome/browser/feedback/proto/annotations.pb.cc $
+    gen/protoc_out/chrome/browser/feedback/proto/annotations.pb.h $
+    pyproto/chrome/browser/feedback/proto/chrome_pb2.py $
+    gen/protoc_out/chrome/browser/feedback/proto/chrome.pb.cc $
+    gen/protoc_out/chrome/browser/feedback/proto/chrome.pb.h $
+    pyproto/chrome/browser/feedback/proto/common_pb2.py $
+    gen/protoc_out/chrome/browser/feedback/proto/common.pb.cc $
+    gen/protoc_out/chrome/browser/feedback/proto/common.pb.h $
+    pyproto/chrome/browser/feedback/proto/dom_pb2.py $
+    gen/protoc_out/chrome/browser/feedback/proto/dom.pb.cc $
+    gen/protoc_out/chrome/browser/feedback/proto/dom.pb.h $
+    pyproto/chrome/browser/feedback/proto/extension_pb2.py $
+    gen/protoc_out/chrome/browser/feedback/proto/extension.pb.cc $
+    gen/protoc_out/chrome/browser/feedback/proto/extension.pb.h $
+    pyproto/chrome/browser/feedback/proto/math_pb2.py $
+    gen/protoc_out/chrome/browser/feedback/proto/math.pb.cc $
+    gen/protoc_out/chrome/browser/feedback/proto/math.pb.h $
+    pyproto/chrome/browser/feedback/proto/web_pb2.py $
+    gen/protoc_out/chrome/browser/feedback/proto/web.pb.cc $
+    gen/protoc_out/chrome/browser/feedback/proto/web.pb.h
+
+defines = -DANGLE_DX11 -D_FILE_OFFSET_BITS=64 -DNO_TCMALLOC -DDISABLE_NACL $
+    -DCHROMIUM_BUILD -DUSE_DEFAULT_RENDER_THEME=1 -DUSE_LIBJPEG_TURBO=1 $
+    -DUSE_NSS=1 -DUSE_X11=1 -DENABLE_ONE_CLICK_SIGNIN $
+    -DGTK_DISABLE_SINGLE_INCLUDES=1 -DUSE_XI2_MT=2 -DENABLE_REMOTING=1 $
+    -DENABLE_WEBRTC=1 -DUSE_PROPRIETARY_CODECS $
+    -DENABLE_CONFIGURATION_POLICY -DENABLE_INPUT_SPEECH $
+    -DENABLE_NOTIFICATIONS -DENABLE_EGLIMAGE=1 -DENABLE_TASK_MANAGER=1 $
+    -DENABLE_EXTENSIONS=1 -DENABLE_PLUGIN_INSTALLATION=1 -DENABLE_PLUGINS=1 $
+    -DENABLE_SESSION_SERVICE=1 -DENABLE_THEMES=1 -DENABLE_BACKGROUND=1 $
+    -DENABLE_AUTOMATION=1 -DENABLE_GOOGLE_NOW=1 -DCLD_VERSION=2 $
+    -DENABLE_FULL_PRINTING=1 -DENABLE_PRINTING=1 -DENABLE_SPELLCHECK=1 $
+    -DENABLE_CAPTIVE_PORTAL_DETECTION=1 -DENABLE_MANAGED_USERS=1 $
+    -DPROTOBUF_USE_DLLS -DGOOGLE_PROTOBUF_NO_RTTI $
+    -DGOOGLE_PROTOBUF_NO_STATIC_INITIALIZER -D__STDC_CONSTANT_MACROS $
+    -D__STDC_FORMAT_MACROS -DDYNAMIC_ANNOTATIONS_ENABLED=1 $
+    -DWTF_USE_DYNAMIC_ANNOTATIONS=1 -D_DEBUG
+includes = -Igen/protoc_out -I../.. -I../../third_party/protobuf $
+    -I../../third_party/protobuf/src
+cflags = -fstack-protector --param=ssp-buffer-size=4  -pthread $
+    -fno-exceptions -fno-strict-aliasing -Wall -Wno-unused-parameter $
+    -Wno-missing-field-initializers -fvisibility=hidden -pipe -fPIC $
+    -Wheader-hygiene -Wno-char-subscripts -Wno-unused-function $
+    -Wno-covered-switch-default -Wstring-conversion -Wno-c++11-narrowing $
+    -Wno-reserved-user-defined-literal -Wno-deprecated-register $
+    -Wno-deprecated-declarations -fcolor-diagnostics -O0 -g
+cflags_c = -O2 -pipe -fno-stack-protector -Wno-unknown-warning-option $
+    -fno-strict-aliasing
+cflags_cc = -O2 -pipe -fno-stack-protector -Wno-unknown-warning-option $
+    -fno-strict-aliasing -fno-rtti -fno-threadsafe-statics $
+    -fvisibility-inlines-hidden -Wsign-compare -std=gnu++11
+
+build $
+    obj/chrome/gen/protoc_out/chrome/browser/feedback/proto/feedback_proto.annotations.pb.o: $
+    cxx gen/protoc_out/chrome/browser/feedback/proto/annotations.pb.cc || $
+    obj/chrome/feedback_proto.actions_rules_copies.stamp
+build $
+    obj/chrome/gen/protoc_out/chrome/browser/feedback/proto/feedback_proto.chrome.pb.o: $
+    cxx gen/protoc_out/chrome/browser/feedback/proto/chrome.pb.cc || $
+    obj/chrome/feedback_proto.actions_rules_copies.stamp
+build $
+    obj/chrome/gen/protoc_out/chrome/browser/feedback/proto/feedback_proto.common.pb.o: $
+    cxx gen/protoc_out/chrome/browser/feedback/proto/common.pb.cc || $
+    obj/chrome/feedback_proto.actions_rules_copies.stamp
+build $
+    obj/chrome/gen/protoc_out/chrome/browser/feedback/proto/feedback_proto.dom.pb.o: $
+    cxx gen/protoc_out/chrome/browser/feedback/proto/dom.pb.cc || $
+    obj/chrome/feedback_proto.actions_rules_copies.stamp
+build $
+    obj/chrome/gen/protoc_out/chrome/browser/feedback/proto/feedback_proto.extension.pb.o: $
+    cxx gen/protoc_out/chrome/browser/feedback/proto/extension.pb.cc || $
+    obj/chrome/feedback_proto.actions_rules_copies.stamp
+build $
+    obj/chrome/gen/protoc_out/chrome/browser/feedback/proto/feedback_proto.math.pb.o: $
+    cxx gen/protoc_out/chrome/browser/feedback/proto/math.pb.cc || $
+    obj/chrome/feedback_proto.actions_rules_copies.stamp
+build $
+    obj/chrome/gen/protoc_out/chrome/browser/feedback/proto/feedback_proto.web.pb.o: $
+    cxx gen/protoc_out/chrome/browser/feedback/proto/web.pb.cc || $
+    obj/chrome/feedback_proto.actions_rules_copies.stamp
+
+build obj/chrome/libfeedback_proto.a: alink_thin $
+    obj/chrome/gen/protoc_out/chrome/browser/feedback/proto/feedback_proto.annotations.pb.o $
+    obj/chrome/gen/protoc_out/chrome/browser/feedback/proto/feedback_proto.chrome.pb.o $
+    obj/chrome/gen/protoc_out/chrome/browser/feedback/proto/feedback_proto.common.pb.o $
+    obj/chrome/gen/protoc_out/chrome/browser/feedback/proto/feedback_proto.dom.pb.o $
+    obj/chrome/gen/protoc_out/chrome/browser/feedback/proto/feedback_proto.extension.pb.o $
+    obj/chrome/gen/protoc_out/chrome/browser/feedback/proto/feedback_proto.math.pb.o $
+    obj/chrome/gen/protoc_out/chrome/browser/feedback/proto/feedback_proto.web.pb.o $
+    || obj/chrome/feedback_proto.actions_rules_copies.stamp

@@ -1,0 +1,72 @@
+rule $
+    make_platform_derived_sources_target_FontFamilyNames_0cc8f8838901313872f3c3e0ad0508ae
+  command = cd ../../third_party/WebKit/Source/platform; python $
+      ../build/scripts/make_names.py graphics/fonts/FontFamilyNames.in $
+      --output_dir ../../../../out/Release/gen/blink
+  description = ACTION make_platform_derived_sources: $
+      FontFamilyNames_0cc8f8838901313872f3c3e0ad0508ae
+  restat = 1
+
+build gen/blink/FontFamilyNames.cpp gen/blink/FontFamilyNames.h: $
+    make_platform_derived_sources_target_FontFamilyNames_0cc8f8838901313872f3c3e0ad0508ae $
+    ../../third_party/jinja2/__init__.py $
+    ../../third_party/markupsafe/__init__.py $
+    ../../third_party/WebKit/Source/build/scripts/hasher.py $
+    ../../third_party/WebKit/Source/build/scripts/in_file.py $
+    ../../third_party/WebKit/Source/build/scripts/in_generator.py $
+    ../../third_party/WebKit/Source/build/scripts/license.py $
+    ../../third_party/WebKit/Source/build/scripts/name_macros.py $
+    ../../third_party/WebKit/Source/build/scripts/name_utilities.py $
+    ../../third_party/WebKit/Source/build/scripts/template_expander.py $
+    ../../third_party/WebKit/Source/build/scripts/templates/macros.tmpl $
+    ../../third_party/WebKit/Source/build/scripts/make_names.py $
+    ../../third_party/WebKit/Source/build/scripts/templates/MakeNames.cpp.tmpl $
+    ../../third_party/WebKit/Source/build/scripts/templates/MakeNames.h.tmpl $
+    ../../third_party/WebKit/Source/platform/graphics/fonts/FontFamilyNames.in
+
+rule $
+    make_platform_derived_sources_target_RuntimeEnabledFeatures_0cc8f8838901313872f3c3e0ad0508ae
+  command = cd ../../third_party/WebKit/Source/platform; python $
+      ../build/scripts/make_runtime_features.py RuntimeEnabledFeatures.in $
+      --output_dir ../../../../out/Release/gen/blink
+  description = ACTION make_platform_derived_sources: $
+      RuntimeEnabledFeatures_0cc8f8838901313872f3c3e0ad0508ae
+  restat = 1
+
+build gen/blink/RuntimeEnabledFeatures.cpp $
+    gen/blink/RuntimeEnabledFeatures.h: $
+    make_platform_derived_sources_target_RuntimeEnabledFeatures_0cc8f8838901313872f3c3e0ad0508ae $
+    ../../third_party/jinja2/__init__.py $
+    ../../third_party/markupsafe/__init__.py $
+    ../../third_party/WebKit/Source/build/scripts/hasher.py $
+    ../../third_party/WebKit/Source/build/scripts/in_file.py $
+    ../../third_party/WebKit/Source/build/scripts/in_generator.py $
+    ../../third_party/WebKit/Source/build/scripts/license.py $
+    ../../third_party/WebKit/Source/build/scripts/name_macros.py $
+    ../../third_party/WebKit/Source/build/scripts/name_utilities.py $
+    ../../third_party/WebKit/Source/build/scripts/template_expander.py $
+    ../../third_party/WebKit/Source/build/scripts/templates/macros.tmpl $
+    ../../third_party/WebKit/Source/build/scripts/make_runtime_features.py $
+    ../../third_party/WebKit/Source/platform/RuntimeEnabledFeatures.in $
+    ../../third_party/WebKit/Source/build/scripts/templates/RuntimeEnabledFeatures.cpp.tmpl $
+    ../../third_party/WebKit/Source/build/scripts/templates/RuntimeEnabledFeatures.h.tmpl
+
+rule $
+    make_platform_derived_sources_target_ColorData_0cc8f8838901313872f3c3e0ad0508ae
+  command = cd ../../third_party/WebKit/Source/platform; gperf $
+      "--key-positions=*" -D -s 2 ColorData.gperf $
+      "--output-file=../../../../out/Release/gen/blink/ColorData.cpp"
+  description = ACTION make_platform_derived_sources: $
+      ColorData_0cc8f8838901313872f3c3e0ad0508ae
+  restat = 1
+
+build gen/blink/ColorData.cpp: $
+    make_platform_derived_sources_target_ColorData_0cc8f8838901313872f3c3e0ad0508ae $
+    ../../third_party/WebKit/Source/platform/ColorData.gperf
+
+build $
+    obj/third_party/WebKit/Source/platform/make_platform_derived_sources.actions_rules_copies.stamp: $
+    stamp gen/blink/FontFamilyNames.cpp gen/blink/FontFamilyNames.h $
+    gen/blink/RuntimeEnabledFeatures.cpp gen/blink/RuntimeEnabledFeatures.h $
+    gen/blink/ColorData.cpp
+

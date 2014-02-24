@@ -1,0 +1,2 @@
+build shell_resources.pak: copy gen/content/shell_resources.pak || $
+    obj/content/generate_content_shell_resources.actions_rules_copies.stamp

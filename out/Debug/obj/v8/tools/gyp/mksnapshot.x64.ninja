@@ -1,0 +1,58 @@
+build obj/v8/tools/gyp/mksnapshot.x64.actions_depends.stamp: stamp $
+    obj/v8/tools/gyp/libv8_base.x64.a $
+    obj/v8/tools/gyp/libv8_nosnapshot.x64.a $
+    obj/third_party/icu/libicui18n.a obj/third_party/icu/libicuuc.a $
+    obj/third_party/icu/libicudata.a $
+    obj/v8/tools/gyp/js2c.actions_rules_copies.stamp
+
+build obj/v8/tools/gyp/mksnapshot.x64.compile_depends.stamp: stamp $
+    obj/v8/tools/gyp/js2c.actions_rules_copies.stamp $
+    obj/v8/tools/gyp/js2c.actions_rules_copies.stamp
+
+defines = -DANGLE_DX11 -D_FILE_OFFSET_BITS=64 -DNO_TCMALLOC -DDISABLE_NACL $
+    -DCHROMIUM_BUILD -DUSE_DEFAULT_RENDER_THEME=1 -DUSE_LIBJPEG_TURBO=1 $
+    -DUSE_NSS=1 -DUSE_X11=1 -DENABLE_ONE_CLICK_SIGNIN $
+    -DGTK_DISABLE_SINGLE_INCLUDES=1 -DUSE_XI2_MT=2 -DENABLE_REMOTING=1 $
+    -DENABLE_WEBRTC=1 -DUSE_PROPRIETARY_CODECS $
+    -DENABLE_CONFIGURATION_POLICY -DENABLE_INPUT_SPEECH $
+    -DENABLE_NOTIFICATIONS -DENABLE_EGLIMAGE=1 -DENABLE_TASK_MANAGER=1 $
+    -DENABLE_EXTENSIONS=1 -DENABLE_PLUGIN_INSTALLATION=1 -DENABLE_PLUGINS=1 $
+    -DENABLE_SESSION_SERVICE=1 -DENABLE_THEMES=1 -DENABLE_BACKGROUND=1 $
+    -DENABLE_AUTOMATION=1 -DENABLE_GOOGLE_NOW=1 -DCLD_VERSION=2 $
+    -DENABLE_FULL_PRINTING=1 -DENABLE_PRINTING=1 -DENABLE_SPELLCHECK=1 $
+    -DENABLE_CAPTIVE_PORTAL_DETECTION=1 -DENABLE_MANAGED_USERS=1 $
+    -DV8_TARGET_ARCH_X64 -DENABLE_DEBUGGER_SUPPORT -DV8_I18N_SUPPORT $
+    -DDYNAMIC_ANNOTATIONS_ENABLED=1 -DWTF_USE_DYNAMIC_ANNOTATIONS=1 $
+    -D_DEBUG -DENABLE_DISASSEMBLER -DV8_ENABLE_CHECKS -DOBJECT_PRINT $
+    -DVERIFY_HEAP -DDEBUG -DOPTIMIZED_DEBUG -DENABLE_EXTRA_CHECKS $
+    -DENABLE_HANDLE_ZAPPING
+includes = -I../../v8/src
+cflags = -fstack-protector --param=ssp-buffer-size=4  -pthread $
+    -fno-exceptions -fno-strict-aliasing -Wno-unused-parameter $
+    -Wno-missing-field-initializers -fvisibility=hidden -pipe -fPIC $
+    -Wheader-hygiene -Wno-char-subscripts -Wno-unused-function $
+    -Wno-covered-switch-default -Wstring-conversion -Wno-c++11-narrowing $
+    -Wno-reserved-user-defined-literal -Wno-deprecated-register $
+    -Wno-deprecated-declarations -fcolor-diagnostics -I/usr/local/include $
+    -Wno-format -g -W -Wno-unused-parameter -Wnon-virtual-dtor $
+    -Woverloaded-virtual -fdata-sections -ffunction-sections -O3
+cflags_c = -O2 -pipe -fno-stack-protector -Wno-unknown-warning-option $
+    -fno-strict-aliasing
+cflags_cc = -O2 -pipe -fno-stack-protector -Wno-unknown-warning-option $
+    -fno-strict-aliasing -fno-rtti -fno-threadsafe-statics $
+    -fvisibility-inlines-hidden -std=gnu++11 -Wno-deprecated
+
+build obj/v8/src/mksnapshot.x64.mksnapshot.o: cxx $
+    ../../v8/src/mksnapshot.cc || $
+    obj/v8/tools/gyp/mksnapshot.x64.compile_depends.stamp
+
+ldflags = -Wl,-z,now -Wl,-z,relro -pthread -Wl,-z,noexecstack -fPIC $
+    -Wl,--no-keep-memory
+libs =  -L/usr/local/lib -lexecinfo
+build mksnapshot.x64: link obj/v8/src/mksnapshot.x64.mksnapshot.o $
+    obj/v8/tools/gyp/libv8_base.x64.a $
+    obj/v8/tools/gyp/libv8_nosnapshot.x64.a $
+    obj/third_party/icu/libicui18n.a obj/third_party/icu/libicuuc.a $
+    obj/third_party/icu/libicudata.a | $
+    obj/v8/tools/gyp/js2c.actions_rules_copies.stamp
+  ld = $ldxx

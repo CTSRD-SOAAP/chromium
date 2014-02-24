@@ -1,0 +1,9 @@
+build obj/sync/sync_api_tests.actions_depends.stamp: stamp $
+    obj/base/libbase.a obj/testing/libgtest.a $
+    obj/sync/sync.actions_depends.stamp $
+    obj/sync/libtest_support_sync_internal_api.a
+
+build obj/sync/sync_api_tests.compile_depends.stamp: stamp $
+    obj/sync/sync.compile_depends.stamp $
+    obj/sync/test_support_sync_internal_api.compile_depends.stamp
+

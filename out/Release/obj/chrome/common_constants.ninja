@@ -1,0 +1,96 @@
+rule $
+    common_constants_target_Make_chrome_version_cc_78de99f22f5e175503774c083762261b
+  command = cd ../../chrome; python tools/build/make_version_cc.py $
+      ../out/Release/obj/chrome/common_constants.gen/chrome_version.cc $
+      32.0.1700.107
+  description = ACTION common_constants: Make $
+      chrome_version.cc_78de99f22f5e175503774c083762261b
+  restat = 1
+
+build obj/chrome/common_constants.gen/chrome_version.cc: $
+    common_constants_target_Make_chrome_version_cc_78de99f22f5e175503774c083762261b $
+    ../../chrome/tools/build/make_version_cc.py ../../chrome/VERSION || $
+    gen/widevine_cdm_version.h
+
+defines = -DANGLE_DX11 -D_FILE_OFFSET_BITS=64 -DNO_TCMALLOC -DDISABLE_NACL $
+    -DCHROMIUM_BUILD -DUSE_DEFAULT_RENDER_THEME=1 -DUSE_LIBJPEG_TURBO=1 $
+    -DUSE_NSS=1 -DUSE_X11=1 -DENABLE_ONE_CLICK_SIGNIN $
+    -DGTK_DISABLE_SINGLE_INCLUDES=1 -DUSE_XI2_MT=2 -DENABLE_REMOTING=1 $
+    -DENABLE_WEBRTC=1 -DUSE_PROPRIETARY_CODECS $
+    -DENABLE_CONFIGURATION_POLICY -DENABLE_INPUT_SPEECH $
+    -DENABLE_NOTIFICATIONS -DENABLE_EGLIMAGE=1 -DENABLE_TASK_MANAGER=1 $
+    -DENABLE_EXTENSIONS=1 -DENABLE_PLUGIN_INSTALLATION=1 -DENABLE_PLUGINS=1 $
+    -DENABLE_SESSION_SERVICE=1 -DENABLE_THEMES=1 -DENABLE_BACKGROUND=1 $
+    -DENABLE_AUTOMATION=1 -DENABLE_GOOGLE_NOW=1 -DCLD_VERSION=2 $
+    -DENABLE_FULL_PRINTING=1 -DENABLE_PRINTING=1 -DENABLE_SPELLCHECK=1 $
+    -DENABLE_CAPTIVE_PORTAL_DETECTION=1 -DENABLE_MANAGED_USERS=1 $
+    -D__STDC_CONSTANT_MACROS -D__STDC_FORMAT_MACROS -DNDEBUG $
+    -DOFFICIAL_BUILD -DNVALGRIND -DDYNAMIC_ANNOTATIONS_ENABLED=0 $
+    -D_FORTIFY_SOURCE=2
+includes = -Igen -I../..
+cflags = -fstack-protector --param=ssp-buffer-size=4  -pthread $
+    -fno-exceptions -fno-strict-aliasing -Wall -Wno-unused-parameter $
+    -Wno-missing-field-initializers -fvisibility=hidden -pipe -fPIC $
+    -Wheader-hygiene -Wno-char-subscripts -Wno-unused-function $
+    -Wno-covered-switch-default -Wstring-conversion -Wno-c++11-narrowing $
+    -Wno-reserved-user-defined-literal -Wno-deprecated-register $
+    -Wno-deprecated-declarations -fcolor-diagnostics $
+    -I/usr/local/include/gtk-2.0 -I/usr/local/include/gio-unix-2.0/ $
+    -I/usr/local/include/atk-1.0 -I/usr/local/include/cairo $
+    -I/usr/local/include/pixman-1 -D_THREAD_SAFE $
+    -I/usr/local/include/gdk-pixbuf-2.0 -I/usr/local/include/libpng15 $
+    -I/usr/local/include/pango-1.0 -I/usr/local/include/freetype2 $
+    -I/usr/local/include/harfbuzz -pthread -I/usr/local/include/glib-2.0 $
+    -I/usr/local/include -pthread -I/usr/local/include/glib-2.0 $
+    -I/usr/local/include -D_THREAD_SAFE -I/usr/local/include -O2 $
+    -fdata-sections -ffunction-sections
+cflags_c = -O2 -pipe -fno-stack-protector -Wno-unknown-warning-option $
+    -fno-strict-aliasing
+cflags_cc = -O2 -pipe -fno-stack-protector -Wno-unknown-warning-option $
+    -fno-strict-aliasing -fno-rtti -fno-threadsafe-statics $
+    -fvisibility-inlines-hidden -Wsign-compare -std=gnu++11
+
+build $
+    obj/chrome/obj/chrome/common_constants.gen/common_constants.chrome_version.o: $
+    cxx obj/chrome/common_constants.gen/chrome_version.cc || $
+    obj/chrome/common_constants.gen/chrome_version.cc
+build obj/extensions/common/common_constants.constants.o: cxx $
+    ../../extensions/common/constants.cc || $
+    obj/chrome/common_constants.gen/chrome_version.cc
+build obj/chrome/common/common_constants.chrome_constants.o: cxx $
+    ../../chrome/common/chrome_constants.cc || $
+    obj/chrome/common_constants.gen/chrome_version.cc
+build obj/chrome/common/common_constants.chrome_paths.o: cxx $
+    ../../chrome/common/chrome_paths.cc || $
+    obj/chrome/common_constants.gen/chrome_version.cc
+build obj/chrome/common/common_constants.chrome_paths_linux.o: cxx $
+    ../../chrome/common/chrome_paths_linux.cc || $
+    obj/chrome/common_constants.gen/chrome_version.cc
+build obj/chrome/common/common_constants.chrome_switches.o: cxx $
+    ../../chrome/common/chrome_switches.cc || $
+    obj/chrome/common_constants.gen/chrome_version.cc
+build obj/chrome/common/common_constants.env_vars.o: cxx $
+    ../../chrome/common/env_vars.cc || $
+    obj/chrome/common_constants.gen/chrome_version.cc
+build obj/chrome/common/net/common_constants.test_server_locations.o: cxx $
+    ../../chrome/common/net/test_server_locations.cc || $
+    obj/chrome/common_constants.gen/chrome_version.cc
+build obj/chrome/common/common_constants.pref_names.o: cxx $
+    ../../chrome/common/pref_names.cc || $
+    obj/chrome/common_constants.gen/chrome_version.cc
+build obj/chrome/common/common_constants.widevine_cdm_constants.o: cxx $
+    ../../chrome/common/widevine_cdm_constants.cc || $
+    obj/chrome/common_constants.gen/chrome_version.cc
+
+build obj/chrome/libcommon_constants.a: alink_thin $
+    obj/chrome/obj/chrome/common_constants.gen/common_constants.chrome_version.o $
+    obj/extensions/common/common_constants.constants.o $
+    obj/chrome/common/common_constants.chrome_constants.o $
+    obj/chrome/common/common_constants.chrome_paths.o $
+    obj/chrome/common/common_constants.chrome_paths_linux.o $
+    obj/chrome/common/common_constants.chrome_switches.o $
+    obj/chrome/common/common_constants.env_vars.o $
+    obj/chrome/common/net/common_constants.test_server_locations.o $
+    obj/chrome/common/common_constants.pref_names.o $
+    obj/chrome/common/common_constants.widevine_cdm_constants.o || $
+    obj/chrome/common_constants.gen/chrome_version.cc

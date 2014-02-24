@@ -1,0 +1,855 @@
+defines = '-DMAPI_ABI_HEADER="glapi_mapi_tmp_shared.h"' $
+    '-DPACKAGE_NAME="Mesa"' '-DPACKAGE_TARNAME="mesa"' $
+    '-DPACKAGE_VERSION="9.0.3"' '-DPACKAGE_STRING="Mesa\ 9.0.3"' $
+    '-DPACKAGE_BUGREPORT="https://bugs.freedesktop.org/enter_bug.cgi\?product=Mesa"' $
+    '-DPACKAGE_URL=""' '-DPACKAGE="mesa"' '-DVERSION="9.0.3"' $
+    -DSTDC_HEADERS=1 -DHAVE_SYS_TYPES_H=1 -DHAVE_SYS_STAT_H=1 $
+    -DHAVE_STDLIB_H=1 -DHAVE_STRING_H=1 -DHAVE_MEMORY_H=1 $
+    -DHAVE_STRINGS_H=1 -DHAVE_INTTYPES_H=1 -DHAVE_STDINT_H=1 $
+    -DHAVE_DLFCN_H=1 '-DLT_OBJDIR=".libs/"' -DYYTEXT_POINTER=1 $
+    -DHAVE_LIBEXPAT=1 -DHAVE_LIBXCB_DRI2=1 -DFEATURE_GL=1 -DMAPI_MODE_GLAPI $
+    -DIN_DRI_DRIVER -DUSE_XCB -DGLX_INDIRECT_RENDERING $
+    -DGLX_DIRECT_RENDERING -DUSE_EXTERNAL_DXTN_LIB=1 -DIN_DRI_DRIVER $
+    -DHAVE_ALIAS -DHAVE_MINCORE -DHAVE_LIBUDEV -D_GLAPI_NO_EXPORTS $
+    -DANGLE_DX11 -D_FILE_OFFSET_BITS=64 -DNO_TCMALLOC -DDISABLE_NACL $
+    -DHAVE_DLOPEN -DHAVE_PTHREAD=1 -DHAVE_UNISTD_H=1 -DHAVE_POSIX_MEMALIGN $
+    -DCHROMIUM_BUILD -DUSE_DEFAULT_RENDER_THEME=1 -DUSE_LIBJPEG_TURBO=1 $
+    -DUSE_NSS=1 -DUSE_X11=1 -DENABLE_ONE_CLICK_SIGNIN $
+    -DGTK_DISABLE_SINGLE_INCLUDES=1 -DUSE_XI2_MT=2 -DENABLE_REMOTING=1 $
+    -DENABLE_WEBRTC=1 -DUSE_PROPRIETARY_CODECS $
+    -DENABLE_CONFIGURATION_POLICY -DENABLE_INPUT_SPEECH $
+    -DENABLE_NOTIFICATIONS -DENABLE_EGLIMAGE=1 -DENABLE_TASK_MANAGER=1 $
+    -DENABLE_EXTENSIONS=1 -DENABLE_PLUGIN_INSTALLATION=1 -DENABLE_PLUGINS=1 $
+    -DENABLE_SESSION_SERVICE=1 -DENABLE_THEMES=1 -DENABLE_BACKGROUND=1 $
+    -DENABLE_AUTOMATION=1 -DENABLE_GOOGLE_NOW=1 -DCLD_VERSION=2 $
+    -DENABLE_FULL_PRINTING=1 -DENABLE_PRINTING=1 -DENABLE_SPELLCHECK=1 $
+    -DENABLE_CAPTIVE_PORTAL_DETECTION=1 -DENABLE_MANAGED_USERS=1 -DNDEBUG $
+    -DOFFICIAL_BUILD -DNVALGRIND -DDYNAMIC_ANNOTATIONS_ENABLED=0
+includes = -I../../third_party/mesa/src/src/gallium/auxiliary $
+    -I../../third_party/mesa/src/src/gallium/include $
+    -I../../third_party/mesa/src/src/glsl $
+    -I../../third_party/mesa/src/src/glsl/glcpp $
+    -I../../third_party/mesa/src/src/mapi $
+    -I../../third_party/mesa/src/src/mapi/glapi $
+    -I../../third_party/mesa/src/src/mesa $
+    -I../../third_party/mesa/src/src/mesa/main $
+    -I../../third_party/mesa/src/chromium_gensrc/mesa $
+    -I../../third_party/mesa/src/chromium_gensrc/mesa/main $
+    -I../../third_party/mesa/src/chromium_gensrc/mesa/program $
+    -I../../third_party/mesa/src/chromium_gensrc/mesa/glapi $
+    -I../../third_party/mesa/src/include
+cflags = -fstack-protector --param=ssp-buffer-size=4  -pthread $
+    -fno-exceptions -fno-strict-aliasing -Wno-unused-parameter $
+    -Wno-missing-field-initializers -fvisibility=hidden -pipe -fPIC $
+    -Wheader-hygiene -Wno-char-subscripts -Wno-unused-function $
+    -Wno-covered-switch-default -Wno-c++11-narrowing $
+    -Wno-reserved-user-defined-literal -Wno-deprecated-register $
+    -Wno-deprecated-declarations -fcolor-diagnostics -fPIC $
+    -Wno-tautological-constant-out-of-range-compare -Wno-unknown-pragmas $
+    -Wno-format -O2 -fdata-sections -ffunction-sections
+cflags_c = -O2 -pipe -fno-stack-protector -Wno-unknown-warning-option $
+    -fno-strict-aliasing
+cflags_cc = -O2 -pipe -fno-stack-protector -Wno-unknown-warning-option $
+    -fno-strict-aliasing -fno-rtti -fno-threadsafe-statics $
+    -fvisibility-inlines-hidden -std=gnu++11 -Wno-deprecated
+
+build $
+    obj/third_party/mesa/src/chromium_gensrc/mesa/mesa.builtin_function.o: $
+    cxx ../../third_party/mesa/src/chromium_gensrc/mesa/builtin_function.cpp
+build obj/third_party/mesa/src/src/mapi/mapi/mesa.entry.o: cc $
+    ../../third_party/mesa/src/src/mapi/mapi/entry.c
+build obj/third_party/mesa/src/src/mapi/mapi/mesa.mapi.o: cc $
+    ../../third_party/mesa/src/src/mapi/mapi/mapi.c
+build obj/third_party/mesa/src/src/mapi/mapi/mesa.mapi_glapi.o: cc $
+    ../../third_party/mesa/src/src/mapi/mapi/mapi_glapi.c
+build obj/third_party/mesa/src/src/mapi/mapi/mesa.stub.o: cc $
+    ../../third_party/mesa/src/src/mapi/mapi/stub.c
+build obj/third_party/mesa/src/src/mapi/mapi/mesa.table.o: cc $
+    ../../third_party/mesa/src/src/mapi/mapi/table.c
+build obj/third_party/mesa/src/src/mapi/mapi/mesa.u_current.o: cc $
+    ../../third_party/mesa/src/src/mapi/mapi/u_current.c
+build obj/third_party/mesa/src/src/mapi/mapi/mesa.u_execmem.o: cc $
+    ../../third_party/mesa/src/src/mapi/mapi/u_execmem.c
+build obj/third_party/mesa/src/src/mesa/main/mesa.accum.o: cc $
+    ../../third_party/mesa/src/src/mesa/main/accum.c
+build obj/third_party/mesa/src/src/mesa/main/mesa.api_arrayelt.o: cc $
+    ../../third_party/mesa/src/src/mesa/main/api_arrayelt.c
+build obj/third_party/mesa/src/src/mesa/main/mesa.api_exec.o: cc $
+    ../../third_party/mesa/src/src/mesa/main/api_exec.c
+build obj/third_party/mesa/src/chromium_gensrc/mesa/mesa.api_exec_es1.o: cc $
+    ../../third_party/mesa/src/chromium_gensrc/mesa/api_exec_es1.c
+build obj/third_party/mesa/src/src/mesa/main/mesa.api_loopback.o: cc $
+    ../../third_party/mesa/src/src/mesa/main/api_loopback.c
+build obj/third_party/mesa/src/src/mesa/main/mesa.api_validate.o: cc $
+    ../../third_party/mesa/src/src/mesa/main/api_validate.c
+build obj/third_party/mesa/src/src/mesa/main/mesa.arbprogram.o: cc $
+    ../../third_party/mesa/src/src/mesa/main/arbprogram.c
+build obj/third_party/mesa/src/src/mesa/main/mesa.arrayobj.o: cc $
+    ../../third_party/mesa/src/src/mesa/main/arrayobj.c
+build obj/third_party/mesa/src/src/mesa/main/mesa.atifragshader.o: cc $
+    ../../third_party/mesa/src/src/mesa/main/atifragshader.c
+build obj/third_party/mesa/src/src/mesa/main/mesa.attrib.o: cc $
+    ../../third_party/mesa/src/src/mesa/main/attrib.c
+build obj/third_party/mesa/src/src/mesa/main/mesa.blend.o: cc $
+    ../../third_party/mesa/src/src/mesa/main/blend.c
+build obj/third_party/mesa/src/src/mesa/main/mesa.bufferobj.o: cc $
+    ../../third_party/mesa/src/src/mesa/main/bufferobj.c
+build obj/third_party/mesa/src/src/mesa/main/mesa.buffers.o: cc $
+    ../../third_party/mesa/src/src/mesa/main/buffers.c
+build obj/third_party/mesa/src/src/mesa/main/mesa.clear.o: cc $
+    ../../third_party/mesa/src/src/mesa/main/clear.c
+build obj/third_party/mesa/src/src/mesa/main/mesa.clip.o: cc $
+    ../../third_party/mesa/src/src/mesa/main/clip.c
+build obj/third_party/mesa/src/src/mesa/main/mesa.colortab.o: cc $
+    ../../third_party/mesa/src/src/mesa/main/colortab.c
+build obj/third_party/mesa/src/src/mesa/main/mesa.condrender.o: cc $
+    ../../third_party/mesa/src/src/mesa/main/condrender.c
+build obj/third_party/mesa/src/src/mesa/main/mesa.context.o: cc $
+    ../../third_party/mesa/src/src/mesa/main/context.c
+build obj/third_party/mesa/src/src/mesa/main/mesa.convolve.o: cc $
+    ../../third_party/mesa/src/src/mesa/main/convolve.c
+build obj/third_party/mesa/src/src/mesa/main/mesa.cpuinfo.o: cc $
+    ../../third_party/mesa/src/src/mesa/main/cpuinfo.c
+build obj/third_party/mesa/src/src/mesa/main/mesa.debug.o: cc $
+    ../../third_party/mesa/src/src/mesa/main/debug.c
+build obj/third_party/mesa/src/src/mesa/main/mesa.depth.o: cc $
+    ../../third_party/mesa/src/src/mesa/main/depth.c
+build obj/third_party/mesa/src/src/mesa/main/mesa.dlist.o: cc $
+    ../../third_party/mesa/src/src/mesa/main/dlist.c
+build obj/third_party/mesa/src/src/mesa/main/mesa.drawpix.o: cc $
+    ../../third_party/mesa/src/src/mesa/main/drawpix.c
+build obj/third_party/mesa/src/src/mesa/main/mesa.drawtex.o: cc $
+    ../../third_party/mesa/src/src/mesa/main/drawtex.c
+build obj/third_party/mesa/src/src/mesa/main/mesa.enable.o: cc $
+    ../../third_party/mesa/src/src/mesa/main/enable.c
+build obj/third_party/mesa/src/chromium_gensrc/mesa/mesa.enums.o: cc $
+    ../../third_party/mesa/src/chromium_gensrc/mesa/enums.c
+build obj/third_party/mesa/src/src/mesa/main/mesa.errors.o: cc $
+    ../../third_party/mesa/src/src/mesa/main/errors.c
+build obj/third_party/mesa/src/src/mesa/main/mesa.es1_conversion.o: cc $
+    ../../third_party/mesa/src/src/mesa/main/es1_conversion.c
+build obj/third_party/mesa/src/src/mesa/main/mesa.eval.o: cc $
+    ../../third_party/mesa/src/src/mesa/main/eval.c
+build obj/third_party/mesa/src/src/mesa/main/mesa.execmem.o: cc $
+    ../../third_party/mesa/src/src/mesa/main/execmem.c
+build obj/third_party/mesa/src/src/mesa/main/mesa.extensions.o: cc $
+    ../../third_party/mesa/src/src/mesa/main/extensions.c
+build obj/third_party/mesa/src/src/mesa/main/mesa.fbobject.o: cc $
+    ../../third_party/mesa/src/src/mesa/main/fbobject.c
+build obj/third_party/mesa/src/src/mesa/main/mesa.feedback.o: cc $
+    ../../third_party/mesa/src/src/mesa/main/feedback.c
+build obj/third_party/mesa/src/src/mesa/main/mesa.ff_fragment_shader.o: cxx $
+    ../../third_party/mesa/src/src/mesa/main/ff_fragment_shader.cpp
+build obj/third_party/mesa/src/src/mesa/main/mesa.ffvertex_prog.o: cc $
+    ../../third_party/mesa/src/src/mesa/main/ffvertex_prog.c
+build obj/third_party/mesa/src/src/mesa/main/mesa.fog.o: cc $
+    ../../third_party/mesa/src/src/mesa/main/fog.c
+build obj/third_party/mesa/src/src/mesa/main/mesa.format_pack.o: cc $
+    ../../third_party/mesa/src/src/mesa/main/format_pack.c
+build obj/third_party/mesa/src/src/mesa/main/mesa.format_unpack.o: cc $
+    ../../third_party/mesa/src/src/mesa/main/format_unpack.c
+build obj/third_party/mesa/src/src/mesa/main/mesa.formats.o: cc $
+    ../../third_party/mesa/src/src/mesa/main/formats.c
+build obj/third_party/mesa/src/src/mesa/main/mesa.framebuffer.o: cc $
+    ../../third_party/mesa/src/src/mesa/main/framebuffer.c
+build obj/third_party/mesa/src/src/mesa/main/mesa.get.o: cc $
+    ../../third_party/mesa/src/src/mesa/main/get.c
+build obj/third_party/mesa/src/src/mesa/main/mesa.getstring.o: cc $
+    ../../third_party/mesa/src/src/mesa/main/getstring.c
+build obj/third_party/mesa/src/src/mesa/main/mesa.glformats.o: cc $
+    ../../third_party/mesa/src/src/mesa/main/glformats.c
+build obj/third_party/mesa/src/src/mesa/main/mesa.hash.o: cc $
+    ../../third_party/mesa/src/src/mesa/main/hash.c
+build obj/third_party/mesa/src/src/mesa/main/mesa.hint.o: cc $
+    ../../third_party/mesa/src/src/mesa/main/hint.c
+build obj/third_party/mesa/src/src/mesa/main/mesa.histogram.o: cc $
+    ../../third_party/mesa/src/src/mesa/main/histogram.c
+build obj/third_party/mesa/src/src/mesa/main/mesa.image.o: cc $
+    ../../third_party/mesa/src/src/mesa/main/image.c
+build obj/third_party/mesa/src/src/mesa/main/mesa.imports.o: cc $
+    ../../third_party/mesa/src/src/mesa/main/imports.c
+build obj/third_party/mesa/src/src/mesa/main/mesa.light.o: cc $
+    ../../third_party/mesa/src/src/mesa/main/light.c
+build obj/third_party/mesa/src/src/mesa/main/mesa.lines.o: cc $
+    ../../third_party/mesa/src/src/mesa/main/lines.c
+build obj/third_party/mesa/src/src/mesa/main/mesa.matrix.o: cc $
+    ../../third_party/mesa/src/src/mesa/main/matrix.c
+build obj/third_party/mesa/src/src/mesa/main/mesa.mipmap.o: cc $
+    ../../third_party/mesa/src/src/mesa/main/mipmap.c
+build obj/third_party/mesa/src/src/mesa/main/mesa.mm.o: cc $
+    ../../third_party/mesa/src/src/mesa/main/mm.c
+build obj/third_party/mesa/src/src/mesa/main/mesa.multisample.o: cc $
+    ../../third_party/mesa/src/src/mesa/main/multisample.c
+build obj/third_party/mesa/src/src/mesa/main/mesa.nvprogram.o: cc $
+    ../../third_party/mesa/src/src/mesa/main/nvprogram.c
+build obj/third_party/mesa/src/src/mesa/main/mesa.pack.o: cc $
+    ../../third_party/mesa/src/src/mesa/main/pack.c
+build obj/third_party/mesa/src/src/mesa/main/mesa.pbo.o: cc $
+    ../../third_party/mesa/src/src/mesa/main/pbo.c
+build obj/third_party/mesa/src/src/mesa/main/mesa.pixel.o: cc $
+    ../../third_party/mesa/src/src/mesa/main/pixel.c
+build obj/third_party/mesa/src/src/mesa/main/mesa.pixelstore.o: cc $
+    ../../third_party/mesa/src/src/mesa/main/pixelstore.c
+build obj/third_party/mesa/src/src/mesa/main/mesa.pixeltransfer.o: cc $
+    ../../third_party/mesa/src/src/mesa/main/pixeltransfer.c
+build obj/third_party/mesa/src/src/mesa/main/mesa.points.o: cc $
+    ../../third_party/mesa/src/src/mesa/main/points.c
+build obj/third_party/mesa/src/src/mesa/main/mesa.polygon.o: cc $
+    ../../third_party/mesa/src/src/mesa/main/polygon.c
+build obj/third_party/mesa/src/src/mesa/main/mesa.querymatrix.o: cc $
+    ../../third_party/mesa/src/src/mesa/main/querymatrix.c
+build obj/third_party/mesa/src/src/mesa/main/mesa.queryobj.o: cc $
+    ../../third_party/mesa/src/src/mesa/main/queryobj.c
+build obj/third_party/mesa/src/src/mesa/main/mesa.rastpos.o: cc $
+    ../../third_party/mesa/src/src/mesa/main/rastpos.c
+build obj/third_party/mesa/src/src/mesa/main/mesa.readpix.o: cc $
+    ../../third_party/mesa/src/src/mesa/main/readpix.c
+build obj/third_party/mesa/src/src/mesa/main/mesa.remap.o: cc $
+    ../../third_party/mesa/src/src/mesa/main/remap.c
+build obj/third_party/mesa/src/src/mesa/main/mesa.renderbuffer.o: cc $
+    ../../third_party/mesa/src/src/mesa/main/renderbuffer.c
+build obj/third_party/mesa/src/src/mesa/main/mesa.samplerobj.o: cc $
+    ../../third_party/mesa/src/src/mesa/main/samplerobj.c
+build obj/third_party/mesa/src/src/mesa/main/mesa.scissor.o: cc $
+    ../../third_party/mesa/src/src/mesa/main/scissor.c
+build obj/third_party/mesa/src/src/mesa/main/mesa.shader_query.o: cxx $
+    ../../third_party/mesa/src/src/mesa/main/shader_query.cpp
+build obj/third_party/mesa/src/src/mesa/main/mesa.shaderapi.o: cc $
+    ../../third_party/mesa/src/src/mesa/main/shaderapi.c
+build obj/third_party/mesa/src/src/mesa/main/mesa.shaderobj.o: cc $
+    ../../third_party/mesa/src/src/mesa/main/shaderobj.c
+build obj/third_party/mesa/src/src/mesa/main/mesa.shared.o: cc $
+    ../../third_party/mesa/src/src/mesa/main/shared.c
+build obj/third_party/mesa/src/src/mesa/main/mesa.state.o: cc $
+    ../../third_party/mesa/src/src/mesa/main/state.c
+build obj/third_party/mesa/src/src/mesa/main/mesa.stencil.o: cc $
+    ../../third_party/mesa/src/src/mesa/main/stencil.c
+build obj/third_party/mesa/src/src/mesa/main/mesa.syncobj.o: cc $
+    ../../third_party/mesa/src/src/mesa/main/syncobj.c
+build obj/third_party/mesa/src/src/mesa/main/mesa.texcompress.o: cc $
+    ../../third_party/mesa/src/src/mesa/main/texcompress.c
+build obj/third_party/mesa/src/src/mesa/main/mesa.texcompress_cpal.o: cc $
+    ../../third_party/mesa/src/src/mesa/main/texcompress_cpal.c
+build obj/third_party/mesa/src/src/mesa/main/mesa.texcompress_etc.o: cc $
+    ../../third_party/mesa/src/src/mesa/main/texcompress_etc.c
+build obj/third_party/mesa/src/src/mesa/main/mesa.texcompress_fxt1.o: cc $
+    ../../third_party/mesa/src/src/mesa/main/texcompress_fxt1.c
+build obj/third_party/mesa/src/src/mesa/main/mesa.texcompress_rgtc.o: cc $
+    ../../third_party/mesa/src/src/mesa/main/texcompress_rgtc.c
+build obj/third_party/mesa/src/src/mesa/main/mesa.texcompress_s3tc.o: cc $
+    ../../third_party/mesa/src/src/mesa/main/texcompress_s3tc.c
+build obj/third_party/mesa/src/src/mesa/main/mesa.texenv.o: cc $
+    ../../third_party/mesa/src/src/mesa/main/texenv.c
+build obj/third_party/mesa/src/src/mesa/main/mesa.texformat.o: cc $
+    ../../third_party/mesa/src/src/mesa/main/texformat.c
+build obj/third_party/mesa/src/src/mesa/main/mesa.texgen.o: cc $
+    ../../third_party/mesa/src/src/mesa/main/texgen.c
+build obj/third_party/mesa/src/src/mesa/main/mesa.texgetimage.o: cc $
+    ../../third_party/mesa/src/src/mesa/main/texgetimage.c
+build obj/third_party/mesa/src/src/mesa/main/mesa.teximage.o: cc $
+    ../../third_party/mesa/src/src/mesa/main/teximage.c
+build obj/third_party/mesa/src/src/mesa/main/mesa.texobj.o: cc $
+    ../../third_party/mesa/src/src/mesa/main/texobj.c
+build obj/third_party/mesa/src/src/mesa/main/mesa.texparam.o: cc $
+    ../../third_party/mesa/src/src/mesa/main/texparam.c
+build obj/third_party/mesa/src/src/mesa/main/mesa.texstate.o: cc $
+    ../../third_party/mesa/src/src/mesa/main/texstate.c
+build obj/third_party/mesa/src/src/mesa/main/mesa.texstorage.o: cc $
+    ../../third_party/mesa/src/src/mesa/main/texstorage.c
+build obj/third_party/mesa/src/src/mesa/main/mesa.texstore.o: cc $
+    ../../third_party/mesa/src/src/mesa/main/texstore.c
+build obj/third_party/mesa/src/src/mesa/main/mesa.texturebarrier.o: cc $
+    ../../third_party/mesa/src/src/mesa/main/texturebarrier.c
+build obj/third_party/mesa/src/src/mesa/main/mesa.transformfeedback.o: cc $
+    ../../third_party/mesa/src/src/mesa/main/transformfeedback.c
+build obj/third_party/mesa/src/src/mesa/main/mesa.uniform_query.o: cxx $
+    ../../third_party/mesa/src/src/mesa/main/uniform_query.cpp
+build obj/third_party/mesa/src/src/mesa/main/mesa.uniforms.o: cc $
+    ../../third_party/mesa/src/src/mesa/main/uniforms.c
+build obj/third_party/mesa/src/src/mesa/main/mesa.varray.o: cc $
+    ../../third_party/mesa/src/src/mesa/main/varray.c
+build obj/third_party/mesa/src/src/mesa/main/mesa.version.o: cc $
+    ../../third_party/mesa/src/src/mesa/main/version.c
+build obj/third_party/mesa/src/src/mesa/main/mesa.viewport.o: cc $
+    ../../third_party/mesa/src/src/mesa/main/viewport.c
+build obj/third_party/mesa/src/src/mesa/main/mesa.vtxfmt.o: cc $
+    ../../third_party/mesa/src/src/mesa/main/vtxfmt.c
+build obj/third_party/mesa/src/src/mesa/math/mesa.m_debug_clip.o: cc $
+    ../../third_party/mesa/src/src/mesa/math/m_debug_clip.c
+build obj/third_party/mesa/src/src/mesa/math/mesa.m_debug_norm.o: cc $
+    ../../third_party/mesa/src/src/mesa/math/m_debug_norm.c
+build obj/third_party/mesa/src/src/mesa/math/mesa.m_debug_xform.o: cc $
+    ../../third_party/mesa/src/src/mesa/math/m_debug_xform.c
+build obj/third_party/mesa/src/src/mesa/math/mesa.m_eval.o: cc $
+    ../../third_party/mesa/src/src/mesa/math/m_eval.c
+build obj/third_party/mesa/src/src/mesa/math/mesa.m_matrix.o: cc $
+    ../../third_party/mesa/src/src/mesa/math/m_matrix.c
+build obj/third_party/mesa/src/src/mesa/math/mesa.m_translate.o: cc $
+    ../../third_party/mesa/src/src/mesa/math/m_translate.c
+build obj/third_party/mesa/src/src/mesa/math/mesa.m_vector.o: cc $
+    ../../third_party/mesa/src/src/mesa/math/m_vector.c
+build obj/third_party/mesa/src/src/mesa/math/mesa.m_xform.o: cc $
+    ../../third_party/mesa/src/src/mesa/math/m_xform.c
+build obj/third_party/mesa/src/src/mesa/program/mesa.arbprogparse.o: cc $
+    ../../third_party/mesa/src/src/mesa/program/arbprogparse.c
+build obj/third_party/mesa/src/src/mesa/program/mesa.hash_table.o: cc $
+    ../../third_party/mesa/src/src/mesa/program/hash_table.c
+build obj/third_party/mesa/src/src/mesa/program/mesa.ir_to_mesa.o: cxx $
+    ../../third_party/mesa/src/src/mesa/program/ir_to_mesa.cpp
+build obj/third_party/mesa/src/chromium_gensrc/mesa/mesa.lex.yy.o: cc $
+    ../../third_party/mesa/src/chromium_gensrc/mesa/lex.yy.c
+build obj/third_party/mesa/src/src/mesa/program/mesa.nvfragparse.o: cc $
+    ../../third_party/mesa/src/src/mesa/program/nvfragparse.c
+build obj/third_party/mesa/src/src/mesa/program/mesa.nvvertparse.o: cc $
+    ../../third_party/mesa/src/src/mesa/program/nvvertparse.c
+build obj/third_party/mesa/src/src/mesa/program/mesa.prog_cache.o: cc $
+    ../../third_party/mesa/src/src/mesa/program/prog_cache.c
+build obj/third_party/mesa/src/src/mesa/program/mesa.prog_execute.o: cc $
+    ../../third_party/mesa/src/src/mesa/program/prog_execute.c
+build obj/third_party/mesa/src/src/mesa/program/mesa.prog_instruction.o: cc $
+    ../../third_party/mesa/src/src/mesa/program/prog_instruction.c
+build obj/third_party/mesa/src/src/mesa/program/mesa.prog_noise.o: cc $
+    ../../third_party/mesa/src/src/mesa/program/prog_noise.c
+build $
+    obj/third_party/mesa/src/src/mesa/program/mesa.prog_opt_constant_fold.o: $
+    cc ../../third_party/mesa/src/src/mesa/program/prog_opt_constant_fold.c
+build obj/third_party/mesa/src/src/mesa/program/mesa.prog_optimize.o: cc $
+    ../../third_party/mesa/src/src/mesa/program/prog_optimize.c
+build obj/third_party/mesa/src/src/mesa/program/mesa.prog_parameter.o: cc $
+    ../../third_party/mesa/src/src/mesa/program/prog_parameter.c
+build $
+    obj/third_party/mesa/src/src/mesa/program/mesa.prog_parameter_layout.o: $
+    cc ../../third_party/mesa/src/src/mesa/program/prog_parameter_layout.c
+build obj/third_party/mesa/src/src/mesa/program/mesa.prog_print.o: cc $
+    ../../third_party/mesa/src/src/mesa/program/prog_print.c
+build obj/third_party/mesa/src/src/mesa/program/mesa.prog_statevars.o: cc $
+    ../../third_party/mesa/src/src/mesa/program/prog_statevars.c
+build obj/third_party/mesa/src/src/mesa/program/mesa.program.o: cc $
+    ../../third_party/mesa/src/src/mesa/program/program.c
+build $
+    obj/third_party/mesa/src/chromium_gensrc/mesa/program/mesa.program_parse.tab.o: $
+    cc $
+    ../../third_party/mesa/src/chromium_gensrc/mesa/program/program_parse.tab.c
+build obj/third_party/mesa/src/src/mesa/program/mesa.program_parse_extra.o: $
+    cc ../../third_party/mesa/src/src/mesa/program/program_parse_extra.c
+build obj/third_party/mesa/src/src/mesa/program/mesa.programopt.o: cc $
+    ../../third_party/mesa/src/src/mesa/program/programopt.c
+build obj/third_party/mesa/src/src/mesa/program/mesa.register_allocate.o: $
+    cc ../../third_party/mesa/src/src/mesa/program/register_allocate.c
+build obj/third_party/mesa/src/src/mesa/program/mesa.sampler.o: cxx $
+    ../../third_party/mesa/src/src/mesa/program/sampler.cpp
+build obj/third_party/mesa/src/src/mesa/program/mesa.string_to_uint_map.o: $
+    cxx ../../third_party/mesa/src/src/mesa/program/string_to_uint_map.cpp
+build obj/third_party/mesa/src/src/mesa/program/mesa.symbol_table.o: cc $
+    ../../third_party/mesa/src/src/mesa/program/symbol_table.c
+build obj/third_party/mesa/src/src/mesa/state_tracker/mesa.st_atom.o: cc $
+    ../../third_party/mesa/src/src/mesa/state_tracker/st_atom.c
+build obj/third_party/mesa/src/src/mesa/state_tracker/mesa.st_atom_array.o: $
+    cc ../../third_party/mesa/src/src/mesa/state_tracker/st_atom_array.c
+build obj/third_party/mesa/src/src/mesa/state_tracker/mesa.st_atom_blend.o: $
+    cc ../../third_party/mesa/src/src/mesa/state_tracker/st_atom_blend.c
+build obj/third_party/mesa/src/src/mesa/state_tracker/mesa.st_atom_clip.o: $
+    cc ../../third_party/mesa/src/src/mesa/state_tracker/st_atom_clip.c
+build $
+    obj/third_party/mesa/src/src/mesa/state_tracker/mesa.st_atom_constbuf.o: $
+    cc ../../third_party/mesa/src/src/mesa/state_tracker/st_atom_constbuf.c
+build obj/third_party/mesa/src/src/mesa/state_tracker/mesa.st_atom_depth.o: $
+    cc ../../third_party/mesa/src/src/mesa/state_tracker/st_atom_depth.c
+build $
+    obj/third_party/mesa/src/src/mesa/state_tracker/mesa.st_atom_framebuffer.o: $
+    cc ../../third_party/mesa/src/src/mesa/state_tracker/st_atom_framebuffer.c
+build obj/third_party/mesa/src/src/mesa/state_tracker/mesa.st_atom_msaa.o: $
+    cc ../../third_party/mesa/src/src/mesa/state_tracker/st_atom_msaa.c
+build $
+    obj/third_party/mesa/src/src/mesa/state_tracker/mesa.st_atom_pixeltransfer.o: $
+    cc $
+    ../../third_party/mesa/src/src/mesa/state_tracker/st_atom_pixeltransfer.c
+build $
+    obj/third_party/mesa/src/src/mesa/state_tracker/mesa.st_atom_rasterizer.o: $
+    cc ../../third_party/mesa/src/src/mesa/state_tracker/st_atom_rasterizer.c
+build $
+    obj/third_party/mesa/src/src/mesa/state_tracker/mesa.st_atom_sampler.o: $
+    cc ../../third_party/mesa/src/src/mesa/state_tracker/st_atom_sampler.c
+build $
+    obj/third_party/mesa/src/src/mesa/state_tracker/mesa.st_atom_scissor.o: $
+    cc ../../third_party/mesa/src/src/mesa/state_tracker/st_atom_scissor.c
+build $
+    obj/third_party/mesa/src/src/mesa/state_tracker/mesa.st_atom_shader.o: $
+    cc ../../third_party/mesa/src/src/mesa/state_tracker/st_atom_shader.c
+build $
+    obj/third_party/mesa/src/src/mesa/state_tracker/mesa.st_atom_stipple.o: $
+    cc ../../third_party/mesa/src/src/mesa/state_tracker/st_atom_stipple.c
+build $
+    obj/third_party/mesa/src/src/mesa/state_tracker/mesa.st_atom_texture.o: $
+    cc ../../third_party/mesa/src/src/mesa/state_tracker/st_atom_texture.c
+build $
+    obj/third_party/mesa/src/src/mesa/state_tracker/mesa.st_atom_viewport.o: $
+    cc ../../third_party/mesa/src/src/mesa/state_tracker/st_atom_viewport.c
+build obj/third_party/mesa/src/src/mesa/state_tracker/mesa.st_cb_bitmap.o: $
+    cc ../../third_party/mesa/src/src/mesa/state_tracker/st_cb_bitmap.c
+build obj/third_party/mesa/src/src/mesa/state_tracker/mesa.st_cb_blit.o: cc $
+    ../../third_party/mesa/src/src/mesa/state_tracker/st_cb_blit.c
+build $
+    obj/third_party/mesa/src/src/mesa/state_tracker/mesa.st_cb_bufferobjects.o: $
+    cc ../../third_party/mesa/src/src/mesa/state_tracker/st_cb_bufferobjects.c
+build obj/third_party/mesa/src/src/mesa/state_tracker/mesa.st_cb_clear.o: $
+    cc ../../third_party/mesa/src/src/mesa/state_tracker/st_cb_clear.c
+build $
+    obj/third_party/mesa/src/src/mesa/state_tracker/mesa.st_cb_condrender.o: $
+    cc ../../third_party/mesa/src/src/mesa/state_tracker/st_cb_condrender.c
+build $
+    obj/third_party/mesa/src/src/mesa/state_tracker/mesa.st_cb_drawpixels.o: $
+    cc ../../third_party/mesa/src/src/mesa/state_tracker/st_cb_drawpixels.c
+build obj/third_party/mesa/src/src/mesa/state_tracker/mesa.st_cb_drawtex.o: $
+    cc ../../third_party/mesa/src/src/mesa/state_tracker/st_cb_drawtex.c
+build $
+    obj/third_party/mesa/src/src/mesa/state_tracker/mesa.st_cb_eglimage.o: $
+    cc ../../third_party/mesa/src/src/mesa/state_tracker/st_cb_eglimage.c
+build obj/third_party/mesa/src/src/mesa/state_tracker/mesa.st_cb_fbo.o: cc $
+    ../../third_party/mesa/src/src/mesa/state_tracker/st_cb_fbo.c
+build $
+    obj/third_party/mesa/src/src/mesa/state_tracker/mesa.st_cb_feedback.o: $
+    cc ../../third_party/mesa/src/src/mesa/state_tracker/st_cb_feedback.c
+build obj/third_party/mesa/src/src/mesa/state_tracker/mesa.st_cb_flush.o: $
+    cc ../../third_party/mesa/src/src/mesa/state_tracker/st_cb_flush.c
+build obj/third_party/mesa/src/src/mesa/state_tracker/mesa.st_cb_program.o: $
+    cc ../../third_party/mesa/src/src/mesa/state_tracker/st_cb_program.c
+build $
+    obj/third_party/mesa/src/src/mesa/state_tracker/mesa.st_cb_queryobj.o: $
+    cc ../../third_party/mesa/src/src/mesa/state_tracker/st_cb_queryobj.c
+build $
+    obj/third_party/mesa/src/src/mesa/state_tracker/mesa.st_cb_rasterpos.o: $
+    cc ../../third_party/mesa/src/src/mesa/state_tracker/st_cb_rasterpos.c
+build $
+    obj/third_party/mesa/src/src/mesa/state_tracker/mesa.st_cb_readpixels.o: $
+    cc ../../third_party/mesa/src/src/mesa/state_tracker/st_cb_readpixels.c
+build obj/third_party/mesa/src/src/mesa/state_tracker/mesa.st_cb_strings.o: $
+    cc ../../third_party/mesa/src/src/mesa/state_tracker/st_cb_strings.c
+build obj/third_party/mesa/src/src/mesa/state_tracker/mesa.st_cb_syncobj.o: $
+    cc ../../third_party/mesa/src/src/mesa/state_tracker/st_cb_syncobj.c
+build obj/third_party/mesa/src/src/mesa/state_tracker/mesa.st_cb_texture.o: $
+    cc ../../third_party/mesa/src/src/mesa/state_tracker/st_cb_texture.c
+build $
+    obj/third_party/mesa/src/src/mesa/state_tracker/mesa.st_cb_texturebarrier.o: $
+    cc $
+    ../../third_party/mesa/src/src/mesa/state_tracker/st_cb_texturebarrier.c
+build $
+    obj/third_party/mesa/src/src/mesa/state_tracker/mesa.st_cb_viewport.o: $
+    cc ../../third_party/mesa/src/src/mesa/state_tracker/st_cb_viewport.c
+build obj/third_party/mesa/src/src/mesa/state_tracker/mesa.st_cb_xformfb.o: $
+    cc ../../third_party/mesa/src/src/mesa/state_tracker/st_cb_xformfb.c
+build obj/third_party/mesa/src/src/mesa/state_tracker/mesa.st_context.o: cc $
+    ../../third_party/mesa/src/src/mesa/state_tracker/st_context.c
+build obj/third_party/mesa/src/src/mesa/state_tracker/mesa.st_debug.o: cc $
+    ../../third_party/mesa/src/src/mesa/state_tracker/st_debug.c
+build obj/third_party/mesa/src/src/mesa/state_tracker/mesa.st_draw.o: cc $
+    ../../third_party/mesa/src/src/mesa/state_tracker/st_draw.c
+build $
+    obj/third_party/mesa/src/src/mesa/state_tracker/mesa.st_draw_feedback.o: $
+    cc ../../third_party/mesa/src/src/mesa/state_tracker/st_draw_feedback.c
+build obj/third_party/mesa/src/src/mesa/state_tracker/mesa.st_extensions.o: $
+    cc ../../third_party/mesa/src/src/mesa/state_tracker/st_extensions.c
+build obj/third_party/mesa/src/src/mesa/state_tracker/mesa.st_format.o: cc $
+    ../../third_party/mesa/src/src/mesa/state_tracker/st_format.c
+build obj/third_party/mesa/src/src/mesa/state_tracker/mesa.st_gen_mipmap.o: $
+    cc ../../third_party/mesa/src/src/mesa/state_tracker/st_gen_mipmap.c
+build $
+    obj/third_party/mesa/src/src/mesa/state_tracker/mesa.st_glsl_to_tgsi.o: $
+    cxx ../../third_party/mesa/src/src/mesa/state_tracker/st_glsl_to_tgsi.cpp
+build obj/third_party/mesa/src/src/mesa/state_tracker/mesa.st_manager.o: cc $
+    ../../third_party/mesa/src/src/mesa/state_tracker/st_manager.c
+build $
+    obj/third_party/mesa/src/src/mesa/state_tracker/mesa.st_mesa_to_tgsi.o: $
+    cc ../../third_party/mesa/src/src/mesa/state_tracker/st_mesa_to_tgsi.c
+build obj/third_party/mesa/src/src/mesa/state_tracker/mesa.st_program.o: cc $
+    ../../third_party/mesa/src/src/mesa/state_tracker/st_program.c
+build obj/third_party/mesa/src/src/mesa/state_tracker/mesa.st_texture.o: cc $
+    ../../third_party/mesa/src/src/mesa/state_tracker/st_texture.c
+build obj/third_party/mesa/src/src/mesa/swrast/mesa.s_aaline.o: cc $
+    ../../third_party/mesa/src/src/mesa/swrast/s_aaline.c
+build obj/third_party/mesa/src/src/mesa/swrast/mesa.s_aatriangle.o: cc $
+    ../../third_party/mesa/src/src/mesa/swrast/s_aatriangle.c
+build obj/third_party/mesa/src/src/mesa/swrast/mesa.s_alpha.o: cc $
+    ../../third_party/mesa/src/src/mesa/swrast/s_alpha.c
+build obj/third_party/mesa/src/src/mesa/swrast/mesa.s_atifragshader.o: cc $
+    ../../third_party/mesa/src/src/mesa/swrast/s_atifragshader.c
+build obj/third_party/mesa/src/src/mesa/swrast/mesa.s_bitmap.o: cc $
+    ../../third_party/mesa/src/src/mesa/swrast/s_bitmap.c
+build obj/third_party/mesa/src/src/mesa/swrast/mesa.s_blend.o: cc $
+    ../../third_party/mesa/src/src/mesa/swrast/s_blend.c
+build obj/third_party/mesa/src/src/mesa/swrast/mesa.s_blit.o: cc $
+    ../../third_party/mesa/src/src/mesa/swrast/s_blit.c
+build obj/third_party/mesa/src/src/mesa/swrast/mesa.s_clear.o: cc $
+    ../../third_party/mesa/src/src/mesa/swrast/s_clear.c
+build obj/third_party/mesa/src/src/mesa/swrast/mesa.s_context.o: cc $
+    ../../third_party/mesa/src/src/mesa/swrast/s_context.c
+build obj/third_party/mesa/src/src/mesa/swrast/mesa.s_copypix.o: cc $
+    ../../third_party/mesa/src/src/mesa/swrast/s_copypix.c
+build obj/third_party/mesa/src/src/mesa/swrast/mesa.s_depth.o: cc $
+    ../../third_party/mesa/src/src/mesa/swrast/s_depth.c
+build obj/third_party/mesa/src/src/mesa/swrast/mesa.s_drawpix.o: cc $
+    ../../third_party/mesa/src/src/mesa/swrast/s_drawpix.c
+build obj/third_party/mesa/src/src/mesa/swrast/mesa.s_feedback.o: cc $
+    ../../third_party/mesa/src/src/mesa/swrast/s_feedback.c
+build obj/third_party/mesa/src/src/mesa/swrast/mesa.s_fog.o: cc $
+    ../../third_party/mesa/src/src/mesa/swrast/s_fog.c
+build obj/third_party/mesa/src/src/mesa/swrast/mesa.s_fragprog.o: cc $
+    ../../third_party/mesa/src/src/mesa/swrast/s_fragprog.c
+build obj/third_party/mesa/src/src/mesa/swrast/mesa.s_lines.o: cc $
+    ../../third_party/mesa/src/src/mesa/swrast/s_lines.c
+build obj/third_party/mesa/src/src/mesa/swrast/mesa.s_logic.o: cc $
+    ../../third_party/mesa/src/src/mesa/swrast/s_logic.c
+build obj/third_party/mesa/src/src/mesa/swrast/mesa.s_masking.o: cc $
+    ../../third_party/mesa/src/src/mesa/swrast/s_masking.c
+build obj/third_party/mesa/src/src/mesa/swrast/mesa.s_points.o: cc $
+    ../../third_party/mesa/src/src/mesa/swrast/s_points.c
+build obj/third_party/mesa/src/src/mesa/swrast/mesa.s_renderbuffer.o: cc $
+    ../../third_party/mesa/src/src/mesa/swrast/s_renderbuffer.c
+build obj/third_party/mesa/src/src/mesa/swrast/mesa.s_span.o: cc $
+    ../../third_party/mesa/src/src/mesa/swrast/s_span.c
+build obj/third_party/mesa/src/src/mesa/swrast/mesa.s_stencil.o: cc $
+    ../../third_party/mesa/src/src/mesa/swrast/s_stencil.c
+build obj/third_party/mesa/src/src/mesa/swrast/mesa.s_texcombine.o: cc $
+    ../../third_party/mesa/src/src/mesa/swrast/s_texcombine.c
+build obj/third_party/mesa/src/src/mesa/swrast/mesa.s_texfetch.o: cc $
+    ../../third_party/mesa/src/src/mesa/swrast/s_texfetch.c
+build obj/third_party/mesa/src/src/mesa/swrast/mesa.s_texfilter.o: cc $
+    ../../third_party/mesa/src/src/mesa/swrast/s_texfilter.c
+build obj/third_party/mesa/src/src/mesa/swrast/mesa.s_texrender.o: cc $
+    ../../third_party/mesa/src/src/mesa/swrast/s_texrender.c
+build obj/third_party/mesa/src/src/mesa/swrast/mesa.s_texture.o: cc $
+    ../../third_party/mesa/src/src/mesa/swrast/s_texture.c
+build obj/third_party/mesa/src/src/mesa/swrast/mesa.s_triangle.o: cc $
+    ../../third_party/mesa/src/src/mesa/swrast/s_triangle.c
+build obj/third_party/mesa/src/src/mesa/swrast/mesa.s_zoom.o: cc $
+    ../../third_party/mesa/src/src/mesa/swrast/s_zoom.c
+build obj/third_party/mesa/src/src/mesa/swrast_setup/mesa.ss_context.o: cc $
+    ../../third_party/mesa/src/src/mesa/swrast_setup/ss_context.c
+build obj/third_party/mesa/src/src/mesa/swrast_setup/mesa.ss_triangle.o: cc $
+    ../../third_party/mesa/src/src/mesa/swrast_setup/ss_triangle.c
+build obj/third_party/mesa/src/src/mesa/tnl/mesa.t_context.o: cc $
+    ../../third_party/mesa/src/src/mesa/tnl/t_context.c
+build obj/third_party/mesa/src/src/mesa/tnl/mesa.t_draw.o: cc $
+    ../../third_party/mesa/src/src/mesa/tnl/t_draw.c
+build obj/third_party/mesa/src/src/mesa/tnl/mesa.t_pipeline.o: cc $
+    ../../third_party/mesa/src/src/mesa/tnl/t_pipeline.c
+build obj/third_party/mesa/src/src/mesa/tnl/mesa.t_rasterpos.o: cc $
+    ../../third_party/mesa/src/src/mesa/tnl/t_rasterpos.c
+build obj/third_party/mesa/src/src/mesa/tnl/mesa.t_vb_fog.o: cc $
+    ../../third_party/mesa/src/src/mesa/tnl/t_vb_fog.c
+build obj/third_party/mesa/src/src/mesa/tnl/mesa.t_vb_light.o: cc $
+    ../../third_party/mesa/src/src/mesa/tnl/t_vb_light.c
+build obj/third_party/mesa/src/src/mesa/tnl/mesa.t_vb_normals.o: cc $
+    ../../third_party/mesa/src/src/mesa/tnl/t_vb_normals.c
+build obj/third_party/mesa/src/src/mesa/tnl/mesa.t_vb_points.o: cc $
+    ../../third_party/mesa/src/src/mesa/tnl/t_vb_points.c
+build obj/third_party/mesa/src/src/mesa/tnl/mesa.t_vb_program.o: cc $
+    ../../third_party/mesa/src/src/mesa/tnl/t_vb_program.c
+build obj/third_party/mesa/src/src/mesa/tnl/mesa.t_vb_render.o: cc $
+    ../../third_party/mesa/src/src/mesa/tnl/t_vb_render.c
+build obj/third_party/mesa/src/src/mesa/tnl/mesa.t_vb_texgen.o: cc $
+    ../../third_party/mesa/src/src/mesa/tnl/t_vb_texgen.c
+build obj/third_party/mesa/src/src/mesa/tnl/mesa.t_vb_texmat.o: cc $
+    ../../third_party/mesa/src/src/mesa/tnl/t_vb_texmat.c
+build obj/third_party/mesa/src/src/mesa/tnl/mesa.t_vb_vertex.o: cc $
+    ../../third_party/mesa/src/src/mesa/tnl/t_vb_vertex.c
+build obj/third_party/mesa/src/src/mesa/tnl/mesa.t_vertex.o: cc $
+    ../../third_party/mesa/src/src/mesa/tnl/t_vertex.c
+build obj/third_party/mesa/src/src/mesa/tnl/mesa.t_vertex_generic.o: cc $
+    ../../third_party/mesa/src/src/mesa/tnl/t_vertex_generic.c
+build obj/third_party/mesa/src/src/mesa/tnl/mesa.t_vertex_sse.o: cc $
+    ../../third_party/mesa/src/src/mesa/tnl/t_vertex_sse.c
+build obj/third_party/mesa/src/src/mesa/tnl/mesa.t_vp_build.o: cc $
+    ../../third_party/mesa/src/src/mesa/tnl/t_vp_build.c
+build obj/third_party/mesa/src/src/mesa/vbo/mesa.vbo_context.o: cc $
+    ../../third_party/mesa/src/src/mesa/vbo/vbo_context.c
+build obj/third_party/mesa/src/src/mesa/vbo/mesa.vbo_exec.o: cc $
+    ../../third_party/mesa/src/src/mesa/vbo/vbo_exec.c
+build obj/third_party/mesa/src/src/mesa/vbo/mesa.vbo_exec_api.o: cc $
+    ../../third_party/mesa/src/src/mesa/vbo/vbo_exec_api.c
+build obj/third_party/mesa/src/src/mesa/vbo/mesa.vbo_exec_array.o: cc $
+    ../../third_party/mesa/src/src/mesa/vbo/vbo_exec_array.c
+build obj/third_party/mesa/src/src/mesa/vbo/mesa.vbo_exec_draw.o: cc $
+    ../../third_party/mesa/src/src/mesa/vbo/vbo_exec_draw.c
+build obj/third_party/mesa/src/src/mesa/vbo/mesa.vbo_exec_eval.o: cc $
+    ../../third_party/mesa/src/src/mesa/vbo/vbo_exec_eval.c
+build obj/third_party/mesa/src/src/mesa/vbo/mesa.vbo_noop.o: cc $
+    ../../third_party/mesa/src/src/mesa/vbo/vbo_noop.c
+build obj/third_party/mesa/src/src/mesa/vbo/mesa.vbo_primitive_restart.o: $
+    cc ../../third_party/mesa/src/src/mesa/vbo/vbo_primitive_restart.c
+build obj/third_party/mesa/src/src/mesa/vbo/mesa.vbo_rebase.o: cc $
+    ../../third_party/mesa/src/src/mesa/vbo/vbo_rebase.c
+build obj/third_party/mesa/src/src/mesa/vbo/mesa.vbo_save.o: cc $
+    ../../third_party/mesa/src/src/mesa/vbo/vbo_save.c
+build obj/third_party/mesa/src/src/mesa/vbo/mesa.vbo_save_api.o: cc $
+    ../../third_party/mesa/src/src/mesa/vbo/vbo_save_api.c
+build obj/third_party/mesa/src/src/mesa/vbo/mesa.vbo_save_draw.o: cc $
+    ../../third_party/mesa/src/src/mesa/vbo/vbo_save_draw.c
+build obj/third_party/mesa/src/src/mesa/vbo/mesa.vbo_save_loopback.o: cc $
+    ../../third_party/mesa/src/src/mesa/vbo/vbo_save_loopback.c
+build obj/third_party/mesa/src/src/mesa/vbo/mesa.vbo_split.o: cc $
+    ../../third_party/mesa/src/src/mesa/vbo/vbo_split.c
+build obj/third_party/mesa/src/src/mesa/vbo/mesa.vbo_split_copy.o: cc $
+    ../../third_party/mesa/src/src/mesa/vbo/vbo_split_copy.c
+build obj/third_party/mesa/src/src/mesa/vbo/mesa.vbo_split_inplace.o: cc $
+    ../../third_party/mesa/src/src/mesa/vbo/vbo_split_inplace.c
+build obj/third_party/mesa/src/src/mesa/x86-64/mesa.x86-64.o: cc $
+    ../../third_party/mesa/src/src/mesa/x86-64/x86-64.c
+
+build obj/third_party/mesa/libmesa.a: alink_thin $
+    obj/third_party/mesa/src/chromium_gensrc/mesa/mesa.builtin_function.o $
+    obj/third_party/mesa/src/src/mapi/mapi/mesa.entry.o $
+    obj/third_party/mesa/src/src/mapi/mapi/mesa.mapi.o $
+    obj/third_party/mesa/src/src/mapi/mapi/mesa.mapi_glapi.o $
+    obj/third_party/mesa/src/src/mapi/mapi/mesa.stub.o $
+    obj/third_party/mesa/src/src/mapi/mapi/mesa.table.o $
+    obj/third_party/mesa/src/src/mapi/mapi/mesa.u_current.o $
+    obj/third_party/mesa/src/src/mapi/mapi/mesa.u_execmem.o $
+    obj/third_party/mesa/src/src/mesa/main/mesa.accum.o $
+    obj/third_party/mesa/src/src/mesa/main/mesa.api_arrayelt.o $
+    obj/third_party/mesa/src/src/mesa/main/mesa.api_exec.o $
+    obj/third_party/mesa/src/chromium_gensrc/mesa/mesa.api_exec_es1.o $
+    obj/third_party/mesa/src/src/mesa/main/mesa.api_loopback.o $
+    obj/third_party/mesa/src/src/mesa/main/mesa.api_validate.o $
+    obj/third_party/mesa/src/src/mesa/main/mesa.arbprogram.o $
+    obj/third_party/mesa/src/src/mesa/main/mesa.arrayobj.o $
+    obj/third_party/mesa/src/src/mesa/main/mesa.atifragshader.o $
+    obj/third_party/mesa/src/src/mesa/main/mesa.attrib.o $
+    obj/third_party/mesa/src/src/mesa/main/mesa.blend.o $
+    obj/third_party/mesa/src/src/mesa/main/mesa.bufferobj.o $
+    obj/third_party/mesa/src/src/mesa/main/mesa.buffers.o $
+    obj/third_party/mesa/src/src/mesa/main/mesa.clear.o $
+    obj/third_party/mesa/src/src/mesa/main/mesa.clip.o $
+    obj/third_party/mesa/src/src/mesa/main/mesa.colortab.o $
+    obj/third_party/mesa/src/src/mesa/main/mesa.condrender.o $
+    obj/third_party/mesa/src/src/mesa/main/mesa.context.o $
+    obj/third_party/mesa/src/src/mesa/main/mesa.convolve.o $
+    obj/third_party/mesa/src/src/mesa/main/mesa.cpuinfo.o $
+    obj/third_party/mesa/src/src/mesa/main/mesa.debug.o $
+    obj/third_party/mesa/src/src/mesa/main/mesa.depth.o $
+    obj/third_party/mesa/src/src/mesa/main/mesa.dlist.o $
+    obj/third_party/mesa/src/src/mesa/main/mesa.drawpix.o $
+    obj/third_party/mesa/src/src/mesa/main/mesa.drawtex.o $
+    obj/third_party/mesa/src/src/mesa/main/mesa.enable.o $
+    obj/third_party/mesa/src/chromium_gensrc/mesa/mesa.enums.o $
+    obj/third_party/mesa/src/src/mesa/main/mesa.errors.o $
+    obj/third_party/mesa/src/src/mesa/main/mesa.es1_conversion.o $
+    obj/third_party/mesa/src/src/mesa/main/mesa.eval.o $
+    obj/third_party/mesa/src/src/mesa/main/mesa.execmem.o $
+    obj/third_party/mesa/src/src/mesa/main/mesa.extensions.o $
+    obj/third_party/mesa/src/src/mesa/main/mesa.fbobject.o $
+    obj/third_party/mesa/src/src/mesa/main/mesa.feedback.o $
+    obj/third_party/mesa/src/src/mesa/main/mesa.ff_fragment_shader.o $
+    obj/third_party/mesa/src/src/mesa/main/mesa.ffvertex_prog.o $
+    obj/third_party/mesa/src/src/mesa/main/mesa.fog.o $
+    obj/third_party/mesa/src/src/mesa/main/mesa.format_pack.o $
+    obj/third_party/mesa/src/src/mesa/main/mesa.format_unpack.o $
+    obj/third_party/mesa/src/src/mesa/main/mesa.formats.o $
+    obj/third_party/mesa/src/src/mesa/main/mesa.framebuffer.o $
+    obj/third_party/mesa/src/src/mesa/main/mesa.get.o $
+    obj/third_party/mesa/src/src/mesa/main/mesa.getstring.o $
+    obj/third_party/mesa/src/src/mesa/main/mesa.glformats.o $
+    obj/third_party/mesa/src/src/mesa/main/mesa.hash.o $
+    obj/third_party/mesa/src/src/mesa/main/mesa.hint.o $
+    obj/third_party/mesa/src/src/mesa/main/mesa.histogram.o $
+    obj/third_party/mesa/src/src/mesa/main/mesa.image.o $
+    obj/third_party/mesa/src/src/mesa/main/mesa.imports.o $
+    obj/third_party/mesa/src/src/mesa/main/mesa.light.o $
+    obj/third_party/mesa/src/src/mesa/main/mesa.lines.o $
+    obj/third_party/mesa/src/src/mesa/main/mesa.matrix.o $
+    obj/third_party/mesa/src/src/mesa/main/mesa.mipmap.o $
+    obj/third_party/mesa/src/src/mesa/main/mesa.mm.o $
+    obj/third_party/mesa/src/src/mesa/main/mesa.multisample.o $
+    obj/third_party/mesa/src/src/mesa/main/mesa.nvprogram.o $
+    obj/third_party/mesa/src/src/mesa/main/mesa.pack.o $
+    obj/third_party/mesa/src/src/mesa/main/mesa.pbo.o $
+    obj/third_party/mesa/src/src/mesa/main/mesa.pixel.o $
+    obj/third_party/mesa/src/src/mesa/main/mesa.pixelstore.o $
+    obj/third_party/mesa/src/src/mesa/main/mesa.pixeltransfer.o $
+    obj/third_party/mesa/src/src/mesa/main/mesa.points.o $
+    obj/third_party/mesa/src/src/mesa/main/mesa.polygon.o $
+    obj/third_party/mesa/src/src/mesa/main/mesa.querymatrix.o $
+    obj/third_party/mesa/src/src/mesa/main/mesa.queryobj.o $
+    obj/third_party/mesa/src/src/mesa/main/mesa.rastpos.o $
+    obj/third_party/mesa/src/src/mesa/main/mesa.readpix.o $
+    obj/third_party/mesa/src/src/mesa/main/mesa.remap.o $
+    obj/third_party/mesa/src/src/mesa/main/mesa.renderbuffer.o $
+    obj/third_party/mesa/src/src/mesa/main/mesa.samplerobj.o $
+    obj/third_party/mesa/src/src/mesa/main/mesa.scissor.o $
+    obj/third_party/mesa/src/src/mesa/main/mesa.shader_query.o $
+    obj/third_party/mesa/src/src/mesa/main/mesa.shaderapi.o $
+    obj/third_party/mesa/src/src/mesa/main/mesa.shaderobj.o $
+    obj/third_party/mesa/src/src/mesa/main/mesa.shared.o $
+    obj/third_party/mesa/src/src/mesa/main/mesa.state.o $
+    obj/third_party/mesa/src/src/mesa/main/mesa.stencil.o $
+    obj/third_party/mesa/src/src/mesa/main/mesa.syncobj.o $
+    obj/third_party/mesa/src/src/mesa/main/mesa.texcompress.o $
+    obj/third_party/mesa/src/src/mesa/main/mesa.texcompress_cpal.o $
+    obj/third_party/mesa/src/src/mesa/main/mesa.texcompress_etc.o $
+    obj/third_party/mesa/src/src/mesa/main/mesa.texcompress_fxt1.o $
+    obj/third_party/mesa/src/src/mesa/main/mesa.texcompress_rgtc.o $
+    obj/third_party/mesa/src/src/mesa/main/mesa.texcompress_s3tc.o $
+    obj/third_party/mesa/src/src/mesa/main/mesa.texenv.o $
+    obj/third_party/mesa/src/src/mesa/main/mesa.texformat.o $
+    obj/third_party/mesa/src/src/mesa/main/mesa.texgen.o $
+    obj/third_party/mesa/src/src/mesa/main/mesa.texgetimage.o $
+    obj/third_party/mesa/src/src/mesa/main/mesa.teximage.o $
+    obj/third_party/mesa/src/src/mesa/main/mesa.texobj.o $
+    obj/third_party/mesa/src/src/mesa/main/mesa.texparam.o $
+    obj/third_party/mesa/src/src/mesa/main/mesa.texstate.o $
+    obj/third_party/mesa/src/src/mesa/main/mesa.texstorage.o $
+    obj/third_party/mesa/src/src/mesa/main/mesa.texstore.o $
+    obj/third_party/mesa/src/src/mesa/main/mesa.texturebarrier.o $
+    obj/third_party/mesa/src/src/mesa/main/mesa.transformfeedback.o $
+    obj/third_party/mesa/src/src/mesa/main/mesa.uniform_query.o $
+    obj/third_party/mesa/src/src/mesa/main/mesa.uniforms.o $
+    obj/third_party/mesa/src/src/mesa/main/mesa.varray.o $
+    obj/third_party/mesa/src/src/mesa/main/mesa.version.o $
+    obj/third_party/mesa/src/src/mesa/main/mesa.viewport.o $
+    obj/third_party/mesa/src/src/mesa/main/mesa.vtxfmt.o $
+    obj/third_party/mesa/src/src/mesa/math/mesa.m_debug_clip.o $
+    obj/third_party/mesa/src/src/mesa/math/mesa.m_debug_norm.o $
+    obj/third_party/mesa/src/src/mesa/math/mesa.m_debug_xform.o $
+    obj/third_party/mesa/src/src/mesa/math/mesa.m_eval.o $
+    obj/third_party/mesa/src/src/mesa/math/mesa.m_matrix.o $
+    obj/third_party/mesa/src/src/mesa/math/mesa.m_translate.o $
+    obj/third_party/mesa/src/src/mesa/math/mesa.m_vector.o $
+    obj/third_party/mesa/src/src/mesa/math/mesa.m_xform.o $
+    obj/third_party/mesa/src/src/mesa/program/mesa.arbprogparse.o $
+    obj/third_party/mesa/src/src/mesa/program/mesa.hash_table.o $
+    obj/third_party/mesa/src/src/mesa/program/mesa.ir_to_mesa.o $
+    obj/third_party/mesa/src/chromium_gensrc/mesa/mesa.lex.yy.o $
+    obj/third_party/mesa/src/src/mesa/program/mesa.nvfragparse.o $
+    obj/third_party/mesa/src/src/mesa/program/mesa.nvvertparse.o $
+    obj/third_party/mesa/src/src/mesa/program/mesa.prog_cache.o $
+    obj/third_party/mesa/src/src/mesa/program/mesa.prog_execute.o $
+    obj/third_party/mesa/src/src/mesa/program/mesa.prog_instruction.o $
+    obj/third_party/mesa/src/src/mesa/program/mesa.prog_noise.o $
+    obj/third_party/mesa/src/src/mesa/program/mesa.prog_opt_constant_fold.o $
+    obj/third_party/mesa/src/src/mesa/program/mesa.prog_optimize.o $
+    obj/third_party/mesa/src/src/mesa/program/mesa.prog_parameter.o $
+    obj/third_party/mesa/src/src/mesa/program/mesa.prog_parameter_layout.o $
+    obj/third_party/mesa/src/src/mesa/program/mesa.prog_print.o $
+    obj/third_party/mesa/src/src/mesa/program/mesa.prog_statevars.o $
+    obj/third_party/mesa/src/src/mesa/program/mesa.program.o $
+    obj/third_party/mesa/src/chromium_gensrc/mesa/program/mesa.program_parse.tab.o $
+    obj/third_party/mesa/src/src/mesa/program/mesa.program_parse_extra.o $
+    obj/third_party/mesa/src/src/mesa/program/mesa.programopt.o $
+    obj/third_party/mesa/src/src/mesa/program/mesa.register_allocate.o $
+    obj/third_party/mesa/src/src/mesa/program/mesa.sampler.o $
+    obj/third_party/mesa/src/src/mesa/program/mesa.string_to_uint_map.o $
+    obj/third_party/mesa/src/src/mesa/program/mesa.symbol_table.o $
+    obj/third_party/mesa/src/src/mesa/state_tracker/mesa.st_atom.o $
+    obj/third_party/mesa/src/src/mesa/state_tracker/mesa.st_atom_array.o $
+    obj/third_party/mesa/src/src/mesa/state_tracker/mesa.st_atom_blend.o $
+    obj/third_party/mesa/src/src/mesa/state_tracker/mesa.st_atom_clip.o $
+    obj/third_party/mesa/src/src/mesa/state_tracker/mesa.st_atom_constbuf.o $
+    obj/third_party/mesa/src/src/mesa/state_tracker/mesa.st_atom_depth.o $
+    obj/third_party/mesa/src/src/mesa/state_tracker/mesa.st_atom_framebuffer.o $
+    obj/third_party/mesa/src/src/mesa/state_tracker/mesa.st_atom_msaa.o $
+    obj/third_party/mesa/src/src/mesa/state_tracker/mesa.st_atom_pixeltransfer.o $
+    obj/third_party/mesa/src/src/mesa/state_tracker/mesa.st_atom_rasterizer.o $
+    obj/third_party/mesa/src/src/mesa/state_tracker/mesa.st_atom_sampler.o $
+    obj/third_party/mesa/src/src/mesa/state_tracker/mesa.st_atom_scissor.o $
+    obj/third_party/mesa/src/src/mesa/state_tracker/mesa.st_atom_shader.o $
+    obj/third_party/mesa/src/src/mesa/state_tracker/mesa.st_atom_stipple.o $
+    obj/third_party/mesa/src/src/mesa/state_tracker/mesa.st_atom_texture.o $
+    obj/third_party/mesa/src/src/mesa/state_tracker/mesa.st_atom_viewport.o $
+    obj/third_party/mesa/src/src/mesa/state_tracker/mesa.st_cb_bitmap.o $
+    obj/third_party/mesa/src/src/mesa/state_tracker/mesa.st_cb_blit.o $
+    obj/third_party/mesa/src/src/mesa/state_tracker/mesa.st_cb_bufferobjects.o $
+    obj/third_party/mesa/src/src/mesa/state_tracker/mesa.st_cb_clear.o $
+    obj/third_party/mesa/src/src/mesa/state_tracker/mesa.st_cb_condrender.o $
+    obj/third_party/mesa/src/src/mesa/state_tracker/mesa.st_cb_drawpixels.o $
+    obj/third_party/mesa/src/src/mesa/state_tracker/mesa.st_cb_drawtex.o $
+    obj/third_party/mesa/src/src/mesa/state_tracker/mesa.st_cb_eglimage.o $
+    obj/third_party/mesa/src/src/mesa/state_tracker/mesa.st_cb_fbo.o $
+    obj/third_party/mesa/src/src/mesa/state_tracker/mesa.st_cb_feedback.o $
+    obj/third_party/mesa/src/src/mesa/state_tracker/mesa.st_cb_flush.o $
+    obj/third_party/mesa/src/src/mesa/state_tracker/mesa.st_cb_program.o $
+    obj/third_party/mesa/src/src/mesa/state_tracker/mesa.st_cb_queryobj.o $
+    obj/third_party/mesa/src/src/mesa/state_tracker/mesa.st_cb_rasterpos.o $
+    obj/third_party/mesa/src/src/mesa/state_tracker/mesa.st_cb_readpixels.o $
+    obj/third_party/mesa/src/src/mesa/state_tracker/mesa.st_cb_strings.o $
+    obj/third_party/mesa/src/src/mesa/state_tracker/mesa.st_cb_syncobj.o $
+    obj/third_party/mesa/src/src/mesa/state_tracker/mesa.st_cb_texture.o $
+    obj/third_party/mesa/src/src/mesa/state_tracker/mesa.st_cb_texturebarrier.o $
+    obj/third_party/mesa/src/src/mesa/state_tracker/mesa.st_cb_viewport.o $
+    obj/third_party/mesa/src/src/mesa/state_tracker/mesa.st_cb_xformfb.o $
+    obj/third_party/mesa/src/src/mesa/state_tracker/mesa.st_context.o $
+    obj/third_party/mesa/src/src/mesa/state_tracker/mesa.st_debug.o $
+    obj/third_party/mesa/src/src/mesa/state_tracker/mesa.st_draw.o $
+    obj/third_party/mesa/src/src/mesa/state_tracker/mesa.st_draw_feedback.o $
+    obj/third_party/mesa/src/src/mesa/state_tracker/mesa.st_extensions.o $
+    obj/third_party/mesa/src/src/mesa/state_tracker/mesa.st_format.o $
+    obj/third_party/mesa/src/src/mesa/state_tracker/mesa.st_gen_mipmap.o $
+    obj/third_party/mesa/src/src/mesa/state_tracker/mesa.st_glsl_to_tgsi.o $
+    obj/third_party/mesa/src/src/mesa/state_tracker/mesa.st_manager.o $
+    obj/third_party/mesa/src/src/mesa/state_tracker/mesa.st_mesa_to_tgsi.o $
+    obj/third_party/mesa/src/src/mesa/state_tracker/mesa.st_program.o $
+    obj/third_party/mesa/src/src/mesa/state_tracker/mesa.st_texture.o $
+    obj/third_party/mesa/src/src/mesa/swrast/mesa.s_aaline.o $
+    obj/third_party/mesa/src/src/mesa/swrast/mesa.s_aatriangle.o $
+    obj/third_party/mesa/src/src/mesa/swrast/mesa.s_alpha.o $
+    obj/third_party/mesa/src/src/mesa/swrast/mesa.s_atifragshader.o $
+    obj/third_party/mesa/src/src/mesa/swrast/mesa.s_bitmap.o $
+    obj/third_party/mesa/src/src/mesa/swrast/mesa.s_blend.o $
+    obj/third_party/mesa/src/src/mesa/swrast/mesa.s_blit.o $
+    obj/third_party/mesa/src/src/mesa/swrast/mesa.s_clear.o $
+    obj/third_party/mesa/src/src/mesa/swrast/mesa.s_context.o $
+    obj/third_party/mesa/src/src/mesa/swrast/mesa.s_copypix.o $
+    obj/third_party/mesa/src/src/mesa/swrast/mesa.s_depth.o $
+    obj/third_party/mesa/src/src/mesa/swrast/mesa.s_drawpix.o $
+    obj/third_party/mesa/src/src/mesa/swrast/mesa.s_feedback.o $
+    obj/third_party/mesa/src/src/mesa/swrast/mesa.s_fog.o $
+    obj/third_party/mesa/src/src/mesa/swrast/mesa.s_fragprog.o $
+    obj/third_party/mesa/src/src/mesa/swrast/mesa.s_lines.o $
+    obj/third_party/mesa/src/src/mesa/swrast/mesa.s_logic.o $
+    obj/third_party/mesa/src/src/mesa/swrast/mesa.s_masking.o $
+    obj/third_party/mesa/src/src/mesa/swrast/mesa.s_points.o $
+    obj/third_party/mesa/src/src/mesa/swrast/mesa.s_renderbuffer.o $
+    obj/third_party/mesa/src/src/mesa/swrast/mesa.s_span.o $
+    obj/third_party/mesa/src/src/mesa/swrast/mesa.s_stencil.o $
+    obj/third_party/mesa/src/src/mesa/swrast/mesa.s_texcombine.o $
+    obj/third_party/mesa/src/src/mesa/swrast/mesa.s_texfetch.o $
+    obj/third_party/mesa/src/src/mesa/swrast/mesa.s_texfilter.o $
+    obj/third_party/mesa/src/src/mesa/swrast/mesa.s_texrender.o $
+    obj/third_party/mesa/src/src/mesa/swrast/mesa.s_texture.o $
+    obj/third_party/mesa/src/src/mesa/swrast/mesa.s_triangle.o $
+    obj/third_party/mesa/src/src/mesa/swrast/mesa.s_zoom.o $
+    obj/third_party/mesa/src/src/mesa/swrast_setup/mesa.ss_context.o $
+    obj/third_party/mesa/src/src/mesa/swrast_setup/mesa.ss_triangle.o $
+    obj/third_party/mesa/src/src/mesa/tnl/mesa.t_context.o $
+    obj/third_party/mesa/src/src/mesa/tnl/mesa.t_draw.o $
+    obj/third_party/mesa/src/src/mesa/tnl/mesa.t_pipeline.o $
+    obj/third_party/mesa/src/src/mesa/tnl/mesa.t_rasterpos.o $
+    obj/third_party/mesa/src/src/mesa/tnl/mesa.t_vb_fog.o $
+    obj/third_party/mesa/src/src/mesa/tnl/mesa.t_vb_light.o $
+    obj/third_party/mesa/src/src/mesa/tnl/mesa.t_vb_normals.o $
+    obj/third_party/mesa/src/src/mesa/tnl/mesa.t_vb_points.o $
+    obj/third_party/mesa/src/src/mesa/tnl/mesa.t_vb_program.o $
+    obj/third_party/mesa/src/src/mesa/tnl/mesa.t_vb_render.o $
+    obj/third_party/mesa/src/src/mesa/tnl/mesa.t_vb_texgen.o $
+    obj/third_party/mesa/src/src/mesa/tnl/mesa.t_vb_texmat.o $
+    obj/third_party/mesa/src/src/mesa/tnl/mesa.t_vb_vertex.o $
+    obj/third_party/mesa/src/src/mesa/tnl/mesa.t_vertex.o $
+    obj/third_party/mesa/src/src/mesa/tnl/mesa.t_vertex_generic.o $
+    obj/third_party/mesa/src/src/mesa/tnl/mesa.t_vertex_sse.o $
+    obj/third_party/mesa/src/src/mesa/tnl/mesa.t_vp_build.o $
+    obj/third_party/mesa/src/src/mesa/vbo/mesa.vbo_context.o $
+    obj/third_party/mesa/src/src/mesa/vbo/mesa.vbo_exec.o $
+    obj/third_party/mesa/src/src/mesa/vbo/mesa.vbo_exec_api.o $
+    obj/third_party/mesa/src/src/mesa/vbo/mesa.vbo_exec_array.o $
+    obj/third_party/mesa/src/src/mesa/vbo/mesa.vbo_exec_draw.o $
+    obj/third_party/mesa/src/src/mesa/vbo/mesa.vbo_exec_eval.o $
+    obj/third_party/mesa/src/src/mesa/vbo/mesa.vbo_noop.o $
+    obj/third_party/mesa/src/src/mesa/vbo/mesa.vbo_primitive_restart.o $
+    obj/third_party/mesa/src/src/mesa/vbo/mesa.vbo_rebase.o $
+    obj/third_party/mesa/src/src/mesa/vbo/mesa.vbo_save.o $
+    obj/third_party/mesa/src/src/mesa/vbo/mesa.vbo_save_api.o $
+    obj/third_party/mesa/src/src/mesa/vbo/mesa.vbo_save_draw.o $
+    obj/third_party/mesa/src/src/mesa/vbo/mesa.vbo_save_loopback.o $
+    obj/third_party/mesa/src/src/mesa/vbo/mesa.vbo_split.o $
+    obj/third_party/mesa/src/src/mesa/vbo/mesa.vbo_split_copy.o $
+    obj/third_party/mesa/src/src/mesa/vbo/mesa.vbo_split_inplace.o $
+    obj/third_party/mesa/src/src/mesa/x86-64/mesa.x86-64.o

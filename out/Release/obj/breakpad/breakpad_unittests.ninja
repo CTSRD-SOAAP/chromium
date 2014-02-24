@@ -1,0 +1,125 @@
+build obj/breakpad/breakpad_unittests.actions_depends.stamp: stamp $
+    obj/testing/libgtest.a obj/testing/libgtest_main.a $
+    obj/testing/libgmock.a obj/breakpad/libbreakpad_client.a $
+    obj/breakpad/libbreakpad_processor_support.a linux_dumper_unittest_helper
+
+defines = -DANGLE_DX11 -D_FILE_OFFSET_BITS=64 -DNO_TCMALLOC -DDISABLE_NACL $
+    -DCHROMIUM_BUILD -DUSE_DEFAULT_RENDER_THEME=1 -DUSE_LIBJPEG_TURBO=1 $
+    -DUSE_NSS=1 -DUSE_X11=1 -DENABLE_ONE_CLICK_SIGNIN $
+    -DGTK_DISABLE_SINGLE_INCLUDES=1 -DUSE_XI2_MT=2 -DENABLE_REMOTING=1 $
+    -DENABLE_WEBRTC=1 -DUSE_PROPRIETARY_CODECS $
+    -DENABLE_CONFIGURATION_POLICY -DENABLE_INPUT_SPEECH $
+    -DENABLE_NOTIFICATIONS -DENABLE_EGLIMAGE=1 -DENABLE_TASK_MANAGER=1 $
+    -DENABLE_EXTENSIONS=1 -DENABLE_PLUGIN_INSTALLATION=1 -DENABLE_PLUGINS=1 $
+    -DENABLE_SESSION_SERVICE=1 -DENABLE_THEMES=1 -DENABLE_BACKGROUND=1 $
+    -DENABLE_AUTOMATION=1 -DENABLE_GOOGLE_NOW=1 -DCLD_VERSION=2 $
+    -DENABLE_FULL_PRINTING=1 -DENABLE_PRINTING=1 -DENABLE_SPELLCHECK=1 $
+    -DENABLE_CAPTIVE_PORTAL_DETECTION=1 -DENABLE_MANAGED_USERS=1 $
+    -DUNIT_TEST -DGTEST_HAS_RTTI=0 -DNDEBUG -DOFFICIAL_BUILD -DNVALGRIND $
+    -DDYNAMIC_ANNOTATIONS_ENABLED=0
+includes = -I../../breakpad/linux -I../../breakpad/src -I../.. $
+    -I../../breakpad -I../../testing/gtest/include $
+    -I../../testing/gmock/include
+cflags = -fstack-protector --param=ssp-buffer-size=4  -pthread $
+    -fno-exceptions -fno-strict-aliasing -Wno-unused-parameter $
+    -Wno-missing-field-initializers -fvisibility=hidden -pipe -fPIC $
+    -Wheader-hygiene -Wno-char-subscripts -Wno-unused-function $
+    -Wno-covered-switch-default -Wstring-conversion -Wno-c++11-narrowing $
+    -Wno-reserved-user-defined-literal -Wno-deprecated-register $
+    -Wno-deprecated-declarations -fcolor-diagnostics -Wno-unused-value $
+    -Wno-format -O2 -fdata-sections -ffunction-sections
+cflags_c = -O2 -pipe -fno-stack-protector -Wno-unknown-warning-option $
+    -fno-strict-aliasing
+cflags_cc = -O2 -pipe -fno-stack-protector -Wno-unknown-warning-option $
+    -fno-strict-aliasing -fno-rtti -fno-threadsafe-statics $
+    -fvisibility-inlines-hidden -std=gnu++11 -Wno-deprecated
+
+build $
+    obj/breakpad/src/client/linux/handler/breakpad_unittests.exception_handler_unittest.o: $
+    cxx ../../breakpad/src/client/linux/handler/exception_handler_unittest.cc
+build $
+    obj/breakpad/src/client/linux/minidump_writer/breakpad_unittests.cpu_set_unittest.o: $
+    cxx ../../breakpad/src/client/linux/minidump_writer/cpu_set_unittest.cc
+build $
+    obj/breakpad/src/client/linux/minidump_writer/breakpad_unittests.directory_reader_unittest.o: $
+    cxx $
+    ../../breakpad/src/client/linux/minidump_writer/directory_reader_unittest.cc
+build $
+    obj/breakpad/src/client/linux/minidump_writer/breakpad_unittests.line_reader_unittest.o: $
+    cxx $
+    ../../breakpad/src/client/linux/minidump_writer/line_reader_unittest.cc
+build $
+    obj/breakpad/src/client/linux/minidump_writer/breakpad_unittests.linux_core_dumper_unittest.o: $
+    cxx $
+    ../../breakpad/src/client/linux/minidump_writer/linux_core_dumper_unittest.cc
+build $
+    obj/breakpad/src/client/linux/minidump_writer/breakpad_unittests.linux_ptrace_dumper_unittest.o: $
+    cxx $
+    ../../breakpad/src/client/linux/minidump_writer/linux_ptrace_dumper_unittest.cc
+build $
+    obj/breakpad/src/client/linux/minidump_writer/breakpad_unittests.minidump_writer_unittest.o: $
+    cxx $
+    ../../breakpad/src/client/linux/minidump_writer/minidump_writer_unittest.cc
+build $
+    obj/breakpad/src/client/linux/minidump_writer/breakpad_unittests.minidump_writer_unittest_utils.o: $
+    cxx $
+    ../../breakpad/src/client/linux/minidump_writer/minidump_writer_unittest_utils.cc
+build $
+    obj/breakpad/src/client/linux/minidump_writer/breakpad_unittests.proc_cpuinfo_reader_unittest.o: $
+    cxx $
+    ../../breakpad/src/client/linux/minidump_writer/proc_cpuinfo_reader_unittest.cc
+build $
+    obj/breakpad/src/common/linux/breakpad_unittests.elf_core_dump_unittest.o: $
+    cxx ../../breakpad/src/common/linux/elf_core_dump_unittest.cc
+build obj/breakpad/src/common/linux/breakpad_unittests.file_id_unittest.o: $
+    cxx ../../breakpad/src/common/linux/file_id_unittest.cc
+build $
+    obj/breakpad/src/common/linux/breakpad_unittests.linux_libc_support_unittest.o: $
+    cxx ../../breakpad/src/common/linux/linux_libc_support_unittest.cc
+build obj/breakpad/src/common/linux/breakpad_unittests.synth_elf.o: cxx $
+    ../../breakpad/src/common/linux/synth_elf.cc
+build $
+    obj/breakpad/src/common/linux/tests/breakpad_unittests.crash_generator.o: $
+    cxx ../../breakpad/src/common/linux/tests/crash_generator.cc
+build obj/breakpad/src/common/breakpad_unittests.memory_unittest.o: cxx $
+    ../../breakpad/src/common/memory_unittest.cc
+build $
+    obj/breakpad/src/common/breakpad_unittests.simple_string_dictionary_unittest.o: $
+    cxx ../../breakpad/src/common/simple_string_dictionary_unittest.cc
+build obj/breakpad/src/common/breakpad_unittests.test_assembler.o: cxx $
+    ../../breakpad/src/common/test_assembler.cc
+build obj/breakpad/src/common/tests/breakpad_unittests.file_utils.o: cxx $
+    ../../breakpad/src/common/tests/file_utils.cc
+build $
+    obj/breakpad/src/tools/linux/md2core/breakpad_unittests.minidump_memory_range_unittest.o: $
+    cxx $
+    ../../breakpad/src/tools/linux/md2core/minidump_memory_range_unittest.cc
+
+ldflags = -Wl,-z,now -Wl,-z,relro -pthread -Wl,-z,noexecstack -fPIC $
+    -Wl,--no-keep-memory -Wl,-O1 -Wl,--as-needed
+libs = 
+build breakpad_unittests: link $
+    obj/breakpad/src/client/linux/handler/breakpad_unittests.exception_handler_unittest.o $
+    obj/breakpad/src/client/linux/minidump_writer/breakpad_unittests.cpu_set_unittest.o $
+    obj/breakpad/src/client/linux/minidump_writer/breakpad_unittests.directory_reader_unittest.o $
+    obj/breakpad/src/client/linux/minidump_writer/breakpad_unittests.line_reader_unittest.o $
+    obj/breakpad/src/client/linux/minidump_writer/breakpad_unittests.linux_core_dumper_unittest.o $
+    obj/breakpad/src/client/linux/minidump_writer/breakpad_unittests.linux_ptrace_dumper_unittest.o $
+    obj/breakpad/src/client/linux/minidump_writer/breakpad_unittests.minidump_writer_unittest.o $
+    obj/breakpad/src/client/linux/minidump_writer/breakpad_unittests.minidump_writer_unittest_utils.o $
+    obj/breakpad/src/client/linux/minidump_writer/breakpad_unittests.proc_cpuinfo_reader_unittest.o $
+    obj/breakpad/src/common/linux/breakpad_unittests.elf_core_dump_unittest.o $
+    obj/breakpad/src/common/linux/breakpad_unittests.file_id_unittest.o $
+    obj/breakpad/src/common/linux/breakpad_unittests.linux_libc_support_unittest.o $
+    obj/breakpad/src/common/linux/breakpad_unittests.synth_elf.o $
+    obj/breakpad/src/common/linux/tests/breakpad_unittests.crash_generator.o $
+    obj/breakpad/src/common/breakpad_unittests.memory_unittest.o $
+    obj/breakpad/src/common/breakpad_unittests.simple_string_dictionary_unittest.o $
+    obj/breakpad/src/common/breakpad_unittests.test_assembler.o $
+    obj/breakpad/src/common/tests/breakpad_unittests.file_utils.o $
+    obj/breakpad/src/tools/linux/md2core/breakpad_unittests.minidump_memory_range_unittest.o $
+    obj/testing/libgtest.a obj/testing/libgtest_main.a $
+    obj/testing/libgmock.a obj/breakpad/libbreakpad_client.a $
+    obj/breakpad/libbreakpad_processor_support.a | $
+    linux_dumper_unittest_helper
+  ld = $ldxx

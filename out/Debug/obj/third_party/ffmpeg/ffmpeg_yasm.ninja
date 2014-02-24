@@ -1,0 +1,303 @@
+rule ffmpeg_yasm_target_assemble_0e7c357cbd4da6a91e9b60305e71c941
+  command = cd ../../third_party/ffmpeg; /usr/local/bin/yasm -DPIC $
+      -DARCH_X86_64 -I chromium/config/Chrome/linux/x64 -I libavcodec/x86/ $
+      -I libavutil/x86/ -I . -w -P config.asm -DPIC -felf64 -m amd64 -o $
+      "../../out/Debug/gen/third_party/ffmpeg/yasm/${root}.o" "${source}"
+  description = RULE Compile assembly ${source}
+  restat = 1
+
+build gen/third_party/ffmpeg/yasm/dct32.o: $
+    ffmpeg_yasm_target_assemble_0e7c357cbd4da6a91e9b60305e71c941 $
+    ../../third_party/ffmpeg/libavcodec/x86/dct32.asm | /usr/local/bin/yasm
+  source = libavcodec/x86/dct32.asm
+  root = dct32
+  unique_name = 0058990ce31bff94a9bc1baa55eea25a
+build gen/third_party/ffmpeg/yasm/dsputil.o: $
+    ffmpeg_yasm_target_assemble_0e7c357cbd4da6a91e9b60305e71c941 $
+    ../../third_party/ffmpeg/libavcodec/x86/dsputil.asm | /usr/local/bin/yasm
+  source = libavcodec/x86/dsputil.asm
+  root = dsputil
+  unique_name = f0bcae5616c674978f9b813951ca403f
+build gen/third_party/ffmpeg/yasm/h264_chromamc.o: $
+    ffmpeg_yasm_target_assemble_0e7c357cbd4da6a91e9b60305e71c941 $
+    ../../third_party/ffmpeg/libavcodec/x86/h264_chromamc.asm | $
+    /usr/local/bin/yasm
+  source = libavcodec/x86/h264_chromamc.asm
+  root = h264_chromamc
+  unique_name = 568f2416dc6e14bd760b642462705edf
+build gen/third_party/ffmpeg/yasm/h264_chromamc_10bit.o: $
+    ffmpeg_yasm_target_assemble_0e7c357cbd4da6a91e9b60305e71c941 $
+    ../../third_party/ffmpeg/libavcodec/x86/h264_chromamc_10bit.asm | $
+    /usr/local/bin/yasm
+  source = libavcodec/x86/h264_chromamc_10bit.asm
+  root = h264_chromamc_10bit
+  unique_name = 1a936b67d19d6edaa20ffd0eccc222af
+build gen/third_party/ffmpeg/yasm/h264_deblock.o: $
+    ffmpeg_yasm_target_assemble_0e7c357cbd4da6a91e9b60305e71c941 $
+    ../../third_party/ffmpeg/libavcodec/x86/h264_deblock.asm | $
+    /usr/local/bin/yasm
+  source = libavcodec/x86/h264_deblock.asm
+  root = h264_deblock
+  unique_name = 1fc67522c8dfb9c122629fe69e85c04f
+build gen/third_party/ffmpeg/yasm/h264_deblock_10bit.o: $
+    ffmpeg_yasm_target_assemble_0e7c357cbd4da6a91e9b60305e71c941 $
+    ../../third_party/ffmpeg/libavcodec/x86/h264_deblock_10bit.asm | $
+    /usr/local/bin/yasm
+  source = libavcodec/x86/h264_deblock_10bit.asm
+  root = h264_deblock_10bit
+  unique_name = 07043d64913c1aaad74521ad1c9e3584
+build gen/third_party/ffmpeg/yasm/h264_idct.o: $
+    ffmpeg_yasm_target_assemble_0e7c357cbd4da6a91e9b60305e71c941 $
+    ../../third_party/ffmpeg/libavcodec/x86/h264_idct.asm | $
+    /usr/local/bin/yasm
+  source = libavcodec/x86/h264_idct.asm
+  root = h264_idct
+  unique_name = 95e2a917db23946d6e3189554d103d93
+build gen/third_party/ffmpeg/yasm/h264_idct_10bit.o: $
+    ffmpeg_yasm_target_assemble_0e7c357cbd4da6a91e9b60305e71c941 $
+    ../../third_party/ffmpeg/libavcodec/x86/h264_idct_10bit.asm | $
+    /usr/local/bin/yasm
+  source = libavcodec/x86/h264_idct_10bit.asm
+  root = h264_idct_10bit
+  unique_name = f841f7c9a8ffe566081633ec8666ffab
+build gen/third_party/ffmpeg/yasm/h264_qpel_10bit.o: $
+    ffmpeg_yasm_target_assemble_0e7c357cbd4da6a91e9b60305e71c941 $
+    ../../third_party/ffmpeg/libavcodec/x86/h264_qpel_10bit.asm | $
+    /usr/local/bin/yasm
+  source = libavcodec/x86/h264_qpel_10bit.asm
+  root = h264_qpel_10bit
+  unique_name = 79288186164562ef921ba9e5440cb555
+build gen/third_party/ffmpeg/yasm/h264_qpel_8bit.o: $
+    ffmpeg_yasm_target_assemble_0e7c357cbd4da6a91e9b60305e71c941 $
+    ../../third_party/ffmpeg/libavcodec/x86/h264_qpel_8bit.asm | $
+    /usr/local/bin/yasm
+  source = libavcodec/x86/h264_qpel_8bit.asm
+  root = h264_qpel_8bit
+  unique_name = 7439339c669a28f7391f9ad40962e8dd
+build gen/third_party/ffmpeg/yasm/h264_weight.o: $
+    ffmpeg_yasm_target_assemble_0e7c357cbd4da6a91e9b60305e71c941 $
+    ../../third_party/ffmpeg/libavcodec/x86/h264_weight.asm | $
+    /usr/local/bin/yasm
+  source = libavcodec/x86/h264_weight.asm
+  root = h264_weight
+  unique_name = 73387c2d4399f51efde173006e45f06a
+build gen/third_party/ffmpeg/yasm/h264_weight_10bit.o: $
+    ffmpeg_yasm_target_assemble_0e7c357cbd4da6a91e9b60305e71c941 $
+    ../../third_party/ffmpeg/libavcodec/x86/h264_weight_10bit.asm | $
+    /usr/local/bin/yasm
+  source = libavcodec/x86/h264_weight_10bit.asm
+  root = h264_weight_10bit
+  unique_name = e813124a459e9f16e9705d937f887eda
+build gen/third_party/ffmpeg/yasm/imdct36.o: $
+    ffmpeg_yasm_target_assemble_0e7c357cbd4da6a91e9b60305e71c941 $
+    ../../third_party/ffmpeg/libavcodec/x86/imdct36.asm | /usr/local/bin/yasm
+  source = libavcodec/x86/imdct36.asm
+  root = imdct36
+  unique_name = 960acf02e2a4026022d9871cfbd11782
+build gen/third_party/ffmpeg/yasm/mpeg4qpel.o: $
+    ffmpeg_yasm_target_assemble_0e7c357cbd4da6a91e9b60305e71c941 $
+    ../../third_party/ffmpeg/libavcodec/x86/mpeg4qpel.asm | $
+    /usr/local/bin/yasm
+  source = libavcodec/x86/mpeg4qpel.asm
+  root = mpeg4qpel
+  unique_name = c0feb935130797c1f85e34a8f6e1cd5f
+build gen/third_party/ffmpeg/yasm/qpel.o: $
+    ffmpeg_yasm_target_assemble_0e7c357cbd4da6a91e9b60305e71c941 $
+    ../../third_party/ffmpeg/libavcodec/x86/qpel.asm | /usr/local/bin/yasm
+  source = libavcodec/x86/qpel.asm
+  root = qpel
+  unique_name = eade7ad5e6473f67c44487f1c8c1dec1
+build gen/third_party/ffmpeg/yasm/sbrdsp.o: $
+    ffmpeg_yasm_target_assemble_0e7c357cbd4da6a91e9b60305e71c941 $
+    ../../third_party/ffmpeg/libavcodec/x86/sbrdsp.asm | /usr/local/bin/yasm
+  source = libavcodec/x86/sbrdsp.asm
+  root = sbrdsp
+  unique_name = 709098a240ba728036cb921a20edaa17
+build gen/third_party/ffmpeg/yasm/deinterlace.o: $
+    ffmpeg_yasm_target_assemble_0e7c357cbd4da6a91e9b60305e71c941 $
+    ../../third_party/ffmpeg/libavcodec/x86/deinterlace.asm | $
+    /usr/local/bin/yasm
+  source = libavcodec/x86/deinterlace.asm
+  root = deinterlace
+  unique_name = 2a46541ff1e955ee0147a47a6e0132f1
+build gen/third_party/ffmpeg/yasm/fft.o: $
+    ffmpeg_yasm_target_assemble_0e7c357cbd4da6a91e9b60305e71c941 $
+    ../../third_party/ffmpeg/libavcodec/x86/fft.asm | /usr/local/bin/yasm
+  source = libavcodec/x86/fft.asm
+  root = fft
+  unique_name = ca35061458b96689f4a0f8eaa89abe64
+build gen/third_party/ffmpeg/yasm/fmtconvert.o: $
+    ffmpeg_yasm_target_assemble_0e7c357cbd4da6a91e9b60305e71c941 $
+    ../../third_party/ffmpeg/libavcodec/x86/fmtconvert.asm | $
+    /usr/local/bin/yasm
+  source = libavcodec/x86/fmtconvert.asm
+  root = fmtconvert
+  unique_name = e800d3abe47bfbbf3a4b637c7a889abb
+build gen/third_party/ffmpeg/yasm/fpel.o: $
+    ffmpeg_yasm_target_assemble_0e7c357cbd4da6a91e9b60305e71c941 $
+    ../../third_party/ffmpeg/libavcodec/x86/fpel.asm | /usr/local/bin/yasm
+  source = libavcodec/x86/fpel.asm
+  root = fpel
+  unique_name = 3f662ede33d319cf8ff97698f2e055e4
+build gen/third_party/ffmpeg/yasm/h264_intrapred.o: $
+    ffmpeg_yasm_target_assemble_0e7c357cbd4da6a91e9b60305e71c941 $
+    ../../third_party/ffmpeg/libavcodec/x86/h264_intrapred.asm | $
+    /usr/local/bin/yasm
+  source = libavcodec/x86/h264_intrapred.asm
+  root = h264_intrapred
+  unique_name = f16cf3a2ce3aeb0655d7bf16bb9b723d
+build gen/third_party/ffmpeg/yasm/h264_intrapred_10bit.o: $
+    ffmpeg_yasm_target_assemble_0e7c357cbd4da6a91e9b60305e71c941 $
+    ../../third_party/ffmpeg/libavcodec/x86/h264_intrapred_10bit.asm | $
+    /usr/local/bin/yasm
+  source = libavcodec/x86/h264_intrapred_10bit.asm
+  root = h264_intrapred_10bit
+  unique_name = 38e2e9a4760843e91489d182765a668a
+build gen/third_party/ffmpeg/yasm/hpeldsp.o: $
+    ffmpeg_yasm_target_assemble_0e7c357cbd4da6a91e9b60305e71c941 $
+    ../../third_party/ffmpeg/libavcodec/x86/hpeldsp.asm | /usr/local/bin/yasm
+  source = libavcodec/x86/hpeldsp.asm
+  root = hpeldsp
+  unique_name = c0df08c5a58831b24dd4a36ffeb118f7
+build gen/third_party/ffmpeg/yasm/videodsp.o: $
+    ffmpeg_yasm_target_assemble_0e7c357cbd4da6a91e9b60305e71c941 $
+    ../../third_party/ffmpeg/libavcodec/x86/videodsp.asm | /usr/local/bin/yasm
+  source = libavcodec/x86/videodsp.asm
+  root = videodsp
+  unique_name = f462ba9d7847d401fd8e41a1917debae
+build gen/third_party/ffmpeg/yasm/vorbisdsp.o: $
+    ffmpeg_yasm_target_assemble_0e7c357cbd4da6a91e9b60305e71c941 $
+    ../../third_party/ffmpeg/libavcodec/x86/vorbisdsp.asm | $
+    /usr/local/bin/yasm
+  source = libavcodec/x86/vorbisdsp.asm
+  root = vorbisdsp
+  unique_name = cdc451e9f53986d477a7ff6e88330924
+build gen/third_party/ffmpeg/yasm/vp3dsp.o: $
+    ffmpeg_yasm_target_assemble_0e7c357cbd4da6a91e9b60305e71c941 $
+    ../../third_party/ffmpeg/libavcodec/x86/vp3dsp.asm | /usr/local/bin/yasm
+  source = libavcodec/x86/vp3dsp.asm
+  root = vp3dsp
+  unique_name = 5606e5dfb0a62c6917728cc4eacc3d2c
+build gen/third_party/ffmpeg/yasm/vp8dsp.o: $
+    ffmpeg_yasm_target_assemble_0e7c357cbd4da6a91e9b60305e71c941 $
+    ../../third_party/ffmpeg/libavcodec/x86/vp8dsp.asm | /usr/local/bin/yasm
+  source = libavcodec/x86/vp8dsp.asm
+  root = vp8dsp
+  unique_name = d6c5964f94e825b72bbde15a573e830d
+build gen/third_party/ffmpeg/yasm/cpuid.o: $
+    ffmpeg_yasm_target_assemble_0e7c357cbd4da6a91e9b60305e71c941 $
+    ../../third_party/ffmpeg/libavutil/x86/cpuid.asm | /usr/local/bin/yasm
+  source = libavutil/x86/cpuid.asm
+  root = cpuid
+  unique_name = 717c8d567cfe9ba0543a7b5e12c2621a
+build gen/third_party/ffmpeg/yasm/emms.o: $
+    ffmpeg_yasm_target_assemble_0e7c357cbd4da6a91e9b60305e71c941 $
+    ../../third_party/ffmpeg/libavutil/x86/emms.asm | /usr/local/bin/yasm
+  source = libavutil/x86/emms.asm
+  root = emms
+  unique_name = 33d2e2da925749e0c78cb4ac81d08b75
+build gen/third_party/ffmpeg/yasm/float_dsp.o: $
+    ffmpeg_yasm_target_assemble_0e7c357cbd4da6a91e9b60305e71c941 $
+    ../../third_party/ffmpeg/libavutil/x86/float_dsp.asm | /usr/local/bin/yasm
+  source = libavutil/x86/float_dsp.asm
+  root = float_dsp
+  unique_name = 92090154a731658bbfc7d70d0a125c44
+build gen/third_party/ffmpeg/yasm/lls.o: $
+    ffmpeg_yasm_target_assemble_0e7c357cbd4da6a91e9b60305e71c941 $
+    ../../third_party/ffmpeg/libavutil/x86/lls.asm | /usr/local/bin/yasm
+  source = libavutil/x86/lls.asm
+  root = lls
+  unique_name = 6cbbc14d5dbf53117aae48ffabaa7ae6
+build obj/third_party/ffmpeg/ffmpeg_yasm.actions_rules_copies.stamp: stamp $
+    gen/third_party/ffmpeg/yasm/dct32.o $
+    gen/third_party/ffmpeg/yasm/dsputil.o $
+    gen/third_party/ffmpeg/yasm/h264_chromamc.o $
+    gen/third_party/ffmpeg/yasm/h264_chromamc_10bit.o $
+    gen/third_party/ffmpeg/yasm/h264_deblock.o $
+    gen/third_party/ffmpeg/yasm/h264_deblock_10bit.o $
+    gen/third_party/ffmpeg/yasm/h264_idct.o $
+    gen/third_party/ffmpeg/yasm/h264_idct_10bit.o $
+    gen/third_party/ffmpeg/yasm/h264_qpel_10bit.o $
+    gen/third_party/ffmpeg/yasm/h264_qpel_8bit.o $
+    gen/third_party/ffmpeg/yasm/h264_weight.o $
+    gen/third_party/ffmpeg/yasm/h264_weight_10bit.o $
+    gen/third_party/ffmpeg/yasm/imdct36.o $
+    gen/third_party/ffmpeg/yasm/mpeg4qpel.o $
+    gen/third_party/ffmpeg/yasm/qpel.o gen/third_party/ffmpeg/yasm/sbrdsp.o $
+    gen/third_party/ffmpeg/yasm/deinterlace.o $
+    gen/third_party/ffmpeg/yasm/fft.o $
+    gen/third_party/ffmpeg/yasm/fmtconvert.o $
+    gen/third_party/ffmpeg/yasm/fpel.o $
+    gen/third_party/ffmpeg/yasm/h264_intrapred.o $
+    gen/third_party/ffmpeg/yasm/h264_intrapred_10bit.o $
+    gen/third_party/ffmpeg/yasm/hpeldsp.o $
+    gen/third_party/ffmpeg/yasm/videodsp.o $
+    gen/third_party/ffmpeg/yasm/vorbisdsp.o $
+    gen/third_party/ffmpeg/yasm/vp3dsp.o $
+    gen/third_party/ffmpeg/yasm/vp8dsp.o $
+    gen/third_party/ffmpeg/yasm/cpuid.o gen/third_party/ffmpeg/yasm/emms.o $
+    gen/third_party/ffmpeg/yasm/float_dsp.o gen/third_party/ffmpeg/yasm/lls.o
+
+defines = -DANGLE_DX11 -D_FILE_OFFSET_BITS=64 -DNO_TCMALLOC -DDISABLE_NACL $
+    -DCHROMIUM_BUILD -DUSE_DEFAULT_RENDER_THEME=1 -DUSE_LIBJPEG_TURBO=1 $
+    -DUSE_NSS=1 -DUSE_X11=1 -DENABLE_ONE_CLICK_SIGNIN $
+    -DGTK_DISABLE_SINGLE_INCLUDES=1 -DUSE_XI2_MT=2 -DENABLE_REMOTING=1 $
+    -DENABLE_WEBRTC=1 -DUSE_PROPRIETARY_CODECS $
+    -DENABLE_CONFIGURATION_POLICY -DENABLE_INPUT_SPEECH $
+    -DENABLE_NOTIFICATIONS -DENABLE_EGLIMAGE=1 -DENABLE_TASK_MANAGER=1 $
+    -DENABLE_EXTENSIONS=1 -DENABLE_PLUGIN_INSTALLATION=1 -DENABLE_PLUGINS=1 $
+    -DENABLE_SESSION_SERVICE=1 -DENABLE_THEMES=1 -DENABLE_BACKGROUND=1 $
+    -DENABLE_AUTOMATION=1 -DENABLE_GOOGLE_NOW=1 -DCLD_VERSION=2 $
+    -DENABLE_FULL_PRINTING=1 -DENABLE_PRINTING=1 -DENABLE_SPELLCHECK=1 $
+    -DENABLE_CAPTIVE_PORTAL_DETECTION=1 -DENABLE_MANAGED_USERS=1 $
+    -DDYNAMIC_ANNOTATIONS_ENABLED=1 -DWTF_USE_DYNAMIC_ANNOTATIONS=1 -D_DEBUG
+includes = 
+cflags = -fstack-protector --param=ssp-buffer-size=4  -pthread $
+    -fno-exceptions -fno-strict-aliasing -Wno-unused-parameter $
+    -Wno-missing-field-initializers -fvisibility=hidden -pipe -fPIC $
+    -Wheader-hygiene -Wno-char-subscripts -Wno-unused-function $
+    -Wno-covered-switch-default -Wstring-conversion -Wno-c++11-narrowing $
+    -Wno-reserved-user-defined-literal -Wno-deprecated-register $
+    -Wno-deprecated-declarations -fcolor-diagnostics -Wno-format -O2 -g
+cflags_c = -O2 -pipe -fno-stack-protector -Wno-unknown-warning-option $
+    -fno-strict-aliasing
+cflags_cc = -O2 -pipe -fno-stack-protector -Wno-unknown-warning-option $
+    -fno-strict-aliasing -fno-rtti -fno-threadsafe-statics $
+    -fvisibility-inlines-hidden -std=gnu++11 -Wno-deprecated
+
+build obj/third_party/ffmpeg/ffmpeg_yasm.xcode_hack.o: cc $
+    ../../third_party/ffmpeg/xcode_hack.c || $
+    obj/third_party/ffmpeg/ffmpeg_yasm.actions_rules_copies.stamp
+
+build obj/third_party/ffmpeg/libffmpeg_yasm.a: alink_thin $
+    obj/third_party/ffmpeg/ffmpeg_yasm.xcode_hack.o $
+    gen/third_party/ffmpeg/yasm/dct32.o $
+    gen/third_party/ffmpeg/yasm/dsputil.o $
+    gen/third_party/ffmpeg/yasm/h264_chromamc.o $
+    gen/third_party/ffmpeg/yasm/h264_chromamc_10bit.o $
+    gen/third_party/ffmpeg/yasm/h264_deblock.o $
+    gen/third_party/ffmpeg/yasm/h264_deblock_10bit.o $
+    gen/third_party/ffmpeg/yasm/h264_idct.o $
+    gen/third_party/ffmpeg/yasm/h264_idct_10bit.o $
+    gen/third_party/ffmpeg/yasm/h264_qpel_10bit.o $
+    gen/third_party/ffmpeg/yasm/h264_qpel_8bit.o $
+    gen/third_party/ffmpeg/yasm/h264_weight.o $
+    gen/third_party/ffmpeg/yasm/h264_weight_10bit.o $
+    gen/third_party/ffmpeg/yasm/imdct36.o $
+    gen/third_party/ffmpeg/yasm/mpeg4qpel.o $
+    gen/third_party/ffmpeg/yasm/qpel.o gen/third_party/ffmpeg/yasm/sbrdsp.o $
+    gen/third_party/ffmpeg/yasm/deinterlace.o $
+    gen/third_party/ffmpeg/yasm/fft.o $
+    gen/third_party/ffmpeg/yasm/fmtconvert.o $
+    gen/third_party/ffmpeg/yasm/fpel.o $
+    gen/third_party/ffmpeg/yasm/h264_intrapred.o $
+    gen/third_party/ffmpeg/yasm/h264_intrapred_10bit.o $
+    gen/third_party/ffmpeg/yasm/hpeldsp.o $
+    gen/third_party/ffmpeg/yasm/videodsp.o $
+    gen/third_party/ffmpeg/yasm/vorbisdsp.o $
+    gen/third_party/ffmpeg/yasm/vp3dsp.o $
+    gen/third_party/ffmpeg/yasm/vp8dsp.o $
+    gen/third_party/ffmpeg/yasm/cpuid.o gen/third_party/ffmpeg/yasm/emms.o $
+    gen/third_party/ffmpeg/yasm/float_dsp.o $
+    gen/third_party/ffmpeg/yasm/lls.o || $
+    obj/third_party/ffmpeg/ffmpeg_yasm.actions_rules_copies.stamp

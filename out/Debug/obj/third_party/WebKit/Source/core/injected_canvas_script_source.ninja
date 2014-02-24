@@ -1,0 +1,16 @@
+rule $
+    injected_canvas_script_source_target_ConvertFileToHeaderWithCharacterArray_dffb8c6fd7ce917647f180c5528b4258
+  command = cd ../../third_party/WebKit/Source/core; python $
+      ../build/scripts/xxd.py InjectedScriptCanvasModuleSource_js $
+      inspector/InjectedScriptCanvasModuleSource.js $
+      ../../../../out/Debug/gen/blink/InjectedScriptCanvasModuleSource.h
+  description = ACTION Generating $
+      gen/blink/InjectedScriptCanvasModuleSource.h from $
+      inspector/InjectedScriptCanvasModuleSource.js
+  restat = 1
+
+build gen/blink/InjectedScriptCanvasModuleSource.h: $
+    injected_canvas_script_source_target_ConvertFileToHeaderWithCharacterArray_dffb8c6fd7ce917647f180c5528b4258 $
+    ../../third_party/WebKit/Source/build/scripts/xxd.py $
+    ../../third_party/WebKit/Source/core/inspector/InjectedScriptCanvasModuleSource.js
+

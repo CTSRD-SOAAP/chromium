@@ -1,0 +1,283 @@
+build obj/remoting/remoting_protocol.actions_depends.stamp: stamp $
+    obj/remoting/libremoting_base.a $
+    obj/remoting/proto/libchromotocol_proto_lib.a
+
+build obj/remoting/remoting_protocol.compile_depends.stamp: stamp $
+    obj/remoting/remoting_base.compile_depends.stamp $
+    obj/remoting/proto/chromotocol_proto_lib.actions_rules_copies.stamp
+
+defines = -DBINARY_CORE=1 -DBINARY_DESKTOP=2 -DBINARY_HOST_ME2ME=3 $
+    -DBINARY_HOST_PLUGIN=4 -DANGLE_DX11 -D_FILE_OFFSET_BITS=64 $
+    -DNO_TCMALLOC -DDISABLE_NACL -DCHROMIUM_BUILD $
+    -DUSE_DEFAULT_RENDER_THEME=1 -DUSE_LIBJPEG_TURBO=1 -DUSE_NSS=1 $
+    -DUSE_X11=1 -DENABLE_ONE_CLICK_SIGNIN -DGTK_DISABLE_SINGLE_INCLUDES=1 $
+    -DUSE_XI2_MT=2 -DENABLE_REMOTING=1 -DENABLE_WEBRTC=1 $
+    -DUSE_PROPRIETARY_CODECS -DENABLE_CONFIGURATION_POLICY $
+    -DENABLE_INPUT_SPEECH -DENABLE_NOTIFICATIONS -DENABLE_EGLIMAGE=1 $
+    -DENABLE_TASK_MANAGER=1 -DENABLE_EXTENSIONS=1 $
+    -DENABLE_PLUGIN_INSTALLATION=1 -DENABLE_PLUGINS=1 $
+    -DENABLE_SESSION_SERVICE=1 -DENABLE_THEMES=1 -DENABLE_BACKGROUND=1 $
+    -DENABLE_AUTOMATION=1 -DENABLE_GOOGLE_NOW=1 -DCLD_VERSION=2 $
+    -DENABLE_FULL_PRINTING=1 -DENABLE_PRINTING=1 -DENABLE_SPELLCHECK=1 $
+    -DENABLE_CAPTIVE_PORTAL_DETECTION=1 -DENABLE_MANAGED_USERS=1 $
+    -DSK_ENABLE_INST_COUNT=0 -DSK_SUPPORT_GPU=1 $
+    '-DGR_GL_CUSTOM_SETUP_HEADER="GrGLConfig_chrome.h"' $
+    -DSK_ENABLE_LEGACY_API_ALIASING=1 -DSK_ATTR_DEPRECATED=SK_NOTHING_ARG1 $
+    -DSK_SUPPORT_LEGACY_COLORTYPE=1 -DSK_USE_POSIX_THREADS $
+    -DSK_DEFERRED_CANVAS_USES_FACTORIES=1 -DPROTOBUF_USE_DLLS $
+    -DGOOGLE_PROTOBUF_NO_RTTI -DGOOGLE_PROTOBUF_NO_STATIC_INITIALIZER $
+    -DFEATURE_ENABLE_SSL -DFEATURE_ENABLE_VOICEMAIL -DEXPAT_RELATIVE_PATH $
+    -DGTEST_RELATIVE_PATH -DJSONCPP_RELATIVE_PATH -DNO_MAIN_THREAD_WRAPPING $
+    -DNO_SOUND_SYSTEM -DPOSIX -DBSD -DFREEBSD -D__STDC_CONSTANT_MACROS $
+    -D__STDC_FORMAT_MACROS -DDYNAMIC_ANNOTATIONS_ENABLED=1 $
+    -DWTF_USE_DYNAMIC_ANNOTATIONS=1 -D_DEBUG
+includes = -I../.. -I../../third_party/khronos -I../../gpu $
+    -I../../third_party/skia/src/core -I../../third_party/skia/include/core $
+    -I../../third_party/skia/include/effects $
+    -I../../third_party/skia/include/pdf $
+    -I../../third_party/skia/include/gpu $
+    -I../../third_party/skia/include/lazy $
+    -I../../third_party/skia/include/pathops $
+    -I../../third_party/skia/include/pipe $
+    -I../../third_party/skia/include/ports $
+    -I../../third_party/skia/include/utils -I../../skia/config $
+    -I../../skia/ext -I../../third_party/protobuf $
+    -I../../third_party/protobuf/src -Igen/protoc_out $
+    -I../../third_party/libjingle/overrides $
+    -I../../third_party/libjingle/source -I../../testing/gtest/include $
+    -I../../third_party -I../../third_party/webrtc $
+    -I../../third_party/jsoncpp/overrides/include $
+    -I../../third_party/jsoncpp/source/include -I../../net/third_party/nss/ssl
+cflags = -fstack-protector --param=ssp-buffer-size=4  -pthread $
+    -fno-exceptions -fno-strict-aliasing -Wall -Wno-unused-parameter $
+    -Wno-missing-field-initializers -fvisibility=hidden -pipe -fPIC $
+    -Wheader-hygiene -Wno-char-subscripts -Wno-unused-function $
+    -Wno-covered-switch-default -Wstring-conversion -Wno-c++11-narrowing $
+    -Wno-reserved-user-defined-literal -Wno-deprecated-register $
+    -Wno-deprecated-declarations -fcolor-diagnostics $
+    -I/usr/local/include/gtk-2.0 -I/usr/local/include/gio-unix-2.0/ $
+    -I/usr/local/include/atk-1.0 -I/usr/local/include/cairo $
+    -I/usr/local/include/pixman-1 -D_THREAD_SAFE $
+    -I/usr/local/include/gdk-pixbuf-2.0 -I/usr/local/include/libpng15 $
+    -I/usr/local/include/pango-1.0 -I/usr/local/include/freetype2 $
+    -I/usr/local/include/harfbuzz -pthread -I/usr/local/include/glib-2.0 $
+    -I/usr/local/include -pthread -I/usr/local/include/glib-2.0 $
+    -I/usr/local/include -D_THREAD_SAFE -I/usr/local/include $
+    -I/usr/local/include/nss -I/usr/local/include/nss/nss $
+    -I/usr/local/include/nspr -Wno-header-guard -Wexit-time-destructors -O0 -g
+cflags_c = -O2 -pipe -fno-stack-protector -Wno-unknown-warning-option $
+    -fno-strict-aliasing
+cflags_cc = -O2 -pipe -fno-stack-protector -Wno-unknown-warning-option $
+    -fno-strict-aliasing -fno-rtti -fno-threadsafe-statics $
+    -fvisibility-inlines-hidden -Wsign-compare -std=gnu++11
+
+build obj/remoting/protocol/remoting_protocol.audio_reader.o: cxx $
+    ../../remoting/protocol/audio_reader.cc || $
+    obj/remoting/remoting_protocol.compile_depends.stamp
+build obj/remoting/protocol/remoting_protocol.audio_writer.o: cxx $
+    ../../remoting/protocol/audio_writer.cc || $
+    obj/remoting/remoting_protocol.compile_depends.stamp
+build obj/remoting/protocol/remoting_protocol.auth_util.o: cxx $
+    ../../remoting/protocol/auth_util.cc || $
+    obj/remoting/remoting_protocol.compile_depends.stamp
+build obj/remoting/protocol/remoting_protocol.authentication_method.o: cxx $
+    ../../remoting/protocol/authentication_method.cc || $
+    obj/remoting/remoting_protocol.compile_depends.stamp
+build obj/remoting/protocol/remoting_protocol.authenticator.o: cxx $
+    ../../remoting/protocol/authenticator.cc || $
+    obj/remoting/remoting_protocol.compile_depends.stamp
+build obj/remoting/protocol/remoting_protocol.buffered_socket_writer.o: cxx $
+    ../../remoting/protocol/buffered_socket_writer.cc || $
+    obj/remoting/remoting_protocol.compile_depends.stamp
+build obj/remoting/protocol/remoting_protocol.channel_dispatcher_base.o: $
+    cxx ../../remoting/protocol/channel_dispatcher_base.cc || $
+    obj/remoting/remoting_protocol.compile_depends.stamp
+build obj/remoting/protocol/remoting_protocol.channel_multiplexer.o: cxx $
+    ../../remoting/protocol/channel_multiplexer.cc || $
+    obj/remoting/remoting_protocol.compile_depends.stamp
+build obj/remoting/protocol/remoting_protocol.client_control_dispatcher.o: $
+    cxx ../../remoting/protocol/client_control_dispatcher.cc || $
+    obj/remoting/remoting_protocol.compile_depends.stamp
+build obj/remoting/protocol/remoting_protocol.client_event_dispatcher.o: $
+    cxx ../../remoting/protocol/client_event_dispatcher.cc || $
+    obj/remoting/remoting_protocol.compile_depends.stamp
+build obj/remoting/protocol/remoting_protocol.clipboard_echo_filter.o: cxx $
+    ../../remoting/protocol/clipboard_echo_filter.cc || $
+    obj/remoting/remoting_protocol.compile_depends.stamp
+build obj/remoting/protocol/remoting_protocol.clipboard_filter.o: cxx $
+    ../../remoting/protocol/clipboard_filter.cc || $
+    obj/remoting/remoting_protocol.compile_depends.stamp
+build obj/remoting/protocol/remoting_protocol.clipboard_thread_proxy.o: cxx $
+    ../../remoting/protocol/clipboard_thread_proxy.cc || $
+    obj/remoting/remoting_protocol.compile_depends.stamp
+build obj/remoting/protocol/remoting_protocol.connection_to_client.o: cxx $
+    ../../remoting/protocol/connection_to_client.cc || $
+    obj/remoting/remoting_protocol.compile_depends.stamp
+build obj/remoting/protocol/remoting_protocol.connection_to_host.o: cxx $
+    ../../remoting/protocol/connection_to_host.cc || $
+    obj/remoting/remoting_protocol.compile_depends.stamp
+build obj/remoting/protocol/remoting_protocol.content_description.o: cxx $
+    ../../remoting/protocol/content_description.cc || $
+    obj/remoting/remoting_protocol.compile_depends.stamp
+build obj/remoting/protocol/remoting_protocol.host_control_dispatcher.o: $
+    cxx ../../remoting/protocol/host_control_dispatcher.cc || $
+    obj/remoting/remoting_protocol.compile_depends.stamp
+build obj/remoting/protocol/remoting_protocol.host_event_dispatcher.o: cxx $
+    ../../remoting/protocol/host_event_dispatcher.cc || $
+    obj/remoting/remoting_protocol.compile_depends.stamp
+build obj/remoting/protocol/remoting_protocol.input_event_tracker.o: cxx $
+    ../../remoting/protocol/input_event_tracker.cc || $
+    obj/remoting/remoting_protocol.compile_depends.stamp
+build obj/remoting/protocol/remoting_protocol.input_filter.o: cxx $
+    ../../remoting/protocol/input_filter.cc || $
+    obj/remoting/remoting_protocol.compile_depends.stamp
+build $
+    obj/remoting/protocol/remoting_protocol.it2me_host_authenticator_factory.o: $
+    cxx ../../remoting/protocol/it2me_host_authenticator_factory.cc || $
+    obj/remoting/remoting_protocol.compile_depends.stamp
+build obj/remoting/protocol/remoting_protocol.jingle_messages.o: cxx $
+    ../../remoting/protocol/jingle_messages.cc || $
+    obj/remoting/remoting_protocol.compile_depends.stamp
+build obj/remoting/protocol/remoting_protocol.jingle_session.o: cxx $
+    ../../remoting/protocol/jingle_session.cc || $
+    obj/remoting/remoting_protocol.compile_depends.stamp
+build obj/remoting/protocol/remoting_protocol.jingle_session_manager.o: cxx $
+    ../../remoting/protocol/jingle_session_manager.cc || $
+    obj/remoting/remoting_protocol.compile_depends.stamp
+build $
+    obj/remoting/protocol/remoting_protocol.libjingle_transport_factory.o: $
+    cxx ../../remoting/protocol/libjingle_transport_factory.cc || $
+    obj/remoting/remoting_protocol.compile_depends.stamp
+build $
+    obj/remoting/protocol/remoting_protocol.me2me_host_authenticator_factory.o: $
+    cxx ../../remoting/protocol/me2me_host_authenticator_factory.cc || $
+    obj/remoting/remoting_protocol.compile_depends.stamp
+build obj/remoting/protocol/remoting_protocol.message_decoder.o: cxx $
+    ../../remoting/protocol/message_decoder.cc || $
+    obj/remoting/remoting_protocol.compile_depends.stamp
+build obj/remoting/protocol/remoting_protocol.message_reader.o: cxx $
+    ../../remoting/protocol/message_reader.cc || $
+    obj/remoting/remoting_protocol.compile_depends.stamp
+build obj/remoting/protocol/remoting_protocol.mouse_input_filter.o: cxx $
+    ../../remoting/protocol/mouse_input_filter.cc || $
+    obj/remoting/remoting_protocol.compile_depends.stamp
+build $
+    obj/remoting/protocol/remoting_protocol.negotiating_authenticator_base.o: $
+    cxx ../../remoting/protocol/negotiating_authenticator_base.cc || $
+    obj/remoting/remoting_protocol.compile_depends.stamp
+build $
+    obj/remoting/protocol/remoting_protocol.negotiating_client_authenticator.o: $
+    cxx ../../remoting/protocol/negotiating_client_authenticator.cc || $
+    obj/remoting/remoting_protocol.compile_depends.stamp
+build $
+    obj/remoting/protocol/remoting_protocol.negotiating_host_authenticator.o: $
+    cxx ../../remoting/protocol/negotiating_host_authenticator.cc || $
+    obj/remoting/remoting_protocol.compile_depends.stamp
+build obj/remoting/protocol/remoting_protocol.pairing_authenticator_base.o: $
+    cxx ../../remoting/protocol/pairing_authenticator_base.cc || $
+    obj/remoting/remoting_protocol.compile_depends.stamp
+build $
+    obj/remoting/protocol/remoting_protocol.pairing_client_authenticator.o: $
+    cxx ../../remoting/protocol/pairing_client_authenticator.cc || $
+    obj/remoting/remoting_protocol.compile_depends.stamp
+build obj/remoting/protocol/remoting_protocol.pairing_host_authenticator.o: $
+    cxx ../../remoting/protocol/pairing_host_authenticator.cc || $
+    obj/remoting/remoting_protocol.compile_depends.stamp
+build obj/remoting/protocol/remoting_protocol.pairing_registry.o: cxx $
+    ../../remoting/protocol/pairing_registry.cc || $
+    obj/remoting/remoting_protocol.compile_depends.stamp
+build obj/remoting/protocol/remoting_protocol.protobuf_video_reader.o: cxx $
+    ../../remoting/protocol/protobuf_video_reader.cc || $
+    obj/remoting/remoting_protocol.compile_depends.stamp
+build obj/remoting/protocol/remoting_protocol.protobuf_video_writer.o: cxx $
+    ../../remoting/protocol/protobuf_video_writer.cc || $
+    obj/remoting/remoting_protocol.compile_depends.stamp
+build obj/remoting/protocol/remoting_protocol.session_config.o: cxx $
+    ../../remoting/protocol/session_config.cc || $
+    obj/remoting/remoting_protocol.compile_depends.stamp
+build $
+    obj/remoting/protocol/remoting_protocol.ssl_hmac_channel_authenticator.o: $
+    cxx ../../remoting/protocol/ssl_hmac_channel_authenticator.cc || $
+    obj/remoting/remoting_protocol.compile_depends.stamp
+build obj/remoting/protocol/remoting_protocol.transport.o: cxx $
+    ../../remoting/protocol/transport.cc || $
+    obj/remoting/remoting_protocol.compile_depends.stamp
+build obj/remoting/protocol/remoting_protocol.transport_config.o: cxx $
+    ../../remoting/protocol/transport_config.cc || $
+    obj/remoting/remoting_protocol.compile_depends.stamp
+build obj/remoting/protocol/remoting_protocol.util.o: cxx $
+    ../../remoting/protocol/util.cc || $
+    obj/remoting/remoting_protocol.compile_depends.stamp
+build $
+    obj/remoting/protocol/remoting_protocol.third_party_authenticator_base.o: $
+    cxx ../../remoting/protocol/third_party_authenticator_base.cc || $
+    obj/remoting/remoting_protocol.compile_depends.stamp
+build $
+    obj/remoting/protocol/remoting_protocol.third_party_client_authenticator.o: $
+    cxx ../../remoting/protocol/third_party_client_authenticator.cc || $
+    obj/remoting/remoting_protocol.compile_depends.stamp
+build $
+    obj/remoting/protocol/remoting_protocol.third_party_host_authenticator.o: $
+    cxx ../../remoting/protocol/third_party_host_authenticator.cc || $
+    obj/remoting/remoting_protocol.compile_depends.stamp
+build obj/remoting/protocol/remoting_protocol.v2_authenticator.o: cxx $
+    ../../remoting/protocol/v2_authenticator.cc || $
+    obj/remoting/remoting_protocol.compile_depends.stamp
+build obj/remoting/protocol/remoting_protocol.video_reader.o: cxx $
+    ../../remoting/protocol/video_reader.cc || $
+    obj/remoting/remoting_protocol.compile_depends.stamp
+build obj/remoting/protocol/remoting_protocol.video_writer.o: cxx $
+    ../../remoting/protocol/video_writer.cc || $
+    obj/remoting/remoting_protocol.compile_depends.stamp
+
+build obj/remoting/libremoting_protocol.a: alink_thin $
+    obj/remoting/protocol/remoting_protocol.audio_reader.o $
+    obj/remoting/protocol/remoting_protocol.audio_writer.o $
+    obj/remoting/protocol/remoting_protocol.auth_util.o $
+    obj/remoting/protocol/remoting_protocol.authentication_method.o $
+    obj/remoting/protocol/remoting_protocol.authenticator.o $
+    obj/remoting/protocol/remoting_protocol.buffered_socket_writer.o $
+    obj/remoting/protocol/remoting_protocol.channel_dispatcher_base.o $
+    obj/remoting/protocol/remoting_protocol.channel_multiplexer.o $
+    obj/remoting/protocol/remoting_protocol.client_control_dispatcher.o $
+    obj/remoting/protocol/remoting_protocol.client_event_dispatcher.o $
+    obj/remoting/protocol/remoting_protocol.clipboard_echo_filter.o $
+    obj/remoting/protocol/remoting_protocol.clipboard_filter.o $
+    obj/remoting/protocol/remoting_protocol.clipboard_thread_proxy.o $
+    obj/remoting/protocol/remoting_protocol.connection_to_client.o $
+    obj/remoting/protocol/remoting_protocol.connection_to_host.o $
+    obj/remoting/protocol/remoting_protocol.content_description.o $
+    obj/remoting/protocol/remoting_protocol.host_control_dispatcher.o $
+    obj/remoting/protocol/remoting_protocol.host_event_dispatcher.o $
+    obj/remoting/protocol/remoting_protocol.input_event_tracker.o $
+    obj/remoting/protocol/remoting_protocol.input_filter.o $
+    obj/remoting/protocol/remoting_protocol.it2me_host_authenticator_factory.o $
+    obj/remoting/protocol/remoting_protocol.jingle_messages.o $
+    obj/remoting/protocol/remoting_protocol.jingle_session.o $
+    obj/remoting/protocol/remoting_protocol.jingle_session_manager.o $
+    obj/remoting/protocol/remoting_protocol.libjingle_transport_factory.o $
+    obj/remoting/protocol/remoting_protocol.me2me_host_authenticator_factory.o $
+    obj/remoting/protocol/remoting_protocol.message_decoder.o $
+    obj/remoting/protocol/remoting_protocol.message_reader.o $
+    obj/remoting/protocol/remoting_protocol.mouse_input_filter.o $
+    obj/remoting/protocol/remoting_protocol.negotiating_authenticator_base.o $
+    obj/remoting/protocol/remoting_protocol.negotiating_client_authenticator.o $
+    obj/remoting/protocol/remoting_protocol.negotiating_host_authenticator.o $
+    obj/remoting/protocol/remoting_protocol.pairing_authenticator_base.o $
+    obj/remoting/protocol/remoting_protocol.pairing_client_authenticator.o $
+    obj/remoting/protocol/remoting_protocol.pairing_host_authenticator.o $
+    obj/remoting/protocol/remoting_protocol.pairing_registry.o $
+    obj/remoting/protocol/remoting_protocol.protobuf_video_reader.o $
+    obj/remoting/protocol/remoting_protocol.protobuf_video_writer.o $
+    obj/remoting/protocol/remoting_protocol.session_config.o $
+    obj/remoting/protocol/remoting_protocol.ssl_hmac_channel_authenticator.o $
+    obj/remoting/protocol/remoting_protocol.transport.o $
+    obj/remoting/protocol/remoting_protocol.transport_config.o $
+    obj/remoting/protocol/remoting_protocol.util.o $
+    obj/remoting/protocol/remoting_protocol.third_party_authenticator_base.o $
+    obj/remoting/protocol/remoting_protocol.third_party_client_authenticator.o $
+    obj/remoting/protocol/remoting_protocol.third_party_host_authenticator.o $
+    obj/remoting/protocol/remoting_protocol.v2_authenticator.o $
+    obj/remoting/protocol/remoting_protocol.video_reader.o $
+    obj/remoting/protocol/remoting_protocol.video_writer.o || $
+    obj/remoting/remoting_protocol.actions_depends.stamp

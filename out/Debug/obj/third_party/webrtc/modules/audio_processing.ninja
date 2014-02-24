@@ -1,0 +1,210 @@
+defines = -DANGLE_DX11 '-DWEBRTC_SVNREVISION="Unavailable(issue687)"' $
+    -D_FILE_OFFSET_BITS=64 -DNO_TCMALLOC -DDISABLE_NACL -DCHROMIUM_BUILD $
+    -DUSE_DEFAULT_RENDER_THEME=1 -DUSE_LIBJPEG_TURBO=1 -DUSE_NSS=1 $
+    -DUSE_X11=1 -DENABLE_ONE_CLICK_SIGNIN -DGTK_DISABLE_SINGLE_INCLUDES=1 $
+    -DUSE_XI2_MT=2 -DENABLE_REMOTING=1 -DENABLE_WEBRTC=1 $
+    -DUSE_PROPRIETARY_CODECS -DENABLE_CONFIGURATION_POLICY $
+    -DENABLE_INPUT_SPEECH -DENABLE_NOTIFICATIONS -DENABLE_EGLIMAGE=1 $
+    -DENABLE_TASK_MANAGER=1 -DENABLE_EXTENSIONS=1 $
+    -DENABLE_PLUGIN_INSTALLATION=1 -DENABLE_PLUGINS=1 $
+    -DENABLE_SESSION_SERVICE=1 -DENABLE_THEMES=1 -DENABLE_BACKGROUND=1 $
+    -DENABLE_AUTOMATION=1 -DENABLE_GOOGLE_NOW=1 -DCLD_VERSION=2 $
+    -DENABLE_FULL_PRINTING=1 -DENABLE_PRINTING=1 -DENABLE_SPELLCHECK=1 $
+    -DENABLE_CAPTIVE_PORTAL_DETECTION=1 -DENABLE_MANAGED_USERS=1 $
+    -DWEBRTC_CHROMIUM_BUILD -DWEBRTC_BSD -DWEBRTC_LINUX -DWEBRTC_THREAD_RR $
+    -DWEBRTC_AUDIOPROC_DEBUG_DUMP -DWEBRTC_NS_FLOAT -DPROTOBUF_USE_DLLS $
+    -DGOOGLE_PROTOBUF_NO_RTTI -DGOOGLE_PROTOBUF_NO_STATIC_INITIALIZER $
+    -D__STDC_CONSTANT_MACROS -D__STDC_FORMAT_MACROS $
+    -DDYNAMIC_ANNOTATIONS_ENABLED=1 -DWTF_USE_DYNAMIC_ANNOTATIONS=1 -D_DEBUG
+includes = -I../../third_party/webrtc -I../../third_party -I../.. $
+    -I../../third_party/webrtc/modules/interface $
+    -I../../third_party/webrtc/modules/audio_processing/aec/include $
+    -I../../third_party/webrtc/modules/audio_processing/aecm/include $
+    -I../../third_party/webrtc/modules/audio_processing/agc/include $
+    -I../../third_party/webrtc/modules/audio_processing/include $
+    -I../../third_party/webrtc/modules/audio_processing/ns/include $
+    -I../../third_party/webrtc/modules/audio_processing/utility $
+    -I../../third_party/webrtc/common_audio/resampler/include $
+    -I../../third_party/webrtc/common_audio/signal_processing/include $
+    -I../../third_party/webrtc/common_audio/vad/include $
+    -I../../third_party/webrtc/system_wrappers/interface -Igen/protoc_out $
+    -I../../third_party/protobuf -I../../third_party/protobuf/src
+cflags = -fstack-protector --param=ssp-buffer-size=4  -pthread $
+    -fno-exceptions -fno-strict-aliasing -Wall -Wno-unused-parameter $
+    -Wno-missing-field-initializers -fvisibility=hidden -pipe -fPIC $
+    -Wheader-hygiene -Wno-char-subscripts -Wno-unused-function $
+    -Wno-covered-switch-default -Wstring-conversion -Wno-c++11-narrowing $
+    -Wno-reserved-user-defined-literal -Wno-deprecated-register $
+    -Wno-deprecated-declarations -fcolor-diagnostics -O0 -g
+cflags_c = -O2 -pipe -fno-stack-protector -Wno-unknown-warning-option $
+    -fno-strict-aliasing
+cflags_cc = -O2 -pipe -fno-stack-protector -Wno-unknown-warning-option $
+    -fno-strict-aliasing -fno-rtti -fno-threadsafe-statics $
+    -fvisibility-inlines-hidden -Wsign-compare -std=gnu++11
+
+build $
+    obj/third_party/webrtc/modules/audio_processing/aec/audio_processing.echo_cancellation.o: $
+    cc $
+    ../../third_party/webrtc/modules/audio_processing/aec/echo_cancellation.c $
+    || $
+    obj/third_party/webrtc/modules/audioproc_debug_proto.actions_rules_copies.stamp
+build $
+    obj/third_party/webrtc/modules/audio_processing/aec/audio_processing.aec_core.o: $
+    cc ../../third_party/webrtc/modules/audio_processing/aec/aec_core.c || $
+    obj/third_party/webrtc/modules/audioproc_debug_proto.actions_rules_copies.stamp
+build $
+    obj/third_party/webrtc/modules/audio_processing/aec/audio_processing.aec_rdft.o: $
+    cc ../../third_party/webrtc/modules/audio_processing/aec/aec_rdft.c || $
+    obj/third_party/webrtc/modules/audioproc_debug_proto.actions_rules_copies.stamp
+build $
+    obj/third_party/webrtc/modules/audio_processing/aec/audio_processing.aec_resampler.o: $
+    cc $
+    ../../third_party/webrtc/modules/audio_processing/aec/aec_resampler.c $
+    || $
+    obj/third_party/webrtc/modules/audioproc_debug_proto.actions_rules_copies.stamp
+build $
+    obj/third_party/webrtc/modules/audio_processing/aecm/audio_processing.echo_control_mobile.o: $
+    cc $
+    ../../third_party/webrtc/modules/audio_processing/aecm/echo_control_mobile.c $
+    || $
+    obj/third_party/webrtc/modules/audioproc_debug_proto.actions_rules_copies.stamp
+build $
+    obj/third_party/webrtc/modules/audio_processing/aecm/audio_processing.aecm_core.o: $
+    cc ../../third_party/webrtc/modules/audio_processing/aecm/aecm_core.c $
+    || $
+    obj/third_party/webrtc/modules/audioproc_debug_proto.actions_rules_copies.stamp
+build $
+    obj/third_party/webrtc/modules/audio_processing/agc/audio_processing.analog_agc.o: $
+    cc ../../third_party/webrtc/modules/audio_processing/agc/analog_agc.c $
+    || $
+    obj/third_party/webrtc/modules/audioproc_debug_proto.actions_rules_copies.stamp
+build $
+    obj/third_party/webrtc/modules/audio_processing/agc/audio_processing.digital_agc.o: $
+    cc ../../third_party/webrtc/modules/audio_processing/agc/digital_agc.c $
+    || $
+    obj/third_party/webrtc/modules/audioproc_debug_proto.actions_rules_copies.stamp
+build $
+    obj/third_party/webrtc/modules/audio_processing/audio_processing.audio_buffer.o: $
+    cxx ../../third_party/webrtc/modules/audio_processing/audio_buffer.cc $
+    || $
+    obj/third_party/webrtc/modules/audioproc_debug_proto.actions_rules_copies.stamp
+build $
+    obj/third_party/webrtc/modules/audio_processing/audio_processing.audio_processing_impl.o: $
+    cxx $
+    ../../third_party/webrtc/modules/audio_processing/audio_processing_impl.cc $
+    || $
+    obj/third_party/webrtc/modules/audioproc_debug_proto.actions_rules_copies.stamp
+build $
+    obj/third_party/webrtc/modules/audio_processing/audio_processing.echo_cancellation_impl.o: $
+    cxx $
+    ../../third_party/webrtc/modules/audio_processing/echo_cancellation_impl.cc $
+    || $
+    obj/third_party/webrtc/modules/audioproc_debug_proto.actions_rules_copies.stamp
+build $
+    obj/third_party/webrtc/modules/audio_processing/audio_processing.echo_control_mobile_impl.o: $
+    cxx $
+    ../../third_party/webrtc/modules/audio_processing/echo_control_mobile_impl.cc $
+    || $
+    obj/third_party/webrtc/modules/audioproc_debug_proto.actions_rules_copies.stamp
+build $
+    obj/third_party/webrtc/modules/audio_processing/audio_processing.gain_control_impl.o: $
+    cxx $
+    ../../third_party/webrtc/modules/audio_processing/gain_control_impl.cc $
+    || $
+    obj/third_party/webrtc/modules/audioproc_debug_proto.actions_rules_copies.stamp
+build $
+    obj/third_party/webrtc/modules/audio_processing/audio_processing.high_pass_filter_impl.o: $
+    cxx $
+    ../../third_party/webrtc/modules/audio_processing/high_pass_filter_impl.cc $
+    || $
+    obj/third_party/webrtc/modules/audioproc_debug_proto.actions_rules_copies.stamp
+build $
+    obj/third_party/webrtc/modules/audio_processing/audio_processing.level_estimator_impl.o: $
+    cxx $
+    ../../third_party/webrtc/modules/audio_processing/level_estimator_impl.cc $
+    || $
+    obj/third_party/webrtc/modules/audioproc_debug_proto.actions_rules_copies.stamp
+build $
+    obj/third_party/webrtc/modules/audio_processing/audio_processing.noise_suppression_impl.o: $
+    cxx $
+    ../../third_party/webrtc/modules/audio_processing/noise_suppression_impl.cc $
+    || $
+    obj/third_party/webrtc/modules/audioproc_debug_proto.actions_rules_copies.stamp
+build $
+    obj/third_party/webrtc/modules/audio_processing/audio_processing.splitting_filter.o: $
+    cxx $
+    ../../third_party/webrtc/modules/audio_processing/splitting_filter.cc $
+    || $
+    obj/third_party/webrtc/modules/audioproc_debug_proto.actions_rules_copies.stamp
+build $
+    obj/third_party/webrtc/modules/audio_processing/audio_processing.processing_component.o: $
+    cxx $
+    ../../third_party/webrtc/modules/audio_processing/processing_component.cc $
+    || $
+    obj/third_party/webrtc/modules/audioproc_debug_proto.actions_rules_copies.stamp
+build $
+    obj/third_party/webrtc/modules/audio_processing/utility/audio_processing.delay_estimator.o: $
+    cc $
+    ../../third_party/webrtc/modules/audio_processing/utility/delay_estimator.c $
+    || $
+    obj/third_party/webrtc/modules/audioproc_debug_proto.actions_rules_copies.stamp
+build $
+    obj/third_party/webrtc/modules/audio_processing/utility/audio_processing.delay_estimator_wrapper.o: $
+    cc $
+    ../../third_party/webrtc/modules/audio_processing/utility/delay_estimator_wrapper.c $
+    || $
+    obj/third_party/webrtc/modules/audioproc_debug_proto.actions_rules_copies.stamp
+build $
+    obj/third_party/webrtc/modules/audio_processing/utility/audio_processing.fft4g.o: $
+    cc ../../third_party/webrtc/modules/audio_processing/utility/fft4g.c || $
+    obj/third_party/webrtc/modules/audioproc_debug_proto.actions_rules_copies.stamp
+build $
+    obj/third_party/webrtc/modules/audio_processing/utility/audio_processing.ring_buffer.o: $
+    cc $
+    ../../third_party/webrtc/modules/audio_processing/utility/ring_buffer.c $
+    || $
+    obj/third_party/webrtc/modules/audioproc_debug_proto.actions_rules_copies.stamp
+build $
+    obj/third_party/webrtc/modules/audio_processing/audio_processing.voice_detection_impl.o: $
+    cxx $
+    ../../third_party/webrtc/modules/audio_processing/voice_detection_impl.cc $
+    || $
+    obj/third_party/webrtc/modules/audioproc_debug_proto.actions_rules_copies.stamp
+build $
+    obj/third_party/webrtc/modules/audio_processing/ns/audio_processing.noise_suppression.o: $
+    cc $
+    ../../third_party/webrtc/modules/audio_processing/ns/noise_suppression.c $
+    || $
+    obj/third_party/webrtc/modules/audioproc_debug_proto.actions_rules_copies.stamp
+build $
+    obj/third_party/webrtc/modules/audio_processing/ns/audio_processing.ns_core.o: $
+    cc ../../third_party/webrtc/modules/audio_processing/ns/ns_core.c || $
+    obj/third_party/webrtc/modules/audioproc_debug_proto.actions_rules_copies.stamp
+
+build obj/third_party/webrtc/modules/libaudio_processing.a: alink_thin $
+    obj/third_party/webrtc/modules/audio_processing/aec/audio_processing.echo_cancellation.o $
+    obj/third_party/webrtc/modules/audio_processing/aec/audio_processing.aec_core.o $
+    obj/third_party/webrtc/modules/audio_processing/aec/audio_processing.aec_rdft.o $
+    obj/third_party/webrtc/modules/audio_processing/aec/audio_processing.aec_resampler.o $
+    obj/third_party/webrtc/modules/audio_processing/aecm/audio_processing.echo_control_mobile.o $
+    obj/third_party/webrtc/modules/audio_processing/aecm/audio_processing.aecm_core.o $
+    obj/third_party/webrtc/modules/audio_processing/agc/audio_processing.analog_agc.o $
+    obj/third_party/webrtc/modules/audio_processing/agc/audio_processing.digital_agc.o $
+    obj/third_party/webrtc/modules/audio_processing/audio_processing.audio_buffer.o $
+    obj/third_party/webrtc/modules/audio_processing/audio_processing.audio_processing_impl.o $
+    obj/third_party/webrtc/modules/audio_processing/audio_processing.echo_cancellation_impl.o $
+    obj/third_party/webrtc/modules/audio_processing/audio_processing.echo_control_mobile_impl.o $
+    obj/third_party/webrtc/modules/audio_processing/audio_processing.gain_control_impl.o $
+    obj/third_party/webrtc/modules/audio_processing/audio_processing.high_pass_filter_impl.o $
+    obj/third_party/webrtc/modules/audio_processing/audio_processing.level_estimator_impl.o $
+    obj/third_party/webrtc/modules/audio_processing/audio_processing.noise_suppression_impl.o $
+    obj/third_party/webrtc/modules/audio_processing/audio_processing.splitting_filter.o $
+    obj/third_party/webrtc/modules/audio_processing/audio_processing.processing_component.o $
+    obj/third_party/webrtc/modules/audio_processing/utility/audio_processing.delay_estimator.o $
+    obj/third_party/webrtc/modules/audio_processing/utility/audio_processing.delay_estimator_wrapper.o $
+    obj/third_party/webrtc/modules/audio_processing/utility/audio_processing.fft4g.o $
+    obj/third_party/webrtc/modules/audio_processing/utility/audio_processing.ring_buffer.o $
+    obj/third_party/webrtc/modules/audio_processing/audio_processing.voice_detection_impl.o $
+    obj/third_party/webrtc/modules/audio_processing/ns/audio_processing.noise_suppression.o $
+    obj/third_party/webrtc/modules/audio_processing/ns/audio_processing.ns_core.o $
+    || obj/third_party/webrtc/modules/libaudioproc_debug_proto.a

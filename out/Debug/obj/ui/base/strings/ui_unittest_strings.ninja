@@ -1,0 +1,25 @@
+rule $
+    ui_unittest_strings_target_repack_ui_unittest_strings_b3f6710ef7fd1f91f1c0bfa019339443
+  command = cd ../../ui/base/strings; python $
+      ../../../tools/grit/grit/format/repack.py $
+      ../../../out/Debug/ui_unittests_strings/en-US.pak $
+      ../../../out/Debug/gen/ui/ui_strings/ui_strings_en-US.pak $
+      ../../../out/Debug/gen/ui/app_locale_settings/app_locale_settings_en-US.pak
+  description = ACTION ui_unittest_strings: $
+      repack_ui_unittest_strings_b3f6710ef7fd1f91f1c0bfa019339443
+  restat = 1
+
+build ui_unittests_strings/en-US.pak: $
+    ui_unittest_strings_target_repack_ui_unittest_strings_b3f6710ef7fd1f91f1c0bfa019339443 $
+    ../../tools/grit/grit/format/repack.py $
+    gen/ui/ui_strings/ui_strings_en-US.pak $
+    gen/ui/app_locale_settings/app_locale_settings_en-US.pak || $
+    obj/ui/base/strings/ui_strings.actions_rules_copies.stamp
+
+build ui_unittests_strings/ui_resources_100_percent.pak: copy $
+    gen/ui/ui_resources/ui_resources_100_percent.pak || $
+    obj/ui/base/strings/ui_strings.actions_rules_copies.stamp
+build obj/ui/base/strings/ui_unittest_strings.actions_rules_copies.stamp: $
+    stamp ui_unittests_strings/en-US.pak $
+    ui_unittests_strings/ui_resources_100_percent.pak
+

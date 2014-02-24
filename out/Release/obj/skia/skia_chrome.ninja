@@ -1,0 +1,108 @@
+defines = -DANGLE_DX11 -D_FILE_OFFSET_BITS=64 -DNO_TCMALLOC -DDISABLE_NACL $
+    -DCHROMIUM_BUILD -DUSE_DEFAULT_RENDER_THEME=1 -DUSE_LIBJPEG_TURBO=1 $
+    -DUSE_NSS=1 -DUSE_X11=1 -DENABLE_ONE_CLICK_SIGNIN $
+    -DGTK_DISABLE_SINGLE_INCLUDES=1 -DUSE_XI2_MT=2 -DENABLE_REMOTING=1 $
+    -DENABLE_WEBRTC=1 -DUSE_PROPRIETARY_CODECS $
+    -DENABLE_CONFIGURATION_POLICY -DENABLE_INPUT_SPEECH $
+    -DENABLE_NOTIFICATIONS -DENABLE_EGLIMAGE=1 -DENABLE_TASK_MANAGER=1 $
+    -DENABLE_EXTENSIONS=1 -DENABLE_PLUGIN_INSTALLATION=1 -DENABLE_PLUGINS=1 $
+    -DENABLE_SESSION_SERVICE=1 -DENABLE_THEMES=1 -DENABLE_BACKGROUND=1 $
+    -DENABLE_AUTOMATION=1 -DENABLE_GOOGLE_NOW=1 -DCLD_VERSION=2 $
+    -DENABLE_FULL_PRINTING=1 -DENABLE_PRINTING=1 -DENABLE_SPELLCHECK=1 $
+    -DENABLE_CAPTIVE_PORTAL_DETECTION=1 -DENABLE_MANAGED_USERS=1 $
+    -DSK_ENABLE_INST_COUNT=0 -DSK_SUPPORT_GPU=1 $
+    '-DGR_GL_CUSTOM_SETUP_HEADER="GrGLConfig_chrome.h"' $
+    -DSK_ENABLE_LEGACY_API_ALIASING=1 -DSK_ATTR_DEPRECATED=SK_NOTHING_ARG1 $
+    -DSK_SUPPORT_LEGACY_COLORTYPE=1 -DSK_USE_POSIX_THREADS $
+    -DSK_DEFERRED_CANVAS_USES_FACTORIES=1 -DNDEBUG -DOFFICIAL_BUILD $
+    -DNVALGRIND -DDYNAMIC_ANNOTATIONS_ENABLED=0
+includes = -I../.. -I../../skia/config -I../../third_party/skia/src/core $
+    -I../../third_party/skia/include/core $
+    -I../../third_party/skia/include/effects $
+    -I../../third_party/skia/include/pdf $
+    -I../../third_party/skia/include/gpu $
+    -I../../third_party/skia/include/lazy $
+    -I../../third_party/skia/include/pathops $
+    -I../../third_party/skia/include/pipe $
+    -I../../third_party/skia/include/ports $
+    -I../../third_party/skia/include/utils
+cflags = -fstack-protector --param=ssp-buffer-size=4  -pthread $
+    -fno-exceptions -fno-strict-aliasing -Wno-unused-parameter $
+    -Wno-missing-field-initializers -fvisibility=hidden -pipe -fPIC $
+    -Wheader-hygiene -Wno-char-subscripts -Wno-unused-function $
+    -Wno-covered-switch-default -Wno-c++11-narrowing $
+    -Wno-reserved-user-defined-literal -Wno-deprecated-register $
+    -Wno-deprecated-declarations -fcolor-diagnostics $
+    -I/usr/local/include/gtk-2.0 -I/usr/local/include/gio-unix-2.0/ $
+    -I/usr/local/include/atk-1.0 -I/usr/local/include/cairo $
+    -I/usr/local/include/pixman-1 -D_THREAD_SAFE $
+    -I/usr/local/include/gdk-pixbuf-2.0 -I/usr/local/include/libpng15 $
+    -I/usr/local/include/pango-1.0 -I/usr/local/include/freetype2 $
+    -I/usr/local/include/harfbuzz -pthread -I/usr/local/include/glib-2.0 $
+    -I/usr/local/include -pthread -I/usr/local/include/glib-2.0 $
+    -I/usr/local/include -D_THREAD_SAFE -I/usr/local/include -Wno-format $
+    -O2 -fdata-sections -ffunction-sections
+cflags_c = -O2 -pipe -fno-stack-protector -Wno-unknown-warning-option $
+    -fno-strict-aliasing
+cflags_cc = -O2 -pipe -fno-stack-protector -Wno-unknown-warning-option $
+    -fno-strict-aliasing -fno-rtti -fno-threadsafe-statics $
+    -fvisibility-inlines-hidden -std=gnu++11 -Wno-deprecated
+
+build obj/skia/ext/skia_chrome.analysis_canvas.o: cxx $
+    ../../skia/ext/analysis_canvas.cc
+build obj/skia/ext/skia_chrome.benchmarking_canvas.o: cxx $
+    ../../skia/ext/benchmarking_canvas.cc
+build obj/skia/ext/skia_chrome.bitmap_platform_device_linux.o: cxx $
+    ../../skia/ext/bitmap_platform_device_linux.cc
+build obj/skia/ext/skia_chrome.convolver.o: cxx ../../skia/ext/convolver.cc
+build obj/skia/ext/skia_chrome.google_logging.o: cxx $
+    ../../skia/ext/google_logging.cc
+build obj/skia/ext/skia_chrome.image_operations.o: cxx $
+    ../../skia/ext/image_operations.cc
+build obj/skia/ext/skia_chrome.lazy_pixel_ref.o: cxx $
+    ../../skia/ext/lazy_pixel_ref.cc
+build obj/skia/ext/skia_chrome.lazy_pixel_ref_utils.o: cxx $
+    ../../skia/ext/lazy_pixel_ref_utils.cc
+build obj/skia/ext/skia_chrome.opacity_draw_filter.o: cxx $
+    ../../skia/ext/opacity_draw_filter.cc
+build obj/skia/ext/skia_chrome.paint_simplifier.o: cxx $
+    ../../skia/ext/paint_simplifier.cc
+build obj/skia/ext/skia_chrome.platform_canvas.o: cxx $
+    ../../skia/ext/platform_canvas.cc
+build obj/skia/ext/skia_chrome.platform_device.o: cxx $
+    ../../skia/ext/platform_device.cc
+build obj/skia/ext/skia_chrome.platform_device_linux.o: cxx $
+    ../../skia/ext/platform_device_linux.cc
+build obj/skia/ext/skia_chrome.recursive_gaussian_convolution.o: cxx $
+    ../../skia/ext/recursive_gaussian_convolution.cc
+build obj/skia/ext/skia_chrome.SkDiscardableMemory_chrome.o: cxx $
+    ../../skia/ext/SkDiscardableMemory_chrome.cc
+build obj/skia/ext/skia_chrome.SkMemory_new_handler.o: cxx $
+    ../../skia/ext/SkMemory_new_handler.cpp
+build obj/skia/ext/skia_chrome.skia_utils_base.o: cxx $
+    ../../skia/ext/skia_utils_base.cc
+build obj/skia/ext/skia_chrome.vector_canvas.o: cxx $
+    ../../skia/ext/vector_canvas.cc
+build obj/skia/ext/skia_chrome.vector_platform_device_skia.o: cxx $
+    ../../skia/ext/vector_platform_device_skia.cc
+
+build obj/skia/libskia_chrome.a: alink_thin $
+    obj/skia/ext/skia_chrome.analysis_canvas.o $
+    obj/skia/ext/skia_chrome.benchmarking_canvas.o $
+    obj/skia/ext/skia_chrome.bitmap_platform_device_linux.o $
+    obj/skia/ext/skia_chrome.convolver.o $
+    obj/skia/ext/skia_chrome.google_logging.o $
+    obj/skia/ext/skia_chrome.image_operations.o $
+    obj/skia/ext/skia_chrome.lazy_pixel_ref.o $
+    obj/skia/ext/skia_chrome.lazy_pixel_ref_utils.o $
+    obj/skia/ext/skia_chrome.opacity_draw_filter.o $
+    obj/skia/ext/skia_chrome.paint_simplifier.o $
+    obj/skia/ext/skia_chrome.platform_canvas.o $
+    obj/skia/ext/skia_chrome.platform_device.o $
+    obj/skia/ext/skia_chrome.platform_device_linux.o $
+    obj/skia/ext/skia_chrome.recursive_gaussian_convolution.o $
+    obj/skia/ext/skia_chrome.SkDiscardableMemory_chrome.o $
+    obj/skia/ext/skia_chrome.SkMemory_new_handler.o $
+    obj/skia/ext/skia_chrome.skia_utils_base.o $
+    obj/skia/ext/skia_chrome.vector_canvas.o $
+    obj/skia/ext/skia_chrome.vector_platform_device_skia.o

@@ -1,0 +1,122 @@
+defines = -DANGLE_DX11 -D_FILE_OFFSET_BITS=64 -DNO_TCMALLOC -DDISABLE_NACL $
+    -DCHROMIUM_BUILD -DUSE_DEFAULT_RENDER_THEME=1 -DUSE_LIBJPEG_TURBO=1 $
+    -DUSE_NSS=1 -DUSE_X11=1 -DENABLE_ONE_CLICK_SIGNIN $
+    -DGTK_DISABLE_SINGLE_INCLUDES=1 -DUSE_XI2_MT=2 -DENABLE_REMOTING=1 $
+    -DENABLE_WEBRTC=1 -DUSE_PROPRIETARY_CODECS $
+    -DENABLE_CONFIGURATION_POLICY -DENABLE_INPUT_SPEECH $
+    -DENABLE_NOTIFICATIONS -DENABLE_EGLIMAGE=1 -DENABLE_TASK_MANAGER=1 $
+    -DENABLE_EXTENSIONS=1 -DENABLE_PLUGIN_INSTALLATION=1 -DENABLE_PLUGINS=1 $
+    -DENABLE_SESSION_SERVICE=1 -DENABLE_THEMES=1 -DENABLE_BACKGROUND=1 $
+    -DENABLE_AUTOMATION=1 -DENABLE_GOOGLE_NOW=1 -DCLD_VERSION=2 $
+    -DENABLE_FULL_PRINTING=1 -DENABLE_PRINTING=1 -DENABLE_SPELLCHECK=1 $
+    -DENABLE_CAPTIVE_PORTAL_DETECTION=1 -DENABLE_MANAGED_USERS=1 $
+    -DFLOATING_POINT -DEXPORT= -DUSE_ALLOCA -Dinline=__inline -DNDEBUG $
+    -DOFFICIAL_BUILD -DNVALGRIND -DDYNAMIC_ANNOTATIONS_ENABLED=0
+includes = -I../../third_party/speex/include $
+    -I../../third_party/speex/libspeex
+cflags = -fstack-protector --param=ssp-buffer-size=4  -pthread $
+    -fno-exceptions -fno-strict-aliasing -Wno-unused-parameter $
+    -Wno-missing-field-initializers -fvisibility=hidden -pipe -fPIC $
+    -Wheader-hygiene -Wno-char-subscripts -Wno-unused-function $
+    -Wno-covered-switch-default -Wstring-conversion -Wno-c++11-narrowing $
+    -Wno-reserved-user-defined-literal -Wno-deprecated-register $
+    -Wno-deprecated-declarations -fcolor-diagnostics -Wno-format -O2 $
+    -fdata-sections -ffunction-sections
+cflags_c = -O2 -pipe -fno-stack-protector -Wno-unknown-warning-option $
+    -fno-strict-aliasing
+cflags_cc = -O2 -pipe -fno-stack-protector -Wno-unknown-warning-option $
+    -fno-strict-aliasing -fno-rtti -fno-threadsafe-statics $
+    -fvisibility-inlines-hidden -std=gnu++11 -Wno-deprecated
+
+build obj/third_party/speex/libspeex/libspeex.bits.o: cc $
+    ../../third_party/speex/libspeex/bits.c
+build obj/third_party/speex/libspeex/libspeex.cb_search.o: cc $
+    ../../third_party/speex/libspeex/cb_search.c
+build obj/third_party/speex/libspeex/libspeex.exc_10_16_table.o: cc $
+    ../../third_party/speex/libspeex/exc_10_16_table.c
+build obj/third_party/speex/libspeex/libspeex.exc_10_32_table.o: cc $
+    ../../third_party/speex/libspeex/exc_10_32_table.c
+build obj/third_party/speex/libspeex/libspeex.exc_20_32_table.o: cc $
+    ../../third_party/speex/libspeex/exc_20_32_table.c
+build obj/third_party/speex/libspeex/libspeex.exc_5_256_table.o: cc $
+    ../../third_party/speex/libspeex/exc_5_256_table.c
+build obj/third_party/speex/libspeex/libspeex.exc_5_64_table.o: cc $
+    ../../third_party/speex/libspeex/exc_5_64_table.c
+build obj/third_party/speex/libspeex/libspeex.exc_8_128_table.o: cc $
+    ../../third_party/speex/libspeex/exc_8_128_table.c
+build obj/third_party/speex/libspeex/libspeex.filters.o: cc $
+    ../../third_party/speex/libspeex/filters.c
+build obj/third_party/speex/libspeex/libspeex.gain_table.o: cc $
+    ../../third_party/speex/libspeex/gain_table.c
+build obj/third_party/speex/libspeex/libspeex.gain_table_lbr.o: cc $
+    ../../third_party/speex/libspeex/gain_table_lbr.c
+build obj/third_party/speex/libspeex/libspeex.hexc_10_32_table.o: cc $
+    ../../third_party/speex/libspeex/hexc_10_32_table.c
+build obj/third_party/speex/libspeex/libspeex.hexc_table.o: cc $
+    ../../third_party/speex/libspeex/hexc_table.c
+build obj/third_party/speex/libspeex/libspeex.high_lsp_tables.o: cc $
+    ../../third_party/speex/libspeex/high_lsp_tables.c
+build obj/third_party/speex/libspeex/libspeex.lpc.o: cc $
+    ../../third_party/speex/libspeex/lpc.c
+build obj/third_party/speex/libspeex/libspeex.lsp.o: cc $
+    ../../third_party/speex/libspeex/lsp.c
+build obj/third_party/speex/libspeex/libspeex.lsp_tables_nb.o: cc $
+    ../../third_party/speex/libspeex/lsp_tables_nb.c
+build obj/third_party/speex/libspeex/libspeex.ltp.o: cc $
+    ../../third_party/speex/libspeex/ltp.c
+build obj/third_party/speex/libspeex/libspeex.modes.o: cc $
+    ../../third_party/speex/libspeex/modes.c
+build obj/third_party/speex/libspeex/libspeex.modes_wb.o: cc $
+    ../../third_party/speex/libspeex/modes_wb.c
+build obj/third_party/speex/libspeex/libspeex.nb_celp.o: cc $
+    ../../third_party/speex/libspeex/nb_celp.c
+build obj/third_party/speex/libspeex/libspeex.quant_lsp.o: cc $
+    ../../third_party/speex/libspeex/quant_lsp.c
+build obj/third_party/speex/libspeex/libspeex.sb_celp.o: cc $
+    ../../third_party/speex/libspeex/sb_celp.c
+build obj/third_party/speex/libspeex/libspeex.speex.o: cc $
+    ../../third_party/speex/libspeex/speex.c
+build obj/third_party/speex/libspeex/libspeex.speex_callbacks.o: cc $
+    ../../third_party/speex/libspeex/speex_callbacks.c
+build obj/third_party/speex/libspeex/libspeex.speex_header.o: cc $
+    ../../third_party/speex/libspeex/speex_header.c
+build obj/third_party/speex/libspeex/libspeex.stereo.o: cc $
+    ../../third_party/speex/libspeex/stereo.c
+build obj/third_party/speex/libspeex/libspeex.vbr.o: cc $
+    ../../third_party/speex/libspeex/vbr.c
+build obj/third_party/speex/libspeex/libspeex.vq.o: cc $
+    ../../third_party/speex/libspeex/vq.c
+build obj/third_party/speex/libspeex/libspeex.window.o: cc $
+    ../../third_party/speex/libspeex/window.c
+
+build obj/third_party/speex/libspeex.a: alink_thin $
+    obj/third_party/speex/libspeex/libspeex.bits.o $
+    obj/third_party/speex/libspeex/libspeex.cb_search.o $
+    obj/third_party/speex/libspeex/libspeex.exc_10_16_table.o $
+    obj/third_party/speex/libspeex/libspeex.exc_10_32_table.o $
+    obj/third_party/speex/libspeex/libspeex.exc_20_32_table.o $
+    obj/third_party/speex/libspeex/libspeex.exc_5_256_table.o $
+    obj/third_party/speex/libspeex/libspeex.exc_5_64_table.o $
+    obj/third_party/speex/libspeex/libspeex.exc_8_128_table.o $
+    obj/third_party/speex/libspeex/libspeex.filters.o $
+    obj/third_party/speex/libspeex/libspeex.gain_table.o $
+    obj/third_party/speex/libspeex/libspeex.gain_table_lbr.o $
+    obj/third_party/speex/libspeex/libspeex.hexc_10_32_table.o $
+    obj/third_party/speex/libspeex/libspeex.hexc_table.o $
+    obj/third_party/speex/libspeex/libspeex.high_lsp_tables.o $
+    obj/third_party/speex/libspeex/libspeex.lpc.o $
+    obj/third_party/speex/libspeex/libspeex.lsp.o $
+    obj/third_party/speex/libspeex/libspeex.lsp_tables_nb.o $
+    obj/third_party/speex/libspeex/libspeex.ltp.o $
+    obj/third_party/speex/libspeex/libspeex.modes.o $
+    obj/third_party/speex/libspeex/libspeex.modes_wb.o $
+    obj/third_party/speex/libspeex/libspeex.nb_celp.o $
+    obj/third_party/speex/libspeex/libspeex.quant_lsp.o $
+    obj/third_party/speex/libspeex/libspeex.sb_celp.o $
+    obj/third_party/speex/libspeex/libspeex.speex.o $
+    obj/third_party/speex/libspeex/libspeex.speex_callbacks.o $
+    obj/third_party/speex/libspeex/libspeex.speex_header.o $
+    obj/third_party/speex/libspeex/libspeex.stereo.o $
+    obj/third_party/speex/libspeex/libspeex.vbr.o $
+    obj/third_party/speex/libspeex/libspeex.vq.o $
+    obj/third_party/speex/libspeex/libspeex.window.o

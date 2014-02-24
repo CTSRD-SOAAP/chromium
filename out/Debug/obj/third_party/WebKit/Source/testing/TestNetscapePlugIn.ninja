@@ -1,0 +1,142 @@
+defines = -DANGLE_DX11 -D_FILE_OFFSET_BITS=64 -DNO_TCMALLOC -DDISABLE_NACL $
+    -DCHROMIUM_BUILD -DUSE_DEFAULT_RENDER_THEME=1 -DUSE_LIBJPEG_TURBO=1 $
+    -DUSE_NSS=1 -DUSE_X11=1 -DENABLE_ONE_CLICK_SIGNIN $
+    -DGTK_DISABLE_SINGLE_INCLUDES=1 -DUSE_XI2_MT=2 -DENABLE_REMOTING=1 $
+    -DENABLE_WEBRTC=1 -DUSE_PROPRIETARY_CODECS $
+    -DENABLE_CONFIGURATION_POLICY -DENABLE_INPUT_SPEECH $
+    -DENABLE_NOTIFICATIONS -DENABLE_EGLIMAGE=1 -DENABLE_TASK_MANAGER=1 $
+    -DENABLE_EXTENSIONS=1 -DENABLE_PLUGIN_INSTALLATION=1 -DENABLE_PLUGINS=1 $
+    -DENABLE_SESSION_SERVICE=1 -DENABLE_THEMES=1 -DENABLE_BACKGROUND=1 $
+    -DENABLE_AUTOMATION=1 -DENABLE_GOOGLE_NOW=1 -DCLD_VERSION=2 $
+    -DENABLE_FULL_PRINTING=1 -DENABLE_PRINTING=1 -DENABLE_SPELLCHECK=1 $
+    -DENABLE_CAPTIVE_PORTAL_DETECTION=1 -DENABLE_MANAGED_USERS=1 $
+    -DDYNAMIC_ANNOTATIONS_ENABLED=1 -DWTF_USE_DYNAMIC_ANNOTATIONS=1 -D_DEBUG
+includes = -I/usr/local/include -I../.. $
+    -I../../third_party/WebKit/Source/testing/plugin $
+    -I../../third_party/npapi -I../../third_party/npapi/bindings
+cflags = -Wunused-parameter -fstack-protector --param=ssp-buffer-size=4  $
+    -pthread -fno-exceptions -fno-strict-aliasing -Wno-unused-parameter $
+    -Wno-missing-field-initializers -fvisibility=hidden -pipe -fPIC $
+    -Wheader-hygiene -Wno-char-subscripts -Wno-unused-function $
+    -Wno-covered-switch-default -Wstring-conversion -Wno-c++11-narrowing $
+    -Wno-reserved-user-defined-literal -Wno-deprecated-register $
+    -Wno-deprecated-declarations -fcolor-diagnostics -fvisibility=default $
+    -Wno-format -O0 -g
+cflags_c = -O2 -pipe -fno-stack-protector -Wno-unknown-warning-option $
+    -fno-strict-aliasing
+cflags_cc = -O2 -pipe -fno-stack-protector -Wno-unknown-warning-option $
+    -fno-strict-aliasing -fno-rtti -fno-threadsafe-statics $
+    -fvisibility-inlines-hidden -std=gnu++11 -Wno-deprecated
+
+build $
+    obj/third_party/WebKit/Source/testing/plugin/TestNetscapePlugIn.PluginObject.o: $
+    cxx ../../third_party/WebKit/Source/testing/plugin/PluginObject.cpp
+build $
+    obj/third_party/WebKit/Source/testing/plugin/TestNetscapePlugIn.PluginTest.o: $
+    cxx ../../third_party/WebKit/Source/testing/plugin/PluginTest.cpp
+build $
+    obj/third_party/WebKit/Source/testing/plugin/TestNetscapePlugIn.TestObject.o: $
+    cxx ../../third_party/WebKit/Source/testing/plugin/TestObject.cpp
+build $
+    obj/third_party/WebKit/Source/testing/plugin/Tests/TestNetscapePlugIn.DocumentOpenInDestroyStream.o: $
+    cxx $
+    ../../third_party/WebKit/Source/testing/plugin/Tests/DocumentOpenInDestroyStream.cpp
+build $
+    obj/third_party/WebKit/Source/testing/plugin/Tests/TestNetscapePlugIn.EvaluateJSAfterRemovingPluginElement.o: $
+    cxx $
+    ../../third_party/WebKit/Source/testing/plugin/Tests/EvaluateJSAfterRemovingPluginElement.cpp
+build $
+    obj/third_party/WebKit/Source/testing/plugin/Tests/TestNetscapePlugIn.FormValue.o: $
+    cxx ../../third_party/WebKit/Source/testing/plugin/Tests/FormValue.cpp
+build $
+    obj/third_party/WebKit/Source/testing/plugin/Tests/TestNetscapePlugIn.GetURLNotifyWithURLThatFailsToLoad.o: $
+    cxx $
+    ../../third_party/WebKit/Source/testing/plugin/Tests/GetURLNotifyWithURLThatFailsToLoad.cpp
+build $
+    obj/third_party/WebKit/Source/testing/plugin/Tests/TestNetscapePlugIn.GetURLWithJavaScriptURL.o: $
+    cxx $
+    ../../third_party/WebKit/Source/testing/plugin/Tests/GetURLWithJavaScriptURL.cpp
+build $
+    obj/third_party/WebKit/Source/testing/plugin/Tests/TestNetscapePlugIn.GetURLWithJavaScriptURLDestroyingPlugin.o: $
+    cxx $
+    ../../third_party/WebKit/Source/testing/plugin/Tests/GetURLWithJavaScriptURLDestroyingPlugin.cpp
+build $
+    obj/third_party/WebKit/Source/testing/plugin/Tests/TestNetscapePlugIn.GetUserAgentWithNullNPPFromNPPNew.o: $
+    cxx $
+    ../../third_party/WebKit/Source/testing/plugin/Tests/GetUserAgentWithNullNPPFromNPPNew.cpp
+build $
+    obj/third_party/WebKit/Source/testing/plugin/Tests/TestNetscapePlugIn.LeakWindowScriptableObject.o: $
+    cxx $
+    ../../third_party/WebKit/Source/testing/plugin/Tests/LeakWindowScriptableObject.cpp
+build $
+    obj/third_party/WebKit/Source/testing/plugin/Tests/TestNetscapePlugIn.LogNPPSetWindow.o: $
+    cxx $
+    ../../third_party/WebKit/Source/testing/plugin/Tests/LogNPPSetWindow.cpp
+build $
+    obj/third_party/WebKit/Source/testing/plugin/Tests/TestNetscapePlugIn.NPDeallocateCalledBeforeNPShutdown.o: $
+    cxx $
+    ../../third_party/WebKit/Source/testing/plugin/Tests/NPDeallocateCalledBeforeNPShutdown.cpp
+build $
+    obj/third_party/WebKit/Source/testing/plugin/Tests/TestNetscapePlugIn.NPPNewFails.o: $
+    cxx ../../third_party/WebKit/Source/testing/plugin/Tests/NPPNewFails.cpp
+build $
+    obj/third_party/WebKit/Source/testing/plugin/Tests/TestNetscapePlugIn.NPRuntimeCallsWithNullNPP.o: $
+    cxx $
+    ../../third_party/WebKit/Source/testing/plugin/Tests/NPRuntimeCallsWithNullNPP.cpp
+build $
+    obj/third_party/WebKit/Source/testing/plugin/Tests/TestNetscapePlugIn.NPRuntimeObjectFromDestroyedPlugin.o: $
+    cxx $
+    ../../third_party/WebKit/Source/testing/plugin/Tests/NPRuntimeObjectFromDestroyedPlugin.cpp
+build $
+    obj/third_party/WebKit/Source/testing/plugin/Tests/TestNetscapePlugIn.NPRuntimeRemoveProperty.o: $
+    cxx $
+    ../../third_party/WebKit/Source/testing/plugin/Tests/NPRuntimeRemoveProperty.cpp
+build $
+    obj/third_party/WebKit/Source/testing/plugin/Tests/TestNetscapePlugIn.NullNPPGetValuePointer.o: $
+    cxx $
+    ../../third_party/WebKit/Source/testing/plugin/Tests/NullNPPGetValuePointer.cpp
+build $
+    obj/third_party/WebKit/Source/testing/plugin/Tests/TestNetscapePlugIn.PassDifferentNPPStruct.o: $
+    cxx $
+    ../../third_party/WebKit/Source/testing/plugin/Tests/PassDifferentNPPStruct.cpp
+build $
+    obj/third_party/WebKit/Source/testing/plugin/Tests/TestNetscapePlugIn.PluginScriptableNPObjectInvokeDefault.o: $
+    cxx $
+    ../../third_party/WebKit/Source/testing/plugin/Tests/PluginScriptableNPObjectInvokeDefault.cpp
+build $
+    obj/third_party/WebKit/Source/testing/plugin/Tests/TestNetscapePlugIn.PluginScriptableObjectOverridesAllProperties.o: $
+    cxx $
+    ../../third_party/WebKit/Source/testing/plugin/Tests/PluginScriptableObjectOverridesAllProperties.cpp
+build $
+    obj/third_party/WebKit/Source/testing/plugin/TestNetscapePlugIn.main.o: $
+    cxx ../../third_party/WebKit/Source/testing/plugin/main.cpp
+
+ldflags = -Wl,-z,now -Wl,-z,relro -pthread -Wl,-z,noexecstack -fPIC $
+    -Wl,--no-keep-memory
+libs = 
+build libTestNetscapePlugIn.so libTestNetscapePlugIn.so.TOC: solink_module $
+    obj/third_party/WebKit/Source/testing/plugin/TestNetscapePlugIn.PluginObject.o $
+    obj/third_party/WebKit/Source/testing/plugin/TestNetscapePlugIn.PluginTest.o $
+    obj/third_party/WebKit/Source/testing/plugin/TestNetscapePlugIn.TestObject.o $
+    obj/third_party/WebKit/Source/testing/plugin/Tests/TestNetscapePlugIn.DocumentOpenInDestroyStream.o $
+    obj/third_party/WebKit/Source/testing/plugin/Tests/TestNetscapePlugIn.EvaluateJSAfterRemovingPluginElement.o $
+    obj/third_party/WebKit/Source/testing/plugin/Tests/TestNetscapePlugIn.FormValue.o $
+    obj/third_party/WebKit/Source/testing/plugin/Tests/TestNetscapePlugIn.GetURLNotifyWithURLThatFailsToLoad.o $
+    obj/third_party/WebKit/Source/testing/plugin/Tests/TestNetscapePlugIn.GetURLWithJavaScriptURL.o $
+    obj/third_party/WebKit/Source/testing/plugin/Tests/TestNetscapePlugIn.GetURLWithJavaScriptURLDestroyingPlugin.o $
+    obj/third_party/WebKit/Source/testing/plugin/Tests/TestNetscapePlugIn.GetUserAgentWithNullNPPFromNPPNew.o $
+    obj/third_party/WebKit/Source/testing/plugin/Tests/TestNetscapePlugIn.LeakWindowScriptableObject.o $
+    obj/third_party/WebKit/Source/testing/plugin/Tests/TestNetscapePlugIn.LogNPPSetWindow.o $
+    obj/third_party/WebKit/Source/testing/plugin/Tests/TestNetscapePlugIn.NPDeallocateCalledBeforeNPShutdown.o $
+    obj/third_party/WebKit/Source/testing/plugin/Tests/TestNetscapePlugIn.NPPNewFails.o $
+    obj/third_party/WebKit/Source/testing/plugin/Tests/TestNetscapePlugIn.NPRuntimeCallsWithNullNPP.o $
+    obj/third_party/WebKit/Source/testing/plugin/Tests/TestNetscapePlugIn.NPRuntimeObjectFromDestroyedPlugin.o $
+    obj/third_party/WebKit/Source/testing/plugin/Tests/TestNetscapePlugIn.NPRuntimeRemoveProperty.o $
+    obj/third_party/WebKit/Source/testing/plugin/Tests/TestNetscapePlugIn.NullNPPGetValuePointer.o $
+    obj/third_party/WebKit/Source/testing/plugin/Tests/TestNetscapePlugIn.PassDifferentNPPStruct.o $
+    obj/third_party/WebKit/Source/testing/plugin/Tests/TestNetscapePlugIn.PluginScriptableNPObjectInvokeDefault.o $
+    obj/third_party/WebKit/Source/testing/plugin/Tests/TestNetscapePlugIn.PluginScriptableObjectOverridesAllProperties.o $
+    obj/third_party/WebKit/Source/testing/plugin/TestNetscapePlugIn.main.o
+  ld = $ldxx
+  soname = libTestNetscapePlugIn.so
+  lib = libTestNetscapePlugIn.so

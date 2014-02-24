@@ -1,0 +1,3 @@
+build obj/skia/skia.actions_depends.stamp: stamp obj/skia/libskia_library.a $
+    obj/skia/libskia_chrome.a
+

@@ -1,0 +1,620 @@
+build obj/remoting/remoting_unittests.actions_depends.stamp: stamp $
+    obj/base/libbase.a obj/base/libbase_i18n.a $
+    obj/base/libtest_support_base.a obj/ipc/libipc.a $
+    obj/net/libnet_test_support.a obj/ppapi/libppapi_cpp.a $
+    obj/testing/libgmock.a obj/testing/libgtest.a obj/ui/events/libevents.a $
+    obj/ui/gfx/libgfx.a obj/ui/libui.a obj/remoting/libremoting_base.a $
+    obj/remoting/libremoting_breakpad.a obj/remoting/libremoting_client.a $
+    obj/remoting/libremoting_client_plugin.a $
+    obj/remoting/libremoting_host.a $
+    obj/remoting/libremoting_host_event_logger.a $
+    obj/remoting/libremoting_host_setup_base.a $
+    obj/remoting/libremoting_jingle_glue.a $
+    obj/remoting/libremoting_native_messaging_base.a $
+    obj/remoting/libremoting_protocol.a $
+    obj/remoting/remoting_resources.actions_rules_copies.stamp $
+    obj/third_party/webrtc/modules/libdesktop_capture.a $
+    obj/net/third_party/nss/libcrssl.a obj/base/libbase_static.a $
+    obj/base/allocator/liballocator_extension_thunks.a $
+    obj/third_party/modp_b64/libmodp_b64.a $
+    obj/base/third_party/dynamic_annotations/libdynamic_annotations.a $
+    obj/base/libsymbolize.a obj/base/libxdg_mime.a $
+    obj/third_party/libevent/libevent.a obj/third_party/icu/libicui18n.a $
+    obj/third_party/icu/libicuuc.a obj/third_party/icu/libicudata.a $
+    obj/third_party/libxml/libxml.a $
+    obj/net/tools/tld_cleanup/libtld_cleanup_util.a obj/url/liburl_lib.a $
+    obj/net/libnet.a obj/crypto/libcrcrypto.a $
+    obj/net/third_party/nss/libcrssl.a obj/sdch/libsdch.a $
+    obj/third_party/zlib/libchrome_zlib.a $
+    obj/net/net_resources.actions_rules_copies.stamp $
+    obj/build/linux/libgio.a $
+    obj/third_party/protobuf/py_proto.actions_rules_copies.stamp $
+    obj/net/libnet_with_v8.a obj/v8/tools/gyp/v8.actions_depends.stamp $
+    obj/v8/tools/gyp/libv8_base.x64.a obj/v8/tools/gyp/libv8_snapshot.a $
+    obj/v8/tools/gyp/js2c.actions_rules_copies.stamp $
+    obj/ppapi/libppapi_cpp_objects.a obj/skia/skia.actions_depends.stamp $
+    obj/skia/libskia_library.a obj/skia/libskia_opts.a $
+    obj/skia/libskia_opts_ssse3.a obj/third_party/sfntly/libsfntly.a $
+    obj/skia/libskia_chrome.a obj/skia/libskia_chrome_opts.a $
+    obj/third_party/libpng/libpng.a $
+    obj/third_party/libjpeg_turbo/libjpeg_turbo.a $
+    obj/ui/base/strings/ui_strings.actions_rules_copies.stamp $
+    obj/ui/ui_resources.actions_rules_copies.stamp $
+    obj/third_party/libvpx/libvpx.a $
+    obj/third_party/libvpx/gen_asm_offsets_vp8.actions_rules_copies.stamp $
+    obj/third_party/libvpx/libvpx_asm_offsets_vp8.a $
+    obj/third_party/libvpx/libvpx_intrinsics_mmx.a $
+    obj/third_party/libvpx/libvpx_intrinsics_sse2.a $
+    obj/third_party/libvpx/libvpx_intrinsics_ssse3.a libyuv.a $
+    obj/third_party/opus/libopus.a $
+    obj/third_party/protobuf/libprotobuf_lite.a obj/media/libmedia.a $
+    obj/gpu/libcommand_buffer_common.a $
+    obj/gpu/command_buffer/libgles2_utils.a $
+    obj/media/libshared_memory_support.a $
+    obj/media/libshared_memory_support_sse.a $
+    obj/third_party/ffmpeg/libffmpeg.a obj/media/libmedia_asm.a $
+    obj/media/libmedia_mmx.a obj/media/libmedia_sse.a $
+    obj/media/libmedia_sse2.a obj/jingle/libjingle_glue.a $
+    obj/third_party/libjingle/libjingle.a $
+    obj/third_party/jsoncpp/libjsoncpp.a $
+    obj/third_party/libjingle/libjingle_p2p_constants.a $
+    obj/jingle/libnotifier.a obj/remoting/proto/libchromotocol_proto_lib.a $
+    obj/third_party/webrtc/system_wrappers/source/libsystem_wrappers.a $
+    obj/third_party/webrtc/modules/libdesktop_capture_differ_sse2.a $
+    obj/google_apis/libgoogle_apis.a obj/ui/libkeycode_converter.a
+
+build obj/remoting/remoting_unittests.compile_depends.stamp: stamp $
+    obj/third_party/protobuf/py_proto.actions_rules_copies.stamp $
+    obj/ui/ui.compile_depends.stamp $
+    obj/remoting/remoting_base.compile_depends.stamp $
+    obj/remoting/remoting_client.compile_depends.stamp $
+    obj/remoting/remoting_client_plugin.compile_depends.stamp $
+    obj/remoting/remoting_host.compile_depends.stamp $
+    obj/remoting/remoting_host_event_logger.compile_depends.stamp $
+    obj/remoting/remoting_protocol.compile_depends.stamp $
+    obj/remoting/remoting_resources.actions_rules_copies.stamp $
+    obj/net/net.compile_depends.stamp $
+    obj/net/net_resources.actions_rules_copies.stamp $
+    obj/build/linux/gio.actions_rules_copies.stamp $
+    obj/third_party/protobuf/py_proto.actions_rules_copies.stamp $
+    obj/v8/tools/gyp/v8_snapshot.gen/snapshot.cc $
+    obj/v8/tools/gyp/v8_snapshot.gen/snapshot.cc $
+    obj/v8/tools/gyp/v8_snapshot.gen/snapshot.cc $
+    obj/v8/tools/gyp/js2c.actions_rules_copies.stamp $
+    obj/third_party/libjpeg_turbo/libjpeg.actions_rules_copies.stamp $
+    obj/ui/base/strings/ui_strings.actions_rules_copies.stamp $
+    obj/ui/ui_resources.actions_rules_copies.stamp $
+    obj/third_party/libvpx/libvpx.actions_rules_copies.stamp $
+    obj/third_party/libvpx/gen_asm_offsets_vp8.actions_rules_copies.stamp $
+    obj/third_party/ffmpeg/ffmpeg.actions_rules_copies.stamp $
+    obj/third_party/ffmpeg/ffmpeg.actions_rules_copies.stamp $
+    obj/media/media_asm.actions_rules_copies.stamp $
+    obj/remoting/proto/chromotocol_proto_lib.actions_rules_copies.stamp
+
+defines = -DBINARY_CORE=1 -DBINARY_DESKTOP=2 -DBINARY_HOST_ME2ME=3 $
+    -DBINARY_HOST_PLUGIN=4 -DANGLE_DX11 -D_FILE_OFFSET_BITS=64 $
+    -DNO_TCMALLOC -DDISABLE_NACL -DCHROMIUM_BUILD $
+    -DUSE_DEFAULT_RENDER_THEME=1 -DUSE_LIBJPEG_TURBO=1 -DUSE_NSS=1 $
+    -DUSE_X11=1 -DENABLE_ONE_CLICK_SIGNIN -DGTK_DISABLE_SINGLE_INCLUDES=1 $
+    -DUSE_XI2_MT=2 -DENABLE_REMOTING=1 -DENABLE_WEBRTC=1 $
+    -DUSE_PROPRIETARY_CODECS -DENABLE_CONFIGURATION_POLICY $
+    -DENABLE_INPUT_SPEECH -DENABLE_NOTIFICATIONS -DENABLE_EGLIMAGE=1 $
+    -DENABLE_TASK_MANAGER=1 -DENABLE_EXTENSIONS=1 $
+    -DENABLE_PLUGIN_INSTALLATION=1 -DENABLE_PLUGINS=1 $
+    -DENABLE_SESSION_SERVICE=1 -DENABLE_THEMES=1 -DENABLE_BACKGROUND=1 $
+    -DENABLE_AUTOMATION=1 -DENABLE_GOOGLE_NOW=1 -DCLD_VERSION=2 $
+    -DENABLE_FULL_PRINTING=1 -DENABLE_PRINTING=1 -DENABLE_SPELLCHECK=1 $
+    -DENABLE_CAPTIVE_PORTAL_DETECTION=1 -DENABLE_MANAGED_USERS=1 $
+    -DVERSION=32.0.1700.107 -DUNIT_TEST -DGTEST_HAS_RTTI=0 $
+    -DU_USING_ICU_NAMESPACE=0 -DU_STATIC_IMPLEMENTATION $
+    -DSK_ENABLE_INST_COUNT=0 -DSK_SUPPORT_GPU=1 $
+    '-DGR_GL_CUSTOM_SETUP_HEADER="GrGLConfig_chrome.h"' $
+    -DSK_ENABLE_LEGACY_API_ALIASING=1 -DSK_ATTR_DEPRECATED=SK_NOTHING_ARG1 $
+    -DSK_SUPPORT_LEGACY_COLORTYPE=1 -DSK_USE_POSIX_THREADS $
+    -DSK_DEFERRED_CANVAS_USES_FACTORIES=1 -DPROTOBUF_USE_DLLS $
+    -DGOOGLE_PROTOBUF_NO_RTTI -DGOOGLE_PROTOBUF_NO_STATIC_INITIALIZER $
+    -DFEATURE_ENABLE_SSL -DFEATURE_ENABLE_VOICEMAIL -DEXPAT_RELATIVE_PATH $
+    -DGTEST_RELATIVE_PATH -DJSONCPP_RELATIVE_PATH -DNO_MAIN_THREAD_WRAPPING $
+    -DNO_SOUND_SYSTEM -DPOSIX -DBSD -DFREEBSD -DWEBRTC_CHROMIUM_BUILD $
+    -D__STDC_CONSTANT_MACROS -D__STDC_FORMAT_MACROS -DNDEBUG $
+    -DOFFICIAL_BUILD -DNVALGRIND -DDYNAMIC_ANNOTATIONS_ENABLED=0 $
+    -D_FORTIFY_SOURCE=2
+includes = -I../.. -I../../testing/gmock/include $
+    -I../../third_party/khronos -I../../gpu -I../../testing/gtest/include $
+    -I../../third_party/icu/source/i18n $
+    -I../../third_party/icu/source/common -I../../third_party/skia/src/core $
+    -I../../third_party/skia/include/core $
+    -I../../third_party/skia/include/effects $
+    -I../../third_party/skia/include/pdf $
+    -I../../third_party/skia/include/gpu $
+    -I../../third_party/skia/include/lazy $
+    -I../../third_party/skia/include/pathops $
+    -I../../third_party/skia/include/pipe $
+    -I../../third_party/skia/include/ports $
+    -I../../third_party/skia/include/utils -I../../skia/config $
+    -I../../skia/ext -I../../third_party/protobuf $
+    -I../../third_party/protobuf/src -Igen/protoc_out $
+    -I../../third_party/libjingle/overrides $
+    -I../../third_party/libjingle/source -I../../third_party $
+    -I../../third_party/webrtc $
+    -I../../third_party/jsoncpp/overrides/include $
+    -I../../third_party/jsoncpp/source/include -Igen $
+    -I../../net/third_party/nss/ssl
+cflags = -fstack-protector --param=ssp-buffer-size=4  -pthread $
+    -fno-exceptions -fno-strict-aliasing -Wall -Wno-unused-parameter $
+    -Wno-missing-field-initializers -fvisibility=hidden -pipe -fPIC $
+    -Wheader-hygiene -Wno-char-subscripts -Wno-unused-function $
+    -Wno-covered-switch-default -Wstring-conversion -Wno-c++11-narrowing $
+    -Wno-reserved-user-defined-literal -Wno-deprecated-register $
+    -Wno-deprecated-declarations -fcolor-diagnostics $
+    -I/usr/local/include/gtk-2.0 -I/usr/local/include/gio-unix-2.0/ $
+    -I/usr/local/include/atk-1.0 -I/usr/local/include/cairo $
+    -I/usr/local/include/pixman-1 -D_THREAD_SAFE $
+    -I/usr/local/include/gdk-pixbuf-2.0 -I/usr/local/include/libpng15 $
+    -I/usr/local/include/pango-1.0 -I/usr/local/include/freetype2 $
+    -I/usr/local/include/harfbuzz -pthread -I/usr/local/include/glib-2.0 $
+    -I/usr/local/include -pthread -I/usr/local/include/glib-2.0 $
+    -I/usr/local/include -D_THREAD_SAFE -I/usr/local/include $
+    -I/usr/local/include/nss -I/usr/local/include/nss/nss $
+    -I/usr/local/include/nspr -Wno-header-guard -O2 -fdata-sections $
+    -ffunction-sections
+cflags_c = -O2 -pipe -fno-stack-protector -Wno-unknown-warning-option $
+    -fno-strict-aliasing
+cflags_cc = -O2 -pipe -fno-stack-protector -Wno-unknown-warning-option $
+    -fno-strict-aliasing -fno-rtti -fno-threadsafe-statics $
+    -fvisibility-inlines-hidden -Wsign-compare -std=gnu++11
+
+build obj/chrome/test/base/remoting_unittests.run_all_remoting_unittests.o: $
+    cxx ../../chrome/test/base/run_all_remoting_unittests.cc || $
+    obj/remoting/remoting_unittests.compile_depends.stamp
+build obj/remoting/base/remoting_unittests.auth_token_util_unittest.o: cxx $
+    ../../remoting/base/auth_token_util_unittest.cc || $
+    obj/remoting/remoting_unittests.compile_depends.stamp
+build $
+    obj/remoting/base/remoting_unittests.auto_thread_task_runner_unittest.o: $
+    cxx ../../remoting/base/auto_thread_task_runner_unittest.cc || $
+    obj/remoting/remoting_unittests.compile_depends.stamp
+build obj/remoting/base/remoting_unittests.auto_thread_unittest.o: cxx $
+    ../../remoting/base/auto_thread_unittest.cc || $
+    obj/remoting/remoting_unittests.compile_depends.stamp
+build obj/remoting/base/remoting_unittests.capabilities_unittest.o: cxx $
+    ../../remoting/base/capabilities_unittest.cc || $
+    obj/remoting/remoting_unittests.compile_depends.stamp
+build obj/remoting/base/remoting_unittests.compound_buffer_unittest.o: cxx $
+    ../../remoting/base/compound_buffer_unittest.cc || $
+    obj/remoting/remoting_unittests.compile_depends.stamp
+build obj/remoting/base/remoting_unittests.rate_counter_unittest.o: cxx $
+    ../../remoting/base/rate_counter_unittest.cc || $
+    obj/remoting/remoting_unittests.compile_depends.stamp
+build obj/remoting/base/remoting_unittests.resources_unittest.o: cxx $
+    ../../remoting/base/resources_unittest.cc || $
+    obj/remoting/remoting_unittests.compile_depends.stamp
+build obj/remoting/base/remoting_unittests.rsa_key_pair_unittest.o: cxx $
+    ../../remoting/base/rsa_key_pair_unittest.cc || $
+    obj/remoting/remoting_unittests.compile_depends.stamp
+build obj/remoting/base/remoting_unittests.running_average_unittest.o: cxx $
+    ../../remoting/base/running_average_unittest.cc || $
+    obj/remoting/remoting_unittests.compile_depends.stamp
+build obj/remoting/base/remoting_unittests.typed_buffer_unittest.o: cxx $
+    ../../remoting/base/typed_buffer_unittest.cc || $
+    obj/remoting/remoting_unittests.compile_depends.stamp
+build obj/remoting/base/remoting_unittests.util_unittest.o: cxx $
+    ../../remoting/base/util_unittest.cc || $
+    obj/remoting/remoting_unittests.compile_depends.stamp
+build obj/remoting/client/remoting_unittests.audio_player_unittest.o: cxx $
+    ../../remoting/client/audio_player_unittest.cc || $
+    obj/remoting/remoting_unittests.compile_depends.stamp
+build obj/remoting/client/remoting_unittests.key_event_mapper_unittest.o: $
+    cxx ../../remoting/client/key_event_mapper_unittest.cc || $
+    obj/remoting/remoting_unittests.compile_depends.stamp
+build obj/remoting/codec/remoting_unittests.audio_encoder_opus_unittest.o: $
+    cxx ../../remoting/codec/audio_encoder_opus_unittest.cc || $
+    obj/remoting/remoting_unittests.compile_depends.stamp
+build obj/remoting/codec/remoting_unittests.codec_test.o: cxx $
+    ../../remoting/codec/codec_test.cc || $
+    obj/remoting/remoting_unittests.compile_depends.stamp
+build obj/remoting/codec/remoting_unittests.video_decoder_vpx_unittest.o: $
+    cxx ../../remoting/codec/video_decoder_vpx_unittest.cc || $
+    obj/remoting/remoting_unittests.compile_depends.stamp
+build $
+    obj/remoting/codec/remoting_unittests.video_encoder_verbatim_unittest.o: $
+    cxx ../../remoting/codec/video_encoder_verbatim_unittest.cc || $
+    obj/remoting/remoting_unittests.compile_depends.stamp
+build obj/remoting/codec/remoting_unittests.video_encoder_vpx_unittest.o: $
+    cxx ../../remoting/codec/video_encoder_vpx_unittest.cc || $
+    obj/remoting/remoting_unittests.compile_depends.stamp
+build $
+    obj/remoting/host/remoting_unittests.audio_silence_detector_unittest.o: $
+    cxx ../../remoting/host/audio_silence_detector_unittest.cc || $
+    obj/remoting/remoting_unittests.compile_depends.stamp
+build obj/remoting/host/remoting_unittests.branding.o: cxx $
+    ../../remoting/host/branding.cc || $
+    obj/remoting/remoting_unittests.compile_depends.stamp
+build obj/remoting/host/remoting_unittests.capture_scheduler_unittest.o: $
+    cxx ../../remoting/host/capture_scheduler_unittest.cc || $
+    obj/remoting/remoting_unittests.compile_depends.stamp
+build $
+    obj/remoting/host/remoting_unittests.chromoting_host_context_unittest.o: $
+    cxx ../../remoting/host/chromoting_host_context_unittest.cc || $
+    obj/remoting/remoting_unittests.compile_depends.stamp
+build obj/remoting/host/remoting_unittests.chromoting_host_unittest.o: cxx $
+    ../../remoting/host/chromoting_host_unittest.cc || $
+    obj/remoting/remoting_unittests.compile_depends.stamp
+build obj/remoting/host/remoting_unittests.client_session_unittest.o: cxx $
+    ../../remoting/host/client_session_unittest.cc || $
+    obj/remoting/remoting_unittests.compile_depends.stamp
+build obj/remoting/host/remoting_unittests.config_file_watcher_unittest.o: $
+    cxx ../../remoting/host/config_file_watcher_unittest.cc || $
+    obj/remoting/remoting_unittests.compile_depends.stamp
+build obj/remoting/host/remoting_unittests.daemon_process.o: cxx $
+    ../../remoting/host/daemon_process.cc || $
+    obj/remoting/remoting_unittests.compile_depends.stamp
+build obj/remoting/host/remoting_unittests.daemon_process_unittest.o: cxx $
+    ../../remoting/host/daemon_process_unittest.cc || $
+    obj/remoting/remoting_unittests.compile_depends.stamp
+build obj/remoting/host/remoting_unittests.desktop_process.o: cxx $
+    ../../remoting/host/desktop_process.cc || $
+    obj/remoting/remoting_unittests.compile_depends.stamp
+build obj/remoting/host/remoting_unittests.desktop_process_unittest.o: cxx $
+    ../../remoting/host/desktop_process_unittest.cc || $
+    obj/remoting/remoting_unittests.compile_depends.stamp
+build obj/remoting/host/remoting_unittests.desktop_session.o: cxx $
+    ../../remoting/host/desktop_session.cc || $
+    obj/remoting/remoting_unittests.compile_depends.stamp
+build obj/remoting/host/remoting_unittests.desktop_session_agent.o: cxx $
+    ../../remoting/host/desktop_session_agent.cc || $
+    obj/remoting/remoting_unittests.compile_depends.stamp
+build obj/remoting/host/remoting_unittests.heartbeat_sender_unittest.o: cxx $
+    ../../remoting/host/heartbeat_sender_unittest.cc || $
+    obj/remoting/remoting_unittests.compile_depends.stamp
+build obj/remoting/host/remoting_unittests.host_status_sender_unittest.o: $
+    cxx ../../remoting/host/host_status_sender_unittest.cc || $
+    obj/remoting/remoting_unittests.compile_depends.stamp
+build $
+    obj/remoting/host/remoting_unittests.host_change_notification_listener_unittest.o: $
+    cxx ../../remoting/host/host_change_notification_listener_unittest.cc $
+    || obj/remoting/remoting_unittests.compile_depends.stamp
+build obj/remoting/host/remoting_unittests.host_mock_objects.o: cxx $
+    ../../remoting/host/host_mock_objects.cc || $
+    obj/remoting/remoting_unittests.compile_depends.stamp
+build $
+    obj/remoting/host/remoting_unittests.ipc_desktop_environment_unittest.o: $
+    cxx ../../remoting/host/ipc_desktop_environment_unittest.cc || $
+    obj/remoting/remoting_unittests.compile_depends.stamp
+build obj/remoting/host/remoting_unittests.json_host_config_unittest.o: cxx $
+    ../../remoting/host/json_host_config_unittest.cc || $
+    obj/remoting/remoting_unittests.compile_depends.stamp
+build $
+    obj/remoting/host/linux/remoting_unittests.x_server_clipboard_unittest.o: $
+    cxx ../../remoting/host/linux/x_server_clipboard_unittest.cc || $
+    obj/remoting/remoting_unittests.compile_depends.stamp
+build obj/remoting/host/remoting_unittests.local_input_monitor_unittest.o: $
+    cxx ../../remoting/host/local_input_monitor_unittest.cc || $
+    obj/remoting/remoting_unittests.compile_depends.stamp
+build obj/remoting/host/remoting_unittests.log_to_server_unittest.o: cxx $
+    ../../remoting/host/log_to_server_unittest.cc || $
+    obj/remoting/remoting_unittests.compile_depends.stamp
+build $
+    obj/remoting/host/native_messaging/remoting_unittests.native_messaging_reader_unittest.o: $
+    cxx $
+    ../../remoting/host/native_messaging/native_messaging_reader_unittest.cc $
+    || obj/remoting/remoting_unittests.compile_depends.stamp
+build $
+    obj/remoting/host/native_messaging/remoting_unittests.native_messaging_writer_unittest.o: $
+    cxx $
+    ../../remoting/host/native_messaging/native_messaging_writer_unittest.cc $
+    || obj/remoting/remoting_unittests.compile_depends.stamp
+build $
+    obj/remoting/host/remoting_unittests.pairing_registry_delegate_linux_unittest.o: $
+    cxx ../../remoting/host/pairing_registry_delegate_linux_unittest.cc || $
+    obj/remoting/remoting_unittests.compile_depends.stamp
+build obj/remoting/host/remoting_unittests.pin_hash_unittest.o: cxx $
+    ../../remoting/host/pin_hash_unittest.cc || $
+    obj/remoting/remoting_unittests.compile_depends.stamp
+build $
+    obj/remoting/host/policy_hack/remoting_unittests.fake_policy_watcher.o: $
+    cxx ../../remoting/host/policy_hack/fake_policy_watcher.cc || $
+    obj/remoting/remoting_unittests.compile_depends.stamp
+build $
+    obj/remoting/host/policy_hack/remoting_unittests.mock_policy_callback.o: $
+    cxx ../../remoting/host/policy_hack/mock_policy_callback.cc || $
+    obj/remoting/remoting_unittests.compile_depends.stamp
+build $
+    obj/remoting/host/policy_hack/remoting_unittests.policy_watcher_unittest.o: $
+    cxx ../../remoting/host/policy_hack/policy_watcher_unittest.cc || $
+    obj/remoting/remoting_unittests.compile_depends.stamp
+build $
+    obj/remoting/host/remoting_unittests.register_support_host_request_unittest.o: $
+    cxx ../../remoting/host/register_support_host_request_unittest.cc || $
+    obj/remoting/remoting_unittests.compile_depends.stamp
+build obj/remoting/host/remoting_unittests.remote_input_filter_unittest.o: $
+    cxx ../../remoting/host/remote_input_filter_unittest.cc || $
+    obj/remoting/remoting_unittests.compile_depends.stamp
+build $
+    obj/remoting/host/remoting_unittests.resizing_host_observer_unittest.o: $
+    cxx ../../remoting/host/resizing_host_observer_unittest.cc || $
+    obj/remoting/remoting_unittests.compile_depends.stamp
+build obj/remoting/host/remoting_unittests.screen_capturer_fake.o: cxx $
+    ../../remoting/host/screen_capturer_fake.cc || $
+    obj/remoting/remoting_unittests.compile_depends.stamp
+build obj/remoting/host/remoting_unittests.screen_resolution_unittest.o: $
+    cxx ../../remoting/host/screen_resolution_unittest.cc || $
+    obj/remoting/remoting_unittests.compile_depends.stamp
+build obj/remoting/host/remoting_unittests.server_log_entry_unittest.o: cxx $
+    ../../remoting/host/server_log_entry_unittest.cc || $
+    obj/remoting/remoting_unittests.compile_depends.stamp
+build $
+    obj/remoting/host/setup/remoting_unittests.me2me_native_messaging_host_unittest.o: $
+    cxx ../../remoting/host/setup/me2me_native_messaging_host_unittest.cc $
+    || obj/remoting/remoting_unittests.compile_depends.stamp
+build obj/remoting/host/setup/remoting_unittests.oauth_helper_unittest.o: $
+    cxx ../../remoting/host/setup/oauth_helper_unittest.cc || $
+    obj/remoting/remoting_unittests.compile_depends.stamp
+build obj/remoting/host/setup/remoting_unittests.pin_validator_unittest.o: $
+    cxx ../../remoting/host/setup/pin_validator_unittest.cc || $
+    obj/remoting/remoting_unittests.compile_depends.stamp
+build $
+    obj/remoting/host/remoting_unittests.token_validator_factory_impl_unittest.o: $
+    cxx ../../remoting/host/token_validator_factory_impl_unittest.cc || $
+    obj/remoting/remoting_unittests.compile_depends.stamp
+build obj/remoting/host/remoting_unittests.video_scheduler_unittest.o: cxx $
+    ../../remoting/host/video_scheduler_unittest.cc || $
+    obj/remoting/remoting_unittests.compile_depends.stamp
+build $
+    obj/remoting/jingle_glue/remoting_unittests.chromium_socket_factory_unittest.o: $
+    cxx ../../remoting/jingle_glue/chromium_socket_factory_unittest.cc || $
+    obj/remoting/remoting_unittests.compile_depends.stamp
+build obj/remoting/jingle_glue/remoting_unittests.fake_signal_strategy.o: $
+    cxx ../../remoting/jingle_glue/fake_signal_strategy.cc || $
+    obj/remoting/remoting_unittests.compile_depends.stamp
+build obj/remoting/jingle_glue/remoting_unittests.iq_sender_unittest.o: cxx $
+    ../../remoting/jingle_glue/iq_sender_unittest.cc || $
+    obj/remoting/remoting_unittests.compile_depends.stamp
+build obj/remoting/jingle_glue/remoting_unittests.mock_objects.o: cxx $
+    ../../remoting/jingle_glue/mock_objects.cc || $
+    obj/remoting/remoting_unittests.compile_depends.stamp
+build obj/remoting/protocol/remoting_unittests.authenticator_test_base.o: $
+    cxx ../../remoting/protocol/authenticator_test_base.cc || $
+    obj/remoting/remoting_unittests.compile_depends.stamp
+build $
+    obj/remoting/protocol/remoting_unittests.buffered_socket_writer_unittest.o: $
+    cxx ../../remoting/protocol/buffered_socket_writer_unittest.cc || $
+    obj/remoting/remoting_unittests.compile_depends.stamp
+build $
+    obj/remoting/protocol/remoting_unittests.channel_multiplexer_unittest.o: $
+    cxx ../../remoting/protocol/channel_multiplexer_unittest.cc || $
+    obj/remoting/remoting_unittests.compile_depends.stamp
+build $
+    obj/remoting/protocol/remoting_unittests.clipboard_echo_filter_unittest.o: $
+    cxx ../../remoting/protocol/clipboard_echo_filter_unittest.cc || $
+    obj/remoting/remoting_unittests.compile_depends.stamp
+build obj/remoting/protocol/remoting_unittests.clipboard_filter_unittest.o: $
+    cxx ../../remoting/protocol/clipboard_filter_unittest.cc || $
+    obj/remoting/remoting_unittests.compile_depends.stamp
+build obj/remoting/protocol/remoting_unittests.connection_tester.o: cxx $
+    ../../remoting/protocol/connection_tester.cc || $
+    obj/remoting/remoting_unittests.compile_depends.stamp
+build $
+    obj/remoting/protocol/remoting_unittests.connection_to_client_unittest.o: $
+    cxx ../../remoting/protocol/connection_to_client_unittest.cc || $
+    obj/remoting/remoting_unittests.compile_depends.stamp
+build $
+    obj/remoting/protocol/remoting_unittests.content_description_unittest.o: $
+    cxx ../../remoting/protocol/content_description_unittest.cc || $
+    obj/remoting/remoting_unittests.compile_depends.stamp
+build obj/remoting/protocol/remoting_unittests.fake_authenticator.o: cxx $
+    ../../remoting/protocol/fake_authenticator.cc || $
+    obj/remoting/remoting_unittests.compile_depends.stamp
+build obj/remoting/protocol/remoting_unittests.fake_session.o: cxx $
+    ../../remoting/protocol/fake_session.cc || $
+    obj/remoting/remoting_unittests.compile_depends.stamp
+build $
+    obj/remoting/protocol/remoting_unittests.input_event_tracker_unittest.o: $
+    cxx ../../remoting/protocol/input_event_tracker_unittest.cc || $
+    obj/remoting/remoting_unittests.compile_depends.stamp
+build obj/remoting/protocol/remoting_unittests.input_filter_unittest.o: cxx $
+    ../../remoting/protocol/input_filter_unittest.cc || $
+    obj/remoting/remoting_unittests.compile_depends.stamp
+build obj/remoting/protocol/remoting_unittests.jingle_messages_unittest.o: $
+    cxx ../../remoting/protocol/jingle_messages_unittest.cc || $
+    obj/remoting/remoting_unittests.compile_depends.stamp
+build obj/remoting/protocol/remoting_unittests.jingle_session_unittest.o: $
+    cxx ../../remoting/protocol/jingle_session_unittest.cc || $
+    obj/remoting/remoting_unittests.compile_depends.stamp
+build obj/remoting/protocol/remoting_unittests.message_decoder_unittest.o: $
+    cxx ../../remoting/protocol/message_decoder_unittest.cc || $
+    obj/remoting/remoting_unittests.compile_depends.stamp
+build obj/remoting/protocol/remoting_unittests.message_reader_unittest.o: $
+    cxx ../../remoting/protocol/message_reader_unittest.cc || $
+    obj/remoting/remoting_unittests.compile_depends.stamp
+build $
+    obj/remoting/protocol/remoting_unittests.mouse_input_filter_unittest.o: $
+    cxx ../../remoting/protocol/mouse_input_filter_unittest.cc || $
+    obj/remoting/remoting_unittests.compile_depends.stamp
+build $
+    obj/remoting/protocol/remoting_unittests.negotiating_authenticator_unittest.o: $
+    cxx ../../remoting/protocol/negotiating_authenticator_unittest.cc || $
+    obj/remoting/remoting_unittests.compile_depends.stamp
+build obj/remoting/protocol/remoting_unittests.pairing_registry_unittest.o: $
+    cxx ../../remoting/protocol/pairing_registry_unittest.cc || $
+    obj/remoting/remoting_unittests.compile_depends.stamp
+build obj/remoting/protocol/remoting_unittests.ppapi_module_stub.o: cxx $
+    ../../remoting/protocol/ppapi_module_stub.cc || $
+    obj/remoting/remoting_unittests.compile_depends.stamp
+build obj/remoting/protocol/remoting_unittests.protocol_mock_objects.o: cxx $
+    ../../remoting/protocol/protocol_mock_objects.cc || $
+    obj/remoting/remoting_unittests.compile_depends.stamp
+build $
+    obj/remoting/protocol/remoting_unittests.ssl_hmac_channel_authenticator_unittest.o: $
+    cxx ../../remoting/protocol/ssl_hmac_channel_authenticator_unittest.cc $
+    || obj/remoting/remoting_unittests.compile_depends.stamp
+build $
+    obj/remoting/protocol/remoting_unittests.third_party_authenticator_unittest.o: $
+    cxx ../../remoting/protocol/third_party_authenticator_unittest.cc || $
+    obj/remoting/remoting_unittests.compile_depends.stamp
+build obj/remoting/protocol/remoting_unittests.v2_authenticator_unittest.o: $
+    cxx ../../remoting/protocol/v2_authenticator_unittest.cc || $
+    obj/remoting/remoting_unittests.compile_depends.stamp
+
+ldflags = -Wl,-z,now -Wl,-z,relro -pthread -Wl,-z,noexecstack -fPIC $
+    -Wl,--no-keep-memory -L. -L/usr/local/lib -L/usr/local/lib/nss -Wl,-O1 $
+    -Wl,--as-needed
+libs =  -lX11 -lXcursor -lXrender -L/usr/local/lib -lexecinfo -lgmodule-2.0 $
+    -lgobject-2.0 -lgthread-2.0 -lglib-2.0 -lintl -lXtst -lgtk-x11-2.0 $
+    -lgdk-x11-2.0 -lpangocairo-1.0 -lXext -lXinerama -lXi -lXrandr $
+    -lXcomposite -lXdamage -lXfixes -latk-1.0 -lcairo -lgdk_pixbuf-2.0 $
+    -lgio-2.0 -lpangoft2-1.0 -lpango-1.0 -lfontconfig -lfreetype -lxml2 $
+    -lnss3 -lsmime3 -lnssutil3 -lplds4 -lplc4 -lnspr4 -lgconf-2 -lasound $
+    -lexpat -lpam
+build remoting_unittests: link $
+    obj/chrome/test/base/remoting_unittests.run_all_remoting_unittests.o $
+    obj/remoting/base/remoting_unittests.auth_token_util_unittest.o $
+    obj/remoting/base/remoting_unittests.auto_thread_task_runner_unittest.o $
+    obj/remoting/base/remoting_unittests.auto_thread_unittest.o $
+    obj/remoting/base/remoting_unittests.capabilities_unittest.o $
+    obj/remoting/base/remoting_unittests.compound_buffer_unittest.o $
+    obj/remoting/base/remoting_unittests.rate_counter_unittest.o $
+    obj/remoting/base/remoting_unittests.resources_unittest.o $
+    obj/remoting/base/remoting_unittests.rsa_key_pair_unittest.o $
+    obj/remoting/base/remoting_unittests.running_average_unittest.o $
+    obj/remoting/base/remoting_unittests.typed_buffer_unittest.o $
+    obj/remoting/base/remoting_unittests.util_unittest.o $
+    obj/remoting/client/remoting_unittests.audio_player_unittest.o $
+    obj/remoting/client/remoting_unittests.key_event_mapper_unittest.o $
+    obj/remoting/codec/remoting_unittests.audio_encoder_opus_unittest.o $
+    obj/remoting/codec/remoting_unittests.codec_test.o $
+    obj/remoting/codec/remoting_unittests.video_decoder_vpx_unittest.o $
+    obj/remoting/codec/remoting_unittests.video_encoder_verbatim_unittest.o $
+    obj/remoting/codec/remoting_unittests.video_encoder_vpx_unittest.o $
+    obj/remoting/host/remoting_unittests.audio_silence_detector_unittest.o $
+    obj/remoting/host/remoting_unittests.branding.o $
+    obj/remoting/host/remoting_unittests.capture_scheduler_unittest.o $
+    obj/remoting/host/remoting_unittests.chromoting_host_context_unittest.o $
+    obj/remoting/host/remoting_unittests.chromoting_host_unittest.o $
+    obj/remoting/host/remoting_unittests.client_session_unittest.o $
+    obj/remoting/host/remoting_unittests.config_file_watcher_unittest.o $
+    obj/remoting/host/remoting_unittests.daemon_process.o $
+    obj/remoting/host/remoting_unittests.daemon_process_unittest.o $
+    obj/remoting/host/remoting_unittests.desktop_process.o $
+    obj/remoting/host/remoting_unittests.desktop_process_unittest.o $
+    obj/remoting/host/remoting_unittests.desktop_session.o $
+    obj/remoting/host/remoting_unittests.desktop_session_agent.o $
+    obj/remoting/host/remoting_unittests.heartbeat_sender_unittest.o $
+    obj/remoting/host/remoting_unittests.host_status_sender_unittest.o $
+    obj/remoting/host/remoting_unittests.host_change_notification_listener_unittest.o $
+    obj/remoting/host/remoting_unittests.host_mock_objects.o $
+    obj/remoting/host/remoting_unittests.ipc_desktop_environment_unittest.o $
+    obj/remoting/host/remoting_unittests.json_host_config_unittest.o $
+    obj/remoting/host/linux/remoting_unittests.x_server_clipboard_unittest.o $
+    obj/remoting/host/remoting_unittests.local_input_monitor_unittest.o $
+    obj/remoting/host/remoting_unittests.log_to_server_unittest.o $
+    obj/remoting/host/native_messaging/remoting_unittests.native_messaging_reader_unittest.o $
+    obj/remoting/host/native_messaging/remoting_unittests.native_messaging_writer_unittest.o $
+    obj/remoting/host/remoting_unittests.pairing_registry_delegate_linux_unittest.o $
+    obj/remoting/host/remoting_unittests.pin_hash_unittest.o $
+    obj/remoting/host/policy_hack/remoting_unittests.fake_policy_watcher.o $
+    obj/remoting/host/policy_hack/remoting_unittests.mock_policy_callback.o $
+    obj/remoting/host/policy_hack/remoting_unittests.policy_watcher_unittest.o $
+    obj/remoting/host/remoting_unittests.register_support_host_request_unittest.o $
+    obj/remoting/host/remoting_unittests.remote_input_filter_unittest.o $
+    obj/remoting/host/remoting_unittests.resizing_host_observer_unittest.o $
+    obj/remoting/host/remoting_unittests.screen_capturer_fake.o $
+    obj/remoting/host/remoting_unittests.screen_resolution_unittest.o $
+    obj/remoting/host/remoting_unittests.server_log_entry_unittest.o $
+    obj/remoting/host/setup/remoting_unittests.me2me_native_messaging_host_unittest.o $
+    obj/remoting/host/setup/remoting_unittests.oauth_helper_unittest.o $
+    obj/remoting/host/setup/remoting_unittests.pin_validator_unittest.o $
+    obj/remoting/host/remoting_unittests.token_validator_factory_impl_unittest.o $
+    obj/remoting/host/remoting_unittests.video_scheduler_unittest.o $
+    obj/remoting/jingle_glue/remoting_unittests.chromium_socket_factory_unittest.o $
+    obj/remoting/jingle_glue/remoting_unittests.fake_signal_strategy.o $
+    obj/remoting/jingle_glue/remoting_unittests.iq_sender_unittest.o $
+    obj/remoting/jingle_glue/remoting_unittests.mock_objects.o $
+    obj/remoting/protocol/remoting_unittests.authenticator_test_base.o $
+    obj/remoting/protocol/remoting_unittests.buffered_socket_writer_unittest.o $
+    obj/remoting/protocol/remoting_unittests.channel_multiplexer_unittest.o $
+    obj/remoting/protocol/remoting_unittests.clipboard_echo_filter_unittest.o $
+    obj/remoting/protocol/remoting_unittests.clipboard_filter_unittest.o $
+    obj/remoting/protocol/remoting_unittests.connection_tester.o $
+    obj/remoting/protocol/remoting_unittests.connection_to_client_unittest.o $
+    obj/remoting/protocol/remoting_unittests.content_description_unittest.o $
+    obj/remoting/protocol/remoting_unittests.fake_authenticator.o $
+    obj/remoting/protocol/remoting_unittests.fake_session.o $
+    obj/remoting/protocol/remoting_unittests.input_event_tracker_unittest.o $
+    obj/remoting/protocol/remoting_unittests.input_filter_unittest.o $
+    obj/remoting/protocol/remoting_unittests.jingle_messages_unittest.o $
+    obj/remoting/protocol/remoting_unittests.jingle_session_unittest.o $
+    obj/remoting/protocol/remoting_unittests.message_decoder_unittest.o $
+    obj/remoting/protocol/remoting_unittests.message_reader_unittest.o $
+    obj/remoting/protocol/remoting_unittests.mouse_input_filter_unittest.o $
+    obj/remoting/protocol/remoting_unittests.negotiating_authenticator_unittest.o $
+    obj/remoting/protocol/remoting_unittests.pairing_registry_unittest.o $
+    obj/remoting/protocol/remoting_unittests.ppapi_module_stub.o $
+    obj/remoting/protocol/remoting_unittests.protocol_mock_objects.o $
+    obj/remoting/protocol/remoting_unittests.ssl_hmac_channel_authenticator_unittest.o $
+    obj/remoting/protocol/remoting_unittests.third_party_authenticator_unittest.o $
+    obj/remoting/protocol/remoting_unittests.v2_authenticator_unittest.o $
+    obj/base/libbase.a obj/base/libbase_i18n.a $
+    obj/base/libtest_support_base.a obj/ipc/libipc.a $
+    obj/net/libnet_test_support.a obj/ppapi/libppapi_cpp.a $
+    obj/testing/libgmock.a obj/testing/libgtest.a obj/ui/events/libevents.a $
+    obj/ui/gfx/libgfx.a obj/ui/libui.a obj/remoting/libremoting_base.a $
+    obj/remoting/libremoting_breakpad.a obj/remoting/libremoting_client.a $
+    obj/remoting/libremoting_client_plugin.a $
+    obj/remoting/libremoting_host.a $
+    obj/remoting/libremoting_host_event_logger.a $
+    obj/remoting/libremoting_host_setup_base.a $
+    obj/remoting/libremoting_jingle_glue.a $
+    obj/remoting/libremoting_native_messaging_base.a $
+    obj/remoting/libremoting_protocol.a $
+    obj/third_party/webrtc/modules/libdesktop_capture.a $
+    obj/base/libbase_static.a $
+    obj/base/allocator/liballocator_extension_thunks.a $
+    obj/third_party/modp_b64/libmodp_b64.a $
+    obj/base/third_party/dynamic_annotations/libdynamic_annotations.a $
+    obj/base/libsymbolize.a obj/base/libxdg_mime.a $
+    obj/third_party/libevent/libevent.a obj/third_party/icu/libicui18n.a $
+    obj/third_party/icu/libicuuc.a obj/third_party/icu/libicudata.a $
+    obj/third_party/libxml/libxml.a $
+    obj/net/tools/tld_cleanup/libtld_cleanup_util.a obj/url/liburl_lib.a $
+    obj/net/libnet.a obj/crypto/libcrcrypto.a $
+    obj/net/third_party/nss/libcrssl.a obj/sdch/libsdch.a $
+    obj/third_party/zlib/libchrome_zlib.a obj/build/linux/libgio.a $
+    obj/net/libnet_with_v8.a obj/v8/tools/gyp/libv8_base.x64.a $
+    obj/v8/tools/gyp/libv8_snapshot.a obj/ppapi/libppapi_cpp_objects.a $
+    obj/skia/libskia_library.a obj/skia/libskia_opts.a $
+    obj/skia/libskia_opts_ssse3.a obj/third_party/sfntly/libsfntly.a $
+    obj/skia/libskia_chrome.a obj/skia/libskia_chrome_opts.a $
+    obj/third_party/libpng/libpng.a $
+    obj/third_party/libjpeg_turbo/libjpeg_turbo.a $
+    obj/third_party/libvpx/libvpx.a $
+    obj/third_party/libvpx/libvpx_asm_offsets_vp8.a $
+    obj/third_party/libvpx/libvpx_intrinsics_mmx.a $
+    obj/third_party/libvpx/libvpx_intrinsics_sse2.a $
+    obj/third_party/libvpx/libvpx_intrinsics_ssse3.a libyuv.a $
+    obj/third_party/opus/libopus.a $
+    obj/third_party/protobuf/libprotobuf_lite.a obj/media/libmedia.a $
+    obj/gpu/libcommand_buffer_common.a $
+    obj/gpu/command_buffer/libgles2_utils.a $
+    obj/media/libshared_memory_support.a $
+    obj/media/libshared_memory_support_sse.a $
+    obj/third_party/ffmpeg/libffmpeg.a obj/media/libmedia_asm.a $
+    obj/media/libmedia_mmx.a obj/media/libmedia_sse.a $
+    obj/media/libmedia_sse2.a obj/jingle/libjingle_glue.a $
+    obj/third_party/libjingle/libjingle.a $
+    obj/third_party/jsoncpp/libjsoncpp.a $
+    obj/third_party/libjingle/libjingle_p2p_constants.a $
+    obj/jingle/libnotifier.a obj/remoting/proto/libchromotocol_proto_lib.a $
+    obj/third_party/webrtc/system_wrappers/source/libsystem_wrappers.a $
+    obj/third_party/webrtc/modules/libdesktop_capture_differ_sse2.a $
+    obj/google_apis/libgoogle_apis.a obj/ui/libkeycode_converter.a | $
+    obj/ui/ui_resources.actions_rules_copies.stamp $
+    obj/ui/base/strings/ui_strings.actions_rules_copies.stamp $
+    obj/net/third_party/nss/libcrssl.a obj/skia/skia.actions_depends.stamp $
+    obj/remoting/remoting_resources.actions_rules_copies.stamp $
+    obj/third_party/libvpx/gen_asm_offsets_vp8.actions_rules_copies.stamp $
+    obj/v8/tools/gyp/v8.actions_depends.stamp $
+    obj/v8/tools/gyp/js2c.actions_rules_copies.stamp $
+    obj/net/net_resources.actions_rules_copies.stamp $
+    obj/third_party/protobuf/py_proto.actions_rules_copies.stamp
+  ld = $ldxx
