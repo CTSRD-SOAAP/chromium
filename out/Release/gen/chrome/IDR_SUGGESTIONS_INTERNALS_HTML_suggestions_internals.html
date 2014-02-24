@@ -1,0 +1,62 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Suggestions Internals</title>
+  <style>/* Copyright (c) 2012 The Chromium Authors. All rights reserved.
+ * Use of this source code is governed by a BSD-style license that can be
+ * found in the LICENSE file. */
+
+.suggestions-debug-table {
+  border: 1px solid grey;
+  margin-bottom: 1.5em;
+}
+
+.suggestions-debug-table th {
+  border: 1px solid grey;
+}
+
+.suggestions-debug-table td {
+  border: 1px solid grey;
+}
+
+p {
+  margin: 0;
+}
+
+.input-section {
+  margin-bottom: 1em;
+}
+
+.boolean-property-true {
+  background-color: rgb(146, 205, 0);
+}
+
+.boolean-property-false {
+  background-color: rgb(205, 74, 0);
+}
+
+.boolean-property-true,
+.boolean-property-false {
+  text-align: center;
+}
+</style>
+  <script src="chrome://resources/js/cr.js"></script>
+  <script src="chrome://resources/js/util.js"></script>
+  <script src="suggestions_internals.js"></script>
+</head>
+<body>
+  <div class="input-section">
+    <form id="suggestions-form" action="">
+      <p>
+        <input id="refresh-data" type="submit" value="Refresh data">
+      </p>
+      <p>
+        <input id="show-discarded" type="checkbox">
+        <label for="show-discarded">Show discarded items</label>
+      </p>
+    </form>
+  </div>
+  <div id="suggestions-debug-text"></div>
+</body>
+</html>

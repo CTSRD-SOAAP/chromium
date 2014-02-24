@@ -1,0 +1,1273 @@
+<!DOCTYPE html>
+<html i18n-values="dir:textdirection;" id="print-preview" class="focus-outline-visible">
+
+<head>
+  <meta charset="utf-8">
+  <title i18n-content="title"></title>
+  <link rel="icon" href="../../../app/theme/default_100_percent/common/favicon_print_preview.png">
+
+  <style>/* Copyright (c) 2012 The Chromium Authors. All rights reserved.
+ * Use of this source code is governed by a BSD-style license that can be
+ * found in the LICENSE file. */
+
+html {
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
+  display: -webkit-box;
+  height: 100%;
+  margin: 0;
+}
+
+/* Header */
+
+header {
+  -webkit-padding-end: 19px;
+  -webkit-padding-start: 20px;
+  background-color: #F6F6F6;
+  border-bottom: 1px solid #d2d2d2;
+}
+
+#print-preview #navbar-container {
+  -webkit-border-end: 1px solid #c8c8c8;
+  -webkit-box-orient: vertical;
+  -webkit-user-select: none;
+  background-color: white;
+  display: -webkit-box;
+  position: relative;
+  width: 310px;
+  z-index: 2;
+}
+
+#navbar-content-title {
+  color: black;
+  font-size: 15px;
+  font-weight: normal;
+  margin: 0;
+  padding-bottom: 6px;
+  padding-top: 16px;
+}
+
+#navbar-scroll-container {
+  -webkit-box-flex: 1;
+  background: #fbfbfb;
+  border-top: 1px solid #f3f3f3;
+  overflow-y: auto;
+  padding-top: 2px;
+}
+
+/* Settings */
+
+.two-column {
+  display: table-row;
+}
+
+.right-column {
+  -webkit-padding-end: 20px;
+  display: table-cell;
+  width: auto;
+}
+
+.right-column .checkbox,
+.right-column .radio {
+  margin: 0;
+}
+
+.right-column .checkbox label,
+.right-column .radio label {
+  padding-bottom: 5px;
+  padding-top: 10px;
+}
+
+.right-column .radio input[type='radio'] {
+  height: 13px;
+  width: 13px;
+}
+
+.two-column h1 {
+  -webkit-padding-end: 20px;
+  -webkit-padding-start: 20px;
+  color: #646464;
+  display: table-cell;
+  font-size: 12px;
+  min-width: 70px;
+}
+
+.two-column.visible h1,
+.two-column.visible .right-column {
+  border-bottom: 1px solid #e9e9e9;
+  padding-bottom: 7px;
+  padding-top: 7px;
+}
+
+.two-column:not(.visible) select {
+  border-top-width: 0;
+  margin-top: 0;
+  padding-top: 0;
+}
+
+p {
+  -webkit-line-box-contain: block;
+  margin: 0;
+  margin-bottom: 10px;
+}
+
+h1 {
+  color: #808080;
+  font-weight: 300;
+}
+
+#print-preview .navbar-link {
+  -webkit-margin-start: 20px;
+  height: 32px;
+  outline: 0;
+  padding: 0;
+  text-align: start;
+  text-decoration: none;
+}
+
+#print-preview .navbar-link:hover:not(:disabled) {
+  text-decoration: underline;
+}
+
+#print-preview .navbar-link:disabled {
+  color: rgba(0, 0, 0, .5);
+  cursor: default;
+  text-shadow: none;
+}
+
+button.loading {
+  cursor: progress;
+}
+
+#print-preview button.default {
+  font-weight: bold;
+}
+
+#print-preview button.default:not(:focus):not(:disabled) {
+  border-color: #808080;
+}
+
+span.hint {
+  -webkit-transition: color 200ms;
+  background: white;
+  display: block;
+  font-size: 0.9em;
+  font-weight: bold;
+  height: 0;
+  line-height: 10px;
+  margin: 0;
+  overflow: hidden;
+}
+
+span.hint.visible {
+  -webkit-animation-duration: 200ms;
+  -webkit-animation-fill-mode: forwards;
+  -webkit-user-select: text;
+  color: rgb(140, 20, 20);
+  height: auto;
+  margin-bottom: -5px;
+  margin-top: 5px;
+  padding-bottom: 5px;
+}
+
+span.hint.closing {
+  -webkit-transition: margin 150ms, height 150ms, opacity 150ms;
+  background: transparent;
+  height: 0 !important;
+  margin: 0;
+  opacity: 0;
+}
+
+.collapsible {
+  height: 0;
+}
+
+.collapsible.visible {
+  -webkit-animation-duration: 200ms;
+  -webkit-animation-fill-mode: forwards;
+  height: auto;
+}
+
+.collapsible.closing {
+  -webkit-transition: margin 150ms, height 150ms, opacity 150ms;
+  height: 0 !important;
+  opacity: 0;
+  overflow: hidden;
+}
+
+select {
+  width: 100%;
+}
+
+label {
+  -webkit-user-select: none;
+}
+
+.hidden-section {
+  background: white;
+  position: relative;
+}
+
+.extra {
+  background: white;
+  height: 0;
+  opacity: 0;
+  padding-top: 0;
+  position: absolute;
+  visibility: hidden;
+}
+
+.visible .extra {
+  -webkit-animation-duration: 200ms;
+  -webkit-animation-fill-mode: forwards;
+  height: auto;
+  opacity: 1;
+  overflow: hidden;
+  padding-bottom: 0;
+  position: static;
+  visibility: visible;
+}
+
+.closing .extra {
+  -webkit-transition: padding-top 100ms, height 100ms, opacity 200ms,
+      background 300ms;
+  height: 0 !important;
+  opacity: 0;
+  overflow: hidden;
+  padding-top: 0;
+  position: static;
+  visibility: visible;
+}
+
+/* Individual settings sections  */
+
+/* TODO(estade): this should be in a shared location but I'm afraid of the
+ * damage it could do. */
+[hidden] {
+  display: none !important;
+}
+
+@-webkit-keyframes dancing-dots-jump {
+  0% { top: 0; }
+  55% { top: 0; }
+  60% { top: -10px; }
+  80% { top: 3px; }
+  90% { top: -2px; }
+  95% { top: 1px; }
+  100% { top: 0; }
+}
+
+span.jumping-dots > span {
+  -webkit-animation: dancing-dots-jump 1800ms infinite;
+  padding: 1px;
+  position: relative;
+}
+
+span.jumping-dots > span:nth-child(2) {
+  -webkit-animation-delay: 100ms;
+}
+
+span.jumping-dots > span:nth-child(3) {
+  -webkit-animation-delay: 300ms;
+}
+
+/* TODO(estade): unfork this code. */
+#print-header .button-strip {
+-webkit-box-direction: reverse;
+  -webkit-box-orient: horizontal;
+  -webkit-box-pack: end;
+  display: -webkit-box;
+}
+
+#print-header .button-strip button {
+  -webkit-margin-start: 9px;
+  display: block;
+}
+
+#link-container {
+  -webkit-box-orient: vertical;
+  display: -webkit-box;
+  margin: 7px 0;
+}
+
+#main-container {
+  -webkit-border-start: 1px solid #dcdcdc;
+  -webkit-box-flex: 1;
+  -webkit-box-orient: vertical;
+  display: -webkit-box;
+  height: 100%;
+  position: relative;
+}
+
+html:not(.focus-outline-visible)
+:enabled:focus:-webkit-any(input[type='checkbox'],
+                           input[type='radio'],
+                           button):not(.link-button) {
+  /* Cancel border-color for :focus specified in widgets.css. */
+  border-color: rgba(0,0,0,0.25);
+}
+
+html:not(.focus-outline-visible) button:focus.link-button {
+  outline: none;
+}
+</style>
+  <link rel="stylesheet" href="chrome://resources/css/chrome_shared.css">
+  <link rel="stylesheet" href="chrome://resources/css/throbber.css">
+  <style>/* Copyright (c) 2012 The Chromium Authors. All rights reserved.
+ * Use of this source code is governed by a BSD-style license that can be
+ * found in the LICENSE file. */
+
+#print-header {
+  padding-bottom: 20px;
+  padding-top: 6px;
+}
+
+#print-header .summary {
+  display: block;
+  min-height: 34px;
+}
+</style>
+  <style>/* Copyright (c) 2012 The Chromium Authors. All rights reserved.
+ * Use of this source code is governed by a BSD-style license that can be
+ * found in the LICENSE file. */
+
+#destination-settings h1 {
+  padding-top: 20px;
+  vertical-align: top;
+}
+
+#destination-settings .throbber {
+  display: block;
+  margin-bottom: 14px;
+  margin-top: 8px;
+}
+
+#destination-settings .destination-settings-box {
+  -webkit-box-align: center;
+  display: -webkit-box;
+  height: 29px;
+  margin-bottom: 10px;
+}
+
+#destination-settings .destination-settings-change-button {
+  margin-bottom: 10px;
+}
+
+.destination-settings-icon {
+  -webkit-margin-end: 8px;
+  height: 24px;
+  vertical-align: middle;
+  width: 24px;
+}
+
+.destination-settings-info-wrapper {
+  -webkit-box-flex: 1;
+  height: 29px;
+  position: relative;
+}
+
+.destination-settings-info {
+  -webkit-box-orient: vertical;
+  -webkit-box-pack: center;
+  display: -webkit-box;
+  height: 100%;
+  position: absolute;
+  white-space: nowrap;
+  width: 100%;
+}
+
+.destination-settings-name {
+  font-size: 110%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.destination-settings-location {
+  opacity: 0.4;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+</style>
+  <style>/* Copyright (c) 2012 The Chromium Authors. All rights reserved.
+ * Use of this source code is governed by a BSD-style license that can be
+ * found in the LICENSE file. */
+
+#copies-settings input.copies {
+  height: 29px;
+  position: relative;
+  width: 2.75em;
+}
+
+#copies-settings-box {
+  margin: 10px 0;
+}
+
+#copies-settings input.copies.invalid {
+  background: rgb(255, 240, 240);
+  color: rgb(140, 20, 20);
+}
+
+#copies-settings button.increment:focus,
+#copies-settings button.decrement:focus,
+#copies-settings:focus {
+  z-index: 1;
+}
+
+#copies-settings .collate-container {
+ -webkit-padding-start: 16px;
+  display: inline-block;
+}
+
+#copies-settings button.increment,
+#copies-settings button.decrement {
+  -webkit-padding-end: 0;
+  -webkit-padding-start: 0;
+  font-weight: 600;
+  height: 29px;
+  margin: 0;
+  min-width: 0;
+  position: relative;
+  width: 2em;
+}
+
+#copies-settings button.increment {
+  -webkit-margin-start: -5px;
+  border-radius: 0;
+}
+
+#copies-settings button.decrement {
+  -webkit-margin-start: -5px;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 3px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 3px;
+}
+
+html[dir='rtl'] #copies-settings button.decrement {
+  border-bottom-left-radius: 3px;
+  border-bottom-right-radius: 0;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 0;
+}
+</style>
+  <style>/* Copyright (c) 2012 The Chromium Authors. All rights reserved.
+ * Use of this source code is governed by a BSD-style license that can be
+ * found in the LICENSE file. */
+
+#page-settings .page-settings-print-pages-div {
+  -webkit-box-align: center;
+  display: -webkit-box;
+  padding: 0;
+}
+
+#page-settings .page-settings-custom-input-wrapper {
+  -webkit-box-flex: 1;
+  -webkit-margin-start: 0.6em;
+  height: 29px;
+  position: relative;
+}
+
+#page-settings .page-settings-custom-input {
+  height: 29px;
+  position: absolute;
+  width: 100%;
+}
+
+#page-settings .page-settings-custom-input.invalid {
+  background: rgb(255, 240, 240);
+  color: rgb(140, 20, 20);
+}
+
+#page-settings .radio {
+  margin-bottom: 10px;
+}</style>
+  <style>/* Copyright 2013 The Chromium Authors. All rights reserved.
+ * Use of this source code is governed by a BSD-style license that can be
+ * found in the LICENSE file. */
+
+#margin-settings .margin-settings-select {
+  height: 29px;
+  margin: 10px 0;
+}
+</style>
+  <style>/* Copyright (c) 2012 The Chromium Authors. All rights reserved.
+ * Use of this source code is governed by a BSD-style license that can be
+ * found in the LICENSE file. */
+
+#preview-area.preview-area {
+  -webkit-box-flex: 1;
+  -webkit-user-select: none;
+  background-color: #e6e6e6;
+  overflow: hidden;
+  position: relative;
+}
+
+.preview-area-plugin-wrapper {
+  height: 100%;
+  position: absolute;
+  width: 100%;
+}
+
+#preview-area .preview-area-plugin {
+  /* pluginFadeInTransitionDuration = 200ms */
+  -webkit-transition: opacity 200ms linear;
+  /* pluginFadeInTransitionDelay = overlayFadeOutTransitionDuration = 100ms */
+  -webkit-transition-delay: 100ms;
+  cursor: inherit;
+  height: 100%;
+  opacity: 1;
+  width: 100%;
+}
+
+#preview-area .preview-area-plugin.invisible {
+  /* pluginFadeOutTransitionDuration = 100ms */
+  -webkit-transition: opacity 100ms linear;
+  /* pluginFadeOutTransitionDelay = 250ms */
+  -webkit-transition-delay: 250ms;
+  opacity: 0;
+}
+
+#preview-area .preview-area-overlay-layer {
+  -webkit-transition: opacity 200ms linear;
+  /* overlayFadeInTransitionDelay = pluginFadeOutTransitionDelay +
+   *     pluginFadeOutTransitionDuration = 350ms */
+  -webkit-transition-delay: 350ms;
+  -webkit-user-select: none;
+  background: #e6e6e6;
+  height: 100%;
+  margin: 0;
+  opacity: 1;
+  position: absolute;
+  width: 100%;
+  z-index: 1;
+}
+
+#preview-area .preview-area-overlay-layer.invisible {
+  /* overlayFadeOutTransitionDuration = 100ms */
+  -webkit-transition: opacity 100ms linear;
+  opacity: 0;
+  pointer-events: none;
+}
+
+#preview-area .preview-area-messages {
+  height: 100%;
+}
+
+#preview-area .preview-area-message {
+  color: #404040;
+  font-size: 1.1em;
+  position: relative;
+  text-align: center;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, .5);
+  top: 50%;
+}
+
+#preview-area .preview-area-no-plugin-action-area {
+  margin-top: 12px;
+}
+
+#preview-area .preview-area-open-system-dialog-button-throbber {
+  vertical-align: middle;
+}
+</style>
+  <style>/* Copyright (c) 2012 The Chromium Authors. All rights reserved.
+ * Use of this source code is governed by a BSD-style license that can be
+ * found in the LICENSE file. */
+
+.margin-control-container-dragging-vertical {
+  cursor: ns-resize;
+}
+
+.margin-control-container-dragging-horizontal {
+  cursor: ew-resize;
+}
+</style>
+  <style>/* Copyright (c) 2012 The Chromium Authors. All rights reserved.
+ * Use of this source code is governed by a BSD-style license that can be
+ * found in the LICENSE file. */
+
+#preview-area .margin-control {
+  -webkit-transition: opacity 150ms linear;
+  position: absolute;
+}
+
+#preview-area .margin-control.invisible {
+  opacity: 0;
+  pointer-events: none;
+}
+
+#preview-area .margin-control.margin-control-top,
+#preview-area .margin-control.margin-control-bottom {
+  cursor: ns-resize;
+  padding: 8px 0;
+  width: 100%;
+}
+
+#preview-area .margin-control.margin-control-left,
+#preview-area .margin-control.margin-control-right {
+  cursor: ew-resize;
+  height: 100%;
+  padding: 0 8px;
+}
+
+#preview-area .margin-control.margin-control-disabled {
+  cursor: default;
+}
+
+#preview-area .margin-control-line {
+  border-color: rgb(64, 128, 250);
+  border-style: dashed;
+  border-width: 1px;
+}
+
+#preview-area .margin-control-disabled .margin-control-line  {
+  border-color: gray;
+}
+
+#preview-area .margin-control-top .margin-control-line,
+#preview-area .margin-control-bottom .margin-control-line {
+  width: 100%;
+}
+
+#preview-area .margin-control-left .margin-control-line,
+#preview-area .margin-control-right .margin-control-line {
+  height: 100%;
+}
+
+#preview-area .margin-control-textbox {
+  background-color: #2a2a2a;
+  border: 1px solid #888;
+  box-sizing: border-box;
+  color: white;
+  cursor: auto;
+  font-family: arial;
+  font-size: 0.8em;
+  height: 25px;
+  padding: 5px 0;
+  position: absolute;
+  text-align: center;
+  width: 60px;
+}
+
+#preview-area .margin-control-textbox.invalid {
+  background-color: rgb(193, 27, 23);
+}
+
+#preview-area .margin-control-top .margin-control-textbox {
+  left: 50%;
+  top: 8px;
+}
+
+#preview-area .margin-control-right .margin-control-textbox {
+  right: 8px;
+  top: 50%;
+}
+
+#preview-area .margin-control-bottom .margin-control-textbox {
+  bottom: 8px;
+  right: 50%;
+}
+
+#preview-area .margin-control-left .margin-control-textbox {
+  bottom: 50%;
+  left: 8px;
+}
+</style>
+  <link rel="stylesheet" href="chrome://resources/css/overlay.css">
+  <style>/* Copyright (c) 2012 The Chromium Authors. All rights reserved.
+ * Use of this source code is governed by a BSD-style license that can be
+ * found in the LICENSE file. */
+
+#no-destinations-promo {
+  z-index: 2;
+}
+
+#no-destinations-promo .page {
+  width: 510px;
+}
+
+.hbox {
+  -webkit-box-orient: horizontal;
+  display: -webkit-box;
+}
+
+.stretch {
+  -webkit-box-flex: 1;
+}
+</style>
+
+  <style>/* Copyright (c) 2012 The Chromium Authors. All rights reserved.
+ * Use of this source code is governed by a BSD-style license that can be
+ * found in the LICENSE file. */
+
+.destination-list > header {
+  -webkit-padding-start: 0;
+  background-color: transparent;
+  padding-bottom: 8px;
+}
+
+.destination-list .title {
+  -webkit-padding-end: 8px;
+  -webkit-padding-start: 4px;
+  display: inline;
+  vertical-align: middle;
+}
+
+.destination-list .action-link {
+  vertical-align: middle;
+}
+
+.destination-list > ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.destination-list .throbber-container {
+  -webkit-box-align: center;
+  display: -webkit-box;
+  height: 30px;
+  padding: 0 22px;
+}
+
+.destination-list .no-destinations-message {
+  -webkit-padding-start: 18px;
+  color: #999;
+  padding-bottom: 8px;
+  padding-top: 8px;
+}
+
+.destination-list > footer {
+  -webkit-padding-start: 18px;
+  padding-top: 6px;
+}
+
+.destination-list .total {
+  color: #999;
+}
+</style>
+  <style>/* Copyright (c) 2012 The Chromium Authors. All rights reserved.
+ * Use of this source code is governed by a BSD-style license that can be
+ * found in the LICENSE file. */
+
+.destination-list-item {
+  -webkit-padding-end: 2px;
+  -webkit-padding-start: 18px;
+  -webkit-transition: background-color 150ms;
+  cursor: default;
+  padding-bottom: 3px;
+  padding-top: 3px;
+}
+
+.destination-list-item:hover {
+  background-color: rgb(228, 236, 247);
+}
+
+.destination-list-item.stale {
+  opacity: 0.4;
+}
+
+.destination-list-item-icon {
+  -webkit-margin-end: 8px;
+  -webkit-transition: opacity 150ms;
+  display: inline-block;
+  height: 24px;
+  vertical-align: middle;
+  width: 24px;
+}
+
+.destination-list-item-name {
+  vertical-align: middle;
+}
+
+.destination-list-item .offline-status {
+  -webkit-margin-start: 1em;
+  font-size: 75%;
+  opacity: 0.6;
+}
+</style>
+  <style>/* Copyright (c) 2012 The Chromium Authors. All rights reserved.
+ * Use of this source code is governed by a BSD-style license that can be
+ * found in the LICENSE file. */
+
+#destination-search {
+  z-index: 3;
+}
+
+#destination-search.transparent {
+  opacity: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+#destination-search .page {
+  width: 640px;
+}
+
+#destination-search .user-info {
+  -webkit-user-select: none;
+  overflow: hidden;
+  position: absolute;
+  right: 40px;
+  text-align: right;
+  text-overflow: ellipsis;
+  top: 14px;
+  white-space: nowrap;
+  width: 350px;
+}
+
+[dir='rtl'] #destination-search .user-info {
+  left: 40px;
+  right: auto;
+}
+
+#destination-search > .page > .close-button {
+  top: 9px;
+}
+
+#destination-search .search-box {
+  -webkit-user-select: none;
+  margin: 14px;
+}
+
+#destination-search .lists {
+  -webkit-box-flex: 1;
+  overflow-y: auto;
+}
+
+#destination-search .lists > * {
+  -webkit-user-select: none;
+  padding: 0 14px 18px;
+}
+
+#destination-search .cloudprint-promo {
+  -webkit-box-align: center;
+  -webkit-user-select: none;
+  background-color: rgb(249, 237, 190);
+  display: -webkit-box;
+  padding: 12px;
+}
+
+#destination-search .cloudprint-promo .sign-in.link-button {
+  padding: inherit;
+}
+
+#destination-search .cloudprint-promo .icon {
+  -webkit-margin-end: 12px;
+  display: block;
+  height: 24px;
+  width: 24px;
+}
+
+#destination-search .cloudprint-promo .promo-text {
+  -webkit-box-flex: 1;
+}
+
+#destination-search .cloudprint-promo .close-button {
+  -webkit-margin-start: 12px;
+  background-image: -webkit-image-set(
+    url('chrome://theme/IDR_CLOSE_DIALOG') 1x,
+    url('chrome://theme/IDR_CLOSE_DIALOG@2x') 2x);
+  background-repeat: no-repeat;
+  background-size: 14px;
+  height: 14px;
+  width: 14px;
+}
+
+#destination-search .cloudprint-promo .close-button:hover {
+  background-image: -webkit-image-set(
+    url('chrome://theme/IDR_CLOSE_DIALOG_H') 1x,
+    url('chrome://theme/IDR_CLOSE_DIALOG_H@2x') 2x);
+}
+
+#destination-search .cloudprint-promo .close-button:active {
+  background-image: -webkit-image-set(
+    url('chrome://theme/IDR_CLOSE_DIALOG_P') 1x,
+    url('chrome://theme/IDR_CLOSE_DIALOG_P@2x') 2x);
+}
+</style>
+  <style>/* Copyright (c) 2012 The Chromium Authors. All rights reserved.
+ * Use of this source code is governed by a BSD-style license that can be
+ * found in the LICENSE file. */
+
+.search-box {
+  -webkit-user-select: none;
+  position: relative;
+}
+
+.search-box-icon {
+  -webkit-user-select: none;
+  display: inline-block;
+  height: 12px;
+  left: 8px;
+  position: absolute;
+  right: 8px;
+  top: 6px;
+  width: 12px;
+}
+
+.search-box-input {
+  text-indent: 24px;
+  width: 100%;
+}
+</style>
+  <style>/* Copyright (c) 2012 The Chromium Authors. All rights reserved.
+ * Use of this source code is governed by a BSD-style license that can be
+ * found in the LICENSE file. */
+
+.fedex-tos {
+  -webkit-transition: height 300ms;
+  overflow: hidden;
+  padding: 0 36px;
+  text-align: center;
+}
+
+.fedex-tos .tos-text {
+  padding: 8px 0;
+}
+
+.fedex-tos .agreement-box {
+  -webkit-padding-after: 8px;
+}
+</style>
+
+  <script src="chrome://print/strings.js"></script>
+  <script src="chrome://resources/js/cr.js"></script>
+  <script src="chrome://resources/js/cr/event_target.js"></script>
+  <script src="chrome://resources/js/cr/ui.js"></script>
+  <script src="chrome://resources/js/cr/ui/focus_outline_manager.js"></script>
+  <script src="chrome://resources/js/event_tracker.js"></script>
+  <script src="chrome://resources/js/local_strings.js"></script>
+  <script src="chrome://resources/js/util.js"></script>
+  <script src="chrome://print/print_preview.js"></script>
+  <script src="chrome://resources/js/i18n_template.js"></script>
+</head>
+
+<body i18n-values=".style.fontFamily:fontfamily;.style.fontSize:fontsize">
+  <div id="navbar-container">
+    <header>
+      <h1 id="navbar-content-title" i18n-content="title"></h1>
+      <div id="print-header">
+  <span class="summary"></span>
+  <div class="button-strip">
+    <button class="print default" i18n-content="printButton" disabled></button>
+    <button class="cancel" i18n-content="cancelButton"></button>
+  </div>
+</div>
+
+    </header>
+    <div id="navbar-scroll-container">
+      <div id="settings">
+        <div id="destination-settings" class="two-column visible">
+  <h1 i18n-content="destinationLabel"></h1>
+  <div class="right-column">
+    <div class="throbber"></div>
+    <div class="destination-settings-box" hidden>
+      <img class="destination-settings-icon">
+      <div class="destination-settings-info-wrapper">
+        <div class="destination-settings-info">
+          <div class="destination-settings-name"></div>
+          <div class="destination-settings-location"></div>
+        </div>
+      </div>
+    </div>
+    <button class="destination-settings-change-button"
+        i18n-content="changeDestination"></button>
+  </div>
+</div>
+
+        <div id="page-settings" class="two-column visible page-settings">
+  <h1 i18n-content="pagesLabel"></h1>
+  <div class="right-column">
+    <div class="radio"><label>
+      <input class="page-settings-all-radio" name="pages" checked type="radio">
+      <span i18n-content="optionAllPages"></span>
+    </label></div>
+    <div class="radio">
+      <label class="page-settings-print-pages-div"
+             for="page-settings-custom-input">
+        <input class="page-settings-custom-radio" name="pages" type="radio"
+               i18n-values="aria-label:printPagesLabel;">
+        <div class="page-settings-custom-input-wrapper">
+          <input class="page-settings-custom-input" type="text"
+                 id="page-settings-custom-input"
+                 i18n-values="placeholder:examplePageRangeText">
+        </div>
+      </label>
+      <span class="page-settings-custom-hint hint suggestion" aria-hidden="true"
+            aria-live="polite"></span>
+    </div>
+  </div>
+</div>
+
+        <div id="copies-settings" class="two-column visible">
+  <h1 i18n-content="copiesLabel"></h1>
+  <div class="right-column">
+    <div id="copies-settings-box">
+      <input class="copies" type="text" value="1" maxlength="3">
+      <button class="increment" i18n-values="title:incrementTitle;">+</button>
+      <button class="decrement" i18n-values="title:decrementTitle;">–</button>
+      <div class="collate-container checkbox" aria-live="polite" hidden><label>
+        <input class="collate" type="checkbox" checked>
+        <span i18n-content="optionCollate"></span>
+      </label></div>
+    </div>
+    <span class="hint" i18n-content="copiesInstruction" aria-live="polite">
+    </span>
+  </div>
+</div>
+
+        <div id="layout-settings" class="two-column visible layout-settings">
+  <h1 i18n-content="layoutLabel"></h1>
+  <div class="right-column">
+    <div class="radio"><label>
+      <input class="layout-settings-portrait-radio"
+             type="radio"
+             name="layout"
+             checked>
+      <span i18n-content="optionPortrait"></span>
+    </label></div>
+    <div class="radio"><label>
+      <input class="layout-settings-landscape-radio"
+             type="radio"
+             name="layout">
+      <span i18n-content="optionLandscape"></span>
+    </label></div>
+  </div>
+</div>
+
+        <div id="color-settings"
+     class="color-settings two-column visible"
+     aria-hidden="false"
+     aria-live="polite">
+  <h1 i18n-content="optionColor"></h1>
+  <div class="right-column">
+    <div class="radio"><label>
+      <input class="color-option" type="radio" name="color">
+      <span i18n-content="optionColor"></span>
+    </label></div>
+    <div class="radio"><label>
+      <input class="bw-option" type="radio" name="color" checked>
+      <span i18n-content="optionBw"></span>
+    </label></div>
+  </div>
+</div>
+
+        <div id="margin-settings" class="two-column visible margin-settings">
+  <h1 i18n-content="marginsLabel"></h1>
+  <div class="right-column">
+    <select class="margin-settings-select">
+      <!-- The order of these options must match the natural order of their
+      values, which come from print_preview.ticket_items.MarginsType.Value. -->
+      <option i18n-content="defaultMargins" value="0" selected></option>
+      <option i18n-content="noMargins" value="1"></option>
+      <option i18n-content="minimumMargins" value="2"></option>
+      <option i18n-content="customMargins" value="3"></option>
+    </select>
+  </div>
+</div>
+
+        <div id="other-options-settings"
+     class="other-options-settings two-column visible">
+  <h1 i18n-content="optionsLabel"></h1>
+  <div class="right-column checkbox">
+    <div class="header-footer-container checkbox">
+      <label aria-live="polite">
+        <input class="header-footer-checkbox" type="checkbox">
+        <span i18n-content="optionHeaderFooter"></span>
+      </label>
+    </div>
+    <div class="fit-to-page-container checkbox">
+      <label aria-live="polite">
+        <input class="fit-to-page-checkbox" type="checkbox">
+        <span i18n-content="optionFitToPage"></span>
+      </label>
+    </div>
+    <div class="duplex-container checkbox">
+      <label aria-live="polite">
+        <input class="duplex-checkbox" type="checkbox">
+        <span i18n-content="optionTwoSided"></span>
+      </label>
+    </div>
+    <div class="css-background-container checkbox">
+      <label aria-live="polite">
+        <input class="css-background-checkbox" type="checkbox">
+        <span i18n-content="optionBackgroundColorsAndImages"></span>
+      </label>
+    </div>
+    <div class="selection-only-container checkbox">
+      <label aria-live="polite">
+        <input class="selection-only-checkbox" type="checkbox">
+        <span i18n-content="optionSelectionOnly"></span>
+      </label>
+    </div>
+  </div>
+</div>
+
+      </div>
+      <div id="link-container">
+        <div>
+          <button id="system-dialog-link" class="link-button navbar-link"
+              i18n-content="systemDialogOption"></button>
+          <div id="system-dialog-throbber" hidden class="throbber"></div>
+        </div>
+        <div>
+          <button id="open-pdf-in-preview-link" class="link-button navbar-link"
+              hidden i18n-content="openPdfInPreviewOption"></button>
+          <div id="open-preview-app-throbber" hidden class="throbber"></div>
+        </div>
+        <div>
+          <button id="cloud-print-dialog-link" class="link-button navbar-link"
+              hidden i18n-content="cloudPrintDialogOption"></button>
+          <div id="cloud-print-dialog-throbber" hidden class="throbber"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="destination-search" class="destination-search overlay transparent">
+  <div class="page">
+    <h1 i18n-content="destinationSearchTitle"></h1>
+    <span class="user-info" hidden></span>
+    <div class="close-button"></div>
+    <div id="search-box" class="search-box">
+  <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABEAAAARCAQAAACRZI9xAAABBElEQVQoFXXBPUsUABwH4P9QZGd4gzQIIc3a4JLVx6hJ0NDp6QPkIrTnoDQ5XFMhDQZCU5OI4MuWm0pCS9DocogEyf0K8bor9Hmq/jBiwVfnzn23aLT+Z8y+iFNtET88qn6G7Iq2dXOmrToR39yvHs/FmVd1yZSfolU9Postd+ovq2Jbo7rsidfVx4w4NlFdtsWb6mNWHHpQXdbErmZdcsuG2DRQXZ7q6HhnyE03NCzp+OVl9bjtg4gjK5Z9EXFiVrN63LOuLSLizLGO+ORh9TPjo0071rww7kDEocf1Lw3DdcG8iDgwWVfT1BIRR0braga1RMSzuo5Bb8V7d+t6BjwxXPUbpgyZUOsKz6kAAAAASUVORK5CYII=" class="search-box-icon">
+  <input type="text" class="search-box-input"
+      i18n-values="placeholder:searchBoxPlaceholder">
+</div>
+
+    <div class="lists">
+      <div class="recent-list"></div>
+      <div class="local-list"></div>
+      <div class="cloud-list" hidden></div>
+    </div>
+    <div class="cloudprint-promo" hidden>
+      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAABjklEQVR4Xu3Wu0oDQRQG4IAgyN6vhewDiCAItpY2VgGx8xm0CthJtLUT7ARBsLKxSGURECuxE9nSJvgYOv4/zIElRveOzRR/sbCZ883kzEkGSql/TS2AARiAAcRxvOq67oXnebnv+0qC5xdk1CsABc51Qcme4zhDYPaDIFASPncOwK7v9U5vbdtOfgFuERCGIRGjzgAofIYoIA6rYAG4i6KIiJ3WgCzLVnTxiYAqIj6A+GoNQOEDAizL2qgDAHqYJEmlfihrvBxRAqp5CjMg2JheG8AU+WwCCMLgnQCNmDT9Cp5wnGAOluoC8Dm5oo8asVsZgPu9huLXKE69ajPpcG3XMcB4Pa9KAex6qB8KE+4ViGkbANckgKfASfonALs+0dfuBse+TFTbsAmx5nOhH7YXAvg9y86J6TjcXEgA5kO+ECANJ8I+gvWPiCDmB4DFdTb7AmBzxzIbFp3AqXQ9EOOy4P1K4W+JzhjHz9vwVkTND55LAviidG6apoySJtKLENoks/l5YP6SGYABGMA3SwujVUnmp10AAAAASUVORK5CYII=" class="icon">
+      <div class="promo-text"></div>
+      <div class="close-button"></div>
+    </div>
+  </div>
+</div>
+
+  <div id="no-destinations-promo" class="overlay" hidden>
+  <div class="page">
+    <div class="close-button"></div>
+    <h1 i18n-content="noDestsPromoTitle"></h1>
+    <div class="content-area">
+      <div i18n-content="noDestsPromoBody"></div>
+    </div>
+    <div class="content-area">
+      <div i18n-content="noDestsPromoGcpDesc"></div>
+    </div>
+    <div class="action-area">
+       <div class="hbox stretch">
+         <a target="_blank" i18n-content="learnMore"
+             i18n-values="href:noDestsPromoLearnMoreUrl">
+         </a>
+       </div>
+      <div class="action-area-right">
+        <div class="button-strip">
+          <button
+              class="add-printer-button default-button"
+              i18n-content="noDestsPromoAddPrinterButtonLabel"></button>
+          <button
+              class="not-now-button"
+              i18n-content="noDestsPromoNotNowButtonLabel"></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <div id="main-container">
+    <div id="preview-area" class="preview-area">
+  <div class="preview-area-overlay-layer">
+    <div class="preview-area-messages">
+
+      <div class="preview-area-loading-message preview-area-message">
+        <span i18n-content="loading"></span>
+        <span class="preview-area-loading-message-jumping-dots jumping-dots"
+            ><span>.</span><span>.</span><span>.</span></span>
+      </div>
+
+      <div class="preview-area-custom-message preview-area-message" hidden>
+        <div class="preview-area-custom-message-text"></div>
+        <div class="preview-area-custom-action-area">
+          <button class="preview-area-open-system-dialog-button"
+              i18n-content="launchNativeDialog"></button>
+          <div class="preview-area-open-system-dialog-button-throbber throbber"
+              hidden></div>
+        </div>
+      </div>
+
+      <div class="preview-area-preview-failed-message preview-area-message"
+          i18n-content="previewFailed" hidden></div>
+
+      <div class="preview-area-print-failed preview-area-message" hidden>
+        <div i18n-content="invalidPrinterSettings"></div>
+        <div class="preview-area-print-failed-action-area">
+          <button class="preview-area-open-system-dialog-button"
+              i18n-content="launchNativeDialog"></button>
+          <div class="preview-area-open-system-dialog-button-throbber throbber"
+              hidden></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <div class="preview-area-plugin-wrapper">
+    <object class="preview-area-compatibility-object"
+        type="application/x-google-chrome-print-preview-pdf"
+        data="chrome://print/dummy.pdf"></object>
+  </div>
+</div>
+
+  </div>
+
+  <!-- HTML Templates -->
+  <div id="margin-control-template" class="margin-control invisible" hidden>
+  <div class="margin-control-line"></div>
+  <input class="margin-control-textbox" type="text">
+</div>
+
+  <div id="destination-list-template" class="destination-list" hidden>
+  <header>
+    <h4 class="title"></h4>
+    <button class="action-link link-button" hidden></button>
+  </header>
+  <ul></ul>
+  <div class="throbber-container">
+    <div class="throbber"></div>
+  </div>
+  <div class="no-destinations-message"
+      i18n-content="noDestinationsMessage"></div>
+  <footer hidden>
+    <button class="show-all-button" i18n-content="showAllButtonText"></button>
+    <span class="total"></span>
+  </footer>
+</div>
+
+  <li id="destination-list-item-template" class="destination-list-item" hidden>
+  <img class="destination-list-item-icon">
+  <span class="destination-list-item-name"></span>
+  <span class="offline-status" hidden></span>
+</li>
+
+  <div id="fedex-tos-template" class="fedex-tos" aria-hidden="false"
+    aria-live="polite" hidden style="height: 0;">
+  <div class="height-helper">
+    <div class="tos-text"></div>
+    <div class="agreement-box">
+      <label>
+        <input class="agree-checkbox" type="checkbox">
+        <span i18n-content="tosCheckboxLabel"></span>
+      </label>
+    </div>
+  </div>
+</div>
+
+</body>
+
+</html>

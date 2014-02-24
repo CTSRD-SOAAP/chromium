@@ -1,0 +1,173 @@
+<!DOCTYPE HTML>
+<html i18n-values="dir:textdirection;">
+<head>
+  <title>Predictors</title>
+  <link rel="stylesheet" href="chrome://resources/css/list.css">
+  <link rel="stylesheet" href="chrome://resources/css/tabs.css">
+  <link rel="stylesheet" href="chrome://resources/css/tree.css">
+
+  <style>
+    /*
+ * Copyright (c) 2012 The Chromium Authors. All rights reserved.
+ * Use of this source code is governed by a BSD-style license that can be
+ * found in the LICENSE file.
+ */
+
+body {
+  margin: 20px;
+}
+
+#countBanner {
+  background-color: rgb(235, 239, 250);
+  border: 1px solid rgb(187, 187, 187);
+  border-radius: 2px;
+  font-size: 100%;
+  padding: 4px;
+}
+
+table {
+  background-color: white;
+}
+
+thead tr {
+  background-color: rgb(235, 250, 239);
+}
+
+th {
+  border-color: gray;
+  border-style: solid;
+  border-width: 1px;
+  padding: 3px;
+  white-space: nowrap;
+}
+
+td {
+  border-color: lightgray;
+  border-style: solid;
+  border-width: 1px;
+  padding: 3px;
+}
+
+tbody > td:first-child {
+  white-space: nowrap;
+}
+
+#disabledMode h2 {
+  color: rgb(141, 51, 42);
+  font-size: 125%;
+}
+
+tr.action-prerender td {
+  background-color: rgb(0, 215, 0);
+}
+
+tr.action-preconnect td {
+  background-color: rgb(255, 215, 0);
+}
+
+tr.action-none td {
+  background-color: rgb(215, 215, 215);
+}
+
+  </style>
+
+  <!-- List stuff. -->
+  <script src="chrome://resources/js/cr.js"></script>
+  <script src="chrome://resources/js/cr/ui.js"></script>
+  <script src="chrome://resources/js/cr/ui/focus_outline_manager.js"></script>
+  <script src="chrome://resources/js/cr/ui/tabs.js"></script>
+  <script src="chrome://resources/js/util.js"></script>
+</head>
+
+<body>
+  <tabbox id="predictor-page">
+    <tabs>
+      <tab>Autocomplete Action Predictor</tab>
+      <tab>Resource Prefetch Predictor</tab>
+    </tabs>
+    <tabpanels>
+      <tabpanel>
+        <div id="autocompleteActionPredictorEnabledMode" hidden>
+  <label>
+    <input id="filter" type="checkbox" disabled>
+    Filter zero confidences
+  </label>
+  <h2 id="countBanner"></h2>
+  <!-- TODO(dominich): Sorting. -->
+  <table id="databaseTable">
+    <thead>
+      <tr>
+        <th>User Text</th>
+        <th>URL</th>
+        <th>Hit Count</th>
+        <th>Miss Count</th>
+        <th>Confidence</th>
+      </tr>
+    </thead>
+    <tbody id="databaseTableBody">
+    </tbody>
+  </table>
+</div>
+<div id="autocompleteActionPredictorDisabledMode" hidden>
+  <p>Autocomplete Action Predictor is disabled.</p>
+</div>
+
+      </tabpanel>
+      <tabpanel>
+        <div id='rpp_enabled'>
+  <tabbox id="rpp_data">
+    <tabs>
+      <tab>URL Table Cache</tab>
+      <tab>Host Table Cache</tab>
+    </tabs>
+    <tabpanels>
+      <tabpanel>
+        <table id="">
+          <thead>
+            <tr>
+              <th>Main Frame Url</th>
+              <th>Resource Url</th>
+              <th>Resource Type</th>
+              <th>Num Hits</th>
+              <th>Num Misses</th>
+              <th>Consec Misses</th>
+              <th>Average Position</th>
+              <th>Score</th>
+            </tr>
+          </thead>
+          <tbody id="rpp_url_body">
+          </tbody>
+        </table>
+      </tabpanel>
+      <tabpanel>
+        <table id="">
+          <thead>
+            <tr>
+              <th>Host</th>
+              <th>Resource Url</th>
+              <th>Resource Type</th>
+              <th>Num Hits</th>
+              <th>Num Misses</th>
+              <th>Consec Misses</th>
+              <th>Average Position</th>
+              <th>Score</th>
+            </tr>
+          </thead>
+          <tbody id="rpp_host_body">
+          </tbody>
+        </table>
+      </tabpanel>
+    </tabpanels>
+  </tabbox>
+</div>
+<div id='rpp_disabled'>
+  Resource prefetch prediction is disabled.
+</div>
+
+      </tabpanel>
+    </tabpanels>
+  </tabbox>
+  <script src="chrome://resources/js/jstemplate_compiled.js"></script>
+  <script src="chrome://predictors/predictors.js"></script>
+</body>
+</html>

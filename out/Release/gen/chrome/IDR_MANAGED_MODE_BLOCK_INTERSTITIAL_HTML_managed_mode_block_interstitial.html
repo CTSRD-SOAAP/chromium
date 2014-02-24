@@ -1,0 +1,994 @@
+<!DOCTYPE html>
+<html i18n-values="dir:textdirection">
+<head>
+<meta name="viewport" content="width=device-width">
+<title i18n-content="blockPageTitle"></title>
+<style>/* Copyright (c) 2012 The Chromium Authors. All rights reserved.
+ * Use of this source code is governed by a BSD-style license that can be
+ * found in the LICENSE file. */
+body {
+  background-color: rgb(230, 230, 230);
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 10pt;
+  margin: 50px 40px 20px 40px;
+  text-align: center;
+}
+
+#main-frame-blocked {
+  margin: auto;
+  max-width: 540px;
+  min-width: 200px;
+}
+
+#box {
+  background-color: rgb(251, 251, 251);
+  border: 1px solid rgb(170, 170, 170);
+  border-bottom: 1px solid rgb(136, 136, 136);
+  border-radius: 3px;
+  box-shadow: 0 2px 2px rgb(170, 170, 170);
+  color: black;
+}
+
+h1 {
+  color: rgb(102, 102, 102);
+  font-size: 1.3em;
+  font-weight: normal;
+  margin: 10px 0 30px 0;
+}
+
+#request-sent-message {
+  margin-top: 40px;
+}
+
+a {
+  color: rgb(17, 85, 204);
+  text-decoration: none;
+}
+
+.error-img {
+  /* Can't access chrome:// urls from an untrusted renderer process, so embed
+   * the resource manually. */
+  -webkit-user-select: none;
+  content: -webkit-image-set(
+      url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABsAAAAfCAQAAAC8TH7IAAAATUlEQVR4XtXRMQoAIAwEwfzR/78lFrJVMEHkxLDVFVOdDT/KVlfMqiDQNwyqZ6RksYw5KRkkrPYMFKuY79Iy9t/MWXoWE9yd1JOddsEmvfZ/Db6oX8AAAAAASUVORK5CYII=') 1x,
+      url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADYAAAA+AQMAAABa2HrzAAAABlBMVEVTU1NTU1OEeEjxAAAAAXRSTlMAQObYZgAAAEVJREFUeF6lzrEJwDAUxNCDv5aHN2SArOIBDpTyu/FBcCFeKwFgHV2S6pnZObI4Ko3NInodeLeAbP30zULbH62kCwHAJz8K08Thi9MfrwAAAABJRU5ErkJggg==') 2x);
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+
+#content-top {
+  margin: 20px 20px 20px 25px;
+}
+
+button {
+  -webkit-user-select: none;
+  background-image: linear-gradient(rgb(246, 246, 246) 5%,
+                                    rgb(239, 239, 239) 50%,
+                                    rgb(221, 221, 221));
+  border: 1px solid rgb(209, 209, 211);
+  border-bottom: 1px solid rgb(193, 193, 195);
+  border-radius: 2px;
+  box-shadow: inset 0 1px 0 rgb(255, 255, 255);
+  color: rgb(102, 102, 102);
+  font-weight: bold;
+  margin: 0 5px;
+  padding: 8px 13px;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.8);
+}
+
+#back-button {
+  background-image: linear-gradient(rgb(84, 153, 244) 5%,
+                                    rgb(82, 148, 242) 50%,
+                                    rgb(75, 133, 241));
+  border: 1px solid rgb(81, 135, 223);
+  border-bottom: 1px solid rgb(56, 112, 207);
+  box-shadow: inset 0 1px 0 rgb(95, 168, 247);
+  color: rgb(255, 255, 255);
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.2);
+  width: 100px;
+}
+</style>
+<script>// Copyright (c) 2012 The Chromium Authors. All rights reserved.
+// Use of this source code is governed by a BSD-style license that can be
+// found in the LICENSE file.
+
+/**
+ * The global object.
+ * @type {!Object}
+ * @const
+ */
+var global = this;
+
+/** Platform, package, object property, and Event support. **/
+this.cr = (function() {
+  'use strict';
+
+  /**
+   * Builds an object structure for the provided namespace path,
+   * ensuring that names that already exist are not overwritten. For
+   * example:
+   * "a.b.c" -> a = {};a.b={};a.b.c={};
+   * @param {string} name Name of the object that this file defines.
+   * @param {*=} opt_object The object to expose at the end of the path.
+   * @param {Object=} opt_objectToExportTo The object to add the path to;
+   *     default is {@code global}.
+   * @private
+   */
+  function exportPath(name, opt_object, opt_objectToExportTo) {
+    var parts = name.split('.');
+    var cur = opt_objectToExportTo || global;
+
+    for (var part; parts.length && (part = parts.shift());) {
+      if (!parts.length && opt_object !== undefined) {
+        // last part and we have an object; use it
+        cur[part] = opt_object;
+      } else if (part in cur) {
+        cur = cur[part];
+      } else {
+        cur = cur[part] = {};
+      }
+    }
+    return cur;
+  };
+
+  /**
+   * Fires a property change event on the target.
+   * @param {EventTarget} target The target to dispatch the event on.
+   * @param {string} propertyName The name of the property that changed.
+   * @param {*} newValue The new value for the property.
+   * @param {*} oldValue The old value for the property.
+   */
+  function dispatchPropertyChange(target, propertyName, newValue, oldValue) {
+    var e = new Event(propertyName + 'Change');
+    e.propertyName = propertyName;
+    e.newValue = newValue;
+    e.oldValue = oldValue;
+    target.dispatchEvent(e);
+  }
+
+  /**
+   * Converts a camelCase javascript property name to a hyphenated-lower-case
+   * attribute name.
+   * @param {string} jsName The javascript camelCase property name.
+   * @return {string} The equivalent hyphenated-lower-case attribute name.
+   */
+  function getAttributeName(jsName) {
+    return jsName.replace(/([A-Z])/g, '-$1').toLowerCase();
+  }
+
+  /**
+   * The kind of property to define in {@code defineProperty}.
+   * @enum {number}
+   * @const
+   */
+  var PropertyKind = {
+    /**
+     * Plain old JS property where the backing data is stored as a "private"
+     * field on the object.
+     */
+    JS: 'js',
+
+    /**
+     * The property backing data is stored as an attribute on an element.
+     */
+    ATTR: 'attr',
+
+    /**
+     * The property backing data is stored as an attribute on an element. If the
+     * element has the attribute then the value is true.
+     */
+    BOOL_ATTR: 'boolAttr'
+  };
+
+  /**
+   * Helper function for defineProperty that returns the getter to use for the
+   * property.
+   * @param {string} name The name of the property.
+   * @param {cr.PropertyKind} kind The kind of the property.
+   * @return {function():*} The getter for the property.
+   */
+  function getGetter(name, kind) {
+    switch (kind) {
+      case PropertyKind.JS:
+        var privateName = name + '_';
+        return function() {
+          return this[privateName];
+        };
+      case PropertyKind.ATTR:
+        var attributeName = getAttributeName(name);
+        return function() {
+          return this.getAttribute(attributeName);
+        };
+      case PropertyKind.BOOL_ATTR:
+        var attributeName = getAttributeName(name);
+        return function() {
+          return this.hasAttribute(attributeName);
+        };
+    }
+  }
+
+  /**
+   * Helper function for defineProperty that returns the setter of the right
+   * kind.
+   * @param {string} name The name of the property we are defining the setter
+   *     for.
+   * @param {cr.PropertyKind} kind The kind of property we are getting the
+   *     setter for.
+   * @param {function(*):void} opt_setHook A function to run after the property
+   *     is set, but before the propertyChange event is fired.
+   * @return {function(*):void} The function to use as a setter.
+   */
+  function getSetter(name, kind, opt_setHook) {
+    switch (kind) {
+      case PropertyKind.JS:
+        var privateName = name + '_';
+        return function(value) {
+          var oldValue = this[name];
+          if (value !== oldValue) {
+            this[privateName] = value;
+            if (opt_setHook)
+              opt_setHook.call(this, value, oldValue);
+            dispatchPropertyChange(this, name, value, oldValue);
+          }
+        };
+
+      case PropertyKind.ATTR:
+        var attributeName = getAttributeName(name);
+        return function(value) {
+          var oldValue = this[name];
+          if (value !== oldValue) {
+            if (value == undefined)
+              this.removeAttribute(attributeName);
+            else
+              this.setAttribute(attributeName, value);
+            if (opt_setHook)
+              opt_setHook.call(this, value, oldValue);
+            dispatchPropertyChange(this, name, value, oldValue);
+          }
+        };
+
+      case PropertyKind.BOOL_ATTR:
+        var attributeName = getAttributeName(name);
+        return function(value) {
+          var oldValue = this[name];
+          if (value !== oldValue) {
+            if (value)
+              this.setAttribute(attributeName, name);
+            else
+              this.removeAttribute(attributeName);
+            if (opt_setHook)
+              opt_setHook.call(this, value, oldValue);
+            dispatchPropertyChange(this, name, value, oldValue);
+          }
+        };
+    }
+  }
+
+  /**
+   * Defines a property on an object. When the setter changes the value a
+   * property change event with the type {@code name + 'Change'} is fired.
+   * @param {!Object} obj The object to define the property for.
+   * @param {string} name The name of the property.
+   * @param {cr.PropertyKind=} opt_kind What kind of underlying storage to use.
+   * @param {function(*):void} opt_setHook A function to run after the
+   *     property is set, but before the propertyChange event is fired.
+   */
+  function defineProperty(obj, name, opt_kind, opt_setHook) {
+    if (typeof obj == 'function')
+      obj = obj.prototype;
+
+    var kind = opt_kind || PropertyKind.JS;
+
+    if (!obj.__lookupGetter__(name))
+      obj.__defineGetter__(name, getGetter(name, kind));
+
+    if (!obj.__lookupSetter__(name))
+      obj.__defineSetter__(name, getSetter(name, kind, opt_setHook));
+  }
+
+  /**
+   * Counter for use with createUid
+   */
+  var uidCounter = 1;
+
+  /**
+   * @return {number} A new unique ID.
+   */
+  function createUid() {
+    return uidCounter++;
+  }
+
+  /**
+   * Returns a unique ID for the item. This mutates the item so it needs to be
+   * an object
+   * @param {!Object} item The item to get the unique ID for.
+   * @return {number} The unique ID for the item.
+   */
+  function getUid(item) {
+    if (item.hasOwnProperty('uid'))
+      return item.uid;
+    return item.uid = createUid();
+  }
+
+  /**
+   * Dispatches a simple event on an event target.
+   * @param {!EventTarget} target The event target to dispatch the event on.
+   * @param {string} type The type of the event.
+   * @param {boolean=} opt_bubbles Whether the event bubbles or not.
+   * @param {boolean=} opt_cancelable Whether the default action of the event
+   *     can be prevented. Default is true.
+   * @return {boolean} If any of the listeners called {@code preventDefault}
+   *     during the dispatch this will return false.
+   */
+  function dispatchSimpleEvent(target, type, opt_bubbles, opt_cancelable) {
+    var e = new Event(type, {
+      bubbles: opt_bubbles,
+      cancelable: opt_cancelable === undefined || opt_cancelable
+    });
+    return target.dispatchEvent(e);
+  }
+
+  /**
+   * Calls |fun| and adds all the fields of the returned object to the object
+   * named by |name|. For example, cr.define('cr.ui', function() {
+   *   function List() {
+   *     ...
+   *   }
+   *   function ListItem() {
+   *     ...
+   *   }
+   *   return {
+   *     List: List,
+   *     ListItem: ListItem,
+   *   };
+   * });
+   * defines the functions cr.ui.List and cr.ui.ListItem.
+   * @param {string} name The name of the object that we are adding fields to.
+   * @param {!Function} fun The function that will return an object containing
+   *     the names and values of the new fields.
+   */
+  function define(name, fun) {
+    var obj = exportPath(name);
+    var exports = fun();
+    for (var propertyName in exports) {
+      // Maybe we should check the prototype chain here? The current usage
+      // pattern is always using an object literal so we only care about own
+      // properties.
+      var propertyDescriptor = Object.getOwnPropertyDescriptor(exports,
+                                                               propertyName);
+      if (propertyDescriptor)
+        Object.defineProperty(obj, propertyName, propertyDescriptor);
+    }
+  }
+
+  /**
+   * Adds a {@code getInstance} static method that always return the same
+   * instance object.
+   * @param {!Function} ctor The constructor for the class to add the static
+   *     method to.
+   */
+  function addSingletonGetter(ctor) {
+    ctor.getInstance = function() {
+      return ctor.instance_ || (ctor.instance_ = new ctor());
+    };
+  }
+
+  /**
+   * Initialization which must be deferred until run-time.
+   */
+  function initialize() {
+    // If 'document' isn't defined, then we must be being pre-compiled,
+    // so set a trap so that we're initialized on first access at run-time.
+    if (!global.document) {
+      var originalCr = cr;
+
+      Object.defineProperty(global, 'cr', {
+        get: function() {
+          Object.defineProperty(global, 'cr', {value: originalCr});
+          originalCr.initialize();
+          return originalCr;
+        },
+        configurable: true
+      });
+
+      return;
+    }
+
+    cr.doc = document;
+
+    /**
+     * Whether we are using a Mac or not.
+     */
+    cr.isMac = /Mac/.test(navigator.platform);
+
+    /**
+     * Whether this is on the Windows platform or not.
+     */
+    cr.isWindows = /Win/.test(navigator.platform);
+
+    /**
+     * Whether this is on chromeOS or not.
+     */
+    cr.isChromeOS = /CrOS/.test(navigator.userAgent);
+
+    /**
+     * Whether this is on vanilla Linux (not chromeOS).
+     */
+    cr.isLinux = /Linux/.test(navigator.userAgent);
+
+    /**
+     * Whether this uses GTK or not.
+     */
+    cr.isGTK = typeof chrome.getVariableValue == 'function' &&
+        /GTK/.test(chrome.getVariableValue('toolkit'));
+
+    /**
+     * Whether this uses the views toolkit or not.
+     */
+    cr.isViews = typeof chrome.getVariableValue == 'function' &&
+        /views/.test(chrome.getVariableValue('toolkit'));
+  }
+
+  return {
+    addSingletonGetter: addSingletonGetter,
+    createUid: createUid,
+    define: define,
+    defineProperty: defineProperty,
+    dispatchPropertyChange: dispatchPropertyChange,
+    dispatchSimpleEvent: dispatchSimpleEvent,
+    getUid: getUid,
+    initialize: initialize,
+    PropertyKind: PropertyKind
+  };
+})();
+
+
+/**
+ * TODO(kgr): Move this to another file which is to be loaded last.
+ * This will be done as part of future work to make this code pre-compilable.
+ */
+cr.initialize();
+</script>
+<script>// Copyright (c) 2012 The Chromium Authors. All rights reserved.
+// Use of this source code is governed by a BSD-style license that can be
+// found in the LICENSE file.
+
+/**
+ * @fileoverview This file defines a singleton which provides access to all data
+ * that is available as soon as the page's resources are loaded (before DOM
+ * content has finished loading). This data includes both localized strings and
+ * any data that is important to have ready from a very early stage (e.g. things
+ * that must be displayed right away).
+ */
+
+var loadTimeData;
+
+(function() {
+  'use strict';
+
+  function LoadTimeData() {
+  }
+
+  LoadTimeData.prototype = {
+    /**
+     * Sets the backing object.
+     * @param {Object} value The de-serialized page data.
+     */
+    set data(value) {
+      expect(!this.data_, 'Re-setting data.');
+      this.data_ = value;
+    },
+
+    /**
+     * @return {boolean} True if |id| is a key in the dictionary.
+     */
+    valueExists: function(id) {
+      return id in this.data_;
+    },
+
+    /**
+     * Fetches a value, expecting that it exists.
+     * @param {string} id The key that identifies the desired value.
+     * @return {*} The corresponding value.
+     */
+    getValue: function(id) {
+      expect(this.data_, 'No data. Did you remember to include strings.js?');
+      var value = this.data_[id];
+      expect(typeof value != 'undefined', 'Could not find value for ' + id);
+      return value;
+    },
+
+    /**
+     * As above, but also makes sure that the value is a string.
+     * @param {string} id The key that identifies the desired string.
+     * @return {string} The corresponding string value.
+     */
+    getString: function(id) {
+      var value = this.getValue(id);
+      expectIsType(id, value, 'string');
+      return value;
+    },
+
+    /**
+     * Returns a formatted localized string where $1 to $9 are replaced by the
+     * second to the tenth argument.
+     * @param {string} id The ID of the string we want.
+     * @param {...string} The extra values to include in the formatted output.
+     * @return {string} The formatted string.
+     */
+    getStringF: function(id) {
+      var value = this.getString(id);
+      if (!value)
+        return;
+
+      var varArgs = arguments;
+      return value.replace(/\$[$1-9]/g, function(m) {
+        return m == '$$' ? '$' : varArgs[m[1]];
+      });
+    },
+
+    /**
+     * As above, but also makes sure that the value is a boolean.
+     * @param {string} id The key that identifies the desired boolean.
+     * @return {boolean} The corresponding boolean value.
+     */
+    getBoolean: function(id) {
+      var value = this.getValue(id);
+      expectIsType(id, value, 'boolean');
+      return value;
+    },
+
+    /**
+     * As above, but also makes sure that the value is an integer.
+     * @param {string} id The key that identifies the desired number.
+     * @return {number} The corresponding number value.
+     */
+    getInteger: function(id) {
+      var value = this.getValue(id);
+      expectIsType(id, value, 'number');
+      expect(value == Math.floor(value), 'Number isn\'t integer: ' + value);
+      return value;
+    },
+
+    /**
+     * Override values in loadTimeData with the values found in |replacements|.
+     * @param {Object} replacements The dictionary object of keys to replace.
+     */
+    overrideValues: function(replacements) {
+      expect(typeof replacements == 'object',
+             'Replacements must be a dictionary object.');
+      for (var key in replacements) {
+        this.data_[key] = replacements[key];
+      }
+    }
+  };
+
+  /**
+   * Checks condition, displays error message if expectation fails.
+   * @param {*} condition The condition to check for truthiness.
+   * @param {string} message The message to display if the check fails.
+   */
+  function expect(condition, message) {
+    if (!condition)
+      console.error(message);
+  }
+
+  /**
+   * Checks that the given value has the given type.
+   * @param {string} id The id of the value (only used for error message).
+   * @param {*} value The value to check the type on.
+   * @param {string} type The type we expect |value| to be.
+   */
+  function expectIsType(id, value, type) {
+    expect(typeof value == type, '[' + value + '] (' + id +
+                                 ') is not a ' + type);
+  }
+
+  expect(!loadTimeData, 'should only include this file once');
+  loadTimeData = new LoadTimeData;
+})();
+</script>
+<script>// Copyright (c) 2012 The Chromium Authors. All rights reserved.
+// Use of this source code is governed by a BSD-style license that can be
+// found in the LICENSE file.
+
+// Copyright (c) 2013 The Chromium Authors. All rights reserved.
+// Use of this source code is governed by a BSD-style license that can be
+// found in the LICENSE file.
+
+/**
+ * @fileoverview Assertion support.
+ */
+
+/**
+ * Simple common assertion API
+ * @param {*} condition The condition to test.  Note that this may be used to
+ *     test whether a value is defined or not, and we don't want to force a
+ *     cast to Boolean.
+ * @param {string=} opt_message A message to use in any error.
+ */
+function assert(condition, opt_message) {
+  'use strict';
+  if (!condition) {
+    var msg = 'Assertion failed';
+    if (opt_message)
+      msg = msg + ': ' + opt_message;
+    throw new Error(msg);
+  }
+}
+
+
+/**
+ * The global object.
+ * @type {!Object}
+ * @const
+ */
+var global = this;
+
+/**
+ * Alias for document.getElementById.
+ * @param {string} id The ID of the element to find.
+ * @return {HTMLElement} The found element or null if not found.
+ */
+function $(id) {
+  return document.getElementById(id);
+}
+
+/**
+ * Calls chrome.send with a callback and restores the original afterwards.
+ * @param {string} name The name of the message to send.
+ * @param {!Array} params The parameters to send.
+ * @param {string} callbackName The name of the function that the backend calls.
+ * @param {!Function} callback The function to call.
+ */
+function chromeSend(name, params, callbackName, callback) {
+  var old = global[callbackName];
+  global[callbackName] = function() {
+    // restore
+    global[callbackName] = old;
+
+    var args = Array.prototype.slice.call(arguments);
+    return callback.apply(global, args);
+  };
+  chrome.send(name, params);
+}
+
+/**
+ * Returns the scale factors supported by this platform.
+ * @return {array} The supported scale factors.
+ */
+function getSupportedScaleFactors() {
+  var supportedScaleFactors = [];
+  if (cr.isMac || cr.isChromeOS) {
+    supportedScaleFactors.push(1);
+    supportedScaleFactors.push(2);
+  } else {
+    // Windows must be restarted to display at a different scale factor.
+    supportedScaleFactors.push(window.devicePixelRatio);
+  }
+  return supportedScaleFactors;
+}
+
+/**
+ * Generates a CSS url string.
+ * @param {string} s The URL to generate the CSS url for.
+ * @return {string} The CSS url string.
+ */
+function url(s) {
+  // http://www.w3.org/TR/css3-values/#uris
+  // Parentheses, commas, whitespace characters, single quotes (') and double
+  // quotes (") appearing in a URI must be escaped with a backslash
+  var s2 = s.replace(/(\(|\)|\,|\s|\'|\"|\\)/g, '\\$1');
+  // WebKit has a bug when it comes to URLs that end with \
+  // https://bugs.webkit.org/show_bug.cgi?id=28885
+  if (/\\\\$/.test(s2)) {
+    // Add a space to work around the WebKit bug.
+    s2 += ' ';
+  }
+  return 'url("' + s2 + '")';
+}
+
+/**
+ * Generates a CSS -webkit-image-set for a chrome:// url.
+ * An entry in the image set is added for each of getSupportedScaleFactors().
+ * The scale-factor-specific url is generated by replacing the first instance of
+ * 'scalefactor' in |path| with the numeric scale factor.
+ * @param {string} path The URL to generate an image set for.
+ *     'scalefactor' should be a substring of |path|.
+ * @return {string} The CSS -webkit-image-set.
+ */
+function imageset(path) {
+  var supportedScaleFactors = getSupportedScaleFactors();
+
+  var replaceStartIndex = path.indexOf('scalefactor');
+  if (replaceStartIndex < 0)
+    return url(path);
+
+  var s = '';
+  for (var i = 0; i < supportedScaleFactors.length; ++i) {
+    var scaleFactor = supportedScaleFactors[i];
+    var pathWithScaleFactor = path.substr(0, replaceStartIndex) + scaleFactor +
+        path.substr(replaceStartIndex + 'scalefactor'.length);
+
+    s += url(pathWithScaleFactor) + ' ' + scaleFactor + 'x';
+
+    if (i != supportedScaleFactors.length - 1)
+      s += ', ';
+  }
+  return '-webkit-image-set(' + s + ')';
+}
+
+/**
+ * Parses query parameters from Location.
+ * @param {string} location The URL to generate the CSS url for.
+ * @return {object} Dictionary containing name value pairs for URL
+ */
+function parseQueryParams(location) {
+  var params = {};
+  var query = unescape(location.search.substring(1));
+  var vars = query.split('&');
+  for (var i = 0; i < vars.length; i++) {
+    var pair = vars[i].split('=');
+    params[pair[0]] = pair[1];
+  }
+  return params;
+}
+
+function findAncestorByClass(el, className) {
+  return findAncestor(el, function(el) {
+    if (el.classList)
+      return el.classList.contains(className);
+    return null;
+  });
+}
+
+/**
+ * Return the first ancestor for which the {@code predicate} returns true.
+ * @param {Node} node The node to check.
+ * @param {function(Node) : boolean} predicate The function that tests the
+ *     nodes.
+ * @return {Node} The found ancestor or null if not found.
+ */
+function findAncestor(node, predicate) {
+  var last = false;
+  while (node != null && !(last = predicate(node))) {
+    node = node.parentNode;
+  }
+  return last ? node : null;
+}
+
+function swapDomNodes(a, b) {
+  var afterA = a.nextSibling;
+  if (afterA == b) {
+    swapDomNodes(b, a);
+    return;
+  }
+  var aParent = a.parentNode;
+  b.parentNode.replaceChild(a, b);
+  aParent.insertBefore(b, afterA);
+}
+
+/**
+ * Disables text selection and dragging, with optional whitelist callbacks.
+ * @param {function(Event):boolean=} opt_allowSelectStart Unless this function
+ *    is defined and returns true, the onselectionstart event will be
+ *    surpressed.
+ * @param {function(Event):boolean=} opt_allowDragStart Unless this function
+ *    is defined and returns true, the ondragstart event will be surpressed.
+ */
+function disableTextSelectAndDrag(opt_allowSelectStart, opt_allowDragStart) {
+  // Disable text selection.
+  document.onselectstart = function(e) {
+    if (!(opt_allowSelectStart && opt_allowSelectStart.call(this, e)))
+      e.preventDefault();
+  };
+
+  // Disable dragging.
+  document.ondragstart = function(e) {
+    if (!(opt_allowDragStart && opt_allowDragStart.call(this, e)))
+      e.preventDefault();
+  };
+}
+
+/**
+ * Call this to stop clicks on <a href="#"> links from scrolling to the top of
+ * the page (and possibly showing a # in the link).
+ */
+function preventDefaultOnPoundLinkClicks() {
+  document.addEventListener('click', function(e) {
+    var anchor = findAncestor(e.target, function(el) {
+      return el.tagName == 'A';
+    });
+    // Use getAttribute() to prevent URL normalization.
+    if (anchor && anchor.getAttribute('href') == '#')
+      e.preventDefault();
+  });
+}
+
+/**
+ * Check the directionality of the page.
+ * @return {boolean} True if Chrome is running an RTL UI.
+ */
+function isRTL() {
+  return document.documentElement.dir == 'rtl';
+}
+
+/**
+ * Get an element that's known to exist by its ID. We use this instead of just
+ * calling getElementById and not checking the result because this lets us
+ * satisfy the JSCompiler type system.
+ * @param {string} id The identifier name.
+ * @return {!Element} the Element.
+ */
+function getRequiredElement(id) {
+  var element = $(id);
+  assert(element, 'Missing required element: ' + id);
+  return element;
+}
+
+// Handle click on a link. If the link points to a chrome: or file: url, then
+// call into the browser to do the navigation.
+document.addEventListener('click', function(e) {
+  if (e.defaultPrevented)
+    return;
+
+  var el = e.target;
+  if (el.nodeType == Node.ELEMENT_NODE &&
+      el.webkitMatchesSelector('A, A *')) {
+    while (el.tagName != 'A') {
+      el = el.parentElement;
+    }
+
+    if ((el.protocol == 'file:' || el.protocol == 'about:') &&
+        (e.button == 0 || e.button == 1)) {
+      chrome.send('navigateToUrl', [
+        el.href,
+        el.target,
+        e.button,
+        e.altKey,
+        e.ctrlKey,
+        e.metaKey,
+        e.shiftKey
+      ]);
+      e.preventDefault();
+    }
+  }
+});
+
+/**
+ * Creates a new URL which is the old URL with a GET param of key=value.
+ * @param {string} url The base URL. There is not sanity checking on the URL so
+ *     it must be passed in a proper format.
+ * @param {string} key The key of the param.
+ * @param {string} value The value of the param.
+ * @return {string} The new URL.
+ */
+function appendParam(url, key, value) {
+  var param = encodeURIComponent(key) + '=' + encodeURIComponent(value);
+
+  if (url.indexOf('?') == -1)
+    return url + '?' + param;
+  return url + '&' + param;
+}
+
+/**
+ * Creates a CSS -webkit-image-set for a favicon request.
+ * @param {string} url The url for the favicon.
+ * @param {number=} opt_size Optional preferred size of the favicon.
+ * @param {string=} opt_type Optional type of favicon to request. Valid values
+ *     are 'favicon' and 'touch-icon'. Default is 'favicon'.
+ * @return {string} -webkit-image-set for the favicon.
+ */
+function getFaviconImageSet(url, opt_size, opt_type) {
+  var size = opt_size || 16;
+  var type = opt_type || 'favicon';
+  return imageset(
+      'chrome://' + type + '/size/' + size + '@scalefactorx/' + url);
+}
+
+/**
+ * Creates a new URL for a favicon request for the current device pixel ratio.
+ * The URL must be updated when the user moves the browser to a screen with a
+ * different device pixel ratio. Use getFaviconImageSet() for the updating to
+ * occur automatically.
+ * @param {string} url The url for the favicon.
+ * @param {number=} opt_size Optional preferred size of the favicon.
+ * @param {string=} opt_type Optional type of favicon to request. Valid values
+ *     are 'favicon' and 'touch-icon'. Default is 'favicon'.
+ * @return {string} Updated URL for the favicon.
+ */
+function getFaviconUrlForCurrentDevicePixelRatio(url, opt_size, opt_type) {
+  var size = opt_size || 16;
+  var type = opt_type || 'favicon';
+  return 'chrome://' + type + '/size/' + size + '@' +
+      window.devicePixelRatio + 'x/' + url;
+}
+
+/**
+ * Creates an element of a specified type with a specified class name.
+ * @param {string} type The node type.
+ * @param {string} className The class name to use.
+ * @return {Element} The created element.
+ */
+function createElementWithClassName(type, className) {
+  var elm = document.createElement(type);
+  elm.className = className;
+  return elm;
+}
+
+/**
+ * webkitTransitionEnd does not always fire (e.g. when animation is aborted
+ * or when no paint happens during the animation). This function sets up
+ * a timer and emulate the event if it is not fired when the timer expires.
+ * @param {!HTMLElement} el The element to watch for webkitTransitionEnd.
+ * @param {number} timeOut The maximum wait time in milliseconds for the
+ *     webkitTransitionEnd to happen.
+ */
+function ensureTransitionEndEvent(el, timeOut) {
+  var fired = false;
+  el.addEventListener('webkitTransitionEnd', function f(e) {
+    el.removeEventListener('webkitTransitionEnd', f);
+    fired = true;
+  });
+  window.setTimeout(function() {
+    if (!fired)
+      cr.dispatchSimpleEvent(el, 'webkitTransitionEnd');
+  }, timeOut);
+}
+</script>
+<script>// Copyright (c) 2012 The Chromium Authors. All rights reserved.
+// Use of this source code is governed by a BSD-style license that can be
+// found in the LICENSE file.
+
+function sendCommand(cmd) {
+  window.domAutomationController.setAutomationId(1);
+  window.domAutomationController.send(cmd);
+}
+
+function initialize() {
+  if (loadTimeData.getBoolean('allowAccessRequests')) {
+    $('request-access-button').onclick = function(event) {
+      updateAfterRequestSent();
+      sendCommand('request');
+    };
+  } else {
+    $('request-access-button').hidden = true;
+  }
+  $('back-button').onclick = function(event) {
+    sendCommand('back');
+  };
+}
+
+/**
+ * Updates the interstitial to show that the request was sent.
+ */
+function updateAfterRequestSent() {
+  $('error-img').hidden = true;
+  $('request-access-button').hidden = true;
+  $('block-page-message').hidden = true;
+  $('request-sent-message').hidden = false;
+}
+
+document.addEventListener('DOMContentLoaded', initialize);
+</script>
+</head>
+
+<body>
+<div id="main-frame-blocked">
+ <div id="box">
+  <div id="content-top">
+    <img id="error-img" class="error-img">
+    <h1>
+     <div id="block-page-message" i18n-content="blockPageMessage"></div>
+     <div id="request-sent-message" i18n-content="requestSentMessage" hidden>
+     </div>
+    </h1>
+
+    <button id="back-button" i18n-content="backButton"></button>
+    <button id="request-access-button" i18n-content="requestAccessButton">
+    </button>
+  </div>
+
+</div>
+</body>
+</html>

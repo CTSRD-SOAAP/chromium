@@ -1,0 +1,811 @@
+<!DOCTYPE html>
+<html i18n-values="dir:textDirection">
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0,
+                                 maximum-scale=1.0, user-scalable=no">
+  <title i18n-content="title"></title>
+  <style>/* Copyright 2013 The Chromium Authors. All rights reserved.
+ * Use of this source code is governed by a BSD-style license that can be
+ * found in the LICENSE file. */
+
+body {
+  background-color: #E6E6E6;
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 10pt;
+  margin: 50px 40px 20px 40px;
+}
+
+#main-frame-error {
+  margin: auto;
+  max-width: 540px;
+  min-width: 200px;
+}
+
+/* Don't use the main frame div when the error is in a subframe. */
+html[subframe] #main-frame-error {
+  display: none;
+}
+
+/* Don't use the subframe error div when the error is in a main frame. */
+html:not([subframe]) #sub-frame-error {
+  display: none;
+}
+
+#box {
+  background-color: #fbfbfb;
+  border: 1px solid #AAA;
+  border-bottom: 1px solid #888;
+  border-radius: 3px;
+  color: black;
+/* Not done on mobile for performance reasons. */
+  box-shadow: 0px 2px 2px #AAA;
+}
+
+#diagnose-button {
+  margin-top: 20px;
+  margin-bottom: 10px;
+  -webkit-margin-start: 0px;
+}
+
+#content-top #buttons,
+#content-top h1 {
+  color: #666;
+  margin: 10px 0px 25px 0px;
+  font-weight: normal;
+  font-size: 1.5em;
+  text-align: center;
+}
+
+h2 {
+  color: #666;
+  font-size: 1.2em;
+  font-weight: normal;
+  margin: 10px 0;
+}
+
+a {
+  color: #15c;
+  text-decoration: none;
+}
+
+.icon {
+  -webkit-user-select: none;
+}
+
+.icon-generic {
+  /**
+   * Can't access chrome://theme/IDR_ERROR_NETWORK_GENERIC from an untrusted
+   * renderer process, so embed the resource manually.
+   */
+  content: -webkit-image-set(
+      url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAC4AAAAuCAQAAAD9sOO8AAAASUlEQVR4Xu3SMQoAIAzFUO/o/c+iY4fSSfgQyesgOESHrs9I0j7TEOL9pk5i/OmB/s9IvAYQH6DjxmtTWPEWBcS52zJPIJ4lSRfUZeB1c/cgSwAAAABJRU5ErkJggg==') 1x);
+}
+
+.icon-offline {
+  content: -webkit-image-set(
+      url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABAAgMAAADXB5lNAAAACVBMVEVTU1P///9TU1P8g2f9AAAAAnRSTlMAAHaTzTgAAAB0SURBVHhe1dMxCgMxDAXRIaVOkXrvs/f79ZwyEGNITKwUgcBOZR4upEKcSxeCmSrAFko1r5Cv4J8A6EGzgwLQQAdHD5ljbUFU08Gz8AOwgWX1HlBNC6WyBVWMOBpq5C2pz3ALUIGsP1ZAKtznmxoAAtc5wgegV/QjpyQHeQAAAABJRU5ErkJggg==') 1x);
+}
+
+#content-top {
+  margin: 20px 20px 20px 25px;
+}
+
+#help-box-outer {
+  overflow: hidden;
+  -webkit-transition: height ease-in 218ms;
+}
+
+#help-box-inner {
+  background-color: #f9f9f9;
+  border-top: 1px solid #EEE;
+  color: #444;
+  padding: 25px 20px;
+  text-align: start;
+}
+
+#suggestions {
+  margin-top: 15px;
+}
+
+#sub-frame-error-details {
+  color: #8F8F8F;
+/* Not done on mobile for performance reasons. */
+  text-shadow: 0 1px 0 rgba(255,255,255,0.3);
+}
+
+[jscontent=failedUrl] {
+  overflow-wrap: break-word;
+}
+
+button {
+  border: 1px solid rgba(0, 0, 0, 0.25);
+  border-radius: 2px;
+  color: #444;
+  margin: 0px 5px;
+  min-height: 29px;
+  min-width: 65px;
+  -webkit-user-select: none;
+  padding: 8px 13px;
+/* iOS does not support linear-gradient without a prefix. */
+  background-image: -webkit-linear-gradient(#ededed, #ededed 38%, #dedede);
+  text-shadow: 0 1px 0 rgb(240, 240, 240);
+
+/* Not done on mobile for performance reasons. */
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.08), inset 0 1px 2px rgba(255, 255, 255, 0.75);
+}
+
+button:hover {
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  color: #000;
+background-image: -webkit-linear-gradient(#f0f0f0, #f0f0f0 38%, #e0e0e0);
+
+box-shadow: 0 1px 0 rgba(0, 0, 0, 0.12), inset 0 1px 2px rgba(255, 255, 255, 0.95);
+}
+
+button:active {
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  color: #444;
+background-image: -webkit-linear-gradient(#e7e7e7, #e7e7e7 38%, #d7d7d7);
+
+box-shadow: none;
+}
+
+#reload-button {
+  color: #fff;
+background-image: -webkit-linear-gradient(#5d9aff, #5d9aff 38%, #5891f0);
+  border: 1px solid rgba(45, 102, 195, 1);
+  text-shadow: 0 1px 0 rgba(0,0,0,0.5);
+
+box-shadow: 0 1px 0 rgba(0, 0, 0, 0.15), inset 0 1px 2px rgba(255, 255, 255, 0.2);
+}
+
+#reload-button:hover {
+background-image: -webkit-linear-gradient(#659efd, #659efd 38%, #6097f1);
+  border: 1px solid rgba(45, 102, 195, 1);
+box-shadow: 0 1px 0 rgba(0, 0, 0, 0.25), inset 0 1px 2px rgba(255, 255, 255, 0.2);
+}
+
+#reload-button:active {
+background-image: -webkit-linear-gradient(#6095ed, #6095ed 38%, #6095ed);
+  border: 1px solid rgb(38, 84, 160);
+
+box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.1);
+}
+
+.hidden {
+  display: none;
+}
+
+.suggestions {
+  margin-top: 18px;
+}
+
+.suggestion-header {
+  font-weight: bold;
+  margin-bottom: 4px;
+}
+
+.suggestion-body {
+  color: #777;
+}
+
+.error-code {
+  color: #A0A0A0;
+  margin-top: 15px;
+}
+
+/* Increase line height at higher resolutions. */
+@media (min-width: 641px) and (min-height: 641px) {
+  #help-box-inner {
+    line-height: 18px;
+  }
+}
+
+/* Decrease padding at low sizes. */
+@media (max-width: 640px), (max-height: 640px) {
+  body {
+    margin: 15px;
+  }
+  h1 {
+    margin: 10px 0px 15px 0px;
+  }
+  #content-top {
+    margin: 15px;
+  }
+  #help-box-inner {
+    padding: 20px;
+  }
+  .suggestions {
+    margin-top: 10px;
+  }
+  .suggestion-header {
+    margin-bottom: 0px;
+  }
+  .error-code {
+    margin-top: 10px;
+  }
+}
+
+/* Don't allow overflow when in a subframe. */
+html[subframe] body {
+  overflow: hidden;
+}
+
+#sub-frame-error {
+  -webkit-align-items: center;
+  background-color: #DDD;
+  display: -webkit-flex;
+  -webkit-flex-flow: column;
+  height: 100%;
+  -webkit-justify-content: center;
+  left: 0px;
+  position: absolute;
+  top: 0px;
+  width: 100%;
+}
+
+#sub-frame-error:hover {
+  background-color: #EEE;
+}
+
+#sub-frame-error-details {
+  margin: 0 10px;
+  visibility: hidden;
+}
+
+/* Show details only when hovering. */
+#sub-frame-error:hover #sub-frame-error-details {
+  visibility: visible;
+}
+
+/* If the iframe is too small, always hide the error code. */
+/* TODO(mmenke): See if overflow: no-display works better, once supported. */
+@media (max-width: 200px), (max-height: 95px) {
+  #sub-frame-error-details {
+    display: none;
+  }
+}
+</style>
+  <style>/* Copyright 2013 The Chromium Authors. All rights reserved.
+ * Use of this source code is governed by a BSD-style license that can be
+ * found in the LICENSE file. */
+
+.explanation-par {
+  line-height: 18px;
+  padding: 0 20px 20px 20px;
+}
+
+#icon-lock {
+  content: -webkit-image-set(
+      url('data:image/png;base64,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') 1x);
+  padding-bottom: 15px;
+  padding-top: 10px;
+}
+
+/* Decrease padding at low sizes. */
+@media (max-width: 640px),
+@media (max-height: 640px) {
+  .explanation-par,
+  .ssl-help-box-inner {
+    padding: 0;
+  }
+}
+
+.ssl-help-box-inner {
+  padding: 0 20px;
+}
+</style>
+  <script>// Copyright (c) 2012 The Chromium Authors. All rights reserved.
+// Use of this source code is governed by a BSD-style license that can be
+// found in the LICENSE file.
+
+// Copyright (c) 2013 The Chromium Authors. All rights reserved.
+// Use of this source code is governed by a BSD-style license that can be
+// found in the LICENSE file.
+
+/**
+ * @fileoverview Assertion support.
+ */
+
+/**
+ * Simple common assertion API
+ * @param {*} condition The condition to test.  Note that this may be used to
+ *     test whether a value is defined or not, and we don't want to force a
+ *     cast to Boolean.
+ * @param {string=} opt_message A message to use in any error.
+ */
+function assert(condition, opt_message) {
+  'use strict';
+  if (!condition) {
+    var msg = 'Assertion failed';
+    if (opt_message)
+      msg = msg + ': ' + opt_message;
+    throw new Error(msg);
+  }
+}
+
+
+/**
+ * The global object.
+ * @type {!Object}
+ * @const
+ */
+var global = this;
+
+/**
+ * Alias for document.getElementById.
+ * @param {string} id The ID of the element to find.
+ * @return {HTMLElement} The found element or null if not found.
+ */
+function $(id) {
+  return document.getElementById(id);
+}
+
+/**
+ * Calls chrome.send with a callback and restores the original afterwards.
+ * @param {string} name The name of the message to send.
+ * @param {!Array} params The parameters to send.
+ * @param {string} callbackName The name of the function that the backend calls.
+ * @param {!Function} callback The function to call.
+ */
+function chromeSend(name, params, callbackName, callback) {
+  var old = global[callbackName];
+  global[callbackName] = function() {
+    // restore
+    global[callbackName] = old;
+
+    var args = Array.prototype.slice.call(arguments);
+    return callback.apply(global, args);
+  };
+  chrome.send(name, params);
+}
+
+/**
+ * Returns the scale factors supported by this platform.
+ * @return {array} The supported scale factors.
+ */
+function getSupportedScaleFactors() {
+  var supportedScaleFactors = [];
+  if (cr.isMac || cr.isChromeOS) {
+    supportedScaleFactors.push(1);
+    supportedScaleFactors.push(2);
+  } else {
+    // Windows must be restarted to display at a different scale factor.
+    supportedScaleFactors.push(window.devicePixelRatio);
+  }
+  return supportedScaleFactors;
+}
+
+/**
+ * Generates a CSS url string.
+ * @param {string} s The URL to generate the CSS url for.
+ * @return {string} The CSS url string.
+ */
+function url(s) {
+  // http://www.w3.org/TR/css3-values/#uris
+  // Parentheses, commas, whitespace characters, single quotes (') and double
+  // quotes (") appearing in a URI must be escaped with a backslash
+  var s2 = s.replace(/(\(|\)|\,|\s|\'|\"|\\)/g, '\\$1');
+  // WebKit has a bug when it comes to URLs that end with \
+  // https://bugs.webkit.org/show_bug.cgi?id=28885
+  if (/\\\\$/.test(s2)) {
+    // Add a space to work around the WebKit bug.
+    s2 += ' ';
+  }
+  return 'url("' + s2 + '")';
+}
+
+/**
+ * Generates a CSS -webkit-image-set for a chrome:// url.
+ * An entry in the image set is added for each of getSupportedScaleFactors().
+ * The scale-factor-specific url is generated by replacing the first instance of
+ * 'scalefactor' in |path| with the numeric scale factor.
+ * @param {string} path The URL to generate an image set for.
+ *     'scalefactor' should be a substring of |path|.
+ * @return {string} The CSS -webkit-image-set.
+ */
+function imageset(path) {
+  var supportedScaleFactors = getSupportedScaleFactors();
+
+  var replaceStartIndex = path.indexOf('scalefactor');
+  if (replaceStartIndex < 0)
+    return url(path);
+
+  var s = '';
+  for (var i = 0; i < supportedScaleFactors.length; ++i) {
+    var scaleFactor = supportedScaleFactors[i];
+    var pathWithScaleFactor = path.substr(0, replaceStartIndex) + scaleFactor +
+        path.substr(replaceStartIndex + 'scalefactor'.length);
+
+    s += url(pathWithScaleFactor) + ' ' + scaleFactor + 'x';
+
+    if (i != supportedScaleFactors.length - 1)
+      s += ', ';
+  }
+  return '-webkit-image-set(' + s + ')';
+}
+
+/**
+ * Parses query parameters from Location.
+ * @param {string} location The URL to generate the CSS url for.
+ * @return {object} Dictionary containing name value pairs for URL
+ */
+function parseQueryParams(location) {
+  var params = {};
+  var query = unescape(location.search.substring(1));
+  var vars = query.split('&');
+  for (var i = 0; i < vars.length; i++) {
+    var pair = vars[i].split('=');
+    params[pair[0]] = pair[1];
+  }
+  return params;
+}
+
+function findAncestorByClass(el, className) {
+  return findAncestor(el, function(el) {
+    if (el.classList)
+      return el.classList.contains(className);
+    return null;
+  });
+}
+
+/**
+ * Return the first ancestor for which the {@code predicate} returns true.
+ * @param {Node} node The node to check.
+ * @param {function(Node) : boolean} predicate The function that tests the
+ *     nodes.
+ * @return {Node} The found ancestor or null if not found.
+ */
+function findAncestor(node, predicate) {
+  var last = false;
+  while (node != null && !(last = predicate(node))) {
+    node = node.parentNode;
+  }
+  return last ? node : null;
+}
+
+function swapDomNodes(a, b) {
+  var afterA = a.nextSibling;
+  if (afterA == b) {
+    swapDomNodes(b, a);
+    return;
+  }
+  var aParent = a.parentNode;
+  b.parentNode.replaceChild(a, b);
+  aParent.insertBefore(b, afterA);
+}
+
+/**
+ * Disables text selection and dragging, with optional whitelist callbacks.
+ * @param {function(Event):boolean=} opt_allowSelectStart Unless this function
+ *    is defined and returns true, the onselectionstart event will be
+ *    surpressed.
+ * @param {function(Event):boolean=} opt_allowDragStart Unless this function
+ *    is defined and returns true, the ondragstart event will be surpressed.
+ */
+function disableTextSelectAndDrag(opt_allowSelectStart, opt_allowDragStart) {
+  // Disable text selection.
+  document.onselectstart = function(e) {
+    if (!(opt_allowSelectStart && opt_allowSelectStart.call(this, e)))
+      e.preventDefault();
+  };
+
+  // Disable dragging.
+  document.ondragstart = function(e) {
+    if (!(opt_allowDragStart && opt_allowDragStart.call(this, e)))
+      e.preventDefault();
+  };
+}
+
+/**
+ * Call this to stop clicks on <a href="#"> links from scrolling to the top of
+ * the page (and possibly showing a # in the link).
+ */
+function preventDefaultOnPoundLinkClicks() {
+  document.addEventListener('click', function(e) {
+    var anchor = findAncestor(e.target, function(el) {
+      return el.tagName == 'A';
+    });
+    // Use getAttribute() to prevent URL normalization.
+    if (anchor && anchor.getAttribute('href') == '#')
+      e.preventDefault();
+  });
+}
+
+/**
+ * Check the directionality of the page.
+ * @return {boolean} True if Chrome is running an RTL UI.
+ */
+function isRTL() {
+  return document.documentElement.dir == 'rtl';
+}
+
+/**
+ * Get an element that's known to exist by its ID. We use this instead of just
+ * calling getElementById and not checking the result because this lets us
+ * satisfy the JSCompiler type system.
+ * @param {string} id The identifier name.
+ * @return {!Element} the Element.
+ */
+function getRequiredElement(id) {
+  var element = $(id);
+  assert(element, 'Missing required element: ' + id);
+  return element;
+}
+
+// Handle click on a link. If the link points to a chrome: or file: url, then
+// call into the browser to do the navigation.
+document.addEventListener('click', function(e) {
+  if (e.defaultPrevented)
+    return;
+
+  var el = e.target;
+  if (el.nodeType == Node.ELEMENT_NODE &&
+      el.webkitMatchesSelector('A, A *')) {
+    while (el.tagName != 'A') {
+      el = el.parentElement;
+    }
+
+    if ((el.protocol == 'file:' || el.protocol == 'about:') &&
+        (e.button == 0 || e.button == 1)) {
+      chrome.send('navigateToUrl', [
+        el.href,
+        el.target,
+        e.button,
+        e.altKey,
+        e.ctrlKey,
+        e.metaKey,
+        e.shiftKey
+      ]);
+      e.preventDefault();
+    }
+  }
+});
+
+/**
+ * Creates a new URL which is the old URL with a GET param of key=value.
+ * @param {string} url The base URL. There is not sanity checking on the URL so
+ *     it must be passed in a proper format.
+ * @param {string} key The key of the param.
+ * @param {string} value The value of the param.
+ * @return {string} The new URL.
+ */
+function appendParam(url, key, value) {
+  var param = encodeURIComponent(key) + '=' + encodeURIComponent(value);
+
+  if (url.indexOf('?') == -1)
+    return url + '?' + param;
+  return url + '&' + param;
+}
+
+/**
+ * Creates a CSS -webkit-image-set for a favicon request.
+ * @param {string} url The url for the favicon.
+ * @param {number=} opt_size Optional preferred size of the favicon.
+ * @param {string=} opt_type Optional type of favicon to request. Valid values
+ *     are 'favicon' and 'touch-icon'. Default is 'favicon'.
+ * @return {string} -webkit-image-set for the favicon.
+ */
+function getFaviconImageSet(url, opt_size, opt_type) {
+  var size = opt_size || 16;
+  var type = opt_type || 'favicon';
+  return imageset(
+      'chrome://' + type + '/size/' + size + '@scalefactorx/' + url);
+}
+
+/**
+ * Creates a new URL for a favicon request for the current device pixel ratio.
+ * The URL must be updated when the user moves the browser to a screen with a
+ * different device pixel ratio. Use getFaviconImageSet() for the updating to
+ * occur automatically.
+ * @param {string} url The url for the favicon.
+ * @param {number=} opt_size Optional preferred size of the favicon.
+ * @param {string=} opt_type Optional type of favicon to request. Valid values
+ *     are 'favicon' and 'touch-icon'. Default is 'favicon'.
+ * @return {string} Updated URL for the favicon.
+ */
+function getFaviconUrlForCurrentDevicePixelRatio(url, opt_size, opt_type) {
+  var size = opt_size || 16;
+  var type = opt_type || 'favicon';
+  return 'chrome://' + type + '/size/' + size + '@' +
+      window.devicePixelRatio + 'x/' + url;
+}
+
+/**
+ * Creates an element of a specified type with a specified class name.
+ * @param {string} type The node type.
+ * @param {string} className The class name to use.
+ * @return {Element} The created element.
+ */
+function createElementWithClassName(type, className) {
+  var elm = document.createElement(type);
+  elm.className = className;
+  return elm;
+}
+
+/**
+ * webkitTransitionEnd does not always fire (e.g. when animation is aborted
+ * or when no paint happens during the animation). This function sets up
+ * a timer and emulate the event if it is not fired when the timer expires.
+ * @param {!HTMLElement} el The element to watch for webkitTransitionEnd.
+ * @param {number} timeOut The maximum wait time in milliseconds for the
+ *     webkitTransitionEnd to happen.
+ */
+function ensureTransitionEndEvent(el, timeOut) {
+  var fired = false;
+  el.addEventListener('webkitTransitionEnd', function f(e) {
+    el.removeEventListener('webkitTransitionEnd', f);
+    fired = true;
+  });
+  window.setTimeout(function() {
+    if (!fired)
+      cr.dispatchSimpleEvent(el, 'webkitTransitionEnd');
+  }, timeOut);
+}
+</script>
+  <script>// Copyright 2013 The Chromium Authors. All rights reserved.
+// Use of this source code is governed by a BSD-style license that can be
+// found in the LICENSE file.
+
+function toggleHelpBox() {
+  var helpBoxOuter = document.getElementById('help-box-outer');
+  helpBoxOuter.classList.toggle('hidden');
+  var moreLessButton = document.getElementById('more-less-button');
+  if (helpBoxOuter.classList.contains('hidden')) {
+    moreLessButton.innerText = moreLessButton.moreText;
+  } else {
+    moreLessButton.innerText = moreLessButton.lessText;
+  }
+}
+
+function diagnoseErrors() {
+  var extension_id = "idddmepepmjcgiedknnmlbadcokidhoa";
+  var diagnose_frame = document.getElementById('diagnose-frame');
+  diagnose_frame.innerHTML =
+      '<iframe src="chrome-extension://' + extension_id +
+      '/index.html"></iframe>';
+}
+
+// Subframes use a different layout but the same html file.  This is to make it
+// easier to support platforms that load the error page via different
+// mechanisms (Currently just iOS).
+if (window.top.location != window.location)
+  document.documentElement.setAttribute('subframe', '');
+
+// Re-renders the error page using |strings| as the dictionary of values.
+// Used by NetErrorTabHelper to update DNS error pages with probe results.
+function updateForDnsProbe(strings) {
+  i18nTemplate.process(document, strings);
+  var context = new JsEvalContext(strings);
+  jstProcess(context, document.getElementById('t'));
+}
+
+// Given the classList property of an element, adds an icon class to the list
+// and removes the previously-
+function updateIconClass(classList, newClass) {
+  var oldClass;
+
+  if (classList.hasOwnProperty('last_icon_class')) {
+    oldClass = classList['last_icon_class']
+    if (oldClass == newClass)
+      return;
+  }
+
+  classList.add(newClass);
+  if (oldClass !== undefined)
+    classList.remove(oldClass);
+
+  classList['last_icon_class'] = newClass;
+}
+
+
+</script>
+  <script>// Copyright 2013 The Chromium Authors. All rights reserved.
+// Use of this source code is governed by a BSD-style license that can be
+// found in the LICENSE file.
+
+// Should match SSLBlockingPageCommands in ssl_blocking_page.cc.
+var CMD_DONT_PROCEED = 0;
+var CMD_PROCEED = 1;
+var CMD_MORE = 2;
+var CMD_RELOAD = 3;
+
+var keyPressState = 0;
+
+function $(o) {
+  return document.getElementById(o);
+}
+
+function sendCommand(cmd) {
+  window.domAutomationController.setAutomationId(1);
+  window.domAutomationController.send(cmd);
+}
+
+// This allows errors to be skippped by typing "proceed" into the page.
+function keyPressHandler(e) {
+  var sequence = 'proceed';
+  if (sequence.charCodeAt(keyPressState) == e.keyCode) {
+    keyPressState++;
+    if (keyPressState == sequence.length) {
+      sendCommand(CMD_PROCEED);
+      keyPressState = 0;
+    }
+  } else {
+    keyPressState = 0;
+  }
+}
+
+function sharedSetup() {
+  document.addEventListener('contextmenu', function(e) {
+    e.preventDefault();
+  });
+  document.addEventListener('keypress', keyPressHandler);
+}
+
+document.addEventListener('DOMContentLoaded', sharedSetup);
+</script>
+  <script>// Copyright 2013 The Chromium Authors. All rights reserved.
+// Use of this source code is governed by a BSD-style license that can be
+// found in the LICENSE file.
+
+function toggleMoreBox() {
+  var helpBoxOuter = $('help-box-outer');
+  helpBoxOuter.classList.toggle('hidden');
+  var moreLessButton = $('more-less-button');
+  if (helpBoxOuter.classList.contains('hidden')) {
+    moreLessButton.innerText = templateData.more;
+  } else {
+    moreLessButton.innerText = templateData.less;
+  }
+}
+
+function reloadPage() {
+  sendCommand(CMD_RELOAD);
+}
+
+function setupEvents() {
+  $('reload-button').addEventListener('click', reloadPage);
+  $('more-less-button').addEventListener('click', toggleMoreBox);
+}
+
+document.addEventListener('DOMContentLoaded', setupEvents);
+</script>
+</head>
+<body>
+  <div id="main-frame-error">
+    <div id="box">
+      <div id="content-top">
+        <h1>
+          <div>
+            <img class="icon" id="icon-lock">
+          </div>
+          <span i18n-content="headline"></span>
+        </h1>
+        <p i18n-values=".innerHTML:message" class="explanation-par"></p>
+        <div id="buttons">
+          <button id="reload-button" i18n-content="reloadMsg"></button>
+          <button id="more-less-button" i18n-content="more"></button>
+        </div>
+      </div>
+      <div id="help-box-outer" class="hidden">
+        <div id="help-box-inner">
+          <div class="ssl-help-box-inner">
+            <h2 i18n-content="moreTitle"></h2>
+            <p i18n-values=".innerHTML:moreMessage"></p>
+          </div>
+          <div class="ssl-help-box-inner">
+            <h2 i18n-content="techTitle"></h2>
+            <p>
+              <span i18n-content="failure"></span><br>
+              <span i18n-content="errorType"></span><br>
+              <span i18n-content="subject"></span><br>
+              <span i18n-content="issuer"></span><br>
+              <span i18n-content="fingerprint"></span>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
