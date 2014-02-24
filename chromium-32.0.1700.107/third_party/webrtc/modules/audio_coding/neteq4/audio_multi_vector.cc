@@ -1,0 +1,207 @@
+/*
+ *  Copyright (c) 2012 The WebRTC project authors. All Rights Reserved.
+ *
+ *  Use of this source code is governed by a BSD-style license
+ *  that can be found in the LICENSE file in the root of the source
+ *  tree. An additional intellectual property rights grant can be found
+ *  in the file PATENTS.  All contributing project authors may
+ *  be found in the AUTHORS file in the root of the source tree.
+ */
+
+#include "webrtc/modules/audio_coding/neteq4/audio_multi_vector.h"
+
+#include <assert.h>
+
+#include <algorithm>
+
+#include "webrtc/typedefs.h"
+
+namespace webrtc {
+
+AudioMultiVector::AudioMultiVector(size_t N) {
+  assert(N > 0);
+  if (N < 1) N = 1;
+  for (size_t n = 0; n < N; ++n) {
+    channels_.push_back(new AudioVector);
+  }
+}
+
+AudioMultiVector::AudioMultiVector(size_t N, size_t initial_size) {
+  assert(N > 0);
+  if (N < 1) N = 1;
+  for (size_t n = 0; n < N; ++n) {
+    channels_.push_back(new AudioVector(initial_size));
+  }
+}
+
+AudioMultiVector::~AudioMultiVector() {
+  std::vector<AudioVector*>::iterator it = channels_.begin();
+  while (it != channels_.end()) {
+    delete (*it);
+    ++it;
+  }
+}
+
+void AudioMultiVector::Clear() {
+  for (size_t i = 0; i < Channels(); ++i) {
+    channels_[i]->Clear();
+  }
+}
+
+void AudioMultiVector::Zeros(size_t length) {
+  for (size_t i = 0; i < Channels(); ++i) {
+    channels_[i]->Clear();
+    channels_[i]->Extend(length);
+  }
+}
+
+void AudioMultiVector::CopyFrom(AudioMultiVector* copy_to) const {
+  if (copy_to) {
+    for (size_t i = 0; i < Channels(); ++i) {
+      channels_[i]->CopyFrom(&(*copy_to)[i]);
+    }
+  }
+}
+
+void AudioMultiVector::PushBackInterleaved(const int16_t* append_this,
+                                           size_t length) {
+  assert(length % Channels() == 0);
+  if (Channels() == 1) {
+    // Special case to avoid extra allocation and data shuffling.
+    channels_[0]->PushBack(append_this, length);
+    return;
+  }
+  size_t length_per_channel = length / Channels();
+  int16_t* temp_array =
+      new int16_t[length_per_channel];  // Intermediate storage.
+  for (size_t channel = 0; channel < Channels(); ++channel) {
+    // Copy elements to |temp_array|.
+    // Set |source_ptr| to first element of this channel.
+    const int16_t* source_ptr = &append_this[channel];
+    for (size_t i = 0; i < length_per_channel; ++i) {
+      temp_array[i] = *source_ptr;
+      source_ptr += Channels();  // Jump to next element of this channel.
+    }
+    channels_[channel]->PushBack(temp_array, length_per_channel);
+  }
+  delete [] temp_array;
+}
+
+void AudioMultiVector::PushBack(const AudioMultiVector& append_this) {
+  assert(Channels() == append_this.Channels());
+  if (Channels() == append_this.Channels()) {
+    for (size_t i = 0; i < Channels(); ++i) {
+      channels_[i]->PushBack(append_this[i]);
+    }
+  }
+}
+
+void AudioMultiVector::PushBackFromIndex(const AudioMultiVector& append_this,
+                                         size_t index) {
+  assert(index < append_this.Size());
+  index = std::min(index, append_this.Size() - 1);
+  size_t length = append_this.Size() - index;
+  assert(Channels() == append_this.Channels());
+  if (Channels() == append_this.Channels()) {
+    for (size_t i = 0; i < Channels(); ++i) {
+      channels_[i]->PushBack(&append_this[i][index], length);
+    }
+  }
+}
+
+void AudioMultiVector::PopFront(size_t length) {
+  for (size_t i = 0; i < Channels(); ++i) {
+    channels_[i]->PopFront(length);
+  }
+}
+
+void AudioMultiVector::PopBack(size_t length) {
+  for (size_t i = 0; i < Channels(); ++i) {
+    channels_[i]->PopBack(length);
+  }
+}
+
+size_t AudioMultiVector::ReadInterleaved(size_t length,
+                                         int16_t* destination) const {
+  return ReadInterleavedFromIndex(0, length, destination);
+}
+
+size_t AudioMultiVector::ReadInterleavedFromIndex(size_t start_index,
+                                                  size_t length,
+                                                  int16_t* destination) const {
+  if (!destination) {
+    return 0;
+  }
+  size_t index = 0;  // Number of elements written to |destination| so far.
+  assert(start_index <= Size());
+  start_index = std::min(start_index, Size());
+  if (length + start_index > Size()) {
+    length = Size() - start_index;
+  }
+  for (size_t i = 0; i < length; ++i) {
+    for (size_t channel = 0; channel < Channels(); ++channel) {
+      destination[index] = (*this)[channel][i + start_index];
+      ++index;
+    }
+  }
+  return index;
+}
+
+size_t AudioMultiVector::ReadInterleavedFromEnd(size_t length,
+                                                int16_t* destination) const {
+  length = std::min(length, Size());  // Cannot read more than Size() elements.
+  return ReadInterleavedFromIndex(Size() - length, length, destination);
+}
+
+void AudioMultiVector::OverwriteAt(const AudioMultiVector& insert_this,
+                                   size_t length,
+                                   size_t position) {
+  assert(Channels() == insert_this.Channels());
+  // Cap |length| at the length of |insert_this|.
+  assert(length <= insert_this.Size());
+  length = std::min(length, insert_this.Size());
+  if (Channels() == insert_this.Channels()) {
+    for (size_t i = 0; i < Channels(); ++i) {
+      channels_[i]->OverwriteAt(&insert_this[i][0], length, position);
+    }
+  }
+}
+
+void AudioMultiVector::CrossFade(const AudioMultiVector& append_this,
+                                 size_t fade_length) {
+  assert(Channels() == append_this.Channels());
+  if (Channels() == append_this.Channels()) {
+    for (size_t i = 0; i < Channels(); ++i) {
+      channels_[i]->CrossFade(append_this[i], fade_length);
+    }
+  }
+}
+
+size_t AudioMultiVector::Size() const {
+  assert(channels_[0]);
+  return channels_[0]->Size();
+}
+
+void AudioMultiVector::AssertSize(size_t required_size) {
+  if (Size() < required_size) {
+    size_t extend_length = required_size - Size();
+    for (size_t channel = 0; channel < Channels(); ++channel) {
+      channels_[channel]->Extend(extend_length);
+    }
+  }
+}
+
+bool AudioMultiVector::Empty() const {
+  assert(channels_[0]);
+  return channels_[0]->Empty();
+}
+
+const AudioVector& AudioMultiVector::operator[](size_t index) const {
+  return *(channels_[index]);
+}
+
+AudioVector& AudioMultiVector::operator[](size_t index) {
+  return *(channels_[index]);
+}
+
+}  // namespace webrtc
