@@ -1,15 +1,14 @@
-llvm_bin = /home/kg365/pool/llvm/bin
-cc = $llvm_bin/clang
-cxx = $llvm_bin/clang++ -stdlib=libstdc++
+cc = clang
+cxx = clang++ -stdlib=libstdc++
 ld = $cxx
 ar = ar
 ar_host = ar
 cc_host = $cc
 cxx_host = $cxx
 ld_host = $cxx_host
-llc = $llvm_bin/llc
-opt = $llvm_bin/opt
-soaap_build_dir = /home/kg365/pool/soaap
+llc = llc
+opt = opt
+soaap_build_dir = /home/jonathan/SOAAP/soaap/build/bin
 pool link_pool
   depth = 1
 
