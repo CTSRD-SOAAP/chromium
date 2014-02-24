@@ -33,7 +33,7 @@ rule solink
       -Wl,--whole-archive $in $solibs -Wl,--no-whole-archive $libs && { readelf -d ${lib} | grep SONAME && nm -gD -f p $
       ${lib} | cut -f1-2 -d' '; } > ${lib}.TOC; else $ld -shared $ldflags -o $lib -Wl,-soname=$soname $
       -Wl,--whole-archive $in $solibs -Wl,--no-whole-archive $libs && { readelf -d ${lib} | grep SONAME && nm -gD -f p $
-      ${lib} | cut -f1-2 -d' '; } > ${lib}.tmp && if ! cmp -s ${lib}.tmp ${lib}.TOC; then mv ${lib}.tmp ${lib}.TOC && $
+      ${lib} | cut -f1-2 -d' '; } > ${lib}.tmp && if ! cmp -s ${lib}.tmp ${lib}.TOC; then mv ${lib}.tmp ${lib}.TOC ; $
       fi; fi
   description = SOLINK $lib
   pool = link_pool
@@ -43,7 +43,7 @@ rule solink_module
       -Wl,--start-group $in $solibs -Wl,--end-group $libs && { readelf -d ${lib} | grep SONAME && nm -gD -f p ${lib} | $
       cut -f1-2 -d' '; } > ${lib}.TOC; else $ld -shared $ldflags -o $lib -Wl,-soname=$soname -Wl,--start-group $in $
       $solibs -Wl,--end-group $libs && { readelf -d ${lib} | grep SONAME && nm -gD -f p ${lib} | cut -f1-2 -d' '; } > $
-      ${lib}.tmp && if ! cmp -s ${lib}.tmp ${lib}.TOC; then mv ${lib}.tmp ${lib}.TOC && fi; fi
+      ${lib}.tmp && if ! cmp -s ${lib}.tmp ${lib}.TOC; then mv ${lib}.tmp ${lib}.TOC ; fi; fi
   description = SOLINK(module) $lib
   pool = link_pool
   restat = 1
