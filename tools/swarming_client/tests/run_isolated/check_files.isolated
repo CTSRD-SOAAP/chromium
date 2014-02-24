@@ -1,0 +1,20 @@
+{
+  "command": [
+    "python",
+    "check_files.py"
+  ],
+  "files": {
+    "check_files.py": {
+      "h": "d80f62e3caf3eb68a14872d37c5b65c73050135f",
+      "s": 986
+    },
+    "file2.txt": {
+      "h": "7c0095bad1bcbf38e36d208e2b685c5d279146a5",
+      "s": 6
+    }
+  },
+  "includes": [
+    "173e83e4623ba59d32f19327362fbef8770a0c15",
+    "53f5b5e1670620420a950c50e5dd6fc311df006d"
+  ]
+}
