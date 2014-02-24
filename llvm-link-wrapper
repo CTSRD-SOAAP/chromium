@@ -35,11 +35,11 @@ then
   if [[ "`ls *.bc 2>&1`" == *"too long"* ]]
   then
     echo "Too many bitcode files, so linking half at a time"
-    ${LLVM_BUILD_DIR}/bin/llvm-link -o ${OUT}_1 `ls | grep ^[a-mA-M]`
-    ${LLVM_BUILD_DIR}/bin/llvm-link -o ${OUT}_2 `ls | grep ^[n-zN-Z]`
-    ${LLVM_BUILD_DIR}/bin/llvm-link -o $OUT ${OUT}_1 ${OUT}_2
+    llvm-link -o ${OUT}_1 `ls | grep ^[a-mA-M]`
+    llvm-link -o ${OUT}_2 `ls | grep ^[n-zN-Z]`
+    llvm-link -o $OUT ${OUT}_1 ${OUT}_2
   else  
-    ${LLVM_BUILD_DIR}/bin/llvm-link -o $OUT *.bc 
+    llvm-link -o $OUT *.bc 
   fi  
   echo "Copying $OUT to $CURR"
   cp $OUT $CURR
