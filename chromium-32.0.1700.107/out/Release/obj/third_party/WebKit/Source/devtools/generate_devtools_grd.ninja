@@ -1,0 +1,221 @@
+build $
+    obj/third_party/WebKit/Source/devtools/generate_devtools_grd.actions_depends.stamp: $
+    stamp resources/inspector/devtools.html $
+    resources/inspector/devtools_extension_api.js $
+    resources/inspector/inspector.js resources/inspector/ElementsPanel.js $
+    resources/inspector/ResourcesPanel.js $
+    resources/inspector/NetworkPanel.js resources/inspector/SourcesPanel.js $
+    resources/inspector/TimelinePanel.js $
+    resources/inspector/ProfilesPanel.js resources/inspector/AuditsPanel.js $
+    resources/inspector/CodeMirrorTextEditor.js $
+    resources/inspector/LayersPanel.js $
+    resources/inspector/HeapSnapshotWorker.js $
+    resources/inspector/ScriptFormatterWorker.js $
+    obj/third_party/WebKit/Source/devtools/concatenated_devtools_css.actions_rules_copies.stamp
+
+build $
+    obj/third_party/WebKit/Source/devtools/generate_devtools_grd.compile_depends.stamp: $
+    stamp resources/inspector/devtools.html $
+    resources/inspector/devtools_extension_api.js $
+    resources/inspector/inspector.js resources/inspector/ElementsPanel.js $
+    resources/inspector/ResourcesPanel.js $
+    resources/inspector/NetworkPanel.js resources/inspector/SourcesPanel.js $
+    resources/inspector/TimelinePanel.js $
+    resources/inspector/ProfilesPanel.js resources/inspector/AuditsPanel.js $
+    resources/inspector/CodeMirrorTextEditor.js $
+    resources/inspector/LayersPanel.js $
+    resources/inspector/HeapSnapshotWorker.js $
+    resources/inspector/ScriptFormatterWorker.js $
+    obj/third_party/WebKit/Source/devtools/concatenated_devtools_css.actions_rules_copies.stamp
+
+rule $
+    generate_devtools_grd_target_generate_devtools_grd_c7402f4706432af4f97456d841ae6155
+  command = cd ../../third_party/WebKit/Source/devtools; python $
+      scripts/generate_devtools_grd.py $
+      ../../../../out/Release/resources/inspector/devtools.html $
+      ../../../../out/Release/resources/inspector/inspector.js $
+      ../../../../out/Release/resources/inspector/ElementsPanel.js $
+      ../../../../out/Release/resources/inspector/ResourcesPanel.js $
+      ../../../../out/Release/resources/inspector/NetworkPanel.js $
+      ../../../../out/Release/resources/inspector/SourcesPanel.js $
+      ../../../../out/Release/resources/inspector/TimelinePanel.js $
+      ../../../../out/Release/resources/inspector/ProfilesPanel.js $
+      ../../../../out/Release/resources/inspector/AuditsPanel.js $
+      ../../../../out/Release/resources/inspector/LayersPanel.js $
+      ../../../../out/Release/resources/inspector/CodeMirrorTextEditor.js $
+      ../../../../out/Release/resources/inspector/HeapSnapshotWorker.js $
+      ../../../../out/Release/resources/inspector/ScriptFormatterWorker.js $
+      ../../../../out/Release/resources/inspector/inspector.css $
+      ../../../../out/Release/resources/inspector/devtools_extension_api.js $
+      front_end/auditsPanel.css front_end/breadcrumbList.css $
+      front_end/breakpointsList.css front_end/buildSystemOnly.js $
+      front_end/cm/cmdevtools.css front_end/cm/codemirror.css $
+      front_end/cssNamedFlows.css front_end/dataGrid.css $
+      front_end/elementsPanel.css front_end/filter.css $
+      front_end/filteredItemSelectionDialog.css front_end/flameChart.css $
+      front_end/heapProfiler.css front_end/helpScreen.css $
+      front_end/indexedDBViews.css front_end/inspectorCommon.css $
+      front_end/navigatorView.css front_end/networkLogView.css $
+      front_end/networkPanel.css front_end/overrides.css $
+      front_end/panelEnablerView.css front_end/profilesPanel.css $
+      front_end/resourceView.css front_end/resourcesPanel.css $
+      front_end/revisionHistory.css front_end/screencastView.css $
+      front_end/sidebarPane.css front_end/sourcesPanel.css $
+      front_end/sourcesView.css front_end/spectrum.css $
+      front_end/splitView.css front_end/textPrompt.css $
+      front_end/timelinePanel.css front_end/canvasProfiler.css $
+      front_end/layersPanel.css --images front_end/Images --output $
+      ../../../../out/Release/gen/devtools/devtools_resources.grd
+  description = ACTION generate_devtools_grd: $
+      generate_devtools_grd_c7402f4706432af4f97456d841ae6155
+  restat = 1
+
+build gen/devtools/devtools_resources.grd: $
+    generate_devtools_grd_target_generate_devtools_grd_c7402f4706432af4f97456d841ae6155 $
+    ../../third_party/WebKit/Source/devtools/scripts/generate_devtools_grd.py $
+    resources/inspector/devtools.html resources/inspector/inspector.js $
+    resources/inspector/ElementsPanel.js $
+    resources/inspector/ResourcesPanel.js $
+    resources/inspector/NetworkPanel.js resources/inspector/SourcesPanel.js $
+    resources/inspector/TimelinePanel.js $
+    resources/inspector/ProfilesPanel.js resources/inspector/AuditsPanel.js $
+    resources/inspector/LayersPanel.js $
+    resources/inspector/CodeMirrorTextEditor.js $
+    resources/inspector/HeapSnapshotWorker.js $
+    resources/inspector/ScriptFormatterWorker.js $
+    resources/inspector/inspector.css $
+    resources/inspector/devtools_extension_api.js $
+    ../../third_party/WebKit/Source/devtools/front_end/auditsPanel.css $
+    ../../third_party/WebKit/Source/devtools/front_end/breadcrumbList.css $
+    ../../third_party/WebKit/Source/devtools/front_end/breakpointsList.css $
+    ../../third_party/WebKit/Source/devtools/front_end/buildSystemOnly.js $
+    ../../third_party/WebKit/Source/devtools/front_end/cm/cmdevtools.css $
+    ../../third_party/WebKit/Source/devtools/front_end/cm/codemirror.css $
+    ../../third_party/WebKit/Source/devtools/front_end/cssNamedFlows.css $
+    ../../third_party/WebKit/Source/devtools/front_end/dataGrid.css $
+    ../../third_party/WebKit/Source/devtools/front_end/elementsPanel.css $
+    ../../third_party/WebKit/Source/devtools/front_end/filter.css $
+    ../../third_party/WebKit/Source/devtools/front_end/filteredItemSelectionDialog.css $
+    ../../third_party/WebKit/Source/devtools/front_end/flameChart.css $
+    ../../third_party/WebKit/Source/devtools/front_end/heapProfiler.css $
+    ../../third_party/WebKit/Source/devtools/front_end/helpScreen.css $
+    ../../third_party/WebKit/Source/devtools/front_end/indexedDBViews.css $
+    ../../third_party/WebKit/Source/devtools/front_end/inspectorCommon.css $
+    ../../third_party/WebKit/Source/devtools/front_end/navigatorView.css $
+    ../../third_party/WebKit/Source/devtools/front_end/networkLogView.css $
+    ../../third_party/WebKit/Source/devtools/front_end/networkPanel.css $
+    ../../third_party/WebKit/Source/devtools/front_end/overrides.css $
+    ../../third_party/WebKit/Source/devtools/front_end/panelEnablerView.css $
+    ../../third_party/WebKit/Source/devtools/front_end/profilesPanel.css $
+    ../../third_party/WebKit/Source/devtools/front_end/resourceView.css $
+    ../../third_party/WebKit/Source/devtools/front_end/resourcesPanel.css $
+    ../../third_party/WebKit/Source/devtools/front_end/revisionHistory.css $
+    ../../third_party/WebKit/Source/devtools/front_end/screencastView.css $
+    ../../third_party/WebKit/Source/devtools/front_end/sidebarPane.css $
+    ../../third_party/WebKit/Source/devtools/front_end/sourcesPanel.css $
+    ../../third_party/WebKit/Source/devtools/front_end/sourcesView.css $
+    ../../third_party/WebKit/Source/devtools/front_end/spectrum.css $
+    ../../third_party/WebKit/Source/devtools/front_end/splitView.css $
+    ../../third_party/WebKit/Source/devtools/front_end/textPrompt.css $
+    ../../third_party/WebKit/Source/devtools/front_end/timelinePanel.css $
+    ../../third_party/WebKit/Source/devtools/front_end/canvasProfiler.css $
+    ../../third_party/WebKit/Source/devtools/front_end/layersPanel.css $
+    ../../third_party/WebKit/Source/devtools/front_end/Images/addIcon.png $
+    ../../third_party/WebKit/Source/devtools/front_end/Images/applicationCache.png $
+    ../../third_party/WebKit/Source/devtools/front_end/Images/back.png $
+    ../../third_party/WebKit/Source/devtools/front_end/Images/breakpointBorder.png $
+    ../../third_party/WebKit/Source/devtools/front_end/Images/breakpoint2.png $
+    ../../third_party/WebKit/Source/devtools/front_end/Images/breakpoint2_2x.png $
+    ../../third_party/WebKit/Source/devtools/front_end/Images/breakpointConditional2.png $
+    ../../third_party/WebKit/Source/devtools/front_end/Images/breakpointConditional2_2x.png $
+    ../../third_party/WebKit/Source/devtools/front_end/Images/breakpointConditionalBorder.png $
+    ../../third_party/WebKit/Source/devtools/front_end/Images/breakpointConditionalCounterBorder.png $
+    ../../third_party/WebKit/Source/devtools/front_end/Images/breakpointCounterBorder.png $
+    ../../third_party/WebKit/Source/devtools/front_end/Images/checker.png $
+    ../../third_party/WebKit/Source/devtools/front_end/Images/cookie.png $
+    ../../third_party/WebKit/Source/devtools/front_end/Images/namedFlowOverflow.png $
+    ../../third_party/WebKit/Source/devtools/front_end/Images/database.png $
+    ../../third_party/WebKit/Source/devtools/front_end/Images/databaseTable.png $
+    ../../third_party/WebKit/Source/devtools/front_end/Images/deleteIcon.png $
+    ../../third_party/WebKit/Source/devtools/front_end/Images/domain.png $
+    ../../third_party/WebKit/Source/devtools/front_end/Images/forward.png $
+    ../../third_party/WebKit/Source/devtools/front_end/Images/fileSystem.png $
+    ../../third_party/WebKit/Source/devtools/front_end/Images/frame.png $
+    ../../third_party/WebKit/Source/devtools/front_end/Images/glossyHeader.png $
+    ../../third_party/WebKit/Source/devtools/front_end/Images/glossyHeaderPressed.png $
+    ../../third_party/WebKit/Source/devtools/front_end/Images/glossyHeaderSelected.png $
+    ../../third_party/WebKit/Source/devtools/front_end/Images/glossyHeaderSelectedPressed.png $
+    ../../third_party/WebKit/Source/devtools/front_end/Images/graphLabelCalloutLeft.png $
+    ../../third_party/WebKit/Source/devtools/front_end/Images/graphLabelCalloutRight.png $
+    ../../third_party/WebKit/Source/devtools/front_end/Images/indexedDB.png $
+    ../../third_party/WebKit/Source/devtools/front_end/Images/indexedDBObjectStore.png $
+    ../../third_party/WebKit/Source/devtools/front_end/Images/indexedDBIndex.png $
+    ../../third_party/WebKit/Source/devtools/front_end/Images/localStorage.png $
+    ../../third_party/WebKit/Source/devtools/front_end/Images/navigationControls.png $
+    ../../third_party/WebKit/Source/devtools/front_end/Images/navigationControls_2x.png $
+    ../../third_party/WebKit/Source/devtools/front_end/Images/paneAddButtons.png $
+    ../../third_party/WebKit/Source/devtools/front_end/Images/paneElementStateButtons.png $
+    ../../third_party/WebKit/Source/devtools/front_end/Images/paneFilterButtons.png $
+    ../../third_party/WebKit/Source/devtools/front_end/Images/paneRefreshButtons.png $
+    ../../third_party/WebKit/Source/devtools/front_end/Images/paneSettingsButtons.png $
+    ../../third_party/WebKit/Source/devtools/front_end/Images/popoverArrows.png $
+    ../../third_party/WebKit/Source/devtools/front_end/Images/popoverBackground.png $
+    ../../third_party/WebKit/Source/devtools/front_end/Images/profileGroupIcon.png $
+    ../../third_party/WebKit/Source/devtools/front_end/Images/profileIcon.png $
+    ../../third_party/WebKit/Source/devtools/front_end/Images/profileSmallIcon.png $
+    ../../third_party/WebKit/Source/devtools/front_end/Images/programCounterBorder.png $
+    ../../third_party/WebKit/Source/devtools/front_end/Images/radioDot.png $
+    ../../third_party/WebKit/Source/devtools/front_end/Images/regionEmpty.png $
+    ../../third_party/WebKit/Source/devtools/front_end/Images/regionFit.png $
+    ../../third_party/WebKit/Source/devtools/front_end/Images/regionOverset.png $
+    ../../third_party/WebKit/Source/devtools/front_end/Images/resourceCSSIcon.png $
+    ../../third_party/WebKit/Source/devtools/front_end/Images/resourceDocumentIcon.png $
+    ../../third_party/WebKit/Source/devtools/front_end/Images/resourceDocumentIconSmall.png $
+    ../../third_party/WebKit/Source/devtools/front_end/Images/resourceJSIcon.png $
+    ../../third_party/WebKit/Source/devtools/front_end/Images/resourcePlainIcon.png $
+    ../../third_party/WebKit/Source/devtools/front_end/Images/resourcePlainIconSmall.png $
+    ../../third_party/WebKit/Source/devtools/front_end/Images/resourcesTimeGraphIcon.png $
+    ../../third_party/WebKit/Source/devtools/front_end/Images/searchSmallBlue.png $
+    ../../third_party/WebKit/Source/devtools/front_end/Images/searchSmallBrightBlue.png $
+    ../../third_party/WebKit/Source/devtools/front_end/Images/searchSmallGray.png $
+    ../../third_party/WebKit/Source/devtools/front_end/Images/searchSmallWhite.png $
+    ../../third_party/WebKit/Source/devtools/front_end/Images/searchNext.png $
+    ../../third_party/WebKit/Source/devtools/front_end/Images/searchPrev.png $
+    ../../third_party/WebKit/Source/devtools/front_end/Images/sessionStorage.png $
+    ../../third_party/WebKit/Source/devtools/front_end/Images/settingsListRemove.png $
+    ../../third_party/WebKit/Source/devtools/front_end/Images/settingsListRemove_2x.png $
+    ../../third_party/WebKit/Source/devtools/front_end/Images/spinner.gif $
+    ../../third_party/WebKit/Source/devtools/front_end/Images/spinnerActive.gif $
+    ../../third_party/WebKit/Source/devtools/front_end/Images/spinnerActiveSelected.gif $
+    ../../third_party/WebKit/Source/devtools/front_end/Images/spinnerInactive.gif $
+    ../../third_party/WebKit/Source/devtools/front_end/Images/spinnerInactiveSelected.gif $
+    ../../third_party/WebKit/Source/devtools/front_end/Images/statusbarButtonGlyphs.png $
+    ../../third_party/WebKit/Source/devtools/front_end/Images/statusbarButtonGlyphs2x.png $
+    ../../third_party/WebKit/Source/devtools/front_end/Images/statusbarResizerHorizontal.png $
+    ../../third_party/WebKit/Source/devtools/front_end/Images/statusbarResizerVertical.png $
+    ../../third_party/WebKit/Source/devtools/front_end/Images/thumbActiveHoriz.png $
+    ../../third_party/WebKit/Source/devtools/front_end/Images/thumbActiveVert.png $
+    ../../third_party/WebKit/Source/devtools/front_end/Images/thumbHoriz.png $
+    ../../third_party/WebKit/Source/devtools/front_end/Images/thumbVert.png $
+    ../../third_party/WebKit/Source/devtools/front_end/Images/thumbHoverHoriz.png $
+    ../../third_party/WebKit/Source/devtools/front_end/Images/thumbHoverVert.png $
+    ../../third_party/WebKit/Source/devtools/front_end/Images/timelineHollowPillBlue.png $
+    ../../third_party/WebKit/Source/devtools/front_end/Images/timelineHollowPillGray.png $
+    ../../third_party/WebKit/Source/devtools/front_end/Images/timelineHollowPillGreen.png $
+    ../../third_party/WebKit/Source/devtools/front_end/Images/timelineHollowPillOrange.png $
+    ../../third_party/WebKit/Source/devtools/front_end/Images/timelineHollowPillPurple.png $
+    ../../third_party/WebKit/Source/devtools/front_end/Images/timelineHollowPillRed.png $
+    ../../third_party/WebKit/Source/devtools/front_end/Images/timelineHollowPillYellow.png $
+    ../../third_party/WebKit/Source/devtools/front_end/Images/timelinePillBlue.png $
+    ../../third_party/WebKit/Source/devtools/front_end/Images/timelinePillGray.png $
+    ../../third_party/WebKit/Source/devtools/front_end/Images/timelinePillGreen.png $
+    ../../third_party/WebKit/Source/devtools/front_end/Images/timelinePillOrange.png $
+    ../../third_party/WebKit/Source/devtools/front_end/Images/timelinePillPurple.png $
+    ../../third_party/WebKit/Source/devtools/front_end/Images/timelinePillRed.png $
+    ../../third_party/WebKit/Source/devtools/front_end/Images/timelinePillYellow.png $
+    ../../third_party/WebKit/Source/devtools/front_end/Images/toolbarItemSelected.png $
+    ../../third_party/WebKit/Source/devtools/front_end/Images/trackHoriz.png $
+    ../../third_party/WebKit/Source/devtools/front_end/Images/trackVert.png $
+    || $
+    obj/third_party/WebKit/Source/devtools/generate_devtools_grd.actions_depends.stamp
+

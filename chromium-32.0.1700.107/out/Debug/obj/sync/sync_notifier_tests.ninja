@@ -1,0 +1,15 @@
+build obj/sync/sync_notifier_tests.actions_depends.stamp: stamp $
+    obj/base/libbase.a obj/jingle/libnotifier_test_util.a $
+    obj/net/libnet_test_support.a obj/testing/libgmock.a $
+    obj/testing/libgtest.a $
+    obj/third_party/cacheinvalidation/libcacheinvalidation.a $
+    obj/third_party/libjingle/libjingle.a $
+    obj/sync/sync.actions_depends.stamp $
+    obj/sync/libtest_support_sync_notifier.a
+
+build obj/sync/sync_notifier_tests.compile_depends.stamp: stamp $
+    obj/third_party/protobuf/py_proto.actions_rules_copies.stamp $
+    obj/third_party/cacheinvalidation/cacheinvalidation_proto_cpp.actions_rules_copies.stamp $
+    obj/sync/sync.compile_depends.stamp $
+    obj/sync/test_support_sync_notifier.compile_depends.stamp
+

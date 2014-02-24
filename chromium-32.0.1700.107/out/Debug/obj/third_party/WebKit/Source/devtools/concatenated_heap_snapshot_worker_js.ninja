@@ -1,0 +1,21 @@
+rule $
+    concatenated_heap_snapshot_worker_js_target_concatenate_heap_snapshot_worker_js_23af42a3f76a6bd63a5c0144c5abfa70
+  command = cd ../../third_party/WebKit/Source/devtools; python $
+      scripts/inline_js_imports.py front_end/HeapSnapshotWorker.js $
+      front_end $
+      ../../../../out/Debug/resources/inspector/HeapSnapshotWorker.js
+  description = ACTION concatenated_heap_snapshot_worker_js: $
+      concatenate_heap_snapshot_worker_js_23af42a3f76a6bd63a5c0144c5abfa70
+  restat = 1
+
+build resources/inspector/HeapSnapshotWorker.js: $
+    concatenated_heap_snapshot_worker_js_target_concatenate_heap_snapshot_worker_js_23af42a3f76a6bd63a5c0144c5abfa70 $
+    ../../third_party/WebKit/Source/devtools/scripts/inline_js_imports.py $
+    ../../third_party/WebKit/Source/devtools/front_end/HeapSnapshotWorker.js $
+    ../../third_party/WebKit/Source/devtools/front_end/AllocationProfile.js $
+    ../../third_party/WebKit/Source/devtools/front_end/HeapSnapshot.js $
+    ../../third_party/WebKit/Source/devtools/front_end/HeapSnapshotLoader.js $
+    ../../third_party/WebKit/Source/devtools/front_end/HeapSnapshotWorkerDispatcher.js $
+    ../../third_party/WebKit/Source/devtools/front_end/JSHeapSnapshot.js $
+    ../../third_party/WebKit/Source/devtools/front_end/utilities.js
+

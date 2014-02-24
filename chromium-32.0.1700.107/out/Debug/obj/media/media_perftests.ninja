@@ -1,0 +1,168 @@
+build obj/media/media_perftests.actions_depends.stamp: stamp $
+    obj/media/libmedia.a obj/media/libmedia_test_support.a $
+    obj/media/libshared_memory_support.a obj/base/libtest_support_base.a $
+    obj/testing/libgmock.a obj/testing/libgtest.a $
+    obj/testing/perf/libperf_test.a obj/base/libbase.a $
+    obj/base/libbase_static.a $
+    obj/base/allocator/liballocator_extension_thunks.a $
+    obj/third_party/modp_b64/libmodp_b64.a $
+    obj/base/third_party/dynamic_annotations/libdynamic_annotations.a $
+    obj/base/libsymbolize.a obj/base/libxdg_mime.a $
+    obj/third_party/libevent/libevent.a obj/crypto/libcrcrypto.a $
+    obj/net/third_party/nss/libcrssl.a obj/net/third_party/nss/libcrssl.a $
+    obj/net/libnet.a obj/base/libbase_i18n.a $
+    obj/third_party/icu/libicui18n.a obj/third_party/icu/libicuuc.a $
+    obj/third_party/icu/libicudata.a obj/sdch/libsdch.a $
+    obj/third_party/zlib/libchrome_zlib.a obj/url/liburl_lib.a $
+    obj/net/net_resources.actions_rules_copies.stamp $
+    obj/build/linux/libgio.a obj/gpu/libcommand_buffer_common.a $
+    obj/gpu/command_buffer/libgles2_utils.a $
+    obj/skia/skia.actions_depends.stamp obj/skia/libskia_library.a $
+    obj/skia/libskia_opts.a obj/skia/libskia_opts_ssse3.a $
+    obj/third_party/sfntly/libsfntly.a obj/skia/libskia_chrome.a $
+    obj/skia/libskia_chrome_opts.a obj/third_party/opus/libopus.a $
+    obj/ui/events/libevents.a obj/ui/gfx/libgfx.a $
+    obj/third_party/libpng/libpng.a $
+    obj/third_party/libjpeg_turbo/libjpeg_turbo.a $
+    obj/media/libshared_memory_support_sse.a $
+    obj/third_party/ffmpeg/libffmpeg.a obj/third_party/libvpx/libvpx.a $
+    obj/third_party/libvpx/gen_asm_offsets_vp8.actions_rules_copies.stamp $
+    obj/third_party/libvpx/libvpx_asm_offsets_vp8.a $
+    obj/third_party/libvpx/libvpx_intrinsics_mmx.a $
+    obj/third_party/libvpx/libvpx_intrinsics_sse2.a $
+    obj/third_party/libvpx/libvpx_intrinsics_ssse3.a $
+    obj/media/libmedia_asm.a obj/media/libmedia_mmx.a $
+    obj/media/libmedia_sse.a obj/media/libmedia_sse2.a $
+    obj/third_party/libxml/libxml.a
+
+build obj/media/media_perftests.compile_depends.stamp: stamp $
+    obj/third_party/ffmpeg/ffmpeg.actions_rules_copies.stamp $
+    obj/net/net.compile_depends.stamp $
+    obj/net/net_resources.actions_rules_copies.stamp $
+    obj/build/linux/gio.actions_rules_copies.stamp $
+    obj/third_party/libjpeg_turbo/libjpeg.actions_rules_copies.stamp $
+    obj/third_party/ffmpeg/ffmpeg.actions_rules_copies.stamp $
+    obj/third_party/libvpx/libvpx.actions_rules_copies.stamp $
+    obj/third_party/libvpx/gen_asm_offsets_vp8.actions_rules_copies.stamp $
+    obj/media/media_asm.actions_rules_copies.stamp
+
+defines = -DANGLE_DX11 -D_FILE_OFFSET_BITS=64 -DNO_TCMALLOC -DDISABLE_NACL $
+    -DCHROMIUM_BUILD -DUSE_DEFAULT_RENDER_THEME=1 -DUSE_LIBJPEG_TURBO=1 $
+    -DUSE_NSS=1 -DUSE_X11=1 -DENABLE_ONE_CLICK_SIGNIN $
+    -DGTK_DISABLE_SINGLE_INCLUDES=1 -DUSE_XI2_MT=2 -DENABLE_REMOTING=1 $
+    -DENABLE_WEBRTC=1 -DUSE_PROPRIETARY_CODECS $
+    -DENABLE_CONFIGURATION_POLICY -DENABLE_INPUT_SPEECH $
+    -DENABLE_NOTIFICATIONS -DENABLE_EGLIMAGE=1 -DENABLE_TASK_MANAGER=1 $
+    -DENABLE_EXTENSIONS=1 -DENABLE_PLUGIN_INSTALLATION=1 -DENABLE_PLUGINS=1 $
+    -DENABLE_SESSION_SERVICE=1 -DENABLE_THEMES=1 -DENABLE_BACKGROUND=1 $
+    -DENABLE_AUTOMATION=1 -DENABLE_GOOGLE_NOW=1 -DCLD_VERSION=2 $
+    -DENABLE_FULL_PRINTING=1 -DENABLE_PRINTING=1 -DENABLE_SPELLCHECK=1 $
+    -DENABLE_CAPTIVE_PORTAL_DETECTION=1 -DENABLE_MANAGED_USERS=1 $
+    -DUNIT_TEST -DGTEST_HAS_RTTI=0 -D__STDC_CONSTANT_MACROS $
+    -D__STDC_FORMAT_MACROS -DDYNAMIC_ANNOTATIONS_ENABLED=1 $
+    -DWTF_USE_DYNAMIC_ANNOTATIONS=1 -D_DEBUG
+includes = -I../../third_party/khronos -I../../gpu -I../.. $
+    -I../../testing/gmock/include -I../../testing/gtest/include
+cflags = -fstack-protector --param=ssp-buffer-size=4  -pthread $
+    -fno-exceptions -fno-strict-aliasing -Wall -Wno-unused-parameter $
+    -Wno-missing-field-initializers -fvisibility=hidden -pipe -fPIC $
+    -Wheader-hygiene -Wno-char-subscripts -Wno-unused-function $
+    -Wno-covered-switch-default -Wstring-conversion -Wno-c++11-narrowing $
+    -Wno-reserved-user-defined-literal -Wno-deprecated-register $
+    -Wno-deprecated-declarations -fcolor-diagnostics $
+    -I/usr/local/include/gtk-2.0 -I/usr/local/include/gio-unix-2.0/ $
+    -I/usr/local/include/atk-1.0 -I/usr/local/include/cairo $
+    -I/usr/local/include/pixman-1 -D_THREAD_SAFE $
+    -I/usr/local/include/gdk-pixbuf-2.0 -I/usr/local/include/libpng15 $
+    -I/usr/local/include/pango-1.0 -I/usr/local/include/freetype2 $
+    -I/usr/local/include/harfbuzz -pthread -I/usr/local/include/glib-2.0 $
+    -I/usr/local/include -pthread -I/usr/local/include/glib-2.0 $
+    -I/usr/local/include -D_THREAD_SAFE -I/usr/local/include -O0 -g
+cflags_c = -O2 -pipe -fno-stack-protector -Wno-unknown-warning-option $
+    -fno-strict-aliasing
+cflags_cc = -O2 -pipe -fno-stack-protector -Wno-unknown-warning-option $
+    -fno-strict-aliasing -fno-rtti -fno-threadsafe-statics $
+    -fvisibility-inlines-hidden -Wsign-compare -std=gnu++11
+
+build obj/media/base/media_perftests.audio_bus_perftest.o: cxx $
+    ../../media/base/audio_bus_perftest.cc || $
+    obj/media/media_perftests.compile_depends.stamp
+build obj/media/base/media_perftests.audio_converter_perftest.o: cxx $
+    ../../media/base/audio_converter_perftest.cc || $
+    obj/media/media_perftests.compile_depends.stamp
+build obj/media/base/media_perftests.demuxer_perftest.o: cxx $
+    ../../media/base/demuxer_perftest.cc || $
+    obj/media/media_perftests.compile_depends.stamp
+build obj/media/base/media_perftests.run_all_unittests.o: cxx $
+    ../../media/base/run_all_unittests.cc || $
+    obj/media/media_perftests.compile_depends.stamp
+build obj/media/base/media_perftests.sinc_resampler_perftest.o: cxx $
+    ../../media/base/sinc_resampler_perftest.cc || $
+    obj/media/media_perftests.compile_depends.stamp
+build obj/media/base/media_perftests.test_data_util.o: cxx $
+    ../../media/base/test_data_util.cc || $
+    obj/media/media_perftests.compile_depends.stamp
+build obj/media/base/media_perftests.vector_math_perftest.o: cxx $
+    ../../media/base/vector_math_perftest.cc || $
+    obj/media/media_perftests.compile_depends.stamp
+build obj/media/filters/media_perftests.pipeline_integration_perftest.o: $
+    cxx ../../media/filters/pipeline_integration_perftest.cc || $
+    obj/media/media_perftests.compile_depends.stamp
+build obj/media/filters/media_perftests.pipeline_integration_test_base.o: $
+    cxx ../../media/filters/pipeline_integration_test_base.cc || $
+    obj/media/media_perftests.compile_depends.stamp
+
+ldflags = -Wl,-z,now -Wl,-z,relro -pthread -Wl,-z,noexecstack -fPIC $
+    -Wl,--no-keep-memory -L/usr/local/lib -L/usr/local/lib/nss
+libs =  -lasound -lX11 -lXdamage -lXext -lXfixes -lXtst -L/usr/local/lib $
+    -lexecinfo -lgmodule-2.0 -lgobject-2.0 -lgthread-2.0 -lglib-2.0 -lintl $
+    -lgtk-x11-2.0 -lgdk-x11-2.0 -lpangocairo-1.0 -lXrender -lXinerama -lXi $
+    -lXrandr -lXcursor -lXcomposite -latk-1.0 -lcairo -lgdk_pixbuf-2.0 $
+    -lgio-2.0 -lpangoft2-1.0 -lpango-1.0 -lfontconfig -lfreetype -lnss3 $
+    -lsmime3 -lnssutil3 -lplds4 -lplc4 -lnspr4 -lgconf-2 -lxml2
+build media_perftests: link $
+    obj/media/base/media_perftests.audio_bus_perftest.o $
+    obj/media/base/media_perftests.audio_converter_perftest.o $
+    obj/media/base/media_perftests.demuxer_perftest.o $
+    obj/media/base/media_perftests.run_all_unittests.o $
+    obj/media/base/media_perftests.sinc_resampler_perftest.o $
+    obj/media/base/media_perftests.test_data_util.o $
+    obj/media/base/media_perftests.vector_math_perftest.o $
+    obj/media/filters/media_perftests.pipeline_integration_perftest.o $
+    obj/media/filters/media_perftests.pipeline_integration_test_base.o $
+    obj/media/libmedia.a obj/media/libmedia_test_support.a $
+    obj/media/libshared_memory_support.a obj/base/libtest_support_base.a $
+    obj/testing/libgmock.a obj/testing/libgtest.a $
+    obj/testing/perf/libperf_test.a obj/base/libbase.a $
+    obj/base/libbase_static.a $
+    obj/base/allocator/liballocator_extension_thunks.a $
+    obj/third_party/modp_b64/libmodp_b64.a $
+    obj/base/third_party/dynamic_annotations/libdynamic_annotations.a $
+    obj/base/libsymbolize.a obj/base/libxdg_mime.a $
+    obj/third_party/libevent/libevent.a obj/crypto/libcrcrypto.a $
+    obj/net/third_party/nss/libcrssl.a obj/net/libnet.a $
+    obj/base/libbase_i18n.a obj/third_party/icu/libicui18n.a $
+    obj/third_party/icu/libicuuc.a obj/third_party/icu/libicudata.a $
+    obj/sdch/libsdch.a obj/third_party/zlib/libchrome_zlib.a $
+    obj/url/liburl_lib.a obj/build/linux/libgio.a $
+    obj/gpu/libcommand_buffer_common.a $
+    obj/gpu/command_buffer/libgles2_utils.a obj/skia/libskia_library.a $
+    obj/skia/libskia_opts.a obj/skia/libskia_opts_ssse3.a $
+    obj/third_party/sfntly/libsfntly.a obj/skia/libskia_chrome.a $
+    obj/skia/libskia_chrome_opts.a obj/third_party/opus/libopus.a $
+    obj/ui/events/libevents.a obj/ui/gfx/libgfx.a $
+    obj/third_party/libpng/libpng.a $
+    obj/third_party/libjpeg_turbo/libjpeg_turbo.a $
+    obj/media/libshared_memory_support_sse.a $
+    obj/third_party/ffmpeg/libffmpeg.a obj/third_party/libvpx/libvpx.a $
+    obj/third_party/libvpx/libvpx_asm_offsets_vp8.a $
+    obj/third_party/libvpx/libvpx_intrinsics_mmx.a $
+    obj/third_party/libvpx/libvpx_intrinsics_sse2.a $
+    obj/third_party/libvpx/libvpx_intrinsics_ssse3.a $
+    obj/media/libmedia_asm.a obj/media/libmedia_mmx.a $
+    obj/media/libmedia_sse.a obj/media/libmedia_sse2.a $
+    obj/third_party/libxml/libxml.a | obj/skia/skia.actions_depends.stamp $
+    obj/net/third_party/nss/libcrssl.a $
+    obj/third_party/libvpx/gen_asm_offsets_vp8.actions_rules_copies.stamp $
+    obj/net/net_resources.actions_rules_copies.stamp
+  ld = $ldxx

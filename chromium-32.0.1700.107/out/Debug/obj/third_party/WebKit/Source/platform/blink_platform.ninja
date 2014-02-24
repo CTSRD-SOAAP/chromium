@@ -1,0 +1,1189 @@
+build $
+    obj/third_party/WebKit/Source/platform/blink_platform.actions_depends.stamp: $
+    stamp obj/skia/skia.actions_depends.stamp $
+    obj/third_party/WebKit/Source/platform/make_platform_derived_sources.actions_rules_copies.stamp $
+    obj/third_party/ffmpeg/libffmpeg.a
+
+build $
+    obj/third_party/WebKit/Source/platform/blink_platform.compile_depends.stamp: $
+    stamp $
+    obj/third_party/WebKit/Source/platform/make_platform_derived_sources.actions_rules_copies.stamp $
+    obj/third_party/ffmpeg/ffmpeg.actions_rules_copies.stamp
+
+defines = -DANGLE_DX11 -D_FILE_OFFSET_BITS=64 -DNO_TCMALLOC -DDISABLE_NACL $
+    -DCHROMIUM_BUILD -DUSE_DEFAULT_RENDER_THEME=1 -DUSE_LIBJPEG_TURBO=1 $
+    -DUSE_NSS=1 -DUSE_X11=1 -DENABLE_ONE_CLICK_SIGNIN $
+    -DGTK_DISABLE_SINGLE_INCLUDES=1 -DUSE_XI2_MT=2 -DENABLE_REMOTING=1 $
+    -DENABLE_WEBRTC=1 -DUSE_PROPRIETARY_CODECS $
+    -DENABLE_CONFIGURATION_POLICY -DENABLE_INPUT_SPEECH $
+    -DENABLE_NOTIFICATIONS -DENABLE_EGLIMAGE=1 -DENABLE_TASK_MANAGER=1 $
+    -DENABLE_EXTENSIONS=1 -DENABLE_PLUGIN_INSTALLATION=1 -DENABLE_PLUGINS=1 $
+    -DENABLE_SESSION_SERVICE=1 -DENABLE_THEMES=1 -DENABLE_BACKGROUND=1 $
+    -DENABLE_AUTOMATION=1 -DENABLE_GOOGLE_NOW=1 -DCLD_VERSION=2 $
+    -DENABLE_FULL_PRINTING=1 -DENABLE_PRINTING=1 -DENABLE_SPELLCHECK=1 $
+    -DENABLE_CAPTIVE_PORTAL_DETECTION=1 -DENABLE_MANAGED_USERS=1 $
+    -DBLINK_PLATFORM_IMPLEMENTATION=1 -DINSIDE_BLINK $
+    -DENABLE_CUSTOM_SCHEME_HANDLER=0 -DENABLE_ENCRYPTED_MEDIA_V2=1 $
+    -DENABLE_SVG_FONTS=1 -DENABLE_GDI_FONTS_ON_WINDOWS=0 $
+    -DENABLE_HARFBUZZ_ON_WINDOWS=0 -DENABLE_TOUCH_ICON_LOADING=0 $
+    -DWTF_USE_CONCATENATED_IMPULSE_RESPONSES=1 -DENABLE_CALENDAR_PICKER=1 $
+    -DENABLE_INPUT_SPEECH=1 -DENABLE_INPUT_MULTIPLE_FIELDS_UI=1 $
+    -DENABLE_LEGACY_NOTIFICATIONS=1 -DENABLE_MEDIA_CAPTURE=0 $
+    -DENABLE_NAVIGATOR_CONTENT_UTILS=1 -DENABLE_ORIENTATION_EVENTS=0 $
+    -DENABLE_WEB_AUDIO=1 -DWTF_USE_WEBAUDIO_FFMPEG=1 $
+    -DENABLE_OPENTYPE_VERTICAL=1 -DWTF_USE_DEFAULT_RENDER_THEME=1 $
+    -DSK_ENABLE_INST_COUNT=0 -DSK_SUPPORT_GPU=1 $
+    '-DGR_GL_CUSTOM_SETUP_HEADER="GrGLConfig_chrome.h"' $
+    -DSK_ENABLE_LEGACY_API_ALIASING=1 -DSK_ATTR_DEPRECATED=SK_NOTHING_ARG1 $
+    -DSK_SUPPORT_LEGACY_COLORTYPE=1 -DSK_USE_POSIX_THREADS $
+    -DSK_DEFERRED_CANVAS_USES_FACTORIES=1 -DU_USING_ICU_NAMESPACE=0 $
+    -DU_STATIC_IMPLEMENTATION -D__STDC_CONSTANT_MACROS $
+    -D__STDC_FORMAT_MACROS -DDYNAMIC_ANNOTATIONS_ENABLED=1 $
+    -DWTF_USE_DYNAMIC_ANNOTATIONS=1 -D_DEBUG
+includes = -I../../third_party/angle_dx11/include -Igen/blink $
+    -I../../third_party/ffmpeg -I../../third_party/WebKit/Source $
+    -I../../third_party/WebKit -I../../third_party/skia/src/core $
+    -I../../third_party/skia/include/core $
+    -I../../third_party/skia/include/effects $
+    -I../../third_party/skia/include/pdf $
+    -I../../third_party/skia/include/gpu $
+    -I../../third_party/skia/include/lazy $
+    -I../../third_party/skia/include/pathops $
+    -I../../third_party/skia/include/pipe $
+    -I../../third_party/skia/include/ports $
+    -I../../third_party/skia/include/utils -I../.. -I../../skia/config $
+    -I../../skia/ext -I../../third_party/icu/source/i18n $
+    -I../../third_party/icu/source/common -I../../v8/include -Igen/ffmpeg $
+    -I../../third_party/ffmpeg/chromium/config/Chrome/linux/x64 $
+    -I../../third_party/ffmpeg
+cflags = -fstack-protector --param=ssp-buffer-size=4  -pthread $
+    -fno-exceptions -fno-strict-aliasing -Wall -Wno-unused-parameter $
+    -Wno-missing-field-initializers -fvisibility=hidden -pipe -fPIC $
+    -Wheader-hygiene -Wno-char-subscripts -Wno-unused-function $
+    -Wno-covered-switch-default -Wstring-conversion -Wno-c++11-narrowing $
+    -Wno-reserved-user-defined-literal -Wno-deprecated-register $
+    -Wno-deprecated-declarations -fcolor-diagnostics $
+    -I/usr/local/include/gtk-2.0 -I/usr/local/include/gio-unix-2.0/ $
+    -I/usr/local/include/atk-1.0 -I/usr/local/include/cairo $
+    -I/usr/local/include/pixman-1 -D_THREAD_SAFE $
+    -I/usr/local/include/gdk-pixbuf-2.0 -I/usr/local/include/libpng15 $
+    -I/usr/local/include/pango-1.0 -I/usr/local/include/freetype2 $
+    -I/usr/local/include/harfbuzz -pthread -I/usr/local/include/glib-2.0 $
+    -I/usr/local/include -Wglobal-constructors -O0 -g
+cflags_c = -O2 -pipe -fno-stack-protector -Wno-unknown-warning-option $
+    -fno-strict-aliasing
+cflags_cc = -O2 -pipe -fno-stack-protector -Wno-unknown-warning-option $
+    -fno-strict-aliasing -fno-rtti -fno-threadsafe-statics $
+    -fvisibility-inlines-hidden -Wsign-compare -std=gnu++11
+
+build $
+    obj/third_party/WebKit/Source/platform/blink_platform.CalculationValue.o: $
+    cxx ../../third_party/WebKit/Source/platform/CalculationValue.cpp || $
+    obj/third_party/WebKit/Source/platform/blink_platform.compile_depends.stamp
+build obj/third_party/WebKit/Source/platform/blink_platform.Clock.o: cxx $
+    ../../third_party/WebKit/Source/platform/Clock.cpp || $
+    obj/third_party/WebKit/Source/platform/blink_platform.compile_depends.stamp
+build obj/third_party/WebKit/Source/platform/blink_platform.ColorChooser.o: $
+    cxx ../../third_party/WebKit/Source/platform/ColorChooser.cpp || $
+    obj/third_party/WebKit/Source/platform/blink_platform.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/platform/blink_platform.ColorChooserClient.o: $
+    cxx ../../third_party/WebKit/Source/platform/ColorChooserClient.cpp || $
+    obj/third_party/WebKit/Source/platform/blink_platform.compile_depends.stamp
+build obj/third_party/WebKit/Source/platform/blink_platform.ContentType.o: $
+    cxx ../../third_party/WebKit/Source/platform/ContentType.cpp || $
+    obj/third_party/WebKit/Source/platform/blink_platform.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/platform/blink_platform.CrossThreadCopier.o: $
+    cxx ../../third_party/WebKit/Source/platform/CrossThreadCopier.cpp || $
+    obj/third_party/WebKit/Source/platform/blink_platform.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/platform/blink_platform.DateComponents.o: $
+    cxx ../../third_party/WebKit/Source/platform/DateComponents.cpp || $
+    obj/third_party/WebKit/Source/platform/blink_platform.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/platform/blink_platform.DateTimeChooser.o: $
+    cxx ../../third_party/WebKit/Source/platform/DateTimeChooser.cpp || $
+    obj/third_party/WebKit/Source/platform/blink_platform.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/platform/blink_platform.DateTimeChooserClient.o: $
+    cxx ../../third_party/WebKit/Source/platform/DateTimeChooserClient.cpp $
+    || $
+    obj/third_party/WebKit/Source/platform/blink_platform.compile_depends.stamp
+build obj/third_party/WebKit/Source/platform/blink_platform.Decimal.o: cxx $
+    ../../third_party/WebKit/Source/platform/Decimal.cpp || $
+    obj/third_party/WebKit/Source/platform/blink_platform.compile_depends.stamp
+build obj/third_party/WebKit/Source/platform/blink_platform.EventTracer.o: $
+    cxx ../../third_party/WebKit/Source/platform/EventTracer.cpp || $
+    obj/third_party/WebKit/Source/platform/blink_platform.compile_depends.stamp
+build obj/third_party/WebKit/Source/platform/blink_platform.FileChooser.o: $
+    cxx ../../third_party/WebKit/Source/platform/FileChooser.cpp || $
+    obj/third_party/WebKit/Source/platform/blink_platform.compile_depends.stamp
+build obj/third_party/WebKit/Source/platform/blink_platform.FileMetadata.o: $
+    cxx ../../third_party/WebKit/Source/platform/FileMetadata.cpp || $
+    obj/third_party/WebKit/Source/platform/blink_platform.compile_depends.stamp
+build obj/third_party/WebKit/Source/platform/blink_platform.JSONValues.o: $
+    cxx ../../third_party/WebKit/Source/platform/JSONValues.cpp || $
+    obj/third_party/WebKit/Source/platform/blink_platform.compile_depends.stamp
+build obj/third_party/WebKit/Source/platform/blink_platform.Language.o: cxx $
+    ../../third_party/WebKit/Source/platform/Language.cpp || $
+    obj/third_party/WebKit/Source/platform/blink_platform.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/platform/blink_platform.LayoutTestSupport.o: $
+    cxx ../../third_party/WebKit/Source/platform/LayoutTestSupport.cpp || $
+    obj/third_party/WebKit/Source/platform/blink_platform.compile_depends.stamp
+build obj/third_party/WebKit/Source/platform/blink_platform.Length.o: cxx $
+    ../../third_party/WebKit/Source/platform/Length.cpp || $
+    obj/third_party/WebKit/Source/platform/blink_platform.compile_depends.stamp
+build obj/third_party/WebKit/Source/platform/blink_platform.LengthBox.o: $
+    cxx ../../third_party/WebKit/Source/platform/LengthBox.cpp || $
+    obj/third_party/WebKit/Source/platform/blink_platform.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/platform/blink_platform.LengthFunctions.o: $
+    cxx ../../third_party/WebKit/Source/platform/LengthFunctions.cpp || $
+    obj/third_party/WebKit/Source/platform/blink_platform.compile_depends.stamp
+build obj/third_party/WebKit/Source/platform/blink_platform.LinkHash.o: cxx $
+    ../../third_party/WebKit/Source/platform/LinkHash.cpp || $
+    obj/third_party/WebKit/Source/platform/blink_platform.compile_depends.stamp
+build obj/third_party/WebKit/Source/platform/blink_platform.Logging.o: cxx $
+    ../../third_party/WebKit/Source/platform/Logging.cpp || $
+    obj/third_party/WebKit/Source/platform/blink_platform.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/platform/blink_platform.NotImplemented.o: $
+    cxx ../../third_party/WebKit/Source/platform/NotImplemented.cpp || $
+    obj/third_party/WebKit/Source/platform/blink_platform.compile_depends.stamp
+build obj/third_party/WebKit/Source/platform/blink_platform.Partitions.o: $
+    cxx ../../third_party/WebKit/Source/platform/Partitions.cpp || $
+    obj/third_party/WebKit/Source/platform/blink_platform.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/platform/blink_platform.PlatformKeyboardEvent.o: $
+    cxx ../../third_party/WebKit/Source/platform/PlatformKeyboardEvent.cpp $
+    || $
+    obj/third_party/WebKit/Source/platform/blink_platform.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/platform/blink_platform.PlatformScreen.o: $
+    cxx ../../third_party/WebKit/Source/platform/PlatformScreen.cpp || $
+    obj/third_party/WebKit/Source/platform/blink_platform.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/platform/blink_platform.PlatformThreadData.o: $
+    cxx ../../third_party/WebKit/Source/platform/PlatformThreadData.cpp || $
+    obj/third_party/WebKit/Source/platform/blink_platform.compile_depends.stamp
+build obj/third_party/WebKit/Source/platform/blink_platform.Prerender.o: $
+    cxx ../../third_party/WebKit/Source/platform/Prerender.cpp || $
+    obj/third_party/WebKit/Source/platform/blink_platform.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/platform/blink_platform.PurgeableBuffer.o: $
+    cxx ../../third_party/WebKit/Source/platform/PurgeableBuffer.cpp || $
+    obj/third_party/WebKit/Source/platform/blink_platform.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/platform/blink_platform.SSLKeyGenerator.o: $
+    cxx ../../third_party/WebKit/Source/platform/SSLKeyGenerator.cpp || $
+    obj/third_party/WebKit/Source/platform/blink_platform.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/platform/blink_platform.SecureTextInput.o: $
+    cxx ../../third_party/WebKit/Source/platform/SecureTextInput.cpp || $
+    obj/third_party/WebKit/Source/platform/blink_platform.compile_depends.stamp
+build obj/third_party/WebKit/Source/platform/blink_platform.SharedBuffer.o: $
+    cxx ../../third_party/WebKit/Source/platform/SharedBuffer.cpp || $
+    obj/third_party/WebKit/Source/platform/blink_platform.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/platform/blink_platform.SharedBufferChunkReader.o: $
+    cxx $
+    ../../third_party/WebKit/Source/platform/SharedBufferChunkReader.cpp || $
+    obj/third_party/WebKit/Source/platform/blink_platform.compile_depends.stamp
+build obj/third_party/WebKit/Source/platform/blink_platform.SharedTimer.o: $
+    cxx ../../third_party/WebKit/Source/platform/SharedTimer.cpp || $
+    obj/third_party/WebKit/Source/platform/blink_platform.compile_depends.stamp
+build obj/third_party/WebKit/Source/platform/blink_platform.ThreadTimers.o: $
+    cxx ../../third_party/WebKit/Source/platform/ThreadTimers.cpp || $
+    obj/third_party/WebKit/Source/platform/blink_platform.compile_depends.stamp
+build obj/third_party/WebKit/Source/platform/blink_platform.Timer.o: cxx $
+    ../../third_party/WebKit/Source/platform/Timer.cpp || $
+    obj/third_party/WebKit/Source/platform/blink_platform.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/platform/blink_platform.UserGestureIndicator.o: $
+    cxx ../../third_party/WebKit/Source/platform/UserGestureIndicator.cpp $
+    || $
+    obj/third_party/WebKit/Source/platform/blink_platform.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/platform/blink_platform.URLPatternMatcher.o: $
+    cxx ../../third_party/WebKit/Source/platform/URLPatternMatcher.cpp || $
+    obj/third_party/WebKit/Source/platform/blink_platform.compile_depends.stamp
+build obj/third_party/WebKit/Source/platform/blink_platform.UUID.o: cxx $
+    ../../third_party/WebKit/Source/platform/UUID.cpp || $
+    obj/third_party/WebKit/Source/platform/blink_platform.compile_depends.stamp
+build obj/third_party/WebKit/Source/platform/blink_platform.Widget.o: cxx $
+    ../../third_party/WebKit/Source/platform/Widget.cpp || $
+    obj/third_party/WebKit/Source/platform/blink_platform.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/platform/audio/blink_platform.AudioBus.o: $
+    cxx ../../third_party/WebKit/Source/platform/audio/AudioBus.cpp || $
+    obj/third_party/WebKit/Source/platform/blink_platform.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/platform/audio/blink_platform.AudioChannel.o: $
+    cxx ../../third_party/WebKit/Source/platform/audio/AudioChannel.cpp || $
+    obj/third_party/WebKit/Source/platform/blink_platform.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/platform/audio/blink_platform.AudioDSPKernel.o: $
+    cxx ../../third_party/WebKit/Source/platform/audio/AudioDSPKernel.cpp $
+    || $
+    obj/third_party/WebKit/Source/platform/blink_platform.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/platform/audio/blink_platform.AudioDSPKernelProcessor.o: $
+    cxx $
+    ../../third_party/WebKit/Source/platform/audio/AudioDSPKernelProcessor.cpp $
+    || $
+    obj/third_party/WebKit/Source/platform/blink_platform.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/platform/audio/blink_platform.AudioDelayDSPKernel.o: $
+    cxx $
+    ../../third_party/WebKit/Source/platform/audio/AudioDelayDSPKernel.cpp $
+    || $
+    obj/third_party/WebKit/Source/platform/blink_platform.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/platform/audio/blink_platform.AudioDestinationConsumer.o: $
+    cxx $
+    ../../third_party/WebKit/Source/platform/audio/AudioDestinationConsumer.cpp $
+    || $
+    obj/third_party/WebKit/Source/platform/blink_platform.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/platform/audio/blink_platform.AudioFIFO.o: $
+    cxx ../../third_party/WebKit/Source/platform/audio/AudioFIFO.cpp || $
+    obj/third_party/WebKit/Source/platform/blink_platform.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/platform/audio/blink_platform.AudioProcessor.o: $
+    cxx ../../third_party/WebKit/Source/platform/audio/AudioProcessor.cpp $
+    || $
+    obj/third_party/WebKit/Source/platform/blink_platform.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/platform/audio/blink_platform.AudioPullFIFO.o: $
+    cxx ../../third_party/WebKit/Source/platform/audio/AudioPullFIFO.cpp || $
+    obj/third_party/WebKit/Source/platform/blink_platform.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/platform/audio/blink_platform.AudioResampler.o: $
+    cxx ../../third_party/WebKit/Source/platform/audio/AudioResampler.cpp $
+    || $
+    obj/third_party/WebKit/Source/platform/blink_platform.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/platform/audio/blink_platform.AudioResamplerKernel.o: $
+    cxx $
+    ../../third_party/WebKit/Source/platform/audio/AudioResamplerKernel.cpp $
+    || $
+    obj/third_party/WebKit/Source/platform/blink_platform.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/platform/audio/blink_platform.AudioUtilities.o: $
+    cxx ../../third_party/WebKit/Source/platform/audio/AudioUtilities.cpp $
+    || $
+    obj/third_party/WebKit/Source/platform/blink_platform.compile_depends.stamp
+build obj/third_party/WebKit/Source/platform/audio/blink_platform.Biquad.o: $
+    cxx ../../third_party/WebKit/Source/platform/audio/Biquad.cpp || $
+    obj/third_party/WebKit/Source/platform/blink_platform.compile_depends.stamp
+build obj/third_party/WebKit/Source/platform/audio/blink_platform.Cone.o: $
+    cxx ../../third_party/WebKit/Source/platform/audio/Cone.cpp || $
+    obj/third_party/WebKit/Source/platform/blink_platform.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/platform/audio/blink_platform.DirectConvolver.o: $
+    cxx ../../third_party/WebKit/Source/platform/audio/DirectConvolver.cpp $
+    || $
+    obj/third_party/WebKit/Source/platform/blink_platform.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/platform/audio/blink_platform.Distance.o: $
+    cxx ../../third_party/WebKit/Source/platform/audio/Distance.cpp || $
+    obj/third_party/WebKit/Source/platform/blink_platform.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/platform/audio/blink_platform.DownSampler.o: $
+    cxx ../../third_party/WebKit/Source/platform/audio/DownSampler.cpp || $
+    obj/third_party/WebKit/Source/platform/blink_platform.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/platform/audio/blink_platform.DynamicsCompressor.o: $
+    cxx $
+    ../../third_party/WebKit/Source/platform/audio/DynamicsCompressor.cpp $
+    || $
+    obj/third_party/WebKit/Source/platform/blink_platform.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/platform/audio/blink_platform.DynamicsCompressorKernel.o: $
+    cxx $
+    ../../third_party/WebKit/Source/platform/audio/DynamicsCompressorKernel.cpp $
+    || $
+    obj/third_party/WebKit/Source/platform/blink_platform.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/platform/audio/blink_platform.EqualPowerPanner.o: $
+    cxx ../../third_party/WebKit/Source/platform/audio/EqualPowerPanner.cpp $
+    || $
+    obj/third_party/WebKit/Source/platform/blink_platform.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/platform/audio/blink_platform.FFTConvolver.o: $
+    cxx ../../third_party/WebKit/Source/platform/audio/FFTConvolver.cpp || $
+    obj/third_party/WebKit/Source/platform/blink_platform.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/platform/audio/blink_platform.FFTFrame.o: $
+    cxx ../../third_party/WebKit/Source/platform/audio/FFTFrame.cpp || $
+    obj/third_party/WebKit/Source/platform/blink_platform.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/platform/audio/blink_platform.FFTFrameStub.o: $
+    cxx ../../third_party/WebKit/Source/platform/audio/FFTFrameStub.cpp || $
+    obj/third_party/WebKit/Source/platform/blink_platform.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/platform/audio/blink_platform.HRTFDatabase.o: $
+    cxx ../../third_party/WebKit/Source/platform/audio/HRTFDatabase.cpp || $
+    obj/third_party/WebKit/Source/platform/blink_platform.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/platform/audio/blink_platform.HRTFDatabaseLoader.o: $
+    cxx $
+    ../../third_party/WebKit/Source/platform/audio/HRTFDatabaseLoader.cpp $
+    || $
+    obj/third_party/WebKit/Source/platform/blink_platform.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/platform/audio/blink_platform.HRTFElevation.o: $
+    cxx ../../third_party/WebKit/Source/platform/audio/HRTFElevation.cpp || $
+    obj/third_party/WebKit/Source/platform/blink_platform.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/platform/audio/blink_platform.HRTFKernel.o: $
+    cxx ../../third_party/WebKit/Source/platform/audio/HRTFKernel.cpp || $
+    obj/third_party/WebKit/Source/platform/blink_platform.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/platform/audio/blink_platform.HRTFPanner.o: $
+    cxx ../../third_party/WebKit/Source/platform/audio/HRTFPanner.cpp || $
+    obj/third_party/WebKit/Source/platform/blink_platform.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/platform/audio/blink_platform.MultiChannelResampler.o: $
+    cxx $
+    ../../third_party/WebKit/Source/platform/audio/MultiChannelResampler.cpp $
+    || $
+    obj/third_party/WebKit/Source/platform/blink_platform.compile_depends.stamp
+build obj/third_party/WebKit/Source/platform/audio/blink_platform.Panner.o: $
+    cxx ../../third_party/WebKit/Source/platform/audio/Panner.cpp || $
+    obj/third_party/WebKit/Source/platform/blink_platform.compile_depends.stamp
+build obj/third_party/WebKit/Source/platform/audio/blink_platform.Reverb.o: $
+    cxx ../../third_party/WebKit/Source/platform/audio/Reverb.cpp || $
+    obj/third_party/WebKit/Source/platform/blink_platform.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/platform/audio/blink_platform.ReverbAccumulationBuffer.o: $
+    cxx $
+    ../../third_party/WebKit/Source/platform/audio/ReverbAccumulationBuffer.cpp $
+    || $
+    obj/third_party/WebKit/Source/platform/blink_platform.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/platform/audio/blink_platform.ReverbConvolver.o: $
+    cxx ../../third_party/WebKit/Source/platform/audio/ReverbConvolver.cpp $
+    || $
+    obj/third_party/WebKit/Source/platform/blink_platform.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/platform/audio/blink_platform.ReverbConvolverStage.o: $
+    cxx $
+    ../../third_party/WebKit/Source/platform/audio/ReverbConvolverStage.cpp $
+    || $
+    obj/third_party/WebKit/Source/platform/blink_platform.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/platform/audio/blink_platform.ReverbInputBuffer.o: $
+    cxx $
+    ../../third_party/WebKit/Source/platform/audio/ReverbInputBuffer.cpp || $
+    obj/third_party/WebKit/Source/platform/blink_platform.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/platform/audio/blink_platform.SincResampler.o: $
+    cxx ../../third_party/WebKit/Source/platform/audio/SincResampler.cpp || $
+    obj/third_party/WebKit/Source/platform/blink_platform.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/platform/audio/blink_platform.UpSampler.o: $
+    cxx ../../third_party/WebKit/Source/platform/audio/UpSampler.cpp || $
+    obj/third_party/WebKit/Source/platform/blink_platform.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/platform/audio/blink_platform.VectorMath.o: $
+    cxx ../../third_party/WebKit/Source/platform/audio/VectorMath.cpp || $
+    obj/third_party/WebKit/Source/platform/blink_platform.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/platform/audio/blink_platform.ZeroPole.o: $
+    cxx ../../third_party/WebKit/Source/platform/audio/ZeroPole.cpp || $
+    obj/third_party/WebKit/Source/platform/blink_platform.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/platform/audio/chromium/blink_platform.AudioBusChromium.o: $
+    cxx $
+    ../../third_party/WebKit/Source/platform/audio/chromium/AudioBusChromium.cpp $
+    || $
+    obj/third_party/WebKit/Source/platform/blink_platform.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/platform/audio/chromium/blink_platform.AudioDestinationChromium.o: $
+    cxx $
+    ../../third_party/WebKit/Source/platform/audio/chromium/AudioDestinationChromium.cpp $
+    || $
+    obj/third_party/WebKit/Source/platform/blink_platform.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/platform/audio/ffmpeg/blink_platform.FFTFrameFFMPEG.o: $
+    cxx $
+    ../../third_party/WebKit/Source/platform/audio/ffmpeg/FFTFrameFFMPEG.cpp $
+    || $
+    obj/third_party/WebKit/Source/platform/blink_platform.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/platform/audio/ipp/blink_platform.FFTFrameIPP.o: $
+    cxx ../../third_party/WebKit/Source/platform/audio/ipp/FFTFrameIPP.cpp $
+    || $
+    obj/third_party/WebKit/Source/platform/blink_platform.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/platform/blob/blink_platform.BlobData.o: $
+    cxx ../../third_party/WebKit/Source/platform/blob/BlobData.cpp || $
+    obj/third_party/WebKit/Source/platform/blink_platform.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/platform/blob/blink_platform.BlobRegistry.o: $
+    cxx ../../third_party/WebKit/Source/platform/blob/BlobRegistry.cpp || $
+    obj/third_party/WebKit/Source/platform/blink_platform.compile_depends.stamp
+build obj/third_party/WebKit/Source/platform/blob/blink_platform.BlobURL.o: $
+    cxx ../../third_party/WebKit/Source/platform/blob/BlobURL.cpp || $
+    obj/third_party/WebKit/Source/platform/blink_platform.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/platform/clipboard/blink_platform.ClipboardMimeTypes.o: $
+    cxx $
+    ../../third_party/WebKit/Source/platform/clipboard/ClipboardMimeTypes.cpp $
+    || $
+    obj/third_party/WebKit/Source/platform/blink_platform.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/platform/clipboard/blink_platform.ClipboardUtilities.o: $
+    cxx $
+    ../../third_party/WebKit/Source/platform/clipboard/ClipboardUtilities.cpp $
+    || $
+    obj/third_party/WebKit/Source/platform/blink_platform.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/platform/clipboard/blink_platform.ClipboardUtilitiesPosix.o: $
+    cxx $
+    ../../third_party/WebKit/Source/platform/clipboard/ClipboardUtilitiesPosix.cpp $
+    || $
+    obj/third_party/WebKit/Source/platform/blink_platform.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/platform/drm/blink_platform.ContentDecryptionModule.o: $
+    cxx $
+    ../../third_party/WebKit/Source/platform/drm/ContentDecryptionModule.cpp $
+    || $
+    obj/third_party/WebKit/Source/platform/blink_platform.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/platform/drm/blink_platform.ContentDecryptionModuleSession.o: $
+    cxx $
+    ../../third_party/WebKit/Source/platform/drm/ContentDecryptionModuleSession.cpp $
+    || $
+    obj/third_party/WebKit/Source/platform/blink_platform.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/platform/exported/blink_platform.Platform.o: $
+    cxx ../../third_party/WebKit/Source/platform/exported/Platform.cpp || $
+    obj/third_party/WebKit/Source/platform/blink_platform.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/platform/exported/blink_platform.WebActiveGestureAnimation.o: $
+    cxx $
+    ../../third_party/WebKit/Source/platform/exported/WebActiveGestureAnimation.cpp $
+    || $
+    obj/third_party/WebKit/Source/platform/blink_platform.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/platform/exported/blink_platform.WebAudioBus.o: $
+    cxx ../../third_party/WebKit/Source/platform/exported/WebAudioBus.cpp $
+    || $
+    obj/third_party/WebKit/Source/platform/blink_platform.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/platform/exported/blink_platform.WebAudioDevice.o: $
+    cxx $
+    ../../third_party/WebKit/Source/platform/exported/WebAudioDevice.cpp || $
+    obj/third_party/WebKit/Source/platform/blink_platform.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/platform/exported/blink_platform.WebBlobData.o: $
+    cxx ../../third_party/WebKit/Source/platform/exported/WebBlobData.cpp $
+    || $
+    obj/third_party/WebKit/Source/platform/blink_platform.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/platform/exported/blink_platform.WebContentDecryptionModule.o: $
+    cxx $
+    ../../third_party/WebKit/Source/platform/exported/WebContentDecryptionModule.cpp $
+    || $
+    obj/third_party/WebKit/Source/platform/blink_platform.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/platform/exported/blink_platform.WebContentDecryptionModuleSession.o: $
+    cxx $
+    ../../third_party/WebKit/Source/platform/exported/WebContentDecryptionModuleSession.cpp $
+    || $
+    obj/third_party/WebKit/Source/platform/blink_platform.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/platform/exported/blink_platform.WebCryptoAlgorithm.o: $
+    cxx $
+    ../../third_party/WebKit/Source/platform/exported/WebCryptoAlgorithm.cpp $
+    || $
+    obj/third_party/WebKit/Source/platform/blink_platform.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/platform/exported/blink_platform.WebCryptoKey.o: $
+    cxx ../../third_party/WebKit/Source/platform/exported/WebCryptoKey.cpp $
+    || $
+    obj/third_party/WebKit/Source/platform/blink_platform.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/platform/exported/blink_platform.WebData.o: $
+    cxx ../../third_party/WebKit/Source/platform/exported/WebData.cpp || $
+    obj/third_party/WebKit/Source/platform/blink_platform.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/platform/exported/blink_platform.WebDeviceMotionData.o: $
+    cxx $
+    ../../third_party/WebKit/Source/platform/exported/WebDeviceMotionData.cpp $
+    || $
+    obj/third_party/WebKit/Source/platform/blink_platform.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/platform/exported/blink_platform.WebDeviceOrientationData.o: $
+    cxx $
+    ../../third_party/WebKit/Source/platform/exported/WebDeviceOrientationData.cpp $
+    || $
+    obj/third_party/WebKit/Source/platform/blink_platform.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/platform/exported/blink_platform.WebFileSystemCallbacks.o: $
+    cxx $
+    ../../third_party/WebKit/Source/platform/exported/WebFileSystemCallbacks.cpp $
+    || $
+    obj/third_party/WebKit/Source/platform/blink_platform.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/platform/exported/blink_platform.WebFilterKeyframe.o: $
+    cxx $
+    ../../third_party/WebKit/Source/platform/exported/WebFilterKeyframe.cpp $
+    || $
+    obj/third_party/WebKit/Source/platform/blink_platform.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/platform/exported/blink_platform.WebFloatQuad.o: $
+    cxx ../../third_party/WebKit/Source/platform/exported/WebFloatQuad.cpp $
+    || $
+    obj/third_party/WebKit/Source/platform/blink_platform.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/platform/exported/blink_platform.WebHTTPBody.o: $
+    cxx ../../third_party/WebKit/Source/platform/exported/WebHTTPBody.cpp $
+    || $
+    obj/third_party/WebKit/Source/platform/blink_platform.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/platform/exported/blink_platform.WebHTTPLoadInfo.o: $
+    cxx $
+    ../../third_party/WebKit/Source/platform/exported/WebHTTPLoadInfo.cpp $
+    || $
+    obj/third_party/WebKit/Source/platform/blink_platform.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/platform/exported/blink_platform.WebPrerender.o: $
+    cxx ../../third_party/WebKit/Source/platform/exported/WebPrerender.cpp $
+    || $
+    obj/third_party/WebKit/Source/platform/blink_platform.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/platform/exported/blink_platform.WebPrerenderingSupport.o: $
+    cxx $
+    ../../third_party/WebKit/Source/platform/exported/WebPrerenderingSupport.cpp $
+    || $
+    obj/third_party/WebKit/Source/platform/blink_platform.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/platform/exported/blink_platform.WebRTCConfiguration.o: $
+    cxx $
+    ../../third_party/WebKit/Source/platform/exported/WebRTCConfiguration.cpp $
+    || $
+    obj/third_party/WebKit/Source/platform/blink_platform.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/platform/exported/blink_platform.WebRTCICECandidate.o: $
+    cxx $
+    ../../third_party/WebKit/Source/platform/exported/WebRTCICECandidate.cpp $
+    || $
+    obj/third_party/WebKit/Source/platform/blink_platform.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/platform/exported/blink_platform.WebSocketStreamError.o: $
+    cxx $
+    ../../third_party/WebKit/Source/platform/exported/WebSocketStreamError.cpp $
+    || $
+    obj/third_party/WebKit/Source/platform/blink_platform.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/platform/exported/blink_platform.WebSourceInfo.o: $
+    cxx ../../third_party/WebKit/Source/platform/exported/WebSourceInfo.cpp $
+    || $
+    obj/third_party/WebKit/Source/platform/blink_platform.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/platform/exported/blink_platform.WebThreadSafeData.o: $
+    cxx $
+    ../../third_party/WebKit/Source/platform/exported/WebThreadSafeData.cpp $
+    || $
+    obj/third_party/WebKit/Source/platform/blink_platform.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/platform/exported/blink_platform.WebTransformKeyframe.o: $
+    cxx $
+    ../../third_party/WebKit/Source/platform/exported/WebTransformKeyframe.cpp $
+    || $
+    obj/third_party/WebKit/Source/platform/blink_platform.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/platform/exported/blink_platform.WebURL.o: $
+    cxx ../../third_party/WebKit/Source/platform/exported/WebURL.cpp || $
+    obj/third_party/WebKit/Source/platform/blink_platform.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/platform/exported/blink_platform.WebURLError.o: $
+    cxx ../../third_party/WebKit/Source/platform/exported/WebURLError.cpp $
+    || $
+    obj/third_party/WebKit/Source/platform/blink_platform.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/platform/exported/blink_platform.WebURLLoadTiming.o: $
+    cxx $
+    ../../third_party/WebKit/Source/platform/exported/WebURLLoadTiming.cpp $
+    || $
+    obj/third_party/WebKit/Source/platform/blink_platform.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/platform/exported/blink_platform.WebURLRequest.o: $
+    cxx ../../third_party/WebKit/Source/platform/exported/WebURLRequest.cpp $
+    || $
+    obj/third_party/WebKit/Source/platform/blink_platform.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/platform/exported/blink_platform.WebURLResponse.o: $
+    cxx $
+    ../../third_party/WebKit/Source/platform/exported/WebURLResponse.cpp || $
+    obj/third_party/WebKit/Source/platform/blink_platform.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/platform/fonts/blink_platform.FontData.o: $
+    cxx ../../third_party/WebKit/Source/platform/fonts/FontData.cpp || $
+    obj/third_party/WebKit/Source/platform/blink_platform.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/platform/fonts/blink_platform.FontDescription.o: $
+    cxx ../../third_party/WebKit/Source/platform/fonts/FontDescription.cpp $
+    || $
+    obj/third_party/WebKit/Source/platform/blink_platform.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/platform/fonts/blink_platform.FontFamily.o: $
+    cxx ../../third_party/WebKit/Source/platform/fonts/FontFamily.cpp || $
+    obj/third_party/WebKit/Source/platform/blink_platform.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/platform/fonts/blink_platform.FontFeatureSettings.o: $
+    cxx $
+    ../../third_party/WebKit/Source/platform/fonts/FontFeatureSettings.cpp $
+    || $
+    obj/third_party/WebKit/Source/platform/blink_platform.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/platform/geometry/blink_platform.FloatPolygon.o: $
+    cxx ../../third_party/WebKit/Source/platform/geometry/FloatPolygon.cpp $
+    || $
+    obj/third_party/WebKit/Source/platform/blink_platform.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/platform/geometry/blink_platform.FloatPoint.o: $
+    cxx ../../third_party/WebKit/Source/platform/geometry/FloatPoint.cpp || $
+    obj/third_party/WebKit/Source/platform/blink_platform.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/platform/geometry/blink_platform.FloatPoint3D.o: $
+    cxx ../../third_party/WebKit/Source/platform/geometry/FloatPoint3D.cpp $
+    || $
+    obj/third_party/WebKit/Source/platform/blink_platform.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/platform/geometry/blink_platform.FloatQuad.o: $
+    cxx ../../third_party/WebKit/Source/platform/geometry/FloatQuad.cpp || $
+    obj/third_party/WebKit/Source/platform/blink_platform.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/platform/geometry/blink_platform.FloatRect.o: $
+    cxx ../../third_party/WebKit/Source/platform/geometry/FloatRect.cpp || $
+    obj/third_party/WebKit/Source/platform/blink_platform.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/platform/geometry/blink_platform.FloatSize.o: $
+    cxx ../../third_party/WebKit/Source/platform/geometry/FloatSize.cpp || $
+    obj/third_party/WebKit/Source/platform/blink_platform.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/platform/geometry/blink_platform.IntRect.o: $
+    cxx ../../third_party/WebKit/Source/platform/geometry/IntRect.cpp || $
+    obj/third_party/WebKit/Source/platform/blink_platform.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/platform/geometry/blink_platform.LayoutBoxExtent.o: $
+    cxx $
+    ../../third_party/WebKit/Source/platform/geometry/LayoutBoxExtent.cpp $
+    || $
+    obj/third_party/WebKit/Source/platform/blink_platform.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/platform/geometry/blink_platform.LayoutRect.o: $
+    cxx ../../third_party/WebKit/Source/platform/geometry/LayoutRect.cpp || $
+    obj/third_party/WebKit/Source/platform/blink_platform.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/platform/geometry/blink_platform.Region.o: $
+    cxx ../../third_party/WebKit/Source/platform/geometry/Region.cpp || $
+    obj/third_party/WebKit/Source/platform/blink_platform.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/platform/geometry/blink_platform.RoundedRect.o: $
+    cxx ../../third_party/WebKit/Source/platform/geometry/RoundedRect.cpp $
+    || $
+    obj/third_party/WebKit/Source/platform/blink_platform.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/platform/geometry/blink_platform.TransformState.o: $
+    cxx $
+    ../../third_party/WebKit/Source/platform/geometry/TransformState.cpp || $
+    obj/third_party/WebKit/Source/platform/blink_platform.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/platform/graphics/angle/blink_platform.ANGLEPlatformBridge.o: $
+    cxx $
+    ../../third_party/WebKit/Source/platform/graphics/angle/ANGLEPlatformBridge.cpp $
+    || $
+    obj/third_party/WebKit/Source/platform/blink_platform.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/platform/graphics/filters/custom/blink_platform.CustomFilterArrayParameter.o: $
+    cxx $
+    ../../third_party/WebKit/Source/platform/graphics/filters/custom/CustomFilterArrayParameter.cpp $
+    || $
+    obj/third_party/WebKit/Source/platform/blink_platform.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/platform/graphics/filters/custom/blink_platform.CustomFilterNumberParameter.o: $
+    cxx $
+    ../../third_party/WebKit/Source/platform/graphics/filters/custom/CustomFilterNumberParameter.cpp $
+    || $
+    obj/third_party/WebKit/Source/platform/blink_platform.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/platform/graphics/filters/custom/blink_platform.CustomFilterParameterList.o: $
+    cxx $
+    ../../third_party/WebKit/Source/platform/graphics/filters/custom/CustomFilterParameterList.cpp $
+    || $
+    obj/third_party/WebKit/Source/platform/blink_platform.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/platform/graphics/filters/custom/blink_platform.CustomFilterProgramClient.o: $
+    cxx $
+    ../../third_party/WebKit/Source/platform/graphics/filters/custom/CustomFilterProgramClient.cpp $
+    || $
+    obj/third_party/WebKit/Source/platform/blink_platform.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/platform/graphics/blink_platform.Color.o: $
+    cxx ../../third_party/WebKit/Source/platform/graphics/Color.cpp || $
+    obj/third_party/WebKit/Source/platform/blink_platform.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/platform/graphics/blink_platform.DisplayList.o: $
+    cxx ../../third_party/WebKit/Source/platform/graphics/DisplayList.cpp $
+    || $
+    obj/third_party/WebKit/Source/platform/blink_platform.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/platform/graphics/blink_platform.DrawLooper.o: $
+    cxx ../../third_party/WebKit/Source/platform/graphics/DrawLooper.cpp || $
+    obj/third_party/WebKit/Source/platform/blink_platform.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/platform/graphics/blink_platform.GraphicsTypes.o: $
+    cxx ../../third_party/WebKit/Source/platform/graphics/GraphicsTypes.cpp $
+    || $
+    obj/third_party/WebKit/Source/platform/blink_platform.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/platform/graphics/blink_platform.ImageOrientation.o: $
+    cxx $
+    ../../third_party/WebKit/Source/platform/graphics/ImageOrientation.cpp $
+    || $
+    obj/third_party/WebKit/Source/platform/blink_platform.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/platform/graphics/blink_platform.PathTraversalState.o: $
+    cxx $
+    ../../third_party/WebKit/Source/platform/graphics/PathTraversalState.cpp $
+    || $
+    obj/third_party/WebKit/Source/platform/blink_platform.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/platform/graphics/blink_platform.ScaledImageFragment.o: $
+    cxx $
+    ../../third_party/WebKit/Source/platform/graphics/ScaledImageFragment.cpp $
+    || $
+    obj/third_party/WebKit/Source/platform/blink_platform.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/platform/graphics/blink_platform.TextRun.o: $
+    cxx ../../third_party/WebKit/Source/platform/graphics/TextRun.cpp || $
+    obj/third_party/WebKit/Source/platform/blink_platform.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/platform/graphics/blink_platform.ThreadSafeDataTransport.o: $
+    cxx $
+    ../../third_party/WebKit/Source/platform/graphics/ThreadSafeDataTransport.cpp $
+    || $
+    obj/third_party/WebKit/Source/platform/blink_platform.compile_depends.stamp
+build obj/third_party/WebKit/Source/platform/network/blink_platform.DNS.o: $
+    cxx ../../third_party/WebKit/Source/platform/network/DNS.cpp || $
+    obj/third_party/WebKit/Source/platform/blink_platform.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/platform/network/blink_platform.HTTPHeaderMap.o: $
+    cxx ../../third_party/WebKit/Source/platform/network/HTTPHeaderMap.cpp $
+    || $
+    obj/third_party/WebKit/Source/platform/blink_platform.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/platform/network/blink_platform.HTTPParsers.o: $
+    cxx ../../third_party/WebKit/Source/platform/network/HTTPParsers.cpp || $
+    obj/third_party/WebKit/Source/platform/blink_platform.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/platform/network/blink_platform.HTTPRequest.o: $
+    cxx ../../third_party/WebKit/Source/platform/network/HTTPRequest.cpp || $
+    obj/third_party/WebKit/Source/platform/blink_platform.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/platform/network/blink_platform.ParsedContentType.o: $
+    cxx $
+    ../../third_party/WebKit/Source/platform/network/ParsedContentType.cpp $
+    || $
+    obj/third_party/WebKit/Source/platform/blink_platform.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/platform/network/blink_platform.ProxyServer.o: $
+    cxx ../../third_party/WebKit/Source/platform/network/ProxyServer.cpp || $
+    obj/third_party/WebKit/Source/platform/blink_platform.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/platform/network/blink_platform.ResourceError.o: $
+    cxx ../../third_party/WebKit/Source/platform/network/ResourceError.cpp $
+    || $
+    obj/third_party/WebKit/Source/platform/blink_platform.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/platform/network/blink_platform.SocketStreamError.o: $
+    cxx $
+    ../../third_party/WebKit/Source/platform/network/SocketStreamError.cpp $
+    || $
+    obj/third_party/WebKit/Source/platform/blink_platform.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/platform/network/blink_platform.SocketStreamHandle.o: $
+    cxx $
+    ../../third_party/WebKit/Source/platform/network/SocketStreamHandle.cpp $
+    || $
+    obj/third_party/WebKit/Source/platform/blink_platform.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/platform/network/blink_platform.FormData.o: $
+    cxx ../../third_party/WebKit/Source/platform/network/FormData.cpp || $
+    obj/third_party/WebKit/Source/platform/blink_platform.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/platform/network/blink_platform.FormDataBuilder.o: $
+    cxx $
+    ../../third_party/WebKit/Source/platform/network/FormDataBuilder.cpp || $
+    obj/third_party/WebKit/Source/platform/blink_platform.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/platform/network/blink_platform.ResourceRequest.o: $
+    cxx $
+    ../../third_party/WebKit/Source/platform/network/ResourceRequest.cpp || $
+    obj/third_party/WebKit/Source/platform/blink_platform.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/platform/network/blink_platform.ResourceResponse.o: $
+    cxx $
+    ../../third_party/WebKit/Source/platform/network/ResourceResponse.cpp $
+    || $
+    obj/third_party/WebKit/Source/platform/blink_platform.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/platform/text/blink_platform.BidiContext.o: $
+    cxx ../../third_party/WebKit/Source/platform/text/BidiContext.cpp || $
+    obj/third_party/WebKit/Source/platform/blink_platform.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/platform/text/blink_platform.DateTimeFormat.o: $
+    cxx ../../third_party/WebKit/Source/platform/text/DateTimeFormat.cpp || $
+    obj/third_party/WebKit/Source/platform/blink_platform.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/platform/text/blink_platform.LineEnding.o: $
+    cxx ../../third_party/WebKit/Source/platform/text/LineEnding.cpp || $
+    obj/third_party/WebKit/Source/platform/blink_platform.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/platform/text/blink_platform.LocaleICU.o: $
+    cxx ../../third_party/WebKit/Source/platform/text/LocaleICU.cpp || $
+    obj/third_party/WebKit/Source/platform/blink_platform.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/platform/text/blink_platform.LocaleToScriptMapping.o: $
+    cxx $
+    ../../third_party/WebKit/Source/platform/text/LocaleToScriptMapping.cpp $
+    || $
+    obj/third_party/WebKit/Source/platform/blink_platform.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/platform/text/blink_platform.PlatformLocale.o: $
+    cxx ../../third_party/WebKit/Source/platform/text/PlatformLocale.cpp || $
+    obj/third_party/WebKit/Source/platform/blink_platform.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/platform/text/blink_platform.QuotedPrintable.o: $
+    cxx ../../third_party/WebKit/Source/platform/text/QuotedPrintable.cpp $
+    || $
+    obj/third_party/WebKit/Source/platform/blink_platform.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/platform/text/blink_platform.SegmentedString.o: $
+    cxx ../../third_party/WebKit/Source/platform/text/SegmentedString.cpp $
+    || $
+    obj/third_party/WebKit/Source/platform/blink_platform.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/platform/text/blink_platform.SurrogatePairAwareTextIterator.o: $
+    cxx $
+    ../../third_party/WebKit/Source/platform/text/SurrogatePairAwareTextIterator.cpp $
+    || $
+    obj/third_party/WebKit/Source/platform/blink_platform.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/platform/text/blink_platform.TextBoundaries.o: $
+    cxx ../../third_party/WebKit/Source/platform/text/TextBoundaries.cpp || $
+    obj/third_party/WebKit/Source/platform/blink_platform.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/platform/text/blink_platform.TextBreakIterator.o: $
+    cxx ../../third_party/WebKit/Source/platform/text/TextBreakIterator.cpp $
+    || $
+    obj/third_party/WebKit/Source/platform/blink_platform.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/platform/text/blink_platform.TextBreakIteratorICU.o: $
+    cxx $
+    ../../third_party/WebKit/Source/platform/text/TextBreakIteratorICU.cpp $
+    || $
+    obj/third_party/WebKit/Source/platform/blink_platform.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/platform/text/blink_platform.TextBreakIteratorInternalICU.o: $
+    cxx $
+    ../../third_party/WebKit/Source/platform/text/TextBreakIteratorInternalICU.cpp $
+    || $
+    obj/third_party/WebKit/Source/platform/blink_platform.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/platform/text/blink_platform.TextEncodingDetector.o: $
+    cxx $
+    ../../third_party/WebKit/Source/platform/text/TextEncodingDetector.cpp $
+    || $
+    obj/third_party/WebKit/Source/platform/blink_platform.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/platform/text/blink_platform.TextStream.o: $
+    cxx ../../third_party/WebKit/Source/platform/text/TextStream.cpp || $
+    obj/third_party/WebKit/Source/platform/blink_platform.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/platform/text/blink_platform.UnicodeRange.o: $
+    cxx ../../third_party/WebKit/Source/platform/text/UnicodeRange.cpp || $
+    obj/third_party/WebKit/Source/platform/blink_platform.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/platform/transforms/blink_platform.AffineTransform.o: $
+    cxx $
+    ../../third_party/WebKit/Source/platform/transforms/AffineTransform.cpp $
+    || $
+    obj/third_party/WebKit/Source/platform/blink_platform.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/platform/transforms/blink_platform.InterpolatedTransformOperation.o: $
+    cxx $
+    ../../third_party/WebKit/Source/platform/transforms/InterpolatedTransformOperation.cpp $
+    || $
+    obj/third_party/WebKit/Source/platform/blink_platform.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/platform/transforms/blink_platform.Matrix3DTransformOperation.o: $
+    cxx $
+    ../../third_party/WebKit/Source/platform/transforms/Matrix3DTransformOperation.cpp $
+    || $
+    obj/third_party/WebKit/Source/platform/blink_platform.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/platform/transforms/blink_platform.MatrixTransformOperation.o: $
+    cxx $
+    ../../third_party/WebKit/Source/platform/transforms/MatrixTransformOperation.cpp $
+    || $
+    obj/third_party/WebKit/Source/platform/blink_platform.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/platform/transforms/blink_platform.PerspectiveTransformOperation.o: $
+    cxx $
+    ../../third_party/WebKit/Source/platform/transforms/PerspectiveTransformOperation.cpp $
+    || $
+    obj/third_party/WebKit/Source/platform/blink_platform.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/platform/transforms/blink_platform.RotateTransformOperation.o: $
+    cxx $
+    ../../third_party/WebKit/Source/platform/transforms/RotateTransformOperation.cpp $
+    || $
+    obj/third_party/WebKit/Source/platform/blink_platform.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/platform/transforms/blink_platform.ScaleTransformOperation.o: $
+    cxx $
+    ../../third_party/WebKit/Source/platform/transforms/ScaleTransformOperation.cpp $
+    || $
+    obj/third_party/WebKit/Source/platform/blink_platform.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/platform/transforms/blink_platform.SkewTransformOperation.o: $
+    cxx $
+    ../../third_party/WebKit/Source/platform/transforms/SkewTransformOperation.cpp $
+    || $
+    obj/third_party/WebKit/Source/platform/blink_platform.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/platform/transforms/blink_platform.TransformOperations.o: $
+    cxx $
+    ../../third_party/WebKit/Source/platform/transforms/TransformOperations.cpp $
+    || $
+    obj/third_party/WebKit/Source/platform/blink_platform.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/platform/transforms/blink_platform.TranslateTransformOperation.o: $
+    cxx $
+    ../../third_party/WebKit/Source/platform/transforms/TranslateTransformOperation.cpp $
+    || $
+    obj/third_party/WebKit/Source/platform/blink_platform.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/platform/transforms/blink_platform.TransformationMatrix.o: $
+    cxx $
+    ../../third_party/WebKit/Source/platform/transforms/TransformationMatrix.cpp $
+    || $
+    obj/third_party/WebKit/Source/platform/blink_platform.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/platform/gen/blink/blink_platform.FontFamilyNames.o: $
+    cxx gen/blink/FontFamilyNames.cpp || $
+    obj/third_party/WebKit/Source/platform/blink_platform.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/platform/gen/blink/blink_platform.RuntimeEnabledFeatures.o: $
+    cxx gen/blink/RuntimeEnabledFeatures.cpp || $
+    obj/third_party/WebKit/Source/platform/blink_platform.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/platform/gen/blink/blink_platform.ColorData.o: $
+    cxx gen/blink/ColorData.cpp || $
+    obj/third_party/WebKit/Source/platform/blink_platform.compile_depends.stamp
+
+build obj/third_party/WebKit/Source/platform/libblink_platform.a: $
+    alink_thin $
+    obj/third_party/WebKit/Source/platform/blink_platform.CalculationValue.o $
+    obj/third_party/WebKit/Source/platform/blink_platform.Clock.o $
+    obj/third_party/WebKit/Source/platform/blink_platform.ColorChooser.o $
+    obj/third_party/WebKit/Source/platform/blink_platform.ColorChooserClient.o $
+    obj/third_party/WebKit/Source/platform/blink_platform.ContentType.o $
+    obj/third_party/WebKit/Source/platform/blink_platform.CrossThreadCopier.o $
+    obj/third_party/WebKit/Source/platform/blink_platform.DateComponents.o $
+    obj/third_party/WebKit/Source/platform/blink_platform.DateTimeChooser.o $
+    obj/third_party/WebKit/Source/platform/blink_platform.DateTimeChooserClient.o $
+    obj/third_party/WebKit/Source/platform/blink_platform.Decimal.o $
+    obj/third_party/WebKit/Source/platform/blink_platform.EventTracer.o $
+    obj/third_party/WebKit/Source/platform/blink_platform.FileChooser.o $
+    obj/third_party/WebKit/Source/platform/blink_platform.FileMetadata.o $
+    obj/third_party/WebKit/Source/platform/blink_platform.JSONValues.o $
+    obj/third_party/WebKit/Source/platform/blink_platform.Language.o $
+    obj/third_party/WebKit/Source/platform/blink_platform.LayoutTestSupport.o $
+    obj/third_party/WebKit/Source/platform/blink_platform.Length.o $
+    obj/third_party/WebKit/Source/platform/blink_platform.LengthBox.o $
+    obj/third_party/WebKit/Source/platform/blink_platform.LengthFunctions.o $
+    obj/third_party/WebKit/Source/platform/blink_platform.LinkHash.o $
+    obj/third_party/WebKit/Source/platform/blink_platform.Logging.o $
+    obj/third_party/WebKit/Source/platform/blink_platform.NotImplemented.o $
+    obj/third_party/WebKit/Source/platform/blink_platform.Partitions.o $
+    obj/third_party/WebKit/Source/platform/blink_platform.PlatformKeyboardEvent.o $
+    obj/third_party/WebKit/Source/platform/blink_platform.PlatformScreen.o $
+    obj/third_party/WebKit/Source/platform/blink_platform.PlatformThreadData.o $
+    obj/third_party/WebKit/Source/platform/blink_platform.Prerender.o $
+    obj/third_party/WebKit/Source/platform/blink_platform.PurgeableBuffer.o $
+    obj/third_party/WebKit/Source/platform/blink_platform.SSLKeyGenerator.o $
+    obj/third_party/WebKit/Source/platform/blink_platform.SecureTextInput.o $
+    obj/third_party/WebKit/Source/platform/blink_platform.SharedBuffer.o $
+    obj/third_party/WebKit/Source/platform/blink_platform.SharedBufferChunkReader.o $
+    obj/third_party/WebKit/Source/platform/blink_platform.SharedTimer.o $
+    obj/third_party/WebKit/Source/platform/blink_platform.ThreadTimers.o $
+    obj/third_party/WebKit/Source/platform/blink_platform.Timer.o $
+    obj/third_party/WebKit/Source/platform/blink_platform.UserGestureIndicator.o $
+    obj/third_party/WebKit/Source/platform/blink_platform.URLPatternMatcher.o $
+    obj/third_party/WebKit/Source/platform/blink_platform.UUID.o $
+    obj/third_party/WebKit/Source/platform/blink_platform.Widget.o $
+    obj/third_party/WebKit/Source/platform/audio/blink_platform.AudioBus.o $
+    obj/third_party/WebKit/Source/platform/audio/blink_platform.AudioChannel.o $
+    obj/third_party/WebKit/Source/platform/audio/blink_platform.AudioDSPKernel.o $
+    obj/third_party/WebKit/Source/platform/audio/blink_platform.AudioDSPKernelProcessor.o $
+    obj/third_party/WebKit/Source/platform/audio/blink_platform.AudioDelayDSPKernel.o $
+    obj/third_party/WebKit/Source/platform/audio/blink_platform.AudioDestinationConsumer.o $
+    obj/third_party/WebKit/Source/platform/audio/blink_platform.AudioFIFO.o $
+    obj/third_party/WebKit/Source/platform/audio/blink_platform.AudioProcessor.o $
+    obj/third_party/WebKit/Source/platform/audio/blink_platform.AudioPullFIFO.o $
+    obj/third_party/WebKit/Source/platform/audio/blink_platform.AudioResampler.o $
+    obj/third_party/WebKit/Source/platform/audio/blink_platform.AudioResamplerKernel.o $
+    obj/third_party/WebKit/Source/platform/audio/blink_platform.AudioUtilities.o $
+    obj/third_party/WebKit/Source/platform/audio/blink_platform.Biquad.o $
+    obj/third_party/WebKit/Source/platform/audio/blink_platform.Cone.o $
+    obj/third_party/WebKit/Source/platform/audio/blink_platform.DirectConvolver.o $
+    obj/third_party/WebKit/Source/platform/audio/blink_platform.Distance.o $
+    obj/third_party/WebKit/Source/platform/audio/blink_platform.DownSampler.o $
+    obj/third_party/WebKit/Source/platform/audio/blink_platform.DynamicsCompressor.o $
+    obj/third_party/WebKit/Source/platform/audio/blink_platform.DynamicsCompressorKernel.o $
+    obj/third_party/WebKit/Source/platform/audio/blink_platform.EqualPowerPanner.o $
+    obj/third_party/WebKit/Source/platform/audio/blink_platform.FFTConvolver.o $
+    obj/third_party/WebKit/Source/platform/audio/blink_platform.FFTFrame.o $
+    obj/third_party/WebKit/Source/platform/audio/blink_platform.FFTFrameStub.o $
+    obj/third_party/WebKit/Source/platform/audio/blink_platform.HRTFDatabase.o $
+    obj/third_party/WebKit/Source/platform/audio/blink_platform.HRTFDatabaseLoader.o $
+    obj/third_party/WebKit/Source/platform/audio/blink_platform.HRTFElevation.o $
+    obj/third_party/WebKit/Source/platform/audio/blink_platform.HRTFKernel.o $
+    obj/third_party/WebKit/Source/platform/audio/blink_platform.HRTFPanner.o $
+    obj/third_party/WebKit/Source/platform/audio/blink_platform.MultiChannelResampler.o $
+    obj/third_party/WebKit/Source/platform/audio/blink_platform.Panner.o $
+    obj/third_party/WebKit/Source/platform/audio/blink_platform.Reverb.o $
+    obj/third_party/WebKit/Source/platform/audio/blink_platform.ReverbAccumulationBuffer.o $
+    obj/third_party/WebKit/Source/platform/audio/blink_platform.ReverbConvolver.o $
+    obj/third_party/WebKit/Source/platform/audio/blink_platform.ReverbConvolverStage.o $
+    obj/third_party/WebKit/Source/platform/audio/blink_platform.ReverbInputBuffer.o $
+    obj/third_party/WebKit/Source/platform/audio/blink_platform.SincResampler.o $
+    obj/third_party/WebKit/Source/platform/audio/blink_platform.UpSampler.o $
+    obj/third_party/WebKit/Source/platform/audio/blink_platform.VectorMath.o $
+    obj/third_party/WebKit/Source/platform/audio/blink_platform.ZeroPole.o $
+    obj/third_party/WebKit/Source/platform/audio/chromium/blink_platform.AudioBusChromium.o $
+    obj/third_party/WebKit/Source/platform/audio/chromium/blink_platform.AudioDestinationChromium.o $
+    obj/third_party/WebKit/Source/platform/audio/ffmpeg/blink_platform.FFTFrameFFMPEG.o $
+    obj/third_party/WebKit/Source/platform/audio/ipp/blink_platform.FFTFrameIPP.o $
+    obj/third_party/WebKit/Source/platform/blob/blink_platform.BlobData.o $
+    obj/third_party/WebKit/Source/platform/blob/blink_platform.BlobRegistry.o $
+    obj/third_party/WebKit/Source/platform/blob/blink_platform.BlobURL.o $
+    obj/third_party/WebKit/Source/platform/clipboard/blink_platform.ClipboardMimeTypes.o $
+    obj/third_party/WebKit/Source/platform/clipboard/blink_platform.ClipboardUtilities.o $
+    obj/third_party/WebKit/Source/platform/clipboard/blink_platform.ClipboardUtilitiesPosix.o $
+    obj/third_party/WebKit/Source/platform/drm/blink_platform.ContentDecryptionModule.o $
+    obj/third_party/WebKit/Source/platform/drm/blink_platform.ContentDecryptionModuleSession.o $
+    obj/third_party/WebKit/Source/platform/exported/blink_platform.Platform.o $
+    obj/third_party/WebKit/Source/platform/exported/blink_platform.WebActiveGestureAnimation.o $
+    obj/third_party/WebKit/Source/platform/exported/blink_platform.WebAudioBus.o $
+    obj/third_party/WebKit/Source/platform/exported/blink_platform.WebAudioDevice.o $
+    obj/third_party/WebKit/Source/platform/exported/blink_platform.WebBlobData.o $
+    obj/third_party/WebKit/Source/platform/exported/blink_platform.WebContentDecryptionModule.o $
+    obj/third_party/WebKit/Source/platform/exported/blink_platform.WebContentDecryptionModuleSession.o $
+    obj/third_party/WebKit/Source/platform/exported/blink_platform.WebCryptoAlgorithm.o $
+    obj/third_party/WebKit/Source/platform/exported/blink_platform.WebCryptoKey.o $
+    obj/third_party/WebKit/Source/platform/exported/blink_platform.WebData.o $
+    obj/third_party/WebKit/Source/platform/exported/blink_platform.WebDeviceMotionData.o $
+    obj/third_party/WebKit/Source/platform/exported/blink_platform.WebDeviceOrientationData.o $
+    obj/third_party/WebKit/Source/platform/exported/blink_platform.WebFileSystemCallbacks.o $
+    obj/third_party/WebKit/Source/platform/exported/blink_platform.WebFilterKeyframe.o $
+    obj/third_party/WebKit/Source/platform/exported/blink_platform.WebFloatQuad.o $
+    obj/third_party/WebKit/Source/platform/exported/blink_platform.WebHTTPBody.o $
+    obj/third_party/WebKit/Source/platform/exported/blink_platform.WebHTTPLoadInfo.o $
+    obj/third_party/WebKit/Source/platform/exported/blink_platform.WebPrerender.o $
+    obj/third_party/WebKit/Source/platform/exported/blink_platform.WebPrerenderingSupport.o $
+    obj/third_party/WebKit/Source/platform/exported/blink_platform.WebRTCConfiguration.o $
+    obj/third_party/WebKit/Source/platform/exported/blink_platform.WebRTCICECandidate.o $
+    obj/third_party/WebKit/Source/platform/exported/blink_platform.WebSocketStreamError.o $
+    obj/third_party/WebKit/Source/platform/exported/blink_platform.WebSourceInfo.o $
+    obj/third_party/WebKit/Source/platform/exported/blink_platform.WebThreadSafeData.o $
+    obj/third_party/WebKit/Source/platform/exported/blink_platform.WebTransformKeyframe.o $
+    obj/third_party/WebKit/Source/platform/exported/blink_platform.WebURL.o $
+    obj/third_party/WebKit/Source/platform/exported/blink_platform.WebURLError.o $
+    obj/third_party/WebKit/Source/platform/exported/blink_platform.WebURLLoadTiming.o $
+    obj/third_party/WebKit/Source/platform/exported/blink_platform.WebURLRequest.o $
+    obj/third_party/WebKit/Source/platform/exported/blink_platform.WebURLResponse.o $
+    obj/third_party/WebKit/Source/platform/fonts/blink_platform.FontData.o $
+    obj/third_party/WebKit/Source/platform/fonts/blink_platform.FontDescription.o $
+    obj/third_party/WebKit/Source/platform/fonts/blink_platform.FontFamily.o $
+    obj/third_party/WebKit/Source/platform/fonts/blink_platform.FontFeatureSettings.o $
+    obj/third_party/WebKit/Source/platform/geometry/blink_platform.FloatPolygon.o $
+    obj/third_party/WebKit/Source/platform/geometry/blink_platform.FloatPoint.o $
+    obj/third_party/WebKit/Source/platform/geometry/blink_platform.FloatPoint3D.o $
+    obj/third_party/WebKit/Source/platform/geometry/blink_platform.FloatQuad.o $
+    obj/third_party/WebKit/Source/platform/geometry/blink_platform.FloatRect.o $
+    obj/third_party/WebKit/Source/platform/geometry/blink_platform.FloatSize.o $
+    obj/third_party/WebKit/Source/platform/geometry/blink_platform.IntRect.o $
+    obj/third_party/WebKit/Source/platform/geometry/blink_platform.LayoutBoxExtent.o $
+    obj/third_party/WebKit/Source/platform/geometry/blink_platform.LayoutRect.o $
+    obj/third_party/WebKit/Source/platform/geometry/blink_platform.Region.o $
+    obj/third_party/WebKit/Source/platform/geometry/blink_platform.RoundedRect.o $
+    obj/third_party/WebKit/Source/platform/geometry/blink_platform.TransformState.o $
+    obj/third_party/WebKit/Source/platform/graphics/angle/blink_platform.ANGLEPlatformBridge.o $
+    obj/third_party/WebKit/Source/platform/graphics/filters/custom/blink_platform.CustomFilterArrayParameter.o $
+    obj/third_party/WebKit/Source/platform/graphics/filters/custom/blink_platform.CustomFilterNumberParameter.o $
+    obj/third_party/WebKit/Source/platform/graphics/filters/custom/blink_platform.CustomFilterParameterList.o $
+    obj/third_party/WebKit/Source/platform/graphics/filters/custom/blink_platform.CustomFilterProgramClient.o $
+    obj/third_party/WebKit/Source/platform/graphics/blink_platform.Color.o $
+    obj/third_party/WebKit/Source/platform/graphics/blink_platform.DisplayList.o $
+    obj/third_party/WebKit/Source/platform/graphics/blink_platform.DrawLooper.o $
+    obj/third_party/WebKit/Source/platform/graphics/blink_platform.GraphicsTypes.o $
+    obj/third_party/WebKit/Source/platform/graphics/blink_platform.ImageOrientation.o $
+    obj/third_party/WebKit/Source/platform/graphics/blink_platform.PathTraversalState.o $
+    obj/third_party/WebKit/Source/platform/graphics/blink_platform.ScaledImageFragment.o $
+    obj/third_party/WebKit/Source/platform/graphics/blink_platform.TextRun.o $
+    obj/third_party/WebKit/Source/platform/graphics/blink_platform.ThreadSafeDataTransport.o $
+    obj/third_party/WebKit/Source/platform/network/blink_platform.DNS.o $
+    obj/third_party/WebKit/Source/platform/network/blink_platform.HTTPHeaderMap.o $
+    obj/third_party/WebKit/Source/platform/network/blink_platform.HTTPParsers.o $
+    obj/third_party/WebKit/Source/platform/network/blink_platform.HTTPRequest.o $
+    obj/third_party/WebKit/Source/platform/network/blink_platform.ParsedContentType.o $
+    obj/third_party/WebKit/Source/platform/network/blink_platform.ProxyServer.o $
+    obj/third_party/WebKit/Source/platform/network/blink_platform.ResourceError.o $
+    obj/third_party/WebKit/Source/platform/network/blink_platform.SocketStreamError.o $
+    obj/third_party/WebKit/Source/platform/network/blink_platform.SocketStreamHandle.o $
+    obj/third_party/WebKit/Source/platform/network/blink_platform.FormData.o $
+    obj/third_party/WebKit/Source/platform/network/blink_platform.FormDataBuilder.o $
+    obj/third_party/WebKit/Source/platform/network/blink_platform.ResourceRequest.o $
+    obj/third_party/WebKit/Source/platform/network/blink_platform.ResourceResponse.o $
+    obj/third_party/WebKit/Source/platform/text/blink_platform.BidiContext.o $
+    obj/third_party/WebKit/Source/platform/text/blink_platform.DateTimeFormat.o $
+    obj/third_party/WebKit/Source/platform/text/blink_platform.LineEnding.o $
+    obj/third_party/WebKit/Source/platform/text/blink_platform.LocaleICU.o $
+    obj/third_party/WebKit/Source/platform/text/blink_platform.LocaleToScriptMapping.o $
+    obj/third_party/WebKit/Source/platform/text/blink_platform.PlatformLocale.o $
+    obj/third_party/WebKit/Source/platform/text/blink_platform.QuotedPrintable.o $
+    obj/third_party/WebKit/Source/platform/text/blink_platform.SegmentedString.o $
+    obj/third_party/WebKit/Source/platform/text/blink_platform.SurrogatePairAwareTextIterator.o $
+    obj/third_party/WebKit/Source/platform/text/blink_platform.TextBoundaries.o $
+    obj/third_party/WebKit/Source/platform/text/blink_platform.TextBreakIterator.o $
+    obj/third_party/WebKit/Source/platform/text/blink_platform.TextBreakIteratorICU.o $
+    obj/third_party/WebKit/Source/platform/text/blink_platform.TextBreakIteratorInternalICU.o $
+    obj/third_party/WebKit/Source/platform/text/blink_platform.TextEncodingDetector.o $
+    obj/third_party/WebKit/Source/platform/text/blink_platform.TextStream.o $
+    obj/third_party/WebKit/Source/platform/text/blink_platform.UnicodeRange.o $
+    obj/third_party/WebKit/Source/platform/transforms/blink_platform.AffineTransform.o $
+    obj/third_party/WebKit/Source/platform/transforms/blink_platform.InterpolatedTransformOperation.o $
+    obj/third_party/WebKit/Source/platform/transforms/blink_platform.Matrix3DTransformOperation.o $
+    obj/third_party/WebKit/Source/platform/transforms/blink_platform.MatrixTransformOperation.o $
+    obj/third_party/WebKit/Source/platform/transforms/blink_platform.PerspectiveTransformOperation.o $
+    obj/third_party/WebKit/Source/platform/transforms/blink_platform.RotateTransformOperation.o $
+    obj/third_party/WebKit/Source/platform/transforms/blink_platform.ScaleTransformOperation.o $
+    obj/third_party/WebKit/Source/platform/transforms/blink_platform.SkewTransformOperation.o $
+    obj/third_party/WebKit/Source/platform/transforms/blink_platform.TransformOperations.o $
+    obj/third_party/WebKit/Source/platform/transforms/blink_platform.TranslateTransformOperation.o $
+    obj/third_party/WebKit/Source/platform/transforms/blink_platform.TransformationMatrix.o $
+    obj/third_party/WebKit/Source/platform/gen/blink/blink_platform.FontFamilyNames.o $
+    obj/third_party/WebKit/Source/platform/gen/blink/blink_platform.RuntimeEnabledFeatures.o $
+    obj/third_party/WebKit/Source/platform/gen/blink/blink_platform.ColorData.o $
+    || $
+    obj/third_party/WebKit/Source/platform/blink_platform.actions_depends.stamp

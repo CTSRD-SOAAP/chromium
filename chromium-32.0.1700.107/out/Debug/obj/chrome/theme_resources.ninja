@@ -1,0 +1,10 @@
+build obj/chrome/theme_resources.actions_depends.stamp: stamp $
+    obj/chrome/chrome_unscaled_resources.actions_rules_copies.stamp $
+    obj/chrome/theme_resources_gen.actions_rules_copies.stamp $
+    obj/ui/ui_resources.actions_rules_copies.stamp
+
+build obj/chrome/theme_resources.compile_depends.stamp: stamp $
+    obj/chrome/chrome_unscaled_resources.actions_rules_copies.stamp $
+    obj/chrome/theme_resources_gen.actions_rules_copies.stamp $
+    obj/ui/ui_resources.actions_rules_copies.stamp
+

@@ -1,0 +1,312 @@
+build obj/content/content_child.actions_depends.stamp: stamp $
+    obj/content/content_resources.actions_rules_copies.stamp $
+    obj/skia/skia.actions_depends.stamp $
+    obj/third_party/WebKit/public/blink.actions_depends.stamp $
+    obj/webkit/glue/libglue_child.a
+
+build obj/content/content_child.compile_depends.stamp: stamp $
+    obj/content/content_resources.actions_rules_copies.stamp $
+    obj/third_party/WebKit/public/blink.compile_depends.stamp $
+    obj/webkit/glue/glue_child.compile_depends.stamp
+
+defines = -DCONTENT_IMPLEMENTATION -DANGLE_DX11 -D_FILE_OFFSET_BITS=64 $
+    -DNO_TCMALLOC -DDISABLE_NACL -DCHROMIUM_BUILD $
+    -DUSE_DEFAULT_RENDER_THEME=1 -DUSE_LIBJPEG_TURBO=1 -DUSE_NSS=1 $
+    -DUSE_X11=1 -DENABLE_ONE_CLICK_SIGNIN -DGTK_DISABLE_SINGLE_INCLUDES=1 $
+    -DUSE_XI2_MT=2 -DENABLE_REMOTING=1 -DENABLE_WEBRTC=1 $
+    -DUSE_PROPRIETARY_CODECS -DENABLE_CONFIGURATION_POLICY $
+    -DENABLE_INPUT_SPEECH -DENABLE_NOTIFICATIONS -DENABLE_EGLIMAGE=1 $
+    -DENABLE_TASK_MANAGER=1 -DENABLE_EXTENSIONS=1 $
+    -DENABLE_PLUGIN_INSTALLATION=1 -DENABLE_PLUGINS=1 $
+    -DENABLE_SESSION_SERVICE=1 -DENABLE_THEMES=1 -DENABLE_BACKGROUND=1 $
+    -DENABLE_AUTOMATION=1 -DENABLE_GOOGLE_NOW=1 -DCLD_VERSION=2 $
+    -DENABLE_FULL_PRINTING=1 -DENABLE_PRINTING=1 -DENABLE_SPELLCHECK=1 $
+    -DENABLE_CAPTIVE_PORTAL_DETECTION=1 -DENABLE_MANAGED_USERS=1 $
+    -DGL_GLEXT_PROTOTYPES -DSK_ENABLE_INST_COUNT=0 -DSK_SUPPORT_GPU=1 $
+    '-DGR_GL_CUSTOM_SETUP_HEADER="GrGLConfig_chrome.h"' $
+    -DSK_ENABLE_LEGACY_API_ALIASING=1 -DSK_ATTR_DEPRECATED=SK_NOTHING_ARG1 $
+    -DSK_SUPPORT_LEGACY_COLORTYPE=1 -DSK_USE_POSIX_THREADS $
+    -DSK_DEFERRED_CANVAS_USES_FACTORIES=1 -DU_USING_ICU_NAMESPACE=0 $
+    -DU_STATIC_IMPLEMENTATION -D__STDC_CONSTANT_MACROS $
+    -D__STDC_FORMAT_MACROS -DNDEBUG -DOFFICIAL_BUILD -DNVALGRIND $
+    -DDYNAMIC_ANNOTATIONS_ENABLED=0 -D_FORTIFY_SOURCE=2
+includes = -I../.. -I../../third_party/khronos -I../../gpu -Igen/content $
+    -I../../third_party/skia/src/core -I../../third_party/skia/include/core $
+    -I../../third_party/skia/include/effects $
+    -I../../third_party/skia/include/pdf $
+    -I../../third_party/skia/include/gpu $
+    -I../../third_party/skia/include/lazy $
+    -I../../third_party/skia/include/pathops $
+    -I../../third_party/skia/include/pipe $
+    -I../../third_party/skia/include/ports $
+    -I../../third_party/skia/include/utils -I../../skia/config $
+    -I../../skia/ext -I../../third_party/icu/source/i18n $
+    -I../../third_party/icu/source/common -I../../third_party/WebKit $
+    -I../../v8/include -I../../third_party/npapi $
+    -I../../third_party/npapi/bindings
+cflags = -fstack-protector --param=ssp-buffer-size=4  -pthread $
+    -fno-exceptions -fno-strict-aliasing -Wall -Wno-unused-parameter $
+    -Wno-missing-field-initializers -fvisibility=hidden -pipe -fPIC $
+    -Wheader-hygiene -Wno-char-subscripts -Wno-unused-function $
+    -Wno-covered-switch-default -Wstring-conversion -Wno-c++11-narrowing $
+    -Wno-reserved-user-defined-literal -Wno-deprecated-register $
+    -Wno-deprecated-declarations -fcolor-diagnostics $
+    -I/usr/local/include/gtk-2.0 -I/usr/local/include/gio-unix-2.0/ $
+    -I/usr/local/include/atk-1.0 -I/usr/local/include/cairo $
+    -I/usr/local/include/pixman-1 -D_THREAD_SAFE $
+    -I/usr/local/include/gdk-pixbuf-2.0 -I/usr/local/include/libpng15 $
+    -I/usr/local/include/pango-1.0 -I/usr/local/include/freetype2 $
+    -I/usr/local/include/harfbuzz -pthread -I/usr/local/include/glib-2.0 $
+    -I/usr/local/include -pthread -I/usr/local/include/glib-2.0 $
+    -I/usr/local/include -D_THREAD_SAFE -I/usr/local/include $
+    -Wexit-time-destructors -O2 -fdata-sections -ffunction-sections
+cflags_c = -O2 -pipe -fno-stack-protector -Wno-unknown-warning-option $
+    -fno-strict-aliasing
+cflags_cc = -O2 -pipe -fno-stack-protector -Wno-unknown-warning-option $
+    -fno-strict-aliasing -fno-rtti -fno-threadsafe-statics $
+    -fvisibility-inlines-hidden -Wsign-compare -std=gnu++11
+
+build obj/content/child/appcache/content_child.appcache_backend_proxy.o: $
+    cxx ../../content/child/appcache/appcache_backend_proxy.cc || $
+    obj/content/content_child.compile_depends.stamp
+build obj/content/child/appcache/content_child.appcache_dispatcher.o: cxx $
+    ../../content/child/appcache/appcache_dispatcher.cc || $
+    obj/content/content_child.compile_depends.stamp
+build obj/content/child/appcache/content_child.appcache_frontend_impl.o: $
+    cxx ../../content/child/appcache/appcache_frontend_impl.cc || $
+    obj/content/content_child.compile_depends.stamp
+build $
+    obj/content/child/appcache/content_child.web_application_cache_host_impl.o: $
+    cxx ../../content/child/appcache/web_application_cache_host_impl.cc || $
+    obj/content/content_child.compile_depends.stamp
+build obj/content/child/content_child.browser_font_resource_trusted.o: cxx $
+    ../../content/child/browser_font_resource_trusted.cc || $
+    obj/content/content_child.compile_depends.stamp
+build obj/content/child/content_child.child_histogram_message_filter.o: cxx $
+    ../../content/child/child_histogram_message_filter.cc || $
+    obj/content/content_child.compile_depends.stamp
+build obj/content/child/content_child.child_process.o: cxx $
+    ../../content/child/child_process.cc || $
+    obj/content/content_child.compile_depends.stamp
+build obj/content/child/content_child.child_resource_message_filter.o: cxx $
+    ../../content/child/child_resource_message_filter.cc || $
+    obj/content/content_child.compile_depends.stamp
+build obj/content/child/content_child.child_thread.o: cxx $
+    ../../content/child/child_thread.cc || $
+    obj/content/content_child.compile_depends.stamp
+build obj/content/child/content_child.database_util.o: cxx $
+    ../../content/child/database_util.cc || $
+    obj/content/content_child.compile_depends.stamp
+build obj/content/child/content_child.db_message_filter.o: cxx $
+    ../../content/child/db_message_filter.cc || $
+    obj/content/content_child.compile_depends.stamp
+build obj/content/child/fileapi/content_child.file_system_dispatcher.o: cxx $
+    ../../content/child/fileapi/file_system_dispatcher.cc || $
+    obj/content/content_child.compile_depends.stamp
+build obj/content/child/fileapi/content_child.webfilesystem_impl.o: cxx $
+    ../../content/child/fileapi/webfilesystem_impl.cc || $
+    obj/content/content_child.compile_depends.stamp
+build obj/content/child/fileapi/content_child.webfilewriter_base.o: cxx $
+    ../../content/child/fileapi/webfilewriter_base.cc || $
+    obj/content/content_child.compile_depends.stamp
+build obj/content/child/fileapi/content_child.webfilewriter_impl.o: cxx $
+    ../../content/child/fileapi/webfilewriter_impl.cc || $
+    obj/content/content_child.compile_depends.stamp
+build obj/content/child/content_child.image_decoder.o: cxx $
+    ../../content/child/image_decoder.cc || $
+    obj/content/content_child.compile_depends.stamp
+build obj/content/child/indexed_db/content_child.indexed_db_dispatcher.o: $
+    cxx ../../content/child/indexed_db/indexed_db_dispatcher.cc || $
+    obj/content/content_child.compile_depends.stamp
+build obj/content/child/indexed_db/content_child.indexed_db_key_builders.o: $
+    cxx ../../content/child/indexed_db/indexed_db_key_builders.cc || $
+    obj/content/content_child.compile_depends.stamp
+build $
+    obj/content/child/indexed_db/content_child.indexed_db_message_filter.o: $
+    cxx ../../content/child/indexed_db/indexed_db_message_filter.cc || $
+    obj/content/content_child.compile_depends.stamp
+build obj/content/child/indexed_db/content_child.proxy_webidbcursor_impl.o: $
+    cxx ../../content/child/indexed_db/proxy_webidbcursor_impl.cc || $
+    obj/content/content_child.compile_depends.stamp
+build $
+    obj/content/child/indexed_db/content_child.proxy_webidbdatabase_impl.o: $
+    cxx ../../content/child/indexed_db/proxy_webidbdatabase_impl.cc || $
+    obj/content/content_child.compile_depends.stamp
+build $
+    obj/content/child/indexed_db/content_child.proxy_webidbfactory_impl.o: $
+    cxx ../../content/child/indexed_db/proxy_webidbfactory_impl.cc || $
+    obj/content/content_child.compile_depends.stamp
+build $
+    obj/content/child/service_worker/content_child.service_worker_dispatcher.o: $
+    cxx ../../content/child/service_worker/service_worker_dispatcher.cc || $
+    obj/content/content_child.compile_depends.stamp
+build $
+    obj/content/child/service_worker/content_child.service_worker_message_filter.o: $
+    cxx ../../content/child/service_worker/service_worker_message_filter.cc $
+    || obj/content/content_child.compile_depends.stamp
+build $
+    obj/content/child/service_worker/content_child.web_service_worker_impl.o: $
+    cxx ../../content/child/service_worker/web_service_worker_impl.cc || $
+    obj/content/content_child.compile_depends.stamp
+build $
+    obj/content/child/service_worker/content_child.web_service_worker_provider_impl.o: $
+    cxx $
+    ../../content/child/service_worker/web_service_worker_provider_impl.cc $
+    || obj/content/content_child.compile_depends.stamp
+build obj/content/child/npapi/content_child.np_channel_base.o: cxx $
+    ../../content/child/npapi/np_channel_base.cc || $
+    obj/content/content_child.compile_depends.stamp
+build obj/content/child/npapi/content_child.npobject_proxy.o: cxx $
+    ../../content/child/npapi/npobject_proxy.cc || $
+    obj/content/content_child.compile_depends.stamp
+build obj/content/child/npapi/content_child.npobject_stub.o: cxx $
+    ../../content/child/npapi/npobject_stub.cc || $
+    obj/content/content_child.compile_depends.stamp
+build obj/content/child/npapi/content_child.npobject_util.o: cxx $
+    ../../content/child/npapi/npobject_util.cc || $
+    obj/content/content_child.compile_depends.stamp
+build obj/content/child/npapi/content_child.npruntime_util.o: cxx $
+    ../../content/child/npapi/npruntime_util.cc || $
+    obj/content/content_child.compile_depends.stamp
+build obj/content/child/npapi/content_child.plugin_host.o: cxx $
+    ../../content/child/npapi/plugin_host.cc || $
+    obj/content/content_child.compile_depends.stamp
+build obj/content/child/npapi/content_child.plugin_instance.o: cxx $
+    ../../content/child/npapi/plugin_instance.cc || $
+    obj/content/content_child.compile_depends.stamp
+build obj/content/child/npapi/content_child.plugin_lib.o: cxx $
+    ../../content/child/npapi/plugin_lib.cc || $
+    obj/content/content_child.compile_depends.stamp
+build obj/content/child/npapi/content_child.plugin_stream.o: cxx $
+    ../../content/child/npapi/plugin_stream.cc || $
+    obj/content/content_child.compile_depends.stamp
+build obj/content/child/npapi/content_child.plugin_stream_posix.o: cxx $
+    ../../content/child/npapi/plugin_stream_posix.cc || $
+    obj/content/content_child.compile_depends.stamp
+build obj/content/child/npapi/content_child.plugin_stream_url.o: cxx $
+    ../../content/child/npapi/plugin_stream_url.cc || $
+    obj/content/content_child.compile_depends.stamp
+build obj/content/child/npapi/content_child.plugin_string_stream.o: cxx $
+    ../../content/child/npapi/plugin_string_stream.cc || $
+    obj/content/content_child.compile_depends.stamp
+build obj/content/child/npapi/content_child.plugin_url_fetcher.o: cxx $
+    ../../content/child/npapi/plugin_url_fetcher.cc || $
+    obj/content/content_child.compile_depends.stamp
+build obj/content/child/npapi/content_child.webplugin_delegate_impl.o: cxx $
+    ../../content/child/npapi/webplugin_delegate_impl.cc || $
+    obj/content/content_child.compile_depends.stamp
+build obj/content/child/npapi/content_child.webplugin_delegate_impl_gtk.o: $
+    cxx ../../content/child/npapi/webplugin_delegate_impl_gtk.cc || $
+    obj/content/content_child.compile_depends.stamp
+build obj/content/child/content_child.plugin_message_generator.o: cxx $
+    ../../content/child/plugin_message_generator.cc || $
+    obj/content/content_child.compile_depends.stamp
+build obj/content/child/content_child.plugin_param_traits.o: cxx $
+    ../../content/child/plugin_param_traits.cc || $
+    obj/content/content_child.compile_depends.stamp
+build obj/content/child/content_child.power_monitor_broadcast_source.o: cxx $
+    ../../content/child/power_monitor_broadcast_source.cc || $
+    obj/content/content_child.compile_depends.stamp
+build obj/content/child/content_child.quota_dispatcher.o: cxx $
+    ../../content/child/quota_dispatcher.cc || $
+    obj/content/content_child.compile_depends.stamp
+build obj/content/child/content_child.quota_message_filter.o: cxx $
+    ../../content/child/quota_message_filter.cc || $
+    obj/content/content_child.compile_depends.stamp
+build obj/content/child/content_child.request_extra_data.o: cxx $
+    ../../content/child/request_extra_data.cc || $
+    obj/content/content_child.compile_depends.stamp
+build obj/content/child/content_child.resource_dispatcher.o: cxx $
+    ../../content/child/resource_dispatcher.cc || $
+    obj/content/content_child.compile_depends.stamp
+build obj/content/child/content_child.runtime_features.o: cxx $
+    ../../content/child/runtime_features.cc || $
+    obj/content/content_child.compile_depends.stamp
+build obj/content/child/content_child.site_isolation_policy.o: cxx $
+    ../../content/child/site_isolation_policy.cc || $
+    obj/content/content_child.compile_depends.stamp
+build obj/content/child/content_child.socket_stream_dispatcher.o: cxx $
+    ../../content/child/socket_stream_dispatcher.cc || $
+    obj/content/content_child.compile_depends.stamp
+build obj/content/child/content_child.thread_safe_sender.o: cxx $
+    ../../content/child/thread_safe_sender.cc || $
+    obj/content/content_child.compile_depends.stamp
+build obj/content/child/content_child.web_database_observer_impl.o: cxx $
+    ../../content/child/web_database_observer_impl.cc || $
+    obj/content/content_child.compile_depends.stamp
+build obj/content/child/content_child.webblobregistry_impl.o: cxx $
+    ../../content/child/webblobregistry_impl.cc || $
+    obj/content/content_child.compile_depends.stamp
+build obj/content/child/content_child.webkitplatformsupport_impl.o: cxx $
+    ../../content/child/webkitplatformsupport_impl.cc || $
+    obj/content/content_child.compile_depends.stamp
+build obj/content/child/content_child.webmessageportchannel_impl.o: cxx $
+    ../../content/child/webmessageportchannel_impl.cc || $
+    obj/content/content_child.compile_depends.stamp
+build obj/content/child/content_child.websocket_bridge.o: cxx $
+    ../../content/child/websocket_bridge.cc || $
+    obj/content/content_child.compile_depends.stamp
+build obj/content/child/content_child.websocket_dispatcher.o: cxx $
+    ../../content/child/websocket_dispatcher.cc || $
+    obj/content/content_child.compile_depends.stamp
+
+build obj/content/libcontent_child.a: alink_thin $
+    obj/content/child/appcache/content_child.appcache_backend_proxy.o $
+    obj/content/child/appcache/content_child.appcache_dispatcher.o $
+    obj/content/child/appcache/content_child.appcache_frontend_impl.o $
+    obj/content/child/appcache/content_child.web_application_cache_host_impl.o $
+    obj/content/child/content_child.browser_font_resource_trusted.o $
+    obj/content/child/content_child.child_histogram_message_filter.o $
+    obj/content/child/content_child.child_process.o $
+    obj/content/child/content_child.child_resource_message_filter.o $
+    obj/content/child/content_child.child_thread.o $
+    obj/content/child/content_child.database_util.o $
+    obj/content/child/content_child.db_message_filter.o $
+    obj/content/child/fileapi/content_child.file_system_dispatcher.o $
+    obj/content/child/fileapi/content_child.webfilesystem_impl.o $
+    obj/content/child/fileapi/content_child.webfilewriter_base.o $
+    obj/content/child/fileapi/content_child.webfilewriter_impl.o $
+    obj/content/child/content_child.image_decoder.o $
+    obj/content/child/indexed_db/content_child.indexed_db_dispatcher.o $
+    obj/content/child/indexed_db/content_child.indexed_db_key_builders.o $
+    obj/content/child/indexed_db/content_child.indexed_db_message_filter.o $
+    obj/content/child/indexed_db/content_child.proxy_webidbcursor_impl.o $
+    obj/content/child/indexed_db/content_child.proxy_webidbdatabase_impl.o $
+    obj/content/child/indexed_db/content_child.proxy_webidbfactory_impl.o $
+    obj/content/child/service_worker/content_child.service_worker_dispatcher.o $
+    obj/content/child/service_worker/content_child.service_worker_message_filter.o $
+    obj/content/child/service_worker/content_child.web_service_worker_impl.o $
+    obj/content/child/service_worker/content_child.web_service_worker_provider_impl.o $
+    obj/content/child/npapi/content_child.np_channel_base.o $
+    obj/content/child/npapi/content_child.npobject_proxy.o $
+    obj/content/child/npapi/content_child.npobject_stub.o $
+    obj/content/child/npapi/content_child.npobject_util.o $
+    obj/content/child/npapi/content_child.npruntime_util.o $
+    obj/content/child/npapi/content_child.plugin_host.o $
+    obj/content/child/npapi/content_child.plugin_instance.o $
+    obj/content/child/npapi/content_child.plugin_lib.o $
+    obj/content/child/npapi/content_child.plugin_stream.o $
+    obj/content/child/npapi/content_child.plugin_stream_posix.o $
+    obj/content/child/npapi/content_child.plugin_stream_url.o $
+    obj/content/child/npapi/content_child.plugin_string_stream.o $
+    obj/content/child/npapi/content_child.plugin_url_fetcher.o $
+    obj/content/child/npapi/content_child.webplugin_delegate_impl.o $
+    obj/content/child/npapi/content_child.webplugin_delegate_impl_gtk.o $
+    obj/content/child/content_child.plugin_message_generator.o $
+    obj/content/child/content_child.plugin_param_traits.o $
+    obj/content/child/content_child.power_monitor_broadcast_source.o $
+    obj/content/child/content_child.quota_dispatcher.o $
+    obj/content/child/content_child.quota_message_filter.o $
+    obj/content/child/content_child.request_extra_data.o $
+    obj/content/child/content_child.resource_dispatcher.o $
+    obj/content/child/content_child.runtime_features.o $
+    obj/content/child/content_child.site_isolation_policy.o $
+    obj/content/child/content_child.socket_stream_dispatcher.o $
+    obj/content/child/content_child.thread_safe_sender.o $
+    obj/content/child/content_child.web_database_observer_impl.o $
+    obj/content/child/content_child.webblobregistry_impl.o $
+    obj/content/child/content_child.webkitplatformsupport_impl.o $
+    obj/content/child/content_child.webmessageportchannel_impl.o $
+    obj/content/child/content_child.websocket_bridge.o $
+    obj/content/child/content_child.websocket_dispatcher.o || $
+    obj/content/content_child.actions_depends.stamp

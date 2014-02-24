@@ -1,0 +1,466 @@
+build obj/remoting/remoting_webapp.actions_depends.stamp: stamp $
+    obj/remoting/remoting_resources.actions_rules_copies.stamp $
+    libremoting_host_plugin.x64.so.TOC
+
+build obj/remoting/remoting_webapp.compile_depends.stamp: stamp $
+    obj/remoting/remoting_resources.actions_rules_copies.stamp $
+    obj/remoting/remoting_host_plugin.compile_depends.stamp
+
+rule $
+    remoting_webapp_target_Build_Remoting_WebApp_09c97659f0337db42282097d6bbe4db9
+  command = cd ../../remoting; python webapp/build-webapp.py Official $
+      32.0.1700.107 application/vnd.chromium.remoting-host $
+      ../out/Release/remoting/remoting.webapp $
+      ../out/Release/remoting-webapp.zip $
+      ../out/Release/libremoting_host_plugin.x64.so $
+      resources/chromoting16.webp resources/chromoting48.webp $
+      resources/chromoting128.webp resources/disclosure_arrow_down.webp $
+      resources/disclosure_arrow_right.webp $
+      resources/host_setup_instructions.webp resources/icon_cross.webp $
+      resources/icon_host.webp resources/icon_pencil.webp $
+      resources/icon_warning.webp resources/infographic_my_computers.webp $
+      resources/infographic_remote_assistance.webp resources/plus.webp $
+      resources/reload.webp resources/tick.webp $
+      webapp/connection_history.css webapp/connection_stats.css $
+      webapp/main.css webapp/main.html webapp/manifest.json $
+      webapp/menu_button.css webapp/open_sans.css webapp/open_sans.woff $
+      webapp/scale-to-fit.webp webapp/spinner.gif webapp/toolbar.css $
+      webapp/wcs_sandbox.html webapp/butter_bar.js webapp/client_plugin.js $
+      webapp/client_plugin_async.js webapp/client_screen.js $
+      webapp/client_session.js webapp/clipboard.js $
+      webapp/connection_history.js webapp/connection_stats.js $
+      webapp/cs_oauth2_trampoline.js $
+      webapp/cs_third_party_auth_trampoline.js webapp/error.js $
+      webapp/event_handlers.js webapp/format_iq.js webapp/host.js $
+      webapp/host_controller.js webapp/host_dispatcher.js $
+      webapp/host_list.js webapp/host_native_messaging.js $
+      webapp/host_screen.js webapp/host_session.js webapp/host_settings.js $
+      webapp/host_setup_dialog.js webapp/host_table_entry.js $
+      webapp/identity.js webapp/l10n.js webapp/log_to_server.js $
+      webapp/menu_button.js webapp/oauth2.js webapp/oauth2_api.js $
+      webapp/paired_client_manager.js webapp/plugin_settings.js $
+      webapp/remoting.js webapp/server_log_entry.js $
+      webapp/session_connector.js webapp/stats_accumulator.js $
+      webapp/third_party_host_permissions.js webapp/xhr_proxy.js $
+      webapp/third_party_token_fetcher.js webapp/toolbar.js $
+      webapp/ui_mode.js webapp/wcs.js webapp/wcs_loader.js $
+      webapp/wcs_sandbox_container.js webapp/wcs_sandbox_content.js $
+      webapp/xhr.js --locales $
+      ../out/Release/gen/remoting/webapp/_locales/ar/messages.json $
+      ../out/Release/gen/remoting/webapp/_locales/bg/messages.json $
+      ../out/Release/gen/remoting/webapp/_locales/ca/messages.json $
+      ../out/Release/gen/remoting/webapp/_locales/cs/messages.json $
+      ../out/Release/gen/remoting/webapp/_locales/da/messages.json $
+      ../out/Release/gen/remoting/webapp/_locales/de/messages.json $
+      ../out/Release/gen/remoting/webapp/_locales/el/messages.json $
+      ../out/Release/gen/remoting/webapp/_locales/en/messages.json $
+      ../out/Release/gen/remoting/webapp/_locales/en_GB/messages.json $
+      ../out/Release/gen/remoting/webapp/_locales/es/messages.json $
+      ../out/Release/gen/remoting/webapp/_locales/es_419/messages.json $
+      ../out/Release/gen/remoting/webapp/_locales/et/messages.json $
+      ../out/Release/gen/remoting/webapp/_locales/fi/messages.json $
+      ../out/Release/gen/remoting/webapp/_locales/fil/messages.json $
+      ../out/Release/gen/remoting/webapp/_locales/fr/messages.json $
+      ../out/Release/gen/remoting/webapp/_locales/he/messages.json $
+      ../out/Release/gen/remoting/webapp/_locales/hi/messages.json $
+      ../out/Release/gen/remoting/webapp/_locales/hr/messages.json $
+      ../out/Release/gen/remoting/webapp/_locales/hu/messages.json $
+      ../out/Release/gen/remoting/webapp/_locales/id/messages.json $
+      ../out/Release/gen/remoting/webapp/_locales/it/messages.json $
+      ../out/Release/gen/remoting/webapp/_locales/ja/messages.json $
+      ../out/Release/gen/remoting/webapp/_locales/ko/messages.json $
+      ../out/Release/gen/remoting/webapp/_locales/lt/messages.json $
+      ../out/Release/gen/remoting/webapp/_locales/lv/messages.json $
+      ../out/Release/gen/remoting/webapp/_locales/nb/messages.json $
+      ../out/Release/gen/remoting/webapp/_locales/nl/messages.json $
+      ../out/Release/gen/remoting/webapp/_locales/pl/messages.json $
+      ../out/Release/gen/remoting/webapp/_locales/pt_BR/messages.json $
+      ../out/Release/gen/remoting/webapp/_locales/pt_PT/messages.json $
+      ../out/Release/gen/remoting/webapp/_locales/ro/messages.json $
+      ../out/Release/gen/remoting/webapp/_locales/ru/messages.json $
+      ../out/Release/gen/remoting/webapp/_locales/sk/messages.json $
+      ../out/Release/gen/remoting/webapp/_locales/sl/messages.json $
+      ../out/Release/gen/remoting/webapp/_locales/sr/messages.json $
+      ../out/Release/gen/remoting/webapp/_locales/sv/messages.json $
+      ../out/Release/gen/remoting/webapp/_locales/th/messages.json $
+      ../out/Release/gen/remoting/webapp/_locales/tr/messages.json $
+      ../out/Release/gen/remoting/webapp/_locales/uk/messages.json $
+      ../out/Release/gen/remoting/webapp/_locales/vi/messages.json $
+      ../out/Release/gen/remoting/webapp/_locales/zh_CN/messages.json $
+      ../out/Release/gen/remoting/webapp/_locales/zh_TW/messages.json $
+      ../out/Release/remoting_locales/ar.pak $
+      ../out/Release/remoting_locales/bg.pak $
+      ../out/Release/remoting_locales/ca.pak $
+      ../out/Release/remoting_locales/cs.pak $
+      ../out/Release/remoting_locales/da.pak $
+      ../out/Release/remoting_locales/de.pak $
+      ../out/Release/remoting_locales/el.pak $
+      ../out/Release/remoting_locales/en.pak $
+      ../out/Release/remoting_locales/en-GB.pak $
+      ../out/Release/remoting_locales/es.pak $
+      ../out/Release/remoting_locales/es-419.pak $
+      ../out/Release/remoting_locales/et.pak $
+      ../out/Release/remoting_locales/fi.pak $
+      ../out/Release/remoting_locales/fil.pak $
+      ../out/Release/remoting_locales/fr.pak $
+      ../out/Release/remoting_locales/he.pak $
+      ../out/Release/remoting_locales/hi.pak $
+      ../out/Release/remoting_locales/hr.pak $
+      ../out/Release/remoting_locales/hu.pak $
+      ../out/Release/remoting_locales/id.pak $
+      ../out/Release/remoting_locales/it.pak $
+      ../out/Release/remoting_locales/ja.pak $
+      ../out/Release/remoting_locales/ko.pak $
+      ../out/Release/remoting_locales/lt.pak $
+      ../out/Release/remoting_locales/lv.pak $
+      ../out/Release/remoting_locales/nb.pak $
+      ../out/Release/remoting_locales/nl.pak $
+      ../out/Release/remoting_locales/pl.pak $
+      ../out/Release/remoting_locales/pt-BR.pak $
+      ../out/Release/remoting_locales/pt-PT.pak $
+      ../out/Release/remoting_locales/ro.pak $
+      ../out/Release/remoting_locales/ru.pak $
+      ../out/Release/remoting_locales/sk.pak $
+      ../out/Release/remoting_locales/sl.pak $
+      ../out/Release/remoting_locales/sr.pak $
+      ../out/Release/remoting_locales/sv.pak $
+      ../out/Release/remoting_locales/th.pak $
+      ../out/Release/remoting_locales/tr.pak $
+      ../out/Release/remoting_locales/uk.pak $
+      ../out/Release/remoting_locales/vi.pak $
+      ../out/Release/remoting_locales/zh-CN.pak $
+      ../out/Release/remoting_locales/zh-TW.pak
+  description = ACTION remoting_webapp: Build Remoting $
+      WebApp_09c97659f0337db42282097d6bbe4db9
+  restat = 1
+
+build remoting/remoting.webapp remoting-webapp.zip: $
+    remoting_webapp_target_Build_Remoting_WebApp_09c97659f0337db42282097d6bbe4db9 $
+    ../../remoting/webapp/build-webapp.py ../../chrome/VERSION $
+    ../../remoting/VERSION ../../remoting/resources/chromoting16.webp $
+    ../../remoting/resources/chromoting48.webp $
+    ../../remoting/resources/chromoting128.webp $
+    ../../remoting/resources/disclosure_arrow_down.webp $
+    ../../remoting/resources/disclosure_arrow_right.webp $
+    ../../remoting/resources/host_setup_instructions.webp $
+    ../../remoting/resources/icon_cross.webp $
+    ../../remoting/resources/icon_host.webp $
+    ../../remoting/resources/icon_pencil.webp $
+    ../../remoting/resources/icon_warning.webp $
+    ../../remoting/resources/infographic_my_computers.webp $
+    ../../remoting/resources/infographic_remote_assistance.webp $
+    ../../remoting/resources/plus.webp ../../remoting/resources/reload.webp $
+    ../../remoting/resources/tick.webp $
+    ../../remoting/webapp/connection_history.css $
+    ../../remoting/webapp/connection_stats.css $
+    ../../remoting/webapp/main.css ../../remoting/webapp/main.html $
+    ../../remoting/webapp/manifest.json $
+    ../../remoting/webapp/menu_button.css $
+    ../../remoting/webapp/open_sans.css $
+    ../../remoting/webapp/open_sans.woff $
+    ../../remoting/webapp/scale-to-fit.webp $
+    ../../remoting/webapp/spinner.gif ../../remoting/webapp/toolbar.css $
+    ../../remoting/webapp/wcs_sandbox.html $
+    ../../remoting/webapp/butter_bar.js $
+    ../../remoting/webapp/client_plugin.js $
+    ../../remoting/webapp/client_plugin_async.js $
+    ../../remoting/webapp/client_screen.js $
+    ../../remoting/webapp/client_session.js $
+    ../../remoting/webapp/clipboard.js $
+    ../../remoting/webapp/connection_history.js $
+    ../../remoting/webapp/connection_stats.js $
+    ../../remoting/webapp/cs_oauth2_trampoline.js $
+    ../../remoting/webapp/cs_third_party_auth_trampoline.js $
+    ../../remoting/webapp/error.js ../../remoting/webapp/event_handlers.js $
+    ../../remoting/webapp/format_iq.js ../../remoting/webapp/host.js $
+    ../../remoting/webapp/host_controller.js $
+    ../../remoting/webapp/host_dispatcher.js $
+    ../../remoting/webapp/host_list.js $
+    ../../remoting/webapp/host_native_messaging.js $
+    ../../remoting/webapp/host_screen.js $
+    ../../remoting/webapp/host_session.js $
+    ../../remoting/webapp/host_settings.js $
+    ../../remoting/webapp/host_setup_dialog.js $
+    ../../remoting/webapp/host_table_entry.js $
+    ../../remoting/webapp/identity.js ../../remoting/webapp/l10n.js $
+    ../../remoting/webapp/log_to_server.js $
+    ../../remoting/webapp/menu_button.js ../../remoting/webapp/oauth2.js $
+    ../../remoting/webapp/oauth2_api.js $
+    ../../remoting/webapp/paired_client_manager.js $
+    ../../remoting/webapp/plugin_settings.js $
+    ../../remoting/webapp/remoting.js $
+    ../../remoting/webapp/server_log_entry.js $
+    ../../remoting/webapp/session_connector.js $
+    ../../remoting/webapp/stats_accumulator.js $
+    ../../remoting/webapp/third_party_host_permissions.js $
+    ../../remoting/webapp/xhr_proxy.js $
+    ../../remoting/webapp/third_party_token_fetcher.js $
+    ../../remoting/webapp/toolbar.js ../../remoting/webapp/ui_mode.js $
+    ../../remoting/webapp/wcs.js ../../remoting/webapp/wcs_loader.js $
+    ../../remoting/webapp/wcs_sandbox_container.js $
+    ../../remoting/webapp/wcs_sandbox_content.js $
+    ../../remoting/webapp/xhr.js $
+    gen/remoting/webapp/_locales/ar/messages.json $
+    gen/remoting/webapp/_locales/bg/messages.json $
+    gen/remoting/webapp/_locales/ca/messages.json $
+    gen/remoting/webapp/_locales/cs/messages.json $
+    gen/remoting/webapp/_locales/da/messages.json $
+    gen/remoting/webapp/_locales/de/messages.json $
+    gen/remoting/webapp/_locales/el/messages.json $
+    gen/remoting/webapp/_locales/en/messages.json $
+    gen/remoting/webapp/_locales/en_GB/messages.json $
+    gen/remoting/webapp/_locales/es/messages.json $
+    gen/remoting/webapp/_locales/es_419/messages.json $
+    gen/remoting/webapp/_locales/et/messages.json $
+    gen/remoting/webapp/_locales/fi/messages.json $
+    gen/remoting/webapp/_locales/fil/messages.json $
+    gen/remoting/webapp/_locales/fr/messages.json $
+    gen/remoting/webapp/_locales/he/messages.json $
+    gen/remoting/webapp/_locales/hi/messages.json $
+    gen/remoting/webapp/_locales/hr/messages.json $
+    gen/remoting/webapp/_locales/hu/messages.json $
+    gen/remoting/webapp/_locales/id/messages.json $
+    gen/remoting/webapp/_locales/it/messages.json $
+    gen/remoting/webapp/_locales/ja/messages.json $
+    gen/remoting/webapp/_locales/ko/messages.json $
+    gen/remoting/webapp/_locales/lt/messages.json $
+    gen/remoting/webapp/_locales/lv/messages.json $
+    gen/remoting/webapp/_locales/nb/messages.json $
+    gen/remoting/webapp/_locales/nl/messages.json $
+    gen/remoting/webapp/_locales/pl/messages.json $
+    gen/remoting/webapp/_locales/pt_BR/messages.json $
+    gen/remoting/webapp/_locales/pt_PT/messages.json $
+    gen/remoting/webapp/_locales/ro/messages.json $
+    gen/remoting/webapp/_locales/ru/messages.json $
+    gen/remoting/webapp/_locales/sk/messages.json $
+    gen/remoting/webapp/_locales/sl/messages.json $
+    gen/remoting/webapp/_locales/sr/messages.json $
+    gen/remoting/webapp/_locales/sv/messages.json $
+    gen/remoting/webapp/_locales/th/messages.json $
+    gen/remoting/webapp/_locales/tr/messages.json $
+    gen/remoting/webapp/_locales/uk/messages.json $
+    gen/remoting/webapp/_locales/vi/messages.json $
+    gen/remoting/webapp/_locales/zh_CN/messages.json $
+    gen/remoting/webapp/_locales/zh_TW/messages.json $
+    remoting_locales/ar.pak remoting_locales/bg.pak remoting_locales/ca.pak $
+    remoting_locales/cs.pak remoting_locales/da.pak remoting_locales/de.pak $
+    remoting_locales/el.pak remoting_locales/en.pak $
+    remoting_locales/en-GB.pak remoting_locales/es.pak $
+    remoting_locales/es-419.pak remoting_locales/et.pak $
+    remoting_locales/fi.pak remoting_locales/fil.pak $
+    remoting_locales/fr.pak remoting_locales/he.pak remoting_locales/hi.pak $
+    remoting_locales/hr.pak remoting_locales/hu.pak remoting_locales/id.pak $
+    remoting_locales/it.pak remoting_locales/ja.pak remoting_locales/ko.pak $
+    remoting_locales/lt.pak remoting_locales/lv.pak remoting_locales/nb.pak $
+    remoting_locales/nl.pak remoting_locales/pl.pak $
+    remoting_locales/pt-BR.pak remoting_locales/pt-PT.pak $
+    remoting_locales/ro.pak remoting_locales/ru.pak remoting_locales/sk.pak $
+    remoting_locales/sl.pak remoting_locales/sr.pak remoting_locales/sv.pak $
+    remoting_locales/th.pak remoting_locales/tr.pak remoting_locales/uk.pak $
+    remoting_locales/vi.pak remoting_locales/zh-CN.pak $
+    remoting_locales/zh-TW.pak libremoting_host_plugin.x64.so || $
+    obj/remoting/remoting_webapp.actions_depends.stamp
+
+rule $
+    remoting_webapp_target_Build_Remoting_WebApp_V2_09c97659f0337db42282097d6bbe4db9
+  command = cd ../../remoting; python webapp/build-webapp.py Official $
+      32.0.1700.107 application/vnd.chromium.remoting-host $
+      ../out/Release/remoting/remoting.webapp.v2 $
+      ../out/Release/remoting-webapp.v2.zip $
+      ../out/Release/libremoting_host_plugin.x64.so webapp/background.js $
+      resources/chromoting16.webp resources/chromoting48.webp $
+      resources/chromoting128.webp resources/disclosure_arrow_down.webp $
+      resources/disclosure_arrow_right.webp $
+      resources/host_setup_instructions.webp resources/icon_cross.webp $
+      resources/icon_host.webp resources/icon_pencil.webp $
+      resources/icon_warning.webp resources/infographic_my_computers.webp $
+      resources/infographic_remote_assistance.webp resources/plus.webp $
+      resources/reload.webp resources/tick.webp $
+      webapp/connection_history.css webapp/connection_stats.css $
+      webapp/main.css webapp/main.html webapp/manifest.json $
+      webapp/menu_button.css webapp/open_sans.css webapp/open_sans.woff $
+      webapp/scale-to-fit.webp webapp/spinner.gif webapp/toolbar.css $
+      webapp/wcs_sandbox.html webapp/butter_bar.js webapp/client_plugin.js $
+      webapp/client_plugin_async.js webapp/client_screen.js $
+      webapp/client_session.js webapp/clipboard.js $
+      webapp/connection_history.js webapp/connection_stats.js $
+      webapp/cs_oauth2_trampoline.js $
+      webapp/cs_third_party_auth_trampoline.js webapp/error.js $
+      webapp/event_handlers.js webapp/format_iq.js webapp/host.js $
+      webapp/host_controller.js webapp/host_dispatcher.js $
+      webapp/host_list.js webapp/host_native_messaging.js $
+      webapp/host_screen.js webapp/host_session.js webapp/host_settings.js $
+      webapp/host_setup_dialog.js webapp/host_table_entry.js $
+      webapp/identity.js webapp/l10n.js webapp/log_to_server.js $
+      webapp/menu_button.js webapp/oauth2.js webapp/oauth2_api.js $
+      webapp/paired_client_manager.js webapp/plugin_settings.js $
+      webapp/remoting.js webapp/server_log_entry.js $
+      webapp/session_connector.js webapp/stats_accumulator.js $
+      webapp/third_party_host_permissions.js webapp/xhr_proxy.js $
+      webapp/third_party_token_fetcher.js webapp/toolbar.js $
+      webapp/ui_mode.js webapp/wcs.js webapp/wcs_loader.js $
+      webapp/wcs_sandbox_container.js webapp/wcs_sandbox_content.js $
+      webapp/xhr.js --locales $
+      ../out/Release/gen/remoting/webapp/_locales/ar/messages.json $
+      ../out/Release/gen/remoting/webapp/_locales/bg/messages.json $
+      ../out/Release/gen/remoting/webapp/_locales/ca/messages.json $
+      ../out/Release/gen/remoting/webapp/_locales/cs/messages.json $
+      ../out/Release/gen/remoting/webapp/_locales/da/messages.json $
+      ../out/Release/gen/remoting/webapp/_locales/de/messages.json $
+      ../out/Release/gen/remoting/webapp/_locales/el/messages.json $
+      ../out/Release/gen/remoting/webapp/_locales/en/messages.json $
+      ../out/Release/gen/remoting/webapp/_locales/en_GB/messages.json $
+      ../out/Release/gen/remoting/webapp/_locales/es/messages.json $
+      ../out/Release/gen/remoting/webapp/_locales/es_419/messages.json $
+      ../out/Release/gen/remoting/webapp/_locales/et/messages.json $
+      ../out/Release/gen/remoting/webapp/_locales/fi/messages.json $
+      ../out/Release/gen/remoting/webapp/_locales/fil/messages.json $
+      ../out/Release/gen/remoting/webapp/_locales/fr/messages.json $
+      ../out/Release/gen/remoting/webapp/_locales/he/messages.json $
+      ../out/Release/gen/remoting/webapp/_locales/hi/messages.json $
+      ../out/Release/gen/remoting/webapp/_locales/hr/messages.json $
+      ../out/Release/gen/remoting/webapp/_locales/hu/messages.json $
+      ../out/Release/gen/remoting/webapp/_locales/id/messages.json $
+      ../out/Release/gen/remoting/webapp/_locales/it/messages.json $
+      ../out/Release/gen/remoting/webapp/_locales/ja/messages.json $
+      ../out/Release/gen/remoting/webapp/_locales/ko/messages.json $
+      ../out/Release/gen/remoting/webapp/_locales/lt/messages.json $
+      ../out/Release/gen/remoting/webapp/_locales/lv/messages.json $
+      ../out/Release/gen/remoting/webapp/_locales/nb/messages.json $
+      ../out/Release/gen/remoting/webapp/_locales/nl/messages.json $
+      ../out/Release/gen/remoting/webapp/_locales/pl/messages.json $
+      ../out/Release/gen/remoting/webapp/_locales/pt_BR/messages.json $
+      ../out/Release/gen/remoting/webapp/_locales/pt_PT/messages.json $
+      ../out/Release/gen/remoting/webapp/_locales/ro/messages.json $
+      ../out/Release/gen/remoting/webapp/_locales/ru/messages.json $
+      ../out/Release/gen/remoting/webapp/_locales/sk/messages.json $
+      ../out/Release/gen/remoting/webapp/_locales/sl/messages.json $
+      ../out/Release/gen/remoting/webapp/_locales/sr/messages.json $
+      ../out/Release/gen/remoting/webapp/_locales/sv/messages.json $
+      ../out/Release/gen/remoting/webapp/_locales/th/messages.json $
+      ../out/Release/gen/remoting/webapp/_locales/tr/messages.json $
+      ../out/Release/gen/remoting/webapp/_locales/uk/messages.json $
+      ../out/Release/gen/remoting/webapp/_locales/vi/messages.json $
+      ../out/Release/gen/remoting/webapp/_locales/zh_CN/messages.json $
+      ../out/Release/gen/remoting/webapp/_locales/zh_TW/messages.json $
+      --patches webapp/appsv2.patch
+  description = ACTION remoting_webapp: Build Remoting WebApp $
+      V2_09c97659f0337db42282097d6bbe4db9
+  restat = 1
+
+build remoting/remoting.webapp.v2 remoting-webapp.v2.zip: $
+    remoting_webapp_target_Build_Remoting_WebApp_V2_09c97659f0337db42282097d6bbe4db9 $
+    ../../remoting/webapp/build-webapp.py ../../chrome/VERSION $
+    ../../remoting/VERSION ../../remoting/webapp/background.js $
+    ../../remoting/resources/chromoting16.webp $
+    ../../remoting/resources/chromoting48.webp $
+    ../../remoting/resources/chromoting128.webp $
+    ../../remoting/resources/disclosure_arrow_down.webp $
+    ../../remoting/resources/disclosure_arrow_right.webp $
+    ../../remoting/resources/host_setup_instructions.webp $
+    ../../remoting/resources/icon_cross.webp $
+    ../../remoting/resources/icon_host.webp $
+    ../../remoting/resources/icon_pencil.webp $
+    ../../remoting/resources/icon_warning.webp $
+    ../../remoting/resources/infographic_my_computers.webp $
+    ../../remoting/resources/infographic_remote_assistance.webp $
+    ../../remoting/resources/plus.webp ../../remoting/resources/reload.webp $
+    ../../remoting/resources/tick.webp $
+    ../../remoting/webapp/connection_history.css $
+    ../../remoting/webapp/connection_stats.css $
+    ../../remoting/webapp/main.css ../../remoting/webapp/main.html $
+    ../../remoting/webapp/manifest.json $
+    ../../remoting/webapp/menu_button.css $
+    ../../remoting/webapp/open_sans.css $
+    ../../remoting/webapp/open_sans.woff $
+    ../../remoting/webapp/scale-to-fit.webp $
+    ../../remoting/webapp/spinner.gif ../../remoting/webapp/toolbar.css $
+    ../../remoting/webapp/wcs_sandbox.html $
+    ../../remoting/webapp/butter_bar.js $
+    ../../remoting/webapp/client_plugin.js $
+    ../../remoting/webapp/client_plugin_async.js $
+    ../../remoting/webapp/client_screen.js $
+    ../../remoting/webapp/client_session.js $
+    ../../remoting/webapp/clipboard.js $
+    ../../remoting/webapp/connection_history.js $
+    ../../remoting/webapp/connection_stats.js $
+    ../../remoting/webapp/cs_oauth2_trampoline.js $
+    ../../remoting/webapp/cs_third_party_auth_trampoline.js $
+    ../../remoting/webapp/error.js ../../remoting/webapp/event_handlers.js $
+    ../../remoting/webapp/format_iq.js ../../remoting/webapp/host.js $
+    ../../remoting/webapp/host_controller.js $
+    ../../remoting/webapp/host_dispatcher.js $
+    ../../remoting/webapp/host_list.js $
+    ../../remoting/webapp/host_native_messaging.js $
+    ../../remoting/webapp/host_screen.js $
+    ../../remoting/webapp/host_session.js $
+    ../../remoting/webapp/host_settings.js $
+    ../../remoting/webapp/host_setup_dialog.js $
+    ../../remoting/webapp/host_table_entry.js $
+    ../../remoting/webapp/identity.js ../../remoting/webapp/l10n.js $
+    ../../remoting/webapp/log_to_server.js $
+    ../../remoting/webapp/menu_button.js ../../remoting/webapp/oauth2.js $
+    ../../remoting/webapp/oauth2_api.js $
+    ../../remoting/webapp/paired_client_manager.js $
+    ../../remoting/webapp/plugin_settings.js $
+    ../../remoting/webapp/remoting.js $
+    ../../remoting/webapp/server_log_entry.js $
+    ../../remoting/webapp/session_connector.js $
+    ../../remoting/webapp/stats_accumulator.js $
+    ../../remoting/webapp/third_party_host_permissions.js $
+    ../../remoting/webapp/xhr_proxy.js $
+    ../../remoting/webapp/third_party_token_fetcher.js $
+    ../../remoting/webapp/toolbar.js ../../remoting/webapp/ui_mode.js $
+    ../../remoting/webapp/wcs.js ../../remoting/webapp/wcs_loader.js $
+    ../../remoting/webapp/wcs_sandbox_container.js $
+    ../../remoting/webapp/wcs_sandbox_content.js $
+    ../../remoting/webapp/xhr.js $
+    gen/remoting/webapp/_locales/ar/messages.json $
+    gen/remoting/webapp/_locales/bg/messages.json $
+    gen/remoting/webapp/_locales/ca/messages.json $
+    gen/remoting/webapp/_locales/cs/messages.json $
+    gen/remoting/webapp/_locales/da/messages.json $
+    gen/remoting/webapp/_locales/de/messages.json $
+    gen/remoting/webapp/_locales/el/messages.json $
+    gen/remoting/webapp/_locales/en/messages.json $
+    gen/remoting/webapp/_locales/en_GB/messages.json $
+    gen/remoting/webapp/_locales/es/messages.json $
+    gen/remoting/webapp/_locales/es_419/messages.json $
+    gen/remoting/webapp/_locales/et/messages.json $
+    gen/remoting/webapp/_locales/fi/messages.json $
+    gen/remoting/webapp/_locales/fil/messages.json $
+    gen/remoting/webapp/_locales/fr/messages.json $
+    gen/remoting/webapp/_locales/he/messages.json $
+    gen/remoting/webapp/_locales/hi/messages.json $
+    gen/remoting/webapp/_locales/hr/messages.json $
+    gen/remoting/webapp/_locales/hu/messages.json $
+    gen/remoting/webapp/_locales/id/messages.json $
+    gen/remoting/webapp/_locales/it/messages.json $
+    gen/remoting/webapp/_locales/ja/messages.json $
+    gen/remoting/webapp/_locales/ko/messages.json $
+    gen/remoting/webapp/_locales/lt/messages.json $
+    gen/remoting/webapp/_locales/lv/messages.json $
+    gen/remoting/webapp/_locales/nb/messages.json $
+    gen/remoting/webapp/_locales/nl/messages.json $
+    gen/remoting/webapp/_locales/pl/messages.json $
+    gen/remoting/webapp/_locales/pt_BR/messages.json $
+    gen/remoting/webapp/_locales/pt_PT/messages.json $
+    gen/remoting/webapp/_locales/ro/messages.json $
+    gen/remoting/webapp/_locales/ru/messages.json $
+    gen/remoting/webapp/_locales/sk/messages.json $
+    gen/remoting/webapp/_locales/sl/messages.json $
+    gen/remoting/webapp/_locales/sr/messages.json $
+    gen/remoting/webapp/_locales/sv/messages.json $
+    gen/remoting/webapp/_locales/th/messages.json $
+    gen/remoting/webapp/_locales/tr/messages.json $
+    gen/remoting/webapp/_locales/uk/messages.json $
+    gen/remoting/webapp/_locales/vi/messages.json $
+    gen/remoting/webapp/_locales/zh_CN/messages.json $
+    gen/remoting/webapp/_locales/zh_TW/messages.json $
+    ../../remoting/webapp/appsv2.patch libremoting_host_plugin.x64.so || $
+    obj/remoting/remoting_webapp.actions_depends.stamp
+
+build obj/remoting/remoting_webapp.actions_rules_copies.stamp: stamp $
+    remoting/remoting.webapp remoting-webapp.zip $
+    remoting/remoting.webapp.v2 remoting-webapp.v2.zip
+

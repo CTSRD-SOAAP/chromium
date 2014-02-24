@@ -1,0 +1,15 @@
+rule webkit_version_target_webkit_version_121446d1f09a062eb6a2169ef85d9951
+  command = cd ../../webkit/common/user_agent; python $
+      ../../../chrome/tools/build/version.py -f $
+      ../../../build/util/LASTCHANGE.blink $
+      ../../../webkit/build/webkit_version.h.in $
+      ../../../out/Release/gen/webkit_version.h
+  description = ACTION webkit_version: $
+      webkit_version_121446d1f09a062eb6a2169ef85d9951
+  restat = 1
+
+build gen/webkit_version.h: $
+    webkit_version_target_webkit_version_121446d1f09a062eb6a2169ef85d9951 $
+    ../../chrome/tools/build/version.py ../../build/util/LASTCHANGE.blink $
+    ../../webkit/build/webkit_version.h.in
+

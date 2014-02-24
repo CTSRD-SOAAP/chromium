@@ -1,0 +1,245 @@
+build $
+    obj/third_party/WebKit/Source/testing/TestRunner.actions_depends.stamp: $
+    stamp $
+    obj/third_party/WebKit/Source/testing/TestRunner_resources.actions_rules_copies.stamp $
+    obj/third_party/WebKit/public/blink.actions_depends.stamp
+
+build $
+    obj/third_party/WebKit/Source/testing/TestRunner.compile_depends.stamp: $
+    stamp $
+    obj/third_party/WebKit/Source/testing/TestRunner_resources.actions_rules_copies.stamp $
+    obj/third_party/WebKit/public/blink.compile_depends.stamp
+
+defines = -DANGLE_DX11 -D_FILE_OFFSET_BITS=64 -DNO_TCMALLOC -DDISABLE_NACL $
+    -DCHROMIUM_BUILD -DUSE_DEFAULT_RENDER_THEME=1 -DUSE_LIBJPEG_TURBO=1 $
+    -DUSE_NSS=1 -DUSE_X11=1 -DENABLE_ONE_CLICK_SIGNIN $
+    -DGTK_DISABLE_SINGLE_INCLUDES=1 -DUSE_XI2_MT=2 -DENABLE_REMOTING=1 $
+    -DENABLE_WEBRTC=1 -DUSE_PROPRIETARY_CODECS $
+    -DENABLE_CONFIGURATION_POLICY -DENABLE_INPUT_SPEECH $
+    -DENABLE_NOTIFICATIONS -DENABLE_EGLIMAGE=1 -DENABLE_TASK_MANAGER=1 $
+    -DENABLE_EXTENSIONS=1 -DENABLE_PLUGIN_INSTALLATION=1 -DENABLE_PLUGINS=1 $
+    -DENABLE_SESSION_SERVICE=1 -DENABLE_THEMES=1 -DENABLE_BACKGROUND=1 $
+    -DENABLE_AUTOMATION=1 -DENABLE_GOOGLE_NOW=1 -DCLD_VERSION=2 $
+    -DENABLE_FULL_PRINTING=1 -DENABLE_PRINTING=1 -DENABLE_SPELLCHECK=1 $
+    -DENABLE_CAPTIVE_PORTAL_DETECTION=1 -DENABLE_MANAGED_USERS=1 $
+    -DWEBTESTRUNNER_IMPLEMENTATION=1 -DGL_GLEXT_PROTOTYPES $
+    -DSK_ENABLE_INST_COUNT=0 -DSK_SUPPORT_GPU=1 $
+    '-DGR_GL_CUSTOM_SETUP_HEADER="GrGLConfig_chrome.h"' $
+    -DSK_ENABLE_LEGACY_API_ALIASING=1 -DSK_ATTR_DEPRECATED=SK_NOTHING_ARG1 $
+    -DSK_SUPPORT_LEGACY_COLORTYPE=1 -DSK_USE_POSIX_THREADS $
+    -DSK_DEFERRED_CANVAS_USES_FACTORIES=1 -DU_USING_ICU_NAMESPACE=0 $
+    -DU_STATIC_IMPLEMENTATION -DDYNAMIC_ANNOTATIONS_ENABLED=1 $
+    -DWTF_USE_DYNAMIC_ANNOTATIONS=1 -D_DEBUG
+includes = -I/usr/local/include -I../../third_party/public/web/gtk $
+    -I../../third_party/khronos -I../../gpu -I../.. $
+    -I../../third_party/WebKit -I../../third_party/skia/src/core $
+    -I../../third_party/skia/include/core $
+    -I../../third_party/skia/include/effects $
+    -I../../third_party/skia/include/pdf $
+    -I../../third_party/skia/include/gpu $
+    -I../../third_party/skia/include/lazy $
+    -I../../third_party/skia/include/pathops $
+    -I../../third_party/skia/include/pipe $
+    -I../../third_party/skia/include/ports $
+    -I../../third_party/skia/include/utils -I../../skia/config $
+    -I../../skia/ext -I../../third_party/icu/source/common $
+    -I../../third_party/npapi -I../../third_party/npapi/bindings $
+    -I../../v8/include
+cflags = -Wunused-parameter -fstack-protector --param=ssp-buffer-size=4  $
+    -pthread -fno-exceptions -fno-strict-aliasing -Wno-unused-parameter $
+    -Wno-missing-field-initializers -fvisibility=hidden -pipe -fPIC $
+    -Wheader-hygiene -Wno-char-subscripts -Wno-unused-function $
+    -Wno-covered-switch-default -Wstring-conversion -Wno-c++11-narrowing $
+    -Wno-reserved-user-defined-literal -Wno-deprecated-register $
+    -Wno-deprecated-declarations -fcolor-diagnostics $
+    -I/usr/local/include/gtk-2.0 -I/usr/local/include/gio-unix-2.0/ $
+    -I/usr/local/include/atk-1.0 -I/usr/local/include/cairo $
+    -I/usr/local/include/pixman-1 -D_THREAD_SAFE $
+    -I/usr/local/include/gdk-pixbuf-2.0 -I/usr/local/include/libpng15 $
+    -I/usr/local/include/pango-1.0 -I/usr/local/include/freetype2 $
+    -I/usr/local/include/harfbuzz -pthread -I/usr/local/include/glib-2.0 $
+    -I/usr/local/include -Wno-format -O0 -g
+cflags_c = -O2 -pipe -fno-stack-protector -Wno-unknown-warning-option $
+    -fno-strict-aliasing
+cflags_cc = -O2 -pipe -fno-stack-protector -Wno-unknown-warning-option $
+    -fno-strict-aliasing -fno-rtti -fno-threadsafe-statics $
+    -fvisibility-inlines-hidden -std=gnu++11 -Wno-deprecated
+
+build $
+    obj/third_party/WebKit/Source/testing/runner/TestRunner.AccessibilityController.o: $
+    cxx $
+    ../../third_party/WebKit/Source/testing/runner/AccessibilityController.cpp $
+    || obj/third_party/WebKit/Source/testing/TestRunner.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/testing/runner/TestRunner.WebAXObjectProxy.o: $
+    cxx ../../third_party/WebKit/Source/testing/runner/WebAXObjectProxy.cpp $
+    || obj/third_party/WebKit/Source/testing/TestRunner.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/testing/runner/TestRunner.CppBoundClass.o: $
+    cxx ../../third_party/WebKit/Source/testing/runner/CppBoundClass.cpp || $
+    obj/third_party/WebKit/Source/testing/TestRunner.compile_depends.stamp
+build obj/third_party/WebKit/Source/testing/runner/TestRunner.CppVariant.o: $
+    cxx ../../third_party/WebKit/Source/testing/runner/CppVariant.cpp || $
+    obj/third_party/WebKit/Source/testing/TestRunner.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/testing/runner/TestRunner.EventSender.o: $
+    cxx ../../third_party/WebKit/Source/testing/runner/EventSender.cpp || $
+    obj/third_party/WebKit/Source/testing/TestRunner.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/testing/runner/TestRunner.GamepadController.o: $
+    cxx $
+    ../../third_party/WebKit/Source/testing/runner/GamepadController.cpp || $
+    obj/third_party/WebKit/Source/testing/TestRunner.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/testing/runner/TestRunner.KeyCodeMapping.o: $
+    cxx ../../third_party/WebKit/Source/testing/runner/KeyCodeMapping.cpp $
+    || obj/third_party/WebKit/Source/testing/TestRunner.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/testing/runner/TestRunner.MockColorChooser.o: $
+    cxx ../../third_party/WebKit/Source/testing/runner/MockColorChooser.cpp $
+    || obj/third_party/WebKit/Source/testing/TestRunner.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/testing/runner/TestRunner.MockConstraints.o: $
+    cxx ../../third_party/WebKit/Source/testing/runner/MockConstraints.cpp $
+    || obj/third_party/WebKit/Source/testing/TestRunner.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/testing/runner/TestRunner.MockGrammarCheck.o: $
+    cxx ../../third_party/WebKit/Source/testing/runner/MockGrammarCheck.cpp $
+    || obj/third_party/WebKit/Source/testing/TestRunner.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/testing/runner/TestRunner.MockSpellCheck.o: $
+    cxx ../../third_party/WebKit/Source/testing/runner/MockSpellCheck.cpp $
+    || obj/third_party/WebKit/Source/testing/TestRunner.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/testing/runner/TestRunner.MockWebAudioDevice.o: $
+    cxx $
+    ../../third_party/WebKit/Source/testing/runner/MockWebAudioDevice.cpp $
+    || obj/third_party/WebKit/Source/testing/TestRunner.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/testing/runner/TestRunner.MockWebMediaStreamCenter.o: $
+    cxx $
+    ../../third_party/WebKit/Source/testing/runner/MockWebMediaStreamCenter.cpp $
+    || obj/third_party/WebKit/Source/testing/TestRunner.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/testing/runner/TestRunner.MockWebMIDIAccessor.o: $
+    cxx $
+    ../../third_party/WebKit/Source/testing/runner/MockWebMIDIAccessor.cpp $
+    || obj/third_party/WebKit/Source/testing/TestRunner.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/testing/runner/TestRunner.MockWebRTCDataChannelHandler.o: $
+    cxx $
+    ../../third_party/WebKit/Source/testing/runner/MockWebRTCDataChannelHandler.cpp $
+    || obj/third_party/WebKit/Source/testing/TestRunner.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/testing/runner/TestRunner.MockWebRTCDTMFSenderHandler.o: $
+    cxx $
+    ../../third_party/WebKit/Source/testing/runner/MockWebRTCDTMFSenderHandler.cpp $
+    || obj/third_party/WebKit/Source/testing/TestRunner.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/testing/runner/TestRunner.MockWebRTCPeerConnectionHandler.o: $
+    cxx $
+    ../../third_party/WebKit/Source/testing/runner/MockWebRTCPeerConnectionHandler.cpp $
+    || obj/third_party/WebKit/Source/testing/TestRunner.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/testing/runner/TestRunner.MockWebSpeechInputController.o: $
+    cxx $
+    ../../third_party/WebKit/Source/testing/runner/MockWebSpeechInputController.cpp $
+    || obj/third_party/WebKit/Source/testing/TestRunner.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/testing/runner/TestRunner.MockWebSpeechRecognizer.o: $
+    cxx $
+    ../../third_party/WebKit/Source/testing/runner/MockWebSpeechRecognizer.cpp $
+    || obj/third_party/WebKit/Source/testing/TestRunner.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/testing/runner/TestRunner.MockWebValidationMessageClient.o: $
+    cxx $
+    ../../third_party/WebKit/Source/testing/runner/MockWebValidationMessageClient.cpp $
+    || obj/third_party/WebKit/Source/testing/TestRunner.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/testing/runner/TestRunner.NotificationPresenter.o: $
+    cxx $
+    ../../third_party/WebKit/Source/testing/runner/NotificationPresenter.cpp $
+    || obj/third_party/WebKit/Source/testing/TestRunner.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/testing/runner/TestRunner.SpellCheckClient.o: $
+    cxx ../../third_party/WebKit/Source/testing/runner/SpellCheckClient.cpp $
+    || obj/third_party/WebKit/Source/testing/TestRunner.compile_depends.stamp
+build obj/third_party/WebKit/Source/testing/runner/TestRunner.TestCommon.o: $
+    cxx ../../third_party/WebKit/Source/testing/runner/TestCommon.cpp || $
+    obj/third_party/WebKit/Source/testing/TestRunner.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/testing/runner/TestRunner.TestInterfaces.o: $
+    cxx ../../third_party/WebKit/Source/testing/runner/TestInterfaces.cpp $
+    || obj/third_party/WebKit/Source/testing/TestRunner.compile_depends.stamp
+build obj/third_party/WebKit/Source/testing/runner/TestRunner.TestPlugin.o: $
+    cxx ../../third_party/WebKit/Source/testing/runner/TestPlugin.cpp || $
+    obj/third_party/WebKit/Source/testing/TestRunner.compile_depends.stamp
+build obj/third_party/WebKit/Source/testing/runner/TestRunner.TestRunner.o: $
+    cxx ../../third_party/WebKit/Source/testing/runner/TestRunner.cpp || $
+    obj/third_party/WebKit/Source/testing/TestRunner.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/testing/runner/TestRunner.TextInputController.o: $
+    cxx $
+    ../../third_party/WebKit/Source/testing/runner/TextInputController.cpp $
+    || obj/third_party/WebKit/Source/testing/TestRunner.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/testing/runner/TestRunner.WebPermissions.o: $
+    cxx ../../third_party/WebKit/Source/testing/runner/WebPermissions.cpp $
+    || obj/third_party/WebKit/Source/testing/TestRunner.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/testing/runner/TestRunner.WebPreferences.o: $
+    cxx ../../third_party/WebKit/Source/testing/runner/WebPreferences.cpp $
+    || obj/third_party/WebKit/Source/testing/TestRunner.compile_depends.stamp
+build obj/third_party/WebKit/Source/testing/runner/TestRunner.WebTask.o: $
+    cxx ../../third_party/WebKit/Source/testing/runner/WebTask.cpp || $
+    obj/third_party/WebKit/Source/testing/TestRunner.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/testing/runner/TestRunner.WebTestInterfaces.o: $
+    cxx $
+    ../../third_party/WebKit/Source/testing/runner/WebTestInterfaces.cpp || $
+    obj/third_party/WebKit/Source/testing/TestRunner.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/testing/runner/TestRunner.WebTestProxy.o: $
+    cxx ../../third_party/WebKit/Source/testing/runner/WebTestProxy.cpp || $
+    obj/third_party/WebKit/Source/testing/TestRunner.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/testing/runner/TestRunner.WebUserMediaClientMock.o: $
+    cxx $
+    ../../third_party/WebKit/Source/testing/runner/WebUserMediaClientMock.cpp $
+    || obj/third_party/WebKit/Source/testing/TestRunner.compile_depends.stamp
+
+build obj/third_party/WebKit/Source/testing/libTestRunner.a: alink_thin $
+    obj/third_party/WebKit/Source/testing/runner/TestRunner.AccessibilityController.o $
+    obj/third_party/WebKit/Source/testing/runner/TestRunner.WebAXObjectProxy.o $
+    obj/third_party/WebKit/Source/testing/runner/TestRunner.CppBoundClass.o $
+    obj/third_party/WebKit/Source/testing/runner/TestRunner.CppVariant.o $
+    obj/third_party/WebKit/Source/testing/runner/TestRunner.EventSender.o $
+    obj/third_party/WebKit/Source/testing/runner/TestRunner.GamepadController.o $
+    obj/third_party/WebKit/Source/testing/runner/TestRunner.KeyCodeMapping.o $
+    obj/third_party/WebKit/Source/testing/runner/TestRunner.MockColorChooser.o $
+    obj/third_party/WebKit/Source/testing/runner/TestRunner.MockConstraints.o $
+    obj/third_party/WebKit/Source/testing/runner/TestRunner.MockGrammarCheck.o $
+    obj/third_party/WebKit/Source/testing/runner/TestRunner.MockSpellCheck.o $
+    obj/third_party/WebKit/Source/testing/runner/TestRunner.MockWebAudioDevice.o $
+    obj/third_party/WebKit/Source/testing/runner/TestRunner.MockWebMediaStreamCenter.o $
+    obj/third_party/WebKit/Source/testing/runner/TestRunner.MockWebMIDIAccessor.o $
+    obj/third_party/WebKit/Source/testing/runner/TestRunner.MockWebRTCDataChannelHandler.o $
+    obj/third_party/WebKit/Source/testing/runner/TestRunner.MockWebRTCDTMFSenderHandler.o $
+    obj/third_party/WebKit/Source/testing/runner/TestRunner.MockWebRTCPeerConnectionHandler.o $
+    obj/third_party/WebKit/Source/testing/runner/TestRunner.MockWebSpeechInputController.o $
+    obj/third_party/WebKit/Source/testing/runner/TestRunner.MockWebSpeechRecognizer.o $
+    obj/third_party/WebKit/Source/testing/runner/TestRunner.MockWebValidationMessageClient.o $
+    obj/third_party/WebKit/Source/testing/runner/TestRunner.NotificationPresenter.o $
+    obj/third_party/WebKit/Source/testing/runner/TestRunner.SpellCheckClient.o $
+    obj/third_party/WebKit/Source/testing/runner/TestRunner.TestCommon.o $
+    obj/third_party/WebKit/Source/testing/runner/TestRunner.TestInterfaces.o $
+    obj/third_party/WebKit/Source/testing/runner/TestRunner.TestPlugin.o $
+    obj/third_party/WebKit/Source/testing/runner/TestRunner.TestRunner.o $
+    obj/third_party/WebKit/Source/testing/runner/TestRunner.TextInputController.o $
+    obj/third_party/WebKit/Source/testing/runner/TestRunner.WebPermissions.o $
+    obj/third_party/WebKit/Source/testing/runner/TestRunner.WebPreferences.o $
+    obj/third_party/WebKit/Source/testing/runner/TestRunner.WebTask.o $
+    obj/third_party/WebKit/Source/testing/runner/TestRunner.WebTestInterfaces.o $
+    obj/third_party/WebKit/Source/testing/runner/TestRunner.WebTestProxy.o $
+    obj/third_party/WebKit/Source/testing/runner/TestRunner.WebUserMediaClientMock.o $
+    || obj/third_party/WebKit/Source/testing/TestRunner.actions_depends.stamp

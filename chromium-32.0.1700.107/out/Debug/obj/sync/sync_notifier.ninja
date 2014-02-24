@@ -1,0 +1,121 @@
+defines = -DANGLE_DX11 -D_FILE_OFFSET_BITS=64 -DNO_TCMALLOC -DDISABLE_NACL $
+    -DCHROMIUM_BUILD -DUSE_DEFAULT_RENDER_THEME=1 -DUSE_LIBJPEG_TURBO=1 $
+    -DUSE_NSS=1 -DUSE_X11=1 -DENABLE_ONE_CLICK_SIGNIN $
+    -DGTK_DISABLE_SINGLE_INCLUDES=1 -DUSE_XI2_MT=2 -DENABLE_REMOTING=1 $
+    -DENABLE_WEBRTC=1 -DUSE_PROPRIETARY_CODECS $
+    -DENABLE_CONFIGURATION_POLICY -DENABLE_INPUT_SPEECH $
+    -DENABLE_NOTIFICATIONS -DENABLE_EGLIMAGE=1 -DENABLE_TASK_MANAGER=1 $
+    -DENABLE_EXTENSIONS=1 -DENABLE_PLUGIN_INSTALLATION=1 -DENABLE_PLUGINS=1 $
+    -DENABLE_SESSION_SERVICE=1 -DENABLE_THEMES=1 -DENABLE_BACKGROUND=1 $
+    -DENABLE_AUTOMATION=1 -DENABLE_GOOGLE_NOW=1 -DCLD_VERSION=2 $
+    -DENABLE_FULL_PRINTING=1 -DENABLE_PRINTING=1 -DENABLE_SPELLCHECK=1 $
+    -DENABLE_CAPTIVE_PORTAL_DETECTION=1 -DENABLE_MANAGED_USERS=1 $
+    -DSYNC_IMPLEMENTATION -DPROTOBUF_USE_DLLS -DGOOGLE_PROTOBUF_NO_RTTI $
+    -DGOOGLE_PROTOBUF_NO_STATIC_INITIALIZER -DFEATURE_ENABLE_SSL $
+    -DFEATURE_ENABLE_VOICEMAIL -DEXPAT_RELATIVE_PATH -DGTEST_RELATIVE_PATH $
+    -DJSONCPP_RELATIVE_PATH -DNO_MAIN_THREAD_WRAPPING -DNO_SOUND_SYSTEM $
+    -DPOSIX -DBSD -DFREEBSD -D__STDC_CONSTANT_MACROS -D__STDC_FORMAT_MACROS $
+    -DDYNAMIC_ANNOTATIONS_ENABLED=1 -DWTF_USE_DYNAMIC_ANNOTATIONS=1 -D_DEBUG
+includes = -I../.. -I../../third_party/cacheinvalidation/overrides $
+    -I../../third_party/cacheinvalidation/src $
+    -I../../third_party/cacheinvalidation/google/cacheinvalidation $
+    -Igen/protoc_out -I../../third_party/protobuf $
+    -I../../third_party/protobuf/src $
+    -I../../third_party/libjingle/overrides $
+    -I../../third_party/libjingle/source -I../../testing/gtest/include $
+    -I../../third_party -I../../third_party/webrtc $
+    -I../../third_party/jsoncpp/overrides/include $
+    -I../../third_party/jsoncpp/source/include
+cflags = -fstack-protector --param=ssp-buffer-size=4  -pthread $
+    -fno-exceptions -fno-strict-aliasing -Wall -Wno-unused-parameter $
+    -Wno-missing-field-initializers -fvisibility=hidden -pipe -fPIC $
+    -Wheader-hygiene -Wno-char-subscripts -Wno-unused-function $
+    -Wno-covered-switch-default -Wstring-conversion -Wno-c++11-narrowing $
+    -Wno-reserved-user-defined-literal -Wno-deprecated-register $
+    -Wno-deprecated-declarations -fcolor-diagnostics $
+    -I/usr/local/include/gtk-2.0 -I/usr/local/include/gio-unix-2.0/ $
+    -I/usr/local/include/atk-1.0 -I/usr/local/include/cairo $
+    -I/usr/local/include/pixman-1 -D_THREAD_SAFE $
+    -I/usr/local/include/gdk-pixbuf-2.0 -I/usr/local/include/libpng15 $
+    -I/usr/local/include/pango-1.0 -I/usr/local/include/freetype2 $
+    -I/usr/local/include/harfbuzz -pthread -I/usr/local/include/glib-2.0 $
+    -I/usr/local/include -pthread -I/usr/local/include/glib-2.0 $
+    -I/usr/local/include -D_THREAD_SAFE -I/usr/local/include $
+    -Wexit-time-destructors -O0 -g
+cflags_c = -O2 -pipe -fno-stack-protector -Wno-unknown-warning-option $
+    -fno-strict-aliasing
+cflags_cc = -O2 -pipe -fno-stack-protector -Wno-unknown-warning-option $
+    -fno-strict-aliasing -fno-rtti -fno-threadsafe-statics $
+    -fvisibility-inlines-hidden -Wsign-compare -std=gnu++11
+
+build obj/sync/notifier/sync_notifier.ack_handler.o: cxx $
+    ../../sync/notifier/ack_handler.cc || $
+    obj/third_party/cacheinvalidation/cacheinvalidation_proto_cpp.actions_rules_copies.stamp
+build obj/sync/notifier/sync_notifier.dropped_invalidation_tracker.o: cxx $
+    ../../sync/notifier/dropped_invalidation_tracker.cc || $
+    obj/third_party/cacheinvalidation/cacheinvalidation_proto_cpp.actions_rules_copies.stamp
+build obj/sync/notifier/sync_notifier.invalidation_state_tracker.o: cxx $
+    ../../sync/notifier/invalidation_state_tracker.cc || $
+    obj/third_party/cacheinvalidation/cacheinvalidation_proto_cpp.actions_rules_copies.stamp
+build obj/sync/notifier/sync_notifier.invalidation_util.o: cxx $
+    ../../sync/notifier/invalidation_util.cc || $
+    obj/third_party/cacheinvalidation/cacheinvalidation_proto_cpp.actions_rules_copies.stamp
+build obj/sync/notifier/sync_notifier.unacked_invalidation_set.o: cxx $
+    ../../sync/notifier/unacked_invalidation_set.cc || $
+    obj/third_party/cacheinvalidation/cacheinvalidation_proto_cpp.actions_rules_copies.stamp
+build obj/sync/notifier/sync_notifier.invalidator_registrar.o: cxx $
+    ../../sync/notifier/invalidator_registrar.cc || $
+    obj/third_party/cacheinvalidation/cacheinvalidation_proto_cpp.actions_rules_copies.stamp
+build obj/sync/notifier/sync_notifier.invalidator_state.o: cxx $
+    ../../sync/notifier/invalidator_state.cc || $
+    obj/third_party/cacheinvalidation/cacheinvalidation_proto_cpp.actions_rules_copies.stamp
+build obj/sync/notifier/sync_notifier.object_id_invalidation_map.o: cxx $
+    ../../sync/notifier/object_id_invalidation_map.cc || $
+    obj/third_party/cacheinvalidation/cacheinvalidation_proto_cpp.actions_rules_copies.stamp
+build obj/sync/notifier/sync_notifier.single_object_invalidation_set.o: cxx $
+    ../../sync/notifier/single_object_invalidation_set.cc || $
+    obj/third_party/cacheinvalidation/cacheinvalidation_proto_cpp.actions_rules_copies.stamp
+build obj/sync/notifier/sync_notifier.ack_tracker.o: cxx $
+    ../../sync/notifier/ack_tracker.cc || $
+    obj/third_party/cacheinvalidation/cacheinvalidation_proto_cpp.actions_rules_copies.stamp
+build obj/sync/notifier/sync_notifier.invalidation_notifier.o: cxx $
+    ../../sync/notifier/invalidation_notifier.cc || $
+    obj/third_party/cacheinvalidation/cacheinvalidation_proto_cpp.actions_rules_copies.stamp
+build obj/sync/notifier/sync_notifier.non_blocking_invalidator.o: cxx $
+    ../../sync/notifier/non_blocking_invalidator.cc || $
+    obj/third_party/cacheinvalidation/cacheinvalidation_proto_cpp.actions_rules_copies.stamp
+build obj/sync/notifier/sync_notifier.p2p_invalidator.o: cxx $
+    ../../sync/notifier/p2p_invalidator.cc || $
+    obj/third_party/cacheinvalidation/cacheinvalidation_proto_cpp.actions_rules_copies.stamp
+build obj/sync/notifier/sync_notifier.push_client_channel.o: cxx $
+    ../../sync/notifier/push_client_channel.cc || $
+    obj/third_party/cacheinvalidation/cacheinvalidation_proto_cpp.actions_rules_copies.stamp
+build obj/sync/notifier/sync_notifier.registration_manager.o: cxx $
+    ../../sync/notifier/registration_manager.cc || $
+    obj/third_party/cacheinvalidation/cacheinvalidation_proto_cpp.actions_rules_copies.stamp
+build obj/sync/notifier/sync_notifier.sync_invalidation_listener.o: cxx $
+    ../../sync/notifier/sync_invalidation_listener.cc || $
+    obj/third_party/cacheinvalidation/cacheinvalidation_proto_cpp.actions_rules_copies.stamp
+build obj/sync/notifier/sync_notifier.sync_system_resources.o: cxx $
+    ../../sync/notifier/sync_system_resources.cc || $
+    obj/third_party/cacheinvalidation/cacheinvalidation_proto_cpp.actions_rules_copies.stamp
+
+build obj/sync/libsync_notifier.a: alink_thin $
+    obj/sync/notifier/sync_notifier.ack_handler.o $
+    obj/sync/notifier/sync_notifier.dropped_invalidation_tracker.o $
+    obj/sync/notifier/sync_notifier.invalidation_state_tracker.o $
+    obj/sync/notifier/sync_notifier.invalidation_util.o $
+    obj/sync/notifier/sync_notifier.unacked_invalidation_set.o $
+    obj/sync/notifier/sync_notifier.invalidator_registrar.o $
+    obj/sync/notifier/sync_notifier.invalidator_state.o $
+    obj/sync/notifier/sync_notifier.object_id_invalidation_map.o $
+    obj/sync/notifier/sync_notifier.single_object_invalidation_set.o $
+    obj/sync/notifier/sync_notifier.ack_tracker.o $
+    obj/sync/notifier/sync_notifier.invalidation_notifier.o $
+    obj/sync/notifier/sync_notifier.non_blocking_invalidator.o $
+    obj/sync/notifier/sync_notifier.p2p_invalidator.o $
+    obj/sync/notifier/sync_notifier.push_client_channel.o $
+    obj/sync/notifier/sync_notifier.registration_manager.o $
+    obj/sync/notifier/sync_notifier.sync_invalidation_listener.o $
+    obj/sync/notifier/sync_notifier.sync_system_resources.o || $
+    obj/third_party/cacheinvalidation/libcacheinvalidation_proto_cpp.a

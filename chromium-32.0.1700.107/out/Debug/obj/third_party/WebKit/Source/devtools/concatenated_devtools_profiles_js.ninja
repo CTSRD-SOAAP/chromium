@@ -1,0 +1,31 @@
+rule $
+    concatenated_devtools_profiles_js_target_concatenate_devtools_profiles_js_5622594ae126e49d0624182fb0b7fdf0
+  command = cd ../../third_party/WebKit/Source/devtools; python $
+      scripts/inline_js_imports.py front_end/ProfilesPanel.js front_end $
+      ../../../../out/Debug/resources/inspector/ProfilesPanel.js
+  description = ACTION concatenated_devtools_profiles_js: $
+      concatenate_devtools_profiles_js_5622594ae126e49d0624182fb0b7fdf0
+  restat = 1
+
+build resources/inspector/ProfilesPanel.js: $
+    concatenated_devtools_profiles_js_target_concatenate_devtools_profiles_js_5622594ae126e49d0624182fb0b7fdf0 $
+    ../../third_party/WebKit/Source/devtools/scripts/inline_js_imports.py $
+    ../../third_party/WebKit/Source/devtools/front_end/AllocationProfile.js $
+    ../../third_party/WebKit/Source/devtools/front_end/BottomUpProfileDataGridTree.js $
+    ../../third_party/WebKit/Source/devtools/front_end/CPUProfileView.js $
+    ../../third_party/WebKit/Source/devtools/front_end/FlameChart.js $
+    ../../third_party/WebKit/Source/devtools/front_end/HeapSnapshot.js $
+    ../../third_party/WebKit/Source/devtools/front_end/HeapSnapshotDataGrids.js $
+    ../../third_party/WebKit/Source/devtools/front_end/HeapSnapshotGridNodes.js $
+    ../../third_party/WebKit/Source/devtools/front_end/HeapSnapshotLoader.js $
+    ../../third_party/WebKit/Source/devtools/front_end/HeapSnapshotProxy.js $
+    ../../third_party/WebKit/Source/devtools/front_end/HeapSnapshotView.js $
+    ../../third_party/WebKit/Source/devtools/front_end/HeapSnapshotWorkerDispatcher.js $
+    ../../third_party/WebKit/Source/devtools/front_end/JSHeapSnapshot.js $
+    ../../third_party/WebKit/Source/devtools/front_end/ProfileDataGridTree.js $
+    ../../third_party/WebKit/Source/devtools/front_end/ProfilesPanel.js $
+    ../../third_party/WebKit/Source/devtools/front_end/ProfileLauncherView.js $
+    ../../third_party/WebKit/Source/devtools/front_end/TopDownProfileDataGridTree.js $
+    ../../third_party/WebKit/Source/devtools/front_end/CanvasProfileView.js $
+    ../../third_party/WebKit/Source/devtools/front_end/CanvasReplayStateView.js
+

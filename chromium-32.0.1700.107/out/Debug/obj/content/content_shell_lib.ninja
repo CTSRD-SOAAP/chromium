@@ -1,0 +1,255 @@
+build obj/content/content_shell_lib.actions_depends.stamp: stamp $
+    shell_resources.pak $
+    obj/content/content_resources.actions_rules_copies.stamp $
+    obj/net/net_resources.actions_rules_copies.stamp $
+    obj/skia/skia.actions_depends.stamp $
+    obj/third_party/WebKit/Source/testing/libTestRunner.a $
+    obj/ui/gl/libgl_wrapper.a obj/v8/tools/gyp/v8.actions_depends.stamp $
+    obj/webkit/glue/libglue.a $
+    obj/webkit/webkit_resources.actions_rules_copies.stamp
+
+build obj/content/content_shell_lib.compile_depends.stamp: stamp $
+    shell_resources.pak $
+    obj/content/content_resources.actions_rules_copies.stamp $
+    obj/net/net_resources.actions_rules_copies.stamp $
+    obj/third_party/WebKit/Source/testing/TestRunner.compile_depends.stamp $
+    obj/ui/gl/gl.actions_rules_copies.stamp $
+    obj/v8/tools/gyp/v8_snapshot.gen/snapshot.cc $
+    obj/webkit/glue/glue.compile_depends.stamp $
+    obj/webkit/webkit_resources.actions_rules_copies.stamp
+
+defines = -DANGLE_DX11 -D_FILE_OFFSET_BITS=64 -DNO_TCMALLOC -DDISABLE_NACL $
+    -DCHROMIUM_BUILD -DUSE_DEFAULT_RENDER_THEME=1 -DUSE_LIBJPEG_TURBO=1 $
+    -DUSE_NSS=1 -DUSE_X11=1 -DENABLE_ONE_CLICK_SIGNIN $
+    -DGTK_DISABLE_SINGLE_INCLUDES=1 -DUSE_XI2_MT=2 -DENABLE_REMOTING=1 $
+    -DENABLE_WEBRTC=1 -DUSE_PROPRIETARY_CODECS $
+    -DENABLE_CONFIGURATION_POLICY -DENABLE_INPUT_SPEECH $
+    -DENABLE_NOTIFICATIONS -DENABLE_EGLIMAGE=1 -DENABLE_TASK_MANAGER=1 $
+    -DENABLE_EXTENSIONS=1 -DENABLE_PLUGIN_INSTALLATION=1 -DENABLE_PLUGINS=1 $
+    -DENABLE_SESSION_SERVICE=1 -DENABLE_THEMES=1 -DENABLE_BACKGROUND=1 $
+    -DENABLE_AUTOMATION=1 -DENABLE_GOOGLE_NOW=1 -DCLD_VERSION=2 $
+    -DENABLE_FULL_PRINTING=1 -DENABLE_PRINTING=1 -DENABLE_SPELLCHECK=1 $
+    -DENABLE_CAPTIVE_PORTAL_DETECTION=1 -DENABLE_MANAGED_USERS=1 $
+    '-DCONTENT_SHELL_VERSION="19.77.34.5"' -DGL_GLEXT_PROTOTYPES $
+    -DLIBPEERCONNECTION_LIB=1 -DSK_ENABLE_INST_COUNT=0 -DSK_SUPPORT_GPU=1 $
+    '-DGR_GL_CUSTOM_SETUP_HEADER="GrGLConfig_chrome.h"' $
+    -DSK_ENABLE_LEGACY_API_ALIASING=1 -DSK_ATTR_DEPRECATED=SK_NOTHING_ARG1 $
+    -DSK_SUPPORT_LEGACY_COLORTYPE=1 -DSK_USE_POSIX_THREADS $
+    -DSK_DEFERRED_CANVAS_USES_FACTORIES=1 -DU_USING_ICU_NAMESPACE=0 $
+    -DU_STATIC_IMPLEMENTATION -D__STDC_CONSTANT_MACROS $
+    -D__STDC_FORMAT_MACROS -DDYNAMIC_ANNOTATIONS_ENABLED=1 $
+    -DWTF_USE_DYNAMIC_ANNOTATIONS=1 -D_DEBUG
+includes = -I../.. -I../../third_party/khronos -I../../gpu -Igen/content $
+    -Igen/net -I../../third_party/skia/src/core $
+    -I../../third_party/skia/include/core $
+    -I../../third_party/skia/include/effects $
+    -I../../third_party/skia/include/pdf $
+    -I../../third_party/skia/include/gpu $
+    -I../../third_party/skia/include/lazy $
+    -I../../third_party/skia/include/pathops $
+    -I../../third_party/skia/include/pipe $
+    -I../../third_party/skia/include/ports $
+    -I../../third_party/skia/include/utils -I../../skia/config $
+    -I../../skia/ext -I../../third_party/WebKit -I../../third_party/WebKit $
+    -I../../third_party/icu/source/common -I../../third_party/npapi $
+    -I../../third_party/npapi/bindings -Igen/ui/gl $
+    -I../../third_party/mesa/src/include $
+    -I../../third_party/icu/source/i18n -I../../v8/include -Igen/webkit
+cflags = -fstack-protector --param=ssp-buffer-size=4  -pthread $
+    -fno-exceptions -fno-strict-aliasing -Wall -Wno-unused-parameter $
+    -Wno-missing-field-initializers -fvisibility=hidden -pipe -fPIC $
+    -Wheader-hygiene -Wno-char-subscripts -Wno-unused-function $
+    -Wno-covered-switch-default -Wstring-conversion -Wno-c++11-narrowing $
+    -Wno-reserved-user-defined-literal -Wno-deprecated-register $
+    -Wno-deprecated-declarations -fcolor-diagnostics $
+    -I/usr/local/include/gtk-2.0 -I/usr/local/include/gio-unix-2.0/ $
+    -I/usr/local/include/atk-1.0 -I/usr/local/include/cairo $
+    -I/usr/local/include/pixman-1 -D_THREAD_SAFE $
+    -I/usr/local/include/gdk-pixbuf-2.0 -I/usr/local/include/libpng15 $
+    -I/usr/local/include/pango-1.0 -I/usr/local/include/freetype2 $
+    -I/usr/local/include/harfbuzz -pthread -I/usr/local/include/glib-2.0 $
+    -I/usr/local/include -pthread -I/usr/local/include/glib-2.0 $
+    -I/usr/local/include -D_THREAD_SAFE -I/usr/local/include $
+    -Wno-unknown-pragmas -O0 -g
+cflags_c = -O2 -pipe -fno-stack-protector -Wno-unknown-warning-option $
+    -fno-strict-aliasing
+cflags_cc = -O2 -pipe -fno-stack-protector -Wno-unknown-warning-option $
+    -fno-strict-aliasing -fno-rtti -fno-threadsafe-statics $
+    -fvisibility-inlines-hidden -Wsign-compare -std=gnu++11
+
+build obj/content/shell/app/content_shell_lib.shell_breakpad_client.o: cxx $
+    ../../content/shell/app/shell_breakpad_client.cc || $
+    obj/content/content_shell_lib.compile_depends.stamp
+build obj/content/shell/app/content_shell_lib.shell_main_delegate.o: cxx $
+    ../../content/shell/app/shell_main_delegate.cc || $
+    obj/content/content_shell_lib.compile_depends.stamp
+build $
+    obj/content/shell/app/content_shell_lib.webkit_test_platform_support_linux.o: $
+    cxx ../../content/shell/app/webkit_test_platform_support_linux.cc || $
+    obj/content/content_shell_lib.compile_depends.stamp
+build obj/content/shell/browser/content_shell_lib.notify_done_forwarder.o: $
+    cxx ../../content/shell/browser/notify_done_forwarder.cc || $
+    obj/content/content_shell_lib.compile_depends.stamp
+build obj/content/shell/browser/content_shell_lib.shell_browser_context.o: $
+    cxx ../../content/shell/browser/shell_browser_context.cc || $
+    obj/content/content_shell_lib.compile_depends.stamp
+build obj/content/shell/browser/content_shell_lib.shell_browser_main.o: cxx $
+    ../../content/shell/browser/shell_browser_main.cc || $
+    obj/content/content_shell_lib.compile_depends.stamp
+build $
+    obj/content/shell/browser/content_shell_lib.shell_browser_main_parts.o: $
+    cxx ../../content/shell/browser/shell_browser_main_parts.cc || $
+    obj/content/content_shell_lib.compile_depends.stamp
+build obj/content/shell/browser/content_shell_lib.shell.o: cxx $
+    ../../content/shell/browser/shell.cc || $
+    obj/content/content_shell_lib.compile_depends.stamp
+build $
+    obj/content/shell/browser/content_shell_lib.shell_content_browser_client.o: $
+    cxx ../../content/shell/browser/shell_content_browser_client.cc || $
+    obj/content/content_shell_lib.compile_depends.stamp
+build $
+    obj/content/shell/browser/content_shell_lib.shell_devtools_delegate.o: $
+    cxx ../../content/shell/browser/shell_devtools_delegate.cc || $
+    obj/content/content_shell_lib.compile_depends.stamp
+build $
+    obj/content/shell/browser/content_shell_lib.shell_devtools_frontend.o: $
+    cxx ../../content/shell/browser/shell_devtools_frontend.cc || $
+    obj/content/content_shell_lib.compile_depends.stamp
+build $
+    obj/content/shell/browser/content_shell_lib.shell_download_manager_delegate.o: $
+    cxx ../../content/shell/browser/shell_download_manager_delegate.cc || $
+    obj/content/content_shell_lib.compile_depends.stamp
+build obj/content/shell/browser/content_shell_lib.shell_gtk.o: cxx $
+    ../../content/shell/browser/shell_gtk.cc || $
+    obj/content/content_shell_lib.compile_depends.stamp
+build $
+    obj/content/shell/browser/content_shell_lib.shell_javascript_dialog_gtk.o: $
+    cxx ../../content/shell/browser/shell_javascript_dialog_gtk.cc || $
+    obj/content/content_shell_lib.compile_depends.stamp
+build $
+    obj/content/shell/browser/content_shell_lib.shell_javascript_dialog_manager.o: $
+    cxx ../../content/shell/browser/shell_javascript_dialog_manager.cc || $
+    obj/content/content_shell_lib.compile_depends.stamp
+build obj/content/shell/browser/content_shell_lib.shell_login_dialog.o: cxx $
+    ../../content/shell/browser/shell_login_dialog.cc || $
+    obj/content/content_shell_lib.compile_depends.stamp
+build obj/content/shell/browser/content_shell_lib.shell_login_dialog_gtk.o: $
+    cxx ../../content/shell/browser/shell_login_dialog_gtk.cc || $
+    obj/content/content_shell_lib.compile_depends.stamp
+build obj/content/shell/browser/content_shell_lib.shell_message_filter.o: $
+    cxx ../../content/shell/browser/shell_message_filter.cc || $
+    obj/content/content_shell_lib.compile_depends.stamp
+build obj/content/shell/browser/content_shell_lib.shell_net_log.o: cxx $
+    ../../content/shell/browser/shell_net_log.cc || $
+    obj/content/content_shell_lib.compile_depends.stamp
+build obj/content/shell/browser/content_shell_lib.shell_network_delegate.o: $
+    cxx ../../content/shell/browser/shell_network_delegate.cc || $
+    obj/content/content_shell_lib.compile_depends.stamp
+build $
+    obj/content/shell/browser/content_shell_lib.shell_plugin_service_filter.o: $
+    cxx ../../content/shell/browser/shell_plugin_service_filter.cc || $
+    obj/content/content_shell_lib.compile_depends.stamp
+build $
+    obj/content/shell/browser/content_shell_lib.shell_quota_permission_context.o: $
+    cxx ../../content/shell/browser/shell_quota_permission_context.cc || $
+    obj/content/content_shell_lib.compile_depends.stamp
+build $
+    obj/content/shell/browser/content_shell_lib.shell_resource_dispatcher_host_delegate.o: $
+    cxx $
+    ../../content/shell/browser/shell_resource_dispatcher_host_delegate.cc $
+    || obj/content/content_shell_lib.compile_depends.stamp
+build $
+    obj/content/shell/browser/content_shell_lib.shell_speech_recognition_manager_delegate.o: $
+    cxx $
+    ../../content/shell/browser/shell_speech_recognition_manager_delegate.cc $
+    || obj/content/content_shell_lib.compile_depends.stamp
+build $
+    obj/content/shell/browser/content_shell_lib.shell_url_request_context_getter.o: $
+    cxx ../../content/shell/browser/shell_url_request_context_getter.cc || $
+    obj/content/content_shell_lib.compile_depends.stamp
+build $
+    obj/content/shell/browser/content_shell_lib.shell_web_contents_view_delegate_gtk.o: $
+    cxx ../../content/shell/browser/shell_web_contents_view_delegate_gtk.cc $
+    || obj/content/content_shell_lib.compile_depends.stamp
+build obj/content/shell/browser/content_shell_lib.webkit_test_controller.o: $
+    cxx ../../content/shell/browser/webkit_test_controller.cc || $
+    obj/content/content_shell_lib.compile_depends.stamp
+build obj/content/shell/common/content_shell_lib.shell_content_client.o: $
+    cxx ../../content/shell/common/shell_content_client.cc || $
+    obj/content/content_shell_lib.compile_depends.stamp
+build obj/content/shell/common/content_shell_lib.shell_messages.o: cxx $
+    ../../content/shell/common/shell_messages.cc || $
+    obj/content/content_shell_lib.compile_depends.stamp
+build obj/content/shell/common/content_shell_lib.shell_switches.o: cxx $
+    ../../content/shell/common/shell_switches.cc || $
+    obj/content/content_shell_lib.compile_depends.stamp
+build $
+    obj/content/shell/common/content_shell_lib.shell_test_configuration.o: $
+    cxx ../../content/shell/common/shell_test_configuration.cc || $
+    obj/content/content_shell_lib.compile_depends.stamp
+build obj/content/shell/common/content_shell_lib.webkit_test_helpers.o: cxx $
+    ../../content/shell/common/webkit_test_helpers.cc || $
+    obj/content/content_shell_lib.compile_depends.stamp
+build $
+    obj/content/shell/geolocation/content_shell_lib.shell_access_token_store.o: $
+    cxx ../../content/shell/geolocation/shell_access_token_store.cc || $
+    obj/content/content_shell_lib.compile_depends.stamp
+build obj/content/shell/renderer/content_shell_lib.gc_extension.o: cxx $
+    ../../content/shell/renderer/gc_extension.cc || $
+    obj/content/content_shell_lib.compile_depends.stamp
+build $
+    obj/content/shell/renderer/content_shell_lib.shell_content_renderer_client.o: $
+    cxx ../../content/shell/renderer/shell_content_renderer_client.cc || $
+    obj/content/content_shell_lib.compile_depends.stamp
+build $
+    obj/content/shell/renderer/content_shell_lib.shell_render_process_observer.o: $
+    cxx ../../content/shell/renderer/shell_render_process_observer.cc || $
+    obj/content/content_shell_lib.compile_depends.stamp
+build $
+    obj/content/shell/renderer/content_shell_lib.shell_render_view_observer.o: $
+    cxx ../../content/shell/renderer/shell_render_view_observer.cc || $
+    obj/content/content_shell_lib.compile_depends.stamp
+build obj/content/shell/renderer/content_shell_lib.webkit_test_runner.o: $
+    cxx ../../content/shell/renderer/webkit_test_runner.cc || $
+    obj/content/content_shell_lib.compile_depends.stamp
+
+build obj/content/libcontent_shell_lib.a: alink_thin $
+    obj/content/shell/app/content_shell_lib.shell_breakpad_client.o $
+    obj/content/shell/app/content_shell_lib.shell_main_delegate.o $
+    obj/content/shell/app/content_shell_lib.webkit_test_platform_support_linux.o $
+    obj/content/shell/browser/content_shell_lib.notify_done_forwarder.o $
+    obj/content/shell/browser/content_shell_lib.shell_browser_context.o $
+    obj/content/shell/browser/content_shell_lib.shell_browser_main.o $
+    obj/content/shell/browser/content_shell_lib.shell_browser_main_parts.o $
+    obj/content/shell/browser/content_shell_lib.shell.o $
+    obj/content/shell/browser/content_shell_lib.shell_content_browser_client.o $
+    obj/content/shell/browser/content_shell_lib.shell_devtools_delegate.o $
+    obj/content/shell/browser/content_shell_lib.shell_devtools_frontend.o $
+    obj/content/shell/browser/content_shell_lib.shell_download_manager_delegate.o $
+    obj/content/shell/browser/content_shell_lib.shell_gtk.o $
+    obj/content/shell/browser/content_shell_lib.shell_javascript_dialog_gtk.o $
+    obj/content/shell/browser/content_shell_lib.shell_javascript_dialog_manager.o $
+    obj/content/shell/browser/content_shell_lib.shell_login_dialog.o $
+    obj/content/shell/browser/content_shell_lib.shell_login_dialog_gtk.o $
+    obj/content/shell/browser/content_shell_lib.shell_message_filter.o $
+    obj/content/shell/browser/content_shell_lib.shell_net_log.o $
+    obj/content/shell/browser/content_shell_lib.shell_network_delegate.o $
+    obj/content/shell/browser/content_shell_lib.shell_plugin_service_filter.o $
+    obj/content/shell/browser/content_shell_lib.shell_quota_permission_context.o $
+    obj/content/shell/browser/content_shell_lib.shell_resource_dispatcher_host_delegate.o $
+    obj/content/shell/browser/content_shell_lib.shell_speech_recognition_manager_delegate.o $
+    obj/content/shell/browser/content_shell_lib.shell_url_request_context_getter.o $
+    obj/content/shell/browser/content_shell_lib.shell_web_contents_view_delegate_gtk.o $
+    obj/content/shell/browser/content_shell_lib.webkit_test_controller.o $
+    obj/content/shell/common/content_shell_lib.shell_content_client.o $
+    obj/content/shell/common/content_shell_lib.shell_messages.o $
+    obj/content/shell/common/content_shell_lib.shell_switches.o $
+    obj/content/shell/common/content_shell_lib.shell_test_configuration.o $
+    obj/content/shell/common/content_shell_lib.webkit_test_helpers.o $
+    obj/content/shell/geolocation/content_shell_lib.shell_access_token_store.o $
+    obj/content/shell/renderer/content_shell_lib.gc_extension.o $
+    obj/content/shell/renderer/content_shell_lib.shell_content_renderer_client.o $
+    obj/content/shell/renderer/content_shell_lib.shell_render_process_observer.o $
+    obj/content/shell/renderer/content_shell_lib.shell_render_view_observer.o $
+    obj/content/shell/renderer/content_shell_lib.webkit_test_runner.o || $
+    obj/content/content_shell_lib.actions_depends.stamp

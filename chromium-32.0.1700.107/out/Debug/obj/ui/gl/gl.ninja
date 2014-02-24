@@ -1,0 +1,244 @@
+rule gl_target_generate_gl_bindings_c033206ad018dcf8161d8b72452e64a8
+  command = cd ../../ui/gl; python generate_bindings.py $
+      "--header-paths=../../third_party/khronos:../../third_party/mesa/src/include" $
+      ../../out/Debug/gen/ui/gl
+  description = ACTION gl: $
+      generate_gl_bindings_c033206ad018dcf8161d8b72452e64a8
+  restat = 1
+
+build gen/ui/gl/gl_bindings_autogen_egl.cc $
+    gen/ui/gl/gl_bindings_autogen_egl.h $
+    gen/ui/gl/gl_bindings_api_autogen_egl.h $
+    gen/ui/gl/gl_bindings_autogen_gl.cc gen/ui/gl/gl_bindings_autogen_gl.h $
+    gen/ui/gl/gl_bindings_api_autogen_gl.h $
+    gen/ui/gl/gl_bindings_autogen_glx.cc $
+    gen/ui/gl/gl_bindings_autogen_glx.h $
+    gen/ui/gl/gl_bindings_api_autogen_glx.h $
+    gen/ui/gl/gl_bindings_autogen_mock.cc $
+    gen/ui/gl/gl_bindings_autogen_osmesa.cc $
+    gen/ui/gl/gl_bindings_autogen_osmesa.h $
+    gen/ui/gl/gl_bindings_api_autogen_osmesa.h $
+    gen/ui/gl/gl_bindings_autogen_wgl.cc $
+    gen/ui/gl/gl_bindings_autogen_wgl.h $
+    gen/ui/gl/gl_bindings_api_autogen_wgl.h $
+    gen/ui/gl/gl_interface_autogen_egl.h $
+    gen/ui/gl/gl_interface_autogen_gl.h $
+    gen/ui/gl/gl_interface_autogen_glx.h $
+    gen/ui/gl/gl_interface_autogen_osmesa.h $
+    gen/ui/gl/gl_interface_autogen_wgl.h gen/ui/gl/gl_mock_autogen_egl.h $
+    gen/ui/gl/gl_mock_autogen_gl.h gen/ui/gl/gl_mock_autogen_glx.h $
+    gen/ui/gl/gl_mock_autogen_osmesa.h gen/ui/gl/gl_mock_autogen_wgl.h: $
+    gl_target_generate_gl_bindings_c033206ad018dcf8161d8b72452e64a8 $
+    ../../ui/gl/generate_bindings.py $
+    ../../third_party/mesa/src/include/GL/glext.h $
+    ../../third_party/khronos/GLES2/gl2ext.h ../../ui/gl/GL/glextchromium.h $
+    ../../gpu/GLES2/gl2chromium.h ../../gpu/GLES2/gl2extchromium.h $
+    ../../third_party/khronos/EGL/eglext.h ../../ui/gl/EGL/eglextchromium.h $
+    ../../third_party/mesa/src/include/GL/wglext.h $
+    ../../third_party/mesa/src/include/GL/glx.h $
+    ../../third_party/mesa/src/include/GL/glxext.h || $
+    obj/skia/skia.actions_depends.stamp
+
+build obj/ui/gl/gl.actions_rules_copies.stamp: stamp $
+    gen/ui/gl/gl_bindings_autogen_egl.cc $
+    gen/ui/gl/gl_bindings_autogen_egl.h $
+    gen/ui/gl/gl_bindings_api_autogen_egl.h $
+    gen/ui/gl/gl_bindings_autogen_gl.cc gen/ui/gl/gl_bindings_autogen_gl.h $
+    gen/ui/gl/gl_bindings_api_autogen_gl.h $
+    gen/ui/gl/gl_bindings_autogen_glx.cc $
+    gen/ui/gl/gl_bindings_autogen_glx.h $
+    gen/ui/gl/gl_bindings_api_autogen_glx.h $
+    gen/ui/gl/gl_bindings_autogen_mock.cc $
+    gen/ui/gl/gl_bindings_autogen_osmesa.cc $
+    gen/ui/gl/gl_bindings_autogen_osmesa.h $
+    gen/ui/gl/gl_bindings_api_autogen_osmesa.h $
+    gen/ui/gl/gl_bindings_autogen_wgl.cc $
+    gen/ui/gl/gl_bindings_autogen_wgl.h $
+    gen/ui/gl/gl_bindings_api_autogen_wgl.h $
+    gen/ui/gl/gl_interface_autogen_egl.h $
+    gen/ui/gl/gl_interface_autogen_gl.h $
+    gen/ui/gl/gl_interface_autogen_glx.h $
+    gen/ui/gl/gl_interface_autogen_osmesa.h $
+    gen/ui/gl/gl_interface_autogen_wgl.h gen/ui/gl/gl_mock_autogen_egl.h $
+    gen/ui/gl/gl_mock_autogen_gl.h gen/ui/gl/gl_mock_autogen_glx.h $
+    gen/ui/gl/gl_mock_autogen_osmesa.h gen/ui/gl/gl_mock_autogen_wgl.h
+
+defines = -DANGLE_DX11 -D_FILE_OFFSET_BITS=64 -DNO_TCMALLOC -DDISABLE_NACL $
+    -DCHROMIUM_BUILD -DUSE_DEFAULT_RENDER_THEME=1 -DUSE_LIBJPEG_TURBO=1 $
+    -DUSE_NSS=1 -DUSE_X11=1 -DENABLE_ONE_CLICK_SIGNIN $
+    -DGTK_DISABLE_SINGLE_INCLUDES=1 -DUSE_XI2_MT=2 -DENABLE_REMOTING=1 $
+    -DENABLE_WEBRTC=1 -DUSE_PROPRIETARY_CODECS $
+    -DENABLE_CONFIGURATION_POLICY -DENABLE_INPUT_SPEECH $
+    -DENABLE_NOTIFICATIONS -DENABLE_EGLIMAGE=1 -DENABLE_TASK_MANAGER=1 $
+    -DENABLE_EXTENSIONS=1 -DENABLE_PLUGIN_INSTALLATION=1 -DENABLE_PLUGINS=1 $
+    -DENABLE_SESSION_SERVICE=1 -DENABLE_THEMES=1 -DENABLE_BACKGROUND=1 $
+    -DENABLE_AUTOMATION=1 -DENABLE_GOOGLE_NOW=1 -DCLD_VERSION=2 $
+    -DENABLE_FULL_PRINTING=1 -DENABLE_PRINTING=1 -DENABLE_SPELLCHECK=1 $
+    -DENABLE_CAPTIVE_PORTAL_DETECTION=1 -DENABLE_MANAGED_USERS=1 $
+    -DGL_IMPLEMENTATION -DSK_ENABLE_INST_COUNT=0 -DSK_SUPPORT_GPU=1 $
+    '-DGR_GL_CUSTOM_SETUP_HEADER="GrGLConfig_chrome.h"' $
+    -DSK_ENABLE_LEGACY_API_ALIASING=1 -DSK_ATTR_DEPRECATED=SK_NOTHING_ARG1 $
+    -DSK_SUPPORT_LEGACY_COLORTYPE=1 -DSK_USE_POSIX_THREADS $
+    -DSK_DEFERRED_CANVAS_USES_FACTORIES=1 -D__STDC_CONSTANT_MACROS $
+    -D__STDC_FORMAT_MACROS -DDYNAMIC_ANNOTATIONS_ENABLED=1 $
+    -DWTF_USE_DYNAMIC_ANNOTATIONS=1 -D_DEBUG
+includes = -I../../third_party/swiftshader/include $
+    -I../../third_party/mesa/src/include -Igen/ui/gl $
+    -I../../third_party/khronos -I../../gpu -I../.. $
+    -I../../third_party/skia/src/core -I../../third_party/skia/include/core $
+    -I../../third_party/skia/include/effects $
+    -I../../third_party/skia/include/pdf $
+    -I../../third_party/skia/include/gpu $
+    -I../../third_party/skia/include/lazy $
+    -I../../third_party/skia/include/pathops $
+    -I../../third_party/skia/include/pipe $
+    -I../../third_party/skia/include/ports $
+    -I../../third_party/skia/include/utils -I../../skia/config $
+    -I../../skia/ext
+cflags = -fstack-protector --param=ssp-buffer-size=4  -pthread $
+    -fno-exceptions -fno-strict-aliasing -Wall -Wno-unused-parameter $
+    -Wno-missing-field-initializers -fvisibility=hidden -pipe -fPIC $
+    -Wheader-hygiene -Wno-char-subscripts -Wno-unused-function $
+    -Wno-covered-switch-default -Wstring-conversion -Wno-c++11-narrowing $
+    -Wno-reserved-user-defined-literal -Wno-deprecated-register $
+    -Wno-deprecated-declarations -fcolor-diagnostics $
+    -I/usr/local/include/gtk-2.0 -I/usr/local/include/gio-unix-2.0/ $
+    -I/usr/local/include/atk-1.0 -I/usr/local/include/cairo $
+    -I/usr/local/include/pixman-1 -D_THREAD_SAFE $
+    -I/usr/local/include/gdk-pixbuf-2.0 -I/usr/local/include/libpng15 $
+    -I/usr/local/include/pango-1.0 -I/usr/local/include/freetype2 $
+    -I/usr/local/include/harfbuzz -pthread -I/usr/local/include/glib-2.0 $
+    -I/usr/local/include -pthread -I/usr/local/include/glib-2.0 $
+    -I/usr/local/include -D_THREAD_SAFE -I/usr/local/include $
+    -Wno-unknown-pragmas -O0 -g
+cflags_c = -O2 -pipe -fno-stack-protector -Wno-unknown-warning-option $
+    -fno-strict-aliasing
+cflags_cc = -O2 -pipe -fno-stack-protector -Wno-unknown-warning-option $
+    -fno-strict-aliasing -fno-rtti -fno-threadsafe-statics $
+    -fvisibility-inlines-hidden -Wsign-compare -std=gnu++11
+
+build obj/ui/gl/gl.gl_bindings_skia_in_process.o: cxx $
+    ../../ui/gl/gl_bindings_skia_in_process.cc || $
+    obj/ui/gl/gl.actions_rules_copies.stamp
+build obj/ui/gl/gl.gl_context.o: cxx ../../ui/gl/gl_context.cc || $
+    obj/ui/gl/gl.actions_rules_copies.stamp
+build obj/ui/gl/gl.gl_context_osmesa.o: cxx $
+    ../../ui/gl/gl_context_osmesa.cc || $
+    obj/ui/gl/gl.actions_rules_copies.stamp
+build obj/ui/gl/gl.gl_context_stub.o: cxx ../../ui/gl/gl_context_stub.cc || $
+    obj/ui/gl/gl.actions_rules_copies.stamp
+build obj/ui/gl/gl.gl_context_x11.o: cxx ../../ui/gl/gl_context_x11.cc || $
+    obj/ui/gl/gl.actions_rules_copies.stamp
+build obj/ui/gl/gl.gl_fence.o: cxx ../../ui/gl/gl_fence.cc || $
+    obj/ui/gl/gl.actions_rules_copies.stamp
+build obj/ui/gl/gl.gl_gl_api_implementation.o: cxx $
+    ../../ui/gl/gl_gl_api_implementation.cc || $
+    obj/ui/gl/gl.actions_rules_copies.stamp
+build obj/ui/gl/gl.gl_image.o: cxx ../../ui/gl/gl_image.cc || $
+    obj/ui/gl/gl.actions_rules_copies.stamp
+build obj/ui/gl/gl.gl_image_shm.o: cxx ../../ui/gl/gl_image_shm.cc || $
+    obj/ui/gl/gl.actions_rules_copies.stamp
+build obj/ui/gl/gl.gl_image_stub.o: cxx ../../ui/gl/gl_image_stub.cc || $
+    obj/ui/gl/gl.actions_rules_copies.stamp
+build obj/ui/gl/gl.gl_image_x11.o: cxx ../../ui/gl/gl_image_x11.cc || $
+    obj/ui/gl/gl.actions_rules_copies.stamp
+build obj/ui/gl/gl.gl_implementation.o: cxx $
+    ../../ui/gl/gl_implementation.cc || $
+    obj/ui/gl/gl.actions_rules_copies.stamp
+build obj/ui/gl/gl.gl_implementation_linux.o: cxx $
+    ../../ui/gl/gl_implementation_linux.cc || $
+    obj/ui/gl/gl.actions_rules_copies.stamp
+build obj/ui/gl/gl.gl_implementation_x11.o: cxx $
+    ../../ui/gl/gl_implementation_x11.cc || $
+    obj/ui/gl/gl.actions_rules_copies.stamp
+build obj/ui/gl/gl.gl_interface.o: cxx ../../ui/gl/gl_interface.cc || $
+    obj/ui/gl/gl.actions_rules_copies.stamp
+build obj/ui/gl/gl.gl_osmesa_api_implementation.o: cxx $
+    ../../ui/gl/gl_osmesa_api_implementation.cc || $
+    obj/ui/gl/gl.actions_rules_copies.stamp
+build obj/ui/gl/gl.gl_share_group.o: cxx ../../ui/gl/gl_share_group.cc || $
+    obj/ui/gl/gl.actions_rules_copies.stamp
+build obj/ui/gl/gl.gl_state_restorer.o: cxx $
+    ../../ui/gl/gl_state_restorer.cc || $
+    obj/ui/gl/gl.actions_rules_copies.stamp
+build obj/ui/gl/gl.gl_surface.o: cxx ../../ui/gl/gl_surface.cc || $
+    obj/ui/gl/gl.actions_rules_copies.stamp
+build obj/ui/gl/gl.gl_surface_stub.o: cxx ../../ui/gl/gl_surface_stub.cc || $
+    obj/ui/gl/gl.actions_rules_copies.stamp
+build obj/ui/gl/gl.gl_surface_x11.o: cxx ../../ui/gl/gl_surface_x11.cc || $
+    obj/ui/gl/gl.actions_rules_copies.stamp
+build obj/ui/gl/gl.gl_surface_osmesa.o: cxx $
+    ../../ui/gl/gl_surface_osmesa.cc || $
+    obj/ui/gl/gl.actions_rules_copies.stamp
+build obj/ui/gl/gl.gl_switches.o: cxx ../../ui/gl/gl_switches.cc || $
+    obj/ui/gl/gl.actions_rules_copies.stamp
+build obj/ui/gl/gl.gpu_switching_manager.o: cxx $
+    ../../ui/gl/gpu_switching_manager.cc || $
+    obj/ui/gl/gl.actions_rules_copies.stamp
+build obj/ui/gl/gl.scoped_binders.o: cxx ../../ui/gl/scoped_binders.cc || $
+    obj/ui/gl/gl.actions_rules_copies.stamp
+build obj/ui/gl/gl.scoped_make_current.o: cxx $
+    ../../ui/gl/scoped_make_current.cc || $
+    obj/ui/gl/gl.actions_rules_copies.stamp
+build obj/ui/gl/gl.vsync_provider.o: cxx ../../ui/gl/vsync_provider.cc || $
+    obj/ui/gl/gl.actions_rules_copies.stamp
+build obj/ui/gl/gen/ui/gl/gl.gl_bindings_autogen_gl.o: cxx $
+    gen/ui/gl/gl_bindings_autogen_gl.cc || $
+    obj/ui/gl/gl.actions_rules_copies.stamp
+build obj/ui/gl/gen/ui/gl/gl.gl_bindings_autogen_mock.o: cxx $
+    gen/ui/gl/gl_bindings_autogen_mock.cc || $
+    obj/ui/gl/gl.actions_rules_copies.stamp
+build obj/ui/gl/gen/ui/gl/gl.gl_bindings_autogen_osmesa.o: cxx $
+    gen/ui/gl/gl_bindings_autogen_osmesa.cc || $
+    obj/ui/gl/gl.actions_rules_copies.stamp
+build obj/ui/gl/gl.egl_util.o: cxx ../../ui/gl/egl_util.cc || $
+    obj/ui/gl/gl.actions_rules_copies.stamp
+build obj/ui/gl/gl.gl_context_egl.o: cxx ../../ui/gl/gl_context_egl.cc || $
+    obj/ui/gl/gl.actions_rules_copies.stamp
+build obj/ui/gl/gl.gl_surface_egl.o: cxx ../../ui/gl/gl_surface_egl.cc || $
+    obj/ui/gl/gl.actions_rules_copies.stamp
+build obj/ui/gl/gl.gl_egl_api_implementation.o: cxx $
+    ../../ui/gl/gl_egl_api_implementation.cc || $
+    obj/ui/gl/gl.actions_rules_copies.stamp
+build obj/ui/gl/gen/ui/gl/gl.gl_bindings_autogen_egl.o: cxx $
+    gen/ui/gl/gl_bindings_autogen_egl.cc || $
+    obj/ui/gl/gl.actions_rules_copies.stamp
+build obj/ui/gl/gl.gl_context_glx.o: cxx ../../ui/gl/gl_context_glx.cc || $
+    obj/ui/gl/gl.actions_rules_copies.stamp
+build obj/ui/gl/gl.gl_glx_api_implementation.o: cxx $
+    ../../ui/gl/gl_glx_api_implementation.cc || $
+    obj/ui/gl/gl.actions_rules_copies.stamp
+build obj/ui/gl/gl.gl_image_glx.o: cxx ../../ui/gl/gl_image_glx.cc || $
+    obj/ui/gl/gl.actions_rules_copies.stamp
+build obj/ui/gl/gl.gl_surface_glx.o: cxx ../../ui/gl/gl_surface_glx.cc || $
+    obj/ui/gl/gl.actions_rules_copies.stamp
+build obj/ui/gl/gen/ui/gl/gl.gl_bindings_autogen_glx.o: cxx $
+    gen/ui/gl/gl_bindings_autogen_glx.cc || $
+    obj/ui/gl/gl.actions_rules_copies.stamp
+
+build obj/ui/gl/libgl_wrapper.a: alink_thin $
+    obj/ui/gl/gl.gl_bindings_skia_in_process.o obj/ui/gl/gl.gl_context.o $
+    obj/ui/gl/gl.gl_context_osmesa.o obj/ui/gl/gl.gl_context_stub.o $
+    obj/ui/gl/gl.gl_context_x11.o obj/ui/gl/gl.gl_fence.o $
+    obj/ui/gl/gl.gl_gl_api_implementation.o obj/ui/gl/gl.gl_image.o $
+    obj/ui/gl/gl.gl_image_shm.o obj/ui/gl/gl.gl_image_stub.o $
+    obj/ui/gl/gl.gl_image_x11.o obj/ui/gl/gl.gl_implementation.o $
+    obj/ui/gl/gl.gl_implementation_linux.o $
+    obj/ui/gl/gl.gl_implementation_x11.o obj/ui/gl/gl.gl_interface.o $
+    obj/ui/gl/gl.gl_osmesa_api_implementation.o $
+    obj/ui/gl/gl.gl_share_group.o obj/ui/gl/gl.gl_state_restorer.o $
+    obj/ui/gl/gl.gl_surface.o obj/ui/gl/gl.gl_surface_stub.o $
+    obj/ui/gl/gl.gl_surface_x11.o obj/ui/gl/gl.gl_surface_osmesa.o $
+    obj/ui/gl/gl.gl_switches.o obj/ui/gl/gl.gpu_switching_manager.o $
+    obj/ui/gl/gl.scoped_binders.o obj/ui/gl/gl.scoped_make_current.o $
+    obj/ui/gl/gl.vsync_provider.o $
+    obj/ui/gl/gen/ui/gl/gl.gl_bindings_autogen_gl.o $
+    obj/ui/gl/gen/ui/gl/gl.gl_bindings_autogen_mock.o $
+    obj/ui/gl/gen/ui/gl/gl.gl_bindings_autogen_osmesa.o $
+    obj/ui/gl/gl.egl_util.o obj/ui/gl/gl.gl_context_egl.o $
+    obj/ui/gl/gl.gl_surface_egl.o obj/ui/gl/gl.gl_egl_api_implementation.o $
+    obj/ui/gl/gen/ui/gl/gl.gl_bindings_autogen_egl.o $
+    obj/ui/gl/gl.gl_context_glx.o obj/ui/gl/gl.gl_glx_api_implementation.o $
+    obj/ui/gl/gl.gl_image_glx.o obj/ui/gl/gl.gl_surface_glx.o $
+    obj/ui/gl/gen/ui/gl/gl.gl_bindings_autogen_glx.o || $
+    obj/ui/gl/gl.actions_rules_copies.stamp

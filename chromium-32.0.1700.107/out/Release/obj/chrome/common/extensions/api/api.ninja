@@ -1,0 +1,2551 @@
+build obj/chrome/common/extensions/api/api.actions_depends.stamp: stamp $
+    obj/skia/skia.actions_depends.stamp obj/sync/sync.actions_depends.stamp $
+    obj/sync/libsync_proto.a
+
+build obj/chrome/common/extensions/api/api.compile_depends.stamp: stamp $
+    obj/sync/sync.compile_depends.stamp $
+    obj/sync/sync_proto.actions_rules_copies.stamp
+
+rule api_target_genapi_bundle_0c74f3b9b249018065774637d2bb18e6
+  command = cd ../../chrome/common/extensions/api; python $
+      ../../../../tools/json_schema_compiler/compiler.py $
+      "--root=../../../.." "--destdir=../../../../out/Release/gen" $
+      "--namespace=extensions::api" "--generator=cpp-bundle" $
+      activity_log_private.json alarms.idl app_current_window_internal.idl $
+      app_runtime.idl app_window.idl audio.idl autotest_private.idl $
+      bluetooth.idl bookmark_manager_private.json bookmarks.json $
+      braille_display_private.idl cast_channel.idl cloud_print_private.json $
+      command_line_private.json content_settings.json context_menus.json $
+      cookies.json debugger.json desktop_capture.json developer_private.idl $
+      dial.idl dns.idl downloads.idl downloads_internal.idl $
+      echo_private.json enterprise_platform_keys_private.json events.json $
+      experimental_accessibility.json experimental_discovery.idl $
+      experimental_history.json experimental_identity.idl $
+      feedback_private.idl file_browser_private.json file_system.idl $
+      font_settings.json hangouts_private.idl history.json i18n.json $
+      identity.idl identity_private.idl idle.json image_writer_private.idl $
+      input_ime.json location.idl management.json manifest_types.json $
+      mdns.idl media_galleries.idl media_galleries_private.idl $
+      metrics_private.json networking_private.json notifications.idl $
+      omnibox.json page_capture.json permissions.json power.idl $
+      push_messaging.idl runtime.json serial.idl sessions.json $
+      signed_in_devices.idl socket.idl sockets_tcp.idl $
+      sockets_tcp_server.idl sockets_udp.idl storage.json $
+      sync_file_system.idl system_cpu.idl system_display.idl $
+      system_indicator.idl system_memory.idl system_private.json $
+      system_storage.idl tab_capture.idl tabs.json terminal_private.json $
+      test.json usb.idl virtual_keyboard_private.json web_navigation.json $
+      web_request.json webrtc_audio_private.idl webstore_private.json $
+      webview.json windows.json webrtc_cast_send_transport.idl $
+      webrtc_cast_udp_transport.idl webrtc_logging_private.idl adview.json $
+      browsing_data.json chromeos_info_private.json extension.json $
+      idltest.idl infobars.json media_player_private.json $
+      music_manager_private.idl preferences_private.json $
+      principals_private.idl top_sites.json
+  description = ACTION Generating C++ API bundle code
+  restat = 1
+
+build gen/chrome/common/extensions/api/generated_api.h $
+    gen/chrome/common/extensions/api/generated_api.cc $
+    gen/chrome/common/extensions/api/generated_schemas.h $
+    gen/chrome/common/extensions/api/generated_schemas.cc: $
+    api_target_genapi_bundle_0c74f3b9b249018065774637d2bb18e6 $
+    ../../tools/json_schema_compiler/cc_generator.py $
+    ../../tools/json_schema_compiler/code.py $
+    ../../tools/json_schema_compiler/compiler.py $
+    ../../tools/json_schema_compiler/cpp_bundle_generator.py $
+    ../../tools/json_schema_compiler/cpp_type_generator.py $
+    ../../tools/json_schema_compiler/cpp_util.py $
+    ../../tools/json_schema_compiler/h_generator.py $
+    ../../tools/json_schema_compiler/idl_schema.py $
+    ../../tools/json_schema_compiler/json_schema.py $
+    ../../tools/json_schema_compiler/model.py $
+    ../../tools/json_schema_compiler/util_cc_helper.py $
+    ../../chrome/common/extensions/api/activity_log_private.json $
+    ../../chrome/common/extensions/api/alarms.idl $
+    ../../chrome/common/extensions/api/app_current_window_internal.idl $
+    ../../chrome/common/extensions/api/app_runtime.idl $
+    ../../chrome/common/extensions/api/app_window.idl $
+    ../../chrome/common/extensions/api/audio.idl $
+    ../../chrome/common/extensions/api/autotest_private.idl $
+    ../../chrome/common/extensions/api/bluetooth.idl $
+    ../../chrome/common/extensions/api/bookmark_manager_private.json $
+    ../../chrome/common/extensions/api/bookmarks.json $
+    ../../chrome/common/extensions/api/braille_display_private.idl $
+    ../../chrome/common/extensions/api/cast_channel.idl $
+    ../../chrome/common/extensions/api/cloud_print_private.json $
+    ../../chrome/common/extensions/api/command_line_private.json $
+    ../../chrome/common/extensions/api/content_settings.json $
+    ../../chrome/common/extensions/api/context_menus.json $
+    ../../chrome/common/extensions/api/cookies.json $
+    ../../chrome/common/extensions/api/debugger.json $
+    ../../chrome/common/extensions/api/desktop_capture.json $
+    ../../chrome/common/extensions/api/developer_private.idl $
+    ../../chrome/common/extensions/api/dial.idl $
+    ../../chrome/common/extensions/api/dns.idl $
+    ../../chrome/common/extensions/api/downloads.idl $
+    ../../chrome/common/extensions/api/downloads_internal.idl $
+    ../../chrome/common/extensions/api/echo_private.json $
+    ../../chrome/common/extensions/api/enterprise_platform_keys_private.json $
+    ../../chrome/common/extensions/api/events.json $
+    ../../chrome/common/extensions/api/experimental_accessibility.json $
+    ../../chrome/common/extensions/api/experimental_discovery.idl $
+    ../../chrome/common/extensions/api/experimental_history.json $
+    ../../chrome/common/extensions/api/experimental_identity.idl $
+    ../../chrome/common/extensions/api/feedback_private.idl $
+    ../../chrome/common/extensions/api/file_browser_private.json $
+    ../../chrome/common/extensions/api/file_system.idl $
+    ../../chrome/common/extensions/api/font_settings.json $
+    ../../chrome/common/extensions/api/hangouts_private.idl $
+    ../../chrome/common/extensions/api/history.json $
+    ../../chrome/common/extensions/api/i18n.json $
+    ../../chrome/common/extensions/api/identity.idl $
+    ../../chrome/common/extensions/api/identity_private.idl $
+    ../../chrome/common/extensions/api/idle.json $
+    ../../chrome/common/extensions/api/image_writer_private.idl $
+    ../../chrome/common/extensions/api/input_ime.json $
+    ../../chrome/common/extensions/api/location.idl $
+    ../../chrome/common/extensions/api/management.json $
+    ../../chrome/common/extensions/api/manifest_types.json $
+    ../../chrome/common/extensions/api/mdns.idl $
+    ../../chrome/common/extensions/api/media_galleries.idl $
+    ../../chrome/common/extensions/api/media_galleries_private.idl $
+    ../../chrome/common/extensions/api/metrics_private.json $
+    ../../chrome/common/extensions/api/networking_private.json $
+    ../../chrome/common/extensions/api/notifications.idl $
+    ../../chrome/common/extensions/api/omnibox.json $
+    ../../chrome/common/extensions/api/page_capture.json $
+    ../../chrome/common/extensions/api/permissions.json $
+    ../../chrome/common/extensions/api/power.idl $
+    ../../chrome/common/extensions/api/push_messaging.idl $
+    ../../chrome/common/extensions/api/runtime.json $
+    ../../chrome/common/extensions/api/serial.idl $
+    ../../chrome/common/extensions/api/sessions.json $
+    ../../chrome/common/extensions/api/signed_in_devices.idl $
+    ../../chrome/common/extensions/api/socket.idl $
+    ../../chrome/common/extensions/api/sockets_tcp.idl $
+    ../../chrome/common/extensions/api/sockets_tcp_server.idl $
+    ../../chrome/common/extensions/api/sockets_udp.idl $
+    ../../chrome/common/extensions/api/storage.json $
+    ../../chrome/common/extensions/api/sync_file_system.idl $
+    ../../chrome/common/extensions/api/system_cpu.idl $
+    ../../chrome/common/extensions/api/system_display.idl $
+    ../../chrome/common/extensions/api/system_indicator.idl $
+    ../../chrome/common/extensions/api/system_memory.idl $
+    ../../chrome/common/extensions/api/system_private.json $
+    ../../chrome/common/extensions/api/system_storage.idl $
+    ../../chrome/common/extensions/api/tab_capture.idl $
+    ../../chrome/common/extensions/api/tabs.json $
+    ../../chrome/common/extensions/api/terminal_private.json $
+    ../../chrome/common/extensions/api/test.json $
+    ../../chrome/common/extensions/api/usb.idl $
+    ../../chrome/common/extensions/api/virtual_keyboard_private.json $
+    ../../chrome/common/extensions/api/web_navigation.json $
+    ../../chrome/common/extensions/api/web_request.json $
+    ../../chrome/common/extensions/api/webrtc_audio_private.idl $
+    ../../chrome/common/extensions/api/webstore_private.json $
+    ../../chrome/common/extensions/api/webview.json $
+    ../../chrome/common/extensions/api/windows.json $
+    ../../chrome/common/extensions/api/webrtc_cast_send_transport.idl $
+    ../../chrome/common/extensions/api/webrtc_cast_udp_transport.idl $
+    ../../chrome/common/extensions/api/webrtc_logging_private.idl $
+    ../../chrome/common/extensions/api/adview.json $
+    ../../chrome/common/extensions/api/browsing_data.json $
+    ../../chrome/common/extensions/api/chromeos_info_private.json $
+    ../../chrome/common/extensions/api/extension.json $
+    ../../chrome/common/extensions/api/idltest.idl $
+    ../../chrome/common/extensions/api/infobars.json $
+    ../../chrome/common/extensions/api/media_player_private.json $
+    ../../chrome/common/extensions/api/music_manager_private.idl $
+    ../../chrome/common/extensions/api/preferences_private.json $
+    ../../chrome/common/extensions/api/principals_private.idl $
+    ../../chrome/common/extensions/api/top_sites.json || $
+    obj/chrome/common/extensions/api/api.actions_depends.stamp
+
+rule api_target_genapi_0c74f3b9b249018065774637d2bb18e6
+  command = cd ../../chrome/common/extensions/api; python $
+      ../../../../tools/json_schema_compiler/compiler.py "${source}" $
+      "--root=../../../.." "--destdir=../../../../out/Release/gen" $
+      "--namespace=extensions::api" "--generator=cpp"
+  description = RULE Generating C++ code from ${source} json files
+  restat = 1
+
+build gen/chrome/common/extensions/api/activity_log_private.cc $
+    gen/chrome/common/extensions/api/activity_log_private.h: $
+    api_target_genapi_0c74f3b9b249018065774637d2bb18e6 $
+    ../../chrome/common/extensions/api/activity_log_private.json | $
+    ../../tools/json_schema_compiler/cc_generator.py $
+    ../../tools/json_schema_compiler/code.py $
+    ../../tools/json_schema_compiler/compiler.py $
+    ../../tools/json_schema_compiler/cpp_generator.py $
+    ../../tools/json_schema_compiler/cpp_type_generator.py $
+    ../../tools/json_schema_compiler/cpp_util.py $
+    ../../tools/json_schema_compiler/h_generator.py $
+    ../../tools/json_schema_compiler/json_schema.py $
+    ../../tools/json_schema_compiler/model.py $
+    ../../tools/json_schema_compiler/util.cc $
+    ../../tools/json_schema_compiler/util.h $
+    ../../tools/json_schema_compiler/util_cc_helper.py || $
+    obj/chrome/common/extensions/api/api.actions_depends.stamp
+  source = activity_log_private.json
+  unique_name = a81567d7c0d7ad3f509d468bc351e4c4
+build gen/chrome/common/extensions/api/bookmark_manager_private.cc $
+    gen/chrome/common/extensions/api/bookmark_manager_private.h: $
+    api_target_genapi_0c74f3b9b249018065774637d2bb18e6 $
+    ../../chrome/common/extensions/api/bookmark_manager_private.json | $
+    ../../tools/json_schema_compiler/cc_generator.py $
+    ../../tools/json_schema_compiler/code.py $
+    ../../tools/json_schema_compiler/compiler.py $
+    ../../tools/json_schema_compiler/cpp_generator.py $
+    ../../tools/json_schema_compiler/cpp_type_generator.py $
+    ../../tools/json_schema_compiler/cpp_util.py $
+    ../../tools/json_schema_compiler/h_generator.py $
+    ../../tools/json_schema_compiler/json_schema.py $
+    ../../tools/json_schema_compiler/model.py $
+    ../../tools/json_schema_compiler/util.cc $
+    ../../tools/json_schema_compiler/util.h $
+    ../../tools/json_schema_compiler/util_cc_helper.py || $
+    obj/chrome/common/extensions/api/api.actions_depends.stamp
+  source = bookmark_manager_private.json
+  unique_name = 0c8e3f3b13b6475778be92b63945c641
+build gen/chrome/common/extensions/api/bookmarks.cc $
+    gen/chrome/common/extensions/api/bookmarks.h: $
+    api_target_genapi_0c74f3b9b249018065774637d2bb18e6 $
+    ../../chrome/common/extensions/api/bookmarks.json | $
+    ../../tools/json_schema_compiler/cc_generator.py $
+    ../../tools/json_schema_compiler/code.py $
+    ../../tools/json_schema_compiler/compiler.py $
+    ../../tools/json_schema_compiler/cpp_generator.py $
+    ../../tools/json_schema_compiler/cpp_type_generator.py $
+    ../../tools/json_schema_compiler/cpp_util.py $
+    ../../tools/json_schema_compiler/h_generator.py $
+    ../../tools/json_schema_compiler/json_schema.py $
+    ../../tools/json_schema_compiler/model.py $
+    ../../tools/json_schema_compiler/util.cc $
+    ../../tools/json_schema_compiler/util.h $
+    ../../tools/json_schema_compiler/util_cc_helper.py || $
+    obj/chrome/common/extensions/api/api.actions_depends.stamp
+  source = bookmarks.json
+  unique_name = bebb6775e7fc87561aee9c64a49391da
+build gen/chrome/common/extensions/api/cloud_print_private.cc $
+    gen/chrome/common/extensions/api/cloud_print_private.h: $
+    api_target_genapi_0c74f3b9b249018065774637d2bb18e6 $
+    ../../chrome/common/extensions/api/cloud_print_private.json | $
+    ../../tools/json_schema_compiler/cc_generator.py $
+    ../../tools/json_schema_compiler/code.py $
+    ../../tools/json_schema_compiler/compiler.py $
+    ../../tools/json_schema_compiler/cpp_generator.py $
+    ../../tools/json_schema_compiler/cpp_type_generator.py $
+    ../../tools/json_schema_compiler/cpp_util.py $
+    ../../tools/json_schema_compiler/h_generator.py $
+    ../../tools/json_schema_compiler/json_schema.py $
+    ../../tools/json_schema_compiler/model.py $
+    ../../tools/json_schema_compiler/util.cc $
+    ../../tools/json_schema_compiler/util.h $
+    ../../tools/json_schema_compiler/util_cc_helper.py || $
+    obj/chrome/common/extensions/api/api.actions_depends.stamp
+  source = cloud_print_private.json
+  unique_name = eaa5d0a74e597573c49addc20575f4db
+build gen/chrome/common/extensions/api/command_line_private.cc $
+    gen/chrome/common/extensions/api/command_line_private.h: $
+    api_target_genapi_0c74f3b9b249018065774637d2bb18e6 $
+    ../../chrome/common/extensions/api/command_line_private.json | $
+    ../../tools/json_schema_compiler/cc_generator.py $
+    ../../tools/json_schema_compiler/code.py $
+    ../../tools/json_schema_compiler/compiler.py $
+    ../../tools/json_schema_compiler/cpp_generator.py $
+    ../../tools/json_schema_compiler/cpp_type_generator.py $
+    ../../tools/json_schema_compiler/cpp_util.py $
+    ../../tools/json_schema_compiler/h_generator.py $
+    ../../tools/json_schema_compiler/json_schema.py $
+    ../../tools/json_schema_compiler/model.py $
+    ../../tools/json_schema_compiler/util.cc $
+    ../../tools/json_schema_compiler/util.h $
+    ../../tools/json_schema_compiler/util_cc_helper.py || $
+    obj/chrome/common/extensions/api/api.actions_depends.stamp
+  source = command_line_private.json
+  unique_name = 8a761d7cbf47aa42eea85fe0d0862df2
+build gen/chrome/common/extensions/api/content_settings.cc $
+    gen/chrome/common/extensions/api/content_settings.h: $
+    api_target_genapi_0c74f3b9b249018065774637d2bb18e6 $
+    ../../chrome/common/extensions/api/content_settings.json | $
+    ../../tools/json_schema_compiler/cc_generator.py $
+    ../../tools/json_schema_compiler/code.py $
+    ../../tools/json_schema_compiler/compiler.py $
+    ../../tools/json_schema_compiler/cpp_generator.py $
+    ../../tools/json_schema_compiler/cpp_type_generator.py $
+    ../../tools/json_schema_compiler/cpp_util.py $
+    ../../tools/json_schema_compiler/h_generator.py $
+    ../../tools/json_schema_compiler/json_schema.py $
+    ../../tools/json_schema_compiler/model.py $
+    ../../tools/json_schema_compiler/util.cc $
+    ../../tools/json_schema_compiler/util.h $
+    ../../tools/json_schema_compiler/util_cc_helper.py || $
+    obj/chrome/common/extensions/api/api.actions_depends.stamp
+  source = content_settings.json
+  unique_name = 999094d1c0873cc2b7500bf1dc85c723
+build gen/chrome/common/extensions/api/context_menus.cc $
+    gen/chrome/common/extensions/api/context_menus.h: $
+    api_target_genapi_0c74f3b9b249018065774637d2bb18e6 $
+    ../../chrome/common/extensions/api/context_menus.json | $
+    ../../tools/json_schema_compiler/cc_generator.py $
+    ../../tools/json_schema_compiler/code.py $
+    ../../tools/json_schema_compiler/compiler.py $
+    ../../tools/json_schema_compiler/cpp_generator.py $
+    ../../tools/json_schema_compiler/cpp_type_generator.py $
+    ../../tools/json_schema_compiler/cpp_util.py $
+    ../../tools/json_schema_compiler/h_generator.py $
+    ../../tools/json_schema_compiler/json_schema.py $
+    ../../tools/json_schema_compiler/model.py $
+    ../../tools/json_schema_compiler/util.cc $
+    ../../tools/json_schema_compiler/util.h $
+    ../../tools/json_schema_compiler/util_cc_helper.py || $
+    obj/chrome/common/extensions/api/api.actions_depends.stamp
+  source = context_menus.json
+  unique_name = dbd764537e52abec03ab86c0ac9623d0
+build gen/chrome/common/extensions/api/cookies.cc $
+    gen/chrome/common/extensions/api/cookies.h: $
+    api_target_genapi_0c74f3b9b249018065774637d2bb18e6 $
+    ../../chrome/common/extensions/api/cookies.json | $
+    ../../tools/json_schema_compiler/cc_generator.py $
+    ../../tools/json_schema_compiler/code.py $
+    ../../tools/json_schema_compiler/compiler.py $
+    ../../tools/json_schema_compiler/cpp_generator.py $
+    ../../tools/json_schema_compiler/cpp_type_generator.py $
+    ../../tools/json_schema_compiler/cpp_util.py $
+    ../../tools/json_schema_compiler/h_generator.py $
+    ../../tools/json_schema_compiler/json_schema.py $
+    ../../tools/json_schema_compiler/model.py $
+    ../../tools/json_schema_compiler/util.cc $
+    ../../tools/json_schema_compiler/util.h $
+    ../../tools/json_schema_compiler/util_cc_helper.py || $
+    obj/chrome/common/extensions/api/api.actions_depends.stamp
+  source = cookies.json
+  unique_name = f804a1d2932432fafd4d4d03e5b4d27e
+build gen/chrome/common/extensions/api/debugger.cc $
+    gen/chrome/common/extensions/api/debugger.h: $
+    api_target_genapi_0c74f3b9b249018065774637d2bb18e6 $
+    ../../chrome/common/extensions/api/debugger.json | $
+    ../../tools/json_schema_compiler/cc_generator.py $
+    ../../tools/json_schema_compiler/code.py $
+    ../../tools/json_schema_compiler/compiler.py $
+    ../../tools/json_schema_compiler/cpp_generator.py $
+    ../../tools/json_schema_compiler/cpp_type_generator.py $
+    ../../tools/json_schema_compiler/cpp_util.py $
+    ../../tools/json_schema_compiler/h_generator.py $
+    ../../tools/json_schema_compiler/json_schema.py $
+    ../../tools/json_schema_compiler/model.py $
+    ../../tools/json_schema_compiler/util.cc $
+    ../../tools/json_schema_compiler/util.h $
+    ../../tools/json_schema_compiler/util_cc_helper.py || $
+    obj/chrome/common/extensions/api/api.actions_depends.stamp
+  source = debugger.json
+  unique_name = a3dc6a19d70a29dbb58f08ec40c5f8b3
+build gen/chrome/common/extensions/api/desktop_capture.cc $
+    gen/chrome/common/extensions/api/desktop_capture.h: $
+    api_target_genapi_0c74f3b9b249018065774637d2bb18e6 $
+    ../../chrome/common/extensions/api/desktop_capture.json | $
+    ../../tools/json_schema_compiler/cc_generator.py $
+    ../../tools/json_schema_compiler/code.py $
+    ../../tools/json_schema_compiler/compiler.py $
+    ../../tools/json_schema_compiler/cpp_generator.py $
+    ../../tools/json_schema_compiler/cpp_type_generator.py $
+    ../../tools/json_schema_compiler/cpp_util.py $
+    ../../tools/json_schema_compiler/h_generator.py $
+    ../../tools/json_schema_compiler/json_schema.py $
+    ../../tools/json_schema_compiler/model.py $
+    ../../tools/json_schema_compiler/util.cc $
+    ../../tools/json_schema_compiler/util.h $
+    ../../tools/json_schema_compiler/util_cc_helper.py || $
+    obj/chrome/common/extensions/api/api.actions_depends.stamp
+  source = desktop_capture.json
+  unique_name = b2a852f808a6874be4e1b05d8128802c
+build gen/chrome/common/extensions/api/echo_private.cc $
+    gen/chrome/common/extensions/api/echo_private.h: $
+    api_target_genapi_0c74f3b9b249018065774637d2bb18e6 $
+    ../../chrome/common/extensions/api/echo_private.json | $
+    ../../tools/json_schema_compiler/cc_generator.py $
+    ../../tools/json_schema_compiler/code.py $
+    ../../tools/json_schema_compiler/compiler.py $
+    ../../tools/json_schema_compiler/cpp_generator.py $
+    ../../tools/json_schema_compiler/cpp_type_generator.py $
+    ../../tools/json_schema_compiler/cpp_util.py $
+    ../../tools/json_schema_compiler/h_generator.py $
+    ../../tools/json_schema_compiler/json_schema.py $
+    ../../tools/json_schema_compiler/model.py $
+    ../../tools/json_schema_compiler/util.cc $
+    ../../tools/json_schema_compiler/util.h $
+    ../../tools/json_schema_compiler/util_cc_helper.py || $
+    obj/chrome/common/extensions/api/api.actions_depends.stamp
+  source = echo_private.json
+  unique_name = ff3628f70ebea28c5b3c5549368bcad0
+build gen/chrome/common/extensions/api/enterprise_platform_keys_private.cc $
+    gen/chrome/common/extensions/api/enterprise_platform_keys_private.h: $
+    api_target_genapi_0c74f3b9b249018065774637d2bb18e6 $
+    ../../chrome/common/extensions/api/enterprise_platform_keys_private.json $
+    | ../../tools/json_schema_compiler/cc_generator.py $
+    ../../tools/json_schema_compiler/code.py $
+    ../../tools/json_schema_compiler/compiler.py $
+    ../../tools/json_schema_compiler/cpp_generator.py $
+    ../../tools/json_schema_compiler/cpp_type_generator.py $
+    ../../tools/json_schema_compiler/cpp_util.py $
+    ../../tools/json_schema_compiler/h_generator.py $
+    ../../tools/json_schema_compiler/json_schema.py $
+    ../../tools/json_schema_compiler/model.py $
+    ../../tools/json_schema_compiler/util.cc $
+    ../../tools/json_schema_compiler/util.h $
+    ../../tools/json_schema_compiler/util_cc_helper.py || $
+    obj/chrome/common/extensions/api/api.actions_depends.stamp
+  source = enterprise_platform_keys_private.json
+  unique_name = 5f8458f7f24eff483b5820221f92caa7
+build gen/chrome/common/extensions/api/events.cc $
+    gen/chrome/common/extensions/api/events.h: $
+    api_target_genapi_0c74f3b9b249018065774637d2bb18e6 $
+    ../../chrome/common/extensions/api/events.json | $
+    ../../tools/json_schema_compiler/cc_generator.py $
+    ../../tools/json_schema_compiler/code.py $
+    ../../tools/json_schema_compiler/compiler.py $
+    ../../tools/json_schema_compiler/cpp_generator.py $
+    ../../tools/json_schema_compiler/cpp_type_generator.py $
+    ../../tools/json_schema_compiler/cpp_util.py $
+    ../../tools/json_schema_compiler/h_generator.py $
+    ../../tools/json_schema_compiler/json_schema.py $
+    ../../tools/json_schema_compiler/model.py $
+    ../../tools/json_schema_compiler/util.cc $
+    ../../tools/json_schema_compiler/util.h $
+    ../../tools/json_schema_compiler/util_cc_helper.py || $
+    obj/chrome/common/extensions/api/api.actions_depends.stamp
+  source = events.json
+  unique_name = 8ce438df1a95506fc7564725ed9fd23f
+build gen/chrome/common/extensions/api/experimental_accessibility.cc $
+    gen/chrome/common/extensions/api/experimental_accessibility.h: $
+    api_target_genapi_0c74f3b9b249018065774637d2bb18e6 $
+    ../../chrome/common/extensions/api/experimental_accessibility.json | $
+    ../../tools/json_schema_compiler/cc_generator.py $
+    ../../tools/json_schema_compiler/code.py $
+    ../../tools/json_schema_compiler/compiler.py $
+    ../../tools/json_schema_compiler/cpp_generator.py $
+    ../../tools/json_schema_compiler/cpp_type_generator.py $
+    ../../tools/json_schema_compiler/cpp_util.py $
+    ../../tools/json_schema_compiler/h_generator.py $
+    ../../tools/json_schema_compiler/json_schema.py $
+    ../../tools/json_schema_compiler/model.py $
+    ../../tools/json_schema_compiler/util.cc $
+    ../../tools/json_schema_compiler/util.h $
+    ../../tools/json_schema_compiler/util_cc_helper.py || $
+    obj/chrome/common/extensions/api/api.actions_depends.stamp
+  source = experimental_accessibility.json
+  unique_name = 0061e53ad5d0d3537688f94b4bbda534
+build gen/chrome/common/extensions/api/experimental_history.cc $
+    gen/chrome/common/extensions/api/experimental_history.h: $
+    api_target_genapi_0c74f3b9b249018065774637d2bb18e6 $
+    ../../chrome/common/extensions/api/experimental_history.json | $
+    ../../tools/json_schema_compiler/cc_generator.py $
+    ../../tools/json_schema_compiler/code.py $
+    ../../tools/json_schema_compiler/compiler.py $
+    ../../tools/json_schema_compiler/cpp_generator.py $
+    ../../tools/json_schema_compiler/cpp_type_generator.py $
+    ../../tools/json_schema_compiler/cpp_util.py $
+    ../../tools/json_schema_compiler/h_generator.py $
+    ../../tools/json_schema_compiler/json_schema.py $
+    ../../tools/json_schema_compiler/model.py $
+    ../../tools/json_schema_compiler/util.cc $
+    ../../tools/json_schema_compiler/util.h $
+    ../../tools/json_schema_compiler/util_cc_helper.py || $
+    obj/chrome/common/extensions/api/api.actions_depends.stamp
+  source = experimental_history.json
+  unique_name = 097e91265d3a5532585c9807aebe17b3
+build gen/chrome/common/extensions/api/file_browser_private.cc $
+    gen/chrome/common/extensions/api/file_browser_private.h: $
+    api_target_genapi_0c74f3b9b249018065774637d2bb18e6 $
+    ../../chrome/common/extensions/api/file_browser_private.json | $
+    ../../tools/json_schema_compiler/cc_generator.py $
+    ../../tools/json_schema_compiler/code.py $
+    ../../tools/json_schema_compiler/compiler.py $
+    ../../tools/json_schema_compiler/cpp_generator.py $
+    ../../tools/json_schema_compiler/cpp_type_generator.py $
+    ../../tools/json_schema_compiler/cpp_util.py $
+    ../../tools/json_schema_compiler/h_generator.py $
+    ../../tools/json_schema_compiler/json_schema.py $
+    ../../tools/json_schema_compiler/model.py $
+    ../../tools/json_schema_compiler/util.cc $
+    ../../tools/json_schema_compiler/util.h $
+    ../../tools/json_schema_compiler/util_cc_helper.py || $
+    obj/chrome/common/extensions/api/api.actions_depends.stamp
+  source = file_browser_private.json
+  unique_name = d56f3a1f9a75841f23b8348efaddd7d3
+build gen/chrome/common/extensions/api/font_settings.cc $
+    gen/chrome/common/extensions/api/font_settings.h: $
+    api_target_genapi_0c74f3b9b249018065774637d2bb18e6 $
+    ../../chrome/common/extensions/api/font_settings.json | $
+    ../../tools/json_schema_compiler/cc_generator.py $
+    ../../tools/json_schema_compiler/code.py $
+    ../../tools/json_schema_compiler/compiler.py $
+    ../../tools/json_schema_compiler/cpp_generator.py $
+    ../../tools/json_schema_compiler/cpp_type_generator.py $
+    ../../tools/json_schema_compiler/cpp_util.py $
+    ../../tools/json_schema_compiler/h_generator.py $
+    ../../tools/json_schema_compiler/json_schema.py $
+    ../../tools/json_schema_compiler/model.py $
+    ../../tools/json_schema_compiler/util.cc $
+    ../../tools/json_schema_compiler/util.h $
+    ../../tools/json_schema_compiler/util_cc_helper.py || $
+    obj/chrome/common/extensions/api/api.actions_depends.stamp
+  source = font_settings.json
+  unique_name = c37ee29561bbefc6dde817850331c53d
+build gen/chrome/common/extensions/api/history.cc $
+    gen/chrome/common/extensions/api/history.h: $
+    api_target_genapi_0c74f3b9b249018065774637d2bb18e6 $
+    ../../chrome/common/extensions/api/history.json | $
+    ../../tools/json_schema_compiler/cc_generator.py $
+    ../../tools/json_schema_compiler/code.py $
+    ../../tools/json_schema_compiler/compiler.py $
+    ../../tools/json_schema_compiler/cpp_generator.py $
+    ../../tools/json_schema_compiler/cpp_type_generator.py $
+    ../../tools/json_schema_compiler/cpp_util.py $
+    ../../tools/json_schema_compiler/h_generator.py $
+    ../../tools/json_schema_compiler/json_schema.py $
+    ../../tools/json_schema_compiler/model.py $
+    ../../tools/json_schema_compiler/util.cc $
+    ../../tools/json_schema_compiler/util.h $
+    ../../tools/json_schema_compiler/util_cc_helper.py || $
+    obj/chrome/common/extensions/api/api.actions_depends.stamp
+  source = history.json
+  unique_name = 8673517075e68f6c73bd4e5c8cfe309b
+build gen/chrome/common/extensions/api/i18n.cc $
+    gen/chrome/common/extensions/api/i18n.h: $
+    api_target_genapi_0c74f3b9b249018065774637d2bb18e6 $
+    ../../chrome/common/extensions/api/i18n.json | $
+    ../../tools/json_schema_compiler/cc_generator.py $
+    ../../tools/json_schema_compiler/code.py $
+    ../../tools/json_schema_compiler/compiler.py $
+    ../../tools/json_schema_compiler/cpp_generator.py $
+    ../../tools/json_schema_compiler/cpp_type_generator.py $
+    ../../tools/json_schema_compiler/cpp_util.py $
+    ../../tools/json_schema_compiler/h_generator.py $
+    ../../tools/json_schema_compiler/json_schema.py $
+    ../../tools/json_schema_compiler/model.py $
+    ../../tools/json_schema_compiler/util.cc $
+    ../../tools/json_schema_compiler/util.h $
+    ../../tools/json_schema_compiler/util_cc_helper.py || $
+    obj/chrome/common/extensions/api/api.actions_depends.stamp
+  source = i18n.json
+  unique_name = 99c67040969f621057aae5b65ca43ab5
+build gen/chrome/common/extensions/api/idle.cc $
+    gen/chrome/common/extensions/api/idle.h: $
+    api_target_genapi_0c74f3b9b249018065774637d2bb18e6 $
+    ../../chrome/common/extensions/api/idle.json | $
+    ../../tools/json_schema_compiler/cc_generator.py $
+    ../../tools/json_schema_compiler/code.py $
+    ../../tools/json_schema_compiler/compiler.py $
+    ../../tools/json_schema_compiler/cpp_generator.py $
+    ../../tools/json_schema_compiler/cpp_type_generator.py $
+    ../../tools/json_schema_compiler/cpp_util.py $
+    ../../tools/json_schema_compiler/h_generator.py $
+    ../../tools/json_schema_compiler/json_schema.py $
+    ../../tools/json_schema_compiler/model.py $
+    ../../tools/json_schema_compiler/util.cc $
+    ../../tools/json_schema_compiler/util.h $
+    ../../tools/json_schema_compiler/util_cc_helper.py || $
+    obj/chrome/common/extensions/api/api.actions_depends.stamp
+  source = idle.json
+  unique_name = a364d83a958bdb1832c81bcee1f13363
+build gen/chrome/common/extensions/api/input_ime.cc $
+    gen/chrome/common/extensions/api/input_ime.h: $
+    api_target_genapi_0c74f3b9b249018065774637d2bb18e6 $
+    ../../chrome/common/extensions/api/input_ime.json | $
+    ../../tools/json_schema_compiler/cc_generator.py $
+    ../../tools/json_schema_compiler/code.py $
+    ../../tools/json_schema_compiler/compiler.py $
+    ../../tools/json_schema_compiler/cpp_generator.py $
+    ../../tools/json_schema_compiler/cpp_type_generator.py $
+    ../../tools/json_schema_compiler/cpp_util.py $
+    ../../tools/json_schema_compiler/h_generator.py $
+    ../../tools/json_schema_compiler/json_schema.py $
+    ../../tools/json_schema_compiler/model.py $
+    ../../tools/json_schema_compiler/util.cc $
+    ../../tools/json_schema_compiler/util.h $
+    ../../tools/json_schema_compiler/util_cc_helper.py || $
+    obj/chrome/common/extensions/api/api.actions_depends.stamp
+  source = input_ime.json
+  unique_name = 9f773897fac8ed23d0000cc600b46b96
+build gen/chrome/common/extensions/api/management.cc $
+    gen/chrome/common/extensions/api/management.h: $
+    api_target_genapi_0c74f3b9b249018065774637d2bb18e6 $
+    ../../chrome/common/extensions/api/management.json | $
+    ../../tools/json_schema_compiler/cc_generator.py $
+    ../../tools/json_schema_compiler/code.py $
+    ../../tools/json_schema_compiler/compiler.py $
+    ../../tools/json_schema_compiler/cpp_generator.py $
+    ../../tools/json_schema_compiler/cpp_type_generator.py $
+    ../../tools/json_schema_compiler/cpp_util.py $
+    ../../tools/json_schema_compiler/h_generator.py $
+    ../../tools/json_schema_compiler/json_schema.py $
+    ../../tools/json_schema_compiler/model.py $
+    ../../tools/json_schema_compiler/util.cc $
+    ../../tools/json_schema_compiler/util.h $
+    ../../tools/json_schema_compiler/util_cc_helper.py || $
+    obj/chrome/common/extensions/api/api.actions_depends.stamp
+  source = management.json
+  unique_name = 6d7845d898c62b59181380d803de1832
+build gen/chrome/common/extensions/api/manifest_types.cc $
+    gen/chrome/common/extensions/api/manifest_types.h: $
+    api_target_genapi_0c74f3b9b249018065774637d2bb18e6 $
+    ../../chrome/common/extensions/api/manifest_types.json | $
+    ../../tools/json_schema_compiler/cc_generator.py $
+    ../../tools/json_schema_compiler/code.py $
+    ../../tools/json_schema_compiler/compiler.py $
+    ../../tools/json_schema_compiler/cpp_generator.py $
+    ../../tools/json_schema_compiler/cpp_type_generator.py $
+    ../../tools/json_schema_compiler/cpp_util.py $
+    ../../tools/json_schema_compiler/h_generator.py $
+    ../../tools/json_schema_compiler/json_schema.py $
+    ../../tools/json_schema_compiler/model.py $
+    ../../tools/json_schema_compiler/util.cc $
+    ../../tools/json_schema_compiler/util.h $
+    ../../tools/json_schema_compiler/util_cc_helper.py || $
+    obj/chrome/common/extensions/api/api.actions_depends.stamp
+  source = manifest_types.json
+  unique_name = 10a29d631ef4c3b599efb0039a56ce0f
+build gen/chrome/common/extensions/api/metrics_private.cc $
+    gen/chrome/common/extensions/api/metrics_private.h: $
+    api_target_genapi_0c74f3b9b249018065774637d2bb18e6 $
+    ../../chrome/common/extensions/api/metrics_private.json | $
+    ../../tools/json_schema_compiler/cc_generator.py $
+    ../../tools/json_schema_compiler/code.py $
+    ../../tools/json_schema_compiler/compiler.py $
+    ../../tools/json_schema_compiler/cpp_generator.py $
+    ../../tools/json_schema_compiler/cpp_type_generator.py $
+    ../../tools/json_schema_compiler/cpp_util.py $
+    ../../tools/json_schema_compiler/h_generator.py $
+    ../../tools/json_schema_compiler/json_schema.py $
+    ../../tools/json_schema_compiler/model.py $
+    ../../tools/json_schema_compiler/util.cc $
+    ../../tools/json_schema_compiler/util.h $
+    ../../tools/json_schema_compiler/util_cc_helper.py || $
+    obj/chrome/common/extensions/api/api.actions_depends.stamp
+  source = metrics_private.json
+  unique_name = 701f0832b62e4a4a61af9336e8bedf05
+build gen/chrome/common/extensions/api/networking_private.cc $
+    gen/chrome/common/extensions/api/networking_private.h: $
+    api_target_genapi_0c74f3b9b249018065774637d2bb18e6 $
+    ../../chrome/common/extensions/api/networking_private.json | $
+    ../../tools/json_schema_compiler/cc_generator.py $
+    ../../tools/json_schema_compiler/code.py $
+    ../../tools/json_schema_compiler/compiler.py $
+    ../../tools/json_schema_compiler/cpp_generator.py $
+    ../../tools/json_schema_compiler/cpp_type_generator.py $
+    ../../tools/json_schema_compiler/cpp_util.py $
+    ../../tools/json_schema_compiler/h_generator.py $
+    ../../tools/json_schema_compiler/json_schema.py $
+    ../../tools/json_schema_compiler/model.py $
+    ../../tools/json_schema_compiler/util.cc $
+    ../../tools/json_schema_compiler/util.h $
+    ../../tools/json_schema_compiler/util_cc_helper.py || $
+    obj/chrome/common/extensions/api/api.actions_depends.stamp
+  source = networking_private.json
+  unique_name = 8b1f1150b5f84c44e5d97dd7f9344cc8
+build gen/chrome/common/extensions/api/omnibox.cc $
+    gen/chrome/common/extensions/api/omnibox.h: $
+    api_target_genapi_0c74f3b9b249018065774637d2bb18e6 $
+    ../../chrome/common/extensions/api/omnibox.json | $
+    ../../tools/json_schema_compiler/cc_generator.py $
+    ../../tools/json_schema_compiler/code.py $
+    ../../tools/json_schema_compiler/compiler.py $
+    ../../tools/json_schema_compiler/cpp_generator.py $
+    ../../tools/json_schema_compiler/cpp_type_generator.py $
+    ../../tools/json_schema_compiler/cpp_util.py $
+    ../../tools/json_schema_compiler/h_generator.py $
+    ../../tools/json_schema_compiler/json_schema.py $
+    ../../tools/json_schema_compiler/model.py $
+    ../../tools/json_schema_compiler/util.cc $
+    ../../tools/json_schema_compiler/util.h $
+    ../../tools/json_schema_compiler/util_cc_helper.py || $
+    obj/chrome/common/extensions/api/api.actions_depends.stamp
+  source = omnibox.json
+  unique_name = fe20e2670fefff1ce669358a223db870
+build gen/chrome/common/extensions/api/page_capture.cc $
+    gen/chrome/common/extensions/api/page_capture.h: $
+    api_target_genapi_0c74f3b9b249018065774637d2bb18e6 $
+    ../../chrome/common/extensions/api/page_capture.json | $
+    ../../tools/json_schema_compiler/cc_generator.py $
+    ../../tools/json_schema_compiler/code.py $
+    ../../tools/json_schema_compiler/compiler.py $
+    ../../tools/json_schema_compiler/cpp_generator.py $
+    ../../tools/json_schema_compiler/cpp_type_generator.py $
+    ../../tools/json_schema_compiler/cpp_util.py $
+    ../../tools/json_schema_compiler/h_generator.py $
+    ../../tools/json_schema_compiler/json_schema.py $
+    ../../tools/json_schema_compiler/model.py $
+    ../../tools/json_schema_compiler/util.cc $
+    ../../tools/json_schema_compiler/util.h $
+    ../../tools/json_schema_compiler/util_cc_helper.py || $
+    obj/chrome/common/extensions/api/api.actions_depends.stamp
+  source = page_capture.json
+  unique_name = 9066a7beed622fc24aacdb12a4e49ae7
+build gen/chrome/common/extensions/api/permissions.cc $
+    gen/chrome/common/extensions/api/permissions.h: $
+    api_target_genapi_0c74f3b9b249018065774637d2bb18e6 $
+    ../../chrome/common/extensions/api/permissions.json | $
+    ../../tools/json_schema_compiler/cc_generator.py $
+    ../../tools/json_schema_compiler/code.py $
+    ../../tools/json_schema_compiler/compiler.py $
+    ../../tools/json_schema_compiler/cpp_generator.py $
+    ../../tools/json_schema_compiler/cpp_type_generator.py $
+    ../../tools/json_schema_compiler/cpp_util.py $
+    ../../tools/json_schema_compiler/h_generator.py $
+    ../../tools/json_schema_compiler/json_schema.py $
+    ../../tools/json_schema_compiler/model.py $
+    ../../tools/json_schema_compiler/util.cc $
+    ../../tools/json_schema_compiler/util.h $
+    ../../tools/json_schema_compiler/util_cc_helper.py || $
+    obj/chrome/common/extensions/api/api.actions_depends.stamp
+  source = permissions.json
+  unique_name = 2539924ea9988d4a3d365479d46caf21
+build gen/chrome/common/extensions/api/runtime.cc $
+    gen/chrome/common/extensions/api/runtime.h: $
+    api_target_genapi_0c74f3b9b249018065774637d2bb18e6 $
+    ../../chrome/common/extensions/api/runtime.json | $
+    ../../tools/json_schema_compiler/cc_generator.py $
+    ../../tools/json_schema_compiler/code.py $
+    ../../tools/json_schema_compiler/compiler.py $
+    ../../tools/json_schema_compiler/cpp_generator.py $
+    ../../tools/json_schema_compiler/cpp_type_generator.py $
+    ../../tools/json_schema_compiler/cpp_util.py $
+    ../../tools/json_schema_compiler/h_generator.py $
+    ../../tools/json_schema_compiler/json_schema.py $
+    ../../tools/json_schema_compiler/model.py $
+    ../../tools/json_schema_compiler/util.cc $
+    ../../tools/json_schema_compiler/util.h $
+    ../../tools/json_schema_compiler/util_cc_helper.py || $
+    obj/chrome/common/extensions/api/api.actions_depends.stamp
+  source = runtime.json
+  unique_name = 52cd725b1d78b92a94bee889d0d33b2d
+build gen/chrome/common/extensions/api/sessions.cc $
+    gen/chrome/common/extensions/api/sessions.h: $
+    api_target_genapi_0c74f3b9b249018065774637d2bb18e6 $
+    ../../chrome/common/extensions/api/sessions.json | $
+    ../../tools/json_schema_compiler/cc_generator.py $
+    ../../tools/json_schema_compiler/code.py $
+    ../../tools/json_schema_compiler/compiler.py $
+    ../../tools/json_schema_compiler/cpp_generator.py $
+    ../../tools/json_schema_compiler/cpp_type_generator.py $
+    ../../tools/json_schema_compiler/cpp_util.py $
+    ../../tools/json_schema_compiler/h_generator.py $
+    ../../tools/json_schema_compiler/json_schema.py $
+    ../../tools/json_schema_compiler/model.py $
+    ../../tools/json_schema_compiler/util.cc $
+    ../../tools/json_schema_compiler/util.h $
+    ../../tools/json_schema_compiler/util_cc_helper.py || $
+    obj/chrome/common/extensions/api/api.actions_depends.stamp
+  source = sessions.json
+  unique_name = bede7e41f4fd6028736d8ec13868ff2a
+build gen/chrome/common/extensions/api/storage.cc $
+    gen/chrome/common/extensions/api/storage.h: $
+    api_target_genapi_0c74f3b9b249018065774637d2bb18e6 $
+    ../../chrome/common/extensions/api/storage.json | $
+    ../../tools/json_schema_compiler/cc_generator.py $
+    ../../tools/json_schema_compiler/code.py $
+    ../../tools/json_schema_compiler/compiler.py $
+    ../../tools/json_schema_compiler/cpp_generator.py $
+    ../../tools/json_schema_compiler/cpp_type_generator.py $
+    ../../tools/json_schema_compiler/cpp_util.py $
+    ../../tools/json_schema_compiler/h_generator.py $
+    ../../tools/json_schema_compiler/json_schema.py $
+    ../../tools/json_schema_compiler/model.py $
+    ../../tools/json_schema_compiler/util.cc $
+    ../../tools/json_schema_compiler/util.h $
+    ../../tools/json_schema_compiler/util_cc_helper.py || $
+    obj/chrome/common/extensions/api/api.actions_depends.stamp
+  source = storage.json
+  unique_name = 15047be0716978fcc305824d18d387e9
+build gen/chrome/common/extensions/api/system_private.cc $
+    gen/chrome/common/extensions/api/system_private.h: $
+    api_target_genapi_0c74f3b9b249018065774637d2bb18e6 $
+    ../../chrome/common/extensions/api/system_private.json | $
+    ../../tools/json_schema_compiler/cc_generator.py $
+    ../../tools/json_schema_compiler/code.py $
+    ../../tools/json_schema_compiler/compiler.py $
+    ../../tools/json_schema_compiler/cpp_generator.py $
+    ../../tools/json_schema_compiler/cpp_type_generator.py $
+    ../../tools/json_schema_compiler/cpp_util.py $
+    ../../tools/json_schema_compiler/h_generator.py $
+    ../../tools/json_schema_compiler/json_schema.py $
+    ../../tools/json_schema_compiler/model.py $
+    ../../tools/json_schema_compiler/util.cc $
+    ../../tools/json_schema_compiler/util.h $
+    ../../tools/json_schema_compiler/util_cc_helper.py || $
+    obj/chrome/common/extensions/api/api.actions_depends.stamp
+  source = system_private.json
+  unique_name = 4204603878c449136f9122974be06846
+build gen/chrome/common/extensions/api/tabs.cc $
+    gen/chrome/common/extensions/api/tabs.h: $
+    api_target_genapi_0c74f3b9b249018065774637d2bb18e6 $
+    ../../chrome/common/extensions/api/tabs.json | $
+    ../../tools/json_schema_compiler/cc_generator.py $
+    ../../tools/json_schema_compiler/code.py $
+    ../../tools/json_schema_compiler/compiler.py $
+    ../../tools/json_schema_compiler/cpp_generator.py $
+    ../../tools/json_schema_compiler/cpp_type_generator.py $
+    ../../tools/json_schema_compiler/cpp_util.py $
+    ../../tools/json_schema_compiler/h_generator.py $
+    ../../tools/json_schema_compiler/json_schema.py $
+    ../../tools/json_schema_compiler/model.py $
+    ../../tools/json_schema_compiler/util.cc $
+    ../../tools/json_schema_compiler/util.h $
+    ../../tools/json_schema_compiler/util_cc_helper.py || $
+    obj/chrome/common/extensions/api/api.actions_depends.stamp
+  source = tabs.json
+  unique_name = 160664765ece923adaa8d4fe002bcd7d
+build gen/chrome/common/extensions/api/terminal_private.cc $
+    gen/chrome/common/extensions/api/terminal_private.h: $
+    api_target_genapi_0c74f3b9b249018065774637d2bb18e6 $
+    ../../chrome/common/extensions/api/terminal_private.json | $
+    ../../tools/json_schema_compiler/cc_generator.py $
+    ../../tools/json_schema_compiler/code.py $
+    ../../tools/json_schema_compiler/compiler.py $
+    ../../tools/json_schema_compiler/cpp_generator.py $
+    ../../tools/json_schema_compiler/cpp_type_generator.py $
+    ../../tools/json_schema_compiler/cpp_util.py $
+    ../../tools/json_schema_compiler/h_generator.py $
+    ../../tools/json_schema_compiler/json_schema.py $
+    ../../tools/json_schema_compiler/model.py $
+    ../../tools/json_schema_compiler/util.cc $
+    ../../tools/json_schema_compiler/util.h $
+    ../../tools/json_schema_compiler/util_cc_helper.py || $
+    obj/chrome/common/extensions/api/api.actions_depends.stamp
+  source = terminal_private.json
+  unique_name = 5e86b1e21ec3a5699bc356923813a60a
+build gen/chrome/common/extensions/api/test.cc $
+    gen/chrome/common/extensions/api/test.h: $
+    api_target_genapi_0c74f3b9b249018065774637d2bb18e6 $
+    ../../chrome/common/extensions/api/test.json | $
+    ../../tools/json_schema_compiler/cc_generator.py $
+    ../../tools/json_schema_compiler/code.py $
+    ../../tools/json_schema_compiler/compiler.py $
+    ../../tools/json_schema_compiler/cpp_generator.py $
+    ../../tools/json_schema_compiler/cpp_type_generator.py $
+    ../../tools/json_schema_compiler/cpp_util.py $
+    ../../tools/json_schema_compiler/h_generator.py $
+    ../../tools/json_schema_compiler/json_schema.py $
+    ../../tools/json_schema_compiler/model.py $
+    ../../tools/json_schema_compiler/util.cc $
+    ../../tools/json_schema_compiler/util.h $
+    ../../tools/json_schema_compiler/util_cc_helper.py || $
+    obj/chrome/common/extensions/api/api.actions_depends.stamp
+  source = test.json
+  unique_name = 91217d511c34519ee72eb4574dd04c1b
+build gen/chrome/common/extensions/api/virtual_keyboard_private.cc $
+    gen/chrome/common/extensions/api/virtual_keyboard_private.h: $
+    api_target_genapi_0c74f3b9b249018065774637d2bb18e6 $
+    ../../chrome/common/extensions/api/virtual_keyboard_private.json | $
+    ../../tools/json_schema_compiler/cc_generator.py $
+    ../../tools/json_schema_compiler/code.py $
+    ../../tools/json_schema_compiler/compiler.py $
+    ../../tools/json_schema_compiler/cpp_generator.py $
+    ../../tools/json_schema_compiler/cpp_type_generator.py $
+    ../../tools/json_schema_compiler/cpp_util.py $
+    ../../tools/json_schema_compiler/h_generator.py $
+    ../../tools/json_schema_compiler/json_schema.py $
+    ../../tools/json_schema_compiler/model.py $
+    ../../tools/json_schema_compiler/util.cc $
+    ../../tools/json_schema_compiler/util.h $
+    ../../tools/json_schema_compiler/util_cc_helper.py || $
+    obj/chrome/common/extensions/api/api.actions_depends.stamp
+  source = virtual_keyboard_private.json
+  unique_name = cf4bb2aaceec26eefa1fa3d21fc1f4e4
+build gen/chrome/common/extensions/api/web_navigation.cc $
+    gen/chrome/common/extensions/api/web_navigation.h: $
+    api_target_genapi_0c74f3b9b249018065774637d2bb18e6 $
+    ../../chrome/common/extensions/api/web_navigation.json | $
+    ../../tools/json_schema_compiler/cc_generator.py $
+    ../../tools/json_schema_compiler/code.py $
+    ../../tools/json_schema_compiler/compiler.py $
+    ../../tools/json_schema_compiler/cpp_generator.py $
+    ../../tools/json_schema_compiler/cpp_type_generator.py $
+    ../../tools/json_schema_compiler/cpp_util.py $
+    ../../tools/json_schema_compiler/h_generator.py $
+    ../../tools/json_schema_compiler/json_schema.py $
+    ../../tools/json_schema_compiler/model.py $
+    ../../tools/json_schema_compiler/util.cc $
+    ../../tools/json_schema_compiler/util.h $
+    ../../tools/json_schema_compiler/util_cc_helper.py || $
+    obj/chrome/common/extensions/api/api.actions_depends.stamp
+  source = web_navigation.json
+  unique_name = 9854864d9e1eb80160f448c167beb38a
+build gen/chrome/common/extensions/api/web_request.cc $
+    gen/chrome/common/extensions/api/web_request.h: $
+    api_target_genapi_0c74f3b9b249018065774637d2bb18e6 $
+    ../../chrome/common/extensions/api/web_request.json | $
+    ../../tools/json_schema_compiler/cc_generator.py $
+    ../../tools/json_schema_compiler/code.py $
+    ../../tools/json_schema_compiler/compiler.py $
+    ../../tools/json_schema_compiler/cpp_generator.py $
+    ../../tools/json_schema_compiler/cpp_type_generator.py $
+    ../../tools/json_schema_compiler/cpp_util.py $
+    ../../tools/json_schema_compiler/h_generator.py $
+    ../../tools/json_schema_compiler/json_schema.py $
+    ../../tools/json_schema_compiler/model.py $
+    ../../tools/json_schema_compiler/util.cc $
+    ../../tools/json_schema_compiler/util.h $
+    ../../tools/json_schema_compiler/util_cc_helper.py || $
+    obj/chrome/common/extensions/api/api.actions_depends.stamp
+  source = web_request.json
+  unique_name = 4e7e19c445d44a1a26d30553862ddaf6
+build gen/chrome/common/extensions/api/webstore_private.cc $
+    gen/chrome/common/extensions/api/webstore_private.h: $
+    api_target_genapi_0c74f3b9b249018065774637d2bb18e6 $
+    ../../chrome/common/extensions/api/webstore_private.json | $
+    ../../tools/json_schema_compiler/cc_generator.py $
+    ../../tools/json_schema_compiler/code.py $
+    ../../tools/json_schema_compiler/compiler.py $
+    ../../tools/json_schema_compiler/cpp_generator.py $
+    ../../tools/json_schema_compiler/cpp_type_generator.py $
+    ../../tools/json_schema_compiler/cpp_util.py $
+    ../../tools/json_schema_compiler/h_generator.py $
+    ../../tools/json_schema_compiler/json_schema.py $
+    ../../tools/json_schema_compiler/model.py $
+    ../../tools/json_schema_compiler/util.cc $
+    ../../tools/json_schema_compiler/util.h $
+    ../../tools/json_schema_compiler/util_cc_helper.py || $
+    obj/chrome/common/extensions/api/api.actions_depends.stamp
+  source = webstore_private.json
+  unique_name = 090eb387990524ef8d7ef83d18c8eca9
+build gen/chrome/common/extensions/api/webview.cc $
+    gen/chrome/common/extensions/api/webview.h: $
+    api_target_genapi_0c74f3b9b249018065774637d2bb18e6 $
+    ../../chrome/common/extensions/api/webview.json | $
+    ../../tools/json_schema_compiler/cc_generator.py $
+    ../../tools/json_schema_compiler/code.py $
+    ../../tools/json_schema_compiler/compiler.py $
+    ../../tools/json_schema_compiler/cpp_generator.py $
+    ../../tools/json_schema_compiler/cpp_type_generator.py $
+    ../../tools/json_schema_compiler/cpp_util.py $
+    ../../tools/json_schema_compiler/h_generator.py $
+    ../../tools/json_schema_compiler/json_schema.py $
+    ../../tools/json_schema_compiler/model.py $
+    ../../tools/json_schema_compiler/util.cc $
+    ../../tools/json_schema_compiler/util.h $
+    ../../tools/json_schema_compiler/util_cc_helper.py || $
+    obj/chrome/common/extensions/api/api.actions_depends.stamp
+  source = webview.json
+  unique_name = b21d2b182c76ebe69d46e6118dd767a8
+build gen/chrome/common/extensions/api/windows.cc $
+    gen/chrome/common/extensions/api/windows.h: $
+    api_target_genapi_0c74f3b9b249018065774637d2bb18e6 $
+    ../../chrome/common/extensions/api/windows.json | $
+    ../../tools/json_schema_compiler/cc_generator.py $
+    ../../tools/json_schema_compiler/code.py $
+    ../../tools/json_schema_compiler/compiler.py $
+    ../../tools/json_schema_compiler/cpp_generator.py $
+    ../../tools/json_schema_compiler/cpp_type_generator.py $
+    ../../tools/json_schema_compiler/cpp_util.py $
+    ../../tools/json_schema_compiler/h_generator.py $
+    ../../tools/json_schema_compiler/json_schema.py $
+    ../../tools/json_schema_compiler/model.py $
+    ../../tools/json_schema_compiler/util.cc $
+    ../../tools/json_schema_compiler/util.h $
+    ../../tools/json_schema_compiler/util_cc_helper.py || $
+    obj/chrome/common/extensions/api/api.actions_depends.stamp
+  source = windows.json
+  unique_name = 28a2e026225dde9913ff60803035c6ed
+rule api_target_genapi_idl_0c74f3b9b249018065774637d2bb18e6
+  command = cd ../../chrome/common/extensions/api; python $
+      ../../../../tools/json_schema_compiler/compiler.py "${source}" $
+      "--root=../../../.." "--destdir=../../../../out/Release/gen" $
+      "--namespace=extensions::api" "--generator=cpp"
+  description = RULE Generating C++ code from ${source} IDL files
+  restat = 1
+
+build gen/chrome/common/extensions/api/alarms.cc $
+    gen/chrome/common/extensions/api/alarms.h: $
+    api_target_genapi_idl_0c74f3b9b249018065774637d2bb18e6 $
+    ../../chrome/common/extensions/api/alarms.idl | $
+    ../../tools/json_schema_compiler/cc_generator.py $
+    ../../tools/json_schema_compiler/code.py $
+    ../../tools/json_schema_compiler/compiler.py $
+    ../../tools/json_schema_compiler/cpp_generator.py $
+    ../../tools/json_schema_compiler/cpp_type_generator.py $
+    ../../tools/json_schema_compiler/cpp_util.py $
+    ../../tools/json_schema_compiler/h_generator.py $
+    ../../tools/json_schema_compiler/idl_schema.py $
+    ../../tools/json_schema_compiler/model.py $
+    ../../tools/json_schema_compiler/util.cc $
+    ../../tools/json_schema_compiler/util.h $
+    ../../tools/json_schema_compiler/util_cc_helper.py || $
+    obj/chrome/common/extensions/api/api.actions_depends.stamp
+  source = alarms.idl
+  unique_name = 4a52977d8584663a8f5ef76a9019536b
+build gen/chrome/common/extensions/api/app_current_window_internal.cc $
+    gen/chrome/common/extensions/api/app_current_window_internal.h: $
+    api_target_genapi_idl_0c74f3b9b249018065774637d2bb18e6 $
+    ../../chrome/common/extensions/api/app_current_window_internal.idl | $
+    ../../tools/json_schema_compiler/cc_generator.py $
+    ../../tools/json_schema_compiler/code.py $
+    ../../tools/json_schema_compiler/compiler.py $
+    ../../tools/json_schema_compiler/cpp_generator.py $
+    ../../tools/json_schema_compiler/cpp_type_generator.py $
+    ../../tools/json_schema_compiler/cpp_util.py $
+    ../../tools/json_schema_compiler/h_generator.py $
+    ../../tools/json_schema_compiler/idl_schema.py $
+    ../../tools/json_schema_compiler/model.py $
+    ../../tools/json_schema_compiler/util.cc $
+    ../../tools/json_schema_compiler/util.h $
+    ../../tools/json_schema_compiler/util_cc_helper.py || $
+    obj/chrome/common/extensions/api/api.actions_depends.stamp
+  source = app_current_window_internal.idl
+  unique_name = 6627fb32d2ca936d8b137488a022a719
+build gen/chrome/common/extensions/api/app_runtime.cc $
+    gen/chrome/common/extensions/api/app_runtime.h: $
+    api_target_genapi_idl_0c74f3b9b249018065774637d2bb18e6 $
+    ../../chrome/common/extensions/api/app_runtime.idl | $
+    ../../tools/json_schema_compiler/cc_generator.py $
+    ../../tools/json_schema_compiler/code.py $
+    ../../tools/json_schema_compiler/compiler.py $
+    ../../tools/json_schema_compiler/cpp_generator.py $
+    ../../tools/json_schema_compiler/cpp_type_generator.py $
+    ../../tools/json_schema_compiler/cpp_util.py $
+    ../../tools/json_schema_compiler/h_generator.py $
+    ../../tools/json_schema_compiler/idl_schema.py $
+    ../../tools/json_schema_compiler/model.py $
+    ../../tools/json_schema_compiler/util.cc $
+    ../../tools/json_schema_compiler/util.h $
+    ../../tools/json_schema_compiler/util_cc_helper.py || $
+    obj/chrome/common/extensions/api/api.actions_depends.stamp
+  source = app_runtime.idl
+  unique_name = c90cc1b55208361750e00c91d4670d98
+build gen/chrome/common/extensions/api/app_window.cc $
+    gen/chrome/common/extensions/api/app_window.h: $
+    api_target_genapi_idl_0c74f3b9b249018065774637d2bb18e6 $
+    ../../chrome/common/extensions/api/app_window.idl | $
+    ../../tools/json_schema_compiler/cc_generator.py $
+    ../../tools/json_schema_compiler/code.py $
+    ../../tools/json_schema_compiler/compiler.py $
+    ../../tools/json_schema_compiler/cpp_generator.py $
+    ../../tools/json_schema_compiler/cpp_type_generator.py $
+    ../../tools/json_schema_compiler/cpp_util.py $
+    ../../tools/json_schema_compiler/h_generator.py $
+    ../../tools/json_schema_compiler/idl_schema.py $
+    ../../tools/json_schema_compiler/model.py $
+    ../../tools/json_schema_compiler/util.cc $
+    ../../tools/json_schema_compiler/util.h $
+    ../../tools/json_schema_compiler/util_cc_helper.py || $
+    obj/chrome/common/extensions/api/api.actions_depends.stamp
+  source = app_window.idl
+  unique_name = 8aaf1dc81843ebbf0a613cd4bc4014a4
+build gen/chrome/common/extensions/api/audio.cc $
+    gen/chrome/common/extensions/api/audio.h: $
+    api_target_genapi_idl_0c74f3b9b249018065774637d2bb18e6 $
+    ../../chrome/common/extensions/api/audio.idl | $
+    ../../tools/json_schema_compiler/cc_generator.py $
+    ../../tools/json_schema_compiler/code.py $
+    ../../tools/json_schema_compiler/compiler.py $
+    ../../tools/json_schema_compiler/cpp_generator.py $
+    ../../tools/json_schema_compiler/cpp_type_generator.py $
+    ../../tools/json_schema_compiler/cpp_util.py $
+    ../../tools/json_schema_compiler/h_generator.py $
+    ../../tools/json_schema_compiler/idl_schema.py $
+    ../../tools/json_schema_compiler/model.py $
+    ../../tools/json_schema_compiler/util.cc $
+    ../../tools/json_schema_compiler/util.h $
+    ../../tools/json_schema_compiler/util_cc_helper.py || $
+    obj/chrome/common/extensions/api/api.actions_depends.stamp
+  source = audio.idl
+  unique_name = 833fb42ce37feef5fd874513d9026ece
+build gen/chrome/common/extensions/api/autotest_private.cc $
+    gen/chrome/common/extensions/api/autotest_private.h: $
+    api_target_genapi_idl_0c74f3b9b249018065774637d2bb18e6 $
+    ../../chrome/common/extensions/api/autotest_private.idl | $
+    ../../tools/json_schema_compiler/cc_generator.py $
+    ../../tools/json_schema_compiler/code.py $
+    ../../tools/json_schema_compiler/compiler.py $
+    ../../tools/json_schema_compiler/cpp_generator.py $
+    ../../tools/json_schema_compiler/cpp_type_generator.py $
+    ../../tools/json_schema_compiler/cpp_util.py $
+    ../../tools/json_schema_compiler/h_generator.py $
+    ../../tools/json_schema_compiler/idl_schema.py $
+    ../../tools/json_schema_compiler/model.py $
+    ../../tools/json_schema_compiler/util.cc $
+    ../../tools/json_schema_compiler/util.h $
+    ../../tools/json_schema_compiler/util_cc_helper.py || $
+    obj/chrome/common/extensions/api/api.actions_depends.stamp
+  source = autotest_private.idl
+  unique_name = 57557fe9a9e3a3071b055e257d82afad
+build gen/chrome/common/extensions/api/bluetooth.cc $
+    gen/chrome/common/extensions/api/bluetooth.h: $
+    api_target_genapi_idl_0c74f3b9b249018065774637d2bb18e6 $
+    ../../chrome/common/extensions/api/bluetooth.idl | $
+    ../../tools/json_schema_compiler/cc_generator.py $
+    ../../tools/json_schema_compiler/code.py $
+    ../../tools/json_schema_compiler/compiler.py $
+    ../../tools/json_schema_compiler/cpp_generator.py $
+    ../../tools/json_schema_compiler/cpp_type_generator.py $
+    ../../tools/json_schema_compiler/cpp_util.py $
+    ../../tools/json_schema_compiler/h_generator.py $
+    ../../tools/json_schema_compiler/idl_schema.py $
+    ../../tools/json_schema_compiler/model.py $
+    ../../tools/json_schema_compiler/util.cc $
+    ../../tools/json_schema_compiler/util.h $
+    ../../tools/json_schema_compiler/util_cc_helper.py || $
+    obj/chrome/common/extensions/api/api.actions_depends.stamp
+  source = bluetooth.idl
+  unique_name = 6afb36feb5d66dcec5ce204c7b8eb2c0
+build gen/chrome/common/extensions/api/braille_display_private.cc $
+    gen/chrome/common/extensions/api/braille_display_private.h: $
+    api_target_genapi_idl_0c74f3b9b249018065774637d2bb18e6 $
+    ../../chrome/common/extensions/api/braille_display_private.idl | $
+    ../../tools/json_schema_compiler/cc_generator.py $
+    ../../tools/json_schema_compiler/code.py $
+    ../../tools/json_schema_compiler/compiler.py $
+    ../../tools/json_schema_compiler/cpp_generator.py $
+    ../../tools/json_schema_compiler/cpp_type_generator.py $
+    ../../tools/json_schema_compiler/cpp_util.py $
+    ../../tools/json_schema_compiler/h_generator.py $
+    ../../tools/json_schema_compiler/idl_schema.py $
+    ../../tools/json_schema_compiler/model.py $
+    ../../tools/json_schema_compiler/util.cc $
+    ../../tools/json_schema_compiler/util.h $
+    ../../tools/json_schema_compiler/util_cc_helper.py || $
+    obj/chrome/common/extensions/api/api.actions_depends.stamp
+  source = braille_display_private.idl
+  unique_name = ddefcb02c3ae98ee42686f5c22ddd483
+build gen/chrome/common/extensions/api/cast_channel.cc $
+    gen/chrome/common/extensions/api/cast_channel.h: $
+    api_target_genapi_idl_0c74f3b9b249018065774637d2bb18e6 $
+    ../../chrome/common/extensions/api/cast_channel.idl | $
+    ../../tools/json_schema_compiler/cc_generator.py $
+    ../../tools/json_schema_compiler/code.py $
+    ../../tools/json_schema_compiler/compiler.py $
+    ../../tools/json_schema_compiler/cpp_generator.py $
+    ../../tools/json_schema_compiler/cpp_type_generator.py $
+    ../../tools/json_schema_compiler/cpp_util.py $
+    ../../tools/json_schema_compiler/h_generator.py $
+    ../../tools/json_schema_compiler/idl_schema.py $
+    ../../tools/json_schema_compiler/model.py $
+    ../../tools/json_schema_compiler/util.cc $
+    ../../tools/json_schema_compiler/util.h $
+    ../../tools/json_schema_compiler/util_cc_helper.py || $
+    obj/chrome/common/extensions/api/api.actions_depends.stamp
+  source = cast_channel.idl
+  unique_name = dd866c4fb2c24d3747a212c08fb132d3
+build gen/chrome/common/extensions/api/developer_private.cc $
+    gen/chrome/common/extensions/api/developer_private.h: $
+    api_target_genapi_idl_0c74f3b9b249018065774637d2bb18e6 $
+    ../../chrome/common/extensions/api/developer_private.idl | $
+    ../../tools/json_schema_compiler/cc_generator.py $
+    ../../tools/json_schema_compiler/code.py $
+    ../../tools/json_schema_compiler/compiler.py $
+    ../../tools/json_schema_compiler/cpp_generator.py $
+    ../../tools/json_schema_compiler/cpp_type_generator.py $
+    ../../tools/json_schema_compiler/cpp_util.py $
+    ../../tools/json_schema_compiler/h_generator.py $
+    ../../tools/json_schema_compiler/idl_schema.py $
+    ../../tools/json_schema_compiler/model.py $
+    ../../tools/json_schema_compiler/util.cc $
+    ../../tools/json_schema_compiler/util.h $
+    ../../tools/json_schema_compiler/util_cc_helper.py || $
+    obj/chrome/common/extensions/api/api.actions_depends.stamp
+  source = developer_private.idl
+  unique_name = f88adbe9b50a9bd42e40892a1e42476b
+build gen/chrome/common/extensions/api/dial.cc $
+    gen/chrome/common/extensions/api/dial.h: $
+    api_target_genapi_idl_0c74f3b9b249018065774637d2bb18e6 $
+    ../../chrome/common/extensions/api/dial.idl | $
+    ../../tools/json_schema_compiler/cc_generator.py $
+    ../../tools/json_schema_compiler/code.py $
+    ../../tools/json_schema_compiler/compiler.py $
+    ../../tools/json_schema_compiler/cpp_generator.py $
+    ../../tools/json_schema_compiler/cpp_type_generator.py $
+    ../../tools/json_schema_compiler/cpp_util.py $
+    ../../tools/json_schema_compiler/h_generator.py $
+    ../../tools/json_schema_compiler/idl_schema.py $
+    ../../tools/json_schema_compiler/model.py $
+    ../../tools/json_schema_compiler/util.cc $
+    ../../tools/json_schema_compiler/util.h $
+    ../../tools/json_schema_compiler/util_cc_helper.py || $
+    obj/chrome/common/extensions/api/api.actions_depends.stamp
+  source = dial.idl
+  unique_name = ad70e27551123d8bcdd9792801a290bd
+build gen/chrome/common/extensions/api/dns.cc $
+    gen/chrome/common/extensions/api/dns.h: $
+    api_target_genapi_idl_0c74f3b9b249018065774637d2bb18e6 $
+    ../../chrome/common/extensions/api/dns.idl | $
+    ../../tools/json_schema_compiler/cc_generator.py $
+    ../../tools/json_schema_compiler/code.py $
+    ../../tools/json_schema_compiler/compiler.py $
+    ../../tools/json_schema_compiler/cpp_generator.py $
+    ../../tools/json_schema_compiler/cpp_type_generator.py $
+    ../../tools/json_schema_compiler/cpp_util.py $
+    ../../tools/json_schema_compiler/h_generator.py $
+    ../../tools/json_schema_compiler/idl_schema.py $
+    ../../tools/json_schema_compiler/model.py $
+    ../../tools/json_schema_compiler/util.cc $
+    ../../tools/json_schema_compiler/util.h $
+    ../../tools/json_schema_compiler/util_cc_helper.py || $
+    obj/chrome/common/extensions/api/api.actions_depends.stamp
+  source = dns.idl
+  unique_name = 374cef7c337dcc8d91c6c741de15176c
+build gen/chrome/common/extensions/api/downloads.cc $
+    gen/chrome/common/extensions/api/downloads.h: $
+    api_target_genapi_idl_0c74f3b9b249018065774637d2bb18e6 $
+    ../../chrome/common/extensions/api/downloads.idl | $
+    ../../tools/json_schema_compiler/cc_generator.py $
+    ../../tools/json_schema_compiler/code.py $
+    ../../tools/json_schema_compiler/compiler.py $
+    ../../tools/json_schema_compiler/cpp_generator.py $
+    ../../tools/json_schema_compiler/cpp_type_generator.py $
+    ../../tools/json_schema_compiler/cpp_util.py $
+    ../../tools/json_schema_compiler/h_generator.py $
+    ../../tools/json_schema_compiler/idl_schema.py $
+    ../../tools/json_schema_compiler/model.py $
+    ../../tools/json_schema_compiler/util.cc $
+    ../../tools/json_schema_compiler/util.h $
+    ../../tools/json_schema_compiler/util_cc_helper.py || $
+    obj/chrome/common/extensions/api/api.actions_depends.stamp
+  source = downloads.idl
+  unique_name = 69bc7a20000d9c71f7441c912c8cfcd2
+build gen/chrome/common/extensions/api/downloads_internal.cc $
+    gen/chrome/common/extensions/api/downloads_internal.h: $
+    api_target_genapi_idl_0c74f3b9b249018065774637d2bb18e6 $
+    ../../chrome/common/extensions/api/downloads_internal.idl | $
+    ../../tools/json_schema_compiler/cc_generator.py $
+    ../../tools/json_schema_compiler/code.py $
+    ../../tools/json_schema_compiler/compiler.py $
+    ../../tools/json_schema_compiler/cpp_generator.py $
+    ../../tools/json_schema_compiler/cpp_type_generator.py $
+    ../../tools/json_schema_compiler/cpp_util.py $
+    ../../tools/json_schema_compiler/h_generator.py $
+    ../../tools/json_schema_compiler/idl_schema.py $
+    ../../tools/json_schema_compiler/model.py $
+    ../../tools/json_schema_compiler/util.cc $
+    ../../tools/json_schema_compiler/util.h $
+    ../../tools/json_schema_compiler/util_cc_helper.py || $
+    obj/chrome/common/extensions/api/api.actions_depends.stamp
+  source = downloads_internal.idl
+  unique_name = ff724256e10466e6f41ddd44718f71ba
+build gen/chrome/common/extensions/api/experimental_discovery.cc $
+    gen/chrome/common/extensions/api/experimental_discovery.h: $
+    api_target_genapi_idl_0c74f3b9b249018065774637d2bb18e6 $
+    ../../chrome/common/extensions/api/experimental_discovery.idl | $
+    ../../tools/json_schema_compiler/cc_generator.py $
+    ../../tools/json_schema_compiler/code.py $
+    ../../tools/json_schema_compiler/compiler.py $
+    ../../tools/json_schema_compiler/cpp_generator.py $
+    ../../tools/json_schema_compiler/cpp_type_generator.py $
+    ../../tools/json_schema_compiler/cpp_util.py $
+    ../../tools/json_schema_compiler/h_generator.py $
+    ../../tools/json_schema_compiler/idl_schema.py $
+    ../../tools/json_schema_compiler/model.py $
+    ../../tools/json_schema_compiler/util.cc $
+    ../../tools/json_schema_compiler/util.h $
+    ../../tools/json_schema_compiler/util_cc_helper.py || $
+    obj/chrome/common/extensions/api/api.actions_depends.stamp
+  source = experimental_discovery.idl
+  unique_name = ee5027e1fc5fc4606b410b437d9e26cf
+build gen/chrome/common/extensions/api/experimental_identity.cc $
+    gen/chrome/common/extensions/api/experimental_identity.h: $
+    api_target_genapi_idl_0c74f3b9b249018065774637d2bb18e6 $
+    ../../chrome/common/extensions/api/experimental_identity.idl | $
+    ../../tools/json_schema_compiler/cc_generator.py $
+    ../../tools/json_schema_compiler/code.py $
+    ../../tools/json_schema_compiler/compiler.py $
+    ../../tools/json_schema_compiler/cpp_generator.py $
+    ../../tools/json_schema_compiler/cpp_type_generator.py $
+    ../../tools/json_schema_compiler/cpp_util.py $
+    ../../tools/json_schema_compiler/h_generator.py $
+    ../../tools/json_schema_compiler/idl_schema.py $
+    ../../tools/json_schema_compiler/model.py $
+    ../../tools/json_schema_compiler/util.cc $
+    ../../tools/json_schema_compiler/util.h $
+    ../../tools/json_schema_compiler/util_cc_helper.py || $
+    obj/chrome/common/extensions/api/api.actions_depends.stamp
+  source = experimental_identity.idl
+  unique_name = adb12192ee51275966f642573cc936cc
+build gen/chrome/common/extensions/api/feedback_private.cc $
+    gen/chrome/common/extensions/api/feedback_private.h: $
+    api_target_genapi_idl_0c74f3b9b249018065774637d2bb18e6 $
+    ../../chrome/common/extensions/api/feedback_private.idl | $
+    ../../tools/json_schema_compiler/cc_generator.py $
+    ../../tools/json_schema_compiler/code.py $
+    ../../tools/json_schema_compiler/compiler.py $
+    ../../tools/json_schema_compiler/cpp_generator.py $
+    ../../tools/json_schema_compiler/cpp_type_generator.py $
+    ../../tools/json_schema_compiler/cpp_util.py $
+    ../../tools/json_schema_compiler/h_generator.py $
+    ../../tools/json_schema_compiler/idl_schema.py $
+    ../../tools/json_schema_compiler/model.py $
+    ../../tools/json_schema_compiler/util.cc $
+    ../../tools/json_schema_compiler/util.h $
+    ../../tools/json_schema_compiler/util_cc_helper.py || $
+    obj/chrome/common/extensions/api/api.actions_depends.stamp
+  source = feedback_private.idl
+  unique_name = f06ae7ece39a9efcae59a356367894db
+build gen/chrome/common/extensions/api/file_system.cc $
+    gen/chrome/common/extensions/api/file_system.h: $
+    api_target_genapi_idl_0c74f3b9b249018065774637d2bb18e6 $
+    ../../chrome/common/extensions/api/file_system.idl | $
+    ../../tools/json_schema_compiler/cc_generator.py $
+    ../../tools/json_schema_compiler/code.py $
+    ../../tools/json_schema_compiler/compiler.py $
+    ../../tools/json_schema_compiler/cpp_generator.py $
+    ../../tools/json_schema_compiler/cpp_type_generator.py $
+    ../../tools/json_schema_compiler/cpp_util.py $
+    ../../tools/json_schema_compiler/h_generator.py $
+    ../../tools/json_schema_compiler/idl_schema.py $
+    ../../tools/json_schema_compiler/model.py $
+    ../../tools/json_schema_compiler/util.cc $
+    ../../tools/json_schema_compiler/util.h $
+    ../../tools/json_schema_compiler/util_cc_helper.py || $
+    obj/chrome/common/extensions/api/api.actions_depends.stamp
+  source = file_system.idl
+  unique_name = dee292913fec0c445414344cf0f3202b
+build gen/chrome/common/extensions/api/hangouts_private.cc $
+    gen/chrome/common/extensions/api/hangouts_private.h: $
+    api_target_genapi_idl_0c74f3b9b249018065774637d2bb18e6 $
+    ../../chrome/common/extensions/api/hangouts_private.idl | $
+    ../../tools/json_schema_compiler/cc_generator.py $
+    ../../tools/json_schema_compiler/code.py $
+    ../../tools/json_schema_compiler/compiler.py $
+    ../../tools/json_schema_compiler/cpp_generator.py $
+    ../../tools/json_schema_compiler/cpp_type_generator.py $
+    ../../tools/json_schema_compiler/cpp_util.py $
+    ../../tools/json_schema_compiler/h_generator.py $
+    ../../tools/json_schema_compiler/idl_schema.py $
+    ../../tools/json_schema_compiler/model.py $
+    ../../tools/json_schema_compiler/util.cc $
+    ../../tools/json_schema_compiler/util.h $
+    ../../tools/json_schema_compiler/util_cc_helper.py || $
+    obj/chrome/common/extensions/api/api.actions_depends.stamp
+  source = hangouts_private.idl
+  unique_name = 2fa640502a05f8129af37ebe78603899
+build gen/chrome/common/extensions/api/identity.cc $
+    gen/chrome/common/extensions/api/identity.h: $
+    api_target_genapi_idl_0c74f3b9b249018065774637d2bb18e6 $
+    ../../chrome/common/extensions/api/identity.idl | $
+    ../../tools/json_schema_compiler/cc_generator.py $
+    ../../tools/json_schema_compiler/code.py $
+    ../../tools/json_schema_compiler/compiler.py $
+    ../../tools/json_schema_compiler/cpp_generator.py $
+    ../../tools/json_schema_compiler/cpp_type_generator.py $
+    ../../tools/json_schema_compiler/cpp_util.py $
+    ../../tools/json_schema_compiler/h_generator.py $
+    ../../tools/json_schema_compiler/idl_schema.py $
+    ../../tools/json_schema_compiler/model.py $
+    ../../tools/json_schema_compiler/util.cc $
+    ../../tools/json_schema_compiler/util.h $
+    ../../tools/json_schema_compiler/util_cc_helper.py || $
+    obj/chrome/common/extensions/api/api.actions_depends.stamp
+  source = identity.idl
+  unique_name = 39a8fd2259796124756db1457102851e
+build gen/chrome/common/extensions/api/identity_private.cc $
+    gen/chrome/common/extensions/api/identity_private.h: $
+    api_target_genapi_idl_0c74f3b9b249018065774637d2bb18e6 $
+    ../../chrome/common/extensions/api/identity_private.idl | $
+    ../../tools/json_schema_compiler/cc_generator.py $
+    ../../tools/json_schema_compiler/code.py $
+    ../../tools/json_schema_compiler/compiler.py $
+    ../../tools/json_schema_compiler/cpp_generator.py $
+    ../../tools/json_schema_compiler/cpp_type_generator.py $
+    ../../tools/json_schema_compiler/cpp_util.py $
+    ../../tools/json_schema_compiler/h_generator.py $
+    ../../tools/json_schema_compiler/idl_schema.py $
+    ../../tools/json_schema_compiler/model.py $
+    ../../tools/json_schema_compiler/util.cc $
+    ../../tools/json_schema_compiler/util.h $
+    ../../tools/json_schema_compiler/util_cc_helper.py || $
+    obj/chrome/common/extensions/api/api.actions_depends.stamp
+  source = identity_private.idl
+  unique_name = f1628f5d0e1d1f58f1310e20b4b89580
+build gen/chrome/common/extensions/api/image_writer_private.cc $
+    gen/chrome/common/extensions/api/image_writer_private.h: $
+    api_target_genapi_idl_0c74f3b9b249018065774637d2bb18e6 $
+    ../../chrome/common/extensions/api/image_writer_private.idl | $
+    ../../tools/json_schema_compiler/cc_generator.py $
+    ../../tools/json_schema_compiler/code.py $
+    ../../tools/json_schema_compiler/compiler.py $
+    ../../tools/json_schema_compiler/cpp_generator.py $
+    ../../tools/json_schema_compiler/cpp_type_generator.py $
+    ../../tools/json_schema_compiler/cpp_util.py $
+    ../../tools/json_schema_compiler/h_generator.py $
+    ../../tools/json_schema_compiler/idl_schema.py $
+    ../../tools/json_schema_compiler/model.py $
+    ../../tools/json_schema_compiler/util.cc $
+    ../../tools/json_schema_compiler/util.h $
+    ../../tools/json_schema_compiler/util_cc_helper.py || $
+    obj/chrome/common/extensions/api/api.actions_depends.stamp
+  source = image_writer_private.idl
+  unique_name = f42061dfe156dea9ecc546adc0899e86
+build gen/chrome/common/extensions/api/location.cc $
+    gen/chrome/common/extensions/api/location.h: $
+    api_target_genapi_idl_0c74f3b9b249018065774637d2bb18e6 $
+    ../../chrome/common/extensions/api/location.idl | $
+    ../../tools/json_schema_compiler/cc_generator.py $
+    ../../tools/json_schema_compiler/code.py $
+    ../../tools/json_schema_compiler/compiler.py $
+    ../../tools/json_schema_compiler/cpp_generator.py $
+    ../../tools/json_schema_compiler/cpp_type_generator.py $
+    ../../tools/json_schema_compiler/cpp_util.py $
+    ../../tools/json_schema_compiler/h_generator.py $
+    ../../tools/json_schema_compiler/idl_schema.py $
+    ../../tools/json_schema_compiler/model.py $
+    ../../tools/json_schema_compiler/util.cc $
+    ../../tools/json_schema_compiler/util.h $
+    ../../tools/json_schema_compiler/util_cc_helper.py || $
+    obj/chrome/common/extensions/api/api.actions_depends.stamp
+  source = location.idl
+  unique_name = 67874a6cc205806e96a3013fda301420
+build gen/chrome/common/extensions/api/mdns.cc $
+    gen/chrome/common/extensions/api/mdns.h: $
+    api_target_genapi_idl_0c74f3b9b249018065774637d2bb18e6 $
+    ../../chrome/common/extensions/api/mdns.idl | $
+    ../../tools/json_schema_compiler/cc_generator.py $
+    ../../tools/json_schema_compiler/code.py $
+    ../../tools/json_schema_compiler/compiler.py $
+    ../../tools/json_schema_compiler/cpp_generator.py $
+    ../../tools/json_schema_compiler/cpp_type_generator.py $
+    ../../tools/json_schema_compiler/cpp_util.py $
+    ../../tools/json_schema_compiler/h_generator.py $
+    ../../tools/json_schema_compiler/idl_schema.py $
+    ../../tools/json_schema_compiler/model.py $
+    ../../tools/json_schema_compiler/util.cc $
+    ../../tools/json_schema_compiler/util.h $
+    ../../tools/json_schema_compiler/util_cc_helper.py || $
+    obj/chrome/common/extensions/api/api.actions_depends.stamp
+  source = mdns.idl
+  unique_name = 9821a8f12185f86b34f238306ec64bda
+build gen/chrome/common/extensions/api/media_galleries.cc $
+    gen/chrome/common/extensions/api/media_galleries.h: $
+    api_target_genapi_idl_0c74f3b9b249018065774637d2bb18e6 $
+    ../../chrome/common/extensions/api/media_galleries.idl | $
+    ../../tools/json_schema_compiler/cc_generator.py $
+    ../../tools/json_schema_compiler/code.py $
+    ../../tools/json_schema_compiler/compiler.py $
+    ../../tools/json_schema_compiler/cpp_generator.py $
+    ../../tools/json_schema_compiler/cpp_type_generator.py $
+    ../../tools/json_schema_compiler/cpp_util.py $
+    ../../tools/json_schema_compiler/h_generator.py $
+    ../../tools/json_schema_compiler/idl_schema.py $
+    ../../tools/json_schema_compiler/model.py $
+    ../../tools/json_schema_compiler/util.cc $
+    ../../tools/json_schema_compiler/util.h $
+    ../../tools/json_schema_compiler/util_cc_helper.py || $
+    obj/chrome/common/extensions/api/api.actions_depends.stamp
+  source = media_galleries.idl
+  unique_name = 9538da349c5880b9ad4275ec62d60945
+build gen/chrome/common/extensions/api/media_galleries_private.cc $
+    gen/chrome/common/extensions/api/media_galleries_private.h: $
+    api_target_genapi_idl_0c74f3b9b249018065774637d2bb18e6 $
+    ../../chrome/common/extensions/api/media_galleries_private.idl | $
+    ../../tools/json_schema_compiler/cc_generator.py $
+    ../../tools/json_schema_compiler/code.py $
+    ../../tools/json_schema_compiler/compiler.py $
+    ../../tools/json_schema_compiler/cpp_generator.py $
+    ../../tools/json_schema_compiler/cpp_type_generator.py $
+    ../../tools/json_schema_compiler/cpp_util.py $
+    ../../tools/json_schema_compiler/h_generator.py $
+    ../../tools/json_schema_compiler/idl_schema.py $
+    ../../tools/json_schema_compiler/model.py $
+    ../../tools/json_schema_compiler/util.cc $
+    ../../tools/json_schema_compiler/util.h $
+    ../../tools/json_schema_compiler/util_cc_helper.py || $
+    obj/chrome/common/extensions/api/api.actions_depends.stamp
+  source = media_galleries_private.idl
+  unique_name = 5f8cb6810f0b7d20d4c8361f1cb9c236
+build gen/chrome/common/extensions/api/notifications.cc $
+    gen/chrome/common/extensions/api/notifications.h: $
+    api_target_genapi_idl_0c74f3b9b249018065774637d2bb18e6 $
+    ../../chrome/common/extensions/api/notifications.idl | $
+    ../../tools/json_schema_compiler/cc_generator.py $
+    ../../tools/json_schema_compiler/code.py $
+    ../../tools/json_schema_compiler/compiler.py $
+    ../../tools/json_schema_compiler/cpp_generator.py $
+    ../../tools/json_schema_compiler/cpp_type_generator.py $
+    ../../tools/json_schema_compiler/cpp_util.py $
+    ../../tools/json_schema_compiler/h_generator.py $
+    ../../tools/json_schema_compiler/idl_schema.py $
+    ../../tools/json_schema_compiler/model.py $
+    ../../tools/json_schema_compiler/util.cc $
+    ../../tools/json_schema_compiler/util.h $
+    ../../tools/json_schema_compiler/util_cc_helper.py || $
+    obj/chrome/common/extensions/api/api.actions_depends.stamp
+  source = notifications.idl
+  unique_name = 9982cf337370ebf6c8ac11bdd6b79004
+build gen/chrome/common/extensions/api/power.cc $
+    gen/chrome/common/extensions/api/power.h: $
+    api_target_genapi_idl_0c74f3b9b249018065774637d2bb18e6 $
+    ../../chrome/common/extensions/api/power.idl | $
+    ../../tools/json_schema_compiler/cc_generator.py $
+    ../../tools/json_schema_compiler/code.py $
+    ../../tools/json_schema_compiler/compiler.py $
+    ../../tools/json_schema_compiler/cpp_generator.py $
+    ../../tools/json_schema_compiler/cpp_type_generator.py $
+    ../../tools/json_schema_compiler/cpp_util.py $
+    ../../tools/json_schema_compiler/h_generator.py $
+    ../../tools/json_schema_compiler/idl_schema.py $
+    ../../tools/json_schema_compiler/model.py $
+    ../../tools/json_schema_compiler/util.cc $
+    ../../tools/json_schema_compiler/util.h $
+    ../../tools/json_schema_compiler/util_cc_helper.py || $
+    obj/chrome/common/extensions/api/api.actions_depends.stamp
+  source = power.idl
+  unique_name = 29f2bca0efb159b4dabaec3a49299860
+build gen/chrome/common/extensions/api/push_messaging.cc $
+    gen/chrome/common/extensions/api/push_messaging.h: $
+    api_target_genapi_idl_0c74f3b9b249018065774637d2bb18e6 $
+    ../../chrome/common/extensions/api/push_messaging.idl | $
+    ../../tools/json_schema_compiler/cc_generator.py $
+    ../../tools/json_schema_compiler/code.py $
+    ../../tools/json_schema_compiler/compiler.py $
+    ../../tools/json_schema_compiler/cpp_generator.py $
+    ../../tools/json_schema_compiler/cpp_type_generator.py $
+    ../../tools/json_schema_compiler/cpp_util.py $
+    ../../tools/json_schema_compiler/h_generator.py $
+    ../../tools/json_schema_compiler/idl_schema.py $
+    ../../tools/json_schema_compiler/model.py $
+    ../../tools/json_schema_compiler/util.cc $
+    ../../tools/json_schema_compiler/util.h $
+    ../../tools/json_schema_compiler/util_cc_helper.py || $
+    obj/chrome/common/extensions/api/api.actions_depends.stamp
+  source = push_messaging.idl
+  unique_name = d327d05dfd6c6d523b04922c7962d11a
+build gen/chrome/common/extensions/api/serial.cc $
+    gen/chrome/common/extensions/api/serial.h: $
+    api_target_genapi_idl_0c74f3b9b249018065774637d2bb18e6 $
+    ../../chrome/common/extensions/api/serial.idl | $
+    ../../tools/json_schema_compiler/cc_generator.py $
+    ../../tools/json_schema_compiler/code.py $
+    ../../tools/json_schema_compiler/compiler.py $
+    ../../tools/json_schema_compiler/cpp_generator.py $
+    ../../tools/json_schema_compiler/cpp_type_generator.py $
+    ../../tools/json_schema_compiler/cpp_util.py $
+    ../../tools/json_schema_compiler/h_generator.py $
+    ../../tools/json_schema_compiler/idl_schema.py $
+    ../../tools/json_schema_compiler/model.py $
+    ../../tools/json_schema_compiler/util.cc $
+    ../../tools/json_schema_compiler/util.h $
+    ../../tools/json_schema_compiler/util_cc_helper.py || $
+    obj/chrome/common/extensions/api/api.actions_depends.stamp
+  source = serial.idl
+  unique_name = 21d92b6919d4ba6f78625d8718de2a28
+build gen/chrome/common/extensions/api/signed_in_devices.cc $
+    gen/chrome/common/extensions/api/signed_in_devices.h: $
+    api_target_genapi_idl_0c74f3b9b249018065774637d2bb18e6 $
+    ../../chrome/common/extensions/api/signed_in_devices.idl | $
+    ../../tools/json_schema_compiler/cc_generator.py $
+    ../../tools/json_schema_compiler/code.py $
+    ../../tools/json_schema_compiler/compiler.py $
+    ../../tools/json_schema_compiler/cpp_generator.py $
+    ../../tools/json_schema_compiler/cpp_type_generator.py $
+    ../../tools/json_schema_compiler/cpp_util.py $
+    ../../tools/json_schema_compiler/h_generator.py $
+    ../../tools/json_schema_compiler/idl_schema.py $
+    ../../tools/json_schema_compiler/model.py $
+    ../../tools/json_schema_compiler/util.cc $
+    ../../tools/json_schema_compiler/util.h $
+    ../../tools/json_schema_compiler/util_cc_helper.py || $
+    obj/chrome/common/extensions/api/api.actions_depends.stamp
+  source = signed_in_devices.idl
+  unique_name = e65c38802be1d7c11a02ffccb2b4eb63
+build gen/chrome/common/extensions/api/socket.cc $
+    gen/chrome/common/extensions/api/socket.h: $
+    api_target_genapi_idl_0c74f3b9b249018065774637d2bb18e6 $
+    ../../chrome/common/extensions/api/socket.idl | $
+    ../../tools/json_schema_compiler/cc_generator.py $
+    ../../tools/json_schema_compiler/code.py $
+    ../../tools/json_schema_compiler/compiler.py $
+    ../../tools/json_schema_compiler/cpp_generator.py $
+    ../../tools/json_schema_compiler/cpp_type_generator.py $
+    ../../tools/json_schema_compiler/cpp_util.py $
+    ../../tools/json_schema_compiler/h_generator.py $
+    ../../tools/json_schema_compiler/idl_schema.py $
+    ../../tools/json_schema_compiler/model.py $
+    ../../tools/json_schema_compiler/util.cc $
+    ../../tools/json_schema_compiler/util.h $
+    ../../tools/json_schema_compiler/util_cc_helper.py || $
+    obj/chrome/common/extensions/api/api.actions_depends.stamp
+  source = socket.idl
+  unique_name = e373affb9c68dc7bdb15362a25436228
+build gen/chrome/common/extensions/api/sockets_tcp.cc $
+    gen/chrome/common/extensions/api/sockets_tcp.h: $
+    api_target_genapi_idl_0c74f3b9b249018065774637d2bb18e6 $
+    ../../chrome/common/extensions/api/sockets_tcp.idl | $
+    ../../tools/json_schema_compiler/cc_generator.py $
+    ../../tools/json_schema_compiler/code.py $
+    ../../tools/json_schema_compiler/compiler.py $
+    ../../tools/json_schema_compiler/cpp_generator.py $
+    ../../tools/json_schema_compiler/cpp_type_generator.py $
+    ../../tools/json_schema_compiler/cpp_util.py $
+    ../../tools/json_schema_compiler/h_generator.py $
+    ../../tools/json_schema_compiler/idl_schema.py $
+    ../../tools/json_schema_compiler/model.py $
+    ../../tools/json_schema_compiler/util.cc $
+    ../../tools/json_schema_compiler/util.h $
+    ../../tools/json_schema_compiler/util_cc_helper.py || $
+    obj/chrome/common/extensions/api/api.actions_depends.stamp
+  source = sockets_tcp.idl
+  unique_name = ae7ff9284f829c416257f152d4bede49
+build gen/chrome/common/extensions/api/sockets_tcp_server.cc $
+    gen/chrome/common/extensions/api/sockets_tcp_server.h: $
+    api_target_genapi_idl_0c74f3b9b249018065774637d2bb18e6 $
+    ../../chrome/common/extensions/api/sockets_tcp_server.idl | $
+    ../../tools/json_schema_compiler/cc_generator.py $
+    ../../tools/json_schema_compiler/code.py $
+    ../../tools/json_schema_compiler/compiler.py $
+    ../../tools/json_schema_compiler/cpp_generator.py $
+    ../../tools/json_schema_compiler/cpp_type_generator.py $
+    ../../tools/json_schema_compiler/cpp_util.py $
+    ../../tools/json_schema_compiler/h_generator.py $
+    ../../tools/json_schema_compiler/idl_schema.py $
+    ../../tools/json_schema_compiler/model.py $
+    ../../tools/json_schema_compiler/util.cc $
+    ../../tools/json_schema_compiler/util.h $
+    ../../tools/json_schema_compiler/util_cc_helper.py || $
+    obj/chrome/common/extensions/api/api.actions_depends.stamp
+  source = sockets_tcp_server.idl
+  unique_name = 7e31c3547e38f67d3dc0aaf62dd0e7db
+build gen/chrome/common/extensions/api/sockets_udp.cc $
+    gen/chrome/common/extensions/api/sockets_udp.h: $
+    api_target_genapi_idl_0c74f3b9b249018065774637d2bb18e6 $
+    ../../chrome/common/extensions/api/sockets_udp.idl | $
+    ../../tools/json_schema_compiler/cc_generator.py $
+    ../../tools/json_schema_compiler/code.py $
+    ../../tools/json_schema_compiler/compiler.py $
+    ../../tools/json_schema_compiler/cpp_generator.py $
+    ../../tools/json_schema_compiler/cpp_type_generator.py $
+    ../../tools/json_schema_compiler/cpp_util.py $
+    ../../tools/json_schema_compiler/h_generator.py $
+    ../../tools/json_schema_compiler/idl_schema.py $
+    ../../tools/json_schema_compiler/model.py $
+    ../../tools/json_schema_compiler/util.cc $
+    ../../tools/json_schema_compiler/util.h $
+    ../../tools/json_schema_compiler/util_cc_helper.py || $
+    obj/chrome/common/extensions/api/api.actions_depends.stamp
+  source = sockets_udp.idl
+  unique_name = 6c8ae24ce6dac8d4277b25102a4348bd
+build gen/chrome/common/extensions/api/sync_file_system.cc $
+    gen/chrome/common/extensions/api/sync_file_system.h: $
+    api_target_genapi_idl_0c74f3b9b249018065774637d2bb18e6 $
+    ../../chrome/common/extensions/api/sync_file_system.idl | $
+    ../../tools/json_schema_compiler/cc_generator.py $
+    ../../tools/json_schema_compiler/code.py $
+    ../../tools/json_schema_compiler/compiler.py $
+    ../../tools/json_schema_compiler/cpp_generator.py $
+    ../../tools/json_schema_compiler/cpp_type_generator.py $
+    ../../tools/json_schema_compiler/cpp_util.py $
+    ../../tools/json_schema_compiler/h_generator.py $
+    ../../tools/json_schema_compiler/idl_schema.py $
+    ../../tools/json_schema_compiler/model.py $
+    ../../tools/json_schema_compiler/util.cc $
+    ../../tools/json_schema_compiler/util.h $
+    ../../tools/json_schema_compiler/util_cc_helper.py || $
+    obj/chrome/common/extensions/api/api.actions_depends.stamp
+  source = sync_file_system.idl
+  unique_name = d726c709730a487bd599d4c9e0400c30
+build gen/chrome/common/extensions/api/system_cpu.cc $
+    gen/chrome/common/extensions/api/system_cpu.h: $
+    api_target_genapi_idl_0c74f3b9b249018065774637d2bb18e6 $
+    ../../chrome/common/extensions/api/system_cpu.idl | $
+    ../../tools/json_schema_compiler/cc_generator.py $
+    ../../tools/json_schema_compiler/code.py $
+    ../../tools/json_schema_compiler/compiler.py $
+    ../../tools/json_schema_compiler/cpp_generator.py $
+    ../../tools/json_schema_compiler/cpp_type_generator.py $
+    ../../tools/json_schema_compiler/cpp_util.py $
+    ../../tools/json_schema_compiler/h_generator.py $
+    ../../tools/json_schema_compiler/idl_schema.py $
+    ../../tools/json_schema_compiler/model.py $
+    ../../tools/json_schema_compiler/util.cc $
+    ../../tools/json_schema_compiler/util.h $
+    ../../tools/json_schema_compiler/util_cc_helper.py || $
+    obj/chrome/common/extensions/api/api.actions_depends.stamp
+  source = system_cpu.idl
+  unique_name = a59b0c5dd17cb8611f6ec37f172c03d7
+build gen/chrome/common/extensions/api/system_display.cc $
+    gen/chrome/common/extensions/api/system_display.h: $
+    api_target_genapi_idl_0c74f3b9b249018065774637d2bb18e6 $
+    ../../chrome/common/extensions/api/system_display.idl | $
+    ../../tools/json_schema_compiler/cc_generator.py $
+    ../../tools/json_schema_compiler/code.py $
+    ../../tools/json_schema_compiler/compiler.py $
+    ../../tools/json_schema_compiler/cpp_generator.py $
+    ../../tools/json_schema_compiler/cpp_type_generator.py $
+    ../../tools/json_schema_compiler/cpp_util.py $
+    ../../tools/json_schema_compiler/h_generator.py $
+    ../../tools/json_schema_compiler/idl_schema.py $
+    ../../tools/json_schema_compiler/model.py $
+    ../../tools/json_schema_compiler/util.cc $
+    ../../tools/json_schema_compiler/util.h $
+    ../../tools/json_schema_compiler/util_cc_helper.py || $
+    obj/chrome/common/extensions/api/api.actions_depends.stamp
+  source = system_display.idl
+  unique_name = 1f2899aa872a3867c740f7ddc6000520
+build gen/chrome/common/extensions/api/system_indicator.cc $
+    gen/chrome/common/extensions/api/system_indicator.h: $
+    api_target_genapi_idl_0c74f3b9b249018065774637d2bb18e6 $
+    ../../chrome/common/extensions/api/system_indicator.idl | $
+    ../../tools/json_schema_compiler/cc_generator.py $
+    ../../tools/json_schema_compiler/code.py $
+    ../../tools/json_schema_compiler/compiler.py $
+    ../../tools/json_schema_compiler/cpp_generator.py $
+    ../../tools/json_schema_compiler/cpp_type_generator.py $
+    ../../tools/json_schema_compiler/cpp_util.py $
+    ../../tools/json_schema_compiler/h_generator.py $
+    ../../tools/json_schema_compiler/idl_schema.py $
+    ../../tools/json_schema_compiler/model.py $
+    ../../tools/json_schema_compiler/util.cc $
+    ../../tools/json_schema_compiler/util.h $
+    ../../tools/json_schema_compiler/util_cc_helper.py || $
+    obj/chrome/common/extensions/api/api.actions_depends.stamp
+  source = system_indicator.idl
+  unique_name = 97291e4f7f5aa833639307d945dffc19
+build gen/chrome/common/extensions/api/system_memory.cc $
+    gen/chrome/common/extensions/api/system_memory.h: $
+    api_target_genapi_idl_0c74f3b9b249018065774637d2bb18e6 $
+    ../../chrome/common/extensions/api/system_memory.idl | $
+    ../../tools/json_schema_compiler/cc_generator.py $
+    ../../tools/json_schema_compiler/code.py $
+    ../../tools/json_schema_compiler/compiler.py $
+    ../../tools/json_schema_compiler/cpp_generator.py $
+    ../../tools/json_schema_compiler/cpp_type_generator.py $
+    ../../tools/json_schema_compiler/cpp_util.py $
+    ../../tools/json_schema_compiler/h_generator.py $
+    ../../tools/json_schema_compiler/idl_schema.py $
+    ../../tools/json_schema_compiler/model.py $
+    ../../tools/json_schema_compiler/util.cc $
+    ../../tools/json_schema_compiler/util.h $
+    ../../tools/json_schema_compiler/util_cc_helper.py || $
+    obj/chrome/common/extensions/api/api.actions_depends.stamp
+  source = system_memory.idl
+  unique_name = 5a9c3a56c153149ef649072adc6366ed
+build gen/chrome/common/extensions/api/system_storage.cc $
+    gen/chrome/common/extensions/api/system_storage.h: $
+    api_target_genapi_idl_0c74f3b9b249018065774637d2bb18e6 $
+    ../../chrome/common/extensions/api/system_storage.idl | $
+    ../../tools/json_schema_compiler/cc_generator.py $
+    ../../tools/json_schema_compiler/code.py $
+    ../../tools/json_schema_compiler/compiler.py $
+    ../../tools/json_schema_compiler/cpp_generator.py $
+    ../../tools/json_schema_compiler/cpp_type_generator.py $
+    ../../tools/json_schema_compiler/cpp_util.py $
+    ../../tools/json_schema_compiler/h_generator.py $
+    ../../tools/json_schema_compiler/idl_schema.py $
+    ../../tools/json_schema_compiler/model.py $
+    ../../tools/json_schema_compiler/util.cc $
+    ../../tools/json_schema_compiler/util.h $
+    ../../tools/json_schema_compiler/util_cc_helper.py || $
+    obj/chrome/common/extensions/api/api.actions_depends.stamp
+  source = system_storage.idl
+  unique_name = eef3fc4d4b80fb6fa860309279c85c93
+build gen/chrome/common/extensions/api/tab_capture.cc $
+    gen/chrome/common/extensions/api/tab_capture.h: $
+    api_target_genapi_idl_0c74f3b9b249018065774637d2bb18e6 $
+    ../../chrome/common/extensions/api/tab_capture.idl | $
+    ../../tools/json_schema_compiler/cc_generator.py $
+    ../../tools/json_schema_compiler/code.py $
+    ../../tools/json_schema_compiler/compiler.py $
+    ../../tools/json_schema_compiler/cpp_generator.py $
+    ../../tools/json_schema_compiler/cpp_type_generator.py $
+    ../../tools/json_schema_compiler/cpp_util.py $
+    ../../tools/json_schema_compiler/h_generator.py $
+    ../../tools/json_schema_compiler/idl_schema.py $
+    ../../tools/json_schema_compiler/model.py $
+    ../../tools/json_schema_compiler/util.cc $
+    ../../tools/json_schema_compiler/util.h $
+    ../../tools/json_schema_compiler/util_cc_helper.py || $
+    obj/chrome/common/extensions/api/api.actions_depends.stamp
+  source = tab_capture.idl
+  unique_name = d028ba7ab67be0afa472350b983e3c46
+build gen/chrome/common/extensions/api/usb.cc $
+    gen/chrome/common/extensions/api/usb.h: $
+    api_target_genapi_idl_0c74f3b9b249018065774637d2bb18e6 $
+    ../../chrome/common/extensions/api/usb.idl | $
+    ../../tools/json_schema_compiler/cc_generator.py $
+    ../../tools/json_schema_compiler/code.py $
+    ../../tools/json_schema_compiler/compiler.py $
+    ../../tools/json_schema_compiler/cpp_generator.py $
+    ../../tools/json_schema_compiler/cpp_type_generator.py $
+    ../../tools/json_schema_compiler/cpp_util.py $
+    ../../tools/json_schema_compiler/h_generator.py $
+    ../../tools/json_schema_compiler/idl_schema.py $
+    ../../tools/json_schema_compiler/model.py $
+    ../../tools/json_schema_compiler/util.cc $
+    ../../tools/json_schema_compiler/util.h $
+    ../../tools/json_schema_compiler/util_cc_helper.py || $
+    obj/chrome/common/extensions/api/api.actions_depends.stamp
+  source = usb.idl
+  unique_name = f966824afa53e724ee2ec45c80b4c96c
+build gen/chrome/common/extensions/api/webrtc_audio_private.cc $
+    gen/chrome/common/extensions/api/webrtc_audio_private.h: $
+    api_target_genapi_idl_0c74f3b9b249018065774637d2bb18e6 $
+    ../../chrome/common/extensions/api/webrtc_audio_private.idl | $
+    ../../tools/json_schema_compiler/cc_generator.py $
+    ../../tools/json_schema_compiler/code.py $
+    ../../tools/json_schema_compiler/compiler.py $
+    ../../tools/json_schema_compiler/cpp_generator.py $
+    ../../tools/json_schema_compiler/cpp_type_generator.py $
+    ../../tools/json_schema_compiler/cpp_util.py $
+    ../../tools/json_schema_compiler/h_generator.py $
+    ../../tools/json_schema_compiler/idl_schema.py $
+    ../../tools/json_schema_compiler/model.py $
+    ../../tools/json_schema_compiler/util.cc $
+    ../../tools/json_schema_compiler/util.h $
+    ../../tools/json_schema_compiler/util_cc_helper.py || $
+    obj/chrome/common/extensions/api/api.actions_depends.stamp
+  source = webrtc_audio_private.idl
+  unique_name = e91003b70607127a99ab1a254a8b4f7a
+build gen/chrome/common/extensions/api/webrtc_cast_send_transport.cc $
+    gen/chrome/common/extensions/api/webrtc_cast_send_transport.h: $
+    api_target_genapi_idl_0c74f3b9b249018065774637d2bb18e6 $
+    ../../chrome/common/extensions/api/webrtc_cast_send_transport.idl | $
+    ../../tools/json_schema_compiler/cc_generator.py $
+    ../../tools/json_schema_compiler/code.py $
+    ../../tools/json_schema_compiler/compiler.py $
+    ../../tools/json_schema_compiler/cpp_generator.py $
+    ../../tools/json_schema_compiler/cpp_type_generator.py $
+    ../../tools/json_schema_compiler/cpp_util.py $
+    ../../tools/json_schema_compiler/h_generator.py $
+    ../../tools/json_schema_compiler/idl_schema.py $
+    ../../tools/json_schema_compiler/model.py $
+    ../../tools/json_schema_compiler/util.cc $
+    ../../tools/json_schema_compiler/util.h $
+    ../../tools/json_schema_compiler/util_cc_helper.py || $
+    obj/chrome/common/extensions/api/api.actions_depends.stamp
+  source = webrtc_cast_send_transport.idl
+  unique_name = eff5b9fe91e73d5e9dfd8e9a08da68ca
+build gen/chrome/common/extensions/api/webrtc_cast_udp_transport.cc $
+    gen/chrome/common/extensions/api/webrtc_cast_udp_transport.h: $
+    api_target_genapi_idl_0c74f3b9b249018065774637d2bb18e6 $
+    ../../chrome/common/extensions/api/webrtc_cast_udp_transport.idl | $
+    ../../tools/json_schema_compiler/cc_generator.py $
+    ../../tools/json_schema_compiler/code.py $
+    ../../tools/json_schema_compiler/compiler.py $
+    ../../tools/json_schema_compiler/cpp_generator.py $
+    ../../tools/json_schema_compiler/cpp_type_generator.py $
+    ../../tools/json_schema_compiler/cpp_util.py $
+    ../../tools/json_schema_compiler/h_generator.py $
+    ../../tools/json_schema_compiler/idl_schema.py $
+    ../../tools/json_schema_compiler/model.py $
+    ../../tools/json_schema_compiler/util.cc $
+    ../../tools/json_schema_compiler/util.h $
+    ../../tools/json_schema_compiler/util_cc_helper.py || $
+    obj/chrome/common/extensions/api/api.actions_depends.stamp
+  source = webrtc_cast_udp_transport.idl
+  unique_name = 56baf4fb3f1c7e4285b87ab805260051
+build gen/chrome/common/extensions/api/webrtc_logging_private.cc $
+    gen/chrome/common/extensions/api/webrtc_logging_private.h: $
+    api_target_genapi_idl_0c74f3b9b249018065774637d2bb18e6 $
+    ../../chrome/common/extensions/api/webrtc_logging_private.idl | $
+    ../../tools/json_schema_compiler/cc_generator.py $
+    ../../tools/json_schema_compiler/code.py $
+    ../../tools/json_schema_compiler/compiler.py $
+    ../../tools/json_schema_compiler/cpp_generator.py $
+    ../../tools/json_schema_compiler/cpp_type_generator.py $
+    ../../tools/json_schema_compiler/cpp_util.py $
+    ../../tools/json_schema_compiler/h_generator.py $
+    ../../tools/json_schema_compiler/idl_schema.py $
+    ../../tools/json_schema_compiler/model.py $
+    ../../tools/json_schema_compiler/util.cc $
+    ../../tools/json_schema_compiler/util.h $
+    ../../tools/json_schema_compiler/util_cc_helper.py || $
+    obj/chrome/common/extensions/api/api.actions_depends.stamp
+  source = webrtc_logging_private.idl
+  unique_name = 57cd616376d9300eef4f238a187610b1
+build obj/chrome/common/extensions/api/api.actions_rules_copies.stamp: $
+    stamp gen/chrome/common/extensions/api/generated_api.h $
+    gen/chrome/common/extensions/api/generated_api.cc $
+    gen/chrome/common/extensions/api/generated_schemas.h $
+    gen/chrome/common/extensions/api/generated_schemas.cc $
+    gen/chrome/common/extensions/api/activity_log_private.cc $
+    gen/chrome/common/extensions/api/activity_log_private.h $
+    gen/chrome/common/extensions/api/bookmark_manager_private.cc $
+    gen/chrome/common/extensions/api/bookmark_manager_private.h $
+    gen/chrome/common/extensions/api/bookmarks.cc $
+    gen/chrome/common/extensions/api/bookmarks.h $
+    gen/chrome/common/extensions/api/cloud_print_private.cc $
+    gen/chrome/common/extensions/api/cloud_print_private.h $
+    gen/chrome/common/extensions/api/command_line_private.cc $
+    gen/chrome/common/extensions/api/command_line_private.h $
+    gen/chrome/common/extensions/api/content_settings.cc $
+    gen/chrome/common/extensions/api/content_settings.h $
+    gen/chrome/common/extensions/api/context_menus.cc $
+    gen/chrome/common/extensions/api/context_menus.h $
+    gen/chrome/common/extensions/api/cookies.cc $
+    gen/chrome/common/extensions/api/cookies.h $
+    gen/chrome/common/extensions/api/debugger.cc $
+    gen/chrome/common/extensions/api/debugger.h $
+    gen/chrome/common/extensions/api/desktop_capture.cc $
+    gen/chrome/common/extensions/api/desktop_capture.h $
+    gen/chrome/common/extensions/api/echo_private.cc $
+    gen/chrome/common/extensions/api/echo_private.h $
+    gen/chrome/common/extensions/api/enterprise_platform_keys_private.cc $
+    gen/chrome/common/extensions/api/enterprise_platform_keys_private.h $
+    gen/chrome/common/extensions/api/events.cc $
+    gen/chrome/common/extensions/api/events.h $
+    gen/chrome/common/extensions/api/experimental_accessibility.cc $
+    gen/chrome/common/extensions/api/experimental_accessibility.h $
+    gen/chrome/common/extensions/api/experimental_history.cc $
+    gen/chrome/common/extensions/api/experimental_history.h $
+    gen/chrome/common/extensions/api/file_browser_private.cc $
+    gen/chrome/common/extensions/api/file_browser_private.h $
+    gen/chrome/common/extensions/api/font_settings.cc $
+    gen/chrome/common/extensions/api/font_settings.h $
+    gen/chrome/common/extensions/api/history.cc $
+    gen/chrome/common/extensions/api/history.h $
+    gen/chrome/common/extensions/api/i18n.cc $
+    gen/chrome/common/extensions/api/i18n.h $
+    gen/chrome/common/extensions/api/idle.cc $
+    gen/chrome/common/extensions/api/idle.h $
+    gen/chrome/common/extensions/api/input_ime.cc $
+    gen/chrome/common/extensions/api/input_ime.h $
+    gen/chrome/common/extensions/api/management.cc $
+    gen/chrome/common/extensions/api/management.h $
+    gen/chrome/common/extensions/api/manifest_types.cc $
+    gen/chrome/common/extensions/api/manifest_types.h $
+    gen/chrome/common/extensions/api/metrics_private.cc $
+    gen/chrome/common/extensions/api/metrics_private.h $
+    gen/chrome/common/extensions/api/networking_private.cc $
+    gen/chrome/common/extensions/api/networking_private.h $
+    gen/chrome/common/extensions/api/omnibox.cc $
+    gen/chrome/common/extensions/api/omnibox.h $
+    gen/chrome/common/extensions/api/page_capture.cc $
+    gen/chrome/common/extensions/api/page_capture.h $
+    gen/chrome/common/extensions/api/permissions.cc $
+    gen/chrome/common/extensions/api/permissions.h $
+    gen/chrome/common/extensions/api/runtime.cc $
+    gen/chrome/common/extensions/api/runtime.h $
+    gen/chrome/common/extensions/api/sessions.cc $
+    gen/chrome/common/extensions/api/sessions.h $
+    gen/chrome/common/extensions/api/storage.cc $
+    gen/chrome/common/extensions/api/storage.h $
+    gen/chrome/common/extensions/api/system_private.cc $
+    gen/chrome/common/extensions/api/system_private.h $
+    gen/chrome/common/extensions/api/tabs.cc $
+    gen/chrome/common/extensions/api/tabs.h $
+    gen/chrome/common/extensions/api/terminal_private.cc $
+    gen/chrome/common/extensions/api/terminal_private.h $
+    gen/chrome/common/extensions/api/test.cc $
+    gen/chrome/common/extensions/api/test.h $
+    gen/chrome/common/extensions/api/virtual_keyboard_private.cc $
+    gen/chrome/common/extensions/api/virtual_keyboard_private.h $
+    gen/chrome/common/extensions/api/web_navigation.cc $
+    gen/chrome/common/extensions/api/web_navigation.h $
+    gen/chrome/common/extensions/api/web_request.cc $
+    gen/chrome/common/extensions/api/web_request.h $
+    gen/chrome/common/extensions/api/webstore_private.cc $
+    gen/chrome/common/extensions/api/webstore_private.h $
+    gen/chrome/common/extensions/api/webview.cc $
+    gen/chrome/common/extensions/api/webview.h $
+    gen/chrome/common/extensions/api/windows.cc $
+    gen/chrome/common/extensions/api/windows.h $
+    gen/chrome/common/extensions/api/alarms.cc $
+    gen/chrome/common/extensions/api/alarms.h $
+    gen/chrome/common/extensions/api/app_current_window_internal.cc $
+    gen/chrome/common/extensions/api/app_current_window_internal.h $
+    gen/chrome/common/extensions/api/app_runtime.cc $
+    gen/chrome/common/extensions/api/app_runtime.h $
+    gen/chrome/common/extensions/api/app_window.cc $
+    gen/chrome/common/extensions/api/app_window.h $
+    gen/chrome/common/extensions/api/audio.cc $
+    gen/chrome/common/extensions/api/audio.h $
+    gen/chrome/common/extensions/api/autotest_private.cc $
+    gen/chrome/common/extensions/api/autotest_private.h $
+    gen/chrome/common/extensions/api/bluetooth.cc $
+    gen/chrome/common/extensions/api/bluetooth.h $
+    gen/chrome/common/extensions/api/braille_display_private.cc $
+    gen/chrome/common/extensions/api/braille_display_private.h $
+    gen/chrome/common/extensions/api/cast_channel.cc $
+    gen/chrome/common/extensions/api/cast_channel.h $
+    gen/chrome/common/extensions/api/developer_private.cc $
+    gen/chrome/common/extensions/api/developer_private.h $
+    gen/chrome/common/extensions/api/dial.cc $
+    gen/chrome/common/extensions/api/dial.h $
+    gen/chrome/common/extensions/api/dns.cc $
+    gen/chrome/common/extensions/api/dns.h $
+    gen/chrome/common/extensions/api/downloads.cc $
+    gen/chrome/common/extensions/api/downloads.h $
+    gen/chrome/common/extensions/api/downloads_internal.cc $
+    gen/chrome/common/extensions/api/downloads_internal.h $
+    gen/chrome/common/extensions/api/experimental_discovery.cc $
+    gen/chrome/common/extensions/api/experimental_discovery.h $
+    gen/chrome/common/extensions/api/experimental_identity.cc $
+    gen/chrome/common/extensions/api/experimental_identity.h $
+    gen/chrome/common/extensions/api/feedback_private.cc $
+    gen/chrome/common/extensions/api/feedback_private.h $
+    gen/chrome/common/extensions/api/file_system.cc $
+    gen/chrome/common/extensions/api/file_system.h $
+    gen/chrome/common/extensions/api/hangouts_private.cc $
+    gen/chrome/common/extensions/api/hangouts_private.h $
+    gen/chrome/common/extensions/api/identity.cc $
+    gen/chrome/common/extensions/api/identity.h $
+    gen/chrome/common/extensions/api/identity_private.cc $
+    gen/chrome/common/extensions/api/identity_private.h $
+    gen/chrome/common/extensions/api/image_writer_private.cc $
+    gen/chrome/common/extensions/api/image_writer_private.h $
+    gen/chrome/common/extensions/api/location.cc $
+    gen/chrome/common/extensions/api/location.h $
+    gen/chrome/common/extensions/api/mdns.cc $
+    gen/chrome/common/extensions/api/mdns.h $
+    gen/chrome/common/extensions/api/media_galleries.cc $
+    gen/chrome/common/extensions/api/media_galleries.h $
+    gen/chrome/common/extensions/api/media_galleries_private.cc $
+    gen/chrome/common/extensions/api/media_galleries_private.h $
+    gen/chrome/common/extensions/api/notifications.cc $
+    gen/chrome/common/extensions/api/notifications.h $
+    gen/chrome/common/extensions/api/power.cc $
+    gen/chrome/common/extensions/api/power.h $
+    gen/chrome/common/extensions/api/push_messaging.cc $
+    gen/chrome/common/extensions/api/push_messaging.h $
+    gen/chrome/common/extensions/api/serial.cc $
+    gen/chrome/common/extensions/api/serial.h $
+    gen/chrome/common/extensions/api/signed_in_devices.cc $
+    gen/chrome/common/extensions/api/signed_in_devices.h $
+    gen/chrome/common/extensions/api/socket.cc $
+    gen/chrome/common/extensions/api/socket.h $
+    gen/chrome/common/extensions/api/sockets_tcp.cc $
+    gen/chrome/common/extensions/api/sockets_tcp.h $
+    gen/chrome/common/extensions/api/sockets_tcp_server.cc $
+    gen/chrome/common/extensions/api/sockets_tcp_server.h $
+    gen/chrome/common/extensions/api/sockets_udp.cc $
+    gen/chrome/common/extensions/api/sockets_udp.h $
+    gen/chrome/common/extensions/api/sync_file_system.cc $
+    gen/chrome/common/extensions/api/sync_file_system.h $
+    gen/chrome/common/extensions/api/system_cpu.cc $
+    gen/chrome/common/extensions/api/system_cpu.h $
+    gen/chrome/common/extensions/api/system_display.cc $
+    gen/chrome/common/extensions/api/system_display.h $
+    gen/chrome/common/extensions/api/system_indicator.cc $
+    gen/chrome/common/extensions/api/system_indicator.h $
+    gen/chrome/common/extensions/api/system_memory.cc $
+    gen/chrome/common/extensions/api/system_memory.h $
+    gen/chrome/common/extensions/api/system_storage.cc $
+    gen/chrome/common/extensions/api/system_storage.h $
+    gen/chrome/common/extensions/api/tab_capture.cc $
+    gen/chrome/common/extensions/api/tab_capture.h $
+    gen/chrome/common/extensions/api/usb.cc $
+    gen/chrome/common/extensions/api/usb.h $
+    gen/chrome/common/extensions/api/webrtc_audio_private.cc $
+    gen/chrome/common/extensions/api/webrtc_audio_private.h $
+    gen/chrome/common/extensions/api/webrtc_cast_send_transport.cc $
+    gen/chrome/common/extensions/api/webrtc_cast_send_transport.h $
+    gen/chrome/common/extensions/api/webrtc_cast_udp_transport.cc $
+    gen/chrome/common/extensions/api/webrtc_cast_udp_transport.h $
+    gen/chrome/common/extensions/api/webrtc_logging_private.cc $
+    gen/chrome/common/extensions/api/webrtc_logging_private.h
+
+defines = -DANGLE_DX11 -D_FILE_OFFSET_BITS=64 -DNO_TCMALLOC -DDISABLE_NACL $
+    -DCHROMIUM_BUILD -DUSE_DEFAULT_RENDER_THEME=1 -DUSE_LIBJPEG_TURBO=1 $
+    -DUSE_NSS=1 -DUSE_X11=1 -DENABLE_ONE_CLICK_SIGNIN $
+    -DGTK_DISABLE_SINGLE_INCLUDES=1 -DUSE_XI2_MT=2 -DENABLE_REMOTING=1 $
+    -DENABLE_WEBRTC=1 -DUSE_PROPRIETARY_CODECS $
+    -DENABLE_CONFIGURATION_POLICY -DENABLE_INPUT_SPEECH $
+    -DENABLE_NOTIFICATIONS -DENABLE_EGLIMAGE=1 -DENABLE_TASK_MANAGER=1 $
+    -DENABLE_EXTENSIONS=1 -DENABLE_PLUGIN_INSTALLATION=1 -DENABLE_PLUGINS=1 $
+    -DENABLE_SESSION_SERVICE=1 -DENABLE_THEMES=1 -DENABLE_BACKGROUND=1 $
+    -DENABLE_AUTOMATION=1 -DENABLE_GOOGLE_NOW=1 -DCLD_VERSION=2 $
+    -DENABLE_FULL_PRINTING=1 -DENABLE_PRINTING=1 -DENABLE_SPELLCHECK=1 $
+    -DENABLE_CAPTIVE_PORTAL_DETECTION=1 -DENABLE_MANAGED_USERS=1 $
+    -DSK_ENABLE_INST_COUNT=0 -DSK_SUPPORT_GPU=1 $
+    '-DGR_GL_CUSTOM_SETUP_HEADER="GrGLConfig_chrome.h"' $
+    -DSK_ENABLE_LEGACY_API_ALIASING=1 -DSK_ATTR_DEPRECATED=SK_NOTHING_ARG1 $
+    -DSK_SUPPORT_LEGACY_COLORTYPE=1 -DSK_USE_POSIX_THREADS $
+    -DSK_DEFERRED_CANVAS_USES_FACTORIES=1 -DFEATURE_ENABLE_SSL $
+    -DFEATURE_ENABLE_VOICEMAIL -DEXPAT_RELATIVE_PATH -DGTEST_RELATIVE_PATH $
+    -DJSONCPP_RELATIVE_PATH -DNO_MAIN_THREAD_WRAPPING -DNO_SOUND_SYSTEM $
+    -DPOSIX -DBSD -DFREEBSD -DPROTOBUF_USE_DLLS -DGOOGLE_PROTOBUF_NO_RTTI $
+    -DGOOGLE_PROTOBUF_NO_STATIC_INITIALIZER -D__STDC_CONSTANT_MACROS $
+    -D__STDC_FORMAT_MACROS -DNDEBUG -DOFFICIAL_BUILD -DNVALGRIND $
+    -DDYNAMIC_ANNOTATIONS_ENABLED=0 -D_FORTIFY_SOURCE=2
+includes = -Igen -I../.. -I../../third_party/skia/src/core $
+    -I../../third_party/skia/include/core $
+    -I../../third_party/skia/include/effects $
+    -I../../third_party/skia/include/pdf $
+    -I../../third_party/skia/include/gpu $
+    -I../../third_party/skia/include/lazy $
+    -I../../third_party/skia/include/pathops $
+    -I../../third_party/skia/include/pipe $
+    -I../../third_party/skia/include/ports $
+    -I../../third_party/skia/include/utils -I../../skia/config $
+    -I../../skia/ext -I../../third_party/libjingle/overrides $
+    -I../../third_party/libjingle/source -I../../testing/gtest/include $
+    -I../../third_party -I../../third_party/webrtc $
+    -I../../third_party/jsoncpp/overrides/include $
+    -I../../third_party/jsoncpp/source/include $
+    -I../../third_party/cacheinvalidation/overrides $
+    -I../../third_party/cacheinvalidation/src -Igen/protoc_out $
+    -I../../third_party/protobuf -I../../third_party/protobuf/src
+cflags = -fstack-protector --param=ssp-buffer-size=4  -pthread $
+    -fno-exceptions -fno-strict-aliasing -Wall -Wno-unused-parameter $
+    -Wno-missing-field-initializers -fvisibility=hidden -pipe -fPIC $
+    -Wheader-hygiene -Wno-char-subscripts -Wno-unused-function $
+    -Wno-covered-switch-default -Wstring-conversion -Wno-c++11-narrowing $
+    -Wno-reserved-user-defined-literal -Wno-deprecated-register $
+    -Wno-deprecated-declarations -fcolor-diagnostics $
+    -I/usr/local/include/gtk-2.0 -I/usr/local/include/gio-unix-2.0/ $
+    -I/usr/local/include/atk-1.0 -I/usr/local/include/cairo $
+    -I/usr/local/include/pixman-1 -D_THREAD_SAFE $
+    -I/usr/local/include/gdk-pixbuf-2.0 -I/usr/local/include/libpng15 $
+    -I/usr/local/include/pango-1.0 -I/usr/local/include/freetype2 $
+    -I/usr/local/include/harfbuzz -pthread -I/usr/local/include/glib-2.0 $
+    -I/usr/local/include -pthread -I/usr/local/include/glib-2.0 $
+    -I/usr/local/include -D_THREAD_SAFE -I/usr/local/include -O2 $
+    -fdata-sections -ffunction-sections
+cflags_c = -O2 -pipe -fno-stack-protector -Wno-unknown-warning-option $
+    -fno-strict-aliasing
+cflags_cc = -O2 -pipe -fno-stack-protector -Wno-unknown-warning-option $
+    -fno-strict-aliasing -fno-rtti -fno-threadsafe-statics $
+    -fvisibility-inlines-hidden -Wsign-compare -std=gnu++11
+
+build $
+    obj/chrome/common/extensions/api/gen/chrome/common/extensions/api/api.generated_api.o: $
+    cxx gen/chrome/common/extensions/api/generated_api.cc || $
+    obj/chrome/common/extensions/api/api.actions_rules_copies.stamp
+build $
+    obj/chrome/common/extensions/api/gen/chrome/common/extensions/api/api.generated_schemas.o: $
+    cxx gen/chrome/common/extensions/api/generated_schemas.cc || $
+    obj/chrome/common/extensions/api/api.actions_rules_copies.stamp
+build $
+    obj/chrome/common/extensions/api/gen/chrome/common/extensions/api/api.activity_log_private.o: $
+    cxx gen/chrome/common/extensions/api/activity_log_private.cc || $
+    obj/chrome/common/extensions/api/api.actions_rules_copies.stamp
+build $
+    obj/chrome/common/extensions/api/gen/chrome/common/extensions/api/api.bookmark_manager_private.o: $
+    cxx gen/chrome/common/extensions/api/bookmark_manager_private.cc || $
+    obj/chrome/common/extensions/api/api.actions_rules_copies.stamp
+build $
+    obj/chrome/common/extensions/api/gen/chrome/common/extensions/api/api.bookmarks.o: $
+    cxx gen/chrome/common/extensions/api/bookmarks.cc || $
+    obj/chrome/common/extensions/api/api.actions_rules_copies.stamp
+build $
+    obj/chrome/common/extensions/api/gen/chrome/common/extensions/api/api.cloud_print_private.o: $
+    cxx gen/chrome/common/extensions/api/cloud_print_private.cc || $
+    obj/chrome/common/extensions/api/api.actions_rules_copies.stamp
+build $
+    obj/chrome/common/extensions/api/gen/chrome/common/extensions/api/api.command_line_private.o: $
+    cxx gen/chrome/common/extensions/api/command_line_private.cc || $
+    obj/chrome/common/extensions/api/api.actions_rules_copies.stamp
+build $
+    obj/chrome/common/extensions/api/gen/chrome/common/extensions/api/api.content_settings.o: $
+    cxx gen/chrome/common/extensions/api/content_settings.cc || $
+    obj/chrome/common/extensions/api/api.actions_rules_copies.stamp
+build $
+    obj/chrome/common/extensions/api/gen/chrome/common/extensions/api/api.context_menus.o: $
+    cxx gen/chrome/common/extensions/api/context_menus.cc || $
+    obj/chrome/common/extensions/api/api.actions_rules_copies.stamp
+build $
+    obj/chrome/common/extensions/api/gen/chrome/common/extensions/api/api.cookies.o: $
+    cxx gen/chrome/common/extensions/api/cookies.cc || $
+    obj/chrome/common/extensions/api/api.actions_rules_copies.stamp
+build $
+    obj/chrome/common/extensions/api/gen/chrome/common/extensions/api/api.debugger.o: $
+    cxx gen/chrome/common/extensions/api/debugger.cc || $
+    obj/chrome/common/extensions/api/api.actions_rules_copies.stamp
+build $
+    obj/chrome/common/extensions/api/gen/chrome/common/extensions/api/api.desktop_capture.o: $
+    cxx gen/chrome/common/extensions/api/desktop_capture.cc || $
+    obj/chrome/common/extensions/api/api.actions_rules_copies.stamp
+build $
+    obj/chrome/common/extensions/api/gen/chrome/common/extensions/api/api.echo_private.o: $
+    cxx gen/chrome/common/extensions/api/echo_private.cc || $
+    obj/chrome/common/extensions/api/api.actions_rules_copies.stamp
+build $
+    obj/chrome/common/extensions/api/gen/chrome/common/extensions/api/api.enterprise_platform_keys_private.o: $
+    cxx $
+    gen/chrome/common/extensions/api/enterprise_platform_keys_private.cc || $
+    obj/chrome/common/extensions/api/api.actions_rules_copies.stamp
+build $
+    obj/chrome/common/extensions/api/gen/chrome/common/extensions/api/api.events.o: $
+    cxx gen/chrome/common/extensions/api/events.cc || $
+    obj/chrome/common/extensions/api/api.actions_rules_copies.stamp
+build $
+    obj/chrome/common/extensions/api/gen/chrome/common/extensions/api/api.experimental_accessibility.o: $
+    cxx gen/chrome/common/extensions/api/experimental_accessibility.cc || $
+    obj/chrome/common/extensions/api/api.actions_rules_copies.stamp
+build $
+    obj/chrome/common/extensions/api/gen/chrome/common/extensions/api/api.experimental_history.o: $
+    cxx gen/chrome/common/extensions/api/experimental_history.cc || $
+    obj/chrome/common/extensions/api/api.actions_rules_copies.stamp
+build $
+    obj/chrome/common/extensions/api/gen/chrome/common/extensions/api/api.file_browser_private.o: $
+    cxx gen/chrome/common/extensions/api/file_browser_private.cc || $
+    obj/chrome/common/extensions/api/api.actions_rules_copies.stamp
+build $
+    obj/chrome/common/extensions/api/gen/chrome/common/extensions/api/api.font_settings.o: $
+    cxx gen/chrome/common/extensions/api/font_settings.cc || $
+    obj/chrome/common/extensions/api/api.actions_rules_copies.stamp
+build $
+    obj/chrome/common/extensions/api/gen/chrome/common/extensions/api/api.history.o: $
+    cxx gen/chrome/common/extensions/api/history.cc || $
+    obj/chrome/common/extensions/api/api.actions_rules_copies.stamp
+build $
+    obj/chrome/common/extensions/api/gen/chrome/common/extensions/api/api.i18n.o: $
+    cxx gen/chrome/common/extensions/api/i18n.cc || $
+    obj/chrome/common/extensions/api/api.actions_rules_copies.stamp
+build $
+    obj/chrome/common/extensions/api/gen/chrome/common/extensions/api/api.idle.o: $
+    cxx gen/chrome/common/extensions/api/idle.cc || $
+    obj/chrome/common/extensions/api/api.actions_rules_copies.stamp
+build $
+    obj/chrome/common/extensions/api/gen/chrome/common/extensions/api/api.input_ime.o: $
+    cxx gen/chrome/common/extensions/api/input_ime.cc || $
+    obj/chrome/common/extensions/api/api.actions_rules_copies.stamp
+build $
+    obj/chrome/common/extensions/api/gen/chrome/common/extensions/api/api.management.o: $
+    cxx gen/chrome/common/extensions/api/management.cc || $
+    obj/chrome/common/extensions/api/api.actions_rules_copies.stamp
+build $
+    obj/chrome/common/extensions/api/gen/chrome/common/extensions/api/api.manifest_types.o: $
+    cxx gen/chrome/common/extensions/api/manifest_types.cc || $
+    obj/chrome/common/extensions/api/api.actions_rules_copies.stamp
+build $
+    obj/chrome/common/extensions/api/gen/chrome/common/extensions/api/api.metrics_private.o: $
+    cxx gen/chrome/common/extensions/api/metrics_private.cc || $
+    obj/chrome/common/extensions/api/api.actions_rules_copies.stamp
+build $
+    obj/chrome/common/extensions/api/gen/chrome/common/extensions/api/api.networking_private.o: $
+    cxx gen/chrome/common/extensions/api/networking_private.cc || $
+    obj/chrome/common/extensions/api/api.actions_rules_copies.stamp
+build $
+    obj/chrome/common/extensions/api/gen/chrome/common/extensions/api/api.omnibox.o: $
+    cxx gen/chrome/common/extensions/api/omnibox.cc || $
+    obj/chrome/common/extensions/api/api.actions_rules_copies.stamp
+build $
+    obj/chrome/common/extensions/api/gen/chrome/common/extensions/api/api.page_capture.o: $
+    cxx gen/chrome/common/extensions/api/page_capture.cc || $
+    obj/chrome/common/extensions/api/api.actions_rules_copies.stamp
+build $
+    obj/chrome/common/extensions/api/gen/chrome/common/extensions/api/api.permissions.o: $
+    cxx gen/chrome/common/extensions/api/permissions.cc || $
+    obj/chrome/common/extensions/api/api.actions_rules_copies.stamp
+build $
+    obj/chrome/common/extensions/api/gen/chrome/common/extensions/api/api.runtime.o: $
+    cxx gen/chrome/common/extensions/api/runtime.cc || $
+    obj/chrome/common/extensions/api/api.actions_rules_copies.stamp
+build $
+    obj/chrome/common/extensions/api/gen/chrome/common/extensions/api/api.sessions.o: $
+    cxx gen/chrome/common/extensions/api/sessions.cc || $
+    obj/chrome/common/extensions/api/api.actions_rules_copies.stamp
+build $
+    obj/chrome/common/extensions/api/gen/chrome/common/extensions/api/api.storage.o: $
+    cxx gen/chrome/common/extensions/api/storage.cc || $
+    obj/chrome/common/extensions/api/api.actions_rules_copies.stamp
+build $
+    obj/chrome/common/extensions/api/gen/chrome/common/extensions/api/api.system_private.o: $
+    cxx gen/chrome/common/extensions/api/system_private.cc || $
+    obj/chrome/common/extensions/api/api.actions_rules_copies.stamp
+build $
+    obj/chrome/common/extensions/api/gen/chrome/common/extensions/api/api.tabs.o: $
+    cxx gen/chrome/common/extensions/api/tabs.cc || $
+    obj/chrome/common/extensions/api/api.actions_rules_copies.stamp
+build $
+    obj/chrome/common/extensions/api/gen/chrome/common/extensions/api/api.terminal_private.o: $
+    cxx gen/chrome/common/extensions/api/terminal_private.cc || $
+    obj/chrome/common/extensions/api/api.actions_rules_copies.stamp
+build $
+    obj/chrome/common/extensions/api/gen/chrome/common/extensions/api/api.test.o: $
+    cxx gen/chrome/common/extensions/api/test.cc || $
+    obj/chrome/common/extensions/api/api.actions_rules_copies.stamp
+build $
+    obj/chrome/common/extensions/api/gen/chrome/common/extensions/api/api.virtual_keyboard_private.o: $
+    cxx gen/chrome/common/extensions/api/virtual_keyboard_private.cc || $
+    obj/chrome/common/extensions/api/api.actions_rules_copies.stamp
+build $
+    obj/chrome/common/extensions/api/gen/chrome/common/extensions/api/api.web_navigation.o: $
+    cxx gen/chrome/common/extensions/api/web_navigation.cc || $
+    obj/chrome/common/extensions/api/api.actions_rules_copies.stamp
+build $
+    obj/chrome/common/extensions/api/gen/chrome/common/extensions/api/api.web_request.o: $
+    cxx gen/chrome/common/extensions/api/web_request.cc || $
+    obj/chrome/common/extensions/api/api.actions_rules_copies.stamp
+build $
+    obj/chrome/common/extensions/api/gen/chrome/common/extensions/api/api.webstore_private.o: $
+    cxx gen/chrome/common/extensions/api/webstore_private.cc || $
+    obj/chrome/common/extensions/api/api.actions_rules_copies.stamp
+build $
+    obj/chrome/common/extensions/api/gen/chrome/common/extensions/api/api.webview.o: $
+    cxx gen/chrome/common/extensions/api/webview.cc || $
+    obj/chrome/common/extensions/api/api.actions_rules_copies.stamp
+build $
+    obj/chrome/common/extensions/api/gen/chrome/common/extensions/api/api.windows.o: $
+    cxx gen/chrome/common/extensions/api/windows.cc || $
+    obj/chrome/common/extensions/api/api.actions_rules_copies.stamp
+build $
+    obj/chrome/common/extensions/api/gen/chrome/common/extensions/api/api.alarms.o: $
+    cxx gen/chrome/common/extensions/api/alarms.cc || $
+    obj/chrome/common/extensions/api/api.actions_rules_copies.stamp
+build $
+    obj/chrome/common/extensions/api/gen/chrome/common/extensions/api/api.app_current_window_internal.o: $
+    cxx gen/chrome/common/extensions/api/app_current_window_internal.cc || $
+    obj/chrome/common/extensions/api/api.actions_rules_copies.stamp
+build $
+    obj/chrome/common/extensions/api/gen/chrome/common/extensions/api/api.app_runtime.o: $
+    cxx gen/chrome/common/extensions/api/app_runtime.cc || $
+    obj/chrome/common/extensions/api/api.actions_rules_copies.stamp
+build $
+    obj/chrome/common/extensions/api/gen/chrome/common/extensions/api/api.app_window.o: $
+    cxx gen/chrome/common/extensions/api/app_window.cc || $
+    obj/chrome/common/extensions/api/api.actions_rules_copies.stamp
+build $
+    obj/chrome/common/extensions/api/gen/chrome/common/extensions/api/api.audio.o: $
+    cxx gen/chrome/common/extensions/api/audio.cc || $
+    obj/chrome/common/extensions/api/api.actions_rules_copies.stamp
+build $
+    obj/chrome/common/extensions/api/gen/chrome/common/extensions/api/api.autotest_private.o: $
+    cxx gen/chrome/common/extensions/api/autotest_private.cc || $
+    obj/chrome/common/extensions/api/api.actions_rules_copies.stamp
+build $
+    obj/chrome/common/extensions/api/gen/chrome/common/extensions/api/api.bluetooth.o: $
+    cxx gen/chrome/common/extensions/api/bluetooth.cc || $
+    obj/chrome/common/extensions/api/api.actions_rules_copies.stamp
+build $
+    obj/chrome/common/extensions/api/gen/chrome/common/extensions/api/api.braille_display_private.o: $
+    cxx gen/chrome/common/extensions/api/braille_display_private.cc || $
+    obj/chrome/common/extensions/api/api.actions_rules_copies.stamp
+build $
+    obj/chrome/common/extensions/api/gen/chrome/common/extensions/api/api.cast_channel.o: $
+    cxx gen/chrome/common/extensions/api/cast_channel.cc || $
+    obj/chrome/common/extensions/api/api.actions_rules_copies.stamp
+build $
+    obj/chrome/common/extensions/api/gen/chrome/common/extensions/api/api.developer_private.o: $
+    cxx gen/chrome/common/extensions/api/developer_private.cc || $
+    obj/chrome/common/extensions/api/api.actions_rules_copies.stamp
+build $
+    obj/chrome/common/extensions/api/gen/chrome/common/extensions/api/api.dial.o: $
+    cxx gen/chrome/common/extensions/api/dial.cc || $
+    obj/chrome/common/extensions/api/api.actions_rules_copies.stamp
+build $
+    obj/chrome/common/extensions/api/gen/chrome/common/extensions/api/api.dns.o: $
+    cxx gen/chrome/common/extensions/api/dns.cc || $
+    obj/chrome/common/extensions/api/api.actions_rules_copies.stamp
+build $
+    obj/chrome/common/extensions/api/gen/chrome/common/extensions/api/api.downloads.o: $
+    cxx gen/chrome/common/extensions/api/downloads.cc || $
+    obj/chrome/common/extensions/api/api.actions_rules_copies.stamp
+build $
+    obj/chrome/common/extensions/api/gen/chrome/common/extensions/api/api.downloads_internal.o: $
+    cxx gen/chrome/common/extensions/api/downloads_internal.cc || $
+    obj/chrome/common/extensions/api/api.actions_rules_copies.stamp
+build $
+    obj/chrome/common/extensions/api/gen/chrome/common/extensions/api/api.experimental_discovery.o: $
+    cxx gen/chrome/common/extensions/api/experimental_discovery.cc || $
+    obj/chrome/common/extensions/api/api.actions_rules_copies.stamp
+build $
+    obj/chrome/common/extensions/api/gen/chrome/common/extensions/api/api.experimental_identity.o: $
+    cxx gen/chrome/common/extensions/api/experimental_identity.cc || $
+    obj/chrome/common/extensions/api/api.actions_rules_copies.stamp
+build $
+    obj/chrome/common/extensions/api/gen/chrome/common/extensions/api/api.feedback_private.o: $
+    cxx gen/chrome/common/extensions/api/feedback_private.cc || $
+    obj/chrome/common/extensions/api/api.actions_rules_copies.stamp
+build $
+    obj/chrome/common/extensions/api/gen/chrome/common/extensions/api/api.file_system.o: $
+    cxx gen/chrome/common/extensions/api/file_system.cc || $
+    obj/chrome/common/extensions/api/api.actions_rules_copies.stamp
+build $
+    obj/chrome/common/extensions/api/gen/chrome/common/extensions/api/api.hangouts_private.o: $
+    cxx gen/chrome/common/extensions/api/hangouts_private.cc || $
+    obj/chrome/common/extensions/api/api.actions_rules_copies.stamp
+build $
+    obj/chrome/common/extensions/api/gen/chrome/common/extensions/api/api.identity.o: $
+    cxx gen/chrome/common/extensions/api/identity.cc || $
+    obj/chrome/common/extensions/api/api.actions_rules_copies.stamp
+build $
+    obj/chrome/common/extensions/api/gen/chrome/common/extensions/api/api.identity_private.o: $
+    cxx gen/chrome/common/extensions/api/identity_private.cc || $
+    obj/chrome/common/extensions/api/api.actions_rules_copies.stamp
+build $
+    obj/chrome/common/extensions/api/gen/chrome/common/extensions/api/api.image_writer_private.o: $
+    cxx gen/chrome/common/extensions/api/image_writer_private.cc || $
+    obj/chrome/common/extensions/api/api.actions_rules_copies.stamp
+build $
+    obj/chrome/common/extensions/api/gen/chrome/common/extensions/api/api.location.o: $
+    cxx gen/chrome/common/extensions/api/location.cc || $
+    obj/chrome/common/extensions/api/api.actions_rules_copies.stamp
+build $
+    obj/chrome/common/extensions/api/gen/chrome/common/extensions/api/api.mdns.o: $
+    cxx gen/chrome/common/extensions/api/mdns.cc || $
+    obj/chrome/common/extensions/api/api.actions_rules_copies.stamp
+build $
+    obj/chrome/common/extensions/api/gen/chrome/common/extensions/api/api.media_galleries.o: $
+    cxx gen/chrome/common/extensions/api/media_galleries.cc || $
+    obj/chrome/common/extensions/api/api.actions_rules_copies.stamp
+build $
+    obj/chrome/common/extensions/api/gen/chrome/common/extensions/api/api.media_galleries_private.o: $
+    cxx gen/chrome/common/extensions/api/media_galleries_private.cc || $
+    obj/chrome/common/extensions/api/api.actions_rules_copies.stamp
+build $
+    obj/chrome/common/extensions/api/gen/chrome/common/extensions/api/api.notifications.o: $
+    cxx gen/chrome/common/extensions/api/notifications.cc || $
+    obj/chrome/common/extensions/api/api.actions_rules_copies.stamp
+build $
+    obj/chrome/common/extensions/api/gen/chrome/common/extensions/api/api.power.o: $
+    cxx gen/chrome/common/extensions/api/power.cc || $
+    obj/chrome/common/extensions/api/api.actions_rules_copies.stamp
+build $
+    obj/chrome/common/extensions/api/gen/chrome/common/extensions/api/api.push_messaging.o: $
+    cxx gen/chrome/common/extensions/api/push_messaging.cc || $
+    obj/chrome/common/extensions/api/api.actions_rules_copies.stamp
+build $
+    obj/chrome/common/extensions/api/gen/chrome/common/extensions/api/api.serial.o: $
+    cxx gen/chrome/common/extensions/api/serial.cc || $
+    obj/chrome/common/extensions/api/api.actions_rules_copies.stamp
+build $
+    obj/chrome/common/extensions/api/gen/chrome/common/extensions/api/api.signed_in_devices.o: $
+    cxx gen/chrome/common/extensions/api/signed_in_devices.cc || $
+    obj/chrome/common/extensions/api/api.actions_rules_copies.stamp
+build $
+    obj/chrome/common/extensions/api/gen/chrome/common/extensions/api/api.socket.o: $
+    cxx gen/chrome/common/extensions/api/socket.cc || $
+    obj/chrome/common/extensions/api/api.actions_rules_copies.stamp
+build $
+    obj/chrome/common/extensions/api/gen/chrome/common/extensions/api/api.sockets_tcp.o: $
+    cxx gen/chrome/common/extensions/api/sockets_tcp.cc || $
+    obj/chrome/common/extensions/api/api.actions_rules_copies.stamp
+build $
+    obj/chrome/common/extensions/api/gen/chrome/common/extensions/api/api.sockets_tcp_server.o: $
+    cxx gen/chrome/common/extensions/api/sockets_tcp_server.cc || $
+    obj/chrome/common/extensions/api/api.actions_rules_copies.stamp
+build $
+    obj/chrome/common/extensions/api/gen/chrome/common/extensions/api/api.sockets_udp.o: $
+    cxx gen/chrome/common/extensions/api/sockets_udp.cc || $
+    obj/chrome/common/extensions/api/api.actions_rules_copies.stamp
+build $
+    obj/chrome/common/extensions/api/gen/chrome/common/extensions/api/api.sync_file_system.o: $
+    cxx gen/chrome/common/extensions/api/sync_file_system.cc || $
+    obj/chrome/common/extensions/api/api.actions_rules_copies.stamp
+build $
+    obj/chrome/common/extensions/api/gen/chrome/common/extensions/api/api.system_cpu.o: $
+    cxx gen/chrome/common/extensions/api/system_cpu.cc || $
+    obj/chrome/common/extensions/api/api.actions_rules_copies.stamp
+build $
+    obj/chrome/common/extensions/api/gen/chrome/common/extensions/api/api.system_display.o: $
+    cxx gen/chrome/common/extensions/api/system_display.cc || $
+    obj/chrome/common/extensions/api/api.actions_rules_copies.stamp
+build $
+    obj/chrome/common/extensions/api/gen/chrome/common/extensions/api/api.system_indicator.o: $
+    cxx gen/chrome/common/extensions/api/system_indicator.cc || $
+    obj/chrome/common/extensions/api/api.actions_rules_copies.stamp
+build $
+    obj/chrome/common/extensions/api/gen/chrome/common/extensions/api/api.system_memory.o: $
+    cxx gen/chrome/common/extensions/api/system_memory.cc || $
+    obj/chrome/common/extensions/api/api.actions_rules_copies.stamp
+build $
+    obj/chrome/common/extensions/api/gen/chrome/common/extensions/api/api.system_storage.o: $
+    cxx gen/chrome/common/extensions/api/system_storage.cc || $
+    obj/chrome/common/extensions/api/api.actions_rules_copies.stamp
+build $
+    obj/chrome/common/extensions/api/gen/chrome/common/extensions/api/api.tab_capture.o: $
+    cxx gen/chrome/common/extensions/api/tab_capture.cc || $
+    obj/chrome/common/extensions/api/api.actions_rules_copies.stamp
+build $
+    obj/chrome/common/extensions/api/gen/chrome/common/extensions/api/api.usb.o: $
+    cxx gen/chrome/common/extensions/api/usb.cc || $
+    obj/chrome/common/extensions/api/api.actions_rules_copies.stamp
+build $
+    obj/chrome/common/extensions/api/gen/chrome/common/extensions/api/api.webrtc_audio_private.o: $
+    cxx gen/chrome/common/extensions/api/webrtc_audio_private.cc || $
+    obj/chrome/common/extensions/api/api.actions_rules_copies.stamp
+build $
+    obj/chrome/common/extensions/api/gen/chrome/common/extensions/api/api.webrtc_cast_send_transport.o: $
+    cxx gen/chrome/common/extensions/api/webrtc_cast_send_transport.cc || $
+    obj/chrome/common/extensions/api/api.actions_rules_copies.stamp
+build $
+    obj/chrome/common/extensions/api/gen/chrome/common/extensions/api/api.webrtc_cast_udp_transport.o: $
+    cxx gen/chrome/common/extensions/api/webrtc_cast_udp_transport.cc || $
+    obj/chrome/common/extensions/api/api.actions_rules_copies.stamp
+build $
+    obj/chrome/common/extensions/api/gen/chrome/common/extensions/api/api.webrtc_logging_private.o: $
+    cxx gen/chrome/common/extensions/api/webrtc_logging_private.cc || $
+    obj/chrome/common/extensions/api/api.actions_rules_copies.stamp
+
+build obj/chrome/common/extensions/api/libapi.a: alink_thin $
+    obj/chrome/common/extensions/api/gen/chrome/common/extensions/api/api.generated_api.o $
+    obj/chrome/common/extensions/api/gen/chrome/common/extensions/api/api.generated_schemas.o $
+    obj/chrome/common/extensions/api/gen/chrome/common/extensions/api/api.activity_log_private.o $
+    obj/chrome/common/extensions/api/gen/chrome/common/extensions/api/api.bookmark_manager_private.o $
+    obj/chrome/common/extensions/api/gen/chrome/common/extensions/api/api.bookmarks.o $
+    obj/chrome/common/extensions/api/gen/chrome/common/extensions/api/api.cloud_print_private.o $
+    obj/chrome/common/extensions/api/gen/chrome/common/extensions/api/api.command_line_private.o $
+    obj/chrome/common/extensions/api/gen/chrome/common/extensions/api/api.content_settings.o $
+    obj/chrome/common/extensions/api/gen/chrome/common/extensions/api/api.context_menus.o $
+    obj/chrome/common/extensions/api/gen/chrome/common/extensions/api/api.cookies.o $
+    obj/chrome/common/extensions/api/gen/chrome/common/extensions/api/api.debugger.o $
+    obj/chrome/common/extensions/api/gen/chrome/common/extensions/api/api.desktop_capture.o $
+    obj/chrome/common/extensions/api/gen/chrome/common/extensions/api/api.echo_private.o $
+    obj/chrome/common/extensions/api/gen/chrome/common/extensions/api/api.enterprise_platform_keys_private.o $
+    obj/chrome/common/extensions/api/gen/chrome/common/extensions/api/api.events.o $
+    obj/chrome/common/extensions/api/gen/chrome/common/extensions/api/api.experimental_accessibility.o $
+    obj/chrome/common/extensions/api/gen/chrome/common/extensions/api/api.experimental_history.o $
+    obj/chrome/common/extensions/api/gen/chrome/common/extensions/api/api.file_browser_private.o $
+    obj/chrome/common/extensions/api/gen/chrome/common/extensions/api/api.font_settings.o $
+    obj/chrome/common/extensions/api/gen/chrome/common/extensions/api/api.history.o $
+    obj/chrome/common/extensions/api/gen/chrome/common/extensions/api/api.i18n.o $
+    obj/chrome/common/extensions/api/gen/chrome/common/extensions/api/api.idle.o $
+    obj/chrome/common/extensions/api/gen/chrome/common/extensions/api/api.input_ime.o $
+    obj/chrome/common/extensions/api/gen/chrome/common/extensions/api/api.management.o $
+    obj/chrome/common/extensions/api/gen/chrome/common/extensions/api/api.manifest_types.o $
+    obj/chrome/common/extensions/api/gen/chrome/common/extensions/api/api.metrics_private.o $
+    obj/chrome/common/extensions/api/gen/chrome/common/extensions/api/api.networking_private.o $
+    obj/chrome/common/extensions/api/gen/chrome/common/extensions/api/api.omnibox.o $
+    obj/chrome/common/extensions/api/gen/chrome/common/extensions/api/api.page_capture.o $
+    obj/chrome/common/extensions/api/gen/chrome/common/extensions/api/api.permissions.o $
+    obj/chrome/common/extensions/api/gen/chrome/common/extensions/api/api.runtime.o $
+    obj/chrome/common/extensions/api/gen/chrome/common/extensions/api/api.sessions.o $
+    obj/chrome/common/extensions/api/gen/chrome/common/extensions/api/api.storage.o $
+    obj/chrome/common/extensions/api/gen/chrome/common/extensions/api/api.system_private.o $
+    obj/chrome/common/extensions/api/gen/chrome/common/extensions/api/api.tabs.o $
+    obj/chrome/common/extensions/api/gen/chrome/common/extensions/api/api.terminal_private.o $
+    obj/chrome/common/extensions/api/gen/chrome/common/extensions/api/api.test.o $
+    obj/chrome/common/extensions/api/gen/chrome/common/extensions/api/api.virtual_keyboard_private.o $
+    obj/chrome/common/extensions/api/gen/chrome/common/extensions/api/api.web_navigation.o $
+    obj/chrome/common/extensions/api/gen/chrome/common/extensions/api/api.web_request.o $
+    obj/chrome/common/extensions/api/gen/chrome/common/extensions/api/api.webstore_private.o $
+    obj/chrome/common/extensions/api/gen/chrome/common/extensions/api/api.webview.o $
+    obj/chrome/common/extensions/api/gen/chrome/common/extensions/api/api.windows.o $
+    obj/chrome/common/extensions/api/gen/chrome/common/extensions/api/api.alarms.o $
+    obj/chrome/common/extensions/api/gen/chrome/common/extensions/api/api.app_current_window_internal.o $
+    obj/chrome/common/extensions/api/gen/chrome/common/extensions/api/api.app_runtime.o $
+    obj/chrome/common/extensions/api/gen/chrome/common/extensions/api/api.app_window.o $
+    obj/chrome/common/extensions/api/gen/chrome/common/extensions/api/api.audio.o $
+    obj/chrome/common/extensions/api/gen/chrome/common/extensions/api/api.autotest_private.o $
+    obj/chrome/common/extensions/api/gen/chrome/common/extensions/api/api.bluetooth.o $
+    obj/chrome/common/extensions/api/gen/chrome/common/extensions/api/api.braille_display_private.o $
+    obj/chrome/common/extensions/api/gen/chrome/common/extensions/api/api.cast_channel.o $
+    obj/chrome/common/extensions/api/gen/chrome/common/extensions/api/api.developer_private.o $
+    obj/chrome/common/extensions/api/gen/chrome/common/extensions/api/api.dial.o $
+    obj/chrome/common/extensions/api/gen/chrome/common/extensions/api/api.dns.o $
+    obj/chrome/common/extensions/api/gen/chrome/common/extensions/api/api.downloads.o $
+    obj/chrome/common/extensions/api/gen/chrome/common/extensions/api/api.downloads_internal.o $
+    obj/chrome/common/extensions/api/gen/chrome/common/extensions/api/api.experimental_discovery.o $
+    obj/chrome/common/extensions/api/gen/chrome/common/extensions/api/api.experimental_identity.o $
+    obj/chrome/common/extensions/api/gen/chrome/common/extensions/api/api.feedback_private.o $
+    obj/chrome/common/extensions/api/gen/chrome/common/extensions/api/api.file_system.o $
+    obj/chrome/common/extensions/api/gen/chrome/common/extensions/api/api.hangouts_private.o $
+    obj/chrome/common/extensions/api/gen/chrome/common/extensions/api/api.identity.o $
+    obj/chrome/common/extensions/api/gen/chrome/common/extensions/api/api.identity_private.o $
+    obj/chrome/common/extensions/api/gen/chrome/common/extensions/api/api.image_writer_private.o $
+    obj/chrome/common/extensions/api/gen/chrome/common/extensions/api/api.location.o $
+    obj/chrome/common/extensions/api/gen/chrome/common/extensions/api/api.mdns.o $
+    obj/chrome/common/extensions/api/gen/chrome/common/extensions/api/api.media_galleries.o $
+    obj/chrome/common/extensions/api/gen/chrome/common/extensions/api/api.media_galleries_private.o $
+    obj/chrome/common/extensions/api/gen/chrome/common/extensions/api/api.notifications.o $
+    obj/chrome/common/extensions/api/gen/chrome/common/extensions/api/api.power.o $
+    obj/chrome/common/extensions/api/gen/chrome/common/extensions/api/api.push_messaging.o $
+    obj/chrome/common/extensions/api/gen/chrome/common/extensions/api/api.serial.o $
+    obj/chrome/common/extensions/api/gen/chrome/common/extensions/api/api.signed_in_devices.o $
+    obj/chrome/common/extensions/api/gen/chrome/common/extensions/api/api.socket.o $
+    obj/chrome/common/extensions/api/gen/chrome/common/extensions/api/api.sockets_tcp.o $
+    obj/chrome/common/extensions/api/gen/chrome/common/extensions/api/api.sockets_tcp_server.o $
+    obj/chrome/common/extensions/api/gen/chrome/common/extensions/api/api.sockets_udp.o $
+    obj/chrome/common/extensions/api/gen/chrome/common/extensions/api/api.sync_file_system.o $
+    obj/chrome/common/extensions/api/gen/chrome/common/extensions/api/api.system_cpu.o $
+    obj/chrome/common/extensions/api/gen/chrome/common/extensions/api/api.system_display.o $
+    obj/chrome/common/extensions/api/gen/chrome/common/extensions/api/api.system_indicator.o $
+    obj/chrome/common/extensions/api/gen/chrome/common/extensions/api/api.system_memory.o $
+    obj/chrome/common/extensions/api/gen/chrome/common/extensions/api/api.system_storage.o $
+    obj/chrome/common/extensions/api/gen/chrome/common/extensions/api/api.tab_capture.o $
+    obj/chrome/common/extensions/api/gen/chrome/common/extensions/api/api.usb.o $
+    obj/chrome/common/extensions/api/gen/chrome/common/extensions/api/api.webrtc_audio_private.o $
+    obj/chrome/common/extensions/api/gen/chrome/common/extensions/api/api.webrtc_cast_send_transport.o $
+    obj/chrome/common/extensions/api/gen/chrome/common/extensions/api/api.webrtc_cast_udp_transport.o $
+    obj/chrome/common/extensions/api/gen/chrome/common/extensions/api/api.webrtc_logging_private.o $
+    || obj/chrome/common/extensions/api/api.actions_rules_copies.stamp

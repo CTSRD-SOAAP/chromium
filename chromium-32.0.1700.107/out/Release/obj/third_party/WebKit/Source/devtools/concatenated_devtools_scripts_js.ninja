@@ -1,0 +1,31 @@
+rule $
+    concatenated_devtools_scripts_js_target_concatenate_devtools_scripts_js_aab2f90c1a2fb83f61cdb16549bd96dc
+  command = cd ../../third_party/WebKit/Source/devtools; python $
+      scripts/inline_js_imports.py front_end/SourcesPanel.js front_end $
+      ../../../../out/Release/resources/inspector/SourcesPanel.js
+  description = ACTION concatenated_devtools_scripts_js: $
+      concatenate_devtools_scripts_js_aab2f90c1a2fb83f61cdb16549bd96dc
+  restat = 1
+
+build resources/inspector/SourcesPanel.js: $
+    concatenated_devtools_scripts_js_target_concatenate_devtools_scripts_js_aab2f90c1a2fb83f61cdb16549bd96dc $
+    ../../third_party/WebKit/Source/devtools/scripts/inline_js_imports.py $
+    ../../third_party/WebKit/Source/devtools/front_end/BreakpointsSidebarPane.js $
+    ../../third_party/WebKit/Source/devtools/front_end/CSSSourceFrame.js $
+    ../../third_party/WebKit/Source/devtools/front_end/CallStackSidebarPane.js $
+    ../../third_party/WebKit/Source/devtools/front_end/FilePathScoreFunction.js $
+    ../../third_party/WebKit/Source/devtools/front_end/FilteredItemSelectionDialog.js $
+    ../../third_party/WebKit/Source/devtools/front_end/JavaScriptSourceFrame.js $
+    ../../third_party/WebKit/Source/devtools/front_end/NavigatorOverlayController.js $
+    ../../third_party/WebKit/Source/devtools/front_end/NavigatorView.js $
+    ../../third_party/WebKit/Source/devtools/front_end/RevisionHistoryView.js $
+    ../../third_party/WebKit/Source/devtools/front_end/ScopeChainSidebarPane.js $
+    ../../third_party/WebKit/Source/devtools/front_end/SourcesNavigator.js $
+    ../../third_party/WebKit/Source/devtools/front_end/SourcesPanel.js $
+    ../../third_party/WebKit/Source/devtools/front_end/SourcesSearchScope.js $
+    ../../third_party/WebKit/Source/devtools/front_end/StyleSheetOutlineDialog.js $
+    ../../third_party/WebKit/Source/devtools/front_end/TabbedEditorContainer.js $
+    ../../third_party/WebKit/Source/devtools/front_end/UISourceCodeFrame.js $
+    ../../third_party/WebKit/Source/devtools/front_end/WatchExpressionsSidebarPane.js $
+    ../../third_party/WebKit/Source/devtools/front_end/WorkersSidebarPane.js
+

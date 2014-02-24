@@ -1,0 +1,66 @@
+rule disk_cache_proto_target_genproto_b257a8376759f4fbd4aecf6450943b16
+  command = cd ../../gpu; python ../tools/protoc_wrapper/protoc_wrapper.py $
+      --include "" --protobuf $
+      "../out/Release/gen/protoc_out/gpu/command_buffer/service/${root}.pb.h" $
+      --proto-in-dir command_buffer/service --proto-in-file "${root}${ext}" $
+      "--use-system-protobuf=0" -- ../out/Release/protoc --cpp_out $
+      ../out/Release/gen/protoc_out/gpu/command_buffer/service --python_out $
+      ../out/Release/pyproto/gpu/command_buffer/service
+  description = RULE Generating C++ and Python code from ${source}
+  restat = 1
+
+build pyproto/gpu/command_buffer/service/disk_cache_proto_pb2.py $
+    gen/protoc_out/gpu/command_buffer/service/disk_cache_proto.pb.cc $
+    gen/protoc_out/gpu/command_buffer/service/disk_cache_proto.pb.h: $
+    disk_cache_proto_target_genproto_b257a8376759f4fbd4aecf6450943b16 $
+    ../../gpu/command_buffer/service/disk_cache_proto.proto | $
+    ../../tools/protoc_wrapper/protoc_wrapper.py protoc || protoc
+  source = command_buffer/service/disk_cache_proto.proto
+  ext = .proto
+  root = disk_cache_proto
+  unique_name = 6592bf31ccda0b5d86e0f40acb6eef37
+build obj/gpu/disk_cache_proto.actions_rules_copies.stamp: stamp $
+    pyproto/gpu/command_buffer/service/disk_cache_proto_pb2.py $
+    gen/protoc_out/gpu/command_buffer/service/disk_cache_proto.pb.cc $
+    gen/protoc_out/gpu/command_buffer/service/disk_cache_proto.pb.h
+
+defines = -DANGLE_DX11 -D_FILE_OFFSET_BITS=64 -DNO_TCMALLOC -DDISABLE_NACL $
+    -DCHROMIUM_BUILD -DUSE_DEFAULT_RENDER_THEME=1 -DUSE_LIBJPEG_TURBO=1 $
+    -DUSE_NSS=1 -DUSE_X11=1 -DENABLE_ONE_CLICK_SIGNIN $
+    -DGTK_DISABLE_SINGLE_INCLUDES=1 -DUSE_XI2_MT=2 -DENABLE_REMOTING=1 $
+    -DENABLE_WEBRTC=1 -DUSE_PROPRIETARY_CODECS $
+    -DENABLE_CONFIGURATION_POLICY -DENABLE_INPUT_SPEECH $
+    -DENABLE_NOTIFICATIONS -DENABLE_EGLIMAGE=1 -DENABLE_TASK_MANAGER=1 $
+    -DENABLE_EXTENSIONS=1 -DENABLE_PLUGIN_INSTALLATION=1 -DENABLE_PLUGINS=1 $
+    -DENABLE_SESSION_SERVICE=1 -DENABLE_THEMES=1 -DENABLE_BACKGROUND=1 $
+    -DENABLE_AUTOMATION=1 -DENABLE_GOOGLE_NOW=1 -DCLD_VERSION=2 $
+    -DENABLE_FULL_PRINTING=1 -DENABLE_PRINTING=1 -DENABLE_SPELLCHECK=1 $
+    -DENABLE_CAPTIVE_PORTAL_DETECTION=1 -DENABLE_MANAGED_USERS=1 $
+    -DPROTOBUF_USE_DLLS -DGOOGLE_PROTOBUF_NO_RTTI $
+    -DGOOGLE_PROTOBUF_NO_STATIC_INITIALIZER -D__STDC_CONSTANT_MACROS $
+    -D__STDC_FORMAT_MACROS -DNDEBUG -DOFFICIAL_BUILD -DNVALGRIND $
+    -DDYNAMIC_ANNOTATIONS_ENABLED=0 -D_FORTIFY_SOURCE=2
+includes = -Igen/protoc_out -I../.. -I../../third_party/protobuf $
+    -I../../third_party/protobuf/src
+cflags = -fstack-protector --param=ssp-buffer-size=4  -pthread $
+    -fno-exceptions -fno-strict-aliasing -Wall -Wno-unused-parameter $
+    -Wno-missing-field-initializers -fvisibility=hidden -pipe -fPIC $
+    -Wheader-hygiene -Wno-char-subscripts -Wno-unused-function $
+    -Wno-covered-switch-default -Wstring-conversion -Wno-c++11-narrowing $
+    -Wno-reserved-user-defined-literal -Wno-deprecated-register $
+    -Wno-deprecated-declarations -fcolor-diagnostics -O2 -fdata-sections $
+    -ffunction-sections
+cflags_c = -O2 -pipe -fno-stack-protector -Wno-unknown-warning-option $
+    -fno-strict-aliasing
+cflags_cc = -O2 -pipe -fno-stack-protector -Wno-unknown-warning-option $
+    -fno-strict-aliasing -fno-rtti -fno-threadsafe-statics $
+    -fvisibility-inlines-hidden -Wsign-compare -std=gnu++11
+
+build $
+    obj/gpu/gen/protoc_out/gpu/command_buffer/service/disk_cache_proto.disk_cache_proto.pb.o: $
+    cxx gen/protoc_out/gpu/command_buffer/service/disk_cache_proto.pb.cc || $
+    obj/gpu/disk_cache_proto.actions_rules_copies.stamp
+
+build obj/gpu/libdisk_cache_proto.a: alink_thin $
+    obj/gpu/gen/protoc_out/gpu/command_buffer/service/disk_cache_proto.disk_cache_proto.pb.o $
+    || obj/gpu/disk_cache_proto.actions_rules_copies.stamp

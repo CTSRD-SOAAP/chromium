@@ -1,0 +1,140 @@
+defines = -DANGLE_DX11 -D_FILE_OFFSET_BITS=64 -DNO_TCMALLOC -DDISABLE_NACL $
+    -DCHROMIUM_BUILD -DUSE_DEFAULT_RENDER_THEME=1 -DUSE_LIBJPEG_TURBO=1 $
+    -DUSE_NSS=1 -DUSE_X11=1 -DENABLE_ONE_CLICK_SIGNIN $
+    -DGTK_DISABLE_SINGLE_INCLUDES=1 -DUSE_XI2_MT=2 -DENABLE_REMOTING=1 $
+    -DENABLE_WEBRTC=1 -DUSE_PROPRIETARY_CODECS $
+    -DENABLE_CONFIGURATION_POLICY -DENABLE_INPUT_SPEECH $
+    -DENABLE_NOTIFICATIONS -DENABLE_EGLIMAGE=1 -DENABLE_TASK_MANAGER=1 $
+    -DENABLE_EXTENSIONS=1 -DENABLE_PLUGIN_INSTALLATION=1 -DENABLE_PLUGINS=1 $
+    -DENABLE_SESSION_SERVICE=1 -DENABLE_THEMES=1 -DENABLE_BACKGROUND=1 $
+    -DENABLE_AUTOMATION=1 -DENABLE_GOOGLE_NOW=1 -DCLD_VERSION=2 $
+    -DENABLE_FULL_PRINTING=1 -DENABLE_PRINTING=1 -DENABLE_SPELLCHECK=1 $
+    -DENABLE_CAPTIVE_PORTAL_DETECTION=1 -DENABLE_MANAGED_USERS=1 $
+    -DNO_HEAP_CHECK -DDYNAMIC_ANNOTATIONS_ENABLED=1 $
+    -DWTF_USE_DYNAMIC_ANNOTATIONS=1 -D_DEBUG -DTCMALLOC_FOR_DEBUGALLOCATION
+includes = -I../../base/allocator $
+    -I../../third_party/tcmalloc/chromium/src/base $
+    -I../../third_party/tcmalloc/chromium/src -I../..
+cflags = -fstack-protector --param=ssp-buffer-size=4  -pthread $
+    -fno-exceptions -fno-strict-aliasing -Wno-unused-parameter $
+    -Wno-missing-field-initializers -pipe -fPIC -Wheader-hygiene $
+    -Wno-char-subscripts -Wno-unused-function -Wno-covered-switch-default $
+    -Wstring-conversion -Wno-c++11-narrowing $
+    -Wno-reserved-user-defined-literal -Wno-deprecated-register $
+    -Wno-deprecated-declarations -fcolor-diagnostics -Wno-sign-compare $
+    -Wno-unused-result -Wno-format -O0 -g
+cflags_c = -O2 -pipe -fno-stack-protector -Wno-unknown-warning-option $
+    -fno-strict-aliasing
+cflags_cc = -O2 -pipe -fno-stack-protector -Wno-unknown-warning-option $
+    -fno-strict-aliasing -fno-rtti -fno-threadsafe-statics $
+    -fvisibility-inlines-hidden -std=gnu++11 -Wno-deprecated
+
+build obj/third_party/tcmalloc/chromium/src/base/allocator.abort.o: cxx $
+    ../../third_party/tcmalloc/chromium/src/base/abort.cc
+build obj/third_party/tcmalloc/chromium/src/base/allocator.elf_mem_image.o: $
+    cxx ../../third_party/tcmalloc/chromium/src/base/elf_mem_image.cc
+build obj/third_party/tcmalloc/chromium/src/base/allocator.linuxthreads.o: $
+    cxx ../../third_party/tcmalloc/chromium/src/base/linuxthreads.cc
+build obj/third_party/tcmalloc/chromium/src/base/allocator.logging.o: cxx $
+    ../../third_party/tcmalloc/chromium/src/base/logging.cc
+build $
+    obj/third_party/tcmalloc/chromium/src/base/allocator.low_level_alloc.o: $
+    cxx ../../third_party/tcmalloc/chromium/src/base/low_level_alloc.cc
+build obj/third_party/tcmalloc/chromium/src/base/allocator.spinlock.o: cxx $
+    ../../third_party/tcmalloc/chromium/src/base/spinlock.cc
+build $
+    obj/third_party/tcmalloc/chromium/src/base/allocator.spinlock_internal.o: $
+    cxx ../../third_party/tcmalloc/chromium/src/base/spinlock_internal.cc
+build obj/third_party/tcmalloc/chromium/src/base/allocator.sysinfo.o: cxx $
+    ../../third_party/tcmalloc/chromium/src/base/sysinfo.cc
+build obj/third_party/tcmalloc/chromium/src/base/allocator.thread_lister.o: $
+    cc ../../third_party/tcmalloc/chromium/src/base/thread_lister.c
+build obj/third_party/tcmalloc/chromium/src/base/allocator.vdso_support.o: $
+    cxx ../../third_party/tcmalloc/chromium/src/base/vdso_support.cc
+build obj/third_party/tcmalloc/chromium/src/allocator.central_freelist.o: $
+    cxx ../../third_party/tcmalloc/chromium/src/central_freelist.cc
+build obj/third_party/tcmalloc/chromium/src/allocator.common.o: cxx $
+    ../../third_party/tcmalloc/chromium/src/common.cc
+build obj/third_party/tcmalloc/chromium/src/allocator.deep-heap-profile.o: $
+    cxx ../../third_party/tcmalloc/chromium/src/deep-heap-profile.cc
+build obj/third_party/tcmalloc/chromium/src/allocator.free_list.o: cxx $
+    ../../third_party/tcmalloc/chromium/src/free_list.cc
+build obj/third_party/tcmalloc/chromium/src/allocator.heap-profile-table.o: $
+    cxx ../../third_party/tcmalloc/chromium/src/heap-profile-table.cc
+build obj/third_party/tcmalloc/chromium/src/allocator.heap-profiler.o: cxx $
+    ../../third_party/tcmalloc/chromium/src/heap-profiler.cc
+build obj/third_party/tcmalloc/chromium/src/allocator.internal_logging.o: $
+    cxx ../../third_party/tcmalloc/chromium/src/internal_logging.cc
+build obj/third_party/tcmalloc/chromium/src/allocator.malloc_extension.o: $
+    cxx ../../third_party/tcmalloc/chromium/src/malloc_extension.cc
+build obj/third_party/tcmalloc/chromium/src/allocator.malloc_hook.o: cxx $
+    ../../third_party/tcmalloc/chromium/src/malloc_hook.cc
+build obj/third_party/tcmalloc/chromium/src/allocator.maybe_threads.o: cxx $
+    ../../third_party/tcmalloc/chromium/src/maybe_threads.cc
+build obj/third_party/tcmalloc/chromium/src/allocator.memory_region_map.o: $
+    cxx ../../third_party/tcmalloc/chromium/src/memory_region_map.cc
+build obj/third_party/tcmalloc/chromium/src/allocator.page_heap.o: cxx $
+    ../../third_party/tcmalloc/chromium/src/page_heap.cc
+build obj/third_party/tcmalloc/chromium/src/allocator.profile-handler.o: $
+    cxx ../../third_party/tcmalloc/chromium/src/profile-handler.cc
+build obj/third_party/tcmalloc/chromium/src/allocator.profiledata.o: cxx $
+    ../../third_party/tcmalloc/chromium/src/profiledata.cc
+build obj/third_party/tcmalloc/chromium/src/allocator.profiler.o: cxx $
+    ../../third_party/tcmalloc/chromium/src/profiler.cc
+build obj/third_party/tcmalloc/chromium/src/allocator.raw_printer.o: cxx $
+    ../../third_party/tcmalloc/chromium/src/raw_printer.cc
+build obj/third_party/tcmalloc/chromium/src/allocator.sampler.o: cxx $
+    ../../third_party/tcmalloc/chromium/src/sampler.cc
+build obj/third_party/tcmalloc/chromium/src/allocator.span.o: cxx $
+    ../../third_party/tcmalloc/chromium/src/span.cc
+build obj/third_party/tcmalloc/chromium/src/allocator.stack_trace_table.o: $
+    cxx ../../third_party/tcmalloc/chromium/src/stack_trace_table.cc
+build obj/third_party/tcmalloc/chromium/src/allocator.stacktrace.o: cxx $
+    ../../third_party/tcmalloc/chromium/src/stacktrace.cc
+build obj/third_party/tcmalloc/chromium/src/allocator.static_vars.o: cxx $
+    ../../third_party/tcmalloc/chromium/src/static_vars.cc
+build obj/third_party/tcmalloc/chromium/src/allocator.symbolize.o: cxx $
+    ../../third_party/tcmalloc/chromium/src/symbolize.cc
+build obj/third_party/tcmalloc/chromium/src/allocator.system-alloc.o: cxx $
+    ../../third_party/tcmalloc/chromium/src/system-alloc.cc
+build obj/third_party/tcmalloc/chromium/src/allocator.thread_cache.o: cxx $
+    ../../third_party/tcmalloc/chromium/src/thread_cache.cc
+build obj/base/allocator/allocator.debugallocation_shim.o: cxx $
+    ../../base/allocator/debugallocation_shim.cc
+
+build obj/base/allocator/liballocator.a: alink_thin $
+    obj/third_party/tcmalloc/chromium/src/base/allocator.abort.o $
+    obj/third_party/tcmalloc/chromium/src/base/allocator.elf_mem_image.o $
+    obj/third_party/tcmalloc/chromium/src/base/allocator.linuxthreads.o $
+    obj/third_party/tcmalloc/chromium/src/base/allocator.logging.o $
+    obj/third_party/tcmalloc/chromium/src/base/allocator.low_level_alloc.o $
+    obj/third_party/tcmalloc/chromium/src/base/allocator.spinlock.o $
+    obj/third_party/tcmalloc/chromium/src/base/allocator.spinlock_internal.o $
+    obj/third_party/tcmalloc/chromium/src/base/allocator.sysinfo.o $
+    obj/third_party/tcmalloc/chromium/src/base/allocator.thread_lister.o $
+    obj/third_party/tcmalloc/chromium/src/base/allocator.vdso_support.o $
+    obj/third_party/tcmalloc/chromium/src/allocator.central_freelist.o $
+    obj/third_party/tcmalloc/chromium/src/allocator.common.o $
+    obj/third_party/tcmalloc/chromium/src/allocator.deep-heap-profile.o $
+    obj/third_party/tcmalloc/chromium/src/allocator.free_list.o $
+    obj/third_party/tcmalloc/chromium/src/allocator.heap-profile-table.o $
+    obj/third_party/tcmalloc/chromium/src/allocator.heap-profiler.o $
+    obj/third_party/tcmalloc/chromium/src/allocator.internal_logging.o $
+    obj/third_party/tcmalloc/chromium/src/allocator.malloc_extension.o $
+    obj/third_party/tcmalloc/chromium/src/allocator.malloc_hook.o $
+    obj/third_party/tcmalloc/chromium/src/allocator.maybe_threads.o $
+    obj/third_party/tcmalloc/chromium/src/allocator.memory_region_map.o $
+    obj/third_party/tcmalloc/chromium/src/allocator.page_heap.o $
+    obj/third_party/tcmalloc/chromium/src/allocator.profile-handler.o $
+    obj/third_party/tcmalloc/chromium/src/allocator.profiledata.o $
+    obj/third_party/tcmalloc/chromium/src/allocator.profiler.o $
+    obj/third_party/tcmalloc/chromium/src/allocator.raw_printer.o $
+    obj/third_party/tcmalloc/chromium/src/allocator.sampler.o $
+    obj/third_party/tcmalloc/chromium/src/allocator.span.o $
+    obj/third_party/tcmalloc/chromium/src/allocator.stack_trace_table.o $
+    obj/third_party/tcmalloc/chromium/src/allocator.stacktrace.o $
+    obj/third_party/tcmalloc/chromium/src/allocator.static_vars.o $
+    obj/third_party/tcmalloc/chromium/src/allocator.symbolize.o $
+    obj/third_party/tcmalloc/chromium/src/allocator.system-alloc.o $
+    obj/third_party/tcmalloc/chromium/src/allocator.thread_cache.o $
+    obj/base/allocator/allocator.debugallocation_shim.o

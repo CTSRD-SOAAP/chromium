@@ -1,0 +1,563 @@
+build obj/base/base_unittests.actions_depends.stamp: stamp $
+    obj/base/libbase.a obj/base/libbase_i18n.a obj/base/libbase_prefs.a $
+    obj/base/libbase_prefs_test_support.a obj/base/libbase_static.a $
+    obj/base/librun_all_unittests.a obj/base/libtest_support_base.a $
+    obj/base/third_party/dynamic_annotations/libdynamic_annotations.a $
+    obj/testing/libgmock.a obj/testing/libgtest.a $
+    obj/third_party/icu/libicui18n.a obj/third_party/icu/libicuuc.a $
+    obj/net/third_party/nss/libcrssl.a xdisplaycheck $
+    obj/third_party/libevent/libevent.a $
+    obj/base/allocator/liballocator_extension_thunks.a $
+    obj/third_party/modp_b64/libmodp_b64.a obj/base/libsymbolize.a $
+    obj/base/libxdg_mime.a obj/third_party/icu/libicudata.a $
+    obj/third_party/libxml/libxml.a obj/net/third_party/nss/libcrssl.a
+
+defines = -DANGLE_DX11 -D_FILE_OFFSET_BITS=64 -DNO_TCMALLOC -DDISABLE_NACL $
+    -DCHROMIUM_BUILD -DUSE_DEFAULT_RENDER_THEME=1 -DUSE_LIBJPEG_TURBO=1 $
+    -DUSE_NSS=1 -DUSE_X11=1 -DENABLE_ONE_CLICK_SIGNIN $
+    -DGTK_DISABLE_SINGLE_INCLUDES=1 -DUSE_XI2_MT=2 -DENABLE_REMOTING=1 $
+    -DENABLE_WEBRTC=1 -DUSE_PROPRIETARY_CODECS $
+    -DENABLE_CONFIGURATION_POLICY -DENABLE_INPUT_SPEECH $
+    -DENABLE_NOTIFICATIONS -DENABLE_EGLIMAGE=1 -DENABLE_TASK_MANAGER=1 $
+    -DENABLE_EXTENSIONS=1 -DENABLE_PLUGIN_INSTALLATION=1 -DENABLE_PLUGINS=1 $
+    -DENABLE_SESSION_SERVICE=1 -DENABLE_THEMES=1 -DENABLE_BACKGROUND=1 $
+    -DENABLE_AUTOMATION=1 -DENABLE_GOOGLE_NOW=1 -DCLD_VERSION=2 $
+    -DENABLE_FULL_PRINTING=1 -DENABLE_PRINTING=1 -DENABLE_SPELLCHECK=1 $
+    -DENABLE_CAPTIVE_PORTAL_DETECTION=1 -DENABLE_MANAGED_USERS=1 $
+    -DUSE_SYMBOLIZE -DUNIT_TEST -DGTEST_HAS_RTTI=0 $
+    -DU_USING_ICU_NAMESPACE=0 -DU_STATIC_IMPLEMENTATION $
+    -D__STDC_CONSTANT_MACROS -D__STDC_FORMAT_MACROS -DNDEBUG $
+    -DOFFICIAL_BUILD -DNVALGRIND -DDYNAMIC_ANNOTATIONS_ENABLED=0 $
+    -D_FORTIFY_SOURCE=2
+includes = -I../.. -I../../testing/gmock/include $
+    -I../../testing/gtest/include -I../../third_party/icu/source/i18n $
+    -I../../third_party/icu/source/common -I../../net/third_party/nss/ssl
+cflags = -fstack-protector --param=ssp-buffer-size=4  -pthread $
+    -fno-exceptions -fno-strict-aliasing -Wall -Wno-unused-parameter $
+    -Wno-missing-field-initializers -fvisibility=hidden -pipe -fPIC $
+    -Wheader-hygiene -Wno-char-subscripts -Wno-unused-function $
+    -Wno-covered-switch-default -Wstring-conversion -Wno-c++11-narrowing $
+    -Wno-reserved-user-defined-literal -Wno-deprecated-register $
+    -Wno-deprecated-declarations -fcolor-diagnostics $
+    -I/usr/local/include/gtk-2.0 -I/usr/local/include/gio-unix-2.0/ $
+    -I/usr/local/include/atk-1.0 -I/usr/local/include/cairo $
+    -I/usr/local/include/pixman-1 -D_THREAD_SAFE $
+    -I/usr/local/include/gdk-pixbuf-2.0 -I/usr/local/include/libpng15 $
+    -I/usr/local/include/pango-1.0 -I/usr/local/include/freetype2 $
+    -I/usr/local/include/harfbuzz -pthread -I/usr/local/include/glib-2.0 $
+    -I/usr/local/include -D_THREAD_SAFE -I/usr/local/include -pthread $
+    -I/usr/local/include/glib-2.0 -I/usr/local/include $
+    -I/usr/local/include/nss -I/usr/local/include/nss/nss $
+    -I/usr/local/include/nspr -Wno-header-guard -O2 -fdata-sections $
+    -ffunction-sections
+cflags_c = -O2 -pipe -fno-stack-protector -Wno-unknown-warning-option $
+    -fno-strict-aliasing
+cflags_cc = -O2 -pipe -fno-stack-protector -Wno-unknown-warning-option $
+    -fno-strict-aliasing -fno-rtti -fno-threadsafe-statics $
+    -fvisibility-inlines-hidden -Wsign-compare -std=gnu++11
+
+build obj/base/base_unittests.async_socket_io_handler_unittest.o: cxx $
+    ../../base/async_socket_io_handler_unittest.cc
+build obj/base/base_unittests.at_exit_unittest.o: cxx $
+    ../../base/at_exit_unittest.cc
+build obj/base/base_unittests.atomicops_unittest.o: cxx $
+    ../../base/atomicops_unittest.cc
+build obj/base/base_unittests.barrier_closure_unittest.o: cxx $
+    ../../base/barrier_closure_unittest.cc
+build obj/base/base_unittests.base64_unittest.o: cxx $
+    ../../base/base64_unittest.cc
+build obj/base/base_unittests.bind_unittest.o: cxx ../../base/bind_unittest.cc
+build obj/base/base_unittests.bits_unittest.o: cxx ../../base/bits_unittest.cc
+build obj/base/base_unittests.build_time_unittest.o: cxx $
+    ../../base/build_time_unittest.cc
+build obj/base/base_unittests.callback_helpers_unittest.o: cxx $
+    ../../base/callback_helpers_unittest.cc
+build obj/base/base_unittests.callback_list_unittest.o: cxx $
+    ../../base/callback_list_unittest.cc
+build obj/base/base_unittests.callback_unittest.o: cxx $
+    ../../base/callback_unittest.cc
+build obj/base/base_unittests.cancelable_callback_unittest.o: cxx $
+    ../../base/cancelable_callback_unittest.cc
+build obj/base/base_unittests.command_line_unittest.o: cxx $
+    ../../base/command_line_unittest.cc
+build obj/base/containers/base_unittests.hash_tables_unittest.o: cxx $
+    ../../base/containers/hash_tables_unittest.cc
+build obj/base/containers/base_unittests.linked_list_unittest.o: cxx $
+    ../../base/containers/linked_list_unittest.cc
+build obj/base/containers/base_unittests.mru_cache_unittest.o: cxx $
+    ../../base/containers/mru_cache_unittest.cc
+build obj/base/containers/base_unittests.small_map_unittest.o: cxx $
+    ../../base/containers/small_map_unittest.cc
+build obj/base/containers/base_unittests.stack_container_unittest.o: cxx $
+    ../../base/containers/stack_container_unittest.cc
+build obj/base/base_unittests.cpu_unittest.o: cxx ../../base/cpu_unittest.cc
+build obj/base/debug/base_unittests.crash_logging_unittest.o: cxx $
+    ../../base/debug/crash_logging_unittest.cc
+build obj/base/debug/base_unittests.leak_tracker_unittest.o: cxx $
+    ../../base/debug/leak_tracker_unittest.cc
+build obj/base/debug/base_unittests.stack_trace_unittest.o: cxx $
+    ../../base/debug/stack_trace_unittest.cc
+build obj/base/debug/base_unittests.trace_event_memory_unittest.o: cxx $
+    ../../base/debug/trace_event_memory_unittest.cc
+build $
+    obj/base/debug/base_unittests.trace_event_system_stats_monitor_unittest.o: $
+    cxx ../../base/debug/trace_event_system_stats_monitor_unittest.cc
+build obj/base/debug/base_unittests.trace_event_unittest.o: cxx $
+    ../../base/debug/trace_event_unittest.cc
+build obj/base/base_unittests.deferred_sequenced_task_runner_unittest.o: $
+    cxx ../../base/deferred_sequenced_task_runner_unittest.cc
+build obj/base/base_unittests.environment_unittest.o: cxx $
+    ../../base/environment_unittest.cc
+build obj/base/base_unittests.file_util_unittest.o: cxx $
+    ../../base/file_util_unittest.cc
+build obj/base/files/base_unittests.dir_reader_posix_unittest.o: cxx $
+    ../../base/files/dir_reader_posix_unittest.cc
+build obj/base/files/base_unittests.file_path_unittest.o: cxx $
+    ../../base/files/file_path_unittest.cc
+build obj/base/files/base_unittests.file_util_proxy_unittest.o: cxx $
+    ../../base/files/file_util_proxy_unittest.cc
+build obj/base/files/base_unittests.important_file_writer_unittest.o: cxx $
+    ../../base/files/important_file_writer_unittest.cc
+build obj/base/files/base_unittests.scoped_temp_dir_unittest.o: cxx $
+    ../../base/files/scoped_temp_dir_unittest.cc
+build obj/base/base_unittests.gmock_unittest.o: cxx $
+    ../../base/gmock_unittest.cc
+build obj/base/base_unittests.guid_unittest.o: cxx ../../base/guid_unittest.cc
+build obj/base/base_unittests.id_map_unittest.o: cxx $
+    ../../base/id_map_unittest.cc
+build obj/base/i18n/base_unittests.break_iterator_unittest.o: cxx $
+    ../../base/i18n/break_iterator_unittest.cc
+build obj/base/i18n/base_unittests.char_iterator_unittest.o: cxx $
+    ../../base/i18n/char_iterator_unittest.cc
+build obj/base/i18n/base_unittests.case_conversion_unittest.o: cxx $
+    ../../base/i18n/case_conversion_unittest.cc
+build obj/base/i18n/base_unittests.file_util_icu_unittest.o: cxx $
+    ../../base/i18n/file_util_icu_unittest.cc
+build obj/base/i18n/base_unittests.icu_string_conversions_unittest.o: cxx $
+    ../../base/i18n/icu_string_conversions_unittest.cc
+build obj/base/i18n/base_unittests.number_formatting_unittest.o: cxx $
+    ../../base/i18n/number_formatting_unittest.cc
+build obj/base/i18n/base_unittests.rtl_unittest.o: cxx $
+    ../../base/i18n/rtl_unittest.cc
+build obj/base/i18n/base_unittests.string_search_unittest.o: cxx $
+    ../../base/i18n/string_search_unittest.cc
+build obj/base/i18n/base_unittests.time_formatting_unittest.o: cxx $
+    ../../base/i18n/time_formatting_unittest.cc
+build obj/base/base_unittests.ini_parser_unittest.o: cxx $
+    ../../base/ini_parser_unittest.cc
+build obj/base/json/base_unittests.json_parser_unittest.o: cxx $
+    ../../base/json/json_parser_unittest.cc
+build obj/base/json/base_unittests.json_reader_unittest.o: cxx $
+    ../../base/json/json_reader_unittest.cc
+build obj/base/json/base_unittests.json_value_converter_unittest.o: cxx $
+    ../../base/json/json_value_converter_unittest.cc
+build obj/base/json/base_unittests.json_value_serializer_unittest.o: cxx $
+    ../../base/json/json_value_serializer_unittest.cc
+build obj/base/json/base_unittests.json_writer_unittest.o: cxx $
+    ../../base/json/json_writer_unittest.cc
+build obj/base/json/base_unittests.string_escape_unittest.o: cxx $
+    ../../base/json/string_escape_unittest.cc
+build obj/base/base_unittests.lazy_instance_unittest.o: cxx $
+    ../../base/lazy_instance_unittest.cc
+build obj/base/base_unittests.logging_unittest.o: cxx $
+    ../../base/logging_unittest.cc
+build obj/base/base_unittests.md5_unittest.o: cxx ../../base/md5_unittest.cc
+build obj/base/memory/base_unittests.aligned_memory_unittest.o: cxx $
+    ../../base/memory/aligned_memory_unittest.cc
+build obj/base/memory/base_unittests.discardable_memory_unittest.o: cxx $
+    ../../base/memory/discardable_memory_unittest.cc
+build $
+    obj/base/memory/base_unittests.discardable_memory_provider_unittest.o: $
+    cxx ../../base/memory/discardable_memory_provider_unittest.cc
+build obj/base/memory/base_unittests.linked_ptr_unittest.o: cxx $
+    ../../base/memory/linked_ptr_unittest.cc
+build obj/base/memory/base_unittests.ref_counted_memory_unittest.o: cxx $
+    ../../base/memory/ref_counted_memory_unittest.cc
+build obj/base/memory/base_unittests.ref_counted_unittest.o: cxx $
+    ../../base/memory/ref_counted_unittest.cc
+build obj/base/memory/base_unittests.scoped_ptr_unittest.o: cxx $
+    ../../base/memory/scoped_ptr_unittest.cc
+build obj/base/memory/base_unittests.scoped_vector_unittest.o: cxx $
+    ../../base/memory/scoped_vector_unittest.cc
+build obj/base/memory/base_unittests.shared_memory_unittest.o: cxx $
+    ../../base/memory/shared_memory_unittest.cc
+build obj/base/memory/base_unittests.singleton_unittest.o: cxx $
+    ../../base/memory/singleton_unittest.cc
+build obj/base/memory/base_unittests.weak_ptr_unittest.o: cxx $
+    ../../base/memory/weak_ptr_unittest.cc
+build $
+    obj/base/message_loop/base_unittests.message_loop_proxy_impl_unittest.o: $
+    cxx ../../base/message_loop/message_loop_proxy_impl_unittest.cc
+build obj/base/message_loop/base_unittests.message_loop_proxy_unittest.o: $
+    cxx ../../base/message_loop/message_loop_proxy_unittest.cc
+build obj/base/message_loop/base_unittests.message_loop_unittest.o: cxx $
+    ../../base/message_loop/message_loop_unittest.cc
+build obj/base/message_loop/base_unittests.message_pump_glib_unittest.o: $
+    cxx ../../base/message_loop/message_pump_glib_unittest.cc
+build $
+    obj/base/message_loop/base_unittests.message_pump_libevent_unittest.o: $
+    cxx ../../base/message_loop/message_pump_libevent_unittest.cc
+build obj/base/metrics/base_unittests.sample_map_unittest.o: cxx $
+    ../../base/metrics/sample_map_unittest.cc
+build obj/base/metrics/base_unittests.sample_vector_unittest.o: cxx $
+    ../../base/metrics/sample_vector_unittest.cc
+build obj/base/metrics/base_unittests.bucket_ranges_unittest.o: cxx $
+    ../../base/metrics/bucket_ranges_unittest.cc
+build obj/base/metrics/base_unittests.field_trial_unittest.o: cxx $
+    ../../base/metrics/field_trial_unittest.cc
+build obj/base/metrics/base_unittests.histogram_base_unittest.o: cxx $
+    ../../base/metrics/histogram_base_unittest.cc
+build $
+    obj/base/metrics/base_unittests.histogram_delta_serialization_unittest.o: $
+    cxx ../../base/metrics/histogram_delta_serialization_unittest.cc
+build obj/base/metrics/base_unittests.histogram_unittest.o: cxx $
+    ../../base/metrics/histogram_unittest.cc
+build obj/base/metrics/base_unittests.sparse_histogram_unittest.o: cxx $
+    ../../base/metrics/sparse_histogram_unittest.cc
+build obj/base/metrics/base_unittests.stats_table_unittest.o: cxx $
+    ../../base/metrics/stats_table_unittest.cc
+build obj/base/metrics/base_unittests.statistics_recorder_unittest.o: cxx $
+    ../../base/metrics/statistics_recorder_unittest.cc
+build obj/base/base_unittests.observer_list_unittest.o: cxx $
+    ../../base/observer_list_unittest.cc
+build obj/base/base_unittests.path_service_unittest.o: cxx $
+    ../../base/path_service_unittest.cc
+build obj/base/base_unittests.pickle_unittest.o: cxx $
+    ../../base/pickle_unittest.cc
+build obj/base/base_unittests.platform_file_unittest.o: cxx $
+    ../../base/platform_file_unittest.cc
+build obj/base/posix/base_unittests.file_descriptor_shuffle_unittest.o: cxx $
+    ../../base/posix/file_descriptor_shuffle_unittest.cc
+build obj/base/posix/base_unittests.unix_domain_socket_linux_unittest.o: $
+    cxx ../../base/posix/unix_domain_socket_linux_unittest.cc
+build obj/base/power_monitor/base_unittests.power_monitor_unittest.o: cxx $
+    ../../base/power_monitor/power_monitor_unittest.cc
+build obj/base/prefs/base_unittests.default_pref_store_unittest.o: cxx $
+    ../../base/prefs/default_pref_store_unittest.cc
+build obj/base/prefs/base_unittests.json_pref_store_unittest.o: cxx $
+    ../../base/prefs/json_pref_store_unittest.cc
+build obj/base/prefs/base_unittests.overlay_user_pref_store_unittest.o: cxx $
+    ../../base/prefs/overlay_user_pref_store_unittest.cc
+build obj/base/prefs/base_unittests.pref_change_registrar_unittest.o: cxx $
+    ../../base/prefs/pref_change_registrar_unittest.cc
+build obj/base/prefs/base_unittests.pref_member_unittest.o: cxx $
+    ../../base/prefs/pref_member_unittest.cc
+build obj/base/prefs/base_unittests.pref_notifier_impl_unittest.o: cxx $
+    ../../base/prefs/pref_notifier_impl_unittest.cc
+build obj/base/prefs/base_unittests.pref_service_unittest.o: cxx $
+    ../../base/prefs/pref_service_unittest.cc
+build obj/base/prefs/base_unittests.pref_value_map_unittest.o: cxx $
+    ../../base/prefs/pref_value_map_unittest.cc
+build obj/base/prefs/base_unittests.pref_value_store_unittest.o: cxx $
+    ../../base/prefs/pref_value_store_unittest.cc
+build obj/base/prefs/base_unittests.scoped_user_pref_update_unittest.o: cxx $
+    ../../base/prefs/scoped_user_pref_update_unittest.cc
+build obj/base/process/base_unittests.memory_unittest.o: cxx $
+    ../../base/process/memory_unittest.cc
+build obj/base/process/base_unittests.process_metrics_unittests.o: cxx $
+    ../../base/process/process_metrics_unittests.cc
+build obj/base/process/base_unittests.process_util_unittest.o: cxx $
+    ../../base/process/process_util_unittest.cc
+build obj/base/profiler/base_unittests.tracked_time_unittest.o: cxx $
+    ../../base/profiler/tracked_time_unittest.cc
+build obj/base/base_unittests.rand_util_unittest.o: cxx $
+    ../../base/rand_util_unittest.cc
+build obj/base/base_unittests.safe_numerics_unittest.o: cxx $
+    ../../base/safe_numerics_unittest.cc
+build obj/base/base_unittests.scoped_clear_errno_unittest.o: cxx $
+    ../../base/scoped_clear_errno_unittest.cc
+build obj/base/base_unittests.scoped_native_library_unittest.o: cxx $
+    ../../base/scoped_native_library_unittest.cc
+build obj/base/base_unittests.security_unittest.o: cxx $
+    ../../base/security_unittest.cc
+build obj/base/base_unittests.sequence_checker_unittest.o: cxx $
+    ../../base/sequence_checker_unittest.cc
+build obj/base/base_unittests.sha1_unittest.o: cxx ../../base/sha1_unittest.cc
+build obj/base/base_unittests.stl_util_unittest.o: cxx $
+    ../../base/stl_util_unittest.cc
+build obj/base/strings/base_unittests.nullable_string16_unittest.o: cxx $
+    ../../base/strings/nullable_string16_unittest.cc
+build obj/base/strings/base_unittests.safe_sprintf_unittest.o: cxx $
+    ../../base/strings/safe_sprintf_unittest.cc
+build obj/base/strings/base_unittests.string16_unittest.o: cxx $
+    ../../base/strings/string16_unittest.cc
+build obj/base/strings/base_unittests.stringprintf_unittest.o: cxx $
+    ../../base/strings/stringprintf_unittest.cc
+build obj/base/strings/base_unittests.string_number_conversions_unittest.o: $
+    cxx ../../base/strings/string_number_conversions_unittest.cc
+build obj/base/strings/base_unittests.string_piece_unittest.o: cxx $
+    ../../base/strings/string_piece_unittest.cc
+build obj/base/strings/base_unittests.string_split_unittest.o: cxx $
+    ../../base/strings/string_split_unittest.cc
+build obj/base/strings/base_unittests.string_tokenizer_unittest.o: cxx $
+    ../../base/strings/string_tokenizer_unittest.cc
+build obj/base/strings/base_unittests.string_util_unittest.o: cxx $
+    ../../base/strings/string_util_unittest.cc
+build obj/base/strings/base_unittests.stringize_macros_unittest.o: cxx $
+    ../../base/strings/stringize_macros_unittest.cc
+build obj/base/strings/base_unittests.sys_string_conversions_unittest.o: $
+    cxx ../../base/strings/sys_string_conversions_unittest.cc
+build $
+    obj/base/strings/base_unittests.utf_offset_string_conversions_unittest.o: $
+    cxx ../../base/strings/utf_offset_string_conversions_unittest.cc
+build obj/base/strings/base_unittests.utf_string_conversions_unittest.o: $
+    cxx ../../base/strings/utf_string_conversions_unittest.cc
+build obj/base/base_unittests.sync_socket_unittest.o: cxx $
+    ../../base/sync_socket_unittest.cc
+build obj/base/synchronization/base_unittests.cancellation_flag_unittest.o: $
+    cxx ../../base/synchronization/cancellation_flag_unittest.cc
+build $
+    obj/base/synchronization/base_unittests.condition_variable_unittest.o: $
+    cxx ../../base/synchronization/condition_variable_unittest.cc
+build obj/base/synchronization/base_unittests.lock_unittest.o: cxx $
+    ../../base/synchronization/lock_unittest.cc
+build obj/base/synchronization/base_unittests.waitable_event_unittest.o: $
+    cxx ../../base/synchronization/waitable_event_unittest.cc
+build $
+    obj/base/synchronization/base_unittests.waitable_event_watcher_unittest.o: $
+    cxx ../../base/synchronization/waitable_event_watcher_unittest.cc
+build obj/base/base_unittests.sys_info_unittest.o: cxx $
+    ../../base/sys_info_unittest.cc
+build obj/base/system_monitor/base_unittests.system_monitor_unittest.o: cxx $
+    ../../base/system_monitor/system_monitor_unittest.cc
+build obj/base/base_unittests.task_runner_util_unittest.o: cxx $
+    ../../base/task_runner_util_unittest.cc
+build obj/base/base_unittests.template_util_unittest.o: cxx $
+    ../../base/template_util_unittest.cc
+build obj/base/test/expectations/base_unittests.expectation_unittest.o: cxx $
+    ../../base/test/expectations/expectation_unittest.cc
+build obj/base/test/expectations/base_unittests.parser_unittest.o: cxx $
+    ../../base/test/expectations/parser_unittest.cc
+build obj/base/test/base_unittests.trace_event_analyzer_unittest.o: cxx $
+    ../../base/test/trace_event_analyzer_unittest.cc
+build obj/base/threading/base_unittests.non_thread_safe_unittest.o: cxx $
+    ../../base/threading/non_thread_safe_unittest.cc
+build obj/base/threading/base_unittests.platform_thread_unittest.o: cxx $
+    ../../base/threading/platform_thread_unittest.cc
+build obj/base/threading/base_unittests.sequenced_worker_pool_unittest.o: $
+    cxx ../../base/threading/sequenced_worker_pool_unittest.cc
+build obj/base/threading/base_unittests.simple_thread_unittest.o: cxx $
+    ../../base/threading/simple_thread_unittest.cc
+build obj/base/threading/base_unittests.thread_checker_unittest.o: cxx $
+    ../../base/threading/thread_checker_unittest.cc
+build obj/base/threading/base_unittests.thread_collision_warner_unittest.o: $
+    cxx ../../base/threading/thread_collision_warner_unittest.cc
+build obj/base/threading/base_unittests.thread_id_name_manager_unittest.o: $
+    cxx ../../base/threading/thread_id_name_manager_unittest.cc
+build obj/base/threading/base_unittests.thread_local_storage_unittest.o: $
+    cxx ../../base/threading/thread_local_storage_unittest.cc
+build obj/base/threading/base_unittests.thread_local_unittest.o: cxx $
+    ../../base/threading/thread_local_unittest.cc
+build obj/base/threading/base_unittests.thread_unittest.o: cxx $
+    ../../base/threading/thread_unittest.cc
+build obj/base/threading/base_unittests.watchdog_unittest.o: cxx $
+    ../../base/threading/watchdog_unittest.cc
+build obj/base/threading/base_unittests.worker_pool_posix_unittest.o: cxx $
+    ../../base/threading/worker_pool_posix_unittest.cc
+build obj/base/threading/base_unittests.worker_pool_unittest.o: cxx $
+    ../../base/threading/worker_pool_unittest.cc
+build obj/base/time/base_unittests.pr_time_unittest.o: cxx $
+    ../../base/time/pr_time_unittest.cc
+build obj/base/time/base_unittests.time_unittest.o: cxx $
+    ../../base/time/time_unittest.cc
+build obj/base/timer/base_unittests.hi_res_timer_manager_unittest.o: cxx $
+    ../../base/timer/hi_res_timer_manager_unittest.cc
+build obj/base/timer/base_unittests.timer_unittest.o: cxx $
+    ../../base/timer/timer_unittest.cc
+build obj/base/base_unittests.tools_sanity_unittest.o: cxx $
+    ../../base/tools_sanity_unittest.cc
+build obj/base/base_unittests.tracked_objects_unittest.o: cxx $
+    ../../base/tracked_objects_unittest.cc
+build obj/base/base_unittests.tuple_unittest.o: cxx $
+    ../../base/tuple_unittest.cc
+build obj/base/base_unittests.values_unittest.o: cxx $
+    ../../base/values_unittest.cc
+build obj/base/base_unittests.version_unittest.o: cxx $
+    ../../base/version_unittest.cc
+build obj/base/base_unittests.vlog_unittest.o: cxx ../../base/vlog_unittest.cc
+build obj/base/nix/base_unittests.xdg_util_unittest.o: cxx $
+    ../../base/nix/xdg_util_unittest.cc
+
+ldflags = -Wl,-z,now -Wl,-z,relro -pthread -Wl,-z,noexecstack -fPIC $
+    -Wl,--no-keep-memory -L/usr/local/lib -L/usr/local/lib/nss -Wl,-O1 $
+    -Wl,--as-needed
+libs =  -L/usr/local/lib -lexecinfo -lgmodule-2.0 -lgobject-2.0 $
+    -lgthread-2.0 -lglib-2.0 -lintl -lXtst -lgtk-x11-2.0 -lgdk-x11-2.0 $
+    -lpangocairo-1.0 -lXext -lXrender -lXinerama -lXi -lXrandr -lXcursor $
+    -lXcomposite -lXdamage -lXfixes -lX11 -latk-1.0 -lcairo $
+    -lgdk_pixbuf-2.0 -lgio-2.0 -lpangoft2-1.0 -lpango-1.0 -lfontconfig $
+    -lfreetype -lxml2 -lnss3 -lsmime3 -lnssutil3 -lplds4 -lplc4 -lnspr4
+build base_unittests: link $
+    obj/base/base_unittests.async_socket_io_handler_unittest.o $
+    obj/base/base_unittests.at_exit_unittest.o $
+    obj/base/base_unittests.atomicops_unittest.o $
+    obj/base/base_unittests.barrier_closure_unittest.o $
+    obj/base/base_unittests.base64_unittest.o $
+    obj/base/base_unittests.bind_unittest.o $
+    obj/base/base_unittests.bits_unittest.o $
+    obj/base/base_unittests.build_time_unittest.o $
+    obj/base/base_unittests.callback_helpers_unittest.o $
+    obj/base/base_unittests.callback_list_unittest.o $
+    obj/base/base_unittests.callback_unittest.o $
+    obj/base/base_unittests.cancelable_callback_unittest.o $
+    obj/base/base_unittests.command_line_unittest.o $
+    obj/base/containers/base_unittests.hash_tables_unittest.o $
+    obj/base/containers/base_unittests.linked_list_unittest.o $
+    obj/base/containers/base_unittests.mru_cache_unittest.o $
+    obj/base/containers/base_unittests.small_map_unittest.o $
+    obj/base/containers/base_unittests.stack_container_unittest.o $
+    obj/base/base_unittests.cpu_unittest.o $
+    obj/base/debug/base_unittests.crash_logging_unittest.o $
+    obj/base/debug/base_unittests.leak_tracker_unittest.o $
+    obj/base/debug/base_unittests.stack_trace_unittest.o $
+    obj/base/debug/base_unittests.trace_event_memory_unittest.o $
+    obj/base/debug/base_unittests.trace_event_system_stats_monitor_unittest.o $
+    obj/base/debug/base_unittests.trace_event_unittest.o $
+    obj/base/base_unittests.deferred_sequenced_task_runner_unittest.o $
+    obj/base/base_unittests.environment_unittest.o $
+    obj/base/base_unittests.file_util_unittest.o $
+    obj/base/files/base_unittests.dir_reader_posix_unittest.o $
+    obj/base/files/base_unittests.file_path_unittest.o $
+    obj/base/files/base_unittests.file_util_proxy_unittest.o $
+    obj/base/files/base_unittests.important_file_writer_unittest.o $
+    obj/base/files/base_unittests.scoped_temp_dir_unittest.o $
+    obj/base/base_unittests.gmock_unittest.o $
+    obj/base/base_unittests.guid_unittest.o $
+    obj/base/base_unittests.id_map_unittest.o $
+    obj/base/i18n/base_unittests.break_iterator_unittest.o $
+    obj/base/i18n/base_unittests.char_iterator_unittest.o $
+    obj/base/i18n/base_unittests.case_conversion_unittest.o $
+    obj/base/i18n/base_unittests.file_util_icu_unittest.o $
+    obj/base/i18n/base_unittests.icu_string_conversions_unittest.o $
+    obj/base/i18n/base_unittests.number_formatting_unittest.o $
+    obj/base/i18n/base_unittests.rtl_unittest.o $
+    obj/base/i18n/base_unittests.string_search_unittest.o $
+    obj/base/i18n/base_unittests.time_formatting_unittest.o $
+    obj/base/base_unittests.ini_parser_unittest.o $
+    obj/base/json/base_unittests.json_parser_unittest.o $
+    obj/base/json/base_unittests.json_reader_unittest.o $
+    obj/base/json/base_unittests.json_value_converter_unittest.o $
+    obj/base/json/base_unittests.json_value_serializer_unittest.o $
+    obj/base/json/base_unittests.json_writer_unittest.o $
+    obj/base/json/base_unittests.string_escape_unittest.o $
+    obj/base/base_unittests.lazy_instance_unittest.o $
+    obj/base/base_unittests.logging_unittest.o $
+    obj/base/base_unittests.md5_unittest.o $
+    obj/base/memory/base_unittests.aligned_memory_unittest.o $
+    obj/base/memory/base_unittests.discardable_memory_unittest.o $
+    obj/base/memory/base_unittests.discardable_memory_provider_unittest.o $
+    obj/base/memory/base_unittests.linked_ptr_unittest.o $
+    obj/base/memory/base_unittests.ref_counted_memory_unittest.o $
+    obj/base/memory/base_unittests.ref_counted_unittest.o $
+    obj/base/memory/base_unittests.scoped_ptr_unittest.o $
+    obj/base/memory/base_unittests.scoped_vector_unittest.o $
+    obj/base/memory/base_unittests.shared_memory_unittest.o $
+    obj/base/memory/base_unittests.singleton_unittest.o $
+    obj/base/memory/base_unittests.weak_ptr_unittest.o $
+    obj/base/message_loop/base_unittests.message_loop_proxy_impl_unittest.o $
+    obj/base/message_loop/base_unittests.message_loop_proxy_unittest.o $
+    obj/base/message_loop/base_unittests.message_loop_unittest.o $
+    obj/base/message_loop/base_unittests.message_pump_glib_unittest.o $
+    obj/base/message_loop/base_unittests.message_pump_libevent_unittest.o $
+    obj/base/metrics/base_unittests.sample_map_unittest.o $
+    obj/base/metrics/base_unittests.sample_vector_unittest.o $
+    obj/base/metrics/base_unittests.bucket_ranges_unittest.o $
+    obj/base/metrics/base_unittests.field_trial_unittest.o $
+    obj/base/metrics/base_unittests.histogram_base_unittest.o $
+    obj/base/metrics/base_unittests.histogram_delta_serialization_unittest.o $
+    obj/base/metrics/base_unittests.histogram_unittest.o $
+    obj/base/metrics/base_unittests.sparse_histogram_unittest.o $
+    obj/base/metrics/base_unittests.stats_table_unittest.o $
+    obj/base/metrics/base_unittests.statistics_recorder_unittest.o $
+    obj/base/base_unittests.observer_list_unittest.o $
+    obj/base/base_unittests.path_service_unittest.o $
+    obj/base/base_unittests.pickle_unittest.o $
+    obj/base/base_unittests.platform_file_unittest.o $
+    obj/base/posix/base_unittests.file_descriptor_shuffle_unittest.o $
+    obj/base/posix/base_unittests.unix_domain_socket_linux_unittest.o $
+    obj/base/power_monitor/base_unittests.power_monitor_unittest.o $
+    obj/base/prefs/base_unittests.default_pref_store_unittest.o $
+    obj/base/prefs/base_unittests.json_pref_store_unittest.o $
+    obj/base/prefs/base_unittests.overlay_user_pref_store_unittest.o $
+    obj/base/prefs/base_unittests.pref_change_registrar_unittest.o $
+    obj/base/prefs/base_unittests.pref_member_unittest.o $
+    obj/base/prefs/base_unittests.pref_notifier_impl_unittest.o $
+    obj/base/prefs/base_unittests.pref_service_unittest.o $
+    obj/base/prefs/base_unittests.pref_value_map_unittest.o $
+    obj/base/prefs/base_unittests.pref_value_store_unittest.o $
+    obj/base/prefs/base_unittests.scoped_user_pref_update_unittest.o $
+    obj/base/process/base_unittests.memory_unittest.o $
+    obj/base/process/base_unittests.process_metrics_unittests.o $
+    obj/base/process/base_unittests.process_util_unittest.o $
+    obj/base/profiler/base_unittests.tracked_time_unittest.o $
+    obj/base/base_unittests.rand_util_unittest.o $
+    obj/base/base_unittests.safe_numerics_unittest.o $
+    obj/base/base_unittests.scoped_clear_errno_unittest.o $
+    obj/base/base_unittests.scoped_native_library_unittest.o $
+    obj/base/base_unittests.security_unittest.o $
+    obj/base/base_unittests.sequence_checker_unittest.o $
+    obj/base/base_unittests.sha1_unittest.o $
+    obj/base/base_unittests.stl_util_unittest.o $
+    obj/base/strings/base_unittests.nullable_string16_unittest.o $
+    obj/base/strings/base_unittests.safe_sprintf_unittest.o $
+    obj/base/strings/base_unittests.string16_unittest.o $
+    obj/base/strings/base_unittests.stringprintf_unittest.o $
+    obj/base/strings/base_unittests.string_number_conversions_unittest.o $
+    obj/base/strings/base_unittests.string_piece_unittest.o $
+    obj/base/strings/base_unittests.string_split_unittest.o $
+    obj/base/strings/base_unittests.string_tokenizer_unittest.o $
+    obj/base/strings/base_unittests.string_util_unittest.o $
+    obj/base/strings/base_unittests.stringize_macros_unittest.o $
+    obj/base/strings/base_unittests.sys_string_conversions_unittest.o $
+    obj/base/strings/base_unittests.utf_offset_string_conversions_unittest.o $
+    obj/base/strings/base_unittests.utf_string_conversions_unittest.o $
+    obj/base/base_unittests.sync_socket_unittest.o $
+    obj/base/synchronization/base_unittests.cancellation_flag_unittest.o $
+    obj/base/synchronization/base_unittests.condition_variable_unittest.o $
+    obj/base/synchronization/base_unittests.lock_unittest.o $
+    obj/base/synchronization/base_unittests.waitable_event_unittest.o $
+    obj/base/synchronization/base_unittests.waitable_event_watcher_unittest.o $
+    obj/base/base_unittests.sys_info_unittest.o $
+    obj/base/system_monitor/base_unittests.system_monitor_unittest.o $
+    obj/base/base_unittests.task_runner_util_unittest.o $
+    obj/base/base_unittests.template_util_unittest.o $
+    obj/base/test/expectations/base_unittests.expectation_unittest.o $
+    obj/base/test/expectations/base_unittests.parser_unittest.o $
+    obj/base/test/base_unittests.trace_event_analyzer_unittest.o $
+    obj/base/threading/base_unittests.non_thread_safe_unittest.o $
+    obj/base/threading/base_unittests.platform_thread_unittest.o $
+    obj/base/threading/base_unittests.sequenced_worker_pool_unittest.o $
+    obj/base/threading/base_unittests.simple_thread_unittest.o $
+    obj/base/threading/base_unittests.thread_checker_unittest.o $
+    obj/base/threading/base_unittests.thread_collision_warner_unittest.o $
+    obj/base/threading/base_unittests.thread_id_name_manager_unittest.o $
+    obj/base/threading/base_unittests.thread_local_storage_unittest.o $
+    obj/base/threading/base_unittests.thread_local_unittest.o $
+    obj/base/threading/base_unittests.thread_unittest.o $
+    obj/base/threading/base_unittests.watchdog_unittest.o $
+    obj/base/threading/base_unittests.worker_pool_posix_unittest.o $
+    obj/base/threading/base_unittests.worker_pool_unittest.o $
+    obj/base/time/base_unittests.pr_time_unittest.o $
+    obj/base/time/base_unittests.time_unittest.o $
+    obj/base/timer/base_unittests.hi_res_timer_manager_unittest.o $
+    obj/base/timer/base_unittests.timer_unittest.o $
+    obj/base/base_unittests.tools_sanity_unittest.o $
+    obj/base/base_unittests.tracked_objects_unittest.o $
+    obj/base/base_unittests.tuple_unittest.o $
+    obj/base/base_unittests.values_unittest.o $
+    obj/base/base_unittests.version_unittest.o $
+    obj/base/base_unittests.vlog_unittest.o $
+    obj/base/nix/base_unittests.xdg_util_unittest.o obj/base/libbase.a $
+    obj/base/libbase_i18n.a obj/base/libbase_prefs.a $
+    obj/base/libbase_prefs_test_support.a obj/base/libbase_static.a $
+    obj/base/librun_all_unittests.a obj/base/libtest_support_base.a $
+    obj/base/third_party/dynamic_annotations/libdynamic_annotations.a $
+    obj/testing/libgmock.a obj/testing/libgtest.a $
+    obj/third_party/icu/libicui18n.a obj/third_party/icu/libicuuc.a $
+    obj/third_party/libevent/libevent.a $
+    obj/base/allocator/liballocator_extension_thunks.a $
+    obj/third_party/modp_b64/libmodp_b64.a obj/base/libsymbolize.a $
+    obj/base/libxdg_mime.a obj/third_party/icu/libicudata.a $
+    obj/third_party/libxml/libxml.a obj/net/third_party/nss/libcrssl.a | $
+    obj/net/third_party/nss/libcrssl.a xdisplaycheck
+  ld = $ldxx

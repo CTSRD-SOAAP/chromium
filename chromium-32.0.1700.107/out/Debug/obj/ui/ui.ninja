@@ -1,0 +1,288 @@
+build obj/ui/ui.actions_depends.stamp: stamp $
+    obj/skia/skia.actions_depends.stamp $
+    obj/ui/base/strings/ui_strings.actions_rules_copies.stamp $
+    obj/ui/ui_resources.actions_rules_copies.stamp
+
+build obj/ui/ui.compile_depends.stamp: stamp $
+    obj/ui/base/strings/ui_strings.actions_rules_copies.stamp $
+    obj/ui/ui_resources.actions_rules_copies.stamp
+
+defines = -DANGLE_DX11 -D_FILE_OFFSET_BITS=64 -DNO_TCMALLOC -DDISABLE_NACL $
+    -DCHROMIUM_BUILD -DUSE_DEFAULT_RENDER_THEME=1 -DUSE_LIBJPEG_TURBO=1 $
+    -DUSE_NSS=1 -DUSE_X11=1 -DENABLE_ONE_CLICK_SIGNIN $
+    -DGTK_DISABLE_SINGLE_INCLUDES=1 -DUSE_XI2_MT=2 -DENABLE_REMOTING=1 $
+    -DENABLE_WEBRTC=1 -DUSE_PROPRIETARY_CODECS $
+    -DENABLE_CONFIGURATION_POLICY -DENABLE_INPUT_SPEECH $
+    -DENABLE_NOTIFICATIONS -DENABLE_EGLIMAGE=1 -DENABLE_TASK_MANAGER=1 $
+    -DENABLE_EXTENSIONS=1 -DENABLE_PLUGIN_INSTALLATION=1 -DENABLE_PLUGINS=1 $
+    -DENABLE_SESSION_SERVICE=1 -DENABLE_THEMES=1 -DENABLE_BACKGROUND=1 $
+    -DENABLE_AUTOMATION=1 -DENABLE_GOOGLE_NOW=1 -DCLD_VERSION=2 $
+    -DENABLE_FULL_PRINTING=1 -DENABLE_PRINTING=1 -DENABLE_SPELLCHECK=1 $
+    -DENABLE_CAPTIVE_PORTAL_DETECTION=1 -DENABLE_MANAGED_USERS=1 $
+    -DUI_IMPLEMENTATION -DSK_ENABLE_INST_COUNT=0 -DSK_SUPPORT_GPU=1 $
+    '-DGR_GL_CUSTOM_SETUP_HEADER="GrGLConfig_chrome.h"' $
+    -DSK_ENABLE_LEGACY_API_ALIASING=1 -DSK_ATTR_DEPRECATED=SK_NOTHING_ARG1 $
+    -DSK_SUPPORT_LEGACY_COLORTYPE=1 -DSK_USE_POSIX_THREADS $
+    -DSK_DEFERRED_CANVAS_USES_FACTORIES=1 -DU_USING_ICU_NAMESPACE=0 $
+    -DU_STATIC_IMPLEMENTATION -DCHROME_PNG_WRITE_SUPPORT -DPNG_USER_CONFIG $
+    -D__STDC_CONSTANT_MACROS -D__STDC_FORMAT_MACROS $
+    -DDYNAMIC_ANNOTATIONS_ENABLED=1 -DWTF_USE_DYNAMIC_ANNOTATIONS=1 -D_DEBUG
+includes = -I../.. -I../../third_party/skia/src/core $
+    -I../../third_party/skia/include/core $
+    -I../../third_party/skia/include/effects $
+    -I../../third_party/skia/include/pdf $
+    -I../../third_party/skia/include/gpu $
+    -I../../third_party/skia/include/lazy $
+    -I../../third_party/skia/include/pathops $
+    -I../../third_party/skia/include/pipe $
+    -I../../third_party/skia/include/ports $
+    -I../../third_party/skia/include/utils -I../../skia/config $
+    -I../../skia/ext -I../../third_party/icu/source/i18n $
+    -I../../third_party/icu/source/common -I../../third_party/libpng $
+    -I../../third_party/zlib -Igen/ui/app_locale_settings $
+    -Igen/ui/ui_strings -Igen/ui/ui_resources
+cflags = -fstack-protector --param=ssp-buffer-size=4  -pthread $
+    -fno-exceptions -fno-strict-aliasing -Wall -Wno-unused-parameter $
+    -Wno-missing-field-initializers -fvisibility=hidden -pipe -fPIC $
+    -Wheader-hygiene -Wno-char-subscripts -Wno-unused-function $
+    -Wno-covered-switch-default -Wstring-conversion -Wno-c++11-narrowing $
+    -Wno-reserved-user-defined-literal -Wno-deprecated-register $
+    -Wno-deprecated-declarations -fcolor-diagnostics $
+    -I/usr/local/include/gtk-2.0 -I/usr/local/include/gio-unix-2.0/ $
+    -I/usr/local/include/atk-1.0 -I/usr/local/include/cairo $
+    -I/usr/local/include/pixman-1 -D_THREAD_SAFE $
+    -I/usr/local/include/gdk-pixbuf-2.0 -I/usr/local/include/libpng15 $
+    -I/usr/local/include/pango-1.0 -I/usr/local/include/freetype2 $
+    -I/usr/local/include/harfbuzz -pthread -I/usr/local/include/glib-2.0 $
+    -I/usr/local/include -I/usr/local/include $
+    -I/usr/local/include/freetype2 -pthread -I/usr/local/include/glib-2.0 $
+    -I/usr/local/include -I/usr/local/include/cairo $
+    -I/usr/local/include/pixman-1 -I/usr/local/include/libpng15 $
+    -D_THREAD_SAFE -I/usr/local/include/pango-1.0 -pthread $
+    -I/usr/local/include/glib-2.0 -I/usr/local/include $
+    -I/usr/local/include/freetype2 -I/usr/local/include/harfbuzz $
+    -D_THREAD_SAFE -I/usr/local/include -D_THREAD_SAFE -I/usr/local/include $
+    -D_THREAD_SAFE -I/usr/local/include -O0 -g
+cflags_c = -O2 -pipe -fno-stack-protector -Wno-unknown-warning-option $
+    -fno-strict-aliasing
+cflags_cc = -O2 -pipe -fno-stack-protector -Wno-unknown-warning-option $
+    -fno-strict-aliasing -fno-rtti -fno-threadsafe-statics $
+    -fvisibility-inlines-hidden -Wsign-compare -std=gnu++11
+
+build obj/ui/base/accelerators/ui.accelerator.o: cxx $
+    ../../ui/base/accelerators/accelerator.cc || $
+    obj/ui/ui.compile_depends.stamp
+build obj/ui/base/accelerators/ui.accelerator_manager.o: cxx $
+    ../../ui/base/accelerators/accelerator_manager.cc || $
+    obj/ui/ui.compile_depends.stamp
+build obj/ui/base/accelerators/ui.menu_label_accelerator_util_linux.o: cxx $
+    ../../ui/base/accelerators/menu_label_accelerator_util_linux.cc || $
+    obj/ui/ui.compile_depends.stamp
+build obj/ui/base/accelerators/ui.platform_accelerator_gtk.o: cxx $
+    ../../ui/base/accelerators/platform_accelerator_gtk.cc || $
+    obj/ui/ui.compile_depends.stamp
+build obj/ui/base/accessibility/ui.accessible_text_utils.o: cxx $
+    ../../ui/base/accessibility/accessible_text_utils.cc || $
+    obj/ui/ui.compile_depends.stamp
+build obj/ui/base/accessibility/ui.accessible_view_state.o: cxx $
+    ../../ui/base/accessibility/accessible_view_state.cc || $
+    obj/ui/ui.compile_depends.stamp
+build obj/ui/base/ui.base_window.o: cxx ../../ui/base/base_window.cc || $
+    obj/ui/ui.compile_depends.stamp
+build obj/ui/base/clipboard/ui.clipboard.o: cxx $
+    ../../ui/base/clipboard/clipboard.cc || obj/ui/ui.compile_depends.stamp
+build obj/ui/base/clipboard/ui.clipboard_constants.o: cxx $
+    ../../ui/base/clipboard/clipboard_constants.cc || $
+    obj/ui/ui.compile_depends.stamp
+build obj/ui/base/clipboard/ui.clipboard_gtk.o: cxx $
+    ../../ui/base/clipboard/clipboard_gtk.cc || $
+    obj/ui/ui.compile_depends.stamp
+build obj/ui/base/clipboard/ui.custom_data_helper.o: cxx $
+    ../../ui/base/clipboard/custom_data_helper.cc || $
+    obj/ui/ui.compile_depends.stamp
+build obj/ui/base/clipboard/ui.custom_data_helper_linux.o: cxx $
+    ../../ui/base/clipboard/custom_data_helper_linux.cc || $
+    obj/ui/ui.compile_depends.stamp
+build obj/ui/base/clipboard/ui.scoped_clipboard_writer.o: cxx $
+    ../../ui/base/clipboard/scoped_clipboard_writer.cc || $
+    obj/ui/ui.compile_depends.stamp
+build obj/ui/base/ui.default_theme_provider.o: cxx $
+    ../../ui/base/default_theme_provider.cc || obj/ui/ui.compile_depends.stamp
+build obj/ui/base/dragdrop/ui.gtk_dnd_util.o: cxx $
+    ../../ui/base/dragdrop/gtk_dnd_util.cc || obj/ui/ui.compile_depends.stamp
+build obj/ui/base/gtk/ui.event_synthesis_gtk.o: cxx $
+    ../../ui/base/gtk/event_synthesis_gtk.cc || $
+    obj/ui/ui.compile_depends.stamp
+build obj/ui/base/gtk/ui.focus_store_gtk.o: cxx $
+    ../../ui/base/gtk/focus_store_gtk.cc || obj/ui/ui.compile_depends.stamp
+build obj/ui/base/gtk/ui.g_object_destructor_filo.o: cxx $
+    ../../ui/base/gtk/g_object_destructor_filo.cc || $
+    obj/ui/ui.compile_depends.stamp
+build obj/ui/base/gtk/ui.gtk_expanded_container.o: cxx $
+    ../../ui/base/gtk/gtk_expanded_container.cc || $
+    obj/ui/ui.compile_depends.stamp
+build obj/ui/base/gtk/ui.gtk_floating_container.o: cxx $
+    ../../ui/base/gtk/gtk_floating_container.cc || $
+    obj/ui/ui.compile_depends.stamp
+build obj/ui/base/gtk/ui.gtk_screen_util.o: cxx $
+    ../../ui/base/gtk/gtk_screen_util.cc || obj/ui/ui.compile_depends.stamp
+build obj/ui/base/gtk/ui.gtk_signal_registrar.o: cxx $
+    ../../ui/base/gtk/gtk_signal_registrar.cc || $
+    obj/ui/ui.compile_depends.stamp
+build obj/ui/base/gtk/ui.gtk_windowing.o: cxx $
+    ../../ui/base/gtk/gtk_windowing.cc || obj/ui/ui.compile_depends.stamp
+build obj/ui/base/gtk/ui.owned_widget_gtk.o: cxx $
+    ../../ui/base/gtk/owned_widget_gtk.cc || obj/ui/ui.compile_depends.stamp
+build obj/ui/base/gtk/ui.scoped_region.o: cxx $
+    ../../ui/base/gtk/scoped_region.cc || obj/ui/ui.compile_depends.stamp
+build obj/ui/base/l10n/ui.l10n_font_util.o: cxx $
+    ../../ui/base/l10n/l10n_font_util.cc || obj/ui/ui.compile_depends.stamp
+build obj/ui/base/l10n/ui.l10n_util.o: cxx ../../ui/base/l10n/l10n_util.cc $
+    || obj/ui/ui.compile_depends.stamp
+build obj/ui/base/l10n/ui.l10n_util_plurals.o: cxx $
+    ../../ui/base/l10n/l10n_util_plurals.cc || obj/ui/ui.compile_depends.stamp
+build obj/ui/base/l10n/ui.l10n_util_posix.o: cxx $
+    ../../ui/base/l10n/l10n_util_posix.cc || obj/ui/ui.compile_depends.stamp
+build obj/ui/base/l10n/ui.time_format.o: cxx $
+    ../../ui/base/l10n/time_format.cc || obj/ui/ui.compile_depends.stamp
+build obj/ui/base/ui.layout.o: cxx ../../ui/base/layout.cc || $
+    obj/ui/ui.compile_depends.stamp
+build obj/ui/base/models/ui.button_menu_item_model.o: cxx $
+    ../../ui/base/models/button_menu_item_model.cc || $
+    obj/ui/ui.compile_depends.stamp
+build obj/ui/base/models/ui.combobox_model.o: cxx $
+    ../../ui/base/models/combobox_model.cc || obj/ui/ui.compile_depends.stamp
+build obj/ui/base/models/ui.dialog_model.o: cxx $
+    ../../ui/base/models/dialog_model.cc || obj/ui/ui.compile_depends.stamp
+build obj/ui/base/models/ui.list_selection_model.o: cxx $
+    ../../ui/base/models/list_selection_model.cc || $
+    obj/ui/ui.compile_depends.stamp
+build obj/ui/base/models/ui.menu_model.o: cxx $
+    ../../ui/base/models/menu_model.cc || obj/ui/ui.compile_depends.stamp
+build obj/ui/base/models/ui.simple_menu_model.o: cxx $
+    ../../ui/base/models/simple_menu_model.cc || $
+    obj/ui/ui.compile_depends.stamp
+build obj/ui/base/models/ui.table_model.o: cxx $
+    ../../ui/base/models/table_model.cc || obj/ui/ui.compile_depends.stamp
+build obj/ui/base/models/ui.tree_model.o: cxx $
+    ../../ui/base/models/tree_model.cc || obj/ui/ui.compile_depends.stamp
+build obj/ui/base/resource/ui.data_pack.o: cxx $
+    ../../ui/base/resource/data_pack.cc || obj/ui/ui.compile_depends.stamp
+build obj/ui/base/resource/ui.resource_bundle.o: cxx $
+    ../../ui/base/resource/resource_bundle.cc || $
+    obj/ui/ui.compile_depends.stamp
+build obj/ui/base/resource/ui.resource_bundle_gtk.o: cxx $
+    ../../ui/base/resource/resource_bundle_gtk.cc || $
+    obj/ui/ui.compile_depends.stamp
+build obj/ui/base/text/ui.bytes_formatting.o: cxx $
+    ../../ui/base/text/bytes_formatting.cc || obj/ui/ui.compile_depends.stamp
+build obj/ui/base/ui.theme_provider.o: cxx ../../ui/base/theme_provider.cc $
+    || obj/ui/ui.compile_depends.stamp
+build obj/ui/base/touch/ui.touch_device.o: cxx $
+    ../../ui/base/touch/touch_device.cc || obj/ui/ui.compile_depends.stamp
+build obj/ui/base/touch/ui.touch_editing_controller.o: cxx $
+    ../../ui/base/touch/touch_editing_controller.cc || $
+    obj/ui/ui.compile_depends.stamp
+build obj/ui/base/touch/ui.touch_enabled.o: cxx $
+    ../../ui/base/touch/touch_enabled.cc || obj/ui/ui.compile_depends.stamp
+build obj/ui/base/ui.ui_base_exports.o: cxx $
+    ../../ui/base/ui_base_exports.cc || obj/ui/ui.compile_depends.stamp
+build obj/ui/base/ui.ui_base_paths.o: cxx ../../ui/base/ui_base_paths.cc || $
+    obj/ui/ui.compile_depends.stamp
+build obj/ui/base/ui.ui_base_switches.o: cxx $
+    ../../ui/base/ui_base_switches.cc || obj/ui/ui.compile_depends.stamp
+build obj/ui/base/ui.ui_base_switches_util.o: cxx $
+    ../../ui/base/ui_base_switches_util.cc || obj/ui/ui.compile_depends.stamp
+build obj/ui/base/ui.ui_base_types.o: cxx ../../ui/base/ui_base_types.cc || $
+    obj/ui/ui.compile_depends.stamp
+build obj/ui/base/webui/ui.jstemplate_builder.o: cxx $
+    ../../ui/base/webui/jstemplate_builder.cc || $
+    obj/ui/ui.compile_depends.stamp
+build obj/ui/base/webui/ui.web_ui_util.o: cxx $
+    ../../ui/base/webui/web_ui_util.cc || obj/ui/ui.compile_depends.stamp
+build obj/ui/base/ui.window_open_disposition.o: cxx $
+    ../../ui/base/window_open_disposition.cc || $
+    obj/ui/ui.compile_depends.stamp
+build obj/ui/base/x/ui.active_window_watcher_x.o: cxx $
+    ../../ui/base/x/active_window_watcher_x.cc || $
+    obj/ui/ui.compile_depends.stamp
+build obj/ui/base/x/ui.root_window_property_watcher_x.o: cxx $
+    ../../ui/base/x/root_window_property_watcher_x.cc || $
+    obj/ui/ui.compile_depends.stamp
+build obj/ui/base/x/ui.work_area_watcher_x.o: cxx $
+    ../../ui/base/x/work_area_watcher_x.cc || obj/ui/ui.compile_depends.stamp
+build obj/ui/base/x/ui.x11_util.o: cxx ../../ui/base/x/x11_util.cc || $
+    obj/ui/ui.compile_depends.stamp
+build obj/ui/base/ime/ui.composition_text.o: cxx $
+    ../../ui/base/ime/composition_text.cc || obj/ui/ui.compile_depends.stamp
+build obj/ui/base/ime/ui.composition_text_util_pango.o: cxx $
+    ../../ui/base/ime/composition_text_util_pango.cc || $
+    obj/ui/ui.compile_depends.stamp
+build obj/ui/base/ime/ui.dummy_input_method_delegate.o: cxx $
+    ../../ui/base/ime/dummy_input_method_delegate.cc || $
+    obj/ui/ui.compile_depends.stamp
+build obj/ui/base/ime/ui.input_method_base.o: cxx $
+    ../../ui/base/ime/input_method_base.cc || obj/ui/ui.compile_depends.stamp
+build obj/ui/base/ime/ui.input_method_initializer.o: cxx $
+    ../../ui/base/ime/input_method_initializer.cc || $
+    obj/ui/ui.compile_depends.stamp
+build obj/ui/base/ime/ui.mock_input_method.o: cxx $
+    ../../ui/base/ime/mock_input_method.cc || obj/ui/ui.compile_depends.stamp
+build obj/ui/base/ime/ui.text_input_client.o: cxx $
+    ../../ui/base/ime/text_input_client.cc || obj/ui/ui.compile_depends.stamp
+
+build obj/ui/libui.a: alink_thin obj/ui/base/accelerators/ui.accelerator.o $
+    obj/ui/base/accelerators/ui.accelerator_manager.o $
+    obj/ui/base/accelerators/ui.menu_label_accelerator_util_linux.o $
+    obj/ui/base/accelerators/ui.platform_accelerator_gtk.o $
+    obj/ui/base/accessibility/ui.accessible_text_utils.o $
+    obj/ui/base/accessibility/ui.accessible_view_state.o $
+    obj/ui/base/ui.base_window.o obj/ui/base/clipboard/ui.clipboard.o $
+    obj/ui/base/clipboard/ui.clipboard_constants.o $
+    obj/ui/base/clipboard/ui.clipboard_gtk.o $
+    obj/ui/base/clipboard/ui.custom_data_helper.o $
+    obj/ui/base/clipboard/ui.custom_data_helper_linux.o $
+    obj/ui/base/clipboard/ui.scoped_clipboard_writer.o $
+    obj/ui/base/ui.default_theme_provider.o $
+    obj/ui/base/dragdrop/ui.gtk_dnd_util.o $
+    obj/ui/base/gtk/ui.event_synthesis_gtk.o $
+    obj/ui/base/gtk/ui.focus_store_gtk.o $
+    obj/ui/base/gtk/ui.g_object_destructor_filo.o $
+    obj/ui/base/gtk/ui.gtk_expanded_container.o $
+    obj/ui/base/gtk/ui.gtk_floating_container.o $
+    obj/ui/base/gtk/ui.gtk_screen_util.o $
+    obj/ui/base/gtk/ui.gtk_signal_registrar.o $
+    obj/ui/base/gtk/ui.gtk_windowing.o $
+    obj/ui/base/gtk/ui.owned_widget_gtk.o $
+    obj/ui/base/gtk/ui.scoped_region.o obj/ui/base/l10n/ui.l10n_font_util.o $
+    obj/ui/base/l10n/ui.l10n_util.o obj/ui/base/l10n/ui.l10n_util_plurals.o $
+    obj/ui/base/l10n/ui.l10n_util_posix.o obj/ui/base/l10n/ui.time_format.o $
+    obj/ui/base/ui.layout.o obj/ui/base/models/ui.button_menu_item_model.o $
+    obj/ui/base/models/ui.combobox_model.o $
+    obj/ui/base/models/ui.dialog_model.o $
+    obj/ui/base/models/ui.list_selection_model.o $
+    obj/ui/base/models/ui.menu_model.o $
+    obj/ui/base/models/ui.simple_menu_model.o $
+    obj/ui/base/models/ui.table_model.o obj/ui/base/models/ui.tree_model.o $
+    obj/ui/base/resource/ui.data_pack.o $
+    obj/ui/base/resource/ui.resource_bundle.o $
+    obj/ui/base/resource/ui.resource_bundle_gtk.o $
+    obj/ui/base/text/ui.bytes_formatting.o obj/ui/base/ui.theme_provider.o $
+    obj/ui/base/touch/ui.touch_device.o $
+    obj/ui/base/touch/ui.touch_editing_controller.o $
+    obj/ui/base/touch/ui.touch_enabled.o obj/ui/base/ui.ui_base_exports.o $
+    obj/ui/base/ui.ui_base_paths.o obj/ui/base/ui.ui_base_switches.o $
+    obj/ui/base/ui.ui_base_switches_util.o obj/ui/base/ui.ui_base_types.o $
+    obj/ui/base/webui/ui.jstemplate_builder.o $
+    obj/ui/base/webui/ui.web_ui_util.o $
+    obj/ui/base/ui.window_open_disposition.o $
+    obj/ui/base/x/ui.active_window_watcher_x.o $
+    obj/ui/base/x/ui.root_window_property_watcher_x.o $
+    obj/ui/base/x/ui.work_area_watcher_x.o obj/ui/base/x/ui.x11_util.o $
+    obj/ui/base/ime/ui.composition_text.o $
+    obj/ui/base/ime/ui.composition_text_util_pango.o $
+    obj/ui/base/ime/ui.dummy_input_method_delegate.o $
+    obj/ui/base/ime/ui.input_method_base.o $
+    obj/ui/base/ime/ui.input_method_initializer.o $
+    obj/ui/base/ime/ui.mock_input_method.o $
+    obj/ui/base/ime/ui.text_input_client.o || obj/ui/ui.actions_depends.stamp

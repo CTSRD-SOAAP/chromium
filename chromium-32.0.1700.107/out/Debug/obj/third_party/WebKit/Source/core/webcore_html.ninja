@@ -1,0 +1,1599 @@
+defines = -DANGLE_DX11 -D_FILE_OFFSET_BITS=64 -DNO_TCMALLOC -DDISABLE_NACL $
+    -DCHROMIUM_BUILD -DUSE_DEFAULT_RENDER_THEME=1 -DUSE_LIBJPEG_TURBO=1 $
+    -DUSE_NSS=1 -DUSE_X11=1 -DENABLE_ONE_CLICK_SIGNIN $
+    -DGTK_DISABLE_SINGLE_INCLUDES=1 -DUSE_XI2_MT=2 -DENABLE_REMOTING=1 $
+    -DENABLE_WEBRTC=1 -DUSE_PROPRIETARY_CODECS $
+    -DENABLE_CONFIGURATION_POLICY -DENABLE_INPUT_SPEECH $
+    -DENABLE_NOTIFICATIONS -DENABLE_EGLIMAGE=1 -DENABLE_TASK_MANAGER=1 $
+    -DENABLE_EXTENSIONS=1 -DENABLE_PLUGIN_INSTALLATION=1 -DENABLE_PLUGINS=1 $
+    -DENABLE_SESSION_SERVICE=1 -DENABLE_THEMES=1 -DENABLE_BACKGROUND=1 $
+    -DENABLE_AUTOMATION=1 -DENABLE_GOOGLE_NOW=1 -DCLD_VERSION=2 $
+    -DENABLE_FULL_PRINTING=1 -DENABLE_PRINTING=1 -DENABLE_SPELLCHECK=1 $
+    -DENABLE_CAPTIVE_PORTAL_DETECTION=1 -DENABLE_MANAGED_USERS=1 $
+    -DGL_GLEXT_PROTOTYPES -DBLINK_IMPLEMENTATION=1 -DINSIDE_BLINK $
+    -DENABLE_CUSTOM_SCHEME_HANDLER=0 -DENABLE_ENCRYPTED_MEDIA_V2=1 $
+    -DENABLE_SVG_FONTS=1 -DENABLE_GDI_FONTS_ON_WINDOWS=0 $
+    -DENABLE_HARFBUZZ_ON_WINDOWS=0 -DENABLE_TOUCH_ICON_LOADING=0 $
+    -DWTF_USE_CONCATENATED_IMPULSE_RESPONSES=1 -DENABLE_CALENDAR_PICKER=1 $
+    -DENABLE_INPUT_SPEECH=1 -DENABLE_INPUT_MULTIPLE_FIELDS_UI=1 $
+    -DENABLE_LEGACY_NOTIFICATIONS=1 -DENABLE_MEDIA_CAPTURE=0 $
+    -DENABLE_NAVIGATOR_CONTENT_UTILS=1 -DENABLE_ORIENTATION_EVENTS=0 $
+    -DENABLE_WEB_AUDIO=1 -DWTF_USE_WEBAUDIO_FFMPEG=1 $
+    -DENABLE_OPENTYPE_VERTICAL=1 -DWTF_USE_DEFAULT_RENDER_THEME=1 $
+    -DU_USING_ICU_NAMESPACE=0 -DU_STATIC_IMPLEMENTATION $
+    -DSK_ENABLE_INST_COUNT=0 -DSK_SUPPORT_GPU=1 $
+    '-DGR_GL_CUSTOM_SETUP_HEADER="GrGLConfig_chrome.h"' $
+    -DSK_ENABLE_LEGACY_API_ALIASING=1 -DSK_ATTR_DEPRECATED=SK_NOTHING_ARG1 $
+    -DSK_SUPPORT_LEGACY_COLORTYPE=1 -DSK_USE_POSIX_THREADS $
+    -DSK_DEFERRED_CANVAS_USES_FACTORIES=1 -DCHROME_PNG_WRITE_SUPPORT $
+    -DPNG_USER_CONFIG -DUSE_SYSTEM_LIBXML -D__STDC_CONSTANT_MACROS $
+    -D__STDC_FORMAT_MACROS -DDYNAMIC_ANNOTATIONS_ENABLED=1 $
+    -DWTF_USE_DYNAMIC_ANNOTATIONS=1 -D_DEBUG
+includes = -I../../third_party/khronos -I../../gpu -I../.. $
+    -I../../third_party/WebKit -I../../third_party/WebKit/Source $
+    -Igen/blink -Igen/blink/bindings -I../../third_party/angle_dx11/include $
+    -I../../third_party/ffmpeg -I../../third_party/icu/source/i18n $
+    -I../../third_party/icu/source/common -I../../third_party/skia/src/core $
+    -I../../third_party/skia/include/core $
+    -I../../third_party/skia/include/effects $
+    -I../../third_party/skia/include/pdf $
+    -I../../third_party/skia/include/gpu $
+    -I../../third_party/skia/include/lazy $
+    -I../../third_party/skia/include/pathops $
+    -I../../third_party/skia/include/pipe $
+    -I../../third_party/skia/include/ports $
+    -I../../third_party/skia/include/utils -I../../skia/config $
+    -I../../skia/ext -I../../third_party/iccjpeg -I../../third_party/libpng $
+    -I../../third_party/libwebp -I../../third_party/npapi $
+    -I../../third_party/npapi/bindings -I../../third_party/ots/include $
+    -I../../third_party/qcms/src -I../../third_party/sqlite $
+    -I../../third_party/zlib -I../../v8/include $
+    -I../../third_party/libjpeg_turbo
+cflags = -fstack-protector --param=ssp-buffer-size=4  -pthread $
+    -fno-exceptions -fno-strict-aliasing -Wall -Wno-unused-parameter $
+    -Wno-missing-field-initializers -fvisibility=hidden -pipe -fPIC $
+    -Wheader-hygiene -Wno-char-subscripts -Wno-unused-function $
+    -Wno-covered-switch-default -Wstring-conversion -Wno-c++11-narrowing $
+    -Wno-reserved-user-defined-literal -Wno-deprecated-register $
+    -Wno-deprecated-declarations -fcolor-diagnostics $
+    -I/usr/local/include/gtk-2.0 -I/usr/local/include/gio-unix-2.0/ $
+    -I/usr/local/include/atk-1.0 -I/usr/local/include/cairo $
+    -I/usr/local/include/pixman-1 -D_THREAD_SAFE $
+    -I/usr/local/include/gdk-pixbuf-2.0 -I/usr/local/include/libpng15 $
+    -I/usr/local/include/pango-1.0 -I/usr/local/include/freetype2 $
+    -I/usr/local/include/harfbuzz -pthread -I/usr/local/include/glib-2.0 $
+    -I/usr/local/include -fno-strict-aliasing -Wglobal-constructors $
+    -I/usr/local/include/libxml2 -I/usr/local/include $
+    -I/usr/local/include/libxml2 -I/usr/local/include $
+    -I/usr/local/include/freetype2 -Wexit-time-destructors -O0 -g
+cflags_c = -O2 -pipe -fno-stack-protector -Wno-unknown-warning-option $
+    -fno-strict-aliasing
+cflags_cc = -O2 -pipe -fno-stack-protector -Wno-unknown-warning-option $
+    -fno-strict-aliasing -fno-rtti -fno-threadsafe-statics $
+    -fvisibility-inlines-hidden -Wsign-compare -std=gnu++11
+
+build obj/third_party/WebKit/Source/core/html/webcore_html.ClassList.o: cxx $
+    ../../third_party/WebKit/Source/core/html/ClassList.cpp || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build obj/third_party/WebKit/Source/core/html/webcore_html.DOMFormData.o: $
+    cxx ../../third_party/WebKit/Source/core/html/DOMFormData.cpp || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/webcore_html.FormAssociatedElement.o: $
+    cxx ../../third_party/WebKit/Source/core/html/FormAssociatedElement.cpp $
+    || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build obj/third_party/WebKit/Source/core/html/webcore_html.FormDataList.o: $
+    cxx ../../third_party/WebKit/Source/core/html/FormDataList.cpp || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/webcore_html.HTMLAllCollection.o: $
+    cxx ../../third_party/WebKit/Source/core/html/HTMLAllCollection.cpp || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/webcore_html.HTMLAnchorElement.o: $
+    cxx ../../third_party/WebKit/Source/core/html/HTMLAnchorElement.cpp || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/webcore_html.HTMLAppletElement.o: $
+    cxx ../../third_party/WebKit/Source/core/html/HTMLAppletElement.cpp || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/webcore_html.HTMLAreaElement.o: $
+    cxx ../../third_party/WebKit/Source/core/html/HTMLAreaElement.cpp || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/webcore_html.HTMLAudioElement.o: $
+    cxx ../../third_party/WebKit/Source/core/html/HTMLAudioElement.cpp || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build obj/third_party/WebKit/Source/core/html/webcore_html.HTMLBRElement.o: $
+    cxx ../../third_party/WebKit/Source/core/html/HTMLBRElement.cpp || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/webcore_html.HTMLBaseElement.o: $
+    cxx ../../third_party/WebKit/Source/core/html/HTMLBaseElement.cpp || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/webcore_html.HTMLBodyElement.o: $
+    cxx ../../third_party/WebKit/Source/core/html/HTMLBodyElement.cpp || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/webcore_html.HTMLButtonElement.o: $
+    cxx ../../third_party/WebKit/Source/core/html/HTMLButtonElement.cpp || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/webcore_html.HTMLCanvasElement.o: $
+    cxx ../../third_party/WebKit/Source/core/html/HTMLCanvasElement.cpp || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/webcore_html.HTMLCollection.o: $
+    cxx ../../third_party/WebKit/Source/core/html/HTMLCollection.cpp || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/webcore_html.HTMLDListElement.o: $
+    cxx ../../third_party/WebKit/Source/core/html/HTMLDListElement.cpp || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/webcore_html.HTMLDataListElement.o: $
+    cxx ../../third_party/WebKit/Source/core/html/HTMLDataListElement.cpp $
+    || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/webcore_html.HTMLDetailsElement.o: $
+    cxx ../../third_party/WebKit/Source/core/html/HTMLDetailsElement.cpp || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/webcore_html.HTMLDialogElement.o: $
+    cxx ../../third_party/WebKit/Source/core/html/HTMLDialogElement.cpp || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build obj/third_party/WebKit/Source/core/html/webcore_html.HTMLDimension.o: $
+    cxx ../../third_party/WebKit/Source/core/html/HTMLDimension.cpp || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/webcore_html.HTMLDirectoryElement.o: $
+    cxx ../../third_party/WebKit/Source/core/html/HTMLDirectoryElement.cpp $
+    || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/webcore_html.HTMLDivElement.o: $
+    cxx ../../third_party/WebKit/Source/core/html/HTMLDivElement.cpp || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build obj/third_party/WebKit/Source/core/html/webcore_html.HTMLDocument.o: $
+    cxx ../../third_party/WebKit/Source/core/html/HTMLDocument.cpp || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build obj/third_party/WebKit/Source/core/html/webcore_html.HTMLElement.o: $
+    cxx ../../third_party/WebKit/Source/core/html/HTMLElement.cpp || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/webcore_html.HTMLEmbedElement.o: $
+    cxx ../../third_party/WebKit/Source/core/html/HTMLEmbedElement.cpp || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/webcore_html.HTMLFieldSetElement.o: $
+    cxx ../../third_party/WebKit/Source/core/html/HTMLFieldSetElement.cpp $
+    || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/webcore_html.HTMLFontElement.o: $
+    cxx ../../third_party/WebKit/Source/core/html/HTMLFontElement.cpp || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/webcore_html.HTMLFormControlsCollection.o: $
+    cxx $
+    ../../third_party/WebKit/Source/core/html/HTMLFormControlsCollection.cpp $
+    || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/webcore_html.HTMLFormControlElement.o: $
+    cxx $
+    ../../third_party/WebKit/Source/core/html/HTMLFormControlElement.cpp || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/webcore_html.HTMLFormControlElementWithState.o: $
+    cxx $
+    ../../third_party/WebKit/Source/core/html/HTMLFormControlElementWithState.cpp $
+    || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/webcore_html.HTMLFormElement.o: $
+    cxx ../../third_party/WebKit/Source/core/html/HTMLFormElement.cpp || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/webcore_html.HTMLFrameElement.o: $
+    cxx ../../third_party/WebKit/Source/core/html/HTMLFrameElement.cpp || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/webcore_html.HTMLFrameElementBase.o: $
+    cxx ../../third_party/WebKit/Source/core/html/HTMLFrameElementBase.cpp $
+    || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/webcore_html.HTMLFrameOwnerElement.o: $
+    cxx ../../third_party/WebKit/Source/core/html/HTMLFrameOwnerElement.cpp $
+    || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/webcore_html.HTMLFrameSetElement.o: $
+    cxx ../../third_party/WebKit/Source/core/html/HTMLFrameSetElement.cpp $
+    || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build obj/third_party/WebKit/Source/core/html/webcore_html.HTMLHRElement.o: $
+    cxx ../../third_party/WebKit/Source/core/html/HTMLHRElement.cpp || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/webcore_html.HTMLHeadElement.o: $
+    cxx ../../third_party/WebKit/Source/core/html/HTMLHeadElement.cpp || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/webcore_html.HTMLHeadingElement.o: $
+    cxx ../../third_party/WebKit/Source/core/html/HTMLHeadingElement.cpp || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/webcore_html.HTMLHtmlElement.o: $
+    cxx ../../third_party/WebKit/Source/core/html/HTMLHtmlElement.cpp || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/webcore_html.HTMLIFrameElement.o: $
+    cxx ../../third_party/WebKit/Source/core/html/HTMLIFrameElement.cpp || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/webcore_html.HTMLImageElement.o: $
+    cxx ../../third_party/WebKit/Source/core/html/HTMLImageElement.cpp || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/webcore_html.HTMLImageLoader.o: $
+    cxx ../../third_party/WebKit/Source/core/html/HTMLImageLoader.cpp || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build obj/third_party/WebKit/Source/core/html/webcore_html.HTMLImport.o: $
+    cxx ../../third_party/WebKit/Source/core/html/HTMLImport.cpp || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/webcore_html.HTMLImportsController.o: $
+    cxx ../../third_party/WebKit/Source/core/html/HTMLImportsController.cpp $
+    || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/webcore_html.HTMLImportLoader.o: $
+    cxx ../../third_party/WebKit/Source/core/html/HTMLImportLoader.cpp || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/webcore_html.HTMLInputElement.o: $
+    cxx ../../third_party/WebKit/Source/core/html/HTMLInputElement.cpp || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/webcore_html.HTMLKeygenElement.o: $
+    cxx ../../third_party/WebKit/Source/core/html/HTMLKeygenElement.cpp || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build obj/third_party/WebKit/Source/core/html/webcore_html.HTMLLIElement.o: $
+    cxx ../../third_party/WebKit/Source/core/html/HTMLLIElement.cpp || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/webcore_html.HTMLLabelElement.o: $
+    cxx ../../third_party/WebKit/Source/core/html/HTMLLabelElement.cpp || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/webcore_html.HTMLLegendElement.o: $
+    cxx ../../third_party/WebKit/Source/core/html/HTMLLegendElement.cpp || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/webcore_html.HTMLLinkElement.o: $
+    cxx ../../third_party/WebKit/Source/core/html/HTMLLinkElement.cpp || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/webcore_html.HTMLMapElement.o: $
+    cxx ../../third_party/WebKit/Source/core/html/HTMLMapElement.cpp || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/webcore_html.HTMLMarqueeElement.o: $
+    cxx ../../third_party/WebKit/Source/core/html/HTMLMarqueeElement.cpp || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/webcore_html.HTMLMediaElement.o: $
+    cxx ../../third_party/WebKit/Source/core/html/HTMLMediaElement.cpp || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/webcore_html.HTMLMenuElement.o: $
+    cxx ../../third_party/WebKit/Source/core/html/HTMLMenuElement.cpp || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/webcore_html.HTMLMeterElement.o: $
+    cxx ../../third_party/WebKit/Source/core/html/HTMLMeterElement.cpp || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/webcore_html.HTMLModElement.o: $
+    cxx ../../third_party/WebKit/Source/core/html/HTMLModElement.cpp || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/webcore_html.HTMLNameCollection.o: $
+    cxx ../../third_party/WebKit/Source/core/html/HTMLNameCollection.cpp || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/webcore_html.HTMLOListElement.o: $
+    cxx ../../third_party/WebKit/Source/core/html/HTMLOListElement.cpp || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/webcore_html.HTMLObjectElement.o: $
+    cxx ../../third_party/WebKit/Source/core/html/HTMLObjectElement.cpp || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/webcore_html.HTMLOptGroupElement.o: $
+    cxx ../../third_party/WebKit/Source/core/html/HTMLOptGroupElement.cpp $
+    || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/webcore_html.HTMLOptionElement.o: $
+    cxx ../../third_party/WebKit/Source/core/html/HTMLOptionElement.cpp || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/webcore_html.HTMLOptionsCollection.o: $
+    cxx ../../third_party/WebKit/Source/core/html/HTMLOptionsCollection.cpp $
+    || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/webcore_html.HTMLOutputElement.o: $
+    cxx ../../third_party/WebKit/Source/core/html/HTMLOutputElement.cpp || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/webcore_html.HTMLParagraphElement.o: $
+    cxx ../../third_party/WebKit/Source/core/html/HTMLParagraphElement.cpp $
+    || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/webcore_html.HTMLParamElement.o: $
+    cxx ../../third_party/WebKit/Source/core/html/HTMLParamElement.cpp || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/webcore_html.HTMLPlugInElement.o: $
+    cxx ../../third_party/WebKit/Source/core/html/HTMLPlugInElement.cpp || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/webcore_html.HTMLPreElement.o: $
+    cxx ../../third_party/WebKit/Source/core/html/HTMLPreElement.cpp || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/webcore_html.HTMLProgressElement.o: $
+    cxx ../../third_party/WebKit/Source/core/html/HTMLProgressElement.cpp $
+    || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/webcore_html.HTMLQuoteElement.o: $
+    cxx ../../third_party/WebKit/Source/core/html/HTMLQuoteElement.cpp || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/webcore_html.HTMLScriptElement.o: $
+    cxx ../../third_party/WebKit/Source/core/html/HTMLScriptElement.cpp || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/webcore_html.HTMLSelectElement.o: $
+    cxx ../../third_party/WebKit/Source/core/html/HTMLSelectElement.cpp || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/webcore_html.HTMLSourceElement.o: $
+    cxx ../../third_party/WebKit/Source/core/html/HTMLSourceElement.cpp || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/webcore_html.HTMLSpanElement.o: $
+    cxx ../../third_party/WebKit/Source/core/html/HTMLSpanElement.cpp || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/webcore_html.HTMLStyleElement.o: $
+    cxx ../../third_party/WebKit/Source/core/html/HTMLStyleElement.cpp || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/webcore_html.HTMLSummaryElement.o: $
+    cxx ../../third_party/WebKit/Source/core/html/HTMLSummaryElement.cpp || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/webcore_html.HTMLTableCaptionElement.o: $
+    cxx $
+    ../../third_party/WebKit/Source/core/html/HTMLTableCaptionElement.cpp $
+    || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/webcore_html.HTMLTableCellElement.o: $
+    cxx ../../third_party/WebKit/Source/core/html/HTMLTableCellElement.cpp $
+    || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/webcore_html.HTMLTableColElement.o: $
+    cxx ../../third_party/WebKit/Source/core/html/HTMLTableColElement.cpp $
+    || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/webcore_html.HTMLTableElement.o: $
+    cxx ../../third_party/WebKit/Source/core/html/HTMLTableElement.cpp || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/webcore_html.HTMLTablePartElement.o: $
+    cxx ../../third_party/WebKit/Source/core/html/HTMLTablePartElement.cpp $
+    || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/webcore_html.HTMLTableRowElement.o: $
+    cxx ../../third_party/WebKit/Source/core/html/HTMLTableRowElement.cpp $
+    || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/webcore_html.HTMLTableRowsCollection.o: $
+    cxx $
+    ../../third_party/WebKit/Source/core/html/HTMLTableRowsCollection.cpp $
+    || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/webcore_html.HTMLTableSectionElement.o: $
+    cxx $
+    ../../third_party/WebKit/Source/core/html/HTMLTableSectionElement.cpp $
+    || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/webcore_html.HTMLTemplateElement.o: $
+    cxx ../../third_party/WebKit/Source/core/html/HTMLTemplateElement.cpp $
+    || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/webcore_html.HTMLTextAreaElement.o: $
+    cxx ../../third_party/WebKit/Source/core/html/HTMLTextAreaElement.cpp $
+    || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/webcore_html.HTMLTextFormControlElement.o: $
+    cxx $
+    ../../third_party/WebKit/Source/core/html/HTMLTextFormControlElement.cpp $
+    || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/webcore_html.HTMLTitleElement.o: $
+    cxx ../../third_party/WebKit/Source/core/html/HTMLTitleElement.cpp || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/webcore_html.HTMLTrackElement.o: $
+    cxx ../../third_party/WebKit/Source/core/html/HTMLTrackElement.cpp || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/webcore_html.HTMLUListElement.o: $
+    cxx ../../third_party/WebKit/Source/core/html/HTMLUListElement.cpp || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/webcore_html.HTMLVideoElement.o: $
+    cxx ../../third_party/WebKit/Source/core/html/HTMLVideoElement.cpp || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/webcore_html.HTMLViewSourceDocument.o: $
+    cxx $
+    ../../third_party/WebKit/Source/core/html/HTMLViewSourceDocument.cpp || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build obj/third_party/WebKit/Source/core/html/webcore_html.ImageData.o: cxx $
+    ../../third_party/WebKit/Source/core/html/ImageData.cpp || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build obj/third_party/WebKit/Source/core/html/webcore_html.ImageDocument.o: $
+    cxx ../../third_party/WebKit/Source/core/html/ImageDocument.cpp || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/webcore_html.LabelableElement.o: $
+    cxx ../../third_party/WebKit/Source/core/html/LabelableElement.cpp || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/webcore_html.LabelsNodeList.o: $
+    cxx ../../third_party/WebKit/Source/core/html/LabelsNodeList.cpp || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build obj/third_party/WebKit/Source/core/html/webcore_html.LinkImport.o: $
+    cxx ../../third_party/WebKit/Source/core/html/LinkImport.cpp || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/webcore_html.LinkRelAttribute.o: $
+    cxx ../../third_party/WebKit/Source/core/html/LinkRelAttribute.cpp || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build obj/third_party/WebKit/Source/core/html/webcore_html.LinkResource.o: $
+    cxx ../../third_party/WebKit/Source/core/html/LinkResource.cpp || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/webcore_html.MediaController.o: $
+    cxx ../../third_party/WebKit/Source/core/html/MediaController.cpp || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build obj/third_party/WebKit/Source/core/html/webcore_html.MediaDocument.o: $
+    cxx ../../third_party/WebKit/Source/core/html/MediaDocument.cpp || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/webcore_html.MediaFragmentURIParser.o: $
+    cxx $
+    ../../third_party/WebKit/Source/core/html/MediaFragmentURIParser.cpp || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build obj/third_party/WebKit/Source/core/html/webcore_html.MediaKeyEvent.o: $
+    cxx ../../third_party/WebKit/Source/core/html/MediaKeyEvent.cpp || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/webcore_html.HTMLMediaSource.o: $
+    cxx ../../third_party/WebKit/Source/core/html/HTMLMediaSource.cpp || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/webcore_html.PluginDocument.o: $
+    cxx ../../third_party/WebKit/Source/core/html/PluginDocument.cpp || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/webcore_html.PublicURLManager.o: $
+    cxx ../../third_party/WebKit/Source/core/html/PublicURLManager.cpp || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build obj/third_party/WebKit/Source/core/html/webcore_html.RadioNodeList.o: $
+    cxx ../../third_party/WebKit/Source/core/html/RadioNodeList.cpp || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build obj/third_party/WebKit/Source/core/html/webcore_html.TextDocument.o: $
+    cxx ../../third_party/WebKit/Source/core/html/TextDocument.cpp || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build obj/third_party/WebKit/Source/core/html/webcore_html.TimeRanges.o: $
+    cxx ../../third_party/WebKit/Source/core/html/TimeRanges.cpp || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build obj/third_party/WebKit/Source/core/html/webcore_html.ValidityState.o: $
+    cxx ../../third_party/WebKit/Source/core/html/ValidityState.cpp || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/canvas/webcore_html.ANGLEInstancedArrays.o: $
+    cxx $
+    ../../third_party/WebKit/Source/core/html/canvas/ANGLEInstancedArrays.cpp $
+    || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/canvas/webcore_html.Canvas2DContextAttributes.o: $
+    cxx $
+    ../../third_party/WebKit/Source/core/html/canvas/Canvas2DContextAttributes.cpp $
+    || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/canvas/webcore_html.CanvasContextAttributes.o: $
+    cxx $
+    ../../third_party/WebKit/Source/core/html/canvas/CanvasContextAttributes.cpp $
+    || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/canvas/webcore_html.CanvasGradient.o: $
+    cxx ../../third_party/WebKit/Source/core/html/canvas/CanvasGradient.cpp $
+    || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/canvas/webcore_html.CanvasPathMethods.o: $
+    cxx $
+    ../../third_party/WebKit/Source/core/html/canvas/CanvasPathMethods.cpp $
+    || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/canvas/webcore_html.CanvasPattern.o: $
+    cxx ../../third_party/WebKit/Source/core/html/canvas/CanvasPattern.cpp $
+    || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/canvas/webcore_html.CanvasRenderingContext.o: $
+    cxx $
+    ../../third_party/WebKit/Source/core/html/canvas/CanvasRenderingContext.cpp $
+    || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/canvas/webcore_html.CanvasRenderingContext2D.o: $
+    cxx $
+    ../../third_party/WebKit/Source/core/html/canvas/CanvasRenderingContext2D.cpp $
+    || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/canvas/webcore_html.CanvasStyle.o: $
+    cxx ../../third_party/WebKit/Source/core/html/canvas/CanvasStyle.cpp || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/canvas/webcore_html.DataView.o: $
+    cxx ../../third_party/WebKit/Source/core/html/canvas/DataView.cpp || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/canvas/webcore_html.EXTFragDepth.o: $
+    cxx ../../third_party/WebKit/Source/core/html/canvas/EXTFragDepth.cpp $
+    || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/canvas/webcore_html.EXTTextureFilterAnisotropic.o: $
+    cxx $
+    ../../third_party/WebKit/Source/core/html/canvas/EXTTextureFilterAnisotropic.cpp $
+    || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/canvas/webcore_html.OESStandardDerivatives.o: $
+    cxx $
+    ../../third_party/WebKit/Source/core/html/canvas/OESStandardDerivatives.cpp $
+    || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/canvas/webcore_html.OESTextureFloat.o: $
+    cxx $
+    ../../third_party/WebKit/Source/core/html/canvas/OESTextureFloat.cpp || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/canvas/webcore_html.OESTextureFloatLinear.o: $
+    cxx $
+    ../../third_party/WebKit/Source/core/html/canvas/OESTextureFloatLinear.cpp $
+    || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/canvas/webcore_html.OESTextureHalfFloat.o: $
+    cxx $
+    ../../third_party/WebKit/Source/core/html/canvas/OESTextureHalfFloat.cpp $
+    || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/canvas/webcore_html.OESTextureHalfFloatLinear.o: $
+    cxx $
+    ../../third_party/WebKit/Source/core/html/canvas/OESTextureHalfFloatLinear.cpp $
+    || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/canvas/webcore_html.OESVertexArrayObject.o: $
+    cxx $
+    ../../third_party/WebKit/Source/core/html/canvas/OESVertexArrayObject.cpp $
+    || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/canvas/webcore_html.OESElementIndexUint.o: $
+    cxx $
+    ../../third_party/WebKit/Source/core/html/canvas/OESElementIndexUint.cpp $
+    || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/canvas/webcore_html.WebGLBuffer.o: $
+    cxx ../../third_party/WebKit/Source/core/html/canvas/WebGLBuffer.cpp || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/canvas/webcore_html.WebGLCompressedTextureATC.o: $
+    cxx $
+    ../../third_party/WebKit/Source/core/html/canvas/WebGLCompressedTextureATC.cpp $
+    || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/canvas/webcore_html.WebGLCompressedTexturePVRTC.o: $
+    cxx $
+    ../../third_party/WebKit/Source/core/html/canvas/WebGLCompressedTexturePVRTC.cpp $
+    || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/canvas/webcore_html.WebGLCompressedTextureS3TC.o: $
+    cxx $
+    ../../third_party/WebKit/Source/core/html/canvas/WebGLCompressedTextureS3TC.cpp $
+    || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/canvas/webcore_html.WebGLContextAttributes.o: $
+    cxx $
+    ../../third_party/WebKit/Source/core/html/canvas/WebGLContextAttributes.cpp $
+    || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/canvas/webcore_html.WebGLContextEvent.o: $
+    cxx $
+    ../../third_party/WebKit/Source/core/html/canvas/WebGLContextEvent.cpp $
+    || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/canvas/webcore_html.WebGLContextGroup.o: $
+    cxx $
+    ../../third_party/WebKit/Source/core/html/canvas/WebGLContextGroup.cpp $
+    || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/canvas/webcore_html.WebGLContextObject.o: $
+    cxx $
+    ../../third_party/WebKit/Source/core/html/canvas/WebGLContextObject.cpp $
+    || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/canvas/webcore_html.WebGLDebugRendererInfo.o: $
+    cxx $
+    ../../third_party/WebKit/Source/core/html/canvas/WebGLDebugRendererInfo.cpp $
+    || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/canvas/webcore_html.WebGLDebugShaders.o: $
+    cxx $
+    ../../third_party/WebKit/Source/core/html/canvas/WebGLDebugShaders.cpp $
+    || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/canvas/webcore_html.WebGLDepthTexture.o: $
+    cxx $
+    ../../third_party/WebKit/Source/core/html/canvas/WebGLDepthTexture.cpp $
+    || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/canvas/webcore_html.WebGLDrawBuffers.o: $
+    cxx $
+    ../../third_party/WebKit/Source/core/html/canvas/WebGLDrawBuffers.cpp $
+    || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/canvas/webcore_html.WebGLExtension.o: $
+    cxx ../../third_party/WebKit/Source/core/html/canvas/WebGLExtension.cpp $
+    || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/canvas/webcore_html.WebGLFramebuffer.o: $
+    cxx $
+    ../../third_party/WebKit/Source/core/html/canvas/WebGLFramebuffer.cpp $
+    || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/canvas/webcore_html.WebGLGetInfo.o: $
+    cxx ../../third_party/WebKit/Source/core/html/canvas/WebGLGetInfo.cpp $
+    || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/canvas/webcore_html.WebGLLoseContext.o: $
+    cxx $
+    ../../third_party/WebKit/Source/core/html/canvas/WebGLLoseContext.cpp $
+    || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/canvas/webcore_html.WebGLObject.o: $
+    cxx ../../third_party/WebKit/Source/core/html/canvas/WebGLObject.cpp || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/canvas/webcore_html.WebGLProgram.o: $
+    cxx ../../third_party/WebKit/Source/core/html/canvas/WebGLProgram.cpp $
+    || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/canvas/webcore_html.WebGLRenderbuffer.o: $
+    cxx $
+    ../../third_party/WebKit/Source/core/html/canvas/WebGLRenderbuffer.cpp $
+    || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/canvas/webcore_html.WebGLRenderingContext.o: $
+    cxx $
+    ../../third_party/WebKit/Source/core/html/canvas/WebGLRenderingContext.cpp $
+    || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/canvas/webcore_html.WebGLShader.o: $
+    cxx ../../third_party/WebKit/Source/core/html/canvas/WebGLShader.cpp || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/canvas/webcore_html.WebGLShaderPrecisionFormat.o: $
+    cxx $
+    ../../third_party/WebKit/Source/core/html/canvas/WebGLShaderPrecisionFormat.cpp $
+    || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/canvas/webcore_html.WebGLSharedObject.o: $
+    cxx $
+    ../../third_party/WebKit/Source/core/html/canvas/WebGLSharedObject.cpp $
+    || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/canvas/webcore_html.WebGLTexture.o: $
+    cxx ../../third_party/WebKit/Source/core/html/canvas/WebGLTexture.cpp $
+    || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/canvas/webcore_html.WebGLUniformLocation.o: $
+    cxx $
+    ../../third_party/WebKit/Source/core/html/canvas/WebGLUniformLocation.cpp $
+    || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/canvas/webcore_html.WebGLVertexArrayObjectOES.o: $
+    cxx $
+    ../../third_party/WebKit/Source/core/html/canvas/WebGLVertexArrayObjectOES.cpp $
+    || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/forms/webcore_html.BaseButtonInputType.o: $
+    cxx $
+    ../../third_party/WebKit/Source/core/html/forms/BaseButtonInputType.cpp $
+    || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/forms/webcore_html.BaseCheckableInputType.o: $
+    cxx $
+    ../../third_party/WebKit/Source/core/html/forms/BaseCheckableInputType.cpp $
+    || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/forms/webcore_html.BaseChooserOnlyDateAndTimeInputType.o: $
+    cxx $
+    ../../third_party/WebKit/Source/core/html/forms/BaseChooserOnlyDateAndTimeInputType.cpp $
+    || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/forms/webcore_html.BaseClickableWithKeyInputType.o: $
+    cxx $
+    ../../third_party/WebKit/Source/core/html/forms/BaseClickableWithKeyInputType.cpp $
+    || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/forms/webcore_html.BaseDateAndTimeInputType.o: $
+    cxx $
+    ../../third_party/WebKit/Source/core/html/forms/BaseDateAndTimeInputType.cpp $
+    || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/forms/webcore_html.BaseMultipleFieldsDateAndTimeInputType.o: $
+    cxx $
+    ../../third_party/WebKit/Source/core/html/forms/BaseMultipleFieldsDateAndTimeInputType.cpp $
+    || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/forms/webcore_html.BaseTextInputType.o: $
+    cxx $
+    ../../third_party/WebKit/Source/core/html/forms/BaseTextInputType.cpp $
+    || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/forms/webcore_html.ButtonInputType.o: $
+    cxx ../../third_party/WebKit/Source/core/html/forms/ButtonInputType.cpp $
+    || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/forms/webcore_html.CheckboxInputType.o: $
+    cxx $
+    ../../third_party/WebKit/Source/core/html/forms/CheckboxInputType.cpp $
+    || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/forms/webcore_html.CheckedRadioButtons.o: $
+    cxx $
+    ../../third_party/WebKit/Source/core/html/forms/CheckedRadioButtons.cpp $
+    || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/forms/webcore_html.ColorInputType.o: $
+    cxx ../../third_party/WebKit/Source/core/html/forms/ColorInputType.cpp $
+    || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/forms/webcore_html.DateInputType.o: $
+    cxx ../../third_party/WebKit/Source/core/html/forms/DateInputType.cpp $
+    || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/forms/webcore_html.DateTimeFieldsState.o: $
+    cxx $
+    ../../third_party/WebKit/Source/core/html/forms/DateTimeFieldsState.cpp $
+    || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/forms/webcore_html.DateTimeLocalInputType.o: $
+    cxx $
+    ../../third_party/WebKit/Source/core/html/forms/DateTimeLocalInputType.cpp $
+    || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/forms/webcore_html.EmailInputType.o: $
+    cxx ../../third_party/WebKit/Source/core/html/forms/EmailInputType.cpp $
+    || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/forms/webcore_html.FileInputType.o: $
+    cxx ../../third_party/WebKit/Source/core/html/forms/FileInputType.cpp $
+    || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/forms/webcore_html.FormController.o: $
+    cxx ../../third_party/WebKit/Source/core/html/forms/FormController.cpp $
+    || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/forms/webcore_html.HiddenInputType.o: $
+    cxx ../../third_party/WebKit/Source/core/html/forms/HiddenInputType.cpp $
+    || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/forms/webcore_html.ImageInputType.o: $
+    cxx ../../third_party/WebKit/Source/core/html/forms/ImageInputType.cpp $
+    || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/forms/webcore_html.InputType.o: $
+    cxx ../../third_party/WebKit/Source/core/html/forms/InputType.cpp || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/forms/webcore_html.InputTypeNames.o: $
+    cxx ../../third_party/WebKit/Source/core/html/forms/InputTypeNames.cpp $
+    || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/forms/webcore_html.InputTypeView.o: $
+    cxx ../../third_party/WebKit/Source/core/html/forms/InputTypeView.cpp $
+    || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/forms/webcore_html.MonthInputType.o: $
+    cxx ../../third_party/WebKit/Source/core/html/forms/MonthInputType.cpp $
+    || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/forms/webcore_html.NumberInputType.o: $
+    cxx ../../third_party/WebKit/Source/core/html/forms/NumberInputType.cpp $
+    || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/forms/webcore_html.PasswordInputType.o: $
+    cxx $
+    ../../third_party/WebKit/Source/core/html/forms/PasswordInputType.cpp $
+    || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/forms/webcore_html.RadioInputType.o: $
+    cxx ../../third_party/WebKit/Source/core/html/forms/RadioInputType.cpp $
+    || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/forms/webcore_html.RangeInputType.o: $
+    cxx ../../third_party/WebKit/Source/core/html/forms/RangeInputType.cpp $
+    || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/forms/webcore_html.ResetInputType.o: $
+    cxx ../../third_party/WebKit/Source/core/html/forms/ResetInputType.cpp $
+    || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/forms/webcore_html.SearchInputType.o: $
+    cxx ../../third_party/WebKit/Source/core/html/forms/SearchInputType.cpp $
+    || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/forms/webcore_html.StepRange.o: $
+    cxx ../../third_party/WebKit/Source/core/html/forms/StepRange.cpp || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/forms/webcore_html.SubmitInputType.o: $
+    cxx ../../third_party/WebKit/Source/core/html/forms/SubmitInputType.cpp $
+    || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/forms/webcore_html.TelephoneInputType.o: $
+    cxx $
+    ../../third_party/WebKit/Source/core/html/forms/TelephoneInputType.cpp $
+    || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/forms/webcore_html.TextFieldInputType.o: $
+    cxx $
+    ../../third_party/WebKit/Source/core/html/forms/TextFieldInputType.cpp $
+    || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/forms/webcore_html.TextInputType.o: $
+    cxx ../../third_party/WebKit/Source/core/html/forms/TextInputType.cpp $
+    || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/forms/webcore_html.TimeInputType.o: $
+    cxx ../../third_party/WebKit/Source/core/html/forms/TimeInputType.cpp $
+    || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/forms/webcore_html.TypeAhead.o: $
+    cxx ../../third_party/WebKit/Source/core/html/forms/TypeAhead.cpp || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/forms/webcore_html.URLInputType.o: $
+    cxx ../../third_party/WebKit/Source/core/html/forms/URLInputType.cpp || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/forms/webcore_html.ValidationMessage.o: $
+    cxx $
+    ../../third_party/WebKit/Source/core/html/forms/ValidationMessage.cpp $
+    || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/forms/webcore_html.WeekInputType.o: $
+    cxx ../../third_party/WebKit/Source/core/html/forms/WeekInputType.cpp $
+    || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/parser/webcore_html.BackgroundHTMLParser.o: $
+    cxx $
+    ../../third_party/WebKit/Source/core/html/parser/BackgroundHTMLParser.cpp $
+    || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/parser/webcore_html.BackgroundHTMLInputStream.o: $
+    cxx $
+    ../../third_party/WebKit/Source/core/html/parser/BackgroundHTMLInputStream.cpp $
+    || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/parser/webcore_html.CSSPreloadScanner.o: $
+    cxx $
+    ../../third_party/WebKit/Source/core/html/parser/CSSPreloadScanner.cpp $
+    || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/parser/webcore_html.CompactHTMLToken.o: $
+    cxx $
+    ../../third_party/WebKit/Source/core/html/parser/CompactHTMLToken.cpp $
+    || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/parser/webcore_html.HTMLConstructionSite.o: $
+    cxx $
+    ../../third_party/WebKit/Source/core/html/parser/HTMLConstructionSite.cpp $
+    || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/parser/webcore_html.HTMLDocumentParser.o: $
+    cxx $
+    ../../third_party/WebKit/Source/core/html/parser/HTMLDocumentParser.cpp $
+    || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/parser/webcore_html.HTMLElementStack.o: $
+    cxx $
+    ../../third_party/WebKit/Source/core/html/parser/HTMLElementStack.cpp $
+    || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/parser/webcore_html.HTMLEntityParser.o: $
+    cxx $
+    ../../third_party/WebKit/Source/core/html/parser/HTMLEntityParser.cpp $
+    || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/parser/webcore_html.HTMLEntitySearch.o: $
+    cxx $
+    ../../third_party/WebKit/Source/core/html/parser/HTMLEntitySearch.cpp $
+    || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/parser/webcore_html.HTMLFormattingElementList.o: $
+    cxx $
+    ../../third_party/WebKit/Source/core/html/parser/HTMLFormattingElementList.cpp $
+    || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/parser/webcore_html.HTMLIdentifier.o: $
+    cxx ../../third_party/WebKit/Source/core/html/parser/HTMLIdentifier.cpp $
+    || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/parser/webcore_html.HTMLMetaCharsetParser.o: $
+    cxx $
+    ../../third_party/WebKit/Source/core/html/parser/HTMLMetaCharsetParser.cpp $
+    || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/parser/webcore_html.HTMLParserIdioms.o: $
+    cxx $
+    ../../third_party/WebKit/Source/core/html/parser/HTMLParserIdioms.cpp $
+    || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/parser/webcore_html.HTMLParserOptions.o: $
+    cxx $
+    ../../third_party/WebKit/Source/core/html/parser/HTMLParserOptions.cpp $
+    || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/parser/webcore_html.HTMLParserScheduler.o: $
+    cxx $
+    ../../third_party/WebKit/Source/core/html/parser/HTMLParserScheduler.cpp $
+    || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/parser/webcore_html.HTMLParserThread.o: $
+    cxx $
+    ../../third_party/WebKit/Source/core/html/parser/HTMLParserThread.cpp $
+    || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/parser/webcore_html.HTMLPreloadScanner.o: $
+    cxx $
+    ../../third_party/WebKit/Source/core/html/parser/HTMLPreloadScanner.cpp $
+    || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/parser/webcore_html.HTMLResourcePreloader.o: $
+    cxx $
+    ../../third_party/WebKit/Source/core/html/parser/HTMLResourcePreloader.cpp $
+    || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/parser/webcore_html.HTMLScriptRunner.o: $
+    cxx $
+    ../../third_party/WebKit/Source/core/html/parser/HTMLScriptRunner.cpp $
+    || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/parser/webcore_html.HTMLSourceTracker.o: $
+    cxx $
+    ../../third_party/WebKit/Source/core/html/parser/HTMLSourceTracker.cpp $
+    || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/parser/webcore_html.HTMLSrcsetParser.o: $
+    cxx $
+    ../../third_party/WebKit/Source/core/html/parser/HTMLSrcsetParser.cpp $
+    || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/parser/webcore_html.HTMLTokenizer.o: $
+    cxx ../../third_party/WebKit/Source/core/html/parser/HTMLTokenizer.cpp $
+    || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/parser/webcore_html.HTMLTreeBuilder.o: $
+    cxx $
+    ../../third_party/WebKit/Source/core/html/parser/HTMLTreeBuilder.cpp || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/parser/webcore_html.HTMLTreeBuilderSimulator.o: $
+    cxx $
+    ../../third_party/WebKit/Source/core/html/parser/HTMLTreeBuilderSimulator.cpp $
+    || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/parser/webcore_html.HTMLViewSourceParser.o: $
+    cxx $
+    ../../third_party/WebKit/Source/core/html/parser/HTMLViewSourceParser.cpp $
+    || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/parser/webcore_html.TextDocumentParser.o: $
+    cxx $
+    ../../third_party/WebKit/Source/core/html/parser/TextDocumentParser.cpp $
+    || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/parser/webcore_html.XSSAuditor.o: $
+    cxx ../../third_party/WebKit/Source/core/html/parser/XSSAuditor.cpp || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/parser/webcore_html.XSSAuditorDelegate.o: $
+    cxx $
+    ../../third_party/WebKit/Source/core/html/parser/XSSAuditorDelegate.cpp $
+    || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/shadow/webcore_html.PickerIndicatorElement.o: $
+    cxx $
+    ../../third_party/WebKit/Source/core/html/shadow/PickerIndicatorElement.cpp $
+    || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/shadow/webcore_html.ClearButtonElement.o: $
+    cxx $
+    ../../third_party/WebKit/Source/core/html/shadow/ClearButtonElement.cpp $
+    || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/shadow/webcore_html.DateTimeEditElement.o: $
+    cxx $
+    ../../third_party/WebKit/Source/core/html/shadow/DateTimeEditElement.cpp $
+    || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/shadow/webcore_html.DateTimeFieldElement.o: $
+    cxx $
+    ../../third_party/WebKit/Source/core/html/shadow/DateTimeFieldElement.cpp $
+    || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/shadow/webcore_html.DateTimeFieldElements.o: $
+    cxx $
+    ../../third_party/WebKit/Source/core/html/shadow/DateTimeFieldElements.cpp $
+    || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/shadow/webcore_html.DateTimeNumericFieldElement.o: $
+    cxx $
+    ../../third_party/WebKit/Source/core/html/shadow/DateTimeNumericFieldElement.cpp $
+    || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/shadow/webcore_html.DateTimeSymbolicFieldElement.o: $
+    cxx $
+    ../../third_party/WebKit/Source/core/html/shadow/DateTimeSymbolicFieldElement.cpp $
+    || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/shadow/webcore_html.DetailsMarkerControl.o: $
+    cxx $
+    ../../third_party/WebKit/Source/core/html/shadow/DetailsMarkerControl.cpp $
+    || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/shadow/webcore_html.HTMLContentElement.o: $
+    cxx $
+    ../../third_party/WebKit/Source/core/html/shadow/HTMLContentElement.cpp $
+    || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/shadow/webcore_html.HTMLShadowElement.o: $
+    cxx $
+    ../../third_party/WebKit/Source/core/html/shadow/HTMLShadowElement.cpp $
+    || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/shadow/webcore_html.MediaControls.o: $
+    cxx ../../third_party/WebKit/Source/core/html/shadow/MediaControls.cpp $
+    || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/shadow/webcore_html.MediaControlElementTypes.o: $
+    cxx $
+    ../../third_party/WebKit/Source/core/html/shadow/MediaControlElementTypes.cpp $
+    || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/shadow/webcore_html.MediaControlElements.o: $
+    cxx $
+    ../../third_party/WebKit/Source/core/html/shadow/MediaControlElements.cpp $
+    || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/shadow/webcore_html.MediaControlsChromium.o: $
+    cxx $
+    ../../third_party/WebKit/Source/core/html/shadow/MediaControlsChromium.cpp $
+    || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/shadow/webcore_html.MeterShadowElement.o: $
+    cxx $
+    ../../third_party/WebKit/Source/core/html/shadow/MeterShadowElement.cpp $
+    || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/shadow/webcore_html.PasswordGeneratorButtonElement.o: $
+    cxx $
+    ../../third_party/WebKit/Source/core/html/shadow/PasswordGeneratorButtonElement.cpp $
+    || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/shadow/webcore_html.ProgressShadowElement.o: $
+    cxx $
+    ../../third_party/WebKit/Source/core/html/shadow/ProgressShadowElement.cpp $
+    || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/shadow/webcore_html.ShadowElementNames.o: $
+    cxx $
+    ../../third_party/WebKit/Source/core/html/shadow/ShadowElementNames.cpp $
+    || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/shadow/webcore_html.SliderThumbElement.o: $
+    cxx $
+    ../../third_party/WebKit/Source/core/html/shadow/SliderThumbElement.cpp $
+    || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/shadow/webcore_html.SpinButtonElement.o: $
+    cxx $
+    ../../third_party/WebKit/Source/core/html/shadow/SpinButtonElement.cpp $
+    || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/shadow/webcore_html.TextControlInnerElements.o: $
+    cxx $
+    ../../third_party/WebKit/Source/core/html/shadow/TextControlInnerElements.cpp $
+    || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/ime/webcore_html.Composition.o: $
+    cxx ../../third_party/WebKit/Source/core/html/ime/Composition.cpp || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/ime/webcore_html.InputMethodContext.o: $
+    cxx $
+    ../../third_party/WebKit/Source/core/html/ime/InputMethodContext.cpp || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/track/webcore_html.InbandTextTrack.o: $
+    cxx ../../third_party/WebKit/Source/core/html/track/InbandTextTrack.cpp $
+    || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/track/webcore_html.LoadableTextTrack.o: $
+    cxx $
+    ../../third_party/WebKit/Source/core/html/track/LoadableTextTrack.cpp $
+    || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/track/webcore_html.TextTrack.o: $
+    cxx ../../third_party/WebKit/Source/core/html/track/TextTrack.cpp || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/track/webcore_html.TextTrackCue.o: $
+    cxx ../../third_party/WebKit/Source/core/html/track/TextTrackCue.cpp || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/track/webcore_html.TextTrackCueList.o: $
+    cxx $
+    ../../third_party/WebKit/Source/core/html/track/TextTrackCueList.cpp || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/track/webcore_html.TextTrackList.o: $
+    cxx ../../third_party/WebKit/Source/core/html/track/TextTrackList.cpp $
+    || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/track/webcore_html.TrackEvent.o: $
+    cxx ../../third_party/WebKit/Source/core/html/track/TrackEvent.cpp || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/track/webcore_html.VTTRegion.o: $
+    cxx ../../third_party/WebKit/Source/core/html/track/VTTRegion.cpp || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/track/webcore_html.VTTRegionList.o: $
+    cxx ../../third_party/WebKit/Source/core/html/track/VTTRegionList.cpp $
+    || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/track/webcore_html.WebVTTElement.o: $
+    cxx ../../third_party/WebKit/Source/core/html/track/WebVTTElement.cpp $
+    || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/track/webcore_html.WebVTTParser.o: $
+    cxx ../../third_party/WebKit/Source/core/html/track/WebVTTParser.cpp || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+build $
+    obj/third_party/WebKit/Source/core/html/track/webcore_html.WebVTTTokenizer.o: $
+    cxx ../../third_party/WebKit/Source/core/html/track/WebVTTTokenizer.cpp $
+    || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.compile_depends.stamp
+
+build obj/third_party/WebKit/Source/core/libwebcore_html.a: alink_thin $
+    obj/third_party/WebKit/Source/core/html/webcore_html.ClassList.o $
+    obj/third_party/WebKit/Source/core/html/webcore_html.DOMFormData.o $
+    obj/third_party/WebKit/Source/core/html/webcore_html.FormAssociatedElement.o $
+    obj/third_party/WebKit/Source/core/html/webcore_html.FormDataList.o $
+    obj/third_party/WebKit/Source/core/html/webcore_html.HTMLAllCollection.o $
+    obj/third_party/WebKit/Source/core/html/webcore_html.HTMLAnchorElement.o $
+    obj/third_party/WebKit/Source/core/html/webcore_html.HTMLAppletElement.o $
+    obj/third_party/WebKit/Source/core/html/webcore_html.HTMLAreaElement.o $
+    obj/third_party/WebKit/Source/core/html/webcore_html.HTMLAudioElement.o $
+    obj/third_party/WebKit/Source/core/html/webcore_html.HTMLBRElement.o $
+    obj/third_party/WebKit/Source/core/html/webcore_html.HTMLBaseElement.o $
+    obj/third_party/WebKit/Source/core/html/webcore_html.HTMLBodyElement.o $
+    obj/third_party/WebKit/Source/core/html/webcore_html.HTMLButtonElement.o $
+    obj/third_party/WebKit/Source/core/html/webcore_html.HTMLCanvasElement.o $
+    obj/third_party/WebKit/Source/core/html/webcore_html.HTMLCollection.o $
+    obj/third_party/WebKit/Source/core/html/webcore_html.HTMLDListElement.o $
+    obj/third_party/WebKit/Source/core/html/webcore_html.HTMLDataListElement.o $
+    obj/third_party/WebKit/Source/core/html/webcore_html.HTMLDetailsElement.o $
+    obj/third_party/WebKit/Source/core/html/webcore_html.HTMLDialogElement.o $
+    obj/third_party/WebKit/Source/core/html/webcore_html.HTMLDimension.o $
+    obj/third_party/WebKit/Source/core/html/webcore_html.HTMLDirectoryElement.o $
+    obj/third_party/WebKit/Source/core/html/webcore_html.HTMLDivElement.o $
+    obj/third_party/WebKit/Source/core/html/webcore_html.HTMLDocument.o $
+    obj/third_party/WebKit/Source/core/html/webcore_html.HTMLElement.o $
+    obj/third_party/WebKit/Source/core/html/webcore_html.HTMLEmbedElement.o $
+    obj/third_party/WebKit/Source/core/html/webcore_html.HTMLFieldSetElement.o $
+    obj/third_party/WebKit/Source/core/html/webcore_html.HTMLFontElement.o $
+    obj/third_party/WebKit/Source/core/html/webcore_html.HTMLFormControlsCollection.o $
+    obj/third_party/WebKit/Source/core/html/webcore_html.HTMLFormControlElement.o $
+    obj/third_party/WebKit/Source/core/html/webcore_html.HTMLFormControlElementWithState.o $
+    obj/third_party/WebKit/Source/core/html/webcore_html.HTMLFormElement.o $
+    obj/third_party/WebKit/Source/core/html/webcore_html.HTMLFrameElement.o $
+    obj/third_party/WebKit/Source/core/html/webcore_html.HTMLFrameElementBase.o $
+    obj/third_party/WebKit/Source/core/html/webcore_html.HTMLFrameOwnerElement.o $
+    obj/third_party/WebKit/Source/core/html/webcore_html.HTMLFrameSetElement.o $
+    obj/third_party/WebKit/Source/core/html/webcore_html.HTMLHRElement.o $
+    obj/third_party/WebKit/Source/core/html/webcore_html.HTMLHeadElement.o $
+    obj/third_party/WebKit/Source/core/html/webcore_html.HTMLHeadingElement.o $
+    obj/third_party/WebKit/Source/core/html/webcore_html.HTMLHtmlElement.o $
+    obj/third_party/WebKit/Source/core/html/webcore_html.HTMLIFrameElement.o $
+    obj/third_party/WebKit/Source/core/html/webcore_html.HTMLImageElement.o $
+    obj/third_party/WebKit/Source/core/html/webcore_html.HTMLImageLoader.o $
+    obj/third_party/WebKit/Source/core/html/webcore_html.HTMLImport.o $
+    obj/third_party/WebKit/Source/core/html/webcore_html.HTMLImportsController.o $
+    obj/third_party/WebKit/Source/core/html/webcore_html.HTMLImportLoader.o $
+    obj/third_party/WebKit/Source/core/html/webcore_html.HTMLInputElement.o $
+    obj/third_party/WebKit/Source/core/html/webcore_html.HTMLKeygenElement.o $
+    obj/third_party/WebKit/Source/core/html/webcore_html.HTMLLIElement.o $
+    obj/third_party/WebKit/Source/core/html/webcore_html.HTMLLabelElement.o $
+    obj/third_party/WebKit/Source/core/html/webcore_html.HTMLLegendElement.o $
+    obj/third_party/WebKit/Source/core/html/webcore_html.HTMLLinkElement.o $
+    obj/third_party/WebKit/Source/core/html/webcore_html.HTMLMapElement.o $
+    obj/third_party/WebKit/Source/core/html/webcore_html.HTMLMarqueeElement.o $
+    obj/third_party/WebKit/Source/core/html/webcore_html.HTMLMediaElement.o $
+    obj/third_party/WebKit/Source/core/html/webcore_html.HTMLMenuElement.o $
+    obj/third_party/WebKit/Source/core/html/webcore_html.HTMLMeterElement.o $
+    obj/third_party/WebKit/Source/core/html/webcore_html.HTMLModElement.o $
+    obj/third_party/WebKit/Source/core/html/webcore_html.HTMLNameCollection.o $
+    obj/third_party/WebKit/Source/core/html/webcore_html.HTMLOListElement.o $
+    obj/third_party/WebKit/Source/core/html/webcore_html.HTMLObjectElement.o $
+    obj/third_party/WebKit/Source/core/html/webcore_html.HTMLOptGroupElement.o $
+    obj/third_party/WebKit/Source/core/html/webcore_html.HTMLOptionElement.o $
+    obj/third_party/WebKit/Source/core/html/webcore_html.HTMLOptionsCollection.o $
+    obj/third_party/WebKit/Source/core/html/webcore_html.HTMLOutputElement.o $
+    obj/third_party/WebKit/Source/core/html/webcore_html.HTMLParagraphElement.o $
+    obj/third_party/WebKit/Source/core/html/webcore_html.HTMLParamElement.o $
+    obj/third_party/WebKit/Source/core/html/webcore_html.HTMLPlugInElement.o $
+    obj/third_party/WebKit/Source/core/html/webcore_html.HTMLPreElement.o $
+    obj/third_party/WebKit/Source/core/html/webcore_html.HTMLProgressElement.o $
+    obj/third_party/WebKit/Source/core/html/webcore_html.HTMLQuoteElement.o $
+    obj/third_party/WebKit/Source/core/html/webcore_html.HTMLScriptElement.o $
+    obj/third_party/WebKit/Source/core/html/webcore_html.HTMLSelectElement.o $
+    obj/third_party/WebKit/Source/core/html/webcore_html.HTMLSourceElement.o $
+    obj/third_party/WebKit/Source/core/html/webcore_html.HTMLSpanElement.o $
+    obj/third_party/WebKit/Source/core/html/webcore_html.HTMLStyleElement.o $
+    obj/third_party/WebKit/Source/core/html/webcore_html.HTMLSummaryElement.o $
+    obj/third_party/WebKit/Source/core/html/webcore_html.HTMLTableCaptionElement.o $
+    obj/third_party/WebKit/Source/core/html/webcore_html.HTMLTableCellElement.o $
+    obj/third_party/WebKit/Source/core/html/webcore_html.HTMLTableColElement.o $
+    obj/third_party/WebKit/Source/core/html/webcore_html.HTMLTableElement.o $
+    obj/third_party/WebKit/Source/core/html/webcore_html.HTMLTablePartElement.o $
+    obj/third_party/WebKit/Source/core/html/webcore_html.HTMLTableRowElement.o $
+    obj/third_party/WebKit/Source/core/html/webcore_html.HTMLTableRowsCollection.o $
+    obj/third_party/WebKit/Source/core/html/webcore_html.HTMLTableSectionElement.o $
+    obj/third_party/WebKit/Source/core/html/webcore_html.HTMLTemplateElement.o $
+    obj/third_party/WebKit/Source/core/html/webcore_html.HTMLTextAreaElement.o $
+    obj/third_party/WebKit/Source/core/html/webcore_html.HTMLTextFormControlElement.o $
+    obj/third_party/WebKit/Source/core/html/webcore_html.HTMLTitleElement.o $
+    obj/third_party/WebKit/Source/core/html/webcore_html.HTMLTrackElement.o $
+    obj/third_party/WebKit/Source/core/html/webcore_html.HTMLUListElement.o $
+    obj/third_party/WebKit/Source/core/html/webcore_html.HTMLVideoElement.o $
+    obj/third_party/WebKit/Source/core/html/webcore_html.HTMLViewSourceDocument.o $
+    obj/third_party/WebKit/Source/core/html/webcore_html.ImageData.o $
+    obj/third_party/WebKit/Source/core/html/webcore_html.ImageDocument.o $
+    obj/third_party/WebKit/Source/core/html/webcore_html.LabelableElement.o $
+    obj/third_party/WebKit/Source/core/html/webcore_html.LabelsNodeList.o $
+    obj/third_party/WebKit/Source/core/html/webcore_html.LinkImport.o $
+    obj/third_party/WebKit/Source/core/html/webcore_html.LinkRelAttribute.o $
+    obj/third_party/WebKit/Source/core/html/webcore_html.LinkResource.o $
+    obj/third_party/WebKit/Source/core/html/webcore_html.MediaController.o $
+    obj/third_party/WebKit/Source/core/html/webcore_html.MediaDocument.o $
+    obj/third_party/WebKit/Source/core/html/webcore_html.MediaFragmentURIParser.o $
+    obj/third_party/WebKit/Source/core/html/webcore_html.MediaKeyEvent.o $
+    obj/third_party/WebKit/Source/core/html/webcore_html.HTMLMediaSource.o $
+    obj/third_party/WebKit/Source/core/html/webcore_html.PluginDocument.o $
+    obj/third_party/WebKit/Source/core/html/webcore_html.PublicURLManager.o $
+    obj/third_party/WebKit/Source/core/html/webcore_html.RadioNodeList.o $
+    obj/third_party/WebKit/Source/core/html/webcore_html.TextDocument.o $
+    obj/third_party/WebKit/Source/core/html/webcore_html.TimeRanges.o $
+    obj/third_party/WebKit/Source/core/html/webcore_html.ValidityState.o $
+    obj/third_party/WebKit/Source/core/html/canvas/webcore_html.ANGLEInstancedArrays.o $
+    obj/third_party/WebKit/Source/core/html/canvas/webcore_html.Canvas2DContextAttributes.o $
+    obj/third_party/WebKit/Source/core/html/canvas/webcore_html.CanvasContextAttributes.o $
+    obj/third_party/WebKit/Source/core/html/canvas/webcore_html.CanvasGradient.o $
+    obj/third_party/WebKit/Source/core/html/canvas/webcore_html.CanvasPathMethods.o $
+    obj/third_party/WebKit/Source/core/html/canvas/webcore_html.CanvasPattern.o $
+    obj/third_party/WebKit/Source/core/html/canvas/webcore_html.CanvasRenderingContext.o $
+    obj/third_party/WebKit/Source/core/html/canvas/webcore_html.CanvasRenderingContext2D.o $
+    obj/third_party/WebKit/Source/core/html/canvas/webcore_html.CanvasStyle.o $
+    obj/third_party/WebKit/Source/core/html/canvas/webcore_html.DataView.o $
+    obj/third_party/WebKit/Source/core/html/canvas/webcore_html.EXTFragDepth.o $
+    obj/third_party/WebKit/Source/core/html/canvas/webcore_html.EXTTextureFilterAnisotropic.o $
+    obj/third_party/WebKit/Source/core/html/canvas/webcore_html.OESStandardDerivatives.o $
+    obj/third_party/WebKit/Source/core/html/canvas/webcore_html.OESTextureFloat.o $
+    obj/third_party/WebKit/Source/core/html/canvas/webcore_html.OESTextureFloatLinear.o $
+    obj/third_party/WebKit/Source/core/html/canvas/webcore_html.OESTextureHalfFloat.o $
+    obj/third_party/WebKit/Source/core/html/canvas/webcore_html.OESTextureHalfFloatLinear.o $
+    obj/third_party/WebKit/Source/core/html/canvas/webcore_html.OESVertexArrayObject.o $
+    obj/third_party/WebKit/Source/core/html/canvas/webcore_html.OESElementIndexUint.o $
+    obj/third_party/WebKit/Source/core/html/canvas/webcore_html.WebGLBuffer.o $
+    obj/third_party/WebKit/Source/core/html/canvas/webcore_html.WebGLCompressedTextureATC.o $
+    obj/third_party/WebKit/Source/core/html/canvas/webcore_html.WebGLCompressedTexturePVRTC.o $
+    obj/third_party/WebKit/Source/core/html/canvas/webcore_html.WebGLCompressedTextureS3TC.o $
+    obj/third_party/WebKit/Source/core/html/canvas/webcore_html.WebGLContextAttributes.o $
+    obj/third_party/WebKit/Source/core/html/canvas/webcore_html.WebGLContextEvent.o $
+    obj/third_party/WebKit/Source/core/html/canvas/webcore_html.WebGLContextGroup.o $
+    obj/third_party/WebKit/Source/core/html/canvas/webcore_html.WebGLContextObject.o $
+    obj/third_party/WebKit/Source/core/html/canvas/webcore_html.WebGLDebugRendererInfo.o $
+    obj/third_party/WebKit/Source/core/html/canvas/webcore_html.WebGLDebugShaders.o $
+    obj/third_party/WebKit/Source/core/html/canvas/webcore_html.WebGLDepthTexture.o $
+    obj/third_party/WebKit/Source/core/html/canvas/webcore_html.WebGLDrawBuffers.o $
+    obj/third_party/WebKit/Source/core/html/canvas/webcore_html.WebGLExtension.o $
+    obj/third_party/WebKit/Source/core/html/canvas/webcore_html.WebGLFramebuffer.o $
+    obj/third_party/WebKit/Source/core/html/canvas/webcore_html.WebGLGetInfo.o $
+    obj/third_party/WebKit/Source/core/html/canvas/webcore_html.WebGLLoseContext.o $
+    obj/third_party/WebKit/Source/core/html/canvas/webcore_html.WebGLObject.o $
+    obj/third_party/WebKit/Source/core/html/canvas/webcore_html.WebGLProgram.o $
+    obj/third_party/WebKit/Source/core/html/canvas/webcore_html.WebGLRenderbuffer.o $
+    obj/third_party/WebKit/Source/core/html/canvas/webcore_html.WebGLRenderingContext.o $
+    obj/third_party/WebKit/Source/core/html/canvas/webcore_html.WebGLShader.o $
+    obj/third_party/WebKit/Source/core/html/canvas/webcore_html.WebGLShaderPrecisionFormat.o $
+    obj/third_party/WebKit/Source/core/html/canvas/webcore_html.WebGLSharedObject.o $
+    obj/third_party/WebKit/Source/core/html/canvas/webcore_html.WebGLTexture.o $
+    obj/third_party/WebKit/Source/core/html/canvas/webcore_html.WebGLUniformLocation.o $
+    obj/third_party/WebKit/Source/core/html/canvas/webcore_html.WebGLVertexArrayObjectOES.o $
+    obj/third_party/WebKit/Source/core/html/forms/webcore_html.BaseButtonInputType.o $
+    obj/third_party/WebKit/Source/core/html/forms/webcore_html.BaseCheckableInputType.o $
+    obj/third_party/WebKit/Source/core/html/forms/webcore_html.BaseChooserOnlyDateAndTimeInputType.o $
+    obj/third_party/WebKit/Source/core/html/forms/webcore_html.BaseClickableWithKeyInputType.o $
+    obj/third_party/WebKit/Source/core/html/forms/webcore_html.BaseDateAndTimeInputType.o $
+    obj/third_party/WebKit/Source/core/html/forms/webcore_html.BaseMultipleFieldsDateAndTimeInputType.o $
+    obj/third_party/WebKit/Source/core/html/forms/webcore_html.BaseTextInputType.o $
+    obj/third_party/WebKit/Source/core/html/forms/webcore_html.ButtonInputType.o $
+    obj/third_party/WebKit/Source/core/html/forms/webcore_html.CheckboxInputType.o $
+    obj/third_party/WebKit/Source/core/html/forms/webcore_html.CheckedRadioButtons.o $
+    obj/third_party/WebKit/Source/core/html/forms/webcore_html.ColorInputType.o $
+    obj/third_party/WebKit/Source/core/html/forms/webcore_html.DateInputType.o $
+    obj/third_party/WebKit/Source/core/html/forms/webcore_html.DateTimeFieldsState.o $
+    obj/third_party/WebKit/Source/core/html/forms/webcore_html.DateTimeLocalInputType.o $
+    obj/third_party/WebKit/Source/core/html/forms/webcore_html.EmailInputType.o $
+    obj/third_party/WebKit/Source/core/html/forms/webcore_html.FileInputType.o $
+    obj/third_party/WebKit/Source/core/html/forms/webcore_html.FormController.o $
+    obj/third_party/WebKit/Source/core/html/forms/webcore_html.HiddenInputType.o $
+    obj/third_party/WebKit/Source/core/html/forms/webcore_html.ImageInputType.o $
+    obj/third_party/WebKit/Source/core/html/forms/webcore_html.InputType.o $
+    obj/third_party/WebKit/Source/core/html/forms/webcore_html.InputTypeNames.o $
+    obj/third_party/WebKit/Source/core/html/forms/webcore_html.InputTypeView.o $
+    obj/third_party/WebKit/Source/core/html/forms/webcore_html.MonthInputType.o $
+    obj/third_party/WebKit/Source/core/html/forms/webcore_html.NumberInputType.o $
+    obj/third_party/WebKit/Source/core/html/forms/webcore_html.PasswordInputType.o $
+    obj/third_party/WebKit/Source/core/html/forms/webcore_html.RadioInputType.o $
+    obj/third_party/WebKit/Source/core/html/forms/webcore_html.RangeInputType.o $
+    obj/third_party/WebKit/Source/core/html/forms/webcore_html.ResetInputType.o $
+    obj/third_party/WebKit/Source/core/html/forms/webcore_html.SearchInputType.o $
+    obj/third_party/WebKit/Source/core/html/forms/webcore_html.StepRange.o $
+    obj/third_party/WebKit/Source/core/html/forms/webcore_html.SubmitInputType.o $
+    obj/third_party/WebKit/Source/core/html/forms/webcore_html.TelephoneInputType.o $
+    obj/third_party/WebKit/Source/core/html/forms/webcore_html.TextFieldInputType.o $
+    obj/third_party/WebKit/Source/core/html/forms/webcore_html.TextInputType.o $
+    obj/third_party/WebKit/Source/core/html/forms/webcore_html.TimeInputType.o $
+    obj/third_party/WebKit/Source/core/html/forms/webcore_html.TypeAhead.o $
+    obj/third_party/WebKit/Source/core/html/forms/webcore_html.URLInputType.o $
+    obj/third_party/WebKit/Source/core/html/forms/webcore_html.ValidationMessage.o $
+    obj/third_party/WebKit/Source/core/html/forms/webcore_html.WeekInputType.o $
+    obj/third_party/WebKit/Source/core/html/parser/webcore_html.BackgroundHTMLParser.o $
+    obj/third_party/WebKit/Source/core/html/parser/webcore_html.BackgroundHTMLInputStream.o $
+    obj/third_party/WebKit/Source/core/html/parser/webcore_html.CSSPreloadScanner.o $
+    obj/third_party/WebKit/Source/core/html/parser/webcore_html.CompactHTMLToken.o $
+    obj/third_party/WebKit/Source/core/html/parser/webcore_html.HTMLConstructionSite.o $
+    obj/third_party/WebKit/Source/core/html/parser/webcore_html.HTMLDocumentParser.o $
+    obj/third_party/WebKit/Source/core/html/parser/webcore_html.HTMLElementStack.o $
+    obj/third_party/WebKit/Source/core/html/parser/webcore_html.HTMLEntityParser.o $
+    obj/third_party/WebKit/Source/core/html/parser/webcore_html.HTMLEntitySearch.o $
+    obj/third_party/WebKit/Source/core/html/parser/webcore_html.HTMLFormattingElementList.o $
+    obj/third_party/WebKit/Source/core/html/parser/webcore_html.HTMLIdentifier.o $
+    obj/third_party/WebKit/Source/core/html/parser/webcore_html.HTMLMetaCharsetParser.o $
+    obj/third_party/WebKit/Source/core/html/parser/webcore_html.HTMLParserIdioms.o $
+    obj/third_party/WebKit/Source/core/html/parser/webcore_html.HTMLParserOptions.o $
+    obj/third_party/WebKit/Source/core/html/parser/webcore_html.HTMLParserScheduler.o $
+    obj/third_party/WebKit/Source/core/html/parser/webcore_html.HTMLParserThread.o $
+    obj/third_party/WebKit/Source/core/html/parser/webcore_html.HTMLPreloadScanner.o $
+    obj/third_party/WebKit/Source/core/html/parser/webcore_html.HTMLResourcePreloader.o $
+    obj/third_party/WebKit/Source/core/html/parser/webcore_html.HTMLScriptRunner.o $
+    obj/third_party/WebKit/Source/core/html/parser/webcore_html.HTMLSourceTracker.o $
+    obj/third_party/WebKit/Source/core/html/parser/webcore_html.HTMLSrcsetParser.o $
+    obj/third_party/WebKit/Source/core/html/parser/webcore_html.HTMLTokenizer.o $
+    obj/third_party/WebKit/Source/core/html/parser/webcore_html.HTMLTreeBuilder.o $
+    obj/third_party/WebKit/Source/core/html/parser/webcore_html.HTMLTreeBuilderSimulator.o $
+    obj/third_party/WebKit/Source/core/html/parser/webcore_html.HTMLViewSourceParser.o $
+    obj/third_party/WebKit/Source/core/html/parser/webcore_html.TextDocumentParser.o $
+    obj/third_party/WebKit/Source/core/html/parser/webcore_html.XSSAuditor.o $
+    obj/third_party/WebKit/Source/core/html/parser/webcore_html.XSSAuditorDelegate.o $
+    obj/third_party/WebKit/Source/core/html/shadow/webcore_html.PickerIndicatorElement.o $
+    obj/third_party/WebKit/Source/core/html/shadow/webcore_html.ClearButtonElement.o $
+    obj/third_party/WebKit/Source/core/html/shadow/webcore_html.DateTimeEditElement.o $
+    obj/third_party/WebKit/Source/core/html/shadow/webcore_html.DateTimeFieldElement.o $
+    obj/third_party/WebKit/Source/core/html/shadow/webcore_html.DateTimeFieldElements.o $
+    obj/third_party/WebKit/Source/core/html/shadow/webcore_html.DateTimeNumericFieldElement.o $
+    obj/third_party/WebKit/Source/core/html/shadow/webcore_html.DateTimeSymbolicFieldElement.o $
+    obj/third_party/WebKit/Source/core/html/shadow/webcore_html.DetailsMarkerControl.o $
+    obj/third_party/WebKit/Source/core/html/shadow/webcore_html.HTMLContentElement.o $
+    obj/third_party/WebKit/Source/core/html/shadow/webcore_html.HTMLShadowElement.o $
+    obj/third_party/WebKit/Source/core/html/shadow/webcore_html.MediaControls.o $
+    obj/third_party/WebKit/Source/core/html/shadow/webcore_html.MediaControlElementTypes.o $
+    obj/third_party/WebKit/Source/core/html/shadow/webcore_html.MediaControlElements.o $
+    obj/third_party/WebKit/Source/core/html/shadow/webcore_html.MediaControlsChromium.o $
+    obj/third_party/WebKit/Source/core/html/shadow/webcore_html.MeterShadowElement.o $
+    obj/third_party/WebKit/Source/core/html/shadow/webcore_html.PasswordGeneratorButtonElement.o $
+    obj/third_party/WebKit/Source/core/html/shadow/webcore_html.ProgressShadowElement.o $
+    obj/third_party/WebKit/Source/core/html/shadow/webcore_html.ShadowElementNames.o $
+    obj/third_party/WebKit/Source/core/html/shadow/webcore_html.SliderThumbElement.o $
+    obj/third_party/WebKit/Source/core/html/shadow/webcore_html.SpinButtonElement.o $
+    obj/third_party/WebKit/Source/core/html/shadow/webcore_html.TextControlInnerElements.o $
+    obj/third_party/WebKit/Source/core/html/ime/webcore_html.Composition.o $
+    obj/third_party/WebKit/Source/core/html/ime/webcore_html.InputMethodContext.o $
+    obj/third_party/WebKit/Source/core/html/track/webcore_html.InbandTextTrack.o $
+    obj/third_party/WebKit/Source/core/html/track/webcore_html.LoadableTextTrack.o $
+    obj/third_party/WebKit/Source/core/html/track/webcore_html.TextTrack.o $
+    obj/third_party/WebKit/Source/core/html/track/webcore_html.TextTrackCue.o $
+    obj/third_party/WebKit/Source/core/html/track/webcore_html.TextTrackCueList.o $
+    obj/third_party/WebKit/Source/core/html/track/webcore_html.TextTrackList.o $
+    obj/third_party/WebKit/Source/core/html/track/webcore_html.TrackEvent.o $
+    obj/third_party/WebKit/Source/core/html/track/webcore_html.VTTRegion.o $
+    obj/third_party/WebKit/Source/core/html/track/webcore_html.VTTRegionList.o $
+    obj/third_party/WebKit/Source/core/html/track/webcore_html.WebVTTElement.o $
+    obj/third_party/WebKit/Source/core/html/track/webcore_html.WebVTTParser.o $
+    obj/third_party/WebKit/Source/core/html/track/webcore_html.WebVTTTokenizer.o $
+    || $
+    obj/third_party/WebKit/Source/core/webcore_prerequisites.actions_depends.stamp

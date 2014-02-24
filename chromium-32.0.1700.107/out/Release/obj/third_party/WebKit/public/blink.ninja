@@ -1,0 +1,10 @@
+build obj/third_party/WebKit/public/blink.actions_depends.stamp: stamp $
+    obj/third_party/WebKit/Source/web/libwebkit.a $
+    obj/third_party/WebKit/Source/platform/libblink_platform.a $
+    obj/third_party/WebKit/Source/platform/libblink_common.a
+
+build obj/third_party/WebKit/public/blink.compile_depends.stamp: stamp $
+    obj/third_party/WebKit/Source/web/webkit.compile_depends.stamp $
+    obj/third_party/WebKit/Source/platform/blink_platform.compile_depends.stamp $
+    obj/v8/tools/gyp/v8_snapshot.gen/snapshot.cc
+
