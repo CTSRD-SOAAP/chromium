@@ -727,6 +727,7 @@ subninja obj/chrome/chromedriver.ninja
 
 # SOAAP-related targets
 build chrome.o : llc chrome.bc
+build chrome.bc : phony chrome
 build chrome.bc.exe : chromebclink chrome.o
 build chrome.soaap : soaap chrome.bc
 build chrome.dbcsoaap : soaap chrome.dbc
