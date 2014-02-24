@@ -1,0 +1,1103 @@
+<!DOCTYPE html>
+<html i18n-values="dir:textdirection;" class="loading">
+<head>
+<meta charset="utf-8">
+
+<style>/* Copyright (c) 2012 The Chromium Authors. All rights reserved.
+ * Use of this source code is governed by a BSD-style license that can be
+ * found in the LICENSE file. */
+
+html.loading * {
+  -webkit-transition-duration: 0 !important;
+}
+
+html:not(.focus-outline-visible)
+:enabled:focus:-webkit-any(input[type='checkbox'], input[type='radio']) {
+  /* Cancel border-color for :focus specified in widgets.css. */
+  border-color: rgba(0, 0, 0, 0.25);
+}
+
+.no-scroll {
+  overflow-y: hidden;
+}
+
+/* Developer mode */
+
+#dev-controls {
+  -webkit-margin-end: 20px;
+  -webkit-transition: padding 100ms, height 100ms, opacity 100ms;
+  border-bottom: 1px solid #eee;
+  height: 0;
+  opacity: 0;
+  overflow: hidden;
+}
+
+#dev-controls .buttons-container,
+#apps-dev-tool-banner {
+  -webkit-padding-end: 3px;
+  -webkit-padding-start: 4px;
+}
+
+#dev-controls .buttons-container {
+  display: -webkit-box;
+  padding-top: 13px;
+}
+
+#dev-controls button {
+  white-space: nowrap;
+}
+
+#extension-settings.dev-mode #dev-controls {
+  -webkit-transition-duration: 250ms;
+  height: 45px;
+  opacity: 1;
+  padding-bottom: 7px;
+}
+
+#extension-settings.dev-mode.apps-dev-tools-mode #dev-controls {
+  height: 100px;
+}
+
+#apps-dev-tool-banner {
+  border-bottom: 1px solid #eee;
+  display: none;
+  padding-bottom: 13px;
+  padding-top: 13px;
+}
+
+#extension-settings.dev-mode.apps-dev-tools-mode #apps-dev-tool-banner {
+  display: -webkit-box;
+}
+
+.apps-dev-tool-banner-text {
+  -webkit-box-flex: 1;
+}
+
+#dev-controls-spacer {
+  -webkit-box-flex: 1;
+}
+
+#dev-toggle {
+  margin-top: 0;
+  text-align: end;
+}
+
+#extension-settings:not(.dev-mode) .developer-extras {
+  display: none;
+}
+
+.developer-extras > div,
+.permanent-warnings > div {
+  margin: 5px 0;
+}
+
+#extension-settings #page-header {
+  /* These values match the .page values. */
+  -webkit-margin-end: 24px;
+  min-width: 576px;
+}
+
+/* Contents */
+
+#extension-settings {
+  max-width: 738px;
+}
+
+#no-extensions-message {
+  font-weight: bold;
+}
+
+#suggest-gallery {
+  -webkit-padding-start: 10px;
+}
+
+#footer-section {
+  background: url('chrome://theme/IDR_WEBSTORE_ICON_32') no-repeat left center;
+  font-size: 1.25em;
+}
+
+html[dir=rtl] #footer-section {
+  background: url('chrome://theme/IDR_WEBSTORE_ICON_32') no-repeat right center;
+}
+
+#footer-section > a {
+  -webkit-margin-start: 42px;
+  line-height: 32px;
+}
+
+.empty-extension-list {
+  height: 3em;
+}
+
+.loading #no-extensions,
+.loading #footer-section,
+#extension-settings-list:not(.empty-extension-list) ~ #no-extensions,
+.empty-extension-list ~ #footer-section {
+  display: none;
+}
+
+.extension-list-item-wrapper {
+  margin: 23px 0;
+}
+
+.extension-list-item {
+  background-repeat: no-repeat;
+  display: -webkit-box;
+  min-height: 48px;
+}
+
+html[dir='rtl'] .extension-list-item {
+  background-position: right;
+}
+
+.extension-title {
+  -webkit-padding-end: 20px;
+  color: rgb(48, 57, 66);
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.inactive-extension .extension-title {
+  color: inherit;
+}
+
+.extension-version {
+  -webkit-padding-end: 7px;
+  font-size: 13px;
+  font-weight: 400;
+}
+
+.extension-description {
+  -webkit-padding-end: 5px;
+  font-size: 13px;
+  margin: 5px 0;
+  white-space: normal;
+}
+
+.extension-details {
+  -webkit-box-flex: 1;
+  -webkit-padding-start: 55px;
+}
+
+.extension-description,
+.extension-list-item-wrapper.inactive-extension .extension-details,
+.location-text,
+.enable-checkbox input:disabled + .enable-checkbox-text {
+  color: rgb(151, 156, 160);
+}
+
+.enable-controls {
+  /* Matches right: position of dev controls toggle. */
+  -webkit-margin-end: 20px;
+  position: relative;
+}
+
+.enable-checkbox-text {
+  /* Matches width of trash. */
+  -webkit-margin-end: 30px;
+}
+
+.checkbox {
+  display: inline-block;
+}
+
+.enabled-text {
+  font-weight: bold;
+}
+
+.extension-list-item-wrapper.inactive-extension .enabled-text,
+.extension-list-item-wrapper:not(.inactive-extension) .enable-text,
+.extension-list-item-wrapper.inactive-extension .optional-controls,
+.extension-list-item-wrapper.inactive-extension .butter-bar {
+  display: none;
+}
+
+.load-path > span {
+  word-wrap: break-word;
+}
+
+.terminated-reload-link {
+  -webkit-margin-end: 2.5em;
+  padding-top: 7px;
+}
+
+.extension-list-item a {
+  -webkit-margin-start: 0.5em;
+  display: inline-block;
+}
+
+.install-warnings a {
+  -webkit-margin-start: 0;
+}
+
+.butter-bar,
+.install-warnings,
+.extension-warnings {
+  border-radius: 3px;
+  margin-top: 5px;
+  padding: 2px 5px;
+}
+
+.butter-bar {
+  background: rgb(255, 242, 153);
+}
+
+.install-warnings,
+.extension-warnings {
+  background: pink;
+}
+
+.install-warnings ul,
+.extension-warnings ul {
+  margin: 0;
+}
+
+#font-measuring-div {
+  /* Remove from the flow and hide. */
+  position: absolute;
+  visibility: hidden;
+}
+
+.extension-commands-config {
+  float: right;
+}
+
+html[dir=rtl] .extension-commands-config {
+  float: left;
+}
+
+/* Overlays */
+
+#overlay {
+  z-index: 5;
+}
+
+#overlay .page:not(.showing) {
+  display: none;
+}
+
+#drop-target-overlay {
+  color: rgb(48, 57, 66);
+  font-size: 18px;
+  text-align: center;
+}
+
+#drop-target-overlay div {
+  margin: 1em;
+}
+
+.location-text {
+  display: block;
+  width: 100px;
+}
+
+/* Trash */
+
+#extension-settings .trash {
+  -webkit-transition: opacity 200ms;
+  height: 22px;
+  opacity: 0.8;
+  position: absolute;
+  right: 0;
+  top: 3px;
+  vertical-align: middle;
+}
+
+html[dir='rtl'] #extension-settings .trash {
+  left: 0;
+  right: auto;
+}
+
+.extension-list-item:not(:hover) .trash:not(:focus) {
+  opacity: 0;
+}
+
+.extension-list-item-wrapper.may-not-disable .trash {
+  visibility: hidden;
+}
+
+.extension-highlight {
+  background: rgb(238, 238, 238);
+  background-position: auto;
+  background-repeat: auto;
+  border-radius: 3px;
+  padding: 5px 0 5px 5px;
+}
+
+.may-not-disable .optional-controls .optional-controls-disableable {
+  display: none;
+}
+
+/* Managed mode */
+
+.page:not(.profile-is-managed) .profile-is-managed-banner,
+.profile-is-managed .more-extensions-link {
+  display: none;
+}
+
+.profile-is-managed-banner .page-banner-text {
+  background-image: url('chrome://theme/IDR_WARNING');
+}
+
+/* Sideload Wipeout */
+
+.sideload-wipeout-learn-more {
+  text-decoration: none;
+}
+
+.sideload-wipeout-banner .page-banner-text {
+  -webkit-padding-start: 8px;
+  background-image: none;
+}
+</style>
+<style>/* Copyright (c) 2012 The Chromium Authors. All rights reserved.
+ * Use of this source code is governed by a BSD-style license that can be
+ * found in the LICENSE file. */
+
+.extension-command-list-command-item-wrapper {
+  margin-left: 12px;
+}
+
+.command-title {
+  display: inline-block;
+  margin-top: 1em;
+}
+
+.command-container {
+  -webkit-box-orient: horizontal;
+  display: -webkit-box;
+  width: 450px;
+}
+
+.command-description {
+  -webkit-box-flex: 1;
+  display: -webkit-box;
+  margin-top: 0.5em;
+  min-height: 2em;
+}
+
+.command-shortcut-container {
+  display: -webkit-box;
+  margin-top: 0.25em;
+  min-height: 2em;
+}
+
+.command-shortcut {
+  border: solid 1px #BFBFBF;
+  border-radius: 2px;
+  color: rgb(48, 57, 66);
+  display: inline-block;
+  height: 1.4em;
+  min-width: 12.5em;
+  padding: 3px 0 1px 4px;
+}
+
+.command-shortcut-text {
+  display: inline-block;
+  height: 1.4em;
+  min-width: 11em;
+  outline: none;
+}
+
+.clearable {
+  background: white;
+}
+
+.command-clear {
+  float: right;
+  margin-top: 1px;
+}
+
+.command-scope {
+  margin-left: 0.25em;
+  margin-top: 0.24em;
+}
+
+.capturing {
+  background: rgb(243, 244, 255);
+  border: solid 1px rgb(140, 147, 255);
+  color: #999;
+}
+
+.contains-chars {
+  color: rgb(48, 57, 66);
+}
+
+.inactive-keybinding {
+  color: #999;
+}
+</style>
+<style>/* Copyright 2013 The Chromium Authors. All rights reserved.
+ * Use of this source code is governed by a BSD-style license that can be
+ * found in the LICENSE file. */
+
+.extension-error-list a {
+  cursor: pointer;
+}
+
+.extension-error-list ul {
+  list-style-type: none;
+}
+
+.extension-error-list-contents {
+  -webkit-padding-start: 20px;
+}
+
+.extension-error-list-show-more {
+  text-align: center;
+  width: 100%;
+}
+
+.extension-error-detailed-wrapper,
+.extension-error-simple-wrapper {
+  width: 100%;
+}
+
+.extension-error-metadata {
+  display: inline-block;
+  width: 100%;
+}
+
+.extension-error-detailed-wrapper summary::-webkit-details-marker {
+  -webkit-margin-start: -15px;
+}
+
+.extension-error-detailed-wrapper details :focus {
+  outline: none;
+}
+
+.extension-error-detailed-wrapper details[open] {
+  -webkit-margin-after: 10px;
+}
+
+.extension-error-icon {
+  -webkit-margin-end: 3px;
+  -webkit-margin-start: 3px;
+  height: 15px;
+  vertical-align: middle;
+  width: 15px;
+}
+
+.extension-error-severity-info .extension-error-message {
+  color: #333;
+}
+.extension-error-severity-info .extension-error-icon {
+  content: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABMAAAATCAQAAADYWf5HAAAA+ElEQVR4XrXSzUrDQBSG4fEC1ICtvQL/aNGFG+k9iQTppTmvIbEiQooLNyoqiAU3CrELsev0M4McRiq66/kWh4GHMwxn3KIK5x2r9Dig23THb0JIm5SSik8qSlJac9QHtEVGjSzUwIZBm7VOZiCL1NMiIhzHzBAq9KixHlTYxCMcxkgoEfK61ZOGem66/4aXrETWpUIh58pFQ2+MvbEdWZ8pstxprNxOH+xHtsfEUKEXDeWNvbIZWcLIWK7rn2+9YDkyx4AZCjnTfbyy5hAXmMEOuU04FZYT1phb1Q7F/1sw2GHAFe9MmTAipf3X+pdI6NFn137IYuoLMoYsiY7+iqwAAAAASUVORK5CYII=');
+}
+
+.extension-error-severity-warning .extension-error-message {
+  color: rgba(250, 145, 0, 255);
+}
+.extension-error-severity-warning .extension-error-icon {
+  content: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABMAAAATCAYAAAByUDbMAAAAvUlEQVQ4y2P4//8/A7Uww9Aw7ON0BmRsA8TLgfgJEP+E0suh4nB1hAxjAeKpQPwfDwbJsxJj2Gxkjd/2lfz//+/v/2978tENnE3IMGt0V3w/2fcfBEA0Fhda4zNsGYmGLcdn2AsSDXuKz7D/JBr2kySXfd0a///f1zdgmlSXLcfQMJPz/5dNoWCa1DCzQdfw7XAD2JvfDjdiM8yGUDqbgpHOQIZhprMpxCRaVmrmAPS8+RSaN5+SlDeHb3kGAKOZ21Ac7RS6AAAAAElFTkSuQmCC');
+}
+
+.extension-error-severity-fatal .extension-error-message {
+  color: rgba(200, 50, 50, 255);
+}
+.extension-error-severity-fatal .extension-error-icon {
+  content: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABMAAAATCAYAAAByUDbMAAAApElEQVQ4y2P4//8/A7Uww9Aw7LyrFjK2AeLlQPwEiH9C6eVQcbg6QoaxAPFUIP6PB4PkWYkxbDYBg2B4NiHDrGGK3+za/P/V+uUoBoD4IHEkMWt8hi1D1ggCMAPR+VC8HJ9hL9BdAgJfb9/AZhAIP8VnGEbYwAwC0Vjkf9LNZcupGWY2JMamDaF0NoXIdDaFmETLSs0cgJ43n0Lz5lOS8ubwLc8Awoi9SpKSLkQAAAAASUVORK5CYII=');
+}
+
+.extension-error-view-source {
+  display: inline-block;
+}
+
+a.extension-error-view-source {
+  -webkit-margin-start: 0;  /* Needed to override rule 'extension-list-item' */
+}
+
+.extension-error-links {
+  display: inline-block;
+  float: right;
+}
+
+.extension-error-inspect {
+  content: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAA90lEQVQYlWNggIHQVcw8gdPFuPzmSjGE9nEyYAW+M7m4fGdlcfrM3s/pO+cEp/ecqRy+sxVRFTk0sAAlS4CS97l8Zzdxec/OBCnm8Jm9QyBgvgBcnaDLTH5OnzmHQaYwMPxnBIlx+cz2App+g8N7riNcIUgXUPA4UPEEmEJ2v9muQLGb7L5z3RBWG89k5fKZ1QaUeMjpPbsASIcD8QGQU7i9ZuqiOBNqajsQXwcpAHvKZ/YroAE7OQKmK6B6ynMSO7vfXHUe7zk63H6zxYGeiQMqfgHE67i95ktgDy5ouHL6zArk9J29ls13pgZuhVDFvL4zRUCeBACTTFQUUIwHtAAAAABJRU5ErkJggg==');
+  width: 10px;
+}
+
+.extension-error-links .extension-error-inspect {
+  -webkit-margin-end: 10px;
+}
+
+.extension-error-links > .extension-error-view-source:first-child {
+  -webkit-margin-start: 20px;
+}
+
+.extension-error-details {
+  -webkit-margin-start: 30px;
+}
+
+.extension-error-stack-trace-list {
+  -webkit-padding-start: 20px;
+}
+
+.extension-error-context-wrapper .extension-error-inspect {
+  -webkit-margin-start: 10px;
+}
+
+.extension-error-stack-trace-list .extension-error-links {
+  float: none;
+}
+</style>
+<style>/* Copyright 2013 The Chromium Authors. All rights reserved.
+ * Use of this source code is governed by a BSD-style license that can be
+ * found in the LICENSE file. */
+
+#extension-error-overlay .highlighted-source {
+  background-color: rgba(255, 195, 200, 255);
+}
+
+#extension-error-overlay .content-area {
+  font-family: monospace;
+  font-size: 1.2em;
+}
+</style>
+<style>/* Copyright (c) 2012 The Chromium Authors. All rights reserved.
+ * Use of this source code is governed by a BSD-style license that can be
+ * found in the LICENSE file. */
+
+.pack-extension-heading {
+  padding-bottom: 5px;
+  width: 520px;
+}
+
+.pack-extension-text-boxes {
+  text-align: right;
+}
+
+.pack-extension-text-area {
+  width: 260px;
+}
+
+
+</style>
+<link rel="stylesheet" href="chrome://resources/css/alert_overlay.css">
+<link rel="stylesheet" href="chrome://resources/css/chrome_shared.css">
+<link rel="stylesheet" href="chrome://resources/css/overlay.css">
+<link rel="stylesheet" href="chrome://resources/css/trash.css">
+<style>/* Copyright (c) 2012 The Chromium Authors. All rights reserved.
+ * Use of this source code is governed by a BSD-style license that can be
+ * found in the LICENSE file. */
+
+body.uber-frame {
+  -webkit-margin-start: 155px;
+  color: rgb(48, 57, 66);
+}
+
+html[dir='rtl'] body.uber-frame {
+  /* Enable vertical scrollbar at all times in RTL to avoid visual glitches when
+   * showing sub-pages that vertically overflow. */
+  overflow-y: scroll;
+}
+
+/* TODO(dbeam): Remove .page class from overlays in settings so the junk below
+ * isn't necessary. */
+body.uber-frame #extension-settings.page,
+body.uber-frame #mainview-content .page,
+body.uber-frame .subpage-sheet-container .page,
+body.uber-frame > .page {
+  -webkit-margin-end: 24px;
+  min-width: 576px;
+  padding-bottom: 20px;
+  padding-top: 55px;
+}
+
+body.uber-frame header {
+  background-image: -webkit-linear-gradient(white,
+                                            white 40%,
+                                            rgba(255, 255, 255, 0.92));
+  left: 155px;
+  /* <section>s in options currently amount to 638px total, broken up into
+   * 600px max-width + 18px -webkit-padding-start + 20px -webkit-margin-end
+   * so we mirror this value here so the headers match width and horizontal
+   * alignment when scrolling sideways.
+   * other-devices.css' .device width depends on this, please keep in sync.
+   */
+  max-width: 738px;
+  min-width: 600px;
+  position: fixed;
+  right: 0;
+  top: 0;
+  /* list.css sets a z-index of up to 2, this is set to 3 to ensure that the
+   * header is in front of the selected list item. */
+  z-index: 3;
+}
+
+html[dir='rtl'] body.uber-frame header {
+  left: 0;
+  right: 155px;
+}
+
+body.uber-frame header > .search-field-container,
+body.uber-frame header > .header-extras,
+body.uber-frame header > button {
+  position: absolute;
+  right: 20px;
+  top: 21px;
+}
+
+html[dir='rtl'] body.uber-frame header > .search-field-container,
+html[dir='rtl'] body.uber-frame header > .header-extras,
+html[dir='rtl'] body.uber-frame header > button {
+  left: 20px;
+  right: auto;
+}
+
+body.uber-frame header input[type='search'],
+body.uber-frame header input[type='text'],
+body.uber-frame header button {
+  margin: 0;
+}
+
+body.uber-frame header > h1 {
+  margin: 0;
+  padding: 21px 0 13px;
+}
+
+/* Create a border under the h1 (but before anything that gets appended
+ * to the end of the header). */
+body.uber-frame header > h1::after {
+  -webkit-margin-end: 20px;
+  background-color: #eee;
+  content: ' ';
+  display: block;
+  height: 1px;
+  position: relative;
+  top: 13px;
+}
+
+body.uber-frame footer {
+  border-top: 1px solid #eee;
+  margin-top: 16px;
+  /* min-width and max-width should match the header */
+  max-width: 638px;
+  min-width: 600px;
+  padding: 8px 0;
+}
+
+/* Sections are used in options pages, help page and history page. This defines
+ * the section metrics to match the header metrics above. */
+body.uber-frame section {
+  -webkit-padding-start: 18px;
+  margin-bottom: 24px;
+  margin-top: 8px;
+  max-width: 600px;
+}
+
+body.uber-frame section:last-of-type {
+  margin-bottom: 0;
+}
+
+body.uber-frame section > h3 {
+  -webkit-margin-start: -18px;
+}
+
+@media(pointer:coarse) {
+  /* TODO(kevers):  Remove the extra padding once the following bug is fixed:
+   * https://bugs.webkit.org/show_bug.cgi?id=95204
+   * In the interim, the added padding makes it less likely that a touch will
+   * span the boundary of the navigation bar, which results in poor touch
+   * adjustments. */
+  body.uber-frame section {
+    -webkit-padding-start: 28px;
+  }
+  body.uber-frame section > h3 {
+    -webkit-margin-start: -28px;
+  }
+}
+
+body.uber-frame section > div:only-of-type {
+  -webkit-box-flex: 1;
+}
+
+/* Styles for a hideable notification banner at the top of a page. */
+.page.showing-banner {
+  margin-top: 45px;
+}
+
+.page-banner {
+  background-color: white;
+  width: 100%;
+  z-index: 2;
+}
+
+.page:not(.showing-banner) .page-banner {
+  display: none;
+}
+
+.page-banner-gradient {
+  background: -webkit-linear-gradient(rgb(255, 242, 183),
+                                      rgb(250, 230, 145));
+  border: 1px solid rgb(201, 189, 141);
+  border-radius: 3px;
+  margin: 9px 9px 0 9px;
+  min-height: 25px;
+}
+
+.page-banner .page-banner-gradient {
+  -webkit-margin-end: 20px;
+  -webkit-margin-start: 0;
+  margin-bottom: 9px;
+}
+
+.page-banner-text {
+  -webkit-padding-end: 8px;
+  -webkit-padding-start: 26px;
+  background-image: url('chrome://theme/IDR_MANAGED');
+  background-position: 5px center;
+  background-repeat: no-repeat;
+  background-size: 16px;
+  display: block;
+  padding-bottom: 8px;
+  padding-top: 8px;
+}
+
+.page-banner.clickable:active .page-banner-text {
+  background: -webkit-linear-gradient(rgb(250, 230, 145),
+                                      rgb(255, 242, 183));
+}
+</style>
+
+<script src="chrome://resources/js/cr.js"></script>
+<script src="chrome://resources/js/load_time_data.js"></script>
+<script src="chrome://resources/js/util.js"></script>
+<script src="chrome://resources/js/cr/ui.js"></script>
+<script src="chrome://resources/js/cr/ui/alert_overlay.js"></script>
+<script src="chrome://resources/js/cr/ui/drag_wrapper.js"></script>
+<script src="chrome://resources/js/cr/ui/focus_manager.js"></script>
+<script src="chrome://resources/js/cr/ui/focus_outline_manager.js"></script>
+<script src="chrome://resources/js/cr/ui/overlay.js"></script>
+
+
+
+<script src="chrome://extensions-frame/extensions.js"></script>
+</head>
+
+<body class="uber-frame"
+    i18n-values=".style.fontFamily:fontfamily;.style.fontSize:fontsize">
+
+<div id="overlay" class="overlay" hidden>
+  <!--
+ * Copyright (c) 2012 The Chromium Authors. All rights reserved.
+ * Use of this source code is governed by a BSD-style license that can be found
+ * in the LICENSE file.
+-->
+<div id="extension-commands-overlay" class="page">
+  <div class="close-button"></div>
+  <h1 i18n-content="extensionCommandsOverlay"></h1>
+  <div class="content-area">
+    <div id="extension-command-list"
+         class="empty-extension-commands-list"></div>
+    <div id="no-commands" hidden>
+      <span id="no-extensions-commands-message"
+            i18n-content="extensionCommandsEmpty"></span>
+    </div>
+  </div>
+  <div class="action-area">
+    <div class="action-area-right">
+      <div class="button-strip">
+        <button id="extension-commands-dismiss" i18n-content="ok"></button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="template-collection-extension-commands" hidden>
+  <div class="extension-command-list-extension-item-wrapper">
+    <div class="extension-command-list-extension-item">
+      <div class="extension-command-extension-details">
+        <div>
+          <span class="extension-title command-title"></span>
+          <div class="command-details"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="extension-command-list-command-item-wrapper">
+    <div class="extension-command-list-command-item">
+      <div class="extension-command-details">
+        <div class="command-container">
+          <span class="command-description"></span>
+          <span class="command-shortcut-container"
+              ><span class="command-shortcut clearable"
+                  ><img class="command-clear"
+                        src="chrome://theme/IDR_EXTENSION_COMMAND_CLOSE"
+                  ><span class="command-shortcut-text" tabindex="0"
+              ></span></span></span>
+          <select class="command-scope" hidden></select>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <!--
+Copyright 2013 The Chromium Authors. All rights reserved.
+Use of this source code is governed by a BSD-style license that can be found
+in the LICENSE file.
+-->
+<div id="extension-error-overlay" class="page">
+  <div class="close-button"></div>
+  <h1 class="extension-error-overlay-title"></h1>
+  <div class="content-area" id="extension-error-overlay-content"></div>
+  <div class="action-area">
+    <div class="action-area-right">
+      <div class="button-strip">
+        <button id="extension-error-overlay-dismiss" i18n-content="ok"></button>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <div id="pack-extension-overlay" class="page">
+  <h1 i18n-content="packExtensionOverlay"></h1>
+  <div id="cbd-content-area" class="content-area">
+    <div class="pack-extension-heading" i18n-content="packExtensionHeading">
+    </div>
+    <div class="pack-extension-text-boxes">
+      <label i18n-content="packExtensionRootDir"
+             for="extension-root-dir"></label>
+      <input class="pack-extension-text-area"
+             id="extension-root-dir" type="text">
+      <button id="browse-extension-dir"
+              i18n-content="packExtensionBrowseButton"></button>
+    </div>
+    <div class="pack-extension-text-boxes">
+      <label i18n-content="packExtensionPrivateKey" for="extension-private-key">
+      </label>
+      <input class="pack-extension-text-area"
+             id="extension-private-key" type="text">
+      <button id="browse-private-key"
+              i18n-content="packExtensionBrowseButton"></button>
+    </div>
+  </div>
+  <div class="action-area">
+    <div class="action-area-right">
+      <div class="button-strip">
+        <button id="pack-extension-dismiss" i18n-content="cancel"></button>
+        <button id="pack-extension-commit"
+                i18n-content="packExtensionCommit"></button>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <div id="alertOverlay" class="page">
+  <h1 id="alertOverlayTitle"></h1>
+  <div class="content-area">
+    <div id="alertOverlayMessage"></div>
+  </div>
+  <div class="action-area">
+    <div class="button-strip">
+      <button id="alertOverlayCancel" type="reset"></button>
+      <button id="alertOverlayOk" type="submit"></button>
+    </div>
+  </div>
+</div>
+
+
+  <div id="drop-target-overlay" class="page">
+    <div i18n-content="extensionSettingsInstallDropTarget"></div>
+  </div>
+</div>
+
+<div class="page" id="extension-settings">
+  <header id="page-header"><h1 i18n-content="extensionSettings"></h1>
+    <div id="header-controls" class="header-extras">
+      <div id="dev-toggle" class="checkbox">
+        <label>
+          <input id="toggle-dev-on" type="checkbox">
+          <span i18n-content="extensionSettingsDeveloperMode"></span>
+        </label>
+      </div>
+    </div>
+    <div class="page-banner profile-is-managed-banner">
+      <div class="page-banner-gradient">
+        <span class="page-banner-text"
+            i18n-content="extensionSettingsManagedMode"></span>
+      </div>
+    </div>
+  </header>
+  <div id="dev-controls" hidden>
+    <div id="apps-dev-tool-banner">
+      <div class="apps-dev-tool-banner-text"
+          i18n-content="extensionSettingsUseAppsDevTools"></div>
+      <button id="open-apps-dev-tools"
+          i18n-content="extensionSettingsOpenAppsDevTools"></button>
+    </div>
+    <div class="buttons-container">
+      <button id="load-unpacked"
+          i18n-content="extensionSettingsLoadUnpackedButton"></button>
+      <button id="pack-extension"
+          i18n-content="extensionSettingsPackButton"></button>
+
+      <div id="dev-controls-spacer"></div>
+      <button id="update-extensions-now"
+          i18n-content="extensionSettingsUpdateButton"></button>
+    </div>
+  </div>
+  <div id="extension-settings-list" class="empty-extension-list"></div>
+  <div id="no-extensions">
+    <span id="no-extensions-message"
+        i18n-content="extensionSettingsNoExtensions"></span>
+    <span id="suggest-gallery" class="more-extensions-link"
+        i18n-values=".innerHTML:extensionSettingsSuggestGallery">
+    </span>
+  </div>
+  <div id="footer-section">
+    <a target="_blank" class="more-extensions-link"
+        i18n-values="href:extensionSettingsGetMoreExtensionsUrl"
+        i18n-content="extensionSettingsGetMoreExtensions"></a>
+    <a target="_blank" hidden
+        class="extension-commands-config"
+        i18n-content="extensionSettingsCommandsLink"
+        href="#"></a>
+  </div>
+</div>
+
+<span id="font-measuring-div"></span>
+
+<div id="template-collection" hidden>
+
+  <div class="extension-list-item-wrapper">
+    <div class="extension-list-item">
+      <div class="extension-details">
+        <div>
+          <span class="extension-title"></span>
+          <span class="extension-version"></span>
+        </div>
+        <p class="extension-description">
+          <span></span>
+          <a class="permissions-link"
+              i18n-content="extensionSettingsPermissions"
+              href="#">
+          </a>
+          <a class="site-link" target="_parent" hidden></a>
+        </p>
+        <div class="permanent-warnings">
+          <div class="extension-warnings" hidden>
+            <span i18n-content="extensionSettingsWarningsTitle"></span>
+            <ul></ul>
+          </div>
+        </div>
+        <div class="developer-extras">
+          <div>
+            <span i18n-content="extensionSettingsExtensionId"></span>
+            <span class="extension-id"></span>
+          </div>
+          <div class="load-path" hidden>
+            <span i18n-content="extensionSettingsExtensionPath"></span>
+            <span></span>
+          </div>
+          <div class="managed-message"
+              i18n-content="extensionSettingsPolicyControlled" hidden>
+          </div>
+          <div class="active-views" hidden>
+            <span i18n-content="extensionSettingsInspectViews"></span>
+            <a href="#"></a>
+          </div>
+          <div class="manifest-errors" hidden></div>
+          <div class="runtime-errors" hidden></div>
+          <div class="install-warnings" hidden>
+            <span i18n-content="extensionSettingsInstallWarnings"></span>
+            <ul></ul>
+          </div>
+        </div>
+        <div class="optional-controls">
+          <button class="show-button"
+              i18n-content="extensionSettingsShowButton" hidden></button>
+          <div class="checkbox"><label class="incognito-control">
+            <input type="checkbox">
+            <span i18n-content="extensionSettingsEnableIncognito"></span>
+          </label></div>
+          <span class="optional-controls-disableable">
+            <label class="file-access-control" hidden>
+              <input type="checkbox">
+              <span i18n-content="extensionSettingsAllowFileAccess"></span>
+            </label>
+            <a class="reload-link"
+                i18n-content="extensionSettingsReloadUnpacked"
+                href="#" hidden></a>
+            <a class="launch-link" i18n-content="extensionSettingsLaunch"
+                href="#" hidden></a>
+          </span>
+          <a class="options-link" i18n-content="extensionSettingsOptions"
+              href="#" hidden></a>
+        </div>
+        <div class="butter-bar"
+            i18n-values=".innerHTML:extensionSettingsIncognitoWarning" hidden>
+        </div>
+      </div>
+      <div class="enable-controls">
+        <a class="terminated-reload-link" href="#"
+            i18n-content="extensionSettingsReloadTerminated" hidden></a>
+        <div class="checkbox enable-checkbox" hidden><label>
+          <input type="checkbox">
+          <span class="enable-checkbox-text">
+            <span class="enabled-text" i18n-content="extensionSettingsEnabled">
+            </span>
+            <span class="enable-text" i18n-content="extensionSettingsEnable">
+            </span>
+          </span>
+        </label>
+        <span class="location-text"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <button class="trash custom-appearance">
+  <span class="lid"></span>
+  <span class="can"></span>
+</button>
+
+  <!--
+Copyright 2013 The Chromium Authors. All rights reserved.
+Use of this source code is governed by a BSD-style license that can be found
+in the LICENSE file.
+-->
+<div id="template-collection-extension-error" hidden>
+  <div class="extension-error-list">
+    <span class="extension-error-list-title"></span>
+    <ul class="extension-error-list-contents"></ul>
+    <div class="extension-error-list-show-more">
+      <a i18n-content="extensionErrorsShowMore" hidden></a>
+    </div>
+  </div>
+
+  <div class="extension-error-simple-wrapper"></div>
+
+  <div class="extension-error-detailed-wrapper">
+    <details>
+      <summary></summary>
+      <div class="extension-error-details"></div>
+    </details>
+  </div>
+
+  <div class="extension-error-metadata">
+    <span class="extension-error-message"></span>
+  </div>
+
+  <div class="extension-error-context-wrapper">
+    <span i18n-content="extensionErrorContext"></span>
+    <a></a>
+  </div>
+
+  <details class="extension-error-stack-trace">
+    <summary class="extension-error-stack-trace-label"
+             i18n-content="extensionErrorStackTrace"></summary>
+    <ul class="extension-error-stack-trace-list"></ul>
+  </details>
+</div>
+
+
+</div>
+
+<script src="chrome://extensions-frame/strings.js"></script>
+<script src="chrome://resources/js/i18n_template2.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html id="template_root">
+<head>
+<title i18n-content="title"></title>
+<style>
+body {
+  background-color:#500;
+  font-family:Helvetica,Arial,sans-serif;
+  margin:0px;
+}
+.background {
+  position:absolute;
+  width:100%;
+  height:100%;
+}
+.cell {
+  padding:40px;
+}
+.box {
+  width:80%;
+  background-color:white;
+  color:black;
+  font-size:10pt;
+  line-height:16pt;
+  text-align:left;
+  padding:20px;
+  position:relative;
+  -webkit-box-shadow:3px 3px 8px #200;
+  border-radius:5px;
+}
+html[dir='rtl'] .box {
+  text-align:right;
+}
+
+.icon {
+  position:absolute;
+}
+.title {
+  margin:0px 87px 0px;
+  font-size:18pt;
+  line-height: 140%;
+  margin-bottom:6pt;
+  font-weight:bold;
+  color:#660000;
+}
+.main {
+  margin:0px 90px 0px;
+}
+.submission {
+  margin:15px 5px 15px 0px;
+  padding:0px;
+}
+input {
+  margin:0px;
+}
+.proceedbutton {
+}
+.helpbutton {
+  float:right;
+}
+.example {
+  margin: 30px 90px 0px;
+  border-top:1px solid #ccc;
+  padding-top:6px;
+}
+.moreinfotitle {
+  margin-left:5px;
+  margin-right:5px;
+}
+
+.errorlist {
+  background-color:white;
+  color:black;
+  font-size:10pt;
+  line-height:16pt;
+  text-align:left;
+}
+</style>
+
+<script>
+function agreed(form) {
+  form.continue_button.disabled = !form.continue_button.disabled;
+}
+
+function sendCommand(command) {
+  window.domAutomationController.setAutomationId(1);
+  window.domAutomationController.send(command);
+}
+
+function learnMore() {
+  sendCommand('learnMore');
+}
+
+function proceed() {
+  sendCommand('proceed');
+}
+
+function takeMeBack() {
+  sendCommand('takeMeBack');
+}
+
+/**
+ * Called when the user clicks the link to show the diagnostic or report a
+ * malware site, depending on the threat type.
+ * @param {MouseEvent} event The mouse event that triggered this call.
+ */
+function showOrReport(event) {
+  var id = event.currentTarget.getAttribute('chromiumID');
+  var isMalware = event.currentTarget.getAttribute('chromiumIsMalware');
+  var cmd = isMalware ? 'showDiagnostic:' : 'reportError:';
+  sendCommand(cmd + id);
+  return false;
+}
+</script>
+</head>
+
+<body oncontextmenu="return false;">
+<div class="background">
+  <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAJFCAIAAACTIQqNAAAA7UlEQVR4Xr2TQWoFMQxDJR2gV+h9e+lXqEEwFL4JgVkYLyyNnyZJfr6+I2kpTzexHJiZvfi2siKmdw+KRGz/daR49r9Ujk1AsRQ0HGWtRqGsCoxPODJBjlVN/9dkpNllBxHj6uiul6tnwfCL5/kwrLrlg8kNkZr7tMpZRjjyI8WPfIRDhtETseRAwaO1HHbW+lDz7Szo331dtTtHeS2FlZfYe0ZQZCJuGcv3MTciYrv/u456di7ENvv4Btj3hBuO5nA1p3PEci+a425ezdNnEeTph9nrX7k8/ezby5up5mL2npf9/e8577z3nj3HLyoGruc7jxC4AAAAAElFTkSuQmCC" width="100%" height="100%"
+      alt="background" onmousedown="return false;">
+</div>
+<table width="100%" cellspacing="0" cellpadding="0">
+  <td class="cell" valign="middle" align="center">
+    <div class="box">
+      <div class="icon">
+        <img src="data:image/png;base64,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" alt="Malware Icon"
+            onmousedown="return false;">
+      </div>
+      <div class="title" i18n-content="headLine"></div>
+      <div class="main" i18n-values=".innerHTML:description1"></div>
+      <div class="main" i18n-content="description2"></div>
+      <div class="main">
+        <table cellpadding="5" jsvalues="$counter:{value: 0}">
+          <tr jsselect="errors" class="errorlist">
+            <td jscontent="typeLabel"></td>
+            <td jscontent="url"></td>
+            <td><a href="" onclick="showOrReport(event)"
+                jsvalues="chromiumID:$counter.value;chromiumIsMalware:type=='malware'"
+                jscontent="errorLink" jseval="$counter.value++"></a></td>
+          </tr>
+        </table>
+      </div>
+
+      <div class="main">
+        <a href="" i18n-content="description3" onmousedown="return false;"
+            onclick="learnMore(); return false;"></a>
+      </div>
+      <div class="main">
+        <form class="submission">
+          <input id="checky" name="checky" type="checkbox"
+              jsdisplay="!proceedDisabled"
+              onclick="agreed(this.form)">&nbsp;
+          <label for="checky" i18n-content="confirm_text"
+              jsdisplay="!proceedDisabled"></label>
+          <button name="continue_button" i18n-content="continue_button"
+              disabled="true" jsdisplay="!proceedDisabled"
+              onclick="proceed();"></button><br>
+          <button name="back_button" i18n-content="back_button"
+              onclick="takeMeBack()"></button>
+        </form>
+      </div>
+    </div>
+  </td>
+</table>
+</body>
+</html>

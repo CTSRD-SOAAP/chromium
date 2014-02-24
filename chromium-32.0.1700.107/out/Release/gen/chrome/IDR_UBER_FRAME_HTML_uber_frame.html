@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html i18n-values="dir:textdirection;" id="uber">
+<head>
+<meta charset="utf-8">
+
+<link rel="stylesheet" href="chrome://resources/css/chrome_shared.css">
+<style>/* Copyright (c) 2012 The Chromium Authors. All rights reserved.
+ * Use of this source code is governed by a BSD-style license that can be
+ * found in the LICENSE file. */
+
+body {
+  overflow: hidden;
+  padding-top: 20px;
+}
+
+html.changing-content body {
+  -webkit-transition: -webkit-transform 100ms;
+}
+
+h1 {
+  -webkit-margin-after: 1em;
+  /* This value must match the top padding of the uber page header. */
+  -webkit-margin-before: 21px;
+  -webkit-margin-start: 23px;
+  color: rgb(92, 97, 102);
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+li {
+  -webkit-border-start: 6px solid transparent;
+  -webkit-padding-start: 18px;
+  -webkit-user-select: none;
+  cursor: pointer;
+}
+
+li:hover {
+  color: #777;
+}
+
+li.selected {
+  -webkit-border-start-color: rgb(78, 87, 100);
+  cursor: default;
+  pointer-events: none;
+}
+
+#helpNavItem {
+  margin-top: 27px;
+}
+
+button {
+  background-color: white;
+  border: 0;
+  color: #999;
+  cursor: pointer;
+  font: inherit;
+  line-height: 17px;
+  margin: 6px 0;
+  padding: 0;
+}
+
+.selected > button {
+  color: rgb(70, 78, 90);
+}
+</style>
+
+<script src="chrome://resources/js/cr.js"></script>
+<script src="chrome://resources/js/cr/ui/focus_manager.js"></script>
+<script src="chrome://resources/js/load_time_data.js"></script>
+<script src="chrome://uber-frame/uber_frame.js"></script>
+</head>
+
+<body i18n-values=".style.fontFamily:fontfamily;.style.fontSize:fontsize">
+
+<h1 i18n-content="shortProductName"></h1>
+<ul>
+  <li i18n-values="controls:historyHost;override:overridesHistory">
+    <button class="custom-appearance"
+        i18n-content="historyDisplayName"></button>
+  </li>
+  <li i18n-values="controls:extensionsHost">
+    <button class="custom-appearance"
+        i18n-content="extensionsDisplayName"></button>
+  </li>
+  <li i18n-values="controls:settingsHost">
+    <button class="custom-appearance"
+        i18n-content="settingsDisplayName"></button>
+  </li>
+  <li id="helpNavItem" i18n-values="controls:helpHost">
+    <button class="custom-appearance"
+        i18n-content="helpDisplayName"></button>
+  </li>
+</ul>
+
+<script src="chrome://uber-frame/strings.js"></script>
+<script src="chrome://resources/js/i18n_template2.js"></script>
+
+</body>
+</html>

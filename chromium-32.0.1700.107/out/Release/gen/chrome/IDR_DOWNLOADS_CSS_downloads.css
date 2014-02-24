@@ -1,0 +1,187 @@
+/* Copyright (c) 2012 The Chromium Authors. All rights reserved.
+ * Use of this source code is governed by a BSD-style license that can be
+ * found in the LICENSE file. */
+
+body {
+  margin: 10px 10px 34px 10px;
+}
+
+.header {
+  clear: both;
+  overflow: auto;
+}
+
+.header .logo {
+  float: left;
+}
+
+html[dir='rtl'] .logo,
+html[dir='rtl'] .form {
+  float: right;
+}
+
+.header .form {
+  -webkit-margin-start: 12px;
+  float: left;
+  margin-top: 4px;
+}
+
+#downloads-summary {
+  background-color: rgb(235, 239, 249);
+  border-top: 1px solid rgb(156, 194, 239);
+  margin-bottom: 6px;
+  margin-top: 12px;
+  padding: 3px;
+}
+
+#downloads-summary-text {
+  font-weight: bold;
+}
+
+#downloads-actions {
+  float: right;
+}
+
+html[dir=rtl] #downloads-actions {
+  float: left;
+}
+
+.disabled-link {
+  color: #999;
+  text-decoration: none;
+}
+
+#downloads-actions > a,
+#downloads-actions > .disabled-link {
+  -webkit-margin-start: 10px;
+}
+
+#downloads-actions > a:first-child {
+  -webkit-margin-start: 0;
+}
+
+#open-downloads-folder {
+  -webkit-margin-end: 16px;
+}
+
+#downloads-display {
+  max-width: 740px;
+}
+
+.download {
+  -webkit-margin-start: 114px;
+  -webkit-padding-start: 56px;
+  margin-bottom: 15px;
+  margin-top: 6px;
+  position: relative;
+}
+
+.date-container {
+  left: -110px;
+  position: absolute;
+  width: 110px;
+}
+
+html[dir=rtl] .date-container {
+  left: auto;
+  right: -110px;
+}
+
+.date-container .since {
+  color: black;
+}
+
+.date-container .date {
+  color: #666;
+}
+
+.download .icon {
+  height: 32px;
+  left: 9px;
+  position: absolute;
+  top: 2px;
+  width: 32px;
+}
+
+html[dir=rtl] .icon {
+  left: auto;
+  right: 9px;
+}
+
+.download.otr > .safe,
+.download.otr > .show-dangerous {
+  -webkit-transition: opacity 150ms;
+  background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACUAAAAhCAYAAABeD2IVAAAFRklEQVRYw9WYfSyddxTHlY7V2JKtkqWiXm+9p7qEMv/IVSPT2mQS2mJLu9gy0yUo/jCTSqtYsS5dK12ixUo7K+vq7Xq53Hq9Xnqx4pTWaql3VubdH3bOb/fKLc9zGXdL90s+4Xnudc/3Ob9zvud3aaysrGi8aLxwgrYkanl5WSWPHj3WaGu7z8Clh+xBjJHddO9fEYXrFWQfYonsRd6QB6f7r8lF2Ghqagr9/f2DUlK+js3IyDgfHR1zCu8L1C4K165jx44H4BNnyGTtV0tKSs+lpqZ9jis4JCQkMC4uLuTChdSvbt8uyKqrq5e2tLRCc3OLgm4jIyMv/AwtdYsyrqioTF5aWgYu5ucXmACptJnR1CRdha6FQqEfPZi6RZljBi7yiVpcXGKiGhub1kHCAgMDP8LP0Fe3KAE+8WU+UcSDB128oiIjT4dRDao9U/X1Dd+qEvX06SCvqOTk5FhqhG2LwvWSvMsO+vi859fb25enStTCwiJQgXOJysy8dlFbW1sotwjNLYnCZebo6HiktLQscWJiUqJKzEbZUhT7vXu19enp38Tr6+sf4suaSkGY7s9mZmbbqID/KVRbDQ2Nz6EsrrKySuTkdPB9LmF8grQMDQ09UZBsK4II/FtobW1bFVRTI6EsPSeuqkpcpaurSxnbsRlRuwICAvy5gtGHo0tDbW0tPHs2pVLYyMgoXL36PQQFBYOLiwugx63LWkRE5LqO5BO1Q0dHR4h1VEeFu5ba2jrw9fUFExMTcHNzg5MnP4aYmBjsrhRITDyPgSLAx8cHzM3NwcrKCsLDI6C6uoaJwe5dha5jY7+MwHgGvKLka6ecvWfOJHw6NzffxSWMkMlkTEhAwFFwdnYGOzs72L9/P3h4eACOHrhxIxfGxydwK2dgeHgEhoaG19Lj6en5AcZ6mWKuE8UKSUtL6ODgcFiZK1cyIqan/7xPI0TddHb+mmdra3vY0tKSgRJe5cqU/cOHvTf/zoT6RRCzs3OYtWHo7u7BmmpiSKVSyM/Pv4bxrblEvX7gwFtHMOWNuG2wXTDDbPsGB4cAz1nQ0dGJHVfVhfMTCEVtYb1JeTOlOAnEx8d/gi3dTU/FR1/fI3B3d6fugUuXvoPCwp9ZMVMT3LnzC5SVidDBMyEtLR2LOZaGMaARQ1JSUjO9RxmciV9Q3I26T4AekkZewwdlgYrawsICzMzMwNTUlHWjsbEx49atH1GEE7tPrwsEAvZTJCrvIr9SkJeXl02Hws1Ygo6ent6hx4/7Syg4H2fPnmOBrK2tVyEb8PLyYj6Wm5sLNjY27B69LywsjN2XSCQM3Mpm3LYjdGLd7Jh5E73GD2tCNjU1DVygjzFjpAwpsuXq6gpFRcWrmSgqKkIxpyAqKpoZr0Ryj/0koqKiwjGOyWbHjAAN8ISBgcE7aAmnJyf/AFUUF5cADlm4efMW8yM8LoNYXM2gOlOIoGssC0ZOzg+0bbabGsi4LLBwIzEL3f39v1Xg4f8ojoRMygofygLpuqurm7ZmFbFYzFBci0Qizm3jc/TdwcEfHsen7RwbGwcCXbcjOzsnHutLMjo6BpsBHwbKyyt4wc5sxTrzVljARqIc2ts7CpVHAv1O4BJzjAle8GjCbIELEpaVlX2duo6C8ooi1aGhoScGBn6HJ08Gtg2dme7eLeKEGgG/nkFCQkK8sj9xiRLgmy+T85IxbpeeHmAmSqbKBb2G3w8bMO7bqkQ54dejKppJ6oIsIT//J14KCgoBj8Uea8/ryqL24MR+197e3ludYJd5o+vzIKBi37dRoe/8r/nf/CvoL4M+AYz9SwUIAAAAAElFTkSuQmCC')
+              no-repeat right bottom;
+  opacity: .66;
+}
+
+html[dir=rtl] .download.otr > .safe,
+html[dir=rtl] .download.otr > .show-dangerous {
+  background-position: left bottom;
+}
+
+.download.otr > .safe:hover,
+.download.otr > .show-dangerous:hover {
+  opacity: 1;
+}
+
+.malware-description {
+  color: rgb(196, 42, 23);
+}
+
+.progress {
+  height: 48px;
+  left: 0;
+  position: absolute;
+  top: -6px;
+  width: 48px;
+}
+
+html[dir=rtl] .progress {
+  left: auto;
+  right: 0;
+}
+
+.progress.background {
+  background: url('chrome://theme/IDR_DOWNLOAD_PROGRESS_BACKGROUND_32');
+  background-size: 48px;
+}
+
+.name {
+  -webkit-padding-end: 16px;
+  display: none;
+  max-width: 450px;
+  word-break: break-all;
+}
+
+.interrupted {
+  color: red;
+}
+
+.download .status {
+  color: #999;
+  white-space: nowrap;
+}
+
+.download .src-url {
+  color: rgb(85, 102, 221);
+  display: inline-block;
+  max-width: 500px;
+  overflow: hidden;
+  padding-bottom: 1px;
+  padding-top: 4px;
+  text-decoration: none;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.controls a {
+  -webkit-margin-end: 16px;
+  color: #777;
+}
+
+#downloads-pagination {
+  -webkit-margin-start: 18px;
+  padding-top: 24px;
+}

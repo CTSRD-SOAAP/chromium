@@ -1,0 +1,63 @@
+<!DOCTYPE HTML>
+<html i18n-values="dir:textdirection;">
+<head>
+  <meta charset="utf-8">
+  <title i18n-content="webrtcLogsTitle"></title>
+  <style>/* Copyright 2013 The Chromium Authors. All rights reserved.
+ * Use of this source code is governed by a BSD-style license that can be
+ * found in the LICENSE file. */
+
+body {
+  margin: 20px;
+}
+
+h1 {
+  font-size: 156%;
+  font-weight: bold;
+  margin: 0;
+  padding-bottom: 20px;
+  padding-top: 20px;
+}
+
+html[dir=rtl] h1 {
+  background-position: right;
+}
+
+#log-banner {
+  background-color: rgb(235, 239, 250);
+  border: 1px solid #bbb;
+  border-radius: 2px;
+  font-size: 100%;
+  padding: 4px;
+}
+
+#log-list h3 {
+  font-size: 100%;
+}
+
+#log-list > div > * {
+  margin: 0.75em 0;
+}
+
+#log-list a:visited {
+  color: #666;
+}
+
+#log-list > div:not(:last-child) {
+  border-bottom: 1px solid #bbb;
+}
+</style>
+  <script src="chrome://resources/js/load_time_data.js"></script>
+  <script src="chrome://resources/js/util.js"></script>
+  <script src="chrome://webrtc-logs/strings.js"></script>
+  <script src="chrome://webrtc-logs/webrtc_logs.js"></script>
+</head>
+<body i18n-values=".style.fontFamily:fontfamily;.style.fontSize:fontsize">
+  <header><h1 i18n-content="webrtcLogsTitle"></h1></header>
+  <h2 id="log-banner"></h2>
+  <div id="log-list"></div>
+  <p id="no-logs" i18n-content="noLogsMessage" hidden></p>
+  <script src="chrome://resources/js/i18n_template2.js"></script>
+  <script src="chrome://resources/js/jstemplate_compiled.js"></script>
+</body>
+</html>

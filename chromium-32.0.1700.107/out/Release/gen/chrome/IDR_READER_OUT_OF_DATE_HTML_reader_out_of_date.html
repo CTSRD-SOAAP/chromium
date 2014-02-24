@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title i18n-content="title"></title>
+<style type="text/css">
+body {
+  background-color:#500;
+  font-family:Helvetica,Arial,sans-serif;
+  margin:0px;
+}
+.background {
+  position:absolute;
+  width:100%;
+  height:100%;
+}
+.cell {
+  padding:40px;
+}
+.box {
+  width:80%;
+  background-color:white;
+  color:black;
+  font-size:10pt;
+  line-height:16pt;
+  text-align:left;
+  padding:20px;
+  position:relative;
+  -webkit-box-shadow:3px 3px 8px #200;
+  border-radius:5px;
+}
+html[dir='rtl'] .box {
+  text-align:right;
+}
+
+.icon {
+  position:absolute;
+}
+.title {
+  margin: 0px 77px 0px;
+  font-size:18pt;
+  line-height: 140%;
+  margin-bottom:6pt;
+  font-weight:bold;
+  color:#660000;
+}
+.main {
+  margin:0px 80px 0px;
+}
+
+.submission {
+  margin:15px 5px 15px 0px;
+  padding:0px;
+}
+input {
+  margin:0px;
+}
+.proceedbutton {
+}
+</style>
+
+<script>
+function sendCommand(cmd) {
+  window.domAutomationController.setAutomationId(1);
+  window.domAutomationController.send(cmd);
+}
+
+function getChecked() {
+  for (var i = 0; i < document.form.group.length; i++) {
+    if (document.form.group[i].checked)
+      return parseInt(document.form.group[i].value);
+  }
+  return 0;
+}
+</script>
+</head>
+<body oncontextmenu="return false;">
+<div class="background"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAJFCAIAAACTIQqNAAAA7UlEQVR4Xr2TQWoFMQxDJR2gV+h9e+lXqEEwFL4JgVkYLyyNnyZJfr6+I2kpTzexHJiZvfi2siKmdw+KRGz/daR49r9Ujk1AsRQ0HGWtRqGsCoxPODJBjlVN/9dkpNllBxHj6uiul6tnwfCL5/kwrLrlg8kNkZr7tMpZRjjyI8WPfIRDhtETseRAwaO1HHbW+lDz7Szo331dtTtHeS2FlZfYe0ZQZCJuGcv3MTciYrv/u456di7ENvv4Btj3hBuO5nA1p3PEci+a425ezdNnEeTph9nrX7k8/ezby5up5mL2npf9/e8577z3nj3HLyoGruc7jxC4AAAAAElFTkSuQmCC" width="100%" height="100%" alt="background" onmousedown="return false;"></div>
+<table width="100%" cellspacing="0" cellpadding="0">
+  <td class="cell" valign="middle" align="center">
+    <div class="box">
+      <div class="icon"><img src="data:image/png;base64,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" alt="Reader out of date icon" onmousedown="return false;"></div>
+      <div class="title" i18n-content="headLine"></div>
+      <div class="main">
+        <form name="form" class="submission">
+          <input type="radio" name="group" value="1" checked> <span i18n-content="update"></span><br>
+          <input type="radio" name="group" value="2"> <span i18n-content="open_with_reader"></span><br>
+          <br>
+          <input type="button" i18n-values="value:ok" name="ok" class="proceedbutton" onClick="sendCommand(getChecked());">
+          <input type="button" i18n-values="value:cancel" name="cancel" onClick="sendCommand(0);">
+        </form>
+      </div>
+  </td>
+</table>
+</body>
+</html>

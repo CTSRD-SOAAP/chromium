@@ -1,0 +1,77 @@
+<!DOCTYPE HTML>
+<html>
+<!--
+Copyright 2012 The Chromium Authors. All rights reserved.
+Use of this source code is governed by a BSD-style license that can be
+found in the LICENSE file.
+-->
+<head>
+<meta charset="utf-8">
+<title>Instant preferences</title>
+<style>/*
+ * Copyright 2012 The Chromium Authors. All rights reserved.
+ * Use of this source code is governed by a BSD-style license that can be
+ * found in the LICENSE file.
+ */
+
+body {
+  font-family: Arial, sans-serif;
+  font-size: 12px;
+  margin: 10px;
+  min-width: 47em;
+  padding-bottom: 65px;
+}
+
+img {
+  float: left;
+  height: 16px;
+  padding-right: 5px;
+  width: 16px;
+}
+
+.section {
+  background-color: rgb(235, 239, 249);
+  border-top: 1px solid rgb(181, 199, 222);
+  font-weight: bold;
+  margin: 10px 0 0;
+  padding: 2px 2px;
+}
+
+.row {
+  border-bottom: 1px solid #a0a0a0;
+  padding: 5px;
+}
+
+.url {
+  color: #a0a0a0;
+}
+
+.debug {
+  margin: 1px;
+}
+
+.debug span+span {
+  padding-left: 5px;
+}
+
+.timestamp {
+  color: blue;
+}
+</style>
+<script src="instant.js"></script>
+</head>
+<body>
+  <h2>Instant preferences</h2>
+  <hr>
+  <div id="instant-form"></div>
+  <div class="buttons-pane">
+    <button id="save-button">Save</button>
+  </div>
+  <hr/>
+  <div>
+    <h2>Instant Event Log</h2>
+    <button id="clear-button">Clear</button><br><br>
+    <div id="instant-debug-info"></div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>User Actions Debug Page</title>
+  <style>/* Copyright 2012 The Chromium Authors. All rights reserved.
+ * Use of this source code is governed by a BSD-style license that can be
+ * found in the LICENSE file. */
+
+thead {
+  white-space: nowrap;
+}
+
+th {
+  background-color: #C0C0C0;
+}
+
+td {
+  background-color: #F0F0F0;
+}
+</style>
+  <script src="chrome://resources/js/cr.js"></script>
+  <script src="chrome://resources/js/util.js"></script>
+  <script src="user_actions.js"></script>
+</head>
+<body>
+  <p>
+    Listening for user actions...
+  </p>
+  <table id="user-actions-table">
+    <thead><th>User Action</th><th>Timestamp (sec.)</th></thead>
+  </table>
+</body>
+</html>
