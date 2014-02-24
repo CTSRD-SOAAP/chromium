@@ -3,9 +3,6 @@ This is the FreeBSD port of Chromium, corresponding to ports svn revision 325515
 You will need to put llvm-file-map and llvm-link-wrapper in your path and also update the paths in chromium-courgette-redacted-29.0.1547.57/out/Release/build.ninja to reflect your setup
 
 To build the bitcode version of chrome (chrome.bc), cd into chromium-courgette-redacted-29.0.1547.57/out/Release and type:
-$ ninja chrome
-
-To run SOAAP on the generated bitcode file, type:
 $ ninja chrome.soaap
 
 To build an executable from chrome.bc, type:
