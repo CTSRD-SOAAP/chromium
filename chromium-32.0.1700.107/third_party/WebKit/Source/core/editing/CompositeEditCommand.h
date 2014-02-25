@@ -26,6 +26,7 @@
 #ifndef CompositeEditCommand_h
 #define CompositeEditCommand_h
 
+#include <soaap.h>
 #include "CSSPropertyNames.h"
 #include "core/editing/EditCommand.h"
 #include "core/editing/UndoStep.h"
@@ -154,6 +155,7 @@ protected:
     void moveParagraph(const VisiblePosition&, const VisiblePosition&, const VisiblePosition&, bool preserveSelection = false, bool preserveStyle = true, Node* constrainingAncestor = 0);
     void moveParagraphs(const VisiblePosition&, const VisiblePosition&, const VisiblePosition&, bool preserveSelection = false, bool preserveStyle = true, Node* constrainingAncestor = 0);
     void moveParagraphWithClones(const VisiblePosition& startOfParagraphToMove, const VisiblePosition& endOfParagraphToMove, Element* blockElement, Node* outerNode);
+    __soaap_vuln_fn("Cr issue #51602")
     void cloneParagraphUnderNewElement(Position& start, Position& end, Node* outerNode, Element* blockElement);
     void cleanupAfterDeletion(VisiblePosition destination = VisiblePosition());
 

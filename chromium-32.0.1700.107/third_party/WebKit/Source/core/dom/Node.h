@@ -25,6 +25,8 @@
 #ifndef Node_h
 #define Node_h
 
+#include <soaap.h>
+
 #include "bindings/v8/ExceptionStatePlaceholder.h"
 #include "bindings/v8/ScriptWrappable.h"
 #include "core/dom/MutationObserver.h"
@@ -278,6 +280,7 @@ public:
     Element* shadowHost() const;
     // If this node is in a shadow tree, returns its shadow host. Otherwise, returns this.
     // Deprecated. Should use shadowHost() and check the return value.
+    __soaap_vuln_fn("Cr issue #51602")
     Node* deprecatedShadowAncestorNode() const;
     ShadowRoot* containingShadowRoot() const;
     ShadowRoot* youngestShadowRoot() const;
@@ -289,6 +292,7 @@ public:
     ContainerNode* parentOrShadowHostNode() const;
     Element* parentOrShadowHostElement() const;
     void setParentOrShadowHostNode(ContainerNode*);
+    __soaap_vuln_fn("Cr issue #51602")
     Node* highestAncestor() const;
 
     // Use when it's guaranteed to that shadowHost is 0.

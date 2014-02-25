@@ -26,6 +26,7 @@
 #ifndef Position_h
 #define Position_h
 
+#include <soaap.h>
 #include "core/dom/ContainerNode.h"
 #include "core/editing/EditingBoundary.h"
 #include "core/editing/TextAffinity.h"
@@ -243,7 +244,7 @@ inline bool operator!=(const Position& a, const Position& b)
 // We define position creation functions to make callsites more readable.
 // These are inline to prevent ref-churn when returning a Position object.
 // If we ever add a PassPosition we can make these non-inline.
-
+__soaap_vuln_fn("Cr issue #51602")
 inline Position positionInParentBeforeNode(const Node* node)
 {
     // FIXME: This should ASSERT(node->parentNode())

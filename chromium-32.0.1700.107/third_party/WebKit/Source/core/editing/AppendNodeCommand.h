@@ -26,6 +26,7 @@
 #ifndef AppendNodeCommand_h
 #define AppendNodeCommand_h
 
+#include <soaap.h>
 #include "core/editing/EditCommand.h"
 
 namespace WebCore {
@@ -38,6 +39,7 @@ public:
     }
 
 private:
+    __soaap_vuln_fn("Cr issue #51602")
     AppendNodeCommand(PassRefPtr<ContainerNode> parent, PassRefPtr<Node>);
 
     virtual void doApply() OVERRIDE;
