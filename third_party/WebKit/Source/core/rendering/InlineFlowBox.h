@@ -21,6 +21,8 @@
 #ifndef InlineFlowBox_h
 #define InlineFlowBox_h
 
+#include <soaap.h>
+
 #include "core/rendering/InlineBox.h"
 #include "core/rendering/RenderOverflow.h"
 #include "core/rendering/style/ShadowData.h"
@@ -95,6 +97,7 @@ public:
             child->setConstructed();
     }
 
+    __soaap_vuln_fn("Cr issue #51602")
     void addToLine(InlineBox* child);
     virtual void deleteLine() OVERRIDE FINAL;
     virtual void extractLine() OVERRIDE FINAL;

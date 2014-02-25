@@ -26,6 +26,7 @@
 #ifndef ReplaceSelectionCommand_h
 #define ReplaceSelectionCommand_h
 
+#include <soaap.h>
 #include "core/dom/NodeTraversal.h"
 #include "core/editing/CompositeEditCommand.h"
 
@@ -55,6 +56,7 @@ public:
 private:
     ReplaceSelectionCommand(Document&, PassRefPtr<DocumentFragment>, CommandOptions, EditAction);
 
+    __soaap_vuln_fn("Cr issue #51602")
     virtual void doApply();
     virtual EditAction editingAction() const;
 

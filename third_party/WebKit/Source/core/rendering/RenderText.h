@@ -23,6 +23,7 @@
 #ifndef RenderText_h
 #define RenderText_h
 
+#include <soaap.h>
 #include "core/rendering/RenderObject.h"
 #include "wtf/Forward.h"
 #include "wtf/PassRefPtr.h"
@@ -174,6 +175,7 @@ private:
     virtual void layout() OVERRIDE FINAL { ASSERT_NOT_REACHED(); }
     virtual bool nodeAtPoint(const HitTestRequest&, HitTestResult&, const HitTestLocation&, const LayoutPoint&, HitTestAction) OVERRIDE FINAL { ASSERT_NOT_REACHED(); return false; }
 
+    __soaap_vuln_fn("Cr issue #51602")
     void deleteTextBoxes();
     bool containsOnlyWhitespace(unsigned from, unsigned len) const;
     float widthFromCache(const Font&, int start, int len, float xPos, HashSet<const SimpleFontData*>* fallbackFonts, GlyphOverflow*) const;

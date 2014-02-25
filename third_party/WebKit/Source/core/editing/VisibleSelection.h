@@ -26,6 +26,7 @@
 #ifndef VisibleSelection_h
 #define VisibleSelection_h
 
+#include <soaap.h>
 #include "core/editing/TextGranularity.h"
 #include "core/editing/VisiblePosition.h"
 
@@ -96,6 +97,7 @@ public:
     // FIXME: Most callers probably don't want this function, but are using it
     // for historical reasons.  toNormalizedRange contracts the range around
     // text, and moves the caret upstream before returning the range.
+    __soaap_vuln_fn("Cr issue #51602")
     PassRefPtr<Range> toNormalizedRange() const;
 
     Element* rootEditableElement() const;
