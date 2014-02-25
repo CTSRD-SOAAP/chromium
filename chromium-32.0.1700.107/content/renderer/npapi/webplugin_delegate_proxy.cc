@@ -649,7 +649,7 @@ bool WebPluginDelegateProxy::CreateSharedBitmap(
   if (!memory->get())
     return false;
 #endif
-#if defined(OS_POSIX) && !defined(TOOLKIT_GTK) && !defined(OS_ANDROID)
+#if defined(USE_POSIX_SHM)
   TransportDIB::Handle handle;
   IPC::Message* msg = new ViewHostMsg_AllocTransportDIB(size, false, &handle);
   if (!RenderThreadImpl::current()->Send(msg))

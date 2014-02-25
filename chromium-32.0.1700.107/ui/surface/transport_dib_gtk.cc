@@ -5,6 +5,7 @@
 #include "ui/surface/transport_dib.h"
 
 // Desktop GTK Linux builds use the old-style SYSV SHM based DIBs.
+#if defined(USE_SYSV_SHM)
 
 #include <errno.h>
 #include <stdlib.h>
@@ -156,3 +157,4 @@ void TransportDIB::Detach() {
     delete this;
 }
 
+#endif

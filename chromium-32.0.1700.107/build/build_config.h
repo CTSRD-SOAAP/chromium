@@ -34,6 +34,7 @@
 #if !defined(TOOLKIT_VIEWS) && defined(USE_X11) && !defined(USE_AURA)
 #define TOOLKIT_GTK
 #endif
+#define USE_SYSV_SHM
 #if defined(__GLIBC__) && !defined(__UCLIBC__)
 // we really are using glibc, not uClibc pretending to be glibc
 #define LIBC_GLIBC
@@ -44,12 +45,17 @@
 #elif defined(__FreeBSD__)
 #define OS_FREEBSD 1
 #define TOOLKIT_GTK
+#if !defined(USE_POSIX_SHM)
+#define USE_SYSV_SHM
+#endif
 #elif defined(__OpenBSD__)
 #define OS_OPENBSD 1
 #define TOOLKIT_GTK
+#define USE_SYSV_SHM
 #elif defined(__sun)
 #define OS_SOLARIS 1
 #define TOOLKIT_GTK
+#define USE_SYSV_SHM
 #else
 #error Please add support for your platform in build/build_config.h
 #endif

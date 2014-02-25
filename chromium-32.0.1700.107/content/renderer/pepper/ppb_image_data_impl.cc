@@ -134,7 +134,7 @@ ImageDataPlatformBackend::ImageDataPlatformBackend()
 
 // On POSIX, we have to tell the browser to free the transport DIB.
 ImageDataPlatformBackend::~ImageDataPlatformBackend() {
-#if defined(OS_POSIX) && !defined(TOOLKIT_GTK) && !defined(OS_ANDROID)
+#if defined(USE_POSIX_SHM)
   if (dib_) {
     RenderThreadImpl::current()->Send(
         new ViewHostMsg_FreeTransportDIB(dib_->id()));
@@ -152,7 +152,7 @@ bool ImageDataPlatformBackend::Init(PPB_ImageData_Impl* impl,
   uint32 buffer_size = width_ * height_ * 4;
 
   // Allocate the transport DIB and the PlatformCanvas pointing to it.
-#if defined(OS_POSIX) && !defined(TOOLKIT_GTK) && !defined(OS_ANDROID)
+#if defined(USE_POSIX_SHM)
   // On the Mac, shared memory has to be created in the browser in order to
   // work in the sandbox.  Do this by sending a message to the browser
   // requesting a TransportDIB (see also
@@ -216,7 +216,7 @@ int32_t ImageDataPlatformBackend::GetSharedMemory(int* handle,
   *byte_count = dib_->size();
 #if defined(OS_WIN)
   *handle = reinterpret_cast<intptr_t>(dib_->handle());
-#elif defined(TOOLKIT_GTK)
+#elif defined(USE_SYSV_SHM)
   *handle = static_cast<intptr_t>(dib_->handle());
 #else
   *handle = static_cast<intptr_t>(dib_->handle().fd);

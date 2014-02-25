@@ -416,7 +416,7 @@ SkCanvas* PlatformImageData::GetCanvas() {
 ImageHandle PlatformImageData::NullHandle() {
 #if defined(OS_WIN)
   return NULL;
-#elif defined(TOOLKIT_GTK)
+#elif defined(USE_SYSV_SHM)
   return 0;
 #else
   return ImageHandle();
@@ -426,7 +426,7 @@ ImageHandle PlatformImageData::NullHandle() {
 ImageHandle PlatformImageData::HandleFromInt(int32_t i) {
 #if defined(OS_WIN)
     return reinterpret_cast<ImageHandle>(i);
-#elif defined(TOOLKIT_GTK)
+#elif defined(USE_SYSV_SHM)
     return static_cast<ImageHandle>(i);
 #else
     return ImageHandle(i, false);
@@ -607,7 +607,7 @@ PP_Resource PPB_ImageData_Proxy::CreateImageData(
 #if defined(OS_WIN)
   *image_handle = dispatcher->ShareHandleWithRemote(
       reinterpret_cast<HANDLE>(static_cast<intptr_t>(local_fd)), false);
-#elif defined(TOOLKIT_GTK)
+#elif defined(USE_SYSV_SHM)
   // On X Windows, a PlatformImageData is backed by a SysV shared memory key,
   // so embed that in a fake PlatformFileForTransit and don't share it across
   // processes.
@@ -643,7 +643,7 @@ void PPB_ImageData_Proxy::OnHostMsgCreatePlatform(
                       desc, &image_handle, &byte_count);
   result->SetHostResource(instance, resource);
   if (resource) {
-#if defined(TOOLKIT_GTK)
+#if defined(USE_SYSV_SHM)
     // On X Windows ImageHandle is a SysV shared memory key.
     *result_image_handle = image_handle.fd;
 #else

@@ -47,6 +47,9 @@
           # Use OpenSSL instead of NSS. Under development: see http://crbug.com/62803
           'use_openssl%': 0,
 
+          # Use POSIX shared memory instead of SysV shared memory.
+          'use_posix_shm%': 0,
+
           # Disable viewport meta tag by default.
           'enable_viewport%': 0,
 
@@ -83,6 +86,11 @@
               'desktop_linux%': 0,
             }],
 
+            # SysV shared memory is unavailable in OS X and Capsicum sandboxes.
+            ['OS=="mac" or OS=="freebsd"', {
+              'use_posix_shm%': 1,
+            }],
+
             # Compute the architecture that we're building on.
             ['OS=="win" or OS=="mac" or OS=="ios"', {
               'host_arch%': 'ia32',
@@ -105,6 +113,7 @@
         'use_ozone%': '<(use_ozone)',
         'use_ozone_evdev%': '<(use_ozone_evdev)',
         'use_openssl%': '<(use_openssl)',
+        'use_posix_shm%': '<(use_posix_shm)',
         'enable_viewport%': '<(enable_viewport)',
         'enable_hidpi%': '<(enable_hidpi)',
         'enable_touch_ui%': '<(enable_touch_ui)',
@@ -187,6 +196,7 @@
       'use_ozone%': '<(use_ozone)',
       'use_ozone_evdev%': '<(use_ozone_evdev)',
       'use_openssl%': '<(use_openssl)',
+      'use_posix_shm%': '<(use_posix_shm)',
       'enable_viewport%': '<(enable_viewport)',
       'enable_hidpi%': '<(enable_hidpi)',
       'enable_touch_ui%': '<(enable_touch_ui)',
@@ -798,6 +808,7 @@
     'use_ash%': '<(use_ash)',
     'use_cras%': '<(use_cras)',
     'use_openssl%': '<(use_openssl)',
+    'use_posix_shm%': '<(use_posix_shm)',
     'use_nss%': '<(use_nss)',
     'os_bsd%': '<(os_bsd)',
     'os_posix%': '<(os_posix)',
@@ -2178,6 +2189,9 @@
         'defines': [
           'USE_OPENSSL=1',
         ],
+      }],
+      ['use_posix_shm==1', {
+        'defines': ['USE_POSIX_SHM'],
       }],
       ['enable_eglimage==1', {
         'defines': [

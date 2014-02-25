@@ -2345,7 +2345,7 @@ IPC_SYNC_MESSAGE_CONTROL2_0(ViewHostMsg_PreCacheFontCharacters,
                             string16 /* characters */)
 #endif
 
-#if defined(OS_POSIX)
+#if defined(USE_POSIX_SHM)
 // On POSIX, we cannot allocated shared memory from within the sandbox, so
 // this call exists for the renderer to ask the browser to allocate memory
 // on its behalf. We return a file descriptor to the POSIX shared memory.

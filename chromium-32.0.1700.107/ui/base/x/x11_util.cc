@@ -268,6 +268,11 @@ bool XDisplayExists() {
 static SharedMemorySupport DoQuerySharedMemorySupport(XDisplay* dpy) {
   int dummy;
   Bool pixmaps_supported;
+
+#if defined(USE_POSIX_SHM)
+  return SHARED_MEMORY_NONE;
+#endif
+
   // Query the server's support for XSHM.
   if (!XShmQueryVersion(dpy, &dummy, &dummy, &pixmaps_supported))
     return SHARED_MEMORY_NONE;

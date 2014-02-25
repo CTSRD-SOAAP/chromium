@@ -103,7 +103,9 @@ class XSyncHandler {
           picture(pic),
           pixmap(pix),
           closure(c) {
+#if defined (USE_SYSV_SHM)
       dib->IncreaseInFlightCounter();
+#endif
     }
 
     TransportDIB* dib;
@@ -199,7 +201,9 @@ XSyncHandler::~XSyncHandler() {
     backing_store_events_.pop();
     XRenderFreePicture(data->display, data->picture);
     XFreePixmap(data->display, data->pixmap);
+#if defined (USE_SYSV_SHM)
     data->dib->DecreaseInFlightCounter();
+#endif
     delete data;
   }
 }
@@ -231,7 +235,9 @@ GdkFilterReturn XSyncHandler::OnEvent(GdkXEvent* gdkxevent,
       // Dispatch the closure we were given.
       data->closure.Run();
 
+#if defined (USE_SYSV_SHM)
       data->dib->DecreaseInFlightCounter();
+#endif
       delete data;
 
       return GDK_FILTER_REMOVE;
@@ -377,6 +383,7 @@ void BackingStoreGtk::PaintToBackingStore(
   Pixmap pixmap;
 
   if (shared_memory_support_ == ui::SHARED_MEMORY_PIXMAP) {
+#if defined (USE_SYSV_SHM)
     XShmSegmentInfo shminfo = {0};
     shminfo.shmseg = dib->MapToX(display_);
 
@@ -389,6 +396,10 @@ void BackingStoreGtk::PaintToBackingStore(
     // which is correct for us.
     pixmap = XShmCreatePixmap(display_, root_window_, NULL, &shminfo,
                               width, height, 32);
+#else
+    pixmap = 0;
+    LOG(FATAL) << "cannot have SHARED_MEMORY_PIXMAP without USE_SYSV_SHM";
+#endif
   } else {
     // We don't have shared memory pixmaps.  Fall back to creating a pixmap
     // ourselves and putting an image on it.
@@ -396,6 +407,7 @@ void BackingStoreGtk::PaintToBackingStore(
     GC gc = XCreateGC(display_, pixmap, 0, NULL);
 
     if (shared_memory_support_ == ui::SHARED_MEMORY_PUTIMAGE) {
+#if defined(USE_SYSV_SHM)
       const XID shmseg = dib->MapToX(display_);
 
       XShmSegmentInfo shminfo;
@@ -433,6 +445,9 @@ void BackingStoreGtk::PaintToBackingStore(
                    width, height, False /* send_event */);
 #endif
       XDestroyImage(image);
+#else
+      LOG(FATAL) << "cannot have SHARED_MEMORY_PUTIMAGE without USE_SYSV_SHM";
+#endif
     } else {  // case SHARED_MEMORY_NONE
       // No shared memory support, we have to copy the bitmap contents
       // to the X server. Xlib wraps the underlying PutImage call

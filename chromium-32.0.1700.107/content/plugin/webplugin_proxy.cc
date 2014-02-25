@@ -533,7 +533,7 @@ void WebPluginProxy::SetWindowlessBuffers(
                                   &windowless_contexts_[1]);
 }
 
-#elif defined(TOOLKIT_GTK)
+#elif defined(USE_SYSV_SHM)
 
 void WebPluginProxy::CreateDIBAndCanvasFromHandle(
     const TransportDIB::Handle& dib_handle,

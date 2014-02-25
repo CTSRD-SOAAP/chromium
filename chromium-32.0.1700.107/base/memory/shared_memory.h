@@ -32,7 +32,7 @@ class FilePath;
 #if defined(OS_WIN)
 typedef HANDLE SharedMemoryHandle;
 typedef HANDLE SharedMemoryLock;
-#elif defined(OS_POSIX)
+#elif defined(USE_POSIX_SHM)
 // A SharedMemoryId is sufficient to identify a given shared memory segment on a
 // system, but insufficient to map it.
 typedef FileDescriptor SharedMemoryHandle;

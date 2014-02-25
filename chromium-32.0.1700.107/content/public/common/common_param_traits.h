@@ -193,7 +193,7 @@ struct ParamTraits<TransportDIB::Id> {
 };
 #endif
 
-#if defined(TOOLKIT_GTK)
+#if defined(TOOLKIT_GTK) and !defined(USE_POSIX_SHM)
 template<>
 struct ParamTraits<TransportDIB::Id> {
   typedef TransportDIB::Id param_type;

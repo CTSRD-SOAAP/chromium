@@ -400,7 +400,7 @@ bool RenderMessageFilter::OnMessageReceived(const IPC::Message& message,
                         OnAllocateSharedMemory)
     IPC_MESSAGE_HANDLER(ChildProcessHostMsg_SyncAllocateGpuMemoryBuffer,
                         OnAllocateGpuMemoryBuffer)
-#if defined(OS_POSIX) && !defined(TOOLKIT_GTK) && !defined(OS_ANDROID)
+#if defined(USE_POSIX_SHM)
     IPC_MESSAGE_HANDLER(ViewHostMsg_AllocTransportDIB, OnAllocTransportDIB)
     IPC_MESSAGE_HANDLER(ViewHostMsg_FreeTransportDIB, OnFreeTransportDIB)
 #endif
@@ -881,7 +881,7 @@ net::URLRequestContext* RenderMessageFilter::GetRequestContextForURL(
   return context;
 }
 
-#if defined(OS_POSIX) && !defined(TOOLKIT_GTK) && !defined(OS_ANDROID)
+#if defined(USE_POSIX_SHM)
 void RenderMessageFilter::OnAllocTransportDIB(
     uint32 size, bool cache_in_browser, TransportDIB::Handle* handle) {
   render_widget_helper_->AllocTransportDIB(size, cache_in_browser, handle);

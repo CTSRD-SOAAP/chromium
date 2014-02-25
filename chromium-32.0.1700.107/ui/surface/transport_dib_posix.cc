@@ -5,7 +5,7 @@
 #include "ui/surface/transport_dib.h"
 
 // Desktop GTK Linux builds use the old-style SYSV SHM based DIBs.
-#if !defined(TOOLKIT_GTK)
+#if defined(USE_POSIX_SHM)
 
 #include <sys/stat.h>
 #include <unistd.h>
