@@ -27,6 +27,7 @@
 #include "base/logging.h"
 #include "base/memory/scoped_ptr.h"
 #include "base/memory/singleton.h"
+#include "base/posix/capsicum.h"
 #include "base/posix/eintr_wrapper.h"
 #include "base/posix/global_descriptors.h"
 #include "base/process/process_handle.h"
@@ -212,6 +213,22 @@ bool SocketPair(int* fd1, int* fd2) {
       PLOG(ERROR) << "close";
     return false;
   }
+
+#if defined(CAPSICUM_SUPPORT)
+  static Capsicum::Rights rights;
+  if (not rights.read)
+    rights.read = rights.write = rights.poll = true;
+
+  if (not Capsicum::RestrictFile(pipe_fds[0], rights)
+      or not Capsicum::RestrictFile(pipe_fds[1], rights)) {
+    PLOG(ERROR) << "unable to restrict socket pair";
+    if (HANDLE_EINTR(close(pipe_fds[0])) < 0)
+      PLOG(ERROR) << "close";
+    if (HANDLE_EINTR(close(pipe_fds[1])) < 0)
+      PLOG(ERROR) << "close";
+    return false;
+  }
+#endif
 
   *fd1 = pipe_fds[0];
   *fd2 = pipe_fds[1];

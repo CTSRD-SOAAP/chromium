@@ -11,6 +11,7 @@
 
 #include "base/logging.h"
 #include "base/pickle.h"
+#include "base/posix/capsicum.h"
 #include "base/posix/eintr_wrapper.h"
 #include "base/stl_util.h"
 
@@ -136,6 +137,22 @@ ssize_t UnixDomainSocket::SendRecvMsgWithFlags(int fd,
   // returning.
   if (socketpair(AF_UNIX, SOCK_SEQPACKET, 0, fds) == -1)
     return -1;
+
+#if defined(CAPSICUM_SUPPORT)
+  static Capsicum::Rights rights;
+  if (not rights.read)
+    rights.read = rights.write = rights.poll = true;
+
+  if (not Capsicum::RestrictFile(fds[0], rights)
+      or not Capsicum::RestrictFile(fds[1], rights)) {
+    PLOG(ERROR) << "unable to restrict socket pair";
+    if (HANDLE_EINTR(close(fds[0])) < 0)
+      PLOG(ERROR) << "close";
+    if (HANDLE_EINTR(close(fds[1])) < 0)
+      PLOG(ERROR) << "close";
+    return false;
+  }
+#endif
 
   std::vector<int> fd_vector;
   fd_vector.push_back(fds[1]);

@@ -5,12 +5,18 @@
 #include "content/renderer/renderer_main_platform_delegate.h"
 
 #include <errno.h>
+#include <fcntl.h>
 #include <sys/stat.h>
 
 #include "base/command_line.h"
 #include "base/file_util.h"
 #include "base/logging.h"
+#if defined(CAPSICUM_SUPPORT)
+#include "content/common/sandbox_capsicum.h"
+#endif
+#if defined(OS_LINUX)
 #include "content/common/sandbox_linux.h"
+#endif
 #include "content/public/common/content_switches.h"
 #include "content/public/common/sandbox_init.h"
 
@@ -46,18 +52,23 @@ bool RendererMainPlatformDelegate::InitSandboxTests(bool no_sandbox) {
 }
 
 bool RendererMainPlatformDelegate::EnableSandbox() {
+#if defined(CAPSICUM_SUPPORT)
+  capsicum_sandbox_.reset(CapsicumSandbox::Create());
+  CHECK(capsicum_sandbox_);
+
+  if (not capsicum_sandbox_->InitializeSandbox())
+    return false;
+#elif defined(OS_LINUX)
   // The setuid sandbox is started in the zygote process: zygote_main_linux.cc
   // http://code.google.com/p/chromium/wiki/LinuxSUIDSandbox
   //
   // Anything else is started in InitializeSandbox().
-#if !defined(OS_BSD)
   LinuxSandbox::InitializeSandbox();
 #endif
   return true;
 }
 
 void RendererMainPlatformDelegate::RunSandboxTests(bool no_sandbox) {
-#if !defined(OS_BSD)
   // The LinuxSandbox class requires going through initialization before
   // GetStatus() and others can be used.  When we are not launched through the
   // Zygote, this initialization will only happen in the renderer process if
@@ -67,6 +78,17 @@ void RendererMainPlatformDelegate::RunSandboxTests(bool no_sandbox) {
   if (no_sandbox)
     return;
 
+#if defined(OS_BSD)
+  // In a sandbox, we should not have access to any global namespaces.
+  //
+  // This includes:
+  //  * filesystems
+  //  * the network
+  //  * PIDs
+  CHECK(!base::PathExists(base::FilePath("/bin/true")));
+  CHECK_EQ(open("/bin/true", 0), -1);
+  CHECK_EQ(errno, ECAPMODE);
+#else
   // about:sandbox uses a value returned from LinuxSandbox::GetStatus() before
   // any renderer has been started.
   // Here, we test that the status of SeccompBpf in the renderer is consistent

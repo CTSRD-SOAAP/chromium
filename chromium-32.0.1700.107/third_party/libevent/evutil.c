@@ -36,6 +36,9 @@
 #endif
 
 #include <sys/types.h>
+#ifdef CAPSICUM_SUPPORT
+#include <sys/capability.h>
+#endif
 #ifdef HAVE_SYS_SOCKET_H
 #include <sys/socket.h>
 #endif
@@ -65,7 +68,23 @@ int
 evutil_socketpair(int family, int type, int protocol, int fd[2])
 {
 #ifndef WIN32
-	return socketpair(family, type, protocol, fd);
+	int ret = -1;
+	ret = socketpair(family, type, protocol, fd);
+	if (ret < 0)
+		return (ret);
+
+#ifdef CAPSICUM_SUPPORT
+	cap_rights_t rights;
+	cap_rights_init(&rights, CAP_READ, CAP_WRITE, CAP_EVENT);
+	if (cap_rights_limit(fd[0], &rights) != 0
+            || cap_rights_limit(fd[1], &rights) != 0)
+	{
+		close(fd[0]);
+		close(fd[1]);
+		return (-1);
+	}
+#endif
+	return (ret);
 #else
 	/* This code is originally from Tor.  Used with permission. */
 
@@ -137,6 +156,7 @@ evutil_socketpair(int family, int type, int protocol, int fd[2])
 		|| listen_addr.sin_addr.s_addr != connect_addr.sin_addr.s_addr
 		|| listen_addr.sin_port != connect_addr.sin_port)
 		goto abort_tidy_up_and_fail;
+
 	fd[0] = connector;
 	fd[1] = acceptor;
 

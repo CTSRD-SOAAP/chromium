@@ -13,6 +13,7 @@
 #include "base/logging.h"
 #include "base/memory/scoped_ptr.h"
 #include "base/observer_list.h"
+#include "base/posix/capsicum.h"
 #include "base/posix/eintr_wrapper.h"
 #include "base/time/time.h"
 #include "third_party/libevent/event.h"
@@ -324,6 +325,21 @@ bool MessagePumpLibevent::Init() {
     DLOG(ERROR) << "SetNonBlocking for pipe fd[1] failed, errno: " << errno;
     return false;
   }
+#if defined(CAPSICUM_SUPPORT)
+  static Capsicum::Rights rights;
+  if (not rights.read)
+    rights.read = rights.write = rights.poll = true;
+
+  if (not Capsicum::RestrictFile(fds[0], rights)
+      or not Capsicum::RestrictFile(fds[1], rights)) {
+    PLOG(ERROR) << "unable to restrict socket pair";
+    if (HANDLE_EINTR(close(fds[0])) < 0)
+      PLOG(ERROR) << "close";
+    if (HANDLE_EINTR(close(fds[1])) < 0)
+      PLOG(ERROR) << "close";
+    return false;
+  }
+#endif
   wakeup_pipe_out_ = fds[0];
   wakeup_pipe_in_ = fds[1];
 

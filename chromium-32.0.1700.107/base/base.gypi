@@ -935,6 +935,12 @@
           }],
         ],
       }],
+      ['base_target==1 and OS=="freebsd"', {
+        'sources': [
+          'posix/capsicum.h',
+          'posix/capsicum.cc',
+        ],
+      }],
     ],
   },
 }

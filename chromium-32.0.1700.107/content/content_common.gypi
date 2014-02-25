@@ -446,6 +446,10 @@
       ],
     }],
     ['os_bsd==1', {
+      'sources': [
+        'common/sandbox_capsicum.h',
+        'common/sandbox_capsicum.cc',
+      ],
       'sources!': [
         'common/sandbox_linux.cc',
         'common/sandbox_linux.h',

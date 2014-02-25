@@ -11,6 +11,10 @@
 #include <windows.h>
 #endif
 
+#if defined(CAPSICUM_SUPPORT)
+#include "base/memory/scoped_ptr.h"
+#endif
+
 #include "base/basictypes.h"
 #include "content/common/content_export.h"
 #include "content/public/common/main_function_params.h"
@@ -22,6 +26,10 @@ class NSBundle;
 #endif  // __OBJC__
 
 namespace content {
+
+#if defined(CAPSICUM_SUPPORT)
+class CapsicumSandbox;
+#endif
 
 class CONTENT_EXPORT RendererMainPlatformDelegate {
  public:
@@ -46,6 +54,9 @@ class CONTENT_EXPORT RendererMainPlatformDelegate {
 
  private:
   const MainFunctionParams& parameters_;
+#if defined(CAPSICUM_SUPPORT)
+  scoped_ptr<CapsicumSandbox> capsicum_sandbox_;
+#endif
 #if defined(OS_WIN)
   HMODULE sandbox_test_module_;
 #elif defined(OS_MACOSX)

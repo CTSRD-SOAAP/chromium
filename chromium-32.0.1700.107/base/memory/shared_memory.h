@@ -21,6 +21,7 @@
 
 #if defined(OS_POSIX)
 #include "base/file_descriptor_posix.h"
+#include "base/memory/shared_memory.h"
 #endif
 
 namespace base {

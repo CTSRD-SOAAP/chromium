@@ -13,9 +13,19 @@
 
 #include <fontconfig/fontconfig.h>
 
+#include <map>
+
 #include "SkBuffer.h"
 #include "SkFontConfigInterface.h"
 #include "SkStream.h"
+
+#if defined(CAPSICUM_SUPPORT)
+#include <err.h>
+#include <sysexits.h>
+
+#include "base/posix/capsicum.h"
+#endif
+
 
 size_t SkFontConfigInterface::FontIdentity::writeToMemory(void* addr) const {
     size_t size = sizeof(fID) + sizeof(fTTCIndex);
@@ -116,22 +126,81 @@ public:
                                 SkString* outFamilyName,
                                 SkTArray<FontIdentity>*) SK_OVERRIDE;
 
+#if defined(CAPSICUM_SUPPORT)
+    typedef std::map<std::string,int> DirectoryMap;
+#endif
+
+    void setFontDirectories(DirectoryMap& map) { fontDirectories = map; }
+
 private:
+    FcPattern* MatchFont(FcFontSet* font_set,
+                         const char* post_config_family,
+                         const std::string& family);
+    bool valid_pattern(FcPattern* pattern);
+    bool isAccessible(const char filename[]);
+
+#if defined(CAPSICUM_SUPPORT)
+    // A filename relative to an open directory descriptor.
+    struct RelativeFilename {
+        int dir;
+        std::string path;
+
+        operator bool() const { return dir >= 0 and not path.empty(); }
+    };
+
+    RelativeFilename FindRelative(const char absolute_filename[]);
+    DirectoryMap fontDirectories;
+#endif
+
     SkMutex mutex_;
 };
 
 SkFontConfigInterface* SkFontConfigInterface::GetSingletonDirectInterface() {
-    static SkFontConfigInterface* gDirect;
+    static SkFontConfigInterfaceDirect* gDirect;
     if (NULL == gDirect) {
         static SkMutex gMutex;
         SkAutoMutexAcquire ac(gMutex);
 
         if (NULL == gDirect) {
+#if defined(CAPSICUM_SUPPORT)
+            SkFontConfigInterfaceDirect::DirectoryMap fontDirs;
+            const std::string fontDirNames[] = {
+                "/usr/local/lib/X11/fonts",
+            };
+
+            //
+            // Declare the rights that we need for a font directory:
+            //
+            Capsicum::Rights rights;
+            rights.stat = true;
+            rights.tell = true;
+            rights.read = true;
+            rights.lock = true;
+            rights.mmap = true;
+            rights.directoryLookup = true;
+
+            for (const std::string& dir : fontDirNames) {
+                int fd = open(dir.c_str(), O_RDONLY);
+                if (fd < 0)
+                    err(EX_OSERR, "error open font directory %s", dir.c_str());
+
+                if (not Capsicum::RestrictFile(fd, rights))
+                    err(EX_OSERR, "error limiting access to %s", dir.c_str());
+
+                fontDirs[dir] = fd;
+            }
+#endif
+
             gDirect = new SkFontConfigInterfaceDirect;
+
+#if defined(CAPSICUM_SUPPORT)
+            gDirect->setFontDirectories(fontDirs);
+#endif
         }
     }
     return gDirect;
 }
+
 
 ///////////////////////////////////////////////////////////////////////////////
 
@@ -326,64 +395,6 @@ bool IsFallbackFontAllowed(const std::string& family) {
          strcasecmp(family_cstr, "monospace") == 0;
 }
 
-static bool valid_pattern(FcPattern* pattern) {
-    FcBool is_scalable;
-    if (FcPatternGetBool(pattern, FC_SCALABLE, 0, &is_scalable) != FcResultMatch
-        || !is_scalable) {
-        return false;
-    }
-
-    // fontconfig can also return fonts which are unreadable
-    const char* c_filename = get_name(pattern, FC_FILE);
-    if (!c_filename) {
-        return false;
-    }
-    if (access(c_filename, R_OK) != 0) {
-        return false;
-    }
-    return true;
-}
-
-// Find matching font from |font_set| for the given font family.
-FcPattern* MatchFont(FcFontSet* font_set,
-                     const char* post_config_family,
-                     const std::string& family) {
-  // Older versions of fontconfig have a bug where they cannot select
-  // only scalable fonts so we have to manually filter the results.
-  FcPattern* match = NULL;
-  for (int i = 0; i < font_set->nfont; ++i) {
-    FcPattern* current = font_set->fonts[i];
-    if (valid_pattern(current)) {
-      match = current;
-      break;
-    }
-  }
-
-  if (match && !IsFallbackFontAllowed(family)) {
-    bool acceptable_substitute = false;
-    for (int id = 0; id < 255; ++id) {
-      const char* post_match_family = get_name(match, FC_FAMILY, id);
-      if (!post_match_family)
-        break;
-      acceptable_substitute =
-          (strcasecmp(post_config_family, post_match_family) == 0 ||
-           // Workaround for Issue 12530:
-           //   requested family: "Bitstream Vera Sans"
-           //   post_config_family: "Arial"
-           //   post_match_family: "Bitstream Vera Sans"
-           // -> We should treat this case as a good match.
-           strcasecmp(family.c_str(), post_match_family) == 0) ||
-           IsMetricCompatibleReplacement(family.c_str(), post_match_family);
-      if (acceptable_substitute)
-        break;
-    }
-    if (!acceptable_substitute)
-      return NULL;
-  }
-
-  return match;
-}
-
 // Retrieves |is_bold|, |is_italic| and |font_family| properties from |font|.
 SkTypeface::Style GetFontStyle(FcPattern* font) {
     int resulting_bold;
@@ -549,6 +560,24 @@ bool SkFontConfigInterfaceDirect::matchFamilyName(const char familyName[],
 }
 
 SkStream* SkFontConfigInterfaceDirect::openStream(const FontIdentity& identity) {
+#if defined(CAPSICUM_SUPPORT)
+    if (Capsicum::InCapabilityMode()) {
+        //
+        // In capability mode, we can't open() files by their absolute path:
+        // all access to global namespaces has been cut off.
+        //
+        RelativeFilename file = FindRelative(identity.fString.c_str());
+        if (not file)
+            return NULL;
+
+        int fd = openat(file.dir, file.path.c_str(), O_RDONLY);
+        FILE *stdiofile = fdopen(fd, "r");
+        return new SkFILEStream(stdiofile);
+    }
+    else
+#else
+#error !CAPSICUM_SUPPORT
+#endif
     return SkStream::NewFromFile(identity.fString.c_str());
 }
 
@@ -728,4 +757,93 @@ bool SkFontConfigInterfaceDirect::matchFamilySet(const char inFamilyName[],
                                               trimmedMatches.count()));
 #endif
     return false;
+}
+
+
+// Find matching font from |font_set| for the given font family.
+FcPattern* SkFontConfigInterfaceDirect::MatchFont(FcFontSet* font_set,
+                                                  const char*post_config_family,
+                                                  const std::string& family) {
+
+  // Older versions of fontconfig have a bug where they cannot select
+  // only scalable fonts so we have to manually filter the results.
+  FcPattern* match = NULL;
+  for (int i = 0; i < font_set->nfont; ++i) {
+    FcPattern* current = font_set->fonts[i];
+    if (valid_pattern(current)) {
+      match = current;
+      break;
+    }
+  }
+
+  if (match && !IsFallbackFontAllowed(family)) {
+    bool acceptable_substitute = false;
+    for (int id = 0; id < 255; ++id) {
+      const char* post_match_family = get_name(match, FC_FAMILY, id);
+      if (!post_match_family)
+        break;
+      acceptable_substitute =
+          (strcasecmp(post_config_family, post_match_family) == 0 ||
+           // Workaround for Issue 12530:
+           //   requested family: "Bitstream Vera Sans"
+           //   post_config_family: "Arial"
+           //   post_match_family: "Bitstream Vera Sans"
+           // -> We should treat this case as a good match.
+           strcasecmp(family.c_str(), post_match_family) == 0) ||
+           IsMetricCompatibleReplacement(family.c_str(), post_match_family);
+      if (acceptable_substitute)
+        break;
+    }
+    if (!acceptable_substitute)
+      return NULL;
+  }
+
+  return match;
+}
+
+bool SkFontConfigInterfaceDirect::valid_pattern(FcPattern* pattern) {
+    FcBool is_scalable;
+    if (FcPatternGetBool(pattern, FC_SCALABLE, 0, &is_scalable) != FcResultMatch
+        || !is_scalable) {
+        return false;
+    }
+
+    // fontconfig can also return fonts which are unreadable
+    const char* c_filename = get_name(pattern, FC_FILE);
+    if (!c_filename) {
+        return false;
+    }
+    return isAccessible(c_filename);
+}
+
+#if defined(CAPSICUM_SUPPORT)
+SkFontConfigInterfaceDirect::RelativeFilename
+SkFontConfigInterfaceDirect::FindRelative(const char absolutePath[]) {
+    for (auto& i : fontDirectories) {
+        const std::string& directory = i.first;
+        if (strncmp(absolutePath, directory.c_str(), directory.length()) == 0) {
+            const char *path = absolutePath + directory.size();
+            if (*path == '/')
+                path++;
+
+            return { i.second, path };
+        }
+    }
+
+    return { -1 };
+}
+#endif
+
+bool SkFontConfigInterfaceDirect::isAccessible(const char filename[])
+{
+#if defined(CAPSICUM_SUPPORT)
+    if (Capsicum::InCapabilityMode()) {
+        RelativeFilename rel = FindRelative(filename);
+        if (not rel)
+            return false;
+
+        return (faccessat(rel.dir, rel.path.c_str(), R_OK, 0) == 0);
+    } else
+#endif
+    return (access(filename, R_OK) == 0);
 }

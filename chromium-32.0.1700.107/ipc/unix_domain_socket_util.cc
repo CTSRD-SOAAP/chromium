@@ -14,6 +14,7 @@
 #include "base/file_util.h"
 #include "base/files/file_path.h"
 #include "base/logging.h"
+#include "base/posix/capsicum.h"
 #include "base/posix/eintr_wrapper.h"
 
 namespace IPC {
@@ -109,6 +110,17 @@ bool CreateServerUnixDomainSocket(const base::FilePath& socket_path,
     return false;
   }
 
+#if defined(CAPSICUM_SUPPORT)
+  static Capsicum::Rights rights;
+  if (not rights.read)
+    rights.read = rights.write = rights.poll = true;
+
+  if (not Capsicum::RestrictFile(*scoped_fd, rights)) {
+    PLOG(ERROR) << "unable to restrict UDS server";
+    return false;
+  }
+#endif
+
   *server_listen_fd = *scoped_fd.release();
   return true;
 }
@@ -132,6 +144,17 @@ bool CreateClientUnixDomainSocket(const base::FilePath& socket_path,
     PLOG(ERROR) << "connect " << socket_path.value();
     return false;
   }
+
+#if defined(CAPSICUM_SUPPORT)
+  static Capsicum::Rights rights;
+  if (not rights.read)
+    rights.read = rights.write = rights.poll = true;
+
+  if (not Capsicum::RestrictFile(*scoped_fd, rights)) {
+    PLOG(ERROR) << "unable to restrict UDS client";
+    return false;
+  }
+#endif
 
   *client_socket = *scoped_fd.release();
   return true;

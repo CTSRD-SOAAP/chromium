@@ -12,6 +12,7 @@
 #include "base/files/file_path.h"
 #include "base/logging.h"
 #include "base/metrics/sparse_histogram.h"
+#include "base/posix/capsicum.h"
 #include "base/posix/eintr_wrapper.h"
 #include "base/strings/utf_string_conversions.h"
 #include "base/threading/thread_restrictions.h"
@@ -203,6 +204,20 @@ PlatformFile CreatePlatformFileUnsafe(const FilePath& name,
   if ((descriptor >= 0) && (flags & PLATFORM_FILE_DELETE_ON_CLOSE)) {
     unlink(name.value().c_str());
   }
+
+#if defined(CAPSICUM_SUPPORT)
+  Capsicum::Rights rights;
+  rights.stat = true;
+  rights.tell = true;
+  rights.read = (flags & PLATFORM_FILE_READ);
+  rights.write = (flags & PLATFORM_FILE_WRITE);
+  rights.lock = true;
+  rights.mmap = true;
+  rights.tty = (flags & PLATFORM_FILE_TERMINAL_DEVICE);
+
+  if (not Capsicum::RestrictFile(descriptor, rights))
+    PLOG(ERROR) << "error limiting descriptor " << descriptor;
+#endif
 
   if (error) {
     if (descriptor >= 0)

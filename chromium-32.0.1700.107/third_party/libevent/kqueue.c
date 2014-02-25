@@ -33,6 +33,9 @@
 #define _GNU_SOURCE 1
 
 #include <sys/types.h>
+#ifdef CAPSICUM_SUPPORT
+#include <sys/capability.h>
+#endif
 #ifdef HAVE_SYS_TIME_H
 #include <sys/time.h>
 #else
@@ -115,6 +118,16 @@ kq_init(struct event_base *base)
 		free (kqueueop);
 		return (NULL);
 	}
+
+#ifdef CAPSICUM_SUPPORT
+	cap_rights_t rights;
+	cap_rights_init(&rights, CAP_KQUEUE_EVENT, CAP_KQUEUE_CHANGE);
+	if (cap_rights_limit(kq, &rights) != 0) {
+		close(kq);
+		free(kqueueop);
+		return (NULL);
+	}
+#endif
 
 	kqueueop->kq = kq;
 

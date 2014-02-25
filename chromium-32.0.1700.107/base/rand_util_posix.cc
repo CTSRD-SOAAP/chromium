@@ -11,6 +11,7 @@
 #include "base/file_util.h"
 #include "base/lazy_instance.h"
 #include "base/logging.h"
+#include "base/posix/capsicum.h"
 
 namespace {
 
@@ -23,6 +24,14 @@ class URandomFd {
   URandomFd() {
     fd_ = open("/dev/urandom", O_RDONLY);
     DCHECK_GE(fd_, 0) << "Cannot open /dev/urandom: " << errno;
+
+#if defined(CAPSICUM_SUPPORT)
+    Capsicum::Rights rights;
+    rights.read = true;
+
+    if (not Capsicum::RestrictFile(fd_, rights))
+      PLOG(ERROR) << "Cannot limit access to /dev/urandom";
+#endif
   }
 
   ~URandomFd() {

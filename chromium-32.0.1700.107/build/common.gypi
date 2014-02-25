@@ -1959,6 +1959,9 @@
           '<(DEPTH)/build/mac/asan.gyp:asan_dynamic_runtime',
         ],
       }],
+      ['OS=="freebsd"', {
+        'defines': ['CAPSICUM_SUPPORT'],
+      }],
       ['OS=="linux" and linux_use_tcmalloc==1 and clang_type_profiler==1', {
         'cflags_cc!': ['-fno-rtti'],
         'cflags_cc+': [
