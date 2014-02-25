@@ -26,6 +26,7 @@
 #ifndef SplitElementCommand_h
 #define SplitElementCommand_h
 
+#include <soaap.h>
 #include "core/editing/EditCommand.h"
 
 namespace WebCore {
@@ -38,6 +39,7 @@ public:
     }
 
 private:
+    __soaap_vuln_fn("Cr issue #51602")
     SplitElementCommand(PassRefPtr<Element>, PassRefPtr<Node> splitPointChild);
 
     virtual void doApply() OVERRIDE;

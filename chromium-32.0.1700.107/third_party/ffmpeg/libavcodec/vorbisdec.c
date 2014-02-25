@@ -28,6 +28,7 @@
 
 #include <inttypes.h>
 #include <math.h>
+#include <soaap.h>
 
 #define BITSTREAM_READER_LE
 #include "libavutil/float_dsp.h"
@@ -1467,6 +1468,7 @@ static av_always_inline int vorbis_residue_decode_internal(vorbis_context *vc,
                                 }
 
                             } else if (vr_type == 2) {
+                                __soaap_vuln_pt("Cr 140165");
                                 unsigned voffs_div = FASTDIV(voffset << 1, ch <<1);
                                 unsigned voffs_mod = voffset - voffs_div * ch;
 

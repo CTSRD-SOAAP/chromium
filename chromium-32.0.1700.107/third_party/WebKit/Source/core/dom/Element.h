@@ -25,6 +25,7 @@
 #ifndef Element_h
 #define Element_h
 
+#include <soaap.h>
 #include "CSSPropertyNames.h"
 #include "HTMLNames.h"
 #include "core/css/CSSPrimitiveValue.h"
@@ -79,6 +80,7 @@ enum SpellcheckAttributeState {
 
 class Element : public ContainerNode {
 public:
+    __soaap_vuln_fn("Cr issue #51602")
     static PassRefPtr<Element> create(const QualifiedName&, Document*);
     virtual ~Element();
 

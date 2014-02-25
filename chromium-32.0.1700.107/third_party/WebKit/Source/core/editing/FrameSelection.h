@@ -26,6 +26,7 @@
 #ifndef FrameSelection_h
 #define FrameSelection_h
 
+#include <soaap.h>
 #include "core/dom/Range.h"
 #include "core/editing/Caret.h"
 #include "core/editing/EditingStyle.h"
@@ -94,7 +95,9 @@ public:
     void moveTo(const Position&, const Position&, EAffinity, EUserTriggered = NotUserTriggered);
 
     const VisibleSelection& selection() const { return m_selection; }
+    __soaap_vuln_fn("Cr issue #51602")
     void setSelection(const VisibleSelection&, SetSelectionOptions = CloseTyping | ClearTypingStyle, CursorAlignOnScroll = AlignCursorOnScrollIfNeeded, TextGranularity = CharacterGranularity);
+    __soaap_vuln_fn("Cr issue #51602")
     void setSelection(const VisibleSelection& selection, TextGranularity granularity) { setSelection(selection, CloseTyping | ClearTypingStyle, AlignCursorOnScrollIfNeeded, granularity); }
     bool setSelectedRange(Range*, EAffinity, bool closeTyping);
     void selectAll();

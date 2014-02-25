@@ -1,0 +1,237 @@
+41422:	Geolocation Authorized Site-list Continues in incognito mode
+No annotation: marked as WontFix by upstream, not really a sandboxing bug.
+
+140165:	Heap-buffer-overflow in vorbis_decode_frame
+Annotated third_party/ffmpeg/libavcodec/vorbisdec.c
+
+35264:	McAfee thought Chrome was malware.
+No annotation.
+
+72702:	Chrome crashes on right-click
+No annotation: not diagnosed, possibly Windows-only.
+
+14211:	Reproducible browser crash when quickly scrolling wide page horizontally
+No annotation: it's in Objective-C now and src.chromium.org can't find the original C++.
+
+58938:	Context Menu of extensions available in incognito mode [privacy
+No annotations: user enabled extensions in Incognito mode.
+
+47938:	Invalid	error tags html
+No annotations: not a security bug.
+
+55338:	"Why didn't get I get a permissions prompt?"
+No annotations: not a bug.
+
+136881:	race condition with workers and sync xmlhttprequests
+No annotations: code has since been replaced with atomic primitive.
+
+41652:	auto-hiding of "http://" makes URL spoofing somewhat easier
+No annotations: UI issue.
+
+208008:	Security: Potential overflow in part_efi.c::alloc_read_gpt_entries()
+No annotations: Chromium OS only, not present in Chrome repository.
+
+51602:	Lots of fuzz-discovered crashes.
+Annotations:
+  third_party/WebKit/Source/core/dom/Node.h
+  third_party/WebKit/Source/core/rendering/InlineFlowBox.h
+  third_party/WebKit/Source/core/editing/SplitElementCommand.h
+  third_party/WebKit/Source/core/editing/CompositeEditCommand.h
+  third_party/WebKit/Source/core/dom/RangeBoundaryPoint.h
+  third_party/WebKit/Source/core/editing/AppendNodeCommand.h
+  third_party/WebKit/Source/core/editing/FrameSelection.h
+  third_party/WebKit/Source/core/rendering/RenderText.h
+  third_party/WebKit/Source/core/dom/Element.h
+  third_party/WebKit/Source/core/dom/Position.h
+  third_party/WebKit/Source/core/editing/htmlediting.h
+
+TODO:
+
+37826	Fixed	Need to merge fix for https://bugs.webkit.org/show_bug.cgi?id=35621 / ZDI-CAN-688
+35941	Fixed	[MD audit] GenGLObjects Buffer Overflow
+48440	Invalid	Localhost XSS
+57708	Duplicate	Security: Chrome displays private information on New Tab page
+8757	Fixed	Cross-origin XMLHttpRequest is always allowed
+71381	Internals-GP	Internals-GPU-VendorSpecific
+34765	Invalid	error en google mail de chrome
+190350	Verified	Security: Transforming arbitrary file writes into a shell via SSH
+73265	Fixed	WebSockets uses insecure random numbers
+196217	Services-SignIn	wad@chromium.org
+56252	Platform-DevTools	
+195910		Verified
+139532	Duplicate	Heap-use-after-free in WebCore::StyleResolver::checkForGenericFamilyChange
+134897	Fixed	Bad cast with run-ins and <input>
+56993	Invalid	Form data is not cleared or even offered in the "Clear browser history"""
+29294	Invalid	Security: What about support for the Green Address Bar? (SSL EV...)
+48283	Fixed	EXTERNAL-REPORT: Windows kernel crash on invalid font
+62791	Platform-Extensions	
+61502	Fixed	Floats left out of the incremental line break code due to failed image load.
+190294	OS-Kerne	WontFix
+37291	WontFix	Security: Permanent malicious redirections possible due to http 301 caching mechanisms
+65577	Fixed	Stale pointer - Document::resetFormElementsOwner
+238789	WontFix	url-like search is not shown with chip when committed on scroll down
+208916	Verified	HTML tag injection in offline error page
+193448	WontFix	flash sandboxing not as secure
+69106	Fixed	ZDI-CAN-1009: Apple Webkit setOuterText Memory Corruption Remote Code Execution Vulnerability
+38277	Duplicate	cross domain 
+54880	Fixed	Crash at gfx::CGImageToSkBitmap
+202479	Verified	Security: feedback reports include wifi passwords
+45609	Fixed	ZDI-CAN-784: Apple Webkit Rendering Counter Remote Code Execution Vulnerability
+214730	Verified	Security: Remove "--enable-nacl"" on daisy/snow boards before production"
+217169	Verified	Security: hidraw: don't deallocate memory when it is in use
+9760	Verified	pasting "( ¿¿¿)¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿@ ¿¿¿¿¿¿¿¿¿¿¿¿¿¿"" to address bar causes full crash"
+232633	Internals-Network-SSL	rsleevi@chromium.org
+34170	WontFix	Security: HTML forms modification through javascript injection
+72492	Fixed	Cross application unsafe redirect
+22747	WontFix	Security: window.open('?'); Memory corruption in MSIE with Chrome Frame
+206732	Verified	security_Minijail0 autotest says "Failed: ['test-chroot']"""
+74030	Fixed	DOM tree corruption in Attr::setValue
+69208	Duplicate	Crash in WebCore::Private::addChildNodesToDeletionQueue()
+74372	Fixed	chrome://blob-internals/  xss
+47395	Invalid	Security: Modification over GUI
+143995	Internals-Skia	epo...@chromium.org
+56951	Internals-Network	
+62855	Platform-Extensions	
+70572	Duplicate	Stale pointer in WebCore::RenderBlock::insertFloatingObject
+76195	Fixed	potential bad cast in WebCore::toRenderCombineText/WebCore::RenderBlock::computeInlinePreferredLogicalWidths
+54502	Duplicate	OOB read with SVG attributes
+54748	Internals-Plugins-PD	Fixed
+1210	Fixed	Don't trigger buttons on second click of a double-click
+137052	Fixed	Heap-use-after-free in WebCore::EllipsisBox::paint
+68181	Fixed	Bad cast in MediaDocument::defaultEventHandler
+207187	Verified	Security: border_check() int overflow check bypass
+35979	Fixed	Security: Opening a malformed XML file causes a segmentation fault in xmlParseGetLasts.
+30972	Invalid	Google Chrome XSS through MS Word Script Execution Object
+76666	Fixed	URL bar spoof
+37190	Content-WebApps	ukai@chromium.org
+11680	Fixed	Extension manifest parsing is not sandboxed
+33738	Invalid	r
+61536	UI-Notifications	
+64191	WontFix	Proxy login dialog password field reveals position of separator characters
+41080	WontFix	https security
+30660	Fixed	window.open() Method Javascript Same-Origin Policy Violation
+221766	Verified	Security: OpenVPN logs the authentication token received from the server
+211468	Verified	Password being saved even if the ONC policy mentions to not save credentials
+32207	Fixed	The CLD (Compact Language Detection) code is run in the browse
+43307	Fixed	[MD audit] Possible memory corruption with bad bitmap shared memory object in clipboard IPC
+66051	Duplicate	chrome.dll!WebCore::RenderObject::repaint ExecAV@NULL (9c2c94d223dd6b3b2b73e7bad6eee012)
+31144	UI-Browser-Downloads	est...@chromium.org
+4197	Fixed	Further restrict access of file URL
+72910	Fixed	Browser crash/segfault when selecting very long option in select
+61826	WontFix	Website allowed to install and execute program
+138990	Blink-SVG	schen...@chromium.org
+72773	WontFix	Security: Chrome incognito modes are connected
+55263	Duplicate	segfault due to malformed HTML
+45081	WontFix	url-spoofing in chorme
+61384	WontFix	Chrome Cross-Origin-Resource-Sharing flaw
+70449	WontFix	Chrome local XSS (HTML inj) in about:blank
+190303		xiyuan@chromium.org
+70577	Internal	Fixed
+69275	Fixed	Use after free in scrollbars
+1987	WontFix	Bug no Gerenciador de Download (PT/BR)
+69825	Invalid	security flaw
+59540	WontFix	Security: Decrease of SSL encryption key size when surf PayPal site
+51630	Fixed	Memory corruption in WebSocketChannel::skipBuffer() - underflow in buffer size
+62127	Fixed	faulty webm file causes segfault
+56449	Internals-Network	rvargas@chromium.org
+40219	Invalid	Security: logged into google account but got gmail account
+140142	Fixed	Heap-use-after-free in base::internal::WeakReference::is_valid
+35738	WontFix	Security: A mutated version of the Acid3 test causes a renderer segmentation fault.
+54262	Fixed	Possible Location Bar & SSL Spoofing
+60234	WontFix	Google Chrome does not clean up its "room"""
+61848	Invalid	Search results are displayed in bing.
+189245	WontFix	Security: pam_prompt_wrapper.cc strncpy misuse
+56760	Fixed	segfault in bundled pdf viewer
+71388	Content-Core	infe...@chromium.org
+178264	Fixed	Heap-use-after-free in WebCore::Frame::setPageAndTextZoomFactors
+53008	Invalid	Security: can't update flash from about:plugins in chromium
+48284	Fixed	<use> on <font-face> causes crashe
+218023	Verified	Security: ARM builds are missing RELRO and BIND_NOW linker options
+67978	WontFix	Security: Error at Javascript Inter-domain
+49667	WontFix	Overlay fake popup windows
+29112	UI	
+60688	Fixed	chrome_55000000!WebCore::FEBlend::apply+0x1a5
+139240	Fixed	Heap-buffer-overflow in WebCore::TextTrackCueList::add
+56653	Invalid	Named popup windows bug
+3823	Fixed	Security: Empty string between ISO-2022 escape sequences can be potentially exploited. Make sure we don't suffer
+45401	Fixed	Security:Google Mail Checker Plus  XSS
+76500	Duplicate	Auto open dangerous download without user gesture
+194457	Verified	upgrade freetype to 2.4.4 
+44759	Fixed	sad tab with little script
+30794	Fixed	Out of bounds read when processing SVG feColorMatrix filter
+11993	Fixed	Extension events don't check renderer permissions before dispatching
+74678	Blink-JavaScript	
+68263	Fixed	Use after free in Style Sheets
+49048	Duplicate	Open a share-point site will cause the browser to crash
+61255	Fixed	Bad cast in PageClickTracker::handleEvent
+194331	Verified	null pointer dereferences in cros/network_library.cc
+75311	Fixed	Bad cast in HTMLTreeBuilder::processStartTag
+36774	UI-Browser-SafeBrowsing	
+51723	Duplicate	Crash of tab due to bad WebSocket data causes Chromium to crash
+71190	WontFix	Security: Reading saved passwords with inspector
+22757	WontFix	Security:  Thumbnail of internetbanking screen remains in homepage
+62830	WontFix	Chrome automatically downloads files served via I'm Feeling Lucky search
+40147	Fixed	Security: XSS issue in the FTP parser
+8473	Fixed	Fix CONNECT requests with user-cancelled auth
+194127	Verified	Security: Google Chromium OS and Extension Vulnerability
+208051	WontFix	Security: Samsung EC allows reflashing
+56474	Fixed	User after free in table destroy
+63454	Content-Core	rn...@chromium.org
+49747	Fixed	GTK message dialogs do not properly wrap overly long words or elide many short lines in js modal dialog
+46018	UI-Notifications	john...@chromium.org
+35942	Fixed	[MD audit] DrawElements Signed Integer Vulnerability
+52443	Fixed	Google Chrome Focus Handling Use-after-free Vulnerability
+55235	Duplicate	Security: crash when XML document closes a window in the middle of the parse
+29659	Fixed	Security: Crash on JS code in (WebCore::StringImpl::computeHash) via V8Binding.cpp
+33817	Invalid	¿¿¿¿¿¿ ¿Ñ€Ð¸ Ð¾Ñ‚ÐºÐ»ÑŽÑ‡ÐµÐ½Ð¸Ð¸
+74987	WontFix	Time-base attack. Cross-domain cache track.
+37184	Internals-Media	scherkus@chromium.org
+53645	Fixed	Function names are exposed to iframes from non-same origin using console API
+48152	WontFix	Divx Web Player Plugin Crashes
+47086	Fixed	Memory corruption with DOM mutation on onchange event firing for select object
+76324	Available	Security feature request: disable localStorage for file: URLs
+237022	Fixed	Cross-origin named subframe access leaks cross-origin subframes of the same name
+189307	Services-SignIn	cmasone@chromium.org
+56725	Internals-Core	d...@chromium.org
+186111	Verified	Cryptohome ensures that the logged-in user's directory is what is present at the common mount point
+38988	Duplicate	popblock bypass 
+56253	Duplicate	Console profile AddCurrentStack+0xc4 - Crash
+75884	Duplicate	Segfault with Geolocation
+31307	Fixed	[MD audit] [RPC] More errors deserializing SkBitmaps!!
+68130	Fixed	Memory corruption in font draws for accelerated 2d canvas.
+177197	Fixed	Heap-buffer-overflow in void WTF::Vector<unsigned shor
+2579	Fixed	tab_strip_model.cc can Crash Chrome.dll
+60327	Fixed	Bad cast to MouseEvent in Node::defaultEventHandler()
+207707		sabercro...@chromium.org
+63360	WontFix	Tab crashes and also crashes other tabs if they are clicked in the meantime (and weren't opened before)
+66676	UI-Browser-Downloads	rdsmith@chromium.org
+219342	WontFix	Security: Not defining CONFIG_SYS_VSNPRINTF in U-Boot means buffer overruns possible
+244415	Fixed	SpeechRecognizerImpl UaF
+57332	Internals-Media	fbarch...@chromium.org
+218684	WontFix	Security: Unsafe dereference of pointer after allocing memory at line 864 in file third_party/sqlite/src/ext/fts1/fulltext.c
+33791	Invalid	Trouble when opening a downloadable link
+202349	WontFix	Security: On tegr
+41972	Duplicate	Security: long alert crashes Chrome
+53003	Duplicate	chrome_687e0000!WebCore::RenderBlock::estimateVerticalPosition use after free
+61158	Fixed	Use after free in ApplyStyleCommand::removeInlineStyle
+34983	Duplicate	Chrome can't display specifically formatted web page
+201657	Verified	Security: Firewall rules are not applied to IPv6
+191973	Verified	TPM failure on resume (SelfTestFull has not been run)
+204614	Security	keesc...@chromium.org
+63268	Fixed	Universal XSS via mutating style objects and read styles cross origins
+1971	WontFix	omnibox shouldn't highlight subdomain
+29323	Verified	Security: CSS min-height/min-width combination causes Chromium crash in Mac OS X
+72445	Internal	Duplicate
+33873	Invalid	Confirm Close
+39443	Verified	crash with form tag
+136344	Fixed	Heap-use-after-free in WebCore::FrameLoader::stopAllLoaders
+187043	Verified	cryptohome Tpm::EncryptBlob() encrypts too much
+241686	Fixed	Security: Changing Gerrit Email [Authorization Bypass]
+75712	Blink	cev...@chromium.org
+41447	Internals-Network	infe...@chromium.org
+57725	Internals-Media	
+57596	Duplicate	Password manager should authenticate before displaying the saved passwords.
+136628	WontFix	Heap-buffer-overflow in WTF::StringImpl::create
+211057	UI-Shell	
+199178	Verified	Help Center extension: arbitrary browsing beyond the help center content risks phishing
+62623	Fixed	Crash at NULL IP in PDF when evaluating strange expression

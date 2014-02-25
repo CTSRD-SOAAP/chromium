@@ -26,6 +26,7 @@
 #ifndef RangeBoundaryPoint_h
 #define RangeBoundaryPoint_h
 
+#include <soaap.h>
 #include "core/dom/Node.h"
 #include "core/dom/Position.h"
 
@@ -37,6 +38,7 @@ public:
 
     explicit RangeBoundaryPoint(const RangeBoundaryPoint&);
 
+    __soaap_vuln_fn("Cr issue #51602")
     const Position toPosition() const;
 
     Node* container() const;
