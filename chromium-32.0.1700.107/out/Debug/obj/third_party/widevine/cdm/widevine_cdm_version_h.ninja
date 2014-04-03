@@ -1,2 +1,0 @@
-build gen/widevine_cdm_version.h: copy $
-    ../../third_party/widevine/cdm/widevine_cdm_version.h
