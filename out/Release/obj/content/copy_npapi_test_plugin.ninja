@@ -1,2 +1,0 @@
-build plugins/libnpapi_test_plugin.so: copy libnpapi_test_plugin.so || $
-    libnpapi_test_plugin.so.TOC

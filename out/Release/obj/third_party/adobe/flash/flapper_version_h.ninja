@@ -1,2 +1,0 @@
-build gen/flapper_version.h: copy $
-    ../../third_party/adobe/flash/flapper_version.h
