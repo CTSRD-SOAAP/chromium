@@ -19,7 +19,7 @@
  
  rule cc
 -  command = $cc -MMD -MF $out.d $defines $includes $cflags $cflags_c $cflags_pch_c -c $in -o $out
-+  command = $cc -MMD -MF $out.d $defines $includes $cflags $cflags_c $cflags_pch_c -c $in -o $out && $cc -DSOAAP -MMD -MF $out.d $defines $includes `echo $cflags | sed 's/O2/O0/g'` `echo $cflags_c | sed 's/O2/O0/g'` `echo $cflags_pch_c | sed 's/O2/O0/g'` -I$soaap_include_dir -c $in -gline-tables-only -emit-llvm -o $out.bc
++  command = $cc -MMD -MF $out.d $defines $includes -I$soaap_include_dir $cflags $cflags_c $cflags_pch_c -c $in -o $out && $cc -DSOAAP -MMD -MF $out.d $defines $includes `echo $cflags | sed 's/O2/O0/g'` `echo $cflags_c | sed 's/O2/O0/g'` `echo $cflags_pch_c | sed 's/O2/O0/g'` -I$soaap_include_dir -c $in -gline-tables-only -emit-llvm -o $out.bc
    description = CC $out
    depfile = $out.d
    deps = gcc
@@ -28,7 +28,7 @@
    description = CC $out
  rule cxx
 -  command = $cxx -MMD -MF $out.d $defines $includes $cflags $cflags_cc $cflags_pch_cc -c $in -o $out
-+  command = $cxx -MMD -MF $out.d $defines $includes $cflags $cflags_cc $cflags_pch_cc -c $in -o $out && $cxx -MMD -MF $out.d $defines $includes `echo $cflags | sed 's/O2/O0/g'` `echo $cflags_cc | sed 's/O2/O0/g' | sed 's/-fno-rtti//g'` `echo $cflags_pch_cc | sed 's/O2/O0/g'` -c $in -gline-tables-only -gsoaap -emit-llvm -DSOAAP -I$soaap_include_dir -o $out.bc
++  command = $cxx -MMD -MF $out.d $defines $includes -I$soaap_include_dir $cflags $cflags_cc $cflags_pch_cc -c $in -o $out && $cxx -MMD -MF $out.d $defines $includes `echo $cflags | sed 's/O2/O0/g'` `echo $cflags_cc | sed 's/O2/O0/g' | sed 's/-fno-rtti//g'` `echo $cflags_pch_cc | sed 's/O2/O0/g'` -c $in -gline-tables-only -gsoaap -emit-llvm -DSOAAP -I$soaap_include_dir -o $out.bc
    description = CXX $out
    depfile = $out.d
    deps = gcc
