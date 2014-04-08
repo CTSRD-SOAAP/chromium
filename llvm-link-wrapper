@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 LLVM_BUILD_DIR=/home/kg365/pool/llvm
 OUT=$1
