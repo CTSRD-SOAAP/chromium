@@ -7,11 +7,17 @@
 #
 # with two environment variables set:
 #   LLVM_BUILD_DIR       SOAAP-LLVM build directory
+#   SOAAP_BUILD_DIR      SOAAP build directory (contains 'bin')
 #   SOAAP_SOURCE_DIR     SOAAP sources
 #
 
 if [ "$LLVM_BUILD_DIR" == "" ]; then
 	echo "LLVM_BUILD_DIR not set"
+	exit 1
+fi
+
+if [ "$SOAAP_BUILD_DIR" == "" ]; then
+	echo "SOAAP_BUILD_DIR not set"
 	exit 1
 fi
 
@@ -31,4 +37,5 @@ export CC=cc  CXX=c++  GYP_GENERATORS=ninja  GYP_DEFINES="use_cups=1  use_system
 ninja=out/Release/build.ninja
 patch $ninja ../soaap-ninja.diff
 sed -i '' "s#/replace/with/your/SOAAP/llvm#$LLVM_BUILD_DIR#" $ninja
+sed -i '' "s#/replace/with/your/SOAAP/builddir#$SOAAP_BUILD_DIR#" $ninja
 sed -i '' "s#/replace/with/your/SOAAP/sources#$SOAAP_SOURCE_DIR#" $ninja
