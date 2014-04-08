@@ -1,9 +1,10 @@
---- native.ninja	2014-04-03 14:16:29.559476713 +0100
-+++ manual.ninja	2014-04-03 14:31:41.617414337 +0100
-@@ -1,14 +1,19 @@
+--- out/Release/build.ninja	2014-04-08 10:39:53.742354111 +0000
++++ out/Release/build.ninja	2014-04-08 10:40:46.413349639 +0000
+@@ -1,14 +1,21 @@
 -cc = cc
 -cxx = c++
 +soaap_llvm_path = /replace/with/your/SOAAP/llvm
++soaap_build_path = /replace/with/your/SOAAP/builddir
 +soaap_source_path = /replace/with/your/SOAAP/sources
 +
 +cc = $soaap_llvm_path/bin/clang
@@ -12,6 +13,7 @@
  ldxx = $cxx
  ar = /usr/bin/ar
 +llc = llc
++soaap_binary = $soaap_build_path/bin/soaap
 +soaap_include_dir = $soaap_source_path/include
  
  pool link_pool
@@ -23,7 +25,7 @@
    description = CC $out
    depfile = $out.d
    deps = gcc
-@@ -16,21 +21,21 @@
+@@ -16,21 +23,21 @@
    command = $cc $defines $includes $cflags $cflags_c $cflags_pch_c -c $in -o $out
    description = CC $out
  rule cxx
@@ -50,7 +52,7 @@
        ${lib} | cut -f1-2 -d' '; } > ${lib}.tmp && if ! cmp -s ${lib}.tmp ${lib}.TOC; then mv ${lib}.tmp ${lib}.TOC ; $
        fi; fi
    description = SOLINK $lib
-@@ -38,15 +43,15 @@
+@@ -38,15 +45,15 @@
    restat = 1
  rule solink_module
    command = if [ ! -e $lib -o ! -e ${lib}.TOC ]; then $ld -shared $ldflags -o $lib -Wl,-soname=$soname $
@@ -69,7 +71,7 @@
    description = LINK $out
    pool = link_pool
  rule stamp
-@@ -55,6 +60,15 @@
+@@ -55,6 +62,15 @@
  rule copy
    command = ln -f $in $out 2>/dev/null || (rm -rf $out && cp -af $in $out)
    description = COPY $in $out
@@ -80,12 +82,12 @@
 +  command = $ld -B /usr/local/bin -Wl,-z,now -Wl,-z,relro -Wl,--unresolved-symbols=ignore-all -pthread -Wl,-z,noexecstack -fPIC -Wl,--no-keep-memory -L. -L/usr/local/lib -L/usr/local/lib/nss -Wl,-O1 -Wl,--as-needed -o $out $in -lX11 -lXcursor -lXrender -lXss -lXext -L/usr/local/lib -lexecinfo -lgmodule-2.0 -lgobject-2.0 -lgthread-2.0 -lglib-2.0 -lintl -lXtst -lgtk-x11-2.0 -lgdk-x11-2.0 -lpangocairo-1.0 -lXinerama -lXi -lXrandr -lXcomposite -lXdamage -lXfixes -latk-1.0 -lcairo -lgdk_pixbuf-2.0 -lgio-2.0 -lpangoft2-1.0 -lpango-1.0 -lfreetype -lfontconfig -lnss3 -lsmime3 -lnssutil3 -lplds4 -lplc4 -lnspr4 -lasound -lxml2 -lxslt -lz -liconv -lm -lcups -lssl -lcrypto -pthread -lcrypt -lssp_nonshared -L/usr/local/lib -lgcrypt -lgpg-error -lexpat -lusb -ldbus-1 `cat objfiles.txt | xargs`
 +  description = CHROME_BCLINK $out
 +rule soaap
-+  command = soaap ${SOAAP_FLAGS} -o /dev/null $in
++  command = $soaap_binary ${SOAAP_FLAGS} -o /dev/null $in
 +  description = SOAAP $in
  
- subninja obj/third_party/libusb/libusb.ninja
- subninja obj/skia/skia_opts_none.ninja
-@@ -801,6 +815,13 @@
+ subninja obj/third_party/WebKit/Source/devtools/concatenated_devtools_network_js.ninja
+ subninja obj/skia/skia_opts_ssse3.ninja
+@@ -801,6 +817,13 @@
  subninja obj/build/All.ninja
  subninja obj/build/chromium_builder_nacl_win_integration.ninja
  
