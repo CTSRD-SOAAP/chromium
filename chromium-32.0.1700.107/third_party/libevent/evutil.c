@@ -55,6 +55,7 @@
 #if defined WIN32 && !defined(HAVE_GETTIMEOFDAY_H)
 #include <sys/timeb.h>
 #endif
+#include <soaap.h>
 #include <stdio.h>
 #include <signal.h>
 
@@ -76,6 +77,9 @@ evutil_socketpair(int family, int type, int protocol, int fd[2])
 #ifdef CAPSICUM_SUPPORT
 	cap_rights_t rights;
 	cap_rights_init(&rights, CAP_READ, CAP_WRITE, CAP_EVENT);
+
+	__soaap_limit_fd_syscalls(fd[0], read, write, poll, select);
+	__soaap_limit_fd_syscalls(fd[1], read, write, poll, select);
 	if (cap_rights_limit(fd[0], &rights) != 0
             || cap_rights_limit(fd[1], &rights) != 0)
 	{

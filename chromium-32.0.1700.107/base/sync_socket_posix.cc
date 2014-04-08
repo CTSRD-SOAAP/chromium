@@ -16,6 +16,8 @@
 #include <sys/filio.h>
 #endif
 
+#include <soaap.h>
+
 #include "base/file_util.h"
 #include "base/logging.h"
 #include "base/posix/capsicum.h"
@@ -94,6 +96,9 @@ bool SyncSocket::CreatePair(SyncSocket* socket_a, SyncSocket* socket_b) {
   static Capsicum::Rights rights;
   if (not rights.read)
     rights.read = rights.write = rights.poll = true;
+
+  __soaap_limit_fd_syscalls(handles[0], read, write, poll, select);
+  __soaap_limit_fd_syscalls(handles[1], read, write, poll, select);
 
   if (not Capsicum::RestrictFile(handles[0], rights)
       or not Capsicum::RestrictFile(handles[1], rights)) {

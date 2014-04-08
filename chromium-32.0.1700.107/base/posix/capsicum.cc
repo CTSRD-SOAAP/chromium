@@ -39,13 +39,11 @@ __END_DECLS
 #include <sys/sysctl.h>
 
 #include <fcntl.h>
+#include <soaap.h>
 #include <termios.h>
 
 #include "base/posix/capsicum.h"
 #include "ipc/ipc_descriptors.h"
-
-const char kFeatureCapabilities[] = "kern.features.security_capabilities";
-const char kFeatureCapMode[] = "kern.features.security_capability_mode";
 
 
 bool Capsicum::RestrictFile(int fd, const Rights& need) {
@@ -107,5 +105,45 @@ bool Capsicum::InCapabilityMode() {
 
 
 bool Capsicum::EnterCapabilityMode() {
+  __soaap_limit_syscalls(
+    __acl_aclcheck_fd, __acl_delete_fd, __acl_get_fd, __acl_set_fd,
+    __mac_get_fd, __mac_get_proc, __mac_set_fd, __mac_set_proc,
+    __sysctl, _umtx_lock, _umtx_op, _umtx_unlock, abort2, accept, accept4,
+    aio_cancel, aio_error, aio_fsync, aio_read, aio_return, aio_suspend,
+    aio_waitcomplete, aio_write, bindat, cap_enter, cap_fcntls_get,
+    cap_fcntls_limit, cap_getmode, cap_ioctls_get, cap_ioctls_limit,
+    __cap_rights_get, cap_rights_limit, clock_getres, clock_gettime, close,
+    closefrom, connectat, dup, dup2, extattr_delete_fd, extattr_get_fd,
+    extattr_list_fd, extattr_set_fd, fchflags, fchmod, fchown, fcntl, fexecve,
+    flock, fork, fpathconf, freebsd6_ftruncate, freebsd6_lseek, freebsd6_mmap,
+    freebsd6_pread, freebsd6_pwrite, fstat, fstatfs, fsync, ftruncate, futimes,
+    getaudit, getaudit_addr, getauid, getcontext, getdents, getdirentries,
+    getdomainname, getegid, geteuid, gethostid, gethostname, getitimer, getgid,
+    getgroups, getlogin, getpagesize, getpeername, getpgid, getpgrp, getpid,
+    getppid, getpriority, getresgid, getresuid, getrlimit, getrusage, getsid,
+    getsockname, getsockopt, gettimeofday, getuid, ioctl, issetugid, kevent,
+    kill, kmq_notify, kmq_setattr, kmq_timedreceive, kmq_timedsend, kqueue,
+    ktimer_create, ktimer_delete, ktimer_getoverrun, ktimer_gettime,
+    ktimer_settime, lio_listio, listen, lseek, madvise, mincore, minherit,
+    mlock, mlockall, mmap, mprotect, msync, munlock, munlockall, munmap,
+    nanosleep, ntp_gettime, oaio_read, oaio_write, obreak, olio_listio,
+    chflagsat, faccessat, fchmodat, fchownat, fstatat, futimesat, linkat,
+    mkdirat, mkfifoat, mknodat, openat, readlinkat, renameat, symlinkat,
+    unlinkat, open, openbsd_poll, pdfork, pdgetpid, pdkill, pipe, pipe2, poll,
+    pread, preadv, profil, pwrite, pwritev, read, readv, recv, recvfrom,
+    recvmsg, rtprio, rtprio_thread, sbrk, sched_get_priority_max,
+    sched_get_priority_min, sched_getparam, sched_getscheduler,
+    sched_rr_get_interval, sched_setparam, sched_setscheduler, sched_yield,
+    sctp_generic_recvmsg, sctp_generic_sendmsg, sctp_generic_sendmsg_iov,
+    sctp_peeloff, pselect, select, send, sendfile, sendmsg, sendto, setaudit,
+    setaudit_addr, setauid, setcontext, setegid, seteuid, setgid, setitimer,
+    setpriority, setregid, setresgid, setresuid, setreuid, setrlimit, setsid,
+    setsockopt, setuid, shm_open, shutdown, sigaction, sigaltstack, sigblock,
+    sigpending, sigprocmask, sigqueue, sigreturn, sigsetmask, sigstack,
+    sigsuspend, sigtimedwait, sigvec, sigwaitinfo, sigwait, socket,
+    socketpair, sstk, sync, sys_exit, sysarch, thr_create, thr_exit, thr_kill,
+    thr_new, thr_self, thr_set_name, thr_suspend, thr_wake, umask, utrace,
+    uuidgen, write, writev, yield
+  );
   return (cap_enter() == 0);
 }

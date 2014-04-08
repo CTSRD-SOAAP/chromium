@@ -9,6 +9,7 @@
 #include <sys/socket.h>
 #include <sys/stat.h>
 #include <sys/un.h>
+#include <soaap.h>
 #include <unistd.h>
 
 #include "base/file_util.h"
@@ -115,6 +116,7 @@ bool CreateServerUnixDomainSocket(const base::FilePath& socket_path,
   if (not rights.read)
     rights.read = rights.write = rights.poll = true;
 
+  __soaap_limit_fd_syscalls(*scoped_fd, read, write, poll, select);
   if (not Capsicum::RestrictFile(*scoped_fd, rights)) {
     PLOG(ERROR) << "unable to restrict UDS server";
     return false;
@@ -150,6 +152,7 @@ bool CreateClientUnixDomainSocket(const base::FilePath& socket_path,
   if (not rights.read)
     rights.read = rights.write = rights.poll = true;
 
+  __soaap_limit_fd_syscalls(*scoped_fd, read, write, poll, select);
   if (not Capsicum::RestrictFile(*scoped_fd, rights)) {
     PLOG(ERROR) << "unable to restrict UDS client";
     return false;

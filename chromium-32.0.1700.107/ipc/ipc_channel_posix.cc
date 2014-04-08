@@ -11,6 +11,7 @@
 #include <sys/stat.h>
 #include <sys/types.h>
 #include <sys/un.h>
+#include <soaap.h>
 #include <unistd.h>
 
 #if defined(OS_OPENBSD)
@@ -218,6 +219,9 @@ bool SocketPair(int* fd1, int* fd2) {
   static Capsicum::Rights rights;
   if (not rights.read)
     rights.read = rights.write = rights.poll = true;
+
+  __soaap_limit_fd_syscalls(pipe_fds[0], read, write, poll, select);
+  __soaap_limit_fd_syscalls(pipe_fds[1], read, write, poll, select);
 
   if (not Capsicum::RestrictFile(pipe_fds[0], rights)
       or not Capsicum::RestrictFile(pipe_fds[1], rights)) {

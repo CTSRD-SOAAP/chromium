@@ -7,6 +7,7 @@
 #include <fcntl.h>
 #include <errno.h>
 #include <sys/stat.h>
+#include <soaap.h>
 #include <unistd.h>
 
 #include "base/files/file_path.h"
@@ -215,6 +216,12 @@ PlatformFile CreatePlatformFileUnsafe(const FilePath& name,
   rights.mmap = true;
   rights.tty = (flags & PLATFORM_FILE_TERMINAL_DEVICE);
 
+  // SOAAP uses static analysis, so we must be conservative about the
+  // rights we're granting.
+  //
+  // Note: fcntl() doesn't really capture fcntl(F_SETLK).
+  // Note: don't really know how to model CAP_TTYHOOK.
+  __soaap_limit_fd_syscalls(descriptor, fstat, fcntl, read, write, flock, mmap);
   if (not Capsicum::RestrictFile(descriptor, rights))
     PLOG(ERROR) << "error limiting descriptor " << descriptor;
 #endif

@@ -39,6 +39,7 @@ __END_DECLS
 #include <sys/sysctl.h>
 
 #include <fcntl.h>
+#include <soaap.h>
 #include <termios.h>
 
 #include "base/logging.h"
@@ -139,6 +140,10 @@ bool CapsicumSandbox::RestrictFileDescriptors() {
   //
   // Restrict stdin to CAP_READ and stdout and stderr to CAP_WRITE.
   //
+  __soaap_limit_fd_syscalls(STDIN_FILENO, read);
+  __soaap_limit_fd_syscalls(STDOUT_FILENO, read, write);
+  __soaap_limit_fd_syscalls(STDOUT_FILENO, read, write);
+
   if (not Restrict(STDIN_FILENO, "stdin", readOnly)
       or not Restrict(STDOUT_FILENO, "stdout", writeOnly)
       or not Restrict(STDERR_FILENO, "stderr", writeOnly))
@@ -151,16 +156,22 @@ bool CapsicumSandbox::RestrictFileDescriptors() {
   //
   base::GlobalDescriptors *globals = base::GlobalDescriptors::GetInstance();
 
+  __soaap_limit_fd_syscalls(globals->Get(kPrimaryIPCChannel),
+                            read, write, poll, select);
   if (not Restrict(globals->Get(kPrimaryIPCChannel), "primary IPC", ipc))
     return false;
 
 #if defined(OS_LINUX) || defined(OS_OPENBSD)
   // TODO(JA): why isn't kCrashDumpSignal set on FreeBSD.
+  __soaap_limit_fd_syscalls(globals->Get(kCrashDumpSignal),
+                            read, write, poll, select);
   if(not Restrict(globals->Get(kCrashDumpSignal), "crash dump signal", ipc))
     return false;
 #endif
 
   /*
+  __soaap_limit_fd_syscalls(globals->Get(kSandboxIPCChannel),
+                            read, write, poll, select);
   if (not Restrict(globals->Get(kSandboxIPCChannel), "sandbox IPC", ipc))
     return false;
   */

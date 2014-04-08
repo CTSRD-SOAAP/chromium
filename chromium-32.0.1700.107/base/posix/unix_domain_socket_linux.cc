@@ -7,6 +7,7 @@
 #include <errno.h>
 #include <sys/socket.h>
 #include <sys/uio.h>
+#include <soaap.h>
 #include <unistd.h>
 
 #include "base/logging.h"
@@ -142,6 +143,9 @@ ssize_t UnixDomainSocket::SendRecvMsgWithFlags(int fd,
   static Capsicum::Rights rights;
   if (not rights.read)
     rights.read = rights.write = rights.poll = true;
+
+  __soaap_limit_fd_syscalls(fds[0], read, write, poll, select);
+  __soaap_limit_fd_syscalls(fds[1], read, write, poll, select);
 
   if (not Capsicum::RestrictFile(fds[0], rights)
       or not Capsicum::RestrictFile(fds[1], rights)) {

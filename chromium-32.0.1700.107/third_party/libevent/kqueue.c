@@ -44,6 +44,7 @@
 #include <sys/queue.h>
 #include <sys/event.h>
 #include <signal.h>
+#include <soaap.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -122,6 +123,8 @@ kq_init(struct event_base *base)
 #ifdef CAPSICUM_SUPPORT
 	cap_rights_t rights;
 	cap_rights_init(&rights, CAP_KQUEUE_EVENT, CAP_KQUEUE_CHANGE);
+	/* Note: kqueue() doesn't fully capture CAP_KQUEUE_{EVENT,CHANGE}. */
+	__soaap_limit_fd_syscalls(kq, kevent);
 	if (cap_rights_limit(kq, &rights) != 0) {
 		close(kq);
 		free(kqueueop);

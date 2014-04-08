@@ -15,6 +15,8 @@
 
 #include <map>
 
+#include <soaap.h>
+
 #include "SkBuffer.h"
 #include "SkFontConfigInterface.h"
 #include "SkStream.h"
@@ -184,6 +186,8 @@ SkFontConfigInterface* SkFontConfigInterface::GetSingletonDirectInterface() {
                 if (fd < 0)
                     err(EX_OSERR, "error open font directory %s", dir.c_str());
 
+                // TODO: express "the *at() family of syscalls" to (in?) SOAAP
+                __soaap_limit_fd_syscalls(fd, fstat, fcntl, read, flock, mmap);
                 if (not Capsicum::RestrictFile(fd, rights))
                     err(EX_OSERR, "error limiting access to %s", dir.c_str());
 

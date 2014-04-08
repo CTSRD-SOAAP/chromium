@@ -6,6 +6,7 @@
 
 #include <errno.h>
 #include <fcntl.h>
+#include <soaap.h>
 #include <unistd.h>
 
 #include "base/file_util.h"
@@ -29,6 +30,7 @@ class URandomFd {
     Capsicum::Rights rights;
     rights.read = true;
 
+    __soaap_limit_fd_syscalls(fd_, read);
     if (not Capsicum::RestrictFile(fd_, rights))
       PLOG(ERROR) << "Cannot limit access to /dev/urandom";
 #endif

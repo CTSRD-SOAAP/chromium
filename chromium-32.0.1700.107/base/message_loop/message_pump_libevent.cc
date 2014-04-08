@@ -6,6 +6,7 @@
 
 #include <errno.h>
 #include <fcntl.h>
+#include <soaap.h>
 #include <unistd.h>
 
 #include "base/auto_reset.h"
@@ -329,6 +330,9 @@ bool MessagePumpLibevent::Init() {
   static Capsicum::Rights rights;
   if (not rights.read)
     rights.read = rights.write = rights.poll = true;
+
+  __soaap_limit_fd_syscalls(fds[0], read, write, poll, select);
+  __soaap_limit_fd_syscalls(fds[1], read, write, poll, select);
 
   if (not Capsicum::RestrictFile(fds[0], rights)
       or not Capsicum::RestrictFile(fds[1], rights)) {
