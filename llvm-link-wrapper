@@ -1,6 +1,16 @@
 #!/usr/bin/env bash
 
-LLVM_BUILD_DIR=/home/kg365/pool/llvm
+if [ "$LLVM_BUILD_DIR" == "" ]; then
+	llvm_link="`which llvm-link`"
+else
+	llvm_link="$LLVM_BUILD_DIR/bin/llvm-link"
+fi
+
+if [ "$llvm_link" == "" ]; then
+	echo "No 'llvm-link' in \$PATH and LLVM_BUILD_DIR not set"
+	exit 1
+fi
+
 OUT=$1
 
 shift # skip output filename
@@ -24,11 +34,11 @@ if [[ -n "`ls`" ]] # check that there were some .o.bc files in the archive
 then
   if [[ "`ls *.bc 2>&1`" == *"too long"* ]]
   then
-    llvm-link -o ${OUT}_1 `ls | grep ^[a-mA-M]`
-    llvm-link -o ${OUT}_2 `ls | grep ^[n-zN-Z]`
-    llvm-link -o $OUT ${OUT}_1 ${OUT}_2
+    $llvm_link -o ${OUT}_1 `ls | grep ^[a-mA-M]`
+    $llvm_link -o ${OUT}_2 `ls | grep ^[n-zN-Z]`
+    $llvm_link -o $OUT ${OUT}_1 ${OUT}_2
   else
-    llvm-link -o $OUT *.bc
+    $llvm_link -o $OUT *.bc
   fi
   cp $OUT $CURR
 fi
