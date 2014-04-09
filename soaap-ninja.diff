@@ -1,10 +1,11 @@
---- out/Release/build.ninja	2014-04-09 12:00:18.392280077 +0000
-+++ out/Release/build.ninja	2014-04-09 12:00:46.443278500 +0000
-@@ -1,14 +1,20 @@
+--- out/Release/orig.ninja	2014-04-09 12:10:37.522249615 +0000
++++ out/Release/build.ninja	2014-04-09 12:12:23.862231260 +0000
+@@ -1,14 +1,23 @@
 -cc = cc
 -cxx = c++
 +soaap_llvm_path = /replace/with/your/SOAAP/llvm
 +soaap_build_path = /replace/with/your/SOAAP/builddir
++soaap_chromium_path = /replace/with/your/SOAAP/chromium
 +
 +cc = $soaap_llvm_path/bin/clang
 +cxx = $soaap_llvm_path/bin/clang++ -stdlib=libc++
@@ -12,6 +13,8 @@
  ldxx = $cxx
  ar = /usr/bin/ar
 +llc = llc
++llvm_file_map = $soaap_chromium_path/llvm-file-map
++llvm_link_wrapper = $soaap_chromium_path/llvm-link-wrapper
 +soaap_binary = $soaap_build_path/bin/soaap
 +soaap_include_dir = $soaap_build_path/include
  
@@ -24,7 +27,7 @@
    description = CC $out
    depfile = $out.d
    deps = gcc
-@@ -16,21 +22,21 @@
+@@ -16,21 +25,21 @@
    command = $cc $defines $includes $cflags $cflags_c $cflags_pch_c -c $in -o $out
    description = CC $out
  rule cxx
@@ -35,11 +38,11 @@
    deps = gcc
  rule alink
 -  command = rm -f $out && $ar rcs $out $in
-+  command = rm -f $out && $ar rcs $out $in && rm -f $out.bc && $ar rcs $out.bc `llvm-file-map $in`
++  command = rm -f $out && $ar rcs $out $in && rm -f $out.bc && $ar rcs $out.bc `$llvm_file_map $in`
    description = AR $out
  rule alink_thin
 -  command = rm -f $out && $ar rcsT $out $in
-+  command = rm -f $out && $ar rcsT $out $in && rm -f $out.bc && $ar rcs $out.bc `llvm-file-map $in`
++  command = rm -f $out && $ar rcsT $out $in && rm -f $out.bc && $ar rcs $out.bc `$llvm_file_map $in`
    description = AR $out
  rule solink
    command = if [ ! -e $lib -o ! -e ${lib}.TOC ]; then $ld -shared $ldflags -o $lib -Wl,-soname=$soname $
@@ -51,7 +54,7 @@
        ${lib} | cut -f1-2 -d' '; } > ${lib}.tmp && if ! cmp -s ${lib}.tmp ${lib}.TOC; then mv ${lib}.tmp ${lib}.TOC ; $
        fi; fi
    description = SOLINK $lib
-@@ -38,15 +44,15 @@
+@@ -38,15 +47,15 @@
    restat = 1
  rule solink_module
    command = if [ ! -e $lib -o ! -e ${lib}.TOC ]; then $ld -shared $ldflags -o $lib -Wl,-soname=$soname $
@@ -66,11 +69,11 @@
    restat = 1
  rule link
 -  command = $ld $ldflags -o $out -Wl,--start-group $in $solibs -Wl,--end-group $libs
-+  command = $ld $ldflags -o $out -Wl,--start-group $in $solibs -Wl,--end-group $libs && llvm-link-wrapper $out.bc `llvm-file-map $in`
++  command = $ld $ldflags -o $out -Wl,--start-group $in $solibs -Wl,--end-group $libs && $llvm_link_wrapper $out.bc `$llvm_file_map $in`
    description = LINK $out
    pool = link_pool
  rule stamp
-@@ -55,6 +61,15 @@
+@@ -55,6 +64,15 @@
  rule copy
    command = ln -f $in $out 2>/dev/null || (rm -rf $out && cp -af $in $out)
    description = COPY $in $out
@@ -84,11 +87,11 @@
 +  command = $soaap_binary ${SOAAP_FLAGS} -o /dev/null $in
 +  description = SOAAP $in
  
- subninja obj/third_party/codesighs/nm2tsv.ninja
- subninja obj/third_party/cld_2/cld_2.ninja
-@@ -801,6 +816,13 @@
+ subninja obj/third_party/WebKit/Source/devtools/concatenated_devtools_resources_js.ninja
+ subninja obj/chrome/about_credits.ninja
+@@ -801,6 +819,13 @@
  subninja obj/build/chromium_builder_perf_av.ninja
- subninja obj/build/chromium_builder_nacl_win_integration.ninja
+ subninja obj/build/All.ninja
  
 +# SOAAP-related targets
 +build chrome.o : llc chrome.bc
