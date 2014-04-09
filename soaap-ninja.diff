@@ -1,6 +1,6 @@
---- out/Release/orig.ninja	2014-04-09 12:10:37.522249615 +0000
-+++ out/Release/build.ninja	2014-04-09 12:12:23.862231260 +0000
-@@ -1,14 +1,23 @@
+--- out/Release/build.ninja	2014-04-09 12:52:02.795072764 +0000
++++ out/Release/build.ninja	2014-04-09 12:52:28.997065887 +0000
+@@ -1,14 +1,25 @@
 -cc = cc
 -cxx = c++
 +soaap_llvm_path = /replace/with/your/SOAAP/llvm
@@ -17,6 +17,8 @@
 +llvm_link_wrapper = $soaap_chromium_path/llvm-link-wrapper
 +soaap_binary = $soaap_build_path/bin/soaap
 +soaap_include_dir = $soaap_build_path/include
++
++SOAAP_FLAGS = -soaap-summarise-traces=10
  
  pool link_pool
    depth = 1
@@ -27,7 +29,7 @@
    description = CC $out
    depfile = $out.d
    deps = gcc
-@@ -16,21 +25,21 @@
+@@ -16,21 +27,21 @@
    command = $cc $defines $includes $cflags $cflags_c $cflags_pch_c -c $in -o $out
    description = CC $out
  rule cxx
@@ -54,7 +56,7 @@
        ${lib} | cut -f1-2 -d' '; } > ${lib}.tmp && if ! cmp -s ${lib}.tmp ${lib}.TOC; then mv ${lib}.tmp ${lib}.TOC ; $
        fi; fi
    description = SOLINK $lib
-@@ -38,15 +47,15 @@
+@@ -38,15 +49,15 @@
    restat = 1
  rule solink_module
    command = if [ ! -e $lib -o ! -e ${lib}.TOC ]; then $ld -shared $ldflags -o $lib -Wl,-soname=$soname $
@@ -73,7 +75,7 @@
    description = LINK $out
    pool = link_pool
  rule stamp
-@@ -55,6 +64,15 @@
+@@ -55,6 +66,15 @@
  rule copy
    command = ln -f $in $out 2>/dev/null || (rm -rf $out && cp -af $in $out)
    description = COPY $in $out
@@ -87,11 +89,11 @@
 +  command = $soaap_binary ${SOAAP_FLAGS} -o /dev/null $in
 +  description = SOAAP $in
  
- subninja obj/third_party/WebKit/Source/devtools/concatenated_devtools_resources_js.ninja
- subninja obj/chrome/about_credits.ninja
-@@ -801,6 +819,13 @@
+ subninja obj/breakpad/breakpad_processor_support.ninja
+ subninja obj/third_party/webrtc/modules/remote_bitrate_estimator/rbe_components.ninja
+@@ -801,6 +821,13 @@
  subninja obj/build/chromium_builder_perf_av.ninja
- subninja obj/build/All.ninja
+ subninja obj/build/chromium_builder_nacl_win_integration.ninja
  
 +# SOAAP-related targets
 +build chrome.o : llc chrome.bc
