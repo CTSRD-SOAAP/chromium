@@ -24,6 +24,13 @@ fi
 : ${SOAAP_CHROMIUM_ROOT:="`realpath ..`"}
 
 
+echo "Configuring SOAAP-modified Chromium with:"
+echo "  root    $SOAAP_CHROMIUM_ROOT"
+echo "  LLVM    $LLVM_BUILD_DIR"
+echo "  SOAAP   $SOAAP_BUILD_DIR"
+echo ""
+
+
 # First, set up the environment using values taken from the FreeBSD
 # www/chromium port.
 export CC=cc  CXX=c++  GYP_GENERATORS=ninja  GYP_DEFINES="use_cups=1  use_system_yasm=1  use_system_libxml=1  use_system_ffmpeg=0  use_system_libusb=1  use_system_libevent=1  use_system_libvpx=0  linux_breakpad=0  linux_strip_binary=1  linux_use_tcmalloc=0  linux_use_heapchecker=0  test_isolation_mode=noop  clang_use_chrome_plugins=0  disable_nacl=1  enable_webrtc=1  enable_openmax=1  enable_one_click_signin=1  werror=  no_gc_sections=1  os_ver=1000510  prefix_dir=/usr/local  python_ver=2.7 google_api_key=AIzaSyBsp9n41JLW8jCokwn7vhoaMejDFRd1mp8  google_default_client_id=996322985003.apps.googleusercontent.com  google_default_client_secret=IR1za9-1VK0zZ0f_O8MVFicn ffmpeg_branding=Chrome proprietary_codecs=1 use_pulseaudio=0 buildtype=Official clang=1" CFLAGS="-O2 -pipe -fno-stack-protector -Wno-unknown-warning-option -fno-strict-aliasing"  CPPFLAGS=""  CXXFLAGS="-O2 -pipe -fno-stack-protector -Wno-unknown-warning-option -fno-strict-aliasing"  LDFLAGS="" PYTHON="/usr/local/bin/python2.7" PKG_CONFIG=pkgconf AR=/usr/bin/ar SHELL=/bin/sh CONFIG_SHELL=/bin/sh
