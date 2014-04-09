@@ -5,10 +5,9 @@
 # Run it from the root of the Chromium source tree, e.g.:
 #   [SOAAP/chromium/chromium-32.0.1700.107]$ ../run-gyp
 #
-# with two environment variables set:
+# with some environment variables set:
 #   LLVM_BUILD_DIR       SOAAP-LLVM build directory
-#   SOAAP_BUILD_DIR      SOAAP build directory (contains 'bin')
-#   SOAAP_SOURCE_DIR     SOAAP sources
+#   SOAAP_BUILD_DIR      SOAAP build directory
 #
 
 if [ "$LLVM_BUILD_DIR" == "" ]; then
@@ -21,10 +20,6 @@ if [ "$SOAAP_BUILD_DIR" == "" ]; then
 	exit 1
 fi
 
-if [ "$SOAAP_SOURCE_DIR" == "" ]; then
-	echo "SOAAP_SOURCE_DIR not set"
-	exit 1
-fi
 
 # First, set up the environment using values taken from the FreeBSD
 # www/chromium port.
@@ -38,4 +33,3 @@ ninja=out/Release/build.ninja
 patch $ninja ../soaap-ninja.diff
 sed -i '' "s#/replace/with/your/SOAAP/llvm#$LLVM_BUILD_DIR#" $ninja
 sed -i '' "s#/replace/with/your/SOAAP/builddir#$SOAAP_BUILD_DIR#" $ninja
-sed -i '' "s#/replace/with/your/SOAAP/sources#$SOAAP_SOURCE_DIR#" $ninja
