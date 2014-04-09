@@ -8,6 +8,7 @@
 # with some environment variables set:
 #   LLVM_BUILD_DIR       SOAAP-LLVM build directory
 #   SOAAP_BUILD_DIR      SOAAP build directory
+#   SOAAP_CHROMIUM_ROOT  (optional) root of ${SOAAP}/chromium
 #
 
 if [ "$LLVM_BUILD_DIR" == "" ]; then
@@ -20,6 +21,8 @@ if [ "$SOAAP_BUILD_DIR" == "" ]; then
 	exit 1
 fi
 
+: ${SOAAP_CHROMIUM_ROOT:="`realpath ..`"}
+
 
 # First, set up the environment using values taken from the FreeBSD
 # www/chromium port.
@@ -31,5 +34,6 @@ export CC=cc  CXX=c++  GYP_GENERATORS=ninja  GYP_DEFINES="use_cups=1  use_system
 # Finally, patch the output ninja file.
 ninja=out/Release/build.ninja
 patch $ninja ../soaap-ninja.diff || exit 1
+sed -i '' "s#/replace/with/your/SOAAP/chromium#$SOAAP_CHROMIUM_ROOT#" $ninja
 sed -i '' "s#/replace/with/your/SOAAP/llvm#$LLVM_BUILD_DIR#" $ninja
 sed -i '' "s#/replace/with/your/SOAAP/builddir#$SOAAP_BUILD_DIR#" $ninja
