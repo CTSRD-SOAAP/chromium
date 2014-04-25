@@ -142,7 +142,7 @@ bool CapsicumSandbox::RestrictFileDescriptors() {
   //
   __soaap_limit_fd_syscalls(STDIN_FILENO, read);
   __soaap_limit_fd_syscalls(STDOUT_FILENO, read, write);
-  __soaap_limit_fd_syscalls(STDOUT_FILENO, read, write);
+  __soaap_limit_fd_syscalls(STDERR_FILENO, read, write);
 
   if (not Restrict(STDIN_FILENO, "stdin", readOnly)
       or not Restrict(STDOUT_FILENO, "stdout", writeOnly)
