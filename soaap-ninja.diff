@@ -18,7 +18,7 @@
 +soaap_binary = $soaap_build_path/bin/soaap
 +soaap_include_dir = $soaap_build_path/include
 +
-+SOAAP_FLAGS = -soaap-summarise-traces=10
++SOAAP_FLAGS = --soaap-sandbox-platform=capsicum --soaap-summarise-traces=10
  
  pool link_pool
    depth = 1
