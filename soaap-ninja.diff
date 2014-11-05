@@ -12,7 +12,7 @@
  ld = $cc
  ldxx = $cxx
  ar = /usr/bin/ar
-+llc = llc
++llc = $soaap_llvm_path/bin/llc
 +llvm_file_map = $soaap_chromium_path/llvm-file-map
 +llvm_link_wrapper = $soaap_chromium_path/llvm-link-wrapper
 +soaap_binary = $soaap_build_path/bin/soaap
