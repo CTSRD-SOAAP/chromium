@@ -27,6 +27,8 @@
  * THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+#include <soaap.h>
+
 #include "config.h"
 #include "core/fetch/ResourceLoader.h"
 
@@ -234,6 +236,7 @@ void ResourceLoader::cancel(const ResourceError& error)
     RefPtr<ResourceLoader> protector(this);
 
     LOG(ResourceLoading, "Cancelled load of '%s'.\n", m_resource->url().string().latin1().data());
+    __soaap_vuln_pt("Cr issue #244021")
     if (m_state == Initialized)
         m_state = Finishing;
     m_resource->setResourceError(nonNullError);
@@ -246,6 +249,7 @@ void ResourceLoader::cancel(const ResourceError& error)
 
     m_host->didFailLoading(m_resource, nonNullError, m_options);
 
+    __soaap_vuln_pt("Cr issue #244021")
     if (m_state == Finishing)
         m_resource->error(Resource::LoadError);
     if (m_state != Terminated)

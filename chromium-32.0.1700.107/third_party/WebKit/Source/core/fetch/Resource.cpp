@@ -21,6 +21,8 @@
     Boston, MA 02110-1301, USA.
 */
 
+#include <soaap.h>
+
 #include "config.h"
 #include "core/fetch/Resource.h"
 
@@ -161,6 +163,7 @@ void Resource::failBeforeStarting()
 
 void Resource::load(ResourceFetcher* fetcher, const ResourceLoaderOptions& options)
 {
+    __soaap_vuln_pt("Cr issue #244021")
     if (!fetcher->frame()) {
         failBeforeStarting();
         return;
