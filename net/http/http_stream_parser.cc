@@ -2,6 +2,8 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
+#include <soaap.h>
+
 #include "net/http/http_stream_parser.h"
 
 #include "base/bind.h"
@@ -548,6 +550,7 @@ int HttpStreamParser::DoReadHeadersComplete(int result) {
       io_state_ = STATE_DONE;
       return ERR_EMPTY_RESPONSE;
     } else if (request_->url.SchemeIsSecure()) {
+      __soaap_vuln_pt("Cr issue #244260");
       // The connection was closed in the middle of the headers. For HTTPS we
       // don't parse partial headers. Return a different error code so that we
       // know that we shouldn't attempt to retry the request.
