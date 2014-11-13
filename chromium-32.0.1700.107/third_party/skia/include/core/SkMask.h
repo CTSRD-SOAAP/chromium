@@ -10,6 +10,8 @@
 #ifndef SkMask_DEFINED
 #define SkMask_DEFINED
 
+#include <soaap.h>
+
 #include "SkRect.h"
 
 /** \class SkMask
@@ -43,6 +45,7 @@ struct SkMask {
         Does not account for k3D_Format. For that, use computeTotalImageSize().
         If there is an overflow of 32bits, then returns 0.
     */
+    __soaap_vuln_fn("Cr issue #10736")
     size_t computeImageSize() const;
 
     /** Return the byte size of the mask, taking into account

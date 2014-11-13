@@ -19,6 +19,8 @@
  *
  */
 
+#include <soaap.h>
+
 #include "config.h"
 #include "core/rendering/RenderQuote.h"
 
@@ -263,6 +265,7 @@ void RenderQuote::updateText()
 
     m_text = text;
 
+    __soaap_vuln_pt("Cr issue #244056")
     while (RenderObject* child = lastChild())
         child->destroy();
 

@@ -28,6 +28,8 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+#include <soaap.h>
+
 #include "config.h"
 #include "core/rendering/RenderBlockFlow.h"
 
@@ -1473,6 +1475,7 @@ void RenderBlockFlow::deleteLineBoxTree()
 
 void RenderBlockFlow::markAllDescendantsWithFloatsForLayout(RenderBox* floatToRemove, bool inLayout)
 {
+    __soaap_vuln_pt("Cr issue #244036")
     if (!everHadLayout() && !containsFloats())
         return;
 
