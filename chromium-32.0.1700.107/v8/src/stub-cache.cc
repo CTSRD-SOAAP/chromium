@@ -25,6 +25,8 @@
 // (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
+#include <soaap.h>
+
 #include "v8.h"
 
 #include "api.h"
@@ -737,11 +739,13 @@ void StubCache::Clear() {
   Code* empty = isolate_->builtins()->builtin(Builtins::kIllegal);
   for (int i = 0; i < kPrimaryTableSize; i++) {
     primary_[i].key = heap()->empty_string();
+    __soaap_vuln_pt("Cr issue #242502")
     primary_[i].map = NULL;
     primary_[i].value = empty;
   }
   for (int j = 0; j < kSecondaryTableSize; j++) {
     secondary_[j].key = heap()->empty_string();
+    __soaap_vuln_pt("Cr issue #242502")
     secondary_[j].map = NULL;
     secondary_[j].value = empty;
   }
