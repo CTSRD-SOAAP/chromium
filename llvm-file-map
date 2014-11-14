@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # Skip ELF files
 NON_ELF_FILES=""
