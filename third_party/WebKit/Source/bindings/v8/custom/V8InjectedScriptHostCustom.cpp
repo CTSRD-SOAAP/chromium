@@ -28,6 +28,8 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+#include <soaap.h>
+
 #include "config.h"
 #include "V8InjectedScriptHost.h"
 
@@ -307,6 +309,7 @@ void V8InjectedScriptHost::inspectMethodCustom(const v8::FunctionCallbackInfo<v8
 
 void V8InjectedScriptHost::databaseIdMethodCustom(const v8::FunctionCallbackInfo<v8::Value>& info)
 {
+    __soaap_vuln_pt("Cr issue #242322")
     if (info.Length() > 0 && V8Database::HasInstance(info[0], info.GetIsolate(), worldType(info.GetIsolate()))) {
         Database* database = V8Database::toNative(v8::Handle<v8::Object>::Cast(info[0]));
         if (database) {
@@ -320,6 +323,7 @@ void V8InjectedScriptHost::databaseIdMethodCustom(const v8::FunctionCallbackInfo
 
 void V8InjectedScriptHost::storageIdMethodCustom(const v8::FunctionCallbackInfo<v8::Value>& info)
 {
+    __soaap_vuln_pt("Cr issue #242322")
     if (info.Length() > 0 && V8Storage::HasInstance(info[0], info.GetIsolate(), worldType(info.GetIsolate()))) {
         Storage* storage = V8Storage::toNative(v8::Handle<v8::Object>::Cast(info[0]));
         if (storage) {

@@ -25,6 +25,8 @@
 // (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
+#include <soaap.h>
+
 #include "hydrogen.h"
 
 #include <algorithm>
@@ -8557,6 +8559,7 @@ void HOptimizedGraphBuilder::BuildEmitFixedDoubleArray(
   int elements_length = elements->length();
   for (int i = 0; i < elements_length; i++) {
     HValue* key_constant = Add<HConstant>(i);
+    __soaap_vuln_pt("Cr issue #242924")
     HInstruction* value_instruction =
         Add<HLoadKeyed>(boilerplate_elements, key_constant,
                         static_cast<HValue*>(NULL), kind,
@@ -8587,6 +8590,7 @@ void HOptimizedGraphBuilder::BuildEmitFixedArray(
       site_context->ExitScope(current_site, value_object);
       Add<HStoreKeyed>(object_elements, key_constant, result, kind);
     } else {
+      __soaap_vuln_pt("Cr issue #242924")
       HInstruction* value_instruction =
           Add<HLoadKeyed>(boilerplate_elements, key_constant,
                           static_cast<HValue*>(NULL), kind,
