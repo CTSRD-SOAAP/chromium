@@ -26,6 +26,8 @@
 #ifndef GIFImageDecoder_h
 #define GIFImageDecoder_h
 
+#include <soaap.h>
+
 #include "core/platform/image-decoders/ImageDecoder.h"
 #include "wtf/OwnPtr.h"
 
@@ -66,6 +68,7 @@ namespace WebCore {
         bool parseCompleted() const;
 
     private:
+	__soaap_vuln_fn("Cr issue #6062")
         virtual void clearFrameBuffer(size_t frameIndex) OVERRIDE;
 
         // Parses as much as is needed to answer the query, ignoring bitmap

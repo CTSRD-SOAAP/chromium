@@ -5,6 +5,7 @@
 #ifndef CHROME_COMMON_NET_URL_FIXER_UPPER_H_
 #define CHROME_COMMON_NET_URL_FIXER_UPPER_H_
 
+#include <soaap.h>
 #include <string>
 
 #include "base/strings/string16.h"
@@ -30,6 +31,7 @@ namespace URLFixerUpper {
   // segments.  Currently does not segment "file" schemes.
   // Returns the canonicalized scheme, or the empty string when |text| is only
   // whitespace.
+  __soaap_vuln_fn("Cr issue #9760")
   std::string SegmentURL(const std::string& text, url_parse::Parsed* parts);
   string16 SegmentURL(const string16& text, url_parse::Parsed* parts);
 
