@@ -38,6 +38,7 @@ export CC=cc  CXX=c++  GYP_GENERATORS=ninja  GYP_DEFINES="use_cups=1  use_system
 # Modern Clang produces a *lot* of warnings on Chromium v32.
 export CXXFLAGS="${CXXFLAGS} -Wno-unused-local-typedef"
 export CXXFLAGS="${CXXFLAGS} -Wno-tautological-undefined-compare"
+export CXXFLAGS="${CXXFLAGS} -Wno-inconsistent-missing-override"
 
 # Then, run Gyp!
 ./build/gyp_chromium --depth . || exit 1
