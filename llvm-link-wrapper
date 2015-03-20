@@ -15,32 +15,7 @@ OUT=$1
 
 shift # skip output filename
 
-CURR=`pwd`
-TEMP=`mktemp -d` # temp folder for extracting
-
-cd $TEMP
-
-for file in "$@"
-do
-  cp $CURR/$file $TEMP
-  if [[ "$file" == *.a.bc ]]
-  then
-    ar x $CURR/$file
-    rm `basename $file`
-  fi
-done
-
-if [[ -n "`ls`" ]] # check that there were some .o.bc files in the archive
+if [[ -n "$@" ]] # check that we have some files to link
 then
-  if [[ "`ls *.bc 2>&1`" == *"too long"* ]]
-  then
-    $llvm_link -o ${OUT}_1 `ls | grep ^[a-mA-M]`
-    $llvm_link -o ${OUT}_2 `ls | grep ^[n-zN-Z]`
-    $llvm_link -o $OUT ${OUT}_1 ${OUT}_2
-  else
-    $llvm_link -o $OUT *.bc
-  fi
-  cp $OUT $CURR
+  $llvm_link -o $OUT $@
 fi
-
-cd $CURR # return back to CWD
