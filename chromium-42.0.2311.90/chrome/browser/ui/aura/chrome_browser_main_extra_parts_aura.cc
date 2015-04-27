@@ -130,7 +130,7 @@ void ChromeBrowserMainExtraPartsAura::PreCreateThreads() {
 }
 
 void ChromeBrowserMainExtraPartsAura::PreProfileInit() {
-#if defined(OS_LINUX) && !defined(OS_CHROMEOS)
+#if (defined(OS_LINUX) || defined(OS_BSD)) && !defined(OS_CHROMEOS)
   // Now that we have some minimal ui initialized, check to see if we're
   // running as root and bail if we are.
   DetectRunningAsRoot();
@@ -144,7 +144,7 @@ void ChromeBrowserMainExtraPartsAura::PostMainMessageLoopRun() {
   // after the metrics service is deleted.
 }
 
-#if defined(OS_LINUX) && !defined(OS_CHROMEOS)
+#if (defined(OS_LINUX) || defined(OS_BSD)) && !defined(OS_CHROMEOS)
 void ChromeBrowserMainExtraPartsAura::DetectRunningAsRoot() {
   if (getuid() == 0) {
     const base::CommandLine& command_line =

@@ -43,6 +43,8 @@
 
 #if defined(WTF_OS_WIN)
 #include <malloc.h>
+#elif defined(WTF_OS_FREEBSD)
+#include <stdlib.h>
 #else
 #include <alloca.h>
 #endif

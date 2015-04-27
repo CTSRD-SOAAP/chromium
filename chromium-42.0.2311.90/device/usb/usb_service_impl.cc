@@ -113,6 +113,7 @@ UsbServiceImpl::UsbServiceImpl(
       hotplug_enabled_(false),
       weak_factory_(this) {
   task_runner_ = base::ThreadTaskRunnerHandle::Get();
+#if !defined(OS_FREEBSD)
   int rv = libusb_hotplug_register_callback(
       context_->context(),
       static_cast<libusb_hotplug_event>(LIBUSB_HOTPLUG_EVENT_DEVICE_ARRIVED |
@@ -130,12 +131,15 @@ UsbServiceImpl::UsbServiceImpl(
                                          base::Unretained(ui_thread_helper_)));
 #endif  // OS_WIN
   }
+#endif // !OS_FREEBSD
 }
 
 UsbServiceImpl::~UsbServiceImpl() {
+#if !defined(OS_FREEBSD)
   if (hotplug_enabled_) {
     libusb_hotplug_deregister_callback(context_->context(), hotplug_handle_);
   }
+#endif // !OS_FREEBSD
 #if defined(OS_WIN)
   if (ui_thread_helper_) {
     ui_task_runner_->DeleteSoon(FROM_HERE, ui_thread_helper_);
@@ -219,6 +223,7 @@ scoped_refptr<UsbDeviceImpl> UsbServiceImpl::AddDevice(
   }
 }
 
+#if !defined(OS_FREEBSD)
 // static
 int LIBUSB_CALL UsbServiceImpl::HotplugCallback(libusb_context* context,
                                                 PlatformUsbDevice device,
@@ -256,6 +261,7 @@ int LIBUSB_CALL UsbServiceImpl::HotplugCallback(libusb_context* context,
 
   return 0;
 }
+#endif // !OS_FREEBSD
 
 void UsbServiceImpl::OnDeviceAdded(PlatformUsbDevice platform_device) {
   DCHECK(CalledOnValidThread());

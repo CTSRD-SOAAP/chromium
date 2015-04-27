@@ -137,7 +137,7 @@ const char kPageOpenedHistogram[] = "Apps.AppListPageOpened";
 const char kSearchResultOpenDisplayTypeHistogram[] =
     "Apps.AppListSearchResultOpenDisplayType";
 
-#if defined(OS_LINUX)
+#if defined(OS_LINUX) || defined(OS_FREEBSD)
 #if defined(GOOGLE_CHROME_BUILD)
 const char kAppListWMClass[] = "chrome_app_list";
 #else  // CHROMIUM_BUILD

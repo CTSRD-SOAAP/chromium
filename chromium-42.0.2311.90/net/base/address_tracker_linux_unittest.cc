@@ -5,7 +5,11 @@
 #include "base/memory/scoped_ptr.h"
 #include "net/base/address_tracker_linux.h"
 
+#if defined(__linux__)
 #include <linux/if.h>
+#else
+#include <net/if.h>
+#endif
 
 #include <vector>
 

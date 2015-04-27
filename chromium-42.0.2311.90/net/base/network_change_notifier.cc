@@ -523,7 +523,6 @@ NetworkChangeNotifier* NetworkChangeNotifier::Create() {
 #elif defined(OS_MACOSX)
   return new NetworkChangeNotifierMac();
 #else
-  NOTIMPLEMENTED();
   return NULL;
 #endif
 }

@@ -420,7 +420,7 @@ TEST_F(DecryptingVideoDecoderTest, Destroy_DuringDecryptorRequested) {
   // NULL callback to cancel the |decryptor_ready_cb|.
   EXPECT_CALL(*this, RequestDecryptorNotification(IsNullCallback())).WillOnce(
       ResetAndRunCallback(&decryptor_ready_cb,
-                          reinterpret_cast<Decryptor*>(NULL),
+                          static_cast<Decryptor*>(NULL),
                           base::Bind(&DecryptingVideoDecoderTest::DecryptorSet,
                                      base::Unretained(this))));
   EXPECT_CALL(*this, DecryptorSet(_)).Times(0);

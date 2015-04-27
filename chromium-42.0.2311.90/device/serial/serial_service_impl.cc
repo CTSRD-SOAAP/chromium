@@ -71,9 +71,14 @@ void SerialServiceImpl::Connect(
 }
 
 SerialDeviceEnumerator* SerialServiceImpl::GetDeviceEnumerator() {
+#if defined(OS_BSD)
+  NOTIMPLEMENTED();
+  return NULL;
+#else
   if (!device_enumerator_)
     device_enumerator_ = SerialDeviceEnumerator::Create();
   return device_enumerator_.get();
+#endif
 }
 
 bool SerialServiceImpl::IsValidPath(const mojo::String& path) {

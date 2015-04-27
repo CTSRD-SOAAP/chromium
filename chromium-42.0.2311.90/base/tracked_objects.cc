@@ -393,7 +393,7 @@ void ThreadData::OnThreadTerminationCleanup() {
   }
   // We must NOT do any allocations during this callback.
   // Using the simple linked lists avoids all allocations.
-  DCHECK_EQ(this->next_retired_worker_, reinterpret_cast<ThreadData*>(NULL));
+  DCHECK_EQ(this->next_retired_worker_, static_cast<ThreadData*>(NULL));
   this->next_retired_worker_ = first_retired_worker_;
   first_retired_worker_ = this;
 }

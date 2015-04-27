@@ -87,7 +87,7 @@ const int kTabstripTopShadowThickness = 3;
 // is no avatar icon.
 const int kTabStripIndent = -6;
 
-#if defined(OS_LINUX) && !defined(OS_CHROMEOS)
+#if defined(OS_LINUX) && !defined(OS_CHROMEOS) || defined(OS_BSD)
 // Default extra space between the top of the frame and the top of the window
 // caption buttons.
 const int kExtraCaption = 2;
