@@ -260,7 +260,7 @@ void SyncedSessionTracker::PutWindowInSession(const std::string& session_tag,
   }
   DCHECK(window_ptr);
   DCHECK_EQ(window_ptr->window_id.id(), window_id);
-  DCHECK_EQ(reinterpret_cast<sessions::SessionWindow*>(NULL),
+  DCHECK_EQ(static_cast<sessions::SessionWindow*>(NULL),
             GetSession(session_tag)->windows[window_id]);
   GetSession(session_tag)->windows[window_id] = window_ptr;
 }

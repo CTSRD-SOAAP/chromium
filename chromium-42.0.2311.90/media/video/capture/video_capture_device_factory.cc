@@ -50,7 +50,7 @@ void VideoCaptureDeviceFactory::EnumerateDeviceNames(const base::Callback<
   callback.Run(device_names.Pass());
 }
 
-#if !defined(OS_MACOSX) && !defined(OS_LINUX) && !defined(OS_ANDROID) && !defined(OS_WIN)
+#if !defined(OS_MACOSX) && !defined(OS_LINUX) && !defined(OS_ANDROID) && !defined(OS_WIN) && !defined(OS_FREEBSD)
 // static
 VideoCaptureDeviceFactory*
 VideoCaptureDeviceFactory::CreateVideoCaptureDeviceFactory(

@@ -139,7 +139,7 @@ bool PanelManager::ShouldUsePanels(const std::string& extension_id) {
 // static
 bool PanelManager::IsPanelStackingEnabled() {
   // Stacked panel mode is not supported in linux-aura.
-#if defined(OS_LINUX)
+#if defined(OS_LINUX) || defined(OS_FREEBSD)
   return false;
 #else
   return true;

@@ -68,6 +68,11 @@
             '../udev_linux/udev.gyp:udev_linux',
           ],
         }],
+        ['OS == "freebsd"', {
+          'dependencies!': [
+            '../../third_party/libusb/libusb.gyp:libusb',
+          ],
+        }],
         ['chromeos==1', {
           'dependencies': [
             '../../chromeos/chromeos.gyp:chromeos',

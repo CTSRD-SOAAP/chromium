@@ -4,7 +4,12 @@
 #if defined(SK_BUILD_FOR_MAC)
     #include <malloc/malloc.h>
 #elif defined(SK_BUILD_FOR_UNIX) || defined(SK_BUILD_FOR_WIN32)
+#  if defined(__FreeBSD__)
+    #include <stdlib.h>
+    #include <malloc_np.h>
+#  else
     #include <malloc.h>
+#  endif
 #endif
 
 struct SkVarAlloc::Block {

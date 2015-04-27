@@ -75,7 +75,7 @@ class DownloadShelfContextMenu : public ui::SimpleMenuModel::Delegate,
 
   int GetAlwaysOpenStringId() const;
 
-#if defined(OS_WIN) || defined(OS_LINUX) || \
+#if defined(OS_WIN) || defined(OS_LINUX) || defined(OS_BSD) || \
     (defined(OS_MACOSX) && !defined(OS_IOS))
   bool IsDownloadPdf() const;
   bool CanOpenPdfInSystemViewer() const;

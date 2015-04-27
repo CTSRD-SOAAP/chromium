@@ -190,7 +190,7 @@
                 '../build/linux/system.gyp:xext',
               ],
             }],
-            ['OS=="linux" and enable_plugins==1', {
+            ['(OS=="linux" or os_bsd==1) and enable_plugins==1', {
               'dependencies': [
                 '../pdf/pdf.gyp:pdf',
               ],

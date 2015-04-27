@@ -35,20 +35,20 @@ void ReleaseFreeMemory() {
 void SetGetAllocatorWasteSizeFunction(
     thunks::GetAllocatorWasteSizeFunction get_allocator_waste_size_function) {
   DCHECK_EQ(thunks::GetGetAllocatorWasteSizeFunction(),
-            reinterpret_cast<thunks::GetAllocatorWasteSizeFunction>(NULL));
+            static_cast<thunks::GetAllocatorWasteSizeFunction>(NULL));
   thunks::SetGetAllocatorWasteSizeFunction(get_allocator_waste_size_function);
 }
 
 void SetGetStatsFunction(thunks::GetStatsFunction get_stats_function) {
   DCHECK_EQ(thunks::GetGetStatsFunction(),
-            reinterpret_cast<thunks::GetStatsFunction>(NULL));
+            static_cast<thunks::GetStatsFunction>(NULL));
   thunks::SetGetStatsFunction(get_stats_function);
 }
 
 void SetReleaseFreeMemoryFunction(
     thunks::ReleaseFreeMemoryFunction release_free_memory_function) {
   DCHECK_EQ(thunks::GetReleaseFreeMemoryFunction(),
-            reinterpret_cast<thunks::ReleaseFreeMemoryFunction>(NULL));
+            static_cast<thunks::ReleaseFreeMemoryFunction>(NULL));
   thunks::SetReleaseFreeMemoryFunction(release_free_memory_function);
 }
 

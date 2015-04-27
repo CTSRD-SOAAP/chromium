@@ -119,6 +119,8 @@
 
           'include_dirs': [
             'amalgamation',
+            # FreeBSD ...
+            '<(prefix_dir)/include',
           ],
           'dependencies': [
             '../icu/icu.gyp:icui18n',

@@ -58,9 +58,9 @@ class TrackedObjectsTest : public testing::Test {
     Births* birth = ThreadData::TallyABirthIfActive(location);
 
     if (ThreadData::status() == ThreadData::DEACTIVATED)
-      EXPECT_EQ(reinterpret_cast<Births*>(NULL), birth);
+      EXPECT_EQ(static_cast<Births*>(NULL), birth);
     else
-      EXPECT_NE(reinterpret_cast<Births*>(NULL), birth);
+      EXPECT_NE(static_cast<Births*>(NULL), birth);
   }
 
   // Helper function to verify the most common test expectations.
@@ -271,7 +271,7 @@ TEST_F(TrackedObjectsTest, DeathDataTest) {
   }
 
   scoped_ptr<DeathData> data(new DeathData());
-  ASSERT_NE(data, reinterpret_cast<DeathData*>(NULL));
+  ASSERT_NE(data, static_cast<DeathData*>(NULL));
   EXPECT_EQ(data->run_duration_sum(), 0);
   EXPECT_EQ(data->run_duration_sample(), 0);
   EXPECT_EQ(data->queue_duration_sum(), 0);
@@ -489,7 +489,7 @@ TEST_F(TrackedObjectsTest, LifeCycleToSnapshotWorkerThread) {
   Location location(kFunction, kFile, kLineNumber, NULL);
   // Do not delete |birth|.  We don't own it.
   Births* birth = ThreadData::TallyABirthIfActive(location);
-  EXPECT_NE(reinterpret_cast<Births*>(NULL), birth);
+  EXPECT_NE(static_cast<Births*>(NULL), birth);
 
   const unsigned int kTimePosted = 1;
   const unsigned int kStartOfRun = 5;

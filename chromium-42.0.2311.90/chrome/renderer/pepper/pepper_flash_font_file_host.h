@@ -10,7 +10,7 @@
 #include "ppapi/c/private/pp_private_font_charset.h"
 #include "ppapi/host/resource_host.h"
 
-#if defined(OS_LINUX) || defined(OS_OPENBSD)
+#if defined(OS_LINUX) || defined(OS_BSD)
 #include "base/files/scoped_file.h"
 #endif
 
@@ -42,7 +42,7 @@ class PepperFlashFontFileHost : public ppapi::host::ResourceHost {
   int32_t OnGetFontTable(ppapi::host::HostMessageContext* context,
                          uint32_t table);
 
-#if defined(OS_LINUX) || defined(OS_OPENBSD)
+#if defined(OS_LINUX) || defined(OS_BSD)
   base::ScopedFD fd_;
 #endif
 

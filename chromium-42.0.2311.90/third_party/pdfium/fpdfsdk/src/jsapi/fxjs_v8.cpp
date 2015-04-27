@@ -753,12 +753,17 @@ void JS_ValueCopy(v8::Handle<v8::Value>& pTo, v8::Handle<v8::Value> pFrom)
 
 double _getLocalTZA()
 {
+	struct tm *lt;
 	if(!FSDK_IsSandBoxPolicyEnabled(FPDF_POLICY_MACHINETIME_ACCESS))
 		return 0;
 	time_t t = 0;
 	time(&t);
-	localtime(&t);
+	lt = localtime(&t);
+#ifdef __FreeBSD__
+	return (double)(-(lt->tm_gmtoff * 1000));
+#else
 	return (double)(-(timezone * 1000));
+#endif
 }
 
 int _getDaylightSavingTA(double d)

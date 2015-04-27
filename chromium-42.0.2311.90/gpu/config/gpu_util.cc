@@ -54,10 +54,12 @@ void MergeFeatureSets(std::set<int>* dst, const std::set<int>& src) {
 }
 
 void ApplyGpuDriverBugWorkarounds(base::CommandLine* command_line) {
+#ifndef __FreeBSD__
   GPUInfo gpu_info;
   CollectBasicGraphicsInfo(&gpu_info);
 
   ApplyGpuDriverBugWorkarounds(gpu_info, command_line);
+#endif
 }
 
 void ApplyGpuDriverBugWorkarounds(const GPUInfo& gpu_info,

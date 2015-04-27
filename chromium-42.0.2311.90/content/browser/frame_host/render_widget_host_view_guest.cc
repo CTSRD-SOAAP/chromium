@@ -241,11 +241,11 @@ gfx::NativeView RenderWidgetHostViewGuest::GetNativeView() const {
 
 gfx::NativeViewId RenderWidgetHostViewGuest::GetNativeViewId() const {
   if (!guest_)
-    return static_cast<gfx::NativeViewId>(NULL);
+    return reinterpret_cast<gfx::NativeViewId>(NULL);
 
   RenderWidgetHostView* rwhv = guest_->GetOwnerRenderWidgetHostView();
   if (!rwhv)
-    return static_cast<gfx::NativeViewId>(NULL);
+    return reinterpret_cast<gfx::NativeViewId>(NULL);
   return rwhv->GetNativeViewId();
 }
 
