@@ -1,0 +1,41 @@
+#!/bin/sh
+
+#
+# This is a script to patch Chromium's build.ninja file. Usage:
+#
+#   sh patch-ninja-file.sh path/to/build.ninja
+#
+# Assuming the environment variables required by `run-gyp` are set:
+#   LLVM_BUILD_DIR       SOAAP-LLVM build directory
+#   SOAAP_BUILD_DIR      SOAAP build directory
+#   SOAAP_CHROMIUM_ROOT  root of ${SOAAP}/chromium
+#
+
+ninja=$1
+version=$2
+if [ "$ninja" == "" ] || [ "$version" == "" ]; then
+	echo "Usage: $0 <ninja file> <patch version>"
+	exit 1
+fi
+
+if [ "$LLVM_BUILD_DIR" == "" ]; then
+	echo "LLVM_BUILD_DIR not set"
+	exit 1
+fi
+
+if [ "$SOAAP_BUILD_DIR" == "" ]; then
+	echo "SOAAP_BUILD_DIR not set"
+	exit 1
+fi
+
+if [ "$SOAAP_CHROMIUM_ROOT" == "" ]; then
+	echo "SOAAP_CHROMIUM_ROOT not set"
+	exit 1
+fi
+
+
+echo "Patching $ninja (Chromium $version) for SOAAP..."
+patch $ninja ../soaap-ninja-$version.diff || exit 1
+sed -i '' "s#/replace/with/your/SOAAP/chromium#$SOAAP_CHROMIUM_ROOT#" $ninja
+sed -i '' "s#/replace/with/your/SOAAP/llvm#$LLVM_BUILD_DIR#" $ninja
+sed -i '' "s#/replace/with/your/SOAAP/builddir#$SOAAP_BUILD_DIR#" $ninja
