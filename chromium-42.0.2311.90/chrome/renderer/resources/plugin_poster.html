@@ -1,0 +1,53 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, user-scalable=no">
+<script>
+function notifyDidFinishLoading() {
+  if (plugin.didFinishLoading)
+    plugin.didFinishLoading();
+}
+</script>
+<link rel="stylesheet" href="plugin_placeholders.css"></link>
+<style>
+#outer {
+  border: none;
+  cursor: pointer;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+#shielding {
+  background-color: rgba(0, 0, 0, 0.5);
+  height: 100%;
+  position: absolute;
+  width: 100%;
+}
+
+#plugin_icon {
+  opacity: 0.8;
+}
+
+#plugin_icon:hover {
+  opacity: 0.95;
+}
+
+#inner {
+  margin-top: -25px;
+}
+</style>
+</head>
+
+<body onload="notifyDidFinishLoading();">
+  <div i18n-values="title:name;.style.background-image:background" id="outer"
+       onclick="plugin.load()">
+    <div id="shielding">
+      <div id="inner">
+        <div><img id="plugin_icon" src="plugin_power_saver_play.png" /></div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

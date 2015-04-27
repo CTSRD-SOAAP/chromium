@@ -1,0 +1,35 @@
+# Copyright 2014 The Chromium Authors. All rights reserved.
+# Use of this source code is governed by a BSD-style license that can be
+# found in the LICENSE file.
+
+static_library("plugin") {
+  gypi_values = exec_script("//build/gypi_to_gn.py",
+                            [ rebase_path("../../remoting_srcs.gypi") ],
+                            "scope",
+                            [ "../../remoting_srcs.gypi" ])
+
+  sources =
+      rebase_path(gypi_values.remoting_client_plugin_sources, ".", "//remoting")
+
+  # TODO(brettw) when a nacl version of this target is made, these files
+  # won't be part of it.
+  sources += [
+    "pepper_entrypoints.cc",
+    "pepper_entrypoints.h",
+  ]
+
+  configs += [ "//build/config/compiler:wexit_time_destructors" ]
+
+  defines = [ "HAVE_STDINT_H" ]  # Required by on2_integer.h.
+
+  deps = [
+    "//net",
+    "//ppapi/cpp:objects",
+    "//ppapi/cpp/private:internal_module",
+    "//remoting/base",
+    "//remoting/client",
+    "//remoting/protocol",
+    "//third_party/webrtc/modules/desktop_capture",
+    "//ui/events:dom4_keycode_converter",
+  ]
+}

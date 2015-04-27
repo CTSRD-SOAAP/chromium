@@ -1,0 +1,111 @@
+{
+  "gtest_tests": [
+    "accessibility_unittests",
+    {
+      "test": "base_unittests",
+      "swarming": {
+        "can_use_on_swarming_builders": true
+      }
+    },
+    {
+      "test": "browser_tests",
+      "swarming": {
+        "can_use_on_swarming_builders": true,
+        "shards": 10
+      }
+    },
+    "cacheinvalidation_unittests",
+    {
+      "test": "cc_unittests",
+      "swarming": {
+        "can_use_on_swarming_builders": true
+      }
+    },
+    {
+      "test": "components_browsertests",
+      "swarming": {
+        "can_use_on_swarming_builders": true
+      }
+    },
+    {
+      "test": "components_unittests",
+      "swarming": {
+        "can_use_on_swarming_builders": true
+      }
+    },
+    {
+      "test": "content_browsertests",
+      "swarming": {
+        "can_use_on_swarming_builders": true
+      }
+    },
+    {
+      "test": "content_unittests",
+      "swarming": {
+        "can_use_on_swarming_builders": true
+      }
+    },
+    {
+      "test": "crypto_unittests",
+      "swarming": {
+        "can_use_on_swarming_builders": true
+      }
+    },
+    "device_unittests",
+    {
+      "test": "display_unittests",
+      "platforms": ["linux"]
+    },
+    "extensions_unittests",
+    "gcm_unit_tests",
+    "gfx_unittests",
+    "google_apis_unittests",
+    {
+      "test": "gpu_unittests",
+      "swarming": {
+        "can_use_on_swarming_builders": true
+      }
+    },
+    {
+      "test": "interactive_ui_tests",
+      "swarming": {
+        "can_use_on_swarming_builders": true,
+        "shards": 3
+      }
+    },
+    "ipc_tests",
+    "jingle_unittests",
+    {
+      "test": "media_unittests",
+      "swarming": {
+        "can_use_on_swarming_builders": true
+      }
+    },
+    {
+      "test": "net_unittests",
+      "swarming": {
+        "can_use_on_swarming_builders": true,
+        "shards": 2
+      }
+    },
+    "ppapi_unittests",
+    "printing_unittests",
+    "remoting_unittests",
+    {
+      "test": "sandbox_linux_unittests",
+      "platforms": ["linux"]
+    },
+    "skia_unittests",
+    "sql_unittests",
+    "sync_unit_tests",
+    "ui_base_unittests",
+    {
+      "test": "unit_tests",
+      "swarming": {
+        "can_use_on_swarming_builders": true,
+        "shards": 2
+      }
+    },
+    "url_unittests"
+  ]
+}

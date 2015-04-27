@@ -1,0 +1,59 @@
+// Copyright 2014 The Chromium Authors. All rights reserved.
+// Use of this source code is governed by a BSD-style license that can be
+// found in the LICENSE file.
+
+module mojo;
+
+import "media/mojo/interfaces/media_types.mojom";
+
+// DemuxerStream is modeled after media::DemuxerStream using mojo in order to
+// enable proxying between a media::Pipeline and media::Renderer living in two
+// different applications.
+interface DemuxerStream {
+  // See media::DemuxerStream for descriptions.
+  enum Type {
+    UNKNOWN,
+    AUDIO,
+    VIDEO,
+    LAST_TYPE = VIDEO,
+  };
+
+  // See media::DemuxerStream for descriptions.
+  enum Status {
+    OK = 0,
+    ABORTED,
+    CONFIG_CHANGED,
+  };
+
+  // Tells the DemuxerStream which DemuxerStreamObserver to interact with. Must
+  // be called before any other methods. Upon receipt of the callback, clients
+  // may call DemuxerStream::Read() to request buffers. The returned |pipe| will
+  // be used to fill out the data section of the media::DecoderBuffer returned
+  // via DemuxerStream::Read().
+  Initialize(DemuxerStreamObserver observer)
+      => (handle<data_pipe_consumer> pipe);
+
+  // Request a MediaDecoderBuffer from this stream for decoding and rendering.
+  // See media::DemuxerStream::ReadCB for an explanation of the fields.
+  //
+  // Upon receipt of the callback, clients must fill out the data section of
+  // the returned media::DecoderBuffer by reading from the |pipe| provided
+  // during Initialize().
+  //
+  // TODO(dalecurtis): Remove this method in favor of serializing everything
+  // into the DataPipe given to Initialize() once DataPipe supports framed data
+  // in a nicer fashion.
+  Read() => (Status status, MediaDecoderBuffer? buffer);
+};
+
+interface DemuxerStreamObserver {
+  // A new AudioDecoderConfig is available. Will be sent by the DemuxerStream
+  // whenever a DemuxerStream::STATUS_CONFIG_CHANGED is observed (either
+  // in a Read() callback or over the DataPipe).
+  OnAudioDecoderConfigChanged(AudioDecoderConfig config);
+
+  // A new VideoDecoderConfig is available. Will be sent by the DemuxerStream
+  // whenever a DemuxerStream::STATUS_CONFIG_CHANGED is observed (either
+  // in a Read() callback or over the DataPipe).
+  OnVideoDecoderConfigChanged(VideoDecoderConfig config);
+};
