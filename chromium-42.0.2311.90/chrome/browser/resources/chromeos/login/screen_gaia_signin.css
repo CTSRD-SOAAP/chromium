@@ -1,0 +1,193 @@
+/* Copyright (c) 2012 The Chromium Authors. All rights reserved.
+ * Use of this source code is governed by a BSD-style license that can be
+ * found in the LICENSE file.
+ */
+
+#gaia-signin {
+  height: 609px; /* Should be the same as #user-image.loading min-heigth. */
+  padding: 70px 17px 69px;    /* Screen has no controls. */
+  width: 722px; /* Should be the same as #user-image.loading width. */
+}
+
+#gaia-signin:not(.full-width).no-right-panel {
+  width: 522px;
+}
+
+.minute-maid #gaia-signin {
+  background: rgb(66, 133, 244);
+  padding: 50px 0 0 0;
+  width: 522px;
+}
+#gaia-signin.full-width {
+  padding: 75px 0 0;
+}
+
+#signin-right {
+  -webkit-margin-start: 30px;
+  margin-top: 80px;
+  top: 60px;
+  width: 200px;
+}
+
+#signin-right,
+#enterprise-info-container,
+#saml-info-container {
+  font-size: 12px;
+}
+
+/*  For touch-optimized UI, make the links bigger. */
+@media (pointer:coarse) {
+  #signin-right {
+    font-size: 14px;
+  }
+}
+
+.minute-maid #signin-right,
+.no-right-panel #signin-right {
+  display: none;
+}
+
+.minute-maid #close-button-item {
+  background: transparent none;
+  background-image: url(chrome://theme/IDR_PANEL_CLOSE);
+  background-position: left center;
+  background-repeat: no-repeat;
+  background-size: 30px;
+}
+
+.signin-text {
+  color: #666;
+  margin-top: 20px;
+}
+
+.signin-link {
+  color: rgb(37, 79, 155);
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.signin-link:focus {
+  -webkit-transition: outline-color 200ms;
+  /* Note: May use 1px solid here. */
+  outline-color: rgb(77, 144, 254);
+}
+
+#gaia-signin-form-container,
+#signin-frame {
+  height: 100%;
+}
+
+.minute-maid #signin-frame,
+.minute-maid #gaia-signin-form-container,
+.full-width #signin-frame,
+.full-width #gaia-signin-form-container {
+  width: 100%;
+}
+
+.signin-divider {
+  background: linear-gradient(
+                   to bottom,
+                   #e3e3e3,
+                   #cacaca 50%,
+                   #e3e3e3);
+  border: none;
+  width: 1px;
+}
+
+.gaia-signin .minute-maid #step-logo,
+.gaia-signin .minute-maid #gaia-signin-divider,
+.no-right-panel #gaia-signin-divider {
+  display: none;
+}
+
+#signin-frame {
+  background-color: transparent;
+  margin-left: -44px;
+  vertical-align: top;
+  width: 400px;
+}
+
+webview#signin-frame {
+  display: block;
+  margin-left: 0;
+  overflow: hidden;
+  padding: 0;
+}
+
+/* Simpler alignment if no right panel. */
+.no-right-panel #signin-frame {
+  margin-left: 0;
+}
+
+/* Position to be aligned with the login box in iframe  */
+#login-box {
+  height: 31px;
+  position: absolute;
+  top: 77px;
+  visibility: hidden;
+  z-index: -1;
+}
+
+#enterprise-info-container {
+  bottom: 10px;
+  left: 0;
+  position: absolute;
+  right: 0;
+  text-align: center;
+}
+
+.minute-maid #enterprise-info-container {
+  display: none;
+}
+
+#enterprise-info-container #enterprise-info {
+  display: inline-block;
+}
+
+#gaia-signin .step-contents {
+  -webkit-box-pack: center;
+  display: -webkit-box;
+  height: 100%;
+}
+
+#gaia-loading {
+  background-color: white;
+  height: 80%;
+  top: 80px;
+}
+
+#createSupervisedUserSeparator {
+  background-color: rgba(128,128,128,0.3);
+  height: 1px;
+  width: 200px;
+}
+
+#createSupervisedUserLogo {
+  font-weight: bold;
+  margin-top: 16px;
+}
+
+#createSupervisedUserLogo img {
+  vertical-align: text-bottom;
+}
+
+#createSupervisedUserLogo span {
+  vertical-align: -10%;
+}
+
+#createSupervisedUserLinkPlaceholder,
+#createSupervisedUserNoManagerText {
+  margin-top: 10px;
+}
+
+#saml-notice-container {
+  left: 0;
+  position: absolute;
+  right: 0;
+  text-align: center;
+  top: 50px;
+}
+
+#saml-notice-message {
+  margin: 0 auto;
+}

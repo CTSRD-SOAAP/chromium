@@ -1,0 +1,8 @@
+dimich@chromium.org
+fgorski@chromium.org
+jianli@chromium.org
+zea@chromium.org
+
+per-file push_messaging_*=johnme@chromium.org
+per-file push_messaging_*=mvanouwerkerk@chromium.org
+per-file push_messaging_*=peter@chromium.org

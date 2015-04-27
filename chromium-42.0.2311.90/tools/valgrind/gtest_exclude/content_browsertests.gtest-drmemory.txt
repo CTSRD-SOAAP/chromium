@@ -1,0 +1,27 @@
+# crbug.com/395172
+WebRtcBrowserTest.CanForwardRemoteStream
+WebRtcBrowserTest.CanForwardRemoteStream720p
+
+# crbug.com/399289
+WebRtcBrowserTest.NoCrashWhenConnectChromiumSinkToRemoteTrack
+
+# crbug.com/400490
+PluginTest.OpenPopupWindowWithPlugin
+PluginTest.PluginSingleRangeRequest
+PluginTest.PluginThreadAsyncCall
+PluginTest.PrivateDisabled
+PluginTest.ScheduleTimer
+PluginTest.SelfDelete*
+
+# crbug.com/419396
+WebRtcBrowserTest.CallWithDataAndMedia
+
+# crbug.com/420827
+ServiceWorkerVersionBrowserTest.Activate_NoEventListener
+ServiceWorkerBrowserTest.ImportsBustMemcache
+
+# http://crbug.com/293125
+WebRtcBrowserTest.CanMakeEmptyCallThenAddStreamsAndRenegotiate
+
+# http://crbug.com/456131
+BrowserSideNavigationBrowserTest.BrowserInitiatedNavigations

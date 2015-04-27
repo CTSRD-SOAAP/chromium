@@ -1,0 +1,50 @@
+Current Status as of February 2, 2015
+
+Upstream cherry-picks:
+
+  None
+
+Current patches:
+
+  Remove UNCHECKED_BITSTREAM_READER defines
+    Remove "#define UNCHECKED_BITSTREAM_READER 1" from all codecs. In Chromium
+    all codecs should use the safe bitstream reader.
+
+  Harden libavformat/matroskadec.c
+    Add CONFIG_SIPR_DECODER and CONFIG_LZO checks to remove code that may be a
+    security risk. Discuss with cevans before removing.
+
+    Add call to matroska_read_close() to mitigate memory leak caught by
+    valgrind.
+
+  Preserve AVCodecID enum in libavcodec/avcodec.h (http://crbug.com/241212)
+    Insert AV_CODEC_ID_SNOW into the AVCodecID enum to avoid breaking
+    histograms.
+
+  Fix pthreads emulation on Windows XP
+    Emulation assumes Vista+ inside (_WIN32_WINNT >= 0x0600) checks. Replace
+    with WINDOWS_XP_SUPPORT_NEEDED define in compat/w32pthreads.h.
+
+    Add call to w32thread_init() in libavcodec/vp8.c.
+
+  Disable FMA3 instructions in libavutil/log.c (http://crbug.com/440892)
+    Remove call to _set_FMA3_enable() on Windows. Remove once we are using
+    VS2015.
+
+  C++11 compatability for string concatenation (http://crbug.com/454590)
+    Add spaces between string literals and tokens in libavutil/timer.h and
+    libavutil/internal.h.
+
+  Misc things that were not documented
+    Add CONFIG_ERROR_RESILIENCE guard around some code in
+    libavcodec/h264_slice.c.
+
+    Enable av_max_alloc(0) to remove alloc size bound in libavutil/mem.c.
+
+    Misc changes in libavformat/mp3dec.c.
+
+    Add FF_DISABLE_DEPRECATION_WARNINGS/FF_ENABLE_DEPRECATION_WARNINGS pairs in
+    libavformat/mux.c.
+
+    Remove static av_always_inline av_const unsigned av_clip_uintp2_arm() from
+    libavutil/arm/intmath.h due to compilation failure.

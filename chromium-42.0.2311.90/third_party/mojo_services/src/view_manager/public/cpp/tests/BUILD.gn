@@ -1,0 +1,33 @@
+# Copyright 2014 The Chromium Authors. All rights reserved.
+# Use of this source code is governed by a BSD-style license that can be
+# found in the LICENSE file.
+
+import("//build/config/ui.gni")
+import("//testing/test.gni")
+
+test("mojo_view_manager_lib_unittests") {
+  sources = [
+    "run_all_unittests.cc",
+    "view_manager_test_suite.cc",
+    "view_manager_test_suite.h",
+    "view_manager_unittest.cc",
+    "view_unittest.cc",
+  ]
+
+  deps = [
+    "//base",
+    "//base/test:test_support",
+    "//mojo/public/cpp/application",
+    "//mojo/services/geometry/public/cpp",
+    "//mojo/services/geometry/public/interfaces",
+    "//mojo/services/view_manager/public/cpp",
+    "//mojo/services/view_manager/public/interfaces",
+    "//shell/application_manager",
+    "//shell:test_support",
+    "//testing/gtest",
+  ]
+
+  if (use_x11) {
+    deps += [ "//ui/gfx/x" ]
+  }
+}

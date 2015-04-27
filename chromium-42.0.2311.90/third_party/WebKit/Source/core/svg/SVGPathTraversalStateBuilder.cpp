@@ -1,0 +1,82 @@
+/*
+ * Copyright (C) 2004, 2005, 2006, 2007, 2008 Nikolas Zimmermann <zimmermann@kde.org>
+ * Copyright (C) 2004, 2005 Rob Buis <buis@kde.org>
+ * Copyright (C) 2007 Eric Seidel <eric@webkit.org>
+ * Copyright (C) Research In Motion Limited 2010. All rights reserved.
+ *
+ * This library is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Library General Public
+ * License as published by the Free Software Foundation; either
+ * version 2 of the License, or (at your option) any later version.
+ *
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Library General Public License for more details.
+ *
+ * You should have received a copy of the GNU Library General Public License
+ * along with this library; see the file COPYING.LIB.  If not, write to
+ * the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
+ * Boston, MA 02110-1301, USA.
+ */
+
+#include "config.h"
+#include "platform/graphics/PathTraversalState.h"
+
+#include "core/svg/SVGPathTraversalStateBuilder.h"
+
+namespace blink {
+
+SVGPathTraversalStateBuilder::SVGPathTraversalStateBuilder(PathTraversalState& traversalState, float desiredLength)
+    : m_traversalState(traversalState)
+{
+    m_traversalState.m_desiredLength = desiredLength;
+}
+
+void SVGPathTraversalStateBuilder::moveTo(const FloatPoint& targetPoint, bool, PathCoordinateMode)
+{
+    m_traversalState.m_totalLength += m_traversalState.moveTo(targetPoint);
+}
+
+void SVGPathTraversalStateBuilder::lineTo(const FloatPoint& targetPoint, PathCoordinateMode)
+{
+    m_traversalState.m_totalLength += m_traversalState.lineTo(targetPoint);
+}
+
+void SVGPathTraversalStateBuilder::curveToCubic(const FloatPoint& point1, const FloatPoint& point2, const FloatPoint& targetPoint, PathCoordinateMode)
+{
+    m_traversalState.m_totalLength += m_traversalState.cubicBezierTo(point1, point2, targetPoint);
+}
+
+void SVGPathTraversalStateBuilder::closePath()
+{
+    m_traversalState.m_totalLength += m_traversalState.closeSubpath();
+}
+
+bool SVGPathTraversalStateBuilder::continueConsuming()
+{
+    m_traversalState.processSegment();
+    return !m_traversalState.m_success;
+}
+
+void SVGPathTraversalStateBuilder::incrementPathSegmentCount()
+{
+    ++m_traversalState.m_segmentIndex;
+}
+
+unsigned SVGPathTraversalStateBuilder::pathSegmentIndex()
+{
+    return m_traversalState.m_segmentIndex;
+}
+
+float SVGPathTraversalStateBuilder::totalLength()
+{
+    return m_traversalState.m_totalLength;
+}
+
+FloatPoint SVGPathTraversalStateBuilder::currentPoint()
+{
+    return m_traversalState.m_current;
+}
+
+}

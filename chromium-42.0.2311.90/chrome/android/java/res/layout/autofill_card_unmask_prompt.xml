@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2014 The Chromium Authors. All rights reserved.
+
+     Use of this source code is governed by a BSD-style license that can be
+     found in the LICENSE file.
+-->
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:id="@+id/main_contents"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/instructions"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginTop="10dp"
+            android:gravity="start" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <!-- TODO(estade): add accessibility content descriptions. -->
+
+            <LinearLayout
+                android:id="@+id/expiration_container"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:visibility="gone">
+
+              <EditText
+                  android:id="@+id/expiration_month"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:layout_marginStart="16dp"
+                  android:ems="2"
+                  android:gravity="center_horizontal"
+                  android:inputType="number"
+                  android:hint="@string/card_unmask_month_hint" />
+
+              <TextView
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:layout_marginStart="8dp"
+                  android:layout_marginEnd="8dp"
+                  android:text="@string/card_unmask_expiration_date_separator" />
+
+              <EditText
+                  android:id="@+id/expiration_year"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:ems="2"
+                  android:gravity="center_horizontal"
+                  android:inputType="number"
+                  android:hint="@string/card_unmask_year_hint" />
+            </LinearLayout>
+
+            <EditText
+                android:id="@+id/card_unmask_input"
+                android:inputType="number"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_marginStart="16dp"
+                android:ems="4"
+                android:hint="@string/card_unmask_input_hint" />
+
+            <ImageView
+                android:id="@+id/cvc_hint_image"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="16dp" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/error_message"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="10dp"
+            android:gravity="start"
+            android:textColor="@color/input_underline_error_color"
+            android:visibility="gone" />
+
+        <CheckBox
+            android:id="@+id/store_locally_checkbox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="10dp"
+            android:text="@string/autofill_card_unmask_prompt_store_locally" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/verification_overlay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/main_contents"
+        android:layout_alignBottom="@+id/main_contents"
+        android:layout_alignStart="@+id/main_contents"
+        android:layout_alignEnd="@+id/main_contents"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:visibility="gone">
+
+        <ProgressBar
+            android:id="@+id/verification_progress_bar"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginTop="30dp"
+            android:visibility="gone" />
+
+        <ImageView
+            android:id="@+id/verification_success"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/verify_checkmark"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/verification_message"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="?android:attr/colorAccent"
+            android:textSize="20dp" />
+    </LinearLayout>
+</RelativeLayout>

@@ -1,0 +1,10 @@
+include_rules = [
+  "+chromecast/common",
+  "+chromecast/media",
+  "+components/cdm/renderer",
+  "+components/network_hints/renderer",
+  "+content/public/renderer",
+  "+media/base",
+  "+third_party/WebKit/public/platform",
+  "+third_party/WebKit/public/web",
+]

@@ -1,0 +1,17 @@
+# Copyright 2014 The Chromium Authors. All rights reserved.
+# Use of this source code is governed by a BSD-style license that can be
+# found in the LICENSE file.
+
+import("//build/module_args/mojo.gni")
+
+# If using the prebuilt shell, gate its usage by the platforms for which it is
+# published.
+if (!defined(use_prebuilt_mojo_shell) || use_prebuilt_mojo_shell) {
+  use_prebuilt_mojo_shell = is_linux || is_android
+}
+
+# The absolute path to the directory containing the mojo public SDK (i.e., the
+# directory containing mojo/public). The build files within the Mojo public
+# SDK use this variable to allow themselves to be parameterized by the location
+# of the public SDK within a client repo.
+mojo_root = get_path_info("../..", "abspath")
