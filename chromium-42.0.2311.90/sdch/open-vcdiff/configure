@@ -9503,7 +9503,7 @@ if test -z "$aix_libpath"; then aix_libpath="/usr/lib:/lib"; fi
       hardcode_shlibpath_var=no
       ;;
 
-    freebsd1*)
+    freebsd1.*)
       ld_shlibs=no
       ;;
 
@@ -10378,7 +10378,7 @@ dgux*)
   shlibpath_var=LD_LIBRARY_PATH
   ;;
 
-freebsd1*)
+freebsd1.*)
   dynamic_linker=no
   ;;
 
@@ -10389,7 +10389,7 @@ freebsd* | dragonfly*)
     objformat=`/usr/bin/objformat`
   else
     case $host_os in
-    freebsd[123]*) objformat=aout ;;
+    freebsd[123].*) objformat=aout ;;
     *) objformat=elf ;;
     esac
   fi
@@ -12085,7 +12085,7 @@ if test -z "$aix_libpath"; then aix_libpath="/usr/lib:/lib"; fi
         esac
         ;;
 
-      freebsd[12]*)
+      freebsd[12].*)
         # C++ shared libraries reported to be fairly broken before
 	# switch to ELF
         ld_shlibs_CXX=no
@@ -13846,7 +13846,7 @@ dgux*)
   shlibpath_var=LD_LIBRARY_PATH
   ;;
 
-freebsd1*)
+freebsd1.*)
   dynamic_linker=no
   ;;
 
@@ -13857,7 +13857,7 @@ freebsd* | dragonfly*)
     objformat=`/usr/bin/objformat`
   else
     case $host_os in
-    freebsd[123]*) objformat=aout ;;
+    freebsd[123].*) objformat=aout ;;
     *) objformat=elf ;;
     esac
   fi

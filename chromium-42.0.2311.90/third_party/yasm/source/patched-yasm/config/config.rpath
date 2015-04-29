@@ -351,7 +351,7 @@ else
     dgux*)
       hardcode_libdir_flag_spec='-L$libdir'
       ;;
-    freebsd1*)
+    freebsd1.*)
       ld_shlibs=no
       ;;
     freebsd2.2*)
@@ -528,11 +528,11 @@ case "$host_os" in
   dgux*)
     library_names_spec='$libname$shrext'
     ;;
-  freebsd1*)
+  freebsd1.*)
     ;;
   freebsd* | dragonfly*)
     case "$host_os" in
-      freebsd[123]*)
+      freebsd[123].*)
         library_names_spec='$libname$shrext$versuffix' ;;
       *)
         library_names_spec='$libname$shrext' ;;
