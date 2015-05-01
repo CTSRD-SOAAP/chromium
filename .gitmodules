@@ -1,0 +1,3 @@
+[submodule "chromium-42.0.2311.135"]
+	path = chromium-42.0.2311.135
+	url = https://github.com/CTSRD-SOAAP/chromium-42.0.2311.135
