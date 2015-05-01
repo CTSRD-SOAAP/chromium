@@ -1,0 +1,26 @@
+#!/bin/sh
+#
+# This script searches a Ninja build directory for object files that
+# define a particular symbol, then outputs the inputs to that object file.
+#
+
+symbol="$1"
+if [ "$symbol" == "" ]; then
+	echo "Usage: $0 <symbol>"
+	exit 1
+fi
+
+echo "Searching for `c++filt ${symbol}`..."
+objects=`
+	find . -type f -name '*.o' \
+		| xargs grep $symbol \
+		| sed 's/^Binary file \(.*\) matches$/\1/'
+`
+
+for o in $objects
+do
+	def=`nm $o | grep " T " | grep $symbol`
+	if [ "$def" != "" ]; then
+		ninja -t query $o
+	fi
+done
