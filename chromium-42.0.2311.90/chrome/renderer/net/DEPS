@@ -1,4 +1,0 @@
-include_rules = [
-  "+components/error_page/renderer",
-  "+gin",
-]

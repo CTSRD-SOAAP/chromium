@@ -1,3 +1,0 @@
-#!/bin/sh
-
-find * -path template -prune -o -path "*/extension.xml" -exec dirname \{\} \;
