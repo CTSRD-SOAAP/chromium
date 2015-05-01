@@ -1,5 +1,0 @@
-include_rules = [
-  "+components/auto_login_parser",
-  "+components/favicon/core",
-  "-chrome/browser/ui/views",
-]

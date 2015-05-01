@@ -1,4 +1,0 @@
-include_rules = [
-  "+chromeos",
-  "+third_party/mojo/src/mojo/public",
-]

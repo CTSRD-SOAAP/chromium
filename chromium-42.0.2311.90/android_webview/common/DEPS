@@ -1,5 +1,0 @@
-include_rules = [
-  "-android_webview",
-  "+android_webview/common",
-  "+components/printing/common",
-]

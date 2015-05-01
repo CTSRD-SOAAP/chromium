@@ -1,6 +1,0 @@
-include_rules = [
-  "+components/autofill/core/common",  # For PasswordForm.
-  "+components/favicon_base",
-  "+components/search_engines",
-  "+components/strings/grit",
-]
