@@ -90,3 +90,13 @@
  # Short names for targets.
  build blink_web: phony obj/third_party/WebKit/Source/web/libblink_web.a
  build chromium_builder_asan: phony obj/build/chromium_builder_asan.actions_depends.stamp
+--- out/Release/obj/chrome/chrome_initial.ninja 2015-05-04 16:29:04.688642414 -0230
++++ out/Release/obj/chrome/chrome_initial.ninja.orig    2015-05-04 16:29:02.420645589 -0230
+@@ -911,7 +911,6 @@
+     -lspeechd -lusb -lFLAC -lspeex -ldbus-1 -lgtk-x11-2.0 -lgdk-x11-2.0 $
+     -latk-1.0 -lgdk_pixbuf-2.0
+ build chrome: link $
+-    obj/content/public/common/chrome_initial.content_switches.o $
+     obj/chrome/app/chrome_initial.chrome_exe_main_aura.o $
+     obj/chrome/app/chrome_initial.chrome_main.o $
+     obj/chrome/app/chrome_initial.chrome_main_delegate.o $
