@@ -19,7 +19,7 @@ objects=`
 
 for o in $objects
 do
-	def=`nm $o | grep " T " | grep $symbol`
+	def=`nm $o | egrep " [ARTVW] " | grep $symbol`
 	if [ "$def" != "" ]; then
 		ninja -t query $o
 	fi
