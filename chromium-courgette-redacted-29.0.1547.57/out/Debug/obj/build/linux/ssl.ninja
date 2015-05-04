@@ -1,3 +1,0 @@
-build obj/build/linux/ssl.actions_depends.stamp: stamp $
-    obj/net/third_party/nss/libcrssl.a obj/third_party/zlib/libchrome_zlib.a
-

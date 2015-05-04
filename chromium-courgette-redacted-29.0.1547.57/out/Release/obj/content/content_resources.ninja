@@ -1,2 +1,0 @@
-build content_resources.pak: copy gen/content/content_resources.pak || $
-    obj/content/generate_content_resources.actions_rules_copies.stamp

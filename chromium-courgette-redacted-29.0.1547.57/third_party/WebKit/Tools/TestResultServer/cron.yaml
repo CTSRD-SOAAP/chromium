@@ -1,5 +1,0 @@
-cron:
-- description: refresh builders list job
-  url: /updatebuilders
-  schedule: every 2 hours
-  timezone: America/Los_Angeles

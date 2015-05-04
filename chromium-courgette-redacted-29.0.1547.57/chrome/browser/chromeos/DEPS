@@ -1,7 +1,0 @@
-include_rules = [
-  "+cros",
-  "+dbus",
-  "+device/bluetooth",
-  "+media/base/media_switches.h",  # For media command line switches.
-  "+webkit/chromeos/fileapi",
-]

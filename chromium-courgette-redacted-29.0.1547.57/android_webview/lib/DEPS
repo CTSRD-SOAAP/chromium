@@ -1,5 +1,0 @@
-include_rules = [
-  "+cc/base/switches.h",
-  "+components",  # For jni registers.
-  "+content/public",
-]

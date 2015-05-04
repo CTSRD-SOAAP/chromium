@@ -1,3 +1,0 @@
-build obj/third_party/WebKit/Source/unittest_config.actions_depends.stamp: $
-    stamp obj/testing/libgmock.a obj/testing/libgtest.a
-

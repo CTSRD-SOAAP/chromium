@@ -1,5 +1,0 @@
-include_rules = [
-  "+content/public/test",
-  "+content/test",
-  "+win8/viewer",
-]

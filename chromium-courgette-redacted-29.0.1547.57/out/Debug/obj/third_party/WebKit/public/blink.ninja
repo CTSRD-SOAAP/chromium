@@ -1,4 +1,0 @@
-build obj/third_party/WebKit/public/blink.actions_depends.stamp: stamp $
-    obj/third_party/WebKit/Source/WebKit/chromium/libwebkit.a $
-    obj/third_party/WebKit/Source/WebKit/chromium/libblink_common.a
-
