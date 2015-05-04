@@ -43,11 +43,11 @@
    deps = gcc
  rule alink
 -  command = rm -f $out && $ar rcs $arflags $out $in
-+  command = rm -f $out && $ar rcs $out $in && rm -f $out.bc && $ar rcs $out.bc `$llvm_file_map $in`
++  command = rm -f $out && $ar rcs $out $in && rm -f $out.bc && $llvm_link_wrapper $out.bc `$llvm_file_map $in`
    description = AR $out
  rule alink_thin
 -  command = rm -f $out && $ar rcsT $arflags $out $in
-+  command = rm -f $out && $ar rcsT $out $in && rm -f $out.bc && $ar rcs $out.bc `$llvm_file_map $in`
++  command = rm -f $out && $ar rcsT $out $in && rm -f $out.bc && $llvm_link_wrapper $out.bc `$llvm_file_map $in`
    description = AR $out
  rule solink
    command = if [ ! -e $lib -o ! -e $lib.TOC ]; then $ld -shared $ldflags -o $lib -Wl,-soname=$soname @$link_file_list $
