@@ -17,5 +17,5 @@ shift # skip output filename
 
 if [[ -n "$@" ]] # check that we have some files to link
 then
-  $llvm_link -o $OUT $@
+  $llvm_link -libmd -o $OUT $@
 fi
