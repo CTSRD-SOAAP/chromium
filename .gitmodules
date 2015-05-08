@@ -1,3 +1,11 @@
 [submodule "chromium-42.0.2311.135"]
 	path = v42
 	url = https://github.com/CTSRD-SOAAP/chromium-42.0.2311.135
+[submodule "v29"]
+	path = v29
+	url = https://github.com/CTSRD-SOAAP/chromium.git
+	branch = v29
+[submodule "v32"]
+	path = v32
+	url = https://github.com/CTSRD-SOAAP/chromium.git
+	branch = v32
