@@ -27,10 +27,10 @@ fi
 CHROMIUM_VERSION=$1
 if [ "${CHROMIUM_VERSION}" == "" ]; then
 	case "${PWD}" in
-		*chromium-32.*)
+		*v32)
 			CHROMIUM_VERSION=v32
 			;;
-		*chromium-42.*)
+		*v42)
 			CHROMIUM_VERSION=v42
 			;;
 		*)
