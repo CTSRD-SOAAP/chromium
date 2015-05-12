@@ -1,5 +1,5 @@
---- out/Release/build.ninja.orig	2015-05-11 10:10:01.597526998 -0230
-+++ out/Release/build.ninja	2015-05-11 10:21:43.713480266 -0230
+--- out/Release/build.ninja.orig	2015-05-12 11:41:39.744194535 -0230
++++ out/Release/build.ninja	2015-05-12 11:42:32.923193309 -0230
 @@ -1,16 +1,31 @@
 -cc = cc
 -cxx = c++
@@ -79,7 +79,7 @@
  
  subninja obj/breakpad/breakpad_client.ninja
  subninja obj/skia/skia_chrome_opts.ninja
-@@ -1126,6 +1150,13 @@
+@@ -1126,6 +1150,14 @@
  subninja obj/build/chromium_builder_tests.ninja
  subninja obj/build/All.ninja
  
@@ -87,8 +87,9 @@
 +build chrome.o : llc chrome.bc
 +build chrome.bc : phony chrome
 +build chrome.bc.exe : chromebclink chrome.o
-+build chrome.soaap : soaap chrome.bc
++build chrome.soaap.json : soaap chrome.bc
 +build chrome.dbcsoaap : soaap chrome.dbc
++build soaap : phony chrome.soaap.json
 +
  # Short names for targets.
  build blink_web: phony obj/third_party/WebKit/Source/web/libblink_web.a
