@@ -1,6 +1,6 @@
---- out/Release/build.ninja.orig	2015-05-12 11:41:39.744194535 -0230
-+++ out/Release/build.ninja	2015-05-12 11:42:32.923193309 -0230
-@@ -1,16 +1,31 @@
+--- out/Release/build.ninja.orig	2015-05-12 11:55:53.427134961 -0230
++++ out/Release/build.ninja	2015-05-13 22:09:32.072644574 -0230
+@@ -1,16 +1,32 @@
 -cc = cc
 -cxx = c++
 +soaap_llvm_path = /replace/with/your/SOAAP/llvm
@@ -22,7 +22,8 @@
 +soaap_include_dir = $soaap_build_path/include
 +
 +SOAAP_FLAGS = $
-+  -soaap-output-traces=all -soaap-pedantic $
++  -soaap-analyses=vulnerability,infoflow $
++  -soaap-output-traces=vulnerability,infoflow -soaap-pedantic $
 +  -soaap-report-file-prefix=chrome.soaap -soaap-report-output-formats=json $
 +  -soaap-sandbox-platform=capsicum
 +
@@ -35,7 +36,7 @@
    description = CC $out
    depfile = $out.d
    deps = gcc
-@@ -18,15 +33,15 @@
+@@ -18,15 +34,15 @@
    command = $cc $defines $includes $cflags $cflags_c $cflags_pch_c -c $in -o $out
    description = CC $out
  rule cxx
@@ -54,7 +55,7 @@
    description = AR $out
  rule solink
    command = if [ ! -e $lib -o ! -e $lib.TOC ]; then $ld -shared $ldflags -o $lib -Wl,-soname=$soname @$link_file_list $
-@@ -49,7 +64,7 @@
+@@ -49,7 +65,7 @@
    rspfile = $link_file_list
    rspfile_content = -Wl,--start-group $in -Wl,--end-group $solibs $libs
  rule link
@@ -63,7 +64,7 @@
    description = LINK $out
    pool = link_pool
  rule stamp
-@@ -58,6 +73,15 @@
+@@ -58,6 +74,16 @@
  rule copy
    command = ln -f $in $out 2>/dev/null || (rm -rf $out && cp -af $in $out)
    description = COPY $in $out
