@@ -1,5 +1,5 @@
---- out/Release/build.ninja.orig	2015-05-12 11:55:53.427134961 -0230
-+++ out/Release/build.ninja	2015-05-13 22:09:32.072644574 -0230
+--- out/Release/build.ninja.orig	2015-08-05 17:27:14.795217354 +0000
++++ out/Release/build.ninja	2015-08-05 18:23:12.122988506 +0000
 @@ -1,16 +1,32 @@
 -cc = cc
 -cxx = c++
@@ -64,7 +64,7 @@
    description = LINK $out
    pool = link_pool
  rule stamp
-@@ -58,6 +74,16 @@
+@@ -58,6 +74,22 @@
  rule copy
    command = ln -f $in $out 2>/dev/null || (rm -rf $out && cp -af $in $out)
    description = COPY $in $out
@@ -74,24 +74,32 @@
 +rule chromebclink
 +  command = $ld -B /usr/local/bin -Wl,-z,now -Wl,-z,relro -Wl,--unresolved-symbols=ignore-all -pthread -Wl,-z,noexecstack -fPIC -Wl,--no-keep-memory -L. -L/usr/local/lib -L/usr/local/lib/nss -Wl,-O1 -Wl,--as-needed -o $out $in -lX11 -lXcursor -lXrender -lXss -lXext -L/usr/local/lib -lexecinfo -lgmodule-2.0 -lgobject-2.0 -lgthread-2.0 -lglib-2.0 -lintl -lXtst -lgtk-x11-2.0 -lgdk-x11-2.0 -lpangocairo-1.0 -lXinerama -lXi -lXrandr -lXcomposite -lXdamage -lXfixes -latk-1.0 -lcairo -lgdk_pixbuf-2.0 -lgio-2.0 -lpangoft2-1.0 -lpango-1.0 -lfreetype -lfontconfig -lnss3 -lsmime3 -lnssutil3 -lplds4 -lplc4 -lnspr4 -lasound -lxml2 -lxslt -lz -liconv -lm -lcups -lssl -lcrypto -pthread -lcrypt -lssp_nonshared -L/usr/local/lib -lgcrypt -lgpg-error -lexpat -lusb -ldbus-1 `cat objfiles.txt | xargs`
 +  description = CHROME_BCLINK $out
++rule demangle
++  command = cat $in | c++filt > $out
++  description = Demangling $in
 +rule soaap
 +  command = $soaap_binary ${SOAAP_FLAGS} $in
 +  description = SOAAP $in
 +  pool = console
++rule xz
++  command = xz --force --keep $in > $out
++  description = Compressing $in
  
- subninja obj/breakpad/breakpad_client.ninja
- subninja obj/skia/skia_chrome_opts.ninja
-@@ -1126,6 +1150,14 @@
- subninja obj/build/chromium_builder_tests.ninja
- subninja obj/build/All.ninja
+ subninja obj/third_party/mojo/mojo_utility.ninja
+ subninja obj/remoting/remoting_webapp_html.ninja
+@@ -1126,6 +1158,16 @@
+ subninja obj/build/aura_builder.ninja
+ subninja obj/build/chromium_builder_webrtc.ninja
  
 +# SOAAP-related targets
 +build chrome.o : llc chrome.bc
 +build chrome.bc : phony chrome
 +build chrome.bc.exe : chromebclink chrome.o
 +build chrome.soaap.json : soaap chrome.bc
++build chrome.soaap.demangled.json : demangle chrome.soaap.json
++build chrome.soaap.demangled.json.xz : xz chrome.soaap.demangled.json
 +build chrome.dbcsoaap : soaap chrome.dbc
-+build soaap : phony chrome.soaap.json
++build soaap : phony chrome.soaap.demangled.json.xz
 +
  # Short names for targets.
  build blink_web: phony obj/third_party/WebKit/Source/web/libblink_web.a
