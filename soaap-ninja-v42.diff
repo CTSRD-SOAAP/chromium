@@ -1,5 +1,5 @@
---- out/Release/build.ninja.orig	2015-08-06 18:06:06.408101502 +0000
-+++ out/Release/build.ninja	2015-08-07 17:31:39.551289134 +0000
+--- out/Release/build.ninja.orig	2015-08-09 19:12:08.217964844 +0000
++++ out/Release/build.ninja	2015-08-09 19:48:16.406815149 +0000
 @@ -1,16 +1,33 @@
 -cc = cc
 -cxx = c++
@@ -24,7 +24,7 @@
 +SOAAP_FLAGS = $
 +  -soaap-analyses=vulnerability,infoflow $
 +  -soaap-output-traces=vulnerability,infoflow -soaap-pedantic $
-+  -soaap-pretty-print=false $
++  -soaap-pretty-print=false -soaap-emit-leaked-rights=false $
 +  -soaap-report-file-prefix=chrome.soaap -soaap-report-output-formats=json $
 +  -soaap-sandbox-platform=capsicum
 +
